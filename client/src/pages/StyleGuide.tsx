@@ -329,6 +329,7 @@ export default function StyleGuide() {
     el.style.setProperty('--cme-letter-spacing-heading', `${currentTokens.letterSpacingHeading}px`);
     el.style.setProperty('--cme-diamond-radius', String(currentTokens.diamondRadius));
     el.style.setProperty('--cme-border-radius', `${currentTokens.borderRadius}px`);
+    el.style.setProperty('--radius', `${currentTokens.borderRadius / 16}rem`);
     el.style.setProperty('--cme-section-padding', `${currentTokens.sectionPadding}px`);
     el.style.setProperty('--cme-container-max-width', `${currentTokens.containerMaxWidth}px`);
     el.style.setProperty('--cme-logo-height', `clamp(${currentTokens.logoHeightMin}px, ${currentTokens.logoHeightIdeal}vw, ${currentTokens.logoHeightMax}px)`);

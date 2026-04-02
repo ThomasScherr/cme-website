@@ -218,6 +218,7 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-diamond-radius', String(tokens.diamondRadius));
   // Layout
   el.style.setProperty('--cme-border-radius', `${tokens.borderRadius}px`);
+  el.style.setProperty('--radius', `${tokens.borderRadius / 16}rem`);
   el.style.setProperty('--cme-section-padding', `${tokens.sectionPadding}px`);
   el.style.setProperty('--cme-container-max-width', `${tokens.containerMaxWidth}px`);
   // Logo
