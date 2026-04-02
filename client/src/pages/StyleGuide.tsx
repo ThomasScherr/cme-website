@@ -246,7 +246,7 @@ export default function StyleGuide() {
   --cme-border-radius: ${tokens.borderRadius}px;
   --cme-section-padding: ${tokens.sectionPadding}px;
   --cme-container-max-width: ${tokens.containerMaxWidth}px;
-  --cme-logo-height: ${tokens.logoHeight}px;
+  --cme-logo-height: clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px);
 }`;
 
   const headingStyle = (size: number): React.CSSProperties => ({
@@ -350,15 +350,24 @@ export default function StyleGuide() {
                 </Row>
               </Section>
 
-              <Section title="Logo">
-                <Row label="Logo-Höhe (Header &amp; Footer)">
-                  <NumberInput value={tokens.logoHeight} onChange={v => updateToken('logoHeight', v)} min={20} max={120} unit="px" />
+              <Section title="Logo (dynamisch)">
+                <Row label="Min (Mobile)">
+                  <NumberInput value={tokens.logoHeightMin} onChange={v => updateToken('logoHeightMin', v)} min={16} max={60} unit="px" />
                 </Row>
+                <Row label="Ideal (Viewport)">
+                  <NumberInput value={tokens.logoHeightIdeal} onChange={v => updateToken('logoHeightIdeal', v)} min={1} max={10} step={0.5} unit="vw" />
+                </Row>
+                <Row label="Max (Desktop/4K)">
+                  <NumberInput value={tokens.logoHeightMax} onChange={v => updateToken('logoHeightMax', v)} min={40} max={200} unit="px" />
+                </Row>
+                <div style={{ marginTop: '0.75rem', padding: '0.5rem', background: '#f1f5f9', borderRadius: 4, fontSize: 11, color: '#64748b' }}>
+                  <strong>Aktuell:</strong> clamp({tokens.logoHeightMin}px, {tokens.logoHeightIdeal}vw, {tokens.logoHeightMax}px)
+                </div>
                 <div style={{ marginTop: '0.5rem' }}>
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png"
                     alt="Logo Vorschau"
-                    style={{ height: tokens.logoHeight, width: 'auto', maxWidth: '100%', border: '1px solid #e2e8f0', padding: '4px', borderRadius: 4 }}
+                    style={{ height: `clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px)`, width: 'auto', maxWidth: '100%', border: '1px solid #e2e8f0', padding: '4px', borderRadius: 4 }}
                   />
                 </div>
               </Section>

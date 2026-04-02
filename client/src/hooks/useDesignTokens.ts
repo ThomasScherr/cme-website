@@ -130,8 +130,10 @@ export interface DesignTokens {
   borderRadius: number;
   sectionPadding: number;
   containerMaxWidth: number;
-  // Logo
-  logoHeight: number;
+  // Logo (clamp-based: min px, ideal vw, max px)
+  logoHeightMin: number;
+  logoHeightIdeal: number;
+  logoHeightMax: number;
 }
 
 export const DEFAULT_TOKENS: DesignTokens = {
@@ -156,7 +158,9 @@ export const DEFAULT_TOKENS: DesignTokens = {
   borderRadius: 4,
   sectionPadding: 80,
   containerMaxWidth: 1280,
-  logoHeight: 40,
+  logoHeightMin: 28,
+  logoHeightIdeal: 3.5,
+  logoHeightMax: 56,
 };
 
 const STORAGE_KEY = 'cme-design-tokens';
@@ -185,7 +189,7 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-border-radius', `${tokens.borderRadius}px`);
   el.style.setProperty('--cme-section-padding', `${tokens.sectionPadding}px`);
   el.style.setProperty('--cme-container-max-width', `${tokens.containerMaxWidth}px`);
-  el.style.setProperty('--cme-logo-height', `${tokens.logoHeight}px`);
+  el.style.setProperty('--cme-logo-height', `clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px)`);
 }
 
 /** Load tokens from LocalStorage (falls back to defaults) */
