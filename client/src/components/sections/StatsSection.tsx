@@ -21,8 +21,8 @@ export default function StatsSection() {
       style={{
         background: 'var(--cme-color-dark)',
         color: '#fff',
-        paddingTop: 'clamp(2.5rem, 4vw, 5rem)',
-        paddingBottom: 'clamp(2.5rem, 4vw, 5rem)',
+        paddingTop: 'var(--cme-section-stats-pt, 40px)',
+        paddingBottom: 'var(--cme-section-stats-pb, 40px)',
       }}
     >
       <div

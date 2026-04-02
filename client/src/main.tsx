@@ -6,13 +6,17 @@ import {
   applyTokensToRoot,
   loadDiamondConfigs,
   applyDiamondConfigsToRoot,
+  loadSectionHeights,
+  applySectionHeightsToRoot,
   DEFAULT_TOKENS,
   DEFAULT_DIAMOND_CONFIGS,
+  DEFAULT_SECTION_HEIGHTS,
 } from "./hooks/useDesignTokens";
 
 // ── Initial load from LocalStorage ───────────────────────────────────────
 applyTokensToRoot(loadTokens());
 applyDiamondConfigsToRoot(loadDiamondConfigs());
+applySectionHeightsToRoot(loadSectionHeights());
 
 // ── Cross-Tab Sync ───────────────────────────────────────────────────────
 // Method 1: Native storage event (fires in OTHER tabs when localStorage changes)
@@ -29,6 +33,11 @@ window.addEventListener('storage', (event) => {
       applyDiamondConfigsToRoot(configs);
     } catch { /* ignore */ }
   }
+  if (event.key === 'cme-section-heights' && event.newValue) {
+    try {
+      applySectionHeightsToRoot(loadSectionHeights());
+    } catch { /* ignore */ }
+  }
 });
 
 // Method 2: Same-tab custom event (dispatched by saveTokens/saveDiamondConfigs)
@@ -39,6 +48,9 @@ window.addEventListener('cme-token-change' as any, ((e: CustomEvent) => {
   if (e.detail?.key === 'cme-diamond-configs') {
     applyDiamondConfigsToRoot(loadDiamondConfigs());
   }
+  if (e.detail?.key === 'cme-section-heights') {
+    applySectionHeightsToRoot(loadSectionHeights());
+  }
 }) as EventListener);
 
 // Method 3: Polling fallback – checks every 300ms if localStorage changed.
@@ -46,6 +58,7 @@ window.addEventListener('cme-token-change' as any, ((e: CustomEvent) => {
 // some browser contexts, or when both tabs share the same browsing context).
 let lastTokensJson = localStorage.getItem('cme-design-tokens') || '';
 let lastDiamondJson = localStorage.getItem('cme-diamond-configs') || '';
+let lastSectionJson = localStorage.getItem('cme-section-heights') || '';
 
 setInterval(() => {
   const currentTokensJson = localStorage.getItem('cme-design-tokens') || '';
@@ -68,6 +81,14 @@ setInterval(() => {
         ? { ...DEFAULT_DIAMOND_CONFIGS, ...JSON.parse(currentDiamondJson) }
         : { ...DEFAULT_DIAMOND_CONFIGS };
       applyDiamondConfigsToRoot(configs);
+    } catch { /* ignore */ }
+  }
+
+  const currentSectionJson = localStorage.getItem('cme-section-heights') || '';
+  if (currentSectionJson !== lastSectionJson) {
+    lastSectionJson = currentSectionJson;
+    try {
+      applySectionHeightsToRoot(currentSectionJson ? loadSectionHeights() : { ...DEFAULT_SECTION_HEIGHTS });
     } catch { /* ignore */ }
   }
 }, 300);

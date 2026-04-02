@@ -35,7 +35,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{ paddingTop: sectionPad, paddingBottom: sectionPad, background: 'var(--cme-color-bg-alt, #f5f6f8)' }}
+      style={{ paddingTop: 'var(--cme-section-contact-pt, 80px)', paddingBottom: 'var(--cme-section-contact-pb, 80px)', background: 'var(--cme-color-bg-alt, #f5f6f8)' }}
     >
       <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
         <motion.div

@@ -17,8 +17,8 @@ export default function ProcessSection() {
     <section
       id="process"
       style={{
-        paddingTop: sectionPad,
-        paddingBottom: sectionPad,
+        paddingTop: 'var(--cme-section-process-pt, 80px)',
+        paddingBottom: 'var(--cme-section-process-pb, 80px)',
         background: 'var(--cme-color-dark)',
         color: '#fff',
       }}

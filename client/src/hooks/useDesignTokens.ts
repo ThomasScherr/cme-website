@@ -109,6 +109,117 @@ export function useDiamondConfigs() {
   return { configs, updateDiamond, resetAll };
 }
 
+// ── Per-Section Height Configuration ─────────────────────────────────────
+
+export interface SectionHeightConfig {
+  paddingTop: number;   // px
+  paddingBottom: number; // px
+}
+
+export type SectionId = 'hero' | 'stats' | 'service1' | 'service2' | 'service3' | 'usp' | 'process' | 'markets' | 'contact';
+
+export const DEFAULT_SECTION_HEIGHTS: Record<SectionId, SectionHeightConfig> = {
+  hero:     { paddingTop: 80, paddingBottom: 80 },
+  stats:    { paddingTop: 40, paddingBottom: 40 },
+  service1: { paddingTop: 80, paddingBottom: 80 },
+  service2: { paddingTop: 80, paddingBottom: 80 },
+  service3: { paddingTop: 80, paddingBottom: 80 },
+  usp:      { paddingTop: 80, paddingBottom: 80 },
+  process:  { paddingTop: 80, paddingBottom: 80 },
+  markets:  { paddingTop: 80, paddingBottom: 80 },
+  contact:  { paddingTop: 80, paddingBottom: 80 },
+};
+
+export const SECTION_LABELS: Record<SectionId, string> = {
+  hero:     'Hero (Startseite)',
+  stats:    'Kennzahlen-Leiste',
+  service1: 'Leistung 1 – Entwicklung',
+  service2: 'Leistung 2 – Fertigung',
+  service3: 'Leistung 3 – Lifecycle',
+  usp:      'Warum CME?',
+  process:  'Unser Prozess',
+  markets:  'Märkte & Anwendungen',
+  contact:  'Kontakt',
+};
+
+const SECTION_HEIGHT_STORAGE_KEY = 'cme-section-heights';
+
+export function loadSectionHeights(): Record<SectionId, SectionHeightConfig> {
+  try {
+    const raw = localStorage.getItem(SECTION_HEIGHT_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const merged = { ...DEFAULT_SECTION_HEIGHTS };
+      for (const id of Object.keys(DEFAULT_SECTION_HEIGHTS) as SectionId[]) {
+        if (parsed[id]) merged[id] = { ...DEFAULT_SECTION_HEIGHTS[id], ...parsed[id] };
+      }
+      return merged;
+    }
+  } catch { /* ignore */ }
+  return { ...DEFAULT_SECTION_HEIGHTS };
+}
+
+export function saveSectionHeights(configs: Record<SectionId, SectionHeightConfig>) {
+  localStorage.setItem(SECTION_HEIGHT_STORAGE_KEY, JSON.stringify(configs));
+  notifySameTab(SECTION_HEIGHT_STORAGE_KEY);
+}
+
+export function applySectionHeightsToRoot(configs: Record<SectionId, SectionHeightConfig>) {
+  const el = document.documentElement;
+  (Object.keys(configs) as SectionId[]).forEach(id => {
+    const c = configs[id];
+    el.style.setProperty(`--cme-section-${id}-pt`, `${c.paddingTop}px`);
+    el.style.setProperty(`--cme-section-${id}-pb`, `${c.paddingBottom}px`);
+  });
+}
+
+export function resetSectionHeights() {
+  localStorage.removeItem(SECTION_HEIGHT_STORAGE_KEY);
+  applySectionHeightsToRoot(DEFAULT_SECTION_HEIGHTS);
+  notifySameTab(SECTION_HEIGHT_STORAGE_KEY);
+}
+
+// ── useSectionHeights Hook ──────────────────────────────────────────────
+
+export function useSectionHeights() {
+  const [configs, setConfigs] = useState<Record<SectionId, SectionHeightConfig>>(() => loadSectionHeights());
+
+  useEffect(() => {
+    applySectionHeightsToRoot(configs);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === SECTION_HEIGHT_STORAGE_KEY && e.newValue) {
+        try {
+          const incoming = loadSectionHeights();
+          setConfigs(incoming);
+          applySectionHeightsToRoot(incoming);
+        } catch { /* ignore */ }
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+
+  const updateSection = useCallback((id: SectionId, key: keyof SectionHeightConfig, value: number) => {
+    setConfigs(prev => {
+      const next = { ...prev, [id]: { ...prev[id], [key]: value } };
+      applySectionHeightsToRoot(next);
+      saveSectionHeights(next);
+      return next;
+    });
+  }, []);
+
+  const resetAll = useCallback(() => {
+    const def = { ...DEFAULT_SECTION_HEIGHTS };
+    setConfigs(def);
+    resetSectionHeights();
+  }, []);
+
+  return { configs, updateSection, resetAll };
+}
+
 // ── Global Design Tokens ─────────────────────────────────────────────────
 
 export interface DesignTokens {

@@ -19,7 +19,7 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden bg-white"
-      style={{ paddingTop: 'clamp(5rem, 8vw, 10rem)' }}
+      style={{ paddingTop: 'var(--cme-section-hero-pt, 80px)', paddingBottom: 'var(--cme-section-hero-pb, 80px)' }}
     >
       {/* Subtle engineering grid */}
       <div

@@ -19,7 +19,7 @@ export default function MarketsSection() {
 
   return (
     <section id="markets" style={{ overflowX: 'clip', overflowY: 'visible', background: '#fff' }}>
-      <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `${sectionPad} ${contentPad}` }}>
+      <div style={{ maxWidth: contentMax, margin: '0 auto', paddingTop: 'var(--cme-section-markets-pt, 80px)', paddingBottom: 'var(--cme-section-markets-pb, 80px)', paddingLeft: contentPad, paddingRight: contentPad }}>
         {/* ── Headline ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

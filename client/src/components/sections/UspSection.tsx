@@ -14,7 +14,7 @@ export default function UspSection() {
   const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
 
   return (
-    <section style={{ paddingTop: sectionPad, paddingBottom: sectionPad, background: 'var(--cme-color-bg-alt, #f5f6f8)' }}>
+    <section style={{ paddingTop: 'var(--cme-section-usp-pt, 80px)', paddingBottom: 'var(--cme-section-usp-pb, 80px)', background: 'var(--cme-color-bg-alt, #f5f6f8)' }}>
       <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

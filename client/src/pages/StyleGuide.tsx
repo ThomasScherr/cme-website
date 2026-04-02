@@ -7,13 +7,19 @@ import DiamondImage from '@/components/DiamondImage';
 import {
   useDesignTokens,
   useDiamondConfigs,
+  useSectionHeights,
   DiamondId,
+  SectionId,
   DIAMOND_LABELS,
+  SECTION_LABELS,
   DEFAULT_DIAMOND_CONFIGS,
+  DEFAULT_SECTION_HEIGHTS,
   applyTokensToRoot,
   applyDiamondConfigsToRoot,
+  applySectionHeightsToRoot,
   loadTokens,
   loadDiamondConfigs,
+  loadSectionHeights,
 } from '@/hooks/useDesignTokens';
 
 const DEMO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp';
@@ -103,12 +109,13 @@ function CopyButton({ text }: { text: string }) {
 
 // ── Tab navigation ─────────────────────────────────────────────────────────
 
-type Tab = 'design' | 'diamonds' | 'export';
+type Tab = 'design' | 'diamonds' | 'sections' | 'export';
 
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   const tabs: { id: Tab; label: string }[] = [
     { id: 'design', label: 'Design Tokens' },
     { id: 'diamonds', label: 'Rauten' },
+    { id: 'sections', label: 'Sektionshöhen' },
     { id: 'export', label: 'CSS Export' },
   ];
   return (
@@ -214,6 +221,68 @@ function DiamondEditor() {
   );
 }
 
+// ── Section Height Editor ──────────────────────────────────────────────
+
+function SectionHeightEditor() {
+  const { configs, updateSection, resetAll } = useSectionHeights();
+  const ids = Object.keys(SECTION_LABELS) as SectionId[];
+
+  return (
+    <div>
+      <div style={{ fontSize: 11, color: '#64748b', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+        Passe die Höhe (Innenabstand oben/unten) jeder Sektion unabhängig von den Rauten an.
+      </div>
+
+      {ids.map(id => {
+        const cfg = configs[id];
+        const def = DEFAULT_SECTION_HEIGHTS[id];
+        const isModified = cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;
+        return (
+          <div key={id} style={{
+            background: isModified ? '#fffbeb' : '#f8fafc',
+            border: `1px solid ${isModified ? '#fcd34d' : '#e2e8f0'}`,
+            borderRadius: 8, padding: '0.75rem', marginBottom: '0.65rem',
+          }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              marginBottom: '0.5rem',
+            }}>
+              <span style={{ fontSize: 11, fontWeight: 600, color: '#334155' }}>
+                {SECTION_LABELS[id]}
+              </span>
+              {isModified && (
+                <button onClick={() => {
+                  updateSection(id, 'paddingTop', def.paddingTop);
+                  updateSection(id, 'paddingBottom', def.paddingBottom);
+                }} style={{
+                  fontSize: 9, padding: '2px 6px', background: '#fef3c7',
+                  border: '1px solid #fcd34d', borderRadius: 3, cursor: 'pointer', color: '#92400e',
+                }}>
+                  Reset
+                </button>
+              )}
+            </div>
+            <Row label="Oben (pt)">
+              <NumberInput value={cfg.paddingTop} onChange={v => updateSection(id, 'paddingTop', v)} min={0} max={300} unit="px" />
+            </Row>
+            <Row label="Unten (pb)">
+              <NumberInput value={cfg.paddingBottom} onChange={v => updateSection(id, 'paddingBottom', v)} min={0} max={300} unit="px" />
+            </Row>
+          </div>
+        );
+      })}
+
+      <button onClick={resetAll} style={{
+        width: '100%', marginTop: '0.5rem', padding: '0.5rem',
+        background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 6,
+        cursor: 'pointer', fontSize: 11, color: '#64748b',
+      }}>
+        Alle Sektionshöhen zurücksetzen
+      </button>
+    </div>
+  );
+}
+
 // ── Preview Controls ──────────────────────────────────────────────────────
 
 function PreviewToolbar({ scale, onScaleChange, onRefresh, previewMode, onModeChange }: {
@@ -272,6 +341,7 @@ function PreviewToolbar({ scale, onScaleChange, onRefresh, previewMode, onModeCh
 export default function StyleGuide() {
   const { tokens, updateToken, reset } = useDesignTokens();
   const { configs } = useDiamondConfigs();
+  const { configs: sectionConfigs } = useSectionHeights();
   const [activeTab, setActiveTab] = useState<Tab>('design');
   const [previewMode, setPreviewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [previewScale, setPreviewScale] = useState(65);
@@ -344,12 +414,21 @@ export default function StyleGuide() {
       el.style.setProperty(`--cme-diamond-${id}-offset-y`, `${c.offsetY}vh`);
       el.style.setProperty(`--cme-diamond-${id}-rotate`, `${c.rotate}deg`);
     });
+
+    // Section heights
+    const currentSections = loadSectionHeights();
+    const sectionIds = Object.keys(currentSections) as SectionId[];
+    sectionIds.forEach(id => {
+      const s = currentSections[id];
+      el.style.setProperty(`--cme-section-${id}-pt`, `${s.paddingTop}px`);
+      el.style.setProperty(`--cme-section-${id}-pb`, `${s.paddingBottom}px`);
+    });
   }, []);
 
   // Push updates whenever tokens or diamond configs change
   useEffect(() => {
     pushToIframe();
-  }, [tokens, configs, pushToIframe]);
+  }, [tokens, configs, sectionConfigs, pushToIframe]);
 
   // Also push after iframe loads
   const handleIframeLoad = useCallback(() => {
@@ -511,6 +590,9 @@ export default function StyleGuide() {
 
             {/* ── TAB: Rauten-Positionen ── */}
             {activeTab === 'diamonds' && <DiamondEditor />}
+
+            {/* ── TAB: Sektionshöhen ── */}
+            {activeTab === 'sections' && <SectionHeightEditor />}
 
             {/* ── TAB: CSS Export ── */}
             {activeTab === 'export' && (

@@ -59,7 +59,7 @@ export default function ServicesSection() {
       </div>
 
       {/* ── Service 1: Development – diamond left, bleeds off left edge ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: sectionPad, paddingBottom: sectionPad }}>
+      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service1-pt, 80px)', paddingBottom: 'var(--cme-section-service1-pb, 80px)' }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
           <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service1-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service1-offset-y, 0px))' }}>
             <DiamondImage src={IMAGES.dev} alt={t.services.dev_title} size="var(--cme-diamond-service1-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service1-rotate, 0deg)" />
@@ -84,7 +84,7 @@ export default function ServicesSection() {
       </div>
 
       {/* ── Service 2: Manufacturing – text left, diamond right bleeds ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'var(--cme-color-bg-alt, #f5f6f8)' }}>
+      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service2-pt, 80px)', paddingBottom: 'var(--cme-section-service2-pb, 80px)', background: 'var(--cme-color-bg-alt, #f5f6f8)' }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
           <motion.div
             initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5 }}
@@ -109,7 +109,7 @@ export default function ServicesSection() {
       </div>
 
       {/* ── Service 3: Lifecycle – dark background, diamond left bleeds ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'var(--cme-color-dark)' }}>
+      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service3-pt, 80px)', paddingBottom: 'var(--cme-section-service3-pb, 80px)', background: 'var(--cme-color-dark)' }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
           <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service3-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service3-offset-y, 0px))' }}>
             <DiamondImage src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size="var(--cme-diamond-service3-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service3-rotate, 0deg)" />
