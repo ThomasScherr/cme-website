@@ -1,7 +1,7 @@
 // CME Website – Markets Section
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond uses SVG clipPath – guaranteed full fill, no white corners
-// FIX: Diamond no longer overlaps market cards – separate rows with clear spacing
+// Diamonds bleed 10% above and below section boundaries
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -18,7 +18,7 @@ export default function MarketsSection() {
   const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
 
   return (
-    <section id="markets" style={{ overflow: 'hidden', background: '#fff' }}>
+    <section id="markets" style={{ overflowX: 'clip', overflowY: 'visible', background: '#fff' }}>
       <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `${sectionPad} ${contentPad}` }}>
         {/* ── Headline ── */}
         <motion.div
@@ -37,82 +37,90 @@ export default function MarketsSection() {
           </p>
         </motion.div>
 
-        {/* ── Markets Grid – cards only, no diamond overlap ── */}
+        {/* ── Two-column layout: cards left, diamond right ── */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 240px), 1fr))',
-            gap: 'clamp(0.75rem, 1.5vw, 1.25rem)',
-            marginBottom: 'clamp(3rem, 5vw, 6rem)',
-          }}
-        >
-          {t.markets.items.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              style={{
-                padding: 'clamp(0.75rem, 1.5vw, 1.25rem)',
-                border: '1px solid var(--cme-color-border, #dde1e6)',
-                transition: 'border-color 0.25s, background 0.25s',
-                cursor: 'default',
-              }}
-              whileHover={{ borderColor: 'var(--cme-color-primary-50, rgba(33,150,211,0.5))', backgroundColor: 'var(--cme-color-bg-alt, #f5f6f8)' }}
-            >
-              <div style={{ width: '7px', height: '7px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', marginBottom: '0.75rem' }} />
-              <h4 style={{ fontSize: 'var(--text-sm)', fontWeight: 700, marginBottom: '0.35rem', lineHeight: 1.3 }}>{item.title}</h4>
-              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--cme-color-gray)', lineHeight: 1.55 }}>{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── EMC Chamber Diamond – separate row below cards ── */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
+            gap: 'clamp(2rem, 4vw, 5rem)',
             alignItems: 'center',
-            position: 'relative',
           }}
         >
-          <div style={{ position: 'relative', transform: 'translateY(var(--cme-diamond-markets-offset-y, 0px))' }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={vp}
-              transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
-              <DiamondImage
-                src={EMC_IMAGE}
-                alt="EMC Anechoic Chamber"
-                size="clamp(260px, 35vw, 550px)"
-                overlayColor="rgba(10,15,25,0.35)"
-                extraRotate="var(--cme-diamond-markets-rotate, 0deg)"
-              />
-            </motion.div>
+          {/* Markets Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 200px), 1fr))',
+              gap: 'clamp(0.75rem, 1.5vw, 1.25rem)',
+            }}
+          >
+            {t.markets.items.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                style={{
+                  padding: 'clamp(0.75rem, 1.5vw, 1.25rem)',
+                  border: '1px solid var(--cme-color-border, #dde1e6)',
+                  transition: 'border-color 0.25s, background 0.25s',
+                  cursor: 'default',
+                }}
+                whileHover={{ borderColor: 'var(--cme-color-primary-50, rgba(33,150,211,0.5))', backgroundColor: 'var(--cme-color-bg-alt, #f5f6f8)' }}
+              >
+                <div style={{ width: '7px', height: '7px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', marginBottom: '0.75rem' }} />
+                <h4 style={{ fontSize: 'var(--text-sm)', fontWeight: 700, marginBottom: '0.35rem', lineHeight: 1.3 }}>{item.title}</h4>
+                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--cme-color-gray)', lineHeight: 1.55 }}>{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Label overlay */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '20%',
-                left: '15%',
-                color: '#fff',
-                zIndex: 10,
-                pointerEvents: 'none',
-              }}
-            >
-              <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', opacity: 0.65, marginBottom: '0.3rem' }}>
-                In-House
-              </p>
-              <p style={{ fontSize: 'var(--text-xl)', fontFamily: 'var(--cme-font-family)', fontWeight: 700, lineHeight: 1.1 }}>
-                EMV-Messkammer
-              </p>
-              <p style={{ fontSize: 'var(--text-xs)', opacity: 0.60, marginTop: '0.25rem' }}>
-                Leitungsgebunden & gestrahlt
-              </p>
+          {/* EMC Chamber Diamond – bleeds 10% above/below + right edge */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
+            <div style={{
+              position: 'relative',
+              marginTop: '-10%',
+              marginBottom: '-10%',
+              marginRight: 'calc(-1 * var(--cme-diamond-markets-offset-x, 16vw))',
+              transform: 'translateY(var(--cme-diamond-markets-offset-y, 0px))',
+            }}>
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <DiamondImage
+                  src={EMC_IMAGE}
+                  alt="EMC Anechoic Chamber"
+                  size="var(--cme-diamond-markets-size, 42vw)"
+                  overlayColor="rgba(10,15,25,0.35)"
+                  extraRotate="var(--cme-diamond-markets-rotate, 0deg)"
+                />
+              </motion.div>
+
+              {/* Label overlay */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '20%',
+                  left: '15%',
+                  color: '#fff',
+                  zIndex: 10,
+                  pointerEvents: 'none',
+                }}
+              >
+                <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', opacity: 0.65, marginBottom: '0.3rem' }}>
+                  In-House
+                </p>
+                <p style={{ fontSize: 'var(--text-xl)', fontFamily: 'var(--cme-font-family)', fontWeight: 700, lineHeight: 1.1 }}>
+                  EMV-Messkammer
+                </p>
+                <p style={{ fontSize: 'var(--text-xs)', opacity: 0.60, marginTop: '0.25rem' }}>
+                  Leitungsgebunden & gestrahlt
+                </p>
+              </div>
             </div>
           </div>
         </div>
