@@ -1,25 +1,31 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+// CME Control Motion Electronics – Home Page
+// Design Philosophy: Techno-Industrial Precision
+// Sections: Hero, Stats, Services (3 pillars), USPs, Process, Markets, Contact, Footer
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/sections/HeroSection';
+import StatsSection from '@/components/sections/StatsSection';
+import ServicesSection from '@/components/sections/ServicesSection';
+import UspSection from '@/components/sections/UspSection';
+import ProcessSection from '@/components/sections/ProcessSection';
+import MarketsSection from '@/components/sections/MarketsSection';
+import ContactSection from '@/components/sections/ContactSection';
+import Footer from '@/components/sections/Footer';
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Navigation />
       <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+        <HeroSection />
+        <StatsSection />
+        <ServicesSection />
+        <UspSection />
+        <ProcessSection />
+        <MarketsSection />
+        <ContactSection />
       </main>
+      <Footer />
     </div>
   );
 }
