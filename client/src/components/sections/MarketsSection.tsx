@@ -75,7 +75,7 @@ export default function MarketsSection() {
 
           {/* EMC Chamber – diamond bleeds right */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
-            <div style={{ marginRight: 'clamp(-40px, -5vw, -80px)', position: 'relative' }}>
+            <div style={{ marginRight: 'clamp(-120px, -18vw, -220px)', position: 'relative' }}>
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -85,7 +85,7 @@ export default function MarketsSection() {
                 <DiamondImage
                   src={EMC_IMAGE}
                   alt="EMC Anechoic Chamber"
-                  size="clamp(240px, 28vw, 480px)"
+                  size="clamp(360px, 44vw, 820px)"
                   overlayColor="rgba(10,15,25,0.35)"
                 />
               </motion.div>

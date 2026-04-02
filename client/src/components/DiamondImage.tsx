@@ -33,7 +33,7 @@ export default function DiamondImage({
   src,
   alt,
   size = 'clamp(260px, 32vw, 560px)',
-  cornerRadius = 0.09,
+  cornerRadius = 0.036,
   animate = true,
   delay = 0,
   overlayColor,

@@ -13,7 +13,7 @@ const IMAGES = {
 };
 
 const vp = { once: true, margin: '-80px' };
-const DIAMOND_SIZE = 'clamp(240px, 30vw, 520px)';
+const DIAMOND_SIZE = 'clamp(360px, 46vw, 860px)';
 
 /** Fluid section label */
 function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; dark?: boolean }) {
@@ -62,7 +62,7 @@ export default function ServicesSection() {
       <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
           {/* Diamond with negative left margin to bleed */}
-          <div style={{ marginLeft: 'clamp(-40px, -5vw, -80px)' }}>
+          <div style={{ marginLeft: 'clamp(-120px, -18vw, -220px)' }}>
             <DiamondImage src={IMAGES.dev} alt={t.services.dev_title} size={DIAMOND_SIZE} delay={0.1} />
           </div>
           <motion.div
@@ -104,7 +104,7 @@ export default function ServicesSection() {
             </ul>
           </motion.div>
           {/* Diamond bleeds off right */}
-          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end', marginRight: 'clamp(-40px, -5vw, -80px)' }}>
+          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end', marginRight: 'clamp(-120px, -18vw, -220px)' }}>
             <DiamondImage src={IMAGES.mfg} alt={t.services.mfg_title} size={DIAMOND_SIZE} delay={0.1} />
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function ServicesSection() {
       {/* ── Service 3: Lifecycle – dark background, diamond left bleeds ── */}
       <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.15 0 0)' }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          <div style={{ marginLeft: 'clamp(-40px, -5vw, -80px)' }}>
+          <div style={{ marginLeft: 'clamp(-120px, -18vw, -220px)' }}>
             <DiamondImage src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size={DIAMOND_SIZE} delay={0.1} />
           </div>
           <motion.div

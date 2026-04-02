@@ -35,7 +35,7 @@ export default function HeroSection() {
       <div
         className="absolute"
         style={{
-          right: 'clamp(-120px, -8vw, -40px)',
+          right: 'clamp(-220px, -18vw, -80px)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 1,
@@ -49,8 +49,8 @@ export default function HeroSection() {
           <DiamondImage
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
             alt="Power Electronics"
-            size="clamp(320px, 42vw, 760px)"
-            cornerRadius={0.22}
+            size="clamp(480px, 58vw, 1100px)"
+            cornerRadius={0.036}
             animate={false}
             overlayColor="rgba(33, 150, 211, 0.06)"
           />
