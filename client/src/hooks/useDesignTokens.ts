@@ -1,8 +1,20 @@
 // CME Design Tokens – persisted via LocalStorage, applied to :root CSS Custom Properties
 // This hook is the single source of truth for all design tokens.
 // Changing a token immediately updates the live website via document.documentElement.style.setProperty.
+// BroadcastChannel syncs changes across all open tabs in real time.
 
 import { useState, useEffect, useCallback } from 'react';
+
+// ── BroadcastChannel setup ────────────────────────────────────────────────
+
+const BROADCAST_CHANNEL_NAME = 'cme-design-sync';
+
+function getBroadcastChannel(): BroadcastChannel | null {
+  if (typeof BroadcastChannel !== 'undefined') {
+    return new BroadcastChannel(BROADCAST_CHANNEL_NAME);
+  }
+  return null;
+}
 
 // ── Per-Diamond Configuration ─────────────────────────────────────────────
 
@@ -80,6 +92,19 @@ export function useDiamondConfigs() {
 
   useEffect(() => {
     applyDiamondConfigsToRoot(configs);
+
+    // Listen for changes from other tabs
+    const channel = getBroadcastChannel();
+    if (channel) {
+      channel.onmessage = (event) => {
+        if (event.data?.type === 'diamond-update') {
+          const incoming = event.data.configs as Record<DiamondId, DiamondConfig>;
+          setConfigs(incoming);
+          applyDiamondConfigsToRoot(incoming);
+        }
+      };
+      return () => channel.close();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateDiamond = useCallback((id: DiamondId, key: keyof DiamondConfig, value: number) => {
@@ -90,6 +115,12 @@ export function useDiamondConfigs() {
       };
       applyDiamondConfigsToRoot(next);
       saveDiamondConfigs(next);
+      // Broadcast to other tabs
+      const channel = getBroadcastChannel();
+      if (channel) {
+        channel.postMessage({ type: 'diamond-update', configs: next });
+        channel.close();
+      }
       return next;
     });
   }, []);
@@ -97,6 +128,11 @@ export function useDiamondConfigs() {
   const resetAll = useCallback(() => {
     setConfigs({ ...DEFAULT_DIAMOND_CONFIGS });
     resetDiamondConfigs();
+    const channel = getBroadcastChannel();
+    if (channel) {
+      channel.postMessage({ type: 'diamond-update', configs: DEFAULT_DIAMOND_CONFIGS });
+      channel.close();
+    }
   }, []);
 
   return { configs, updateDiamond, resetAll };
@@ -221,6 +257,23 @@ export function useDesignTokens() {
 
   useEffect(() => {
     applyTokensToRoot(tokens);
+
+    // Listen for changes broadcast from other tabs (e.g. Style Guide)
+    const channel = getBroadcastChannel();
+    if (channel) {
+      channel.onmessage = (event) => {
+        if (event.data?.type === 'token-update') {
+          const incoming = event.data.tokens as DesignTokens;
+          setTokens(incoming);
+          applyTokensToRoot(incoming);
+        }
+        if (event.data?.type === 'diamond-update') {
+          const incoming = event.data.configs as Record<DiamondId, DiamondConfig>;
+          applyDiamondConfigsToRoot(incoming);
+        }
+      };
+      return () => channel.close();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateToken = useCallback(<K extends keyof DesignTokens>(key: K, value: DesignTokens[K]) => {
@@ -228,6 +281,12 @@ export function useDesignTokens() {
       const next = { ...prev, [key]: value };
       applyTokensToRoot(next);
       saveTokens(next);
+      // Broadcast to other tabs
+      const channel = getBroadcastChannel();
+      if (channel) {
+        channel.postMessage({ type: 'token-update', tokens: next });
+        channel.close();
+      }
       return next;
     });
   }, []);
@@ -235,6 +294,11 @@ export function useDesignTokens() {
   const reset = useCallback(() => {
     setTokens({ ...DEFAULT_TOKENS });
     resetTokens();
+    const channel = getBroadcastChannel();
+    if (channel) {
+      channel.postMessage({ type: 'token-update', tokens: DEFAULT_TOKENS });
+      channel.close();
+    }
   }, []);
 
   return { tokens, updateToken, reset };
