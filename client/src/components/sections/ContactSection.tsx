@@ -35,7 +35,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{ paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.97 0.001 240)' }}
+      style={{ paddingTop: sectionPad, paddingBottom: sectionPad, background: 'var(--cme-color-bg-alt, #f5f6f8)' }}
     >
       <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
         <motion.div
@@ -45,11 +45,11 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'oklch(0.62 0.14 230)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Kontakt
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.contact.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'oklch(0.45 0.01 240)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.contact.sub}</p>
+          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.contact.sub}</p>
         </motion.div>
 
         <div
@@ -118,14 +118,14 @@ export default function ContactSection() {
                 className="mt-1 accent-primary"
                 required
               />
-              <label htmlFor="privacy" style={{ fontSize: 'var(--text-xs)', color: 'oklch(0.45 0.01 240)', cursor: 'pointer', lineHeight: 1.55 }}>
+              <label htmlFor="privacy" style={{ fontSize: 'var(--text-xs)', color: 'var(--cme-color-gray)', cursor: 'pointer', lineHeight: 1.55 }}>
                 {t.contact.privacy}
               </label>
             </div>
             <Button
               type="submit"
               style={{
-                background: 'oklch(0.62 0.14 230)',
+                background: 'var(--cme-color-primary)',
                 color: '#fff',
                 fontSize: 'var(--text-sm)',
                 padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.5rem, 3vw, 2.5rem)',
@@ -149,26 +149,26 @@ export default function ContactSection() {
               <h3 style={{ fontSize: 'var(--text-2xl)', marginBottom: 'clamp(1rem, 2vw, 1.75rem)' }}>{t.contact.address_title}</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <MapPin size={18} style={{ color: 'oklch(0.62 0.14 230)', marginTop: '0.1rem', flexShrink: 0 }} />
+                  <MapPin size={18} style={{ color: 'var(--cme-color-primary)', marginTop: '0.1rem', flexShrink: 0 }} />
                   <div>
                     <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}>CME Control Motion Electronics GmbH</p>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'oklch(0.45 0.01 240)' }}>Alter Hellweg 48</p>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'oklch(0.45 0.01 240)' }}>44379 Dortmund, Germany</p>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-gray)' }}>Alter Hellweg 48</p>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-gray)' }}>44379 Dortmund, Germany</p>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Phone size={18} style={{ color: 'oklch(0.62 0.14 230)', flexShrink: 0 }} />
-                  <a href="tel:+4923128667696" style={{ fontSize: 'var(--text-sm)', color: 'oklch(0.25 0.01 240)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'oklch(0.25 0.01 240)')}>
+                  <Phone size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
+                  <a href="tel:+4923128667696" style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
                     +49 231 28 66 76 96-0
                   </a>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Mail size={18} style={{ color: 'oklch(0.62 0.14 230)', flexShrink: 0 }} />
-                  <a href="mailto:info@control-motion.de" style={{ fontSize: 'var(--text-sm)', color: 'oklch(0.25 0.01 240)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'oklch(0.25 0.01 240)')}>
+                  <Mail size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
+                  <a href="mailto:info@control-motion.de" style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
                     info@control-motion.de
                   </a>
                 </div>
@@ -176,8 +176,8 @@ export default function ContactSection() {
             </div>
 
             {/* Certifications */}
-            <div style={{ borderTop: '1px solid oklch(0.88 0.005 240)', paddingTop: 'clamp(1rem, 2vw, 1.75rem)' }}>
-              <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'oklch(0.55 0.01 240)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <div style={{ borderTop: '1px solid var(--cme-color-border, #dde1e6)', paddingTop: 'clamp(1rem, 2vw, 1.75rem)' }}>
+              <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--cme-color-gray)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
                 Zertifizierungen
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -188,8 +188,8 @@ export default function ContactSection() {
                       fontSize: 'var(--text-xs)',
                       fontWeight: 600,
                       padding: '0.3em 0.75em',
-                      border: '1px solid oklch(0.88 0.005 240)',
-                      color: 'oklch(0.45 0.01 240)',
+                      border: '1px solid var(--cme-color-border, #dde1e6)',
+                      color: 'var(--cme-color-gray)',
                     }}
                   >
                     {cert}

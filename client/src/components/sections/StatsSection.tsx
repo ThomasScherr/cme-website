@@ -19,7 +19,7 @@ export default function StatsSection() {
   return (
     <section
       style={{
-        background: 'oklch(0.15 0 0)',
+        background: 'var(--cme-color-dark)',
         color: '#fff',
         paddingTop: 'clamp(2.5rem, 4vw, 5rem)',
         paddingBottom: 'clamp(2.5rem, 4vw, 5rem)',
@@ -52,9 +52,9 @@ export default function StatsSection() {
               <div
                 style={{
                   fontSize: 'var(--text-4xl)',
-                  fontFamily: "'Roboto', sans-serif",
+                  fontFamily: 'var(--cme-font-family)',
                   fontWeight: 900,
-                  color: 'oklch(0.62 0.14 230)',
+                  color: 'var(--cme-color-primary)',
                   marginBottom: 'clamp(0.35rem, 0.8vw, 0.75rem)',
                 }}
               >

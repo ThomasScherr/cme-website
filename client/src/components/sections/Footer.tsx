@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: 'oklch(0.15 0 0)',
+        background: 'var(--cme-color-dark)',
         color: '#fff',
         paddingTop: 'clamp(3rem, 5vw, 6rem)',
         paddingBottom: 'clamp(2rem, 4vw, 4rem)',
@@ -83,7 +83,7 @@ export default function Footer() {
                       cursor: 'pointer',
                       transition: 'color 0.2s',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                   >
                     {link.label}
@@ -105,7 +105,7 @@ export default function Footer() {
                 <a
                   href="tel:+4923128667696"
                   style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                   onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                 >
                   +49 231 28 66 76 96-0
@@ -115,7 +115,7 @@ export default function Footer() {
                 <a
                   href="mailto:info@control-motion.de"
                   style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                   onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                 >
                   info@control-motion.de
@@ -142,7 +142,7 @@ export default function Footer() {
             <a
               href="#"
               style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
             >
               {t.footer.imprint}
@@ -150,7 +150,7 @@ export default function Footer() {
             <a
               href="#"
               style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
             >
               {t.footer.privacy}
@@ -158,7 +158,7 @@ export default function Footer() {
             <a
               href="#"
               style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'oklch(0.62 0.14 230)')}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
             >
               {t.footer.agb}

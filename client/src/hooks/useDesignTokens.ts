@@ -201,14 +201,41 @@ export const DEFAULT_TOKENS: DesignTokens = {
 
 const STORAGE_KEY = 'cme-design-tokens';
 
+/** Helper: parse hex color to r,g,b */
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const h = hex.replace('#', '');
+  return {
+    r: parseInt(h.substring(0, 2), 16),
+    g: parseInt(h.substring(2, 4), 16),
+    b: parseInt(h.substring(4, 6), 16),
+  };
+}
+
+/** Helper: lighten a hex color */
+function lightenHex(hex: string, amount: number): string {
+  const { r, g, b } = hexToRgb(hex);
+  const lr = Math.min(255, Math.round(r + (255 - r) * amount));
+  const lg = Math.min(255, Math.round(g + (255 - g) * amount));
+  const lb = Math.min(255, Math.round(b + (255 - b) * amount));
+  return `#${lr.toString(16).padStart(2, '0')}${lg.toString(16).padStart(2, '0')}${lb.toString(16).padStart(2, '0')}`;
+}
+
 /** Apply a full token set to :root CSS Custom Properties */
 export function applyTokensToRoot(tokens: DesignTokens) {
   const el = document.documentElement;
+  // Core colors
   el.style.setProperty('--cme-color-primary', tokens.colorPrimary);
   el.style.setProperty('--cme-color-dark', tokens.colorDark);
   el.style.setProperty('--cme-color-gray', tokens.colorGray);
   el.style.setProperty('--cme-color-accent', tokens.colorAccent);
   el.style.setProperty('--cme-color-bg', tokens.colorBg);
+  // Derived colors (auto-computed from primary / bg)
+  const pRgb = hexToRgb(tokens.colorPrimary);
+  el.style.setProperty('--cme-color-primary-40', `rgba(${pRgb.r}, ${pRgb.g}, ${pRgb.b}, 0.4)`);
+  el.style.setProperty('--cme-color-primary-50', `rgba(${pRgb.r}, ${pRgb.g}, ${pRgb.b}, 0.5)`);
+  el.style.setProperty('--cme-color-bg-alt', lightenHex(tokens.colorGray, 0.92));
+  el.style.setProperty('--cme-color-border', lightenHex(tokens.colorGray, 0.82));
+  // Typography
   el.style.setProperty('--cme-font-family', `'${tokens.fontFamily}', sans-serif`);
   el.style.setProperty('--cme-font-size-h1', `${tokens.fontSizeH1}px`);
   el.style.setProperty('--cme-font-size-h2', `${tokens.fontSizeH2}px`);
@@ -221,10 +248,13 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-line-height-heading', String(tokens.lineHeightHeading));
   el.style.setProperty('--cme-line-height-body', String(tokens.lineHeightBody));
   el.style.setProperty('--cme-letter-spacing-heading', `${tokens.letterSpacingHeading}px`);
+  // Diamond
   el.style.setProperty('--cme-diamond-radius', String(tokens.diamondRadius));
+  // Layout
   el.style.setProperty('--cme-border-radius', `${tokens.borderRadius}px`);
   el.style.setProperty('--cme-section-padding', `${tokens.sectionPadding}px`);
   el.style.setProperty('--cme-container-max-width', `${tokens.containerMaxWidth}px`);
+  // Logo
   el.style.setProperty('--cme-logo-height', `clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px)`);
 }
 

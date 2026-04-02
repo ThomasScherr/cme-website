@@ -94,7 +94,7 @@ export default function HeroSection() {
             style={{
               fontSize: 'var(--text-xs)',
               fontWeight: 500,
-              color: 'oklch(0.62 0.14 230)',
+              color: 'var(--cme-color-primary)',
               textTransform: 'uppercase',
               letterSpacing: '0.18em',
               marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)',
@@ -113,7 +113,7 @@ export default function HeroSection() {
             <br />
             {t.hero.headline2}
             <br />
-            <span style={{ color: 'oklch(0.62 0.14 230)' }}>{t.hero.headline3}</span>
+            <span style={{ color: 'var(--cme-color-primary)' }}>{t.hero.headline3}</span>
           </motion.h1>
 
           <motion.p
@@ -122,7 +122,7 @@ export default function HeroSection() {
             transition={{ delay: 0.45, duration: 0.5 }}
             style={{
               fontSize: 'var(--text-lg)',
-              color: 'oklch(0.45 0.01 240)',
+              color: 'var(--cme-color-gray)',
               maxWidth: 'clamp(280px, 40vw, 680px)',
               marginBottom: 'clamp(1.5rem, 3vw, 3rem)',
             }}
@@ -168,7 +168,7 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          style={{ width: '1px', height: 'clamp(24px, 3vw, 40px)', background: 'oklch(0.62 0.14 230 / 40%)' }}
+          style={{ width: '1px', height: 'clamp(24px, 3vw, 40px)', background: 'var(--cme-color-primary-40, rgba(33,150,211,0.4))' }}
         />
       </motion.div>
     </section>

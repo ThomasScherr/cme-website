@@ -19,7 +19,7 @@ export default function ProcessSection() {
       style={{
         paddingTop: sectionPad,
         paddingBottom: sectionPad,
-        background: 'oklch(0.15 0 0)',
+        background: 'var(--cme-color-dark)',
         color: '#fff',
       }}
     >
@@ -31,7 +31,7 @@ export default function ProcessSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'oklch(0.62 0.14 230)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Prozess
           </p>
           <h2 style={{ color: '#fff', marginBottom: '1rem' }}>{t.process.headline}</h2>
@@ -59,14 +59,14 @@ export default function ProcessSection() {
                     flexShrink: 0,
                     width: 'clamp(36px, 4vw, 56px)',
                     height: 'clamp(36px, 4vw, 56px)',
-                    background: 'oklch(0.62 0.14 230)',
+                    background: 'var(--cme-color-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: '#fff',
                     fontSize: 'var(--text-sm)',
                     fontWeight: 700,
-                    fontFamily: "'Roboto', sans-serif",
+                    fontFamily: 'var(--cme-font-family)',
                   }}
                 >
                   {step.num}

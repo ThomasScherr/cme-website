@@ -3,26 +3,44 @@ import App from "./App";
 import "./index.css";
 import { loadTokens, applyTokensToRoot, loadDiamondConfigs, applyDiamondConfigsToRoot } from "./hooks/useDesignTokens";
 
-// Load and apply design tokens + diamond configs from LocalStorage on app start
+// ── Initial load from LocalStorage ───────────────────────────────────────
 applyTokensToRoot(loadTokens());
 applyDiamondConfigsToRoot(loadDiamondConfigs());
 
-// ── Global BroadcastChannel Listener ──────────────────────────────────────
-// This listener runs on EVERY page (Home, StyleGuide, etc.) and applies
-// design token / diamond config changes from other tabs in real time.
-// It works independently of React hooks – pure DOM-level CSS variable updates.
-
-if (typeof BroadcastChannel !== 'undefined') {
+// ── Cross-Tab Sync: BroadcastChannel ─────────────────────────────────────
+// This listener runs on EVERY page and applies changes from other tabs live.
+// It is independent of React – pure DOM-level CSS variable updates.
+try {
   const globalChannel = new BroadcastChannel('cme-design-sync');
-  globalChannel.onmessage = (event) => {
+  globalChannel.addEventListener('message', (event) => {
     if (event.data?.type === 'token-update' && event.data.tokens) {
       applyTokensToRoot(event.data.tokens);
     }
     if (event.data?.type === 'diamond-update' && event.data.configs) {
       applyDiamondConfigsToRoot(event.data.configs);
     }
-  };
-  // Never close this channel – it must stay open for the lifetime of the tab
+  });
+} catch {
+  // BroadcastChannel not supported – fall through to storage event
 }
 
+// ── Cross-Tab Sync: Fallback via localStorage 'storage' event ────────────
+// The 'storage' event fires in OTHER tabs when localStorage changes.
+// This is a reliable fallback that works in all browsers.
+window.addEventListener('storage', (event) => {
+  if (event.key === 'cme-design-tokens' && event.newValue) {
+    try {
+      const tokens = JSON.parse(event.newValue);
+      applyTokensToRoot({ ...loadTokens(), ...tokens });
+    } catch { /* ignore parse errors */ }
+  }
+  if (event.key === 'cme-diamond-configs' && event.newValue) {
+    try {
+      const configs = JSON.parse(event.newValue);
+      applyDiamondConfigsToRoot({ ...loadDiamondConfigs(), ...configs });
+    } catch { /* ignore parse errors */ }
+  }
+});
+
+// ── Render App ───────────────────────────────────────────────────────────
 createRoot(document.getElementById("root")!).render(<App />);
