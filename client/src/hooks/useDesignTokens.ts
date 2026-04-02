@@ -1,47 +1,34 @@
 // CME Design Tokens – persisted via LocalStorage, applied to :root CSS Custom Properties
-// This hook is the single source of truth for all design tokens.
-// Changing a token immediately updates the live website via document.documentElement.style.setProperty.
-// BroadcastChannel syncs changes across all open tabs in real time.
+// Cross-tab sync uses ONLY the native 'storage' event (fires in OTHER tabs automatically).
+// Additionally, we dispatch a custom DOM event for same-tab reactivity.
 
 import { useState, useEffect, useCallback } from 'react';
 
-// ── BroadcastChannel setup ────────────────────────────────────────────────
+// ── Same-tab notification ──────────────────────────────────────────────
+// localStorage 'storage' event only fires in OTHER tabs.
+// For same-tab reactivity we use a custom DOM event.
 
-const BROADCAST_CHANNEL_NAME = 'cme-design-sync';
-
-function getBroadcastChannel(): BroadcastChannel | null {
-  if (typeof BroadcastChannel !== 'undefined') {
-    return new BroadcastChannel(BROADCAST_CHANNEL_NAME);
-  }
-  return null;
+function notifySameTab(key: string) {
+  window.dispatchEvent(new CustomEvent('cme-token-change', { detail: { key } }));
 }
 
-// ── Per-Diamond Configuration ─────────────────────────────────────────────
+// ── Per-Diamond Configuration ────────────────────────────────────────────
 
 export interface DiamondConfig {
-  /** Size as vw value, e.g. 55 = 55vw */
   size: number;
-  /** Horizontal offset in vw – positive = shift right (more bleed right), negative = shift left */
   offsetX: number;
-  /** Vertical offset in vh – positive = shift down, negative = shift up */
   offsetY: number;
-  /** Rotation in degrees (on top of base 45deg) */
   rotate: number;
 }
 
-export type DiamondId =
-  | 'hero'
-  | 'service1'
-  | 'service2'
-  | 'service3'
-  | 'markets';
+export type DiamondId = 'hero' | 'service1' | 'service2' | 'service3' | 'markets';
 
 export const DEFAULT_DIAMOND_CONFIGS: Record<DiamondId, DiamondConfig> = {
-  hero:     { size: 58, offsetX: 18,  offsetY: 0,  rotate: 0 },
-  service1: { size: 46, offsetX: -18, offsetY: 0,  rotate: 0 },
-  service2: { size: 46, offsetX: 18,  offsetY: 0,  rotate: 0 },
-  service3: { size: 46, offsetX: -18, offsetY: 0,  rotate: 0 },
-  markets:  { size: 50, offsetX: 18,  offsetY: 0,  rotate: 0 },
+  hero:     { size: 58, offsetX: 18,  offsetY: 0, rotate: 0 },
+  service1: { size: 46, offsetX: -18, offsetY: 0, rotate: 0 },
+  service2: { size: 46, offsetX: 18,  offsetY: 0, rotate: 0 },
+  service3: { size: 46, offsetX: -18, offsetY: 0, rotate: 0 },
+  markets:  { size: 50, offsetX: 18,  offsetY: 0, rotate: 0 },
 };
 
 export const DIAMOND_LABELS: Record<DiamondId, string> = {
@@ -57,16 +44,14 @@ const DIAMOND_STORAGE_KEY = 'cme-diamond-configs';
 export function loadDiamondConfigs(): Record<DiamondId, DiamondConfig> {
   try {
     const raw = localStorage.getItem(DIAMOND_STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return { ...DEFAULT_DIAMOND_CONFIGS, ...parsed };
-    }
+    if (raw) return { ...DEFAULT_DIAMOND_CONFIGS, ...JSON.parse(raw) };
   } catch { /* ignore */ }
   return { ...DEFAULT_DIAMOND_CONFIGS };
 }
 
 export function saveDiamondConfigs(configs: Record<DiamondId, DiamondConfig>) {
   localStorage.setItem(DIAMOND_STORAGE_KEY, JSON.stringify(configs));
+  notifySameTab(DIAMOND_STORAGE_KEY);
 }
 
 export function applyDiamondConfigsToRoot(configs: Record<DiamondId, DiamondConfig>) {
@@ -83,71 +68,55 @@ export function applyDiamondConfigsToRoot(configs: Record<DiamondId, DiamondConf
 export function resetDiamondConfigs() {
   localStorage.removeItem(DIAMOND_STORAGE_KEY);
   applyDiamondConfigsToRoot(DEFAULT_DIAMOND_CONFIGS);
+  notifySameTab(DIAMOND_STORAGE_KEY);
 }
 
-// ── useDiamondConfigs Hook ────────────────────────────────────────────────
+// ── useDiamondConfigs Hook ───────────────────────────────────────────────
 
 export function useDiamondConfigs() {
   const [configs, setConfigs] = useState<Record<DiamondId, DiamondConfig>>(() => loadDiamondConfigs());
 
+  // Listen for cross-tab (storage event) and same-tab (custom event) updates
   useEffect(() => {
-    applyDiamondConfigsToRoot(configs);
-
-    // Listen for changes from other tabs
-    const channel = getBroadcastChannel();
-    if (channel) {
-      channel.onmessage = (event) => {
-        if (event.data?.type === 'diamond-update') {
-          const incoming = event.data.configs as Record<DiamondId, DiamondConfig>;
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === DIAMOND_STORAGE_KEY && e.newValue) {
+        try {
+          const incoming = { ...DEFAULT_DIAMOND_CONFIGS, ...JSON.parse(e.newValue) };
           setConfigs(incoming);
           applyDiamondConfigsToRoot(incoming);
-        }
-      };
-      return () => channel.close();
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+        } catch { /* ignore */ }
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   const updateDiamond = useCallback((id: DiamondId, key: keyof DiamondConfig, value: number) => {
     setConfigs(prev => {
-      const next = {
-        ...prev,
-        [id]: { ...prev[id], [key]: value },
-      };
+      const next = { ...prev, [id]: { ...prev[id], [key]: value } };
       applyDiamondConfigsToRoot(next);
       saveDiamondConfigs(next);
-      // Broadcast to other tabs
-      const channel = getBroadcastChannel();
-      if (channel) {
-        channel.postMessage({ type: 'diamond-update', configs: next });
-        channel.close();
-      }
       return next;
     });
   }, []);
 
   const resetAll = useCallback(() => {
-    setConfigs({ ...DEFAULT_DIAMOND_CONFIGS });
+    const def = { ...DEFAULT_DIAMOND_CONFIGS };
+    setConfigs(def);
     resetDiamondConfigs();
-    const channel = getBroadcastChannel();
-    if (channel) {
-      channel.postMessage({ type: 'diamond-update', configs: DEFAULT_DIAMOND_CONFIGS });
-      channel.close();
-    }
   }, []);
 
   return { configs, updateDiamond, resetAll };
 }
 
-// ── Global Design Tokens ──────────────────────────────────────────────────
+// ── Global Design Tokens ─────────────────────────────────────────────────
 
 export interface DesignTokens {
-  // Colors (hex)
   colorPrimary: string;
   colorDark: string;
   colorGray: string;
   colorAccent: string;
   colorBg: string;
-  // Typography
   fontFamily: string;
   fontSizeH1: number;
   fontSizeH2: number;
@@ -160,13 +129,10 @@ export interface DesignTokens {
   lineHeightHeading: number;
   lineHeightBody: number;
   letterSpacingHeading: number;
-  // Diamond (global radius)
   diamondRadius: number;
-  // Layout
   borderRadius: number;
   sectionPadding: number;
   containerMaxWidth: number;
-  // Logo (clamp-based: min px, ideal vw, max px)
   logoHeightMin: number;
   logoHeightIdeal: number;
   logoHeightMax: number;
@@ -205,9 +171,9 @@ const STORAGE_KEY = 'cme-design-tokens';
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
   const h = hex.replace('#', '');
   return {
-    r: parseInt(h.substring(0, 2), 16),
-    g: parseInt(h.substring(2, 4), 16),
-    b: parseInt(h.substring(4, 6), 16),
+    r: parseInt(h.substring(0, 2), 16) || 0,
+    g: parseInt(h.substring(2, 4), 16) || 0,
+    b: parseInt(h.substring(4, 6), 16) || 0,
   };
 }
 
@@ -229,7 +195,7 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-color-gray', tokens.colorGray);
   el.style.setProperty('--cme-color-accent', tokens.colorAccent);
   el.style.setProperty('--cme-color-bg', tokens.colorBg);
-  // Derived colors (auto-computed from primary / bg)
+  // Derived colors
   const pRgb = hexToRgb(tokens.colorPrimary);
   el.style.setProperty('--cme-color-primary-40', `rgba(${pRgb.r}, ${pRgb.g}, ${pRgb.b}, 0.4)`);
   el.style.setProperty('--cme-color-primary-50', `rgba(${pRgb.r}, ${pRgb.g}, ${pRgb.b}, 0.5)`);
@@ -262,9 +228,7 @@ export function applyTokensToRoot(tokens: DesignTokens) {
 export function loadTokens(): DesignTokens {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      return { ...DEFAULT_TOKENS, ...JSON.parse(raw) };
-    }
+    if (raw) return { ...DEFAULT_TOKENS, ...JSON.parse(raw) };
   } catch { /* ignore */ }
   return { ...DEFAULT_TOKENS };
 }
@@ -272,63 +236,54 @@ export function loadTokens(): DesignTokens {
 /** Save tokens to LocalStorage */
 export function saveTokens(tokens: DesignTokens) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tokens));
+  notifySameTab(STORAGE_KEY);
 }
 
 /** Reset tokens to defaults */
 export function resetTokens() {
   localStorage.removeItem(STORAGE_KEY);
   applyTokensToRoot(DEFAULT_TOKENS);
+  notifySameTab(STORAGE_KEY);
 }
 
-// ── useDesignTokens Hook ──────────────────────────────────────────────────
+// ── useDesignTokens Hook ─────────────────────────────────────────────────
 
 export function useDesignTokens() {
   const [tokens, setTokens] = useState<DesignTokens>(() => loadTokens());
 
+  // Apply on mount
   useEffect(() => {
     applyTokensToRoot(tokens);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // Listen for changes broadcast from other tabs (e.g. Style Guide)
-    const channel = getBroadcastChannel();
-    if (channel) {
-      channel.onmessage = (event) => {
-        if (event.data?.type === 'token-update') {
-          const incoming = event.data.tokens as DesignTokens;
+  // Listen for cross-tab updates (storage event fires in OTHER tabs)
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          const incoming = { ...DEFAULT_TOKENS, ...JSON.parse(e.newValue) };
           setTokens(incoming);
           applyTokensToRoot(incoming);
-        }
-        if (event.data?.type === 'diamond-update') {
-          const incoming = event.data.configs as Record<DiamondId, DiamondConfig>;
-          applyDiamondConfigsToRoot(incoming);
-        }
-      };
-      return () => channel.close();
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+        } catch { /* ignore */ }
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   const updateToken = useCallback(<K extends keyof DesignTokens>(key: K, value: DesignTokens[K]) => {
     setTokens(prev => {
       const next = { ...prev, [key]: value };
       applyTokensToRoot(next);
       saveTokens(next);
-      // Broadcast to other tabs
-      const channel = getBroadcastChannel();
-      if (channel) {
-        channel.postMessage({ type: 'token-update', tokens: next });
-        channel.close();
-      }
       return next;
     });
   }, []);
 
   const reset = useCallback(() => {
-    setTokens({ ...DEFAULT_TOKENS });
+    const def = { ...DEFAULT_TOKENS };
+    setTokens(def);
     resetTokens();
-    const channel = getBroadcastChannel();
-    if (channel) {
-      channel.postMessage({ type: 'token-update', tokens: DEFAULT_TOKENS });
-      channel.close();
-    }
   }, []);
 
   return { tokens, updateToken, reset };

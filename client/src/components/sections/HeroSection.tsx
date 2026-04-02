@@ -50,9 +50,8 @@ export default function HeroSection() {
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
             alt="Power Electronics"
             size="var(--cme-diamond-hero-size, 58vw)"
-            cornerRadius={0.036}
             animate={false}
-            overlayColor="rgba(33, 150, 211, 0.06)"
+            overlayColor="var(--cme-color-primary-40, rgba(33,150,211,0.06))"
             extraRotate="var(--cme-diamond-hero-rotate, 0deg)"
           />
         </motion.div>
@@ -68,7 +67,7 @@ export default function HeroSection() {
             height: 'clamp(80px, 12vw, 200px)',
             borderRadius: '12%',
             transform: 'rotate(45deg)',
-            background: 'rgba(33, 150, 211, 0.10)',
+            background: 'var(--cme-color-primary-40, rgba(33,150,211,0.1))',
             bottom: 'clamp(-30px, -4vw, -60px)',
             left: 'clamp(-40px, -6vw, -80px)',
             zIndex: -1,
