@@ -59,6 +59,29 @@
 }
 
 :root {
+  /* ── CME Design Tokens (editable via /styleguide) ── */
+  --cme-color-primary: #2196D3;
+  --cme-color-dark: #1a1a2e;
+  --cme-color-gray: #4a5568;
+  --cme-color-accent: #00b4d8;
+  --cme-color-bg: #ffffff;
+  --cme-font-family: 'Roboto', sans-serif;
+  --cme-font-size-h1: 56px;
+  --cme-font-size-h2: 40px;
+  --cme-font-size-h3: 28px;
+  --cme-font-size-h4: 20px;
+  --cme-font-size-body: 16px;
+  --cme-font-size-small: 13px;
+  --cme-font-weight-heading: 700;
+  --cme-font-weight-body: 400;
+  --cme-line-height-heading: 1.15;
+  --cme-line-height-body: 1.65;
+  --cme-letter-spacing-heading: -0.5px;
+  --cme-diamond-radius: 0.036;
+  --cme-border-radius: 4px;
+  --cme-section-padding: 80px;
+  --cme-container-max-width: 1280px;
+
   /* CME Primary Blue #2196D3 */
   --primary: oklch(0.62 0.14 230);
   --primary-foreground: oklch(0.98 0 0);
@@ -138,58 +161,66 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-body, 400);
     font-size: var(--text-base);
-    line-height: 1.65;
+    line-height: var(--cme-line-height-body, 1.65);
+    color: var(--cme-color-gray, #4a5568);
     /* Prevent horizontal scroll on mobile */
     overflow-x: hidden;
   }
 
-  /* ── Fluid Headings – Roboto (NO Condensed) ── */
+  /* ── Fluid Headings – use CME tokens ── */
   h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 900);
     font-size: var(--text-6xl);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    line-height: var(--cme-line-height-heading, 1.05);
+    letter-spacing: var(--cme-letter-spacing-heading, -0.02em);
+    color: var(--cme-color-dark, #1a1a2e);
   }
   h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 700);
     font-size: var(--text-4xl);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    line-height: var(--cme-line-height-heading, 1.1);
+    letter-spacing: var(--cme-letter-spacing-heading, -0.015em);
+    color: var(--cme-color-dark, #1a1a2e);
   }
   h3 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 700);
     font-size: var(--text-3xl);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: var(--cme-line-height-heading, 1.15);
+    letter-spacing: var(--cme-letter-spacing-heading, -0.01em);
+    color: var(--cme-color-dark, #1a1a2e);
   }
   h4 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 700);
     font-size: var(--text-2xl);
-    line-height: 1.2;
+    line-height: var(--cme-line-height-heading, 1.2);
+    color: var(--cme-color-dark, #1a1a2e);
   }
   h5 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 500);
     font-size: var(--text-xl);
     line-height: 1.3;
+    color: var(--cme-color-dark, #1a1a2e);
   }
   h6 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-family: var(--cme-font-family, 'Roboto', sans-serif);
+    font-weight: var(--cme-font-weight-heading, 500);
     font-size: var(--text-lg);
     line-height: 1.35;
+    color: var(--cme-color-dark, #1a1a2e);
   }
 
   p {
     font-size: var(--text-base);
-    line-height: 1.7;
+    line-height: var(--cme-line-height-body, 1.7);
+    color: var(--cme-color-gray, #4a5568);
   }
 
   button:not(:disabled),
