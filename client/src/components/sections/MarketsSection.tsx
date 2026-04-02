@@ -73,9 +73,9 @@ export default function MarketsSection() {
             ))}
           </div>
 
-          {/* EMC Chamber – diamond bleeds right */}
+          {/* EMC Chamber – CSS Custom Properties for position/size */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
-            <div style={{ marginRight: 'clamp(-120px, -18vw, -220px)', position: 'relative' }}>
+            <div style={{ marginRight: 'calc(-1 * var(--cme-diamond-markets-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-markets-offset-y, 0px))', position: 'relative' }}>
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -85,8 +85,9 @@ export default function MarketsSection() {
                 <DiamondImage
                   src={EMC_IMAGE}
                   alt="EMC Anechoic Chamber"
-                  size="clamp(360px, 44vw, 820px)"
+                  size="var(--cme-diamond-markets-size, 50vw)"
                   overlayColor="rgba(10,15,25,0.35)"
+                  extraRotate="var(--cme-diamond-markets-rotate, 0deg)"
                 />
               </motion.div>
 

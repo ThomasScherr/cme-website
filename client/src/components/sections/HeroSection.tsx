@@ -31,13 +31,13 @@ export default function HeroSection() {
         }}
       />
 
-      {/* ── Large rounded diamond – bleeds off right edge ── */}
+      {/* ── Large rounded diamond – position/size controlled via CSS Custom Properties ── */}
       <div
         className="absolute"
         style={{
-          right: 'clamp(-220px, -18vw, -80px)',
+          right: 0,
           top: '50%',
-          transform: 'translateY(-50%)',
+          transform: `translateY(calc(-50% + var(--cme-diamond-hero-offset-y, 0px))) translateX(var(--cme-diamond-hero-offset-x, 18vw))`,
           zIndex: 1,
         }}
       >
@@ -49,10 +49,11 @@ export default function HeroSection() {
           <DiamondImage
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
             alt="Power Electronics"
-            size="clamp(480px, 58vw, 1100px)"
+            size="var(--cme-diamond-hero-size, 58vw)"
             cornerRadius={0.036}
             animate={false}
             overlayColor="rgba(33, 150, 211, 0.06)"
+            extraRotate="var(--cme-diamond-hero-rotate, 0deg)"
           />
         </motion.div>
 

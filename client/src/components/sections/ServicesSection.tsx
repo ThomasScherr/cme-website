@@ -13,7 +13,7 @@ const IMAGES = {
 };
 
 const vp = { once: true, margin: '-80px' };
-const DIAMOND_SIZE = 'clamp(360px, 46vw, 860px)';
+// Diamond sizes/positions controlled via CSS Custom Properties (editable in /styleguide)
 
 /** Fluid section label */
 function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; dark?: boolean }) {
@@ -61,9 +61,9 @@ export default function ServicesSection() {
       {/* ── Service 1: Development – diamond left, bleeds off left edge ── */}
       <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          {/* Diamond with negative left margin to bleed */}
-          <div style={{ marginLeft: 'clamp(-120px, -18vw, -220px)' }}>
-            <DiamondImage src={IMAGES.dev} alt={t.services.dev_title} size={DIAMOND_SIZE} delay={0.1} />
+          {/* Diamond – size/position via CSS Custom Properties */}
+          <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service1-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service1-offset-y, 0px))' }}>
+            <DiamondImage src={IMAGES.dev} alt={t.services.dev_title} size="var(--cme-diamond-service1-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service1-rotate, 0deg)" />
           </div>
           <motion.div
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
@@ -103,9 +103,9 @@ export default function ServicesSection() {
               ))}
             </ul>
           </motion.div>
-          {/* Diamond bleeds off right */}
-          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end', marginRight: 'clamp(-120px, -18vw, -220px)' }}>
-            <DiamondImage src={IMAGES.mfg} alt={t.services.mfg_title} size={DIAMOND_SIZE} delay={0.1} />
+          {/* Diamond bleeds off right – CSS Custom Properties */}
+          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end', marginRight: 'calc(-1 * var(--cme-diamond-service2-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service2-offset-y, 0px))' }}>
+            <DiamondImage src={IMAGES.mfg} alt={t.services.mfg_title} size="var(--cme-diamond-service2-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service2-rotate, 0deg)" />
           </div>
         </div>
       </div>
@@ -113,8 +113,8 @@ export default function ServicesSection() {
       {/* ── Service 3: Lifecycle – dark background, diamond left bleeds ── */}
       <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.15 0 0)' }}>
         <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          <div style={{ marginLeft: 'clamp(-120px, -18vw, -220px)' }}>
-            <DiamondImage src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size={DIAMOND_SIZE} delay={0.1} />
+          <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service3-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service3-offset-y, 0px))' }}>
+            <DiamondImage src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size="var(--cme-diamond-service3-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service3-rotate, 0deg)" />
           </div>
           <motion.div
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}

@@ -27,6 +27,8 @@ interface DiamondImageProps {
   delay?: number;
   overlayColor?: string;
   style?: React.CSSProperties;
+  /** Extra rotation added on top of the base 45deg diamond rotation (CSS value, e.g. '5deg') */
+  extraRotate?: string;
 }
 
 export default function DiamondImage({
@@ -38,6 +40,7 @@ export default function DiamondImage({
   delay = 0,
   overlayColor,
   style,
+  extraRotate,
 }: DiamondImageProps) {
   const uid = useId().replace(/:/g, '');
   const clipId = `dc-${uid}`;
@@ -72,6 +75,7 @@ export default function DiamondImage({
         height: size,          // always square!
         flexShrink: 0,
         position: 'relative',
+        ...(extraRotate ? { transform: `rotate(${extraRotate})` } : {}),
         ...style,
       }}
     >

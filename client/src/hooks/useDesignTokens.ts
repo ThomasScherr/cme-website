@@ -4,6 +4,106 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
+// ── Per-Diamond Configuration ─────────────────────────────────────────────
+
+export interface DiamondConfig {
+  /** Size as vw value, e.g. 55 = 55vw */
+  size: number;
+  /** Horizontal offset in vw – positive = shift right (more bleed right), negative = shift left */
+  offsetX: number;
+  /** Vertical offset in vh – positive = shift down, negative = shift up */
+  offsetY: number;
+  /** Rotation in degrees (on top of base 45deg) */
+  rotate: number;
+}
+
+export type DiamondId =
+  | 'hero'
+  | 'service1'
+  | 'service2'
+  | 'service3'
+  | 'markets';
+
+export const DEFAULT_DIAMOND_CONFIGS: Record<DiamondId, DiamondConfig> = {
+  hero:     { size: 58, offsetX: 18,  offsetY: 0,  rotate: 0 },
+  service1: { size: 46, offsetX: -18, offsetY: 0,  rotate: 0 },
+  service2: { size: 46, offsetX: 18,  offsetY: 0,  rotate: 0 },
+  service3: { size: 46, offsetX: -18, offsetY: 0,  rotate: 0 },
+  markets:  { size: 50, offsetX: 18,  offsetY: 0,  rotate: 0 },
+};
+
+export const DIAMOND_LABELS: Record<DiamondId, string> = {
+  hero:     'Hero (Startseite)',
+  service1: 'Leistung 1 – Entwicklung',
+  service2: 'Leistung 2 – Fertigung',
+  service3: 'Leistung 3 – Lifecycle',
+  markets:  'Märkte / EMV-Kammer',
+};
+
+const DIAMOND_STORAGE_KEY = 'cme-diamond-configs';
+
+export function loadDiamondConfigs(): Record<DiamondId, DiamondConfig> {
+  try {
+    const raw = localStorage.getItem(DIAMOND_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { ...DEFAULT_DIAMOND_CONFIGS, ...parsed };
+    }
+  } catch { /* ignore */ }
+  return { ...DEFAULT_DIAMOND_CONFIGS };
+}
+
+export function saveDiamondConfigs(configs: Record<DiamondId, DiamondConfig>) {
+  localStorage.setItem(DIAMOND_STORAGE_KEY, JSON.stringify(configs));
+}
+
+export function applyDiamondConfigsToRoot(configs: Record<DiamondId, DiamondConfig>) {
+  const el = document.documentElement;
+  (Object.keys(configs) as DiamondId[]).forEach(id => {
+    const c = configs[id];
+    el.style.setProperty(`--cme-diamond-${id}-size`, `${c.size}vw`);
+    el.style.setProperty(`--cme-diamond-${id}-offset-x`, `${c.offsetX}vw`);
+    el.style.setProperty(`--cme-diamond-${id}-offset-y`, `${c.offsetY}vh`);
+    el.style.setProperty(`--cme-diamond-${id}-rotate`, `${c.rotate}deg`);
+  });
+}
+
+export function resetDiamondConfigs() {
+  localStorage.removeItem(DIAMOND_STORAGE_KEY);
+  applyDiamondConfigsToRoot(DEFAULT_DIAMOND_CONFIGS);
+}
+
+// ── useDiamondConfigs Hook ────────────────────────────────────────────────
+
+export function useDiamondConfigs() {
+  const [configs, setConfigs] = useState<Record<DiamondId, DiamondConfig>>(() => loadDiamondConfigs());
+
+  useEffect(() => {
+    applyDiamondConfigsToRoot(configs);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const updateDiamond = useCallback((id: DiamondId, key: keyof DiamondConfig, value: number) => {
+    setConfigs(prev => {
+      const next = {
+        ...prev,
+        [id]: { ...prev[id], [key]: value },
+      };
+      applyDiamondConfigsToRoot(next);
+      saveDiamondConfigs(next);
+      return next;
+    });
+  }, []);
+
+  const resetAll = useCallback(() => {
+    setConfigs({ ...DEFAULT_DIAMOND_CONFIGS });
+    resetDiamondConfigs();
+  }, []);
+
+  return { configs, updateDiamond, resetAll };
+}
+
+// ── Global Design Tokens ──────────────────────────────────────────────────
+
 export interface DesignTokens {
   // Colors (hex)
   colorPrimary: string;
@@ -24,7 +124,7 @@ export interface DesignTokens {
   lineHeightHeading: number;
   lineHeightBody: number;
   letterSpacingHeading: number;
-  // Diamond
+  // Diamond (global radius)
   diamondRadius: number;
   // Layout
   borderRadius: number;
@@ -91,9 +191,7 @@ export function loadTokens(): DesignTokens {
     if (raw) {
       return { ...DEFAULT_TOKENS, ...JSON.parse(raw) };
     }
-  } catch {
-    // ignore
-  }
+  } catch { /* ignore */ }
   return { ...DEFAULT_TOKENS };
 }
 
@@ -108,12 +206,11 @@ export function resetTokens() {
   applyTokensToRoot(DEFAULT_TOKENS);
 }
 
-// ── React Hook ─────────────────────────────────────────────────────────────
+// ── useDesignTokens Hook ──────────────────────────────────────────────────
 
 export function useDesignTokens() {
   const [tokens, setTokens] = useState<DesignTokens>(() => loadTokens());
 
-  // Apply on mount
   useEffect(() => {
     applyTokensToRoot(tokens);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
