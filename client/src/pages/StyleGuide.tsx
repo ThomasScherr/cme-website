@@ -246,6 +246,7 @@ export default function StyleGuide() {
   --cme-border-radius: ${tokens.borderRadius}px;
   --cme-section-padding: ${tokens.sectionPadding}px;
   --cme-container-max-width: ${tokens.containerMaxWidth}px;
+  --cme-logo-height: ${tokens.logoHeight}px;
 }`;
 
   const headingStyle = (size: number): React.CSSProperties => ({
@@ -347,6 +348,19 @@ export default function StyleGuide() {
                 <Row label="Eckenradius (alle)">
                   <NumberInput value={tokens.diamondRadius} onChange={v => updateToken('diamondRadius', v)} min={0} max={0.25} step={0.005} />
                 </Row>
+              </Section>
+
+              <Section title="Logo">
+                <Row label="Logo-Höhe (Header &amp; Footer)">
+                  <NumberInput value={tokens.logoHeight} onChange={v => updateToken('logoHeight', v)} min={20} max={120} unit="px" />
+                </Row>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <img
+                    src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png"
+                    alt="Logo Vorschau"
+                    style={{ height: tokens.logoHeight, width: 'auto', maxWidth: '100%', border: '1px solid #e2e8f0', padding: '4px', borderRadius: 4 }}
+                  />
+                </div>
               </Section>
 
               <Section title="Layout">

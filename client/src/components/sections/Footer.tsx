@@ -35,9 +35,9 @@ export default function Footer() {
           {/* Logo & Tagline */}
           <div style={{ gridColumn: 'span 2' }}>
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_white_73598305.svg"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_white_18093efb.svg"
               alt="CME Control Motion Electronics"
-              style={{ height: 'clamp(32px, 4vw, 52px)', width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
+              style={{ height: 'var(--cme-logo-height, clamp(32px, 4vw, 52px))', width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
             />
             <p style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: 'clamp(260px, 30vw, 420px)', lineHeight: 1.65 }}>
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
