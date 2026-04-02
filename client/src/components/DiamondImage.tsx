@@ -1,55 +1,57 @@
 // CME Website – DiamondImage Component
 // Design Philosophy: Techno-Industrial Precision
-// Rounded diamond (rhombus) shape matching CME presentation style
-// Supports bleed/crop effect where diamond extends beyond viewport edge
+//
+// Rounded diamond (rhombus) shape matching CME presentation style.
+// The image ALWAYS fills the entire diamond – no white gaps at corners.
+//
+// Technique:
+//   1. Outer wrapper: square div, rotated 45°, border-radius 12%, overflow hidden
+//   2. Inner img: counter-rotated -45°, sized at 142% (= sqrt(2)) to fill all corners
+//      Plus extra scale(1.05) safety margin to guarantee no white edges
+//
+// Bleed: position the wrapper with negative margin/absolute offset so it
+//        extends beyond the viewport edge (like in the CME presentation).
 
 import { motion } from 'framer-motion';
 
 interface DiamondImageProps {
   src: string;
   alt: string;
-  size?: number;           // base size in px (the rotated square)
-  borderRadius?: string;   // border-radius of the rotated square (controls corner roundness)
+  /** Side length of the diamond in px (at 1x). Scales via CSS clamp on parent. */
+  size?: number;
+  /** border-radius of the rotated square – controls corner roundness */
+  borderRadius?: string;
   className?: string;
   animate?: boolean;
   delay?: number;
-  bleedRight?: boolean;    // extend beyond right edge
-  bleedLeft?: boolean;     // extend beyond left edge
-  bleedBottom?: boolean;   // extend beyond bottom edge
-  overlayColor?: string;   // optional color overlay
+  /** Optional RGBA overlay, e.g. "rgba(33,150,211,0.08)" */
+  overlayColor?: string;
+  style?: React.CSSProperties;
 }
 
 export default function DiamondImage({
   src,
   alt,
-  size = 420,
+  size = 440,
   borderRadius = '12%',
   className = '',
   animate = true,
   delay = 0,
-  bleedRight = false,
-  bleedLeft = false,
-  bleedBottom = false,
   overlayColor,
+  style,
 }: DiamondImageProps) {
-  // The inner square needs to be sqrt(2) * size to fill the diamond
-  const innerSize = Math.round(size * 1.415);
-
-  const bleedStyle: React.CSSProperties = {};
-  if (bleedRight) bleedStyle.right = `-${size * 0.3}px`;
-  if (bleedLeft) bleedStyle.left = `-${size * 0.3}px`;
-  if (bleedBottom) bleedStyle.bottom = `-${size * 0.3}px`;
-
-  const content = (
+  const inner = (
     <div
-      className={`relative flex-shrink-0 ${className}`}
+      className={className}
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        ...bleedStyle,
+        width: size,
+        height: size,
+        flexShrink: 0,
+        position: 'relative',
+        ...style,
       }}
     >
-      {/* The rotated square with rounded corners = rounded diamond */}
+      {/* Rotated square → becomes a diamond */}
       <div
         style={{
           width: '100%',
@@ -60,7 +62,11 @@ export default function DiamondImage({
           position: 'relative',
         }}
       >
-        {/* Counter-rotate image to keep it upright */}
+        {/*
+          Counter-rotate the image so it appears upright.
+          Size at 145% + scale(1.06) ensures every corner pixel is covered,
+          even at extreme border-radius values.
+        */}
         <img
           src={src}
           alt={alt}
@@ -68,37 +74,30 @@ export default function DiamondImage({
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: `${innerSize}px`,
-            height: `${innerSize}px`,
-            transform: `translate(-50%, -50%) rotate(-45deg)`,
+            width: '145%',
+            height: '145%',
+            transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
             objectFit: 'cover',
+            objectPosition: 'center',
           }}
         />
-        {/* Optional color overlay */}
         {overlayColor && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: overlayColor,
-            }}
-          />
+          <div style={{ position: 'absolute', inset: 0, background: overlayColor }} />
         )}
       </div>
     </div>
   );
 
-  if (!animate) return content;
+  if (!animate) return inner;
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.92 }}
+      initial={{ opacity: 0, scale: 0.93 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{ position: 'relative' }}
     >
-      {content}
+      {inner}
     </motion.div>
   );
 }

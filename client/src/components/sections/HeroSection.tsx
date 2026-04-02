@@ -1,6 +1,7 @@
 // CME Website – Hero Section
-// Design Philosophy: Techno-Industrial Precision
-// Full-height hero with rounded diamond image bleeding off right edge (like presentation)
+// Design: Techno-Industrial Precision
+// Fluid sizing from 375px to 3840px via CSS clamp variables
+// Rounded diamond bleeds off right edge (like CME presentation)
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -17,37 +18,43 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-white pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden bg-white"
+      style={{ paddingTop: 'clamp(5rem, 8vw, 10rem)' }}
     >
-      {/* Subtle grid pattern */}
+      {/* Subtle engineering grid */}
       <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(to right, #2196D3 1px, transparent 1px), linear-gradient(to bottom, #2196D3 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
+          backgroundImage: `linear-gradient(to right, rgba(33,150,211,0.04) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(33,150,211,0.04) 1px, transparent 1px)`,
+          backgroundSize: 'clamp(30px, 4vw, 60px) clamp(30px, 4vw, 60px)',
         }}
       />
 
-      {/* Large rounded diamond – bleeds off right edge, like in presentation */}
+      {/* ── Large rounded diamond – bleeds off right edge ── */}
       <div
         className="absolute"
         style={{
-          right: '-220px',
+          right: 'clamp(-180px, -12vw, -80px)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 1,
+          /* Fluid diamond size */
+          width:  'clamp(340px, 42vw, 760px)',
+          height: 'clamp(340px, 42vw, 760px)',
         }}
       >
-        {/* Outer diamond – image */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.85, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ width: '100%', height: '100%', position: 'relative' }}
         >
+          {/* Rotated square → rounded diamond */}
           <div
             style={{
-              width: '580px',
-              height: '580px',
+              width: '100%',
+              height: '100%',
               borderRadius: '12%',
               transform: 'rotate(45deg)',
               overflow: 'hidden',
@@ -61,50 +68,66 @@ export default function HeroSection() {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                width: '820px',
-                height: '820px',
-                transform: 'translate(-50%, -50%) rotate(-45deg)',
+                /* 145% + scale(1.06) guarantees full coverage at any size */
+                width: '145%',
+                height: '145%',
+                transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
                 objectFit: 'cover',
+                objectPosition: 'center',
               }}
             />
-            {/* Light blue overlay like in presentation */}
             <div
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'rgba(33, 150, 211, 0.08)',
+                background: 'rgba(33, 150, 211, 0.06)',
               }}
             />
           </div>
         </motion.div>
 
-        {/* Secondary smaller diamond behind – light blue accent */}
+        {/* Accent diamond – light blue, behind main */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
           style={{
             position: 'absolute',
-            width: '200px',
-            height: '200px',
+            width: 'clamp(80px, 12vw, 200px)',
+            height: 'clamp(80px, 12vw, 200px)',
             borderRadius: '12%',
             transform: 'rotate(45deg)',
-            background: 'rgba(33, 150, 211, 0.12)',
-            bottom: '-60px',
-            left: '-80px',
+            background: 'rgba(33, 150, 211, 0.10)',
+            bottom: 'clamp(-30px, -4vw, -60px)',
+            left: 'clamp(-40px, -6vw, -80px)',
             zIndex: -1,
           }}
         />
       </div>
 
-      {/* Text Content */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
-        <div className="max-w-2xl">
+      {/* ── Text Content ── */}
+      <div
+        className="relative z-10 w-full"
+        style={{
+          maxWidth: 'min(1600px, 90vw)',
+          margin: '0 auto',
+          paddingLeft:  'clamp(1rem, 2vw + 0.5rem, 4rem)',
+          paddingRight: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
+        }}
+      >
+        <div style={{ maxWidth: 'clamp(320px, 50vw, 900px)' }}>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-xs md:text-sm font-medium text-primary uppercase tracking-widest mb-5"
+            style={{
+              fontSize: 'var(--text-xs)',
+              fontWeight: 500,
+              color: 'oklch(0.62 0.14 230)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.18em',
+              marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+            }}
           >
             {t.hero.tagline}
           </motion.p>
@@ -113,20 +136,25 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6"
+            style={{ marginBottom: 'clamp(1rem, 2vw, 2rem)' }}
           >
             {t.hero.headline1}
             <br />
             {t.hero.headline2}
             <br />
-            <span className="text-primary">{t.hero.headline3}</span>
+            <span style={{ color: 'oklch(0.62 0.14 230)' }}>{t.hero.headline3}</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed mb-8"
+            style={{
+              fontSize: 'var(--text-lg)',
+              color: 'oklch(0.45 0.01 240)',
+              maxWidth: 'clamp(280px, 40vw, 680px)',
+              marginBottom: 'clamp(1.5rem, 3vw, 3rem)',
+            }}
           >
             {t.hero.sub}
           </motion.p>
@@ -135,11 +163,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4"
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
           >
             <Button
               size="lg"
               onClick={() => scrollTo('contact')}
+              style={{ fontSize: 'var(--text-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
             >
               {t.hero.cta_primary}
@@ -148,6 +177,7 @@ export default function HeroSection() {
               size="lg"
               variant="outline"
               onClick={() => scrollTo('services')}
+              style={{ fontSize: 'var(--text-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
               className="border-2 border-foreground/20 hover:border-primary hover:text-primary transition-all"
             >
               {t.hero.cta_secondary}
@@ -156,18 +186,18 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground z-10"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
+        <span style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.18em' }}>Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          className="w-0.5 h-8 bg-primary/40"
+          style={{ width: '1px', height: 'clamp(24px, 3vw, 40px)', background: 'oklch(0.62 0.14 230 / 40%)' }}
         />
       </motion.div>
     </section>

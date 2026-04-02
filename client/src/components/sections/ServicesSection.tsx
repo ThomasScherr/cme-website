@@ -1,39 +1,44 @@
 // CME Website – Services Section
-// Design Philosophy: Techno-Industrial Precision
-// Three service pillars with rounded diamond images bleeding off edges
+// Design: Techno-Industrial Precision
+// Fluid sizing from 375px to 3840px
+// Rounded diamond images: always fully filled, bleed off edges like in presentation
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
 const IMAGES = {
-  dev: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermal_simulation-FM5thvnf8JFwwqX8DK9CYp.webp',
-  mfg: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/ems_production_line-F9qYf8S6uGr7YzEJkSPZgx.webp',
+  dev:       'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermal_simulation-FM5thvnf8JFwwqX8DK9CYp.webp',
+  mfg:       'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/ems_production_line-F9qYf8S6uGr7YzEJkSPZgx.webp',
   lifecycle: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_motor_control-bLizo3WgKjkGLGM7m7b8RD.webp',
 };
 
-const viewport = { once: true, margin: '-80px' };
+const vp = { once: true, margin: '-80px' };
 
-// Rounded diamond helper
-function RoundedDiamond({
-  src,
-  alt,
-  size = 420,
-  delay = 0,
+/** Rounded diamond that always fills completely – no white edges */
+function Diamond({
+  src, alt, delay = 0, bleedSide = 'none',
 }: {
-  src: string;
-  alt: string;
-  size?: number;
-  delay?: number;
+  src: string; alt: string; delay?: number; bleedSide?: 'left' | 'right' | 'none';
 }) {
-  const innerSize = Math.round(size * 1.42);
+  const bleedStyle: React.CSSProperties =
+    bleedSide === 'left'  ? { marginLeft:  'clamp(-60px, -8vw, -130px)' } :
+    bleedSide === 'right' ? { marginRight: 'clamp(-60px, -8vw, -130px)' } : {};
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.92 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={viewport}
+      viewport={vp}
       transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{ width: size, height: size, flexShrink: 0 }}
+      style={{
+        position: 'relative',
+        width:  'clamp(260px, 32vw, 560px)',
+        height: 'clamp(260px, 32vw, 560px)',
+        flexShrink: 0,
+        ...bleedStyle,
+      }}
     >
+      {/* Rotated square → rounded diamond */}
       <div
         style={{
           width: '100%',
@@ -51,191 +56,218 @@ function RoundedDiamond({
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: `${innerSize}px`,
-            height: `${innerSize}px`,
-            transform: 'translate(-50%, -50%) rotate(-45deg)',
+            /* 145% + scale(1.06) = guaranteed full coverage */
+            width: '145%',
+            height: '145%',
+            transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
             objectFit: 'cover',
+            objectPosition: 'center',
           }}
         />
       </div>
+      {/* Small accent diamond */}
+      <div
+        style={{
+          position: 'absolute',
+          width: 'clamp(60px, 8vw, 140px)',
+          height: 'clamp(60px, 8vw, 140px)',
+          borderRadius: '12%',
+          transform: 'rotate(45deg)',
+          background: 'rgba(33,150,211,0.09)',
+          bottom: 'clamp(-15px, -2vw, -30px)',
+          right:  bleedSide === 'left' ? 'clamp(-10px, -1.5vw, -20px)' : 'auto',
+          left:   bleedSide === 'right' ? 'clamp(-10px, -1.5vw, -20px)' : 'auto',
+          zIndex: -1,
+        }}
+      />
     </motion.div>
+  );
+}
+
+/** Fluid section label */
+function ServiceLabel({ num, tag }: { num: string; tag: string }) {
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
+      <span
+        style={{
+          background: 'oklch(0.62 0.14 230)',
+          color: '#fff',
+          fontSize: 'var(--text-xs)',
+          fontWeight: 700,
+          padding: '0.3em 0.75em',
+        }}
+      >
+        {num}
+      </span>
+      <span
+        style={{
+          fontSize: 'var(--text-xs)',
+          color: 'oklch(0.45 0.01 240)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+        }}
+      >
+        {tag}
+      </span>
+    </div>
   );
 }
 
 export default function ServicesSection() {
   const { t } = useLanguage();
 
+  const sectionPad = 'clamp(3rem, 5vw + 1rem, 9rem)';
+  const contentMax = 'min(1600px, 90vw)';
+  const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
+
   return (
     <section id="services" className="bg-background">
-      {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-16">
+      {/* Header */}
+      <div
+        style={{
+          maxWidth: contentMax,
+          margin: '0 auto',
+          padding: `${sectionPad} ${contentPad} clamp(2rem, 3vw, 5rem)`,
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
+          viewport={vp}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-medium text-primary uppercase tracking-widest mb-3">Services</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4">{t.services.headline}</h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl">{t.services.sub}</p>
+          <p
+            style={{
+              fontSize: 'var(--text-xs)',
+              fontWeight: 500,
+              color: 'oklch(0.62 0.14 230)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.18em',
+              marginBottom: '0.75rem',
+            }}
+          >
+            Services
+          </p>
+          <h2 style={{ marginBottom: '1rem' }}>{t.services.headline}</h2>
+          <p style={{ fontSize: 'var(--text-lg)', color: 'oklch(0.45 0.01 240)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
+            {t.services.sub}
+          </p>
         </motion.div>
       </div>
 
-      {/* Service 1: Development – Diamond bleeds off LEFT */}
-      <div className="relative overflow-hidden py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Diamond – positioned to bleed off left on desktop */}
-            <div className="relative flex justify-center lg:justify-start">
-              <div
-                className="relative"
-                style={{ marginLeft: 'clamp(-60px, -8vw, -120px)' }}
-              >
-                <RoundedDiamond src={IMAGES.dev} alt={t.services.dev_title} size={400} delay={0.1} />
-                {/* Accent diamond behind */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    width: '140px',
-                    height: '140px',
-                    borderRadius: '12%',
-                    transform: 'rotate(45deg)',
-                    background: 'rgba(33, 150, 211, 0.10)',
-                    bottom: '-30px',
-                    right: '-20px',
-                    zIndex: -1,
-                  }}
-                />
-              </div>
-            </div>
+      {/* ── Service 1: Development – diamond bleeds LEFT ── */}
+      <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad }}>
+        <div
+          style={{
+            maxWidth: contentMax,
+            margin: '0 auto',
+            paddingLeft: contentPad,
+            paddingRight: contentPad,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+            gap: 'clamp(2rem, 4vw, 5rem)',
+            alignItems: 'center',
+          }}
+        >
+          <Diamond src={IMAGES.dev} alt={t.services.dev_title} bleedSide="left" delay={0.1} />
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={vp}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+          >
+            <ServiceLabel num="01" tag="Entwicklung" />
+            <h3>{t.services.dev_title}</h3>
+            <p style={{ fontSize: 'var(--text-base)', color: 'oklch(0.45 0.01 240)' }}>{t.services.dev_desc}</p>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {t.services.dev_items.map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+                  <span style={{ width: '6px', height: '6px', background: 'oklch(0.62 0.14 230)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={viewport}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="space-y-5"
-            >
-              <div className="inline-flex items-center gap-3">
-                <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5">01</span>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">Entwicklung</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.dev_title}</h3>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.dev_desc}</p>
-              <ul className="space-y-2.5">
-                {t.services.dev_items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+      {/* ── Service 2: Manufacturing – diamond bleeds RIGHT ── */}
+      <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.97 0.001 240)' }}>
+        <div
+          style={{
+            maxWidth: contentMax,
+            margin: '0 auto',
+            paddingLeft: contentPad,
+            paddingRight: contentPad,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+            gap: 'clamp(2rem, 4vw, 5rem)',
+            alignItems: 'center',
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={vp}
+            transition={{ duration: 0.5 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)', order: 1 }}
+          >
+            <ServiceLabel num="02" tag="EMS Fertigung" />
+            <h3>{t.services.mfg_title}</h3>
+            <p style={{ fontSize: 'var(--text-base)', color: 'oklch(0.45 0.01 240)' }}>{t.services.mfg_desc}</p>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {t.services.mfg_items.map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+                  <span style={{ width: '6px', height: '6px', background: 'oklch(0.15 0 0)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end' }}>
+            <Diamond src={IMAGES.mfg} alt={t.services.mfg_title} bleedSide="right" delay={0.1} />
           </div>
         </div>
       </div>
 
-      {/* Service 2: Manufacturing – Diamond bleeds off RIGHT */}
-      <div className="relative overflow-hidden py-16 lg:py-24 bg-muted/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={viewport}
-              transition={{ duration: 0.5 }}
-              className="space-y-5 order-2 lg:order-1"
-            >
-              <div className="inline-flex items-center gap-3">
-                <span className="bg-foreground text-background text-xs font-bold px-3 py-1.5">02</span>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">EMS Fertigung</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.mfg_title}</h3>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.mfg_desc}</p>
-              <ul className="space-y-2.5">
-                {t.services.mfg_items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 bg-foreground rotate-45 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Diamond – bleeds off right */}
-            <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
-              <div
-                className="relative"
-                style={{ marginRight: 'clamp(-60px, -8vw, -120px)' }}
-              >
-                <RoundedDiamond src={IMAGES.mfg} alt={t.services.mfg_title} size={400} delay={0.1} />
-                <div
-                  style={{
-                    position: 'absolute',
-                    width: '120px',
-                    height: '120px',
-                    borderRadius: '12%',
-                    transform: 'rotate(45deg)',
-                    background: 'rgba(80, 80, 80, 0.08)',
-                    top: '-25px',
-                    left: '-15px',
-                    zIndex: -1,
-                  }}
-                />
-              </div>
+      {/* ── Service 3: Lifecycle – dark background, diamond centered ── */}
+      <div style={{ overflow: 'hidden', paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.15 0 0)' }}>
+        <div
+          style={{
+            maxWidth: contentMax,
+            margin: '0 auto',
+            paddingLeft: contentPad,
+            paddingRight: contentPad,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+            gap: 'clamp(2rem, 4vw, 5rem)',
+            alignItems: 'center',
+          }}
+        >
+          <Diamond src={IMAGES.lifecycle} alt={t.services.lifecycle_title} delay={0.1} />
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={vp}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+          >
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{ background: 'oklch(0.62 0.14 230)', color: '#fff', fontSize: 'var(--text-xs)', fontWeight: 700, padding: '0.3em 0.75em' }}>03</span>
+              <span style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Lifecycle</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Service 3: Lifecycle – Diamond centered, bleeds bottom */}
-      <div className="relative overflow-hidden py-16 lg:py-24 bg-foreground text-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Diamond – centered, slight bottom bleed */}
-            <div className="relative flex justify-center">
-              <div className="relative" style={{ marginBottom: '-40px' }}>
-                <RoundedDiamond src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size={380} delay={0.1} />
-                {/* Light blue accent diamond */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    width: '130px',
-                    height: '130px',
-                    borderRadius: '12%',
-                    transform: 'rotate(45deg)',
-                    background: 'rgba(33, 150, 211, 0.18)',
-                    top: '-20px',
-                    right: '-30px',
-                    zIndex: -1,
-                  }}
-                />
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={viewport}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="space-y-5"
-            >
-              <div className="inline-flex items-center gap-3">
-                <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5">03</span>
-                <span className="text-xs text-background/50 uppercase tracking-wider">Lifecycle</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl text-background">{t.services.lifecycle_title}</h3>
-              <p className="text-background/60 text-sm md:text-base leading-relaxed">{t.services.lifecycle_desc}</p>
-              <ul className="space-y-2.5">
-                {t.services.lifecycle_items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-background/80">
-                    <span className="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+            <h3 style={{ color: '#fff' }}>{t.services.lifecycle_title}</h3>
+            <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {t.services.lifecycle_items.map((item, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.80)' }}>
+                  <span style={{ width: '6px', height: '6px', background: 'oklch(0.62 0.14 230)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>

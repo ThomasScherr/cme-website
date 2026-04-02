@@ -1,52 +1,88 @@
 // CME Website – USP Section
-// Design Philosophy: Techno-Industrial Precision
-// Grid of unique selling propositions with hover effects
+// Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
-const viewport = { once: true, margin: '-80px' };
+const vp = { once: true, margin: '-80px' };
 
 export default function UspSection() {
   const { t } = useLanguage();
 
+  const sectionPad = 'clamp(3rem, 5vw + 1rem, 9rem)';
+  const contentMax = 'min(1600px, 90vw)';
+  const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
+
   return (
-    <section className="py-24 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section style={{ paddingTop: sectionPad, paddingBottom: sectionPad, background: 'oklch(0.97 0.001 240)' }}>
+      <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
+          viewport={vp}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p className="text-xs font-medium text-primary uppercase tracking-widest mb-3">Alleinstellungsmerkmale</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4">{t.usp.headline}</h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl">{t.usp.sub}</p>
+          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'oklch(0.62 0.14 230)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+            Alleinstellungsmerkmale
+          </p>
+          <h2 style={{ marginBottom: '1rem' }}>{t.usp.headline}</h2>
+          <p style={{ fontSize: 'var(--text-lg)', color: 'oklch(0.45 0.01 240)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.usp.sub}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
+            gap: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+          }}
+        >
           {t.usp.items.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewport}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group relative bg-card p-8 border border-border hover:border-primary/40 hover:shadow-md transition-all duration-300 overflow-hidden"
+              viewport={vp}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              style={{
+                position: 'relative',
+                background: '#fff',
+                padding: 'clamp(1.25rem, 2.5vw, 2.25rem)',
+                border: '1px solid oklch(0.88 0.005 240)',
+                overflow: 'hidden',
+                transition: 'border-color 0.25s, box-shadow 0.25s',
+              }}
+              whileHover={{ borderColor: 'oklch(0.62 0.14 230 / 40%)', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
             >
               {/* Number badge */}
-              <div className="absolute top-0 left-0 w-10 h-10 bg-primary/8 flex items-center justify-center">
-                <span className="text-xs font-bold text-primary" style={{ fontFamily: "'Roboto Condensed', sans-serif" }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: 'clamp(32px, 4vw, 48px)',
+                  height: 'clamp(32px, 4vw, 48px)',
+                  background: 'rgba(33,150,211,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'oklch(0.62 0.14 230)', fontFamily: "'Roboto', sans-serif" }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
-              <div className="pt-6 space-y-3">
-                <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              <div style={{ paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <h4 style={{ fontSize: 'var(--text-lg)', fontWeight: 700 }}>{item.title}</h4>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'oklch(0.45 0.01 240)', lineHeight: 1.65 }}>{item.desc}</p>
               </div>
-              {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500" />
+              {/* Bottom accent line on hover */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.4 }}
+                style={{ position: 'absolute', bottom: 0, left: 0, height: '2px', background: 'oklch(0.62 0.14 230)' }}
+              />
             </motion.div>
           ))}
         </div>
