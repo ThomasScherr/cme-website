@@ -1,7 +1,8 @@
 // CME Website – Services Section
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond images use SVG clipPath – guaranteed full fill, no white corners
-// Section wrappers use overflow-x:clip + overflow-y:visible so diamonds bleed ~10% vertically
+// Diamonds are position:absolute and float independently of section padding
+// Section wrappers use overflow:visible so diamonds bleed beyond boundaries
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -29,24 +30,99 @@ function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; da
   );
 }
 
-export default function ServicesSection() {
-  const { t } = useLanguage();
-
-  const sectionPad = 'clamp(3rem, 5vw + 1rem, 9rem)';
+/** Wrapper for a service sub-section with absolute diamond */
+function ServiceBlock({
+  id,
+  bg,
+  diamondSide,
+  diamondSrc,
+  diamondAlt,
+  diamondSizeVar,
+  diamondOffsetXVar,
+  diamondOffsetYVar,
+  diamondRotateVar,
+  ptVar,
+  pbVar,
+  children,
+}: {
+  id: string;
+  bg?: string;
+  diamondSide: 'left' | 'right';
+  diamondSrc: string;
+  diamondAlt: string;
+  diamondSizeVar: string;
+  diamondOffsetXVar: string;
+  diamondOffsetYVar: string;
+  diamondRotateVar: string;
+  ptVar: string;
+  pbVar: string;
+  children: React.ReactNode;
+}) {
   const contentMax = 'min(1600px, 90vw)';
   const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
 
-  const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-    gap: 'clamp(2rem, 4vw, 5rem)',
-    alignItems: 'center',
-  };
+  const isLeft = diamondSide === 'left';
+
+  return (
+    <div style={{
+      position: 'relative',
+      overflow: 'visible',
+      paddingTop: ptVar,
+      paddingBottom: pbVar,
+      background: bg,
+    }}>
+      {/* Diamond – absolute, floats independently */}
+      <div style={{
+        position: 'absolute',
+        [isLeft ? 'left' : 'right']: 0,
+        top: '50%',
+        transform: isLeft
+          ? `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, -28vw))`
+          : `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, 28vw))`,
+        zIndex: 1,
+        pointerEvents: 'none',
+      }}>
+        <DiamondImage
+          src={diamondSrc}
+          alt={diamondAlt}
+          size={`var(${diamondSizeVar}, 46vw)`}
+          delay={0.1}
+          extraRotate={`var(${diamondRotateVar}, 0deg)`}
+        />
+      </div>
+
+      {/* Text content – positioned on the opposite side of the diamond */}
+      <div style={{
+        position: 'relative',
+        zIndex: 2,
+        maxWidth: contentMax,
+        margin: '0 auto',
+        paddingLeft: contentPad,
+        paddingRight: contentPad,
+      }}>
+        <div style={{
+          marginLeft: isLeft ? 'auto' : undefined,
+          marginRight: isLeft ? undefined : 'auto',
+          maxWidth: 'min(600px, 50%)',
+          ...(isLeft ? {} : { marginLeft: 0 }),
+        }}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ServicesSection() {
+  const { t } = useLanguage();
+
+  const contentMax = 'min(1600px, 90vw)';
+  const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
 
   return (
     <section id="services" className="bg-background">
       {/* Header */}
-      <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `${sectionPad} ${contentPad} clamp(2rem, 3vw, 5rem)` }}>
+      <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `clamp(3rem, 5vw + 1rem, 9rem) ${contentPad} clamp(2rem, 3vw, 5rem)` }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 0.5 }}>
           <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Services
@@ -58,80 +134,100 @@ export default function ServicesSection() {
         </motion.div>
       </div>
 
-      {/* ── Service 1: Development – diamond left, bleeds off left edge ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service1-pt, 80px)', paddingBottom: 'var(--cme-section-service1-pb, 80px)' }}>
-        <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service1-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service1-offset-y, 0px))' }}>
-            <DiamondImage src={IMAGES.dev} alt={t.services.dev_title} size="var(--cme-diamond-service1-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service1-rotate, 0deg)" />
-          </div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
-          >
-            <ServiceLabel num="01" tag="Entwicklung" />
-            <h3>{t.services.dev_title}</h3>
-            <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.dev_desc}</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {t.services.dev_items.map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
-                  <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </div>
+      {/* ── Service 1: Development – diamond left ── */}
+      <ServiceBlock
+        id="service1"
+        diamondSide="left"
+        diamondSrc={IMAGES.dev}
+        diamondAlt={t.services.dev_title}
+        diamondSizeVar="--cme-diamond-service1-size"
+        diamondOffsetXVar="--cme-diamond-service1-offset-x"
+        diamondOffsetYVar="--cme-diamond-service1-offset-y"
+        diamondRotateVar="--cme-diamond-service1-rotate"
+        ptVar="var(--cme-section-service1-pt, 80px)"
+        pbVar="var(--cme-section-service1-pb, 80px)"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+        >
+          <ServiceLabel num="01" tag="Entwicklung" />
+          <h3>{t.services.dev_title}</h3>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.dev_desc}</p>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {t.services.dev_items.map((item, i) => (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </ServiceBlock>
 
-      {/* ── Service 2: Manufacturing – text left, diamond right bleeds ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service2-pt, 80px)', paddingBottom: 'var(--cme-section-service2-pb, 80px)', background: 'var(--cme-color-bg-alt, #f5f6f8)' }}>
-        <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          <motion.div
-            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)', order: 1 }}
-          >
-            <ServiceLabel num="02" tag="EMS Fertigung" />
-            <h3>{t.services.mfg_title}</h3>
-            <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.mfg_desc}</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {t.services.mfg_items.map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
-                  <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-dark)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-          <div style={{ order: 2, display: 'flex', justifyContent: 'flex-end', marginRight: 'calc(-1 * var(--cme-diamond-service2-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service2-offset-y, 0px))' }}>
-            <DiamondImage src={IMAGES.mfg} alt={t.services.mfg_title} size="var(--cme-diamond-service2-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service2-rotate, 0deg)" />
-          </div>
-        </div>
-      </div>
+      {/* ── Service 2: Manufacturing – diamond right ── */}
+      <ServiceBlock
+        id="service2"
+        bg="var(--cme-color-bg-alt, #f5f6f8)"
+        diamondSide="right"
+        diamondSrc={IMAGES.mfg}
+        diamondAlt={t.services.mfg_title}
+        diamondSizeVar="--cme-diamond-service2-size"
+        diamondOffsetXVar="--cme-diamond-service2-offset-x"
+        diamondOffsetYVar="--cme-diamond-service2-offset-y"
+        diamondRotateVar="--cme-diamond-service2-rotate"
+        ptVar="var(--cme-section-service2-pt, 80px)"
+        pbVar="var(--cme-section-service2-pb, 80px)"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5 }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+        >
+          <ServiceLabel num="02" tag="EMS Fertigung" />
+          <h3>{t.services.mfg_title}</h3>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.mfg_desc}</p>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {t.services.mfg_items.map((item, i) => (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-dark)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </ServiceBlock>
 
-      {/* ── Service 3: Lifecycle – dark background, diamond left bleeds ── */}
-      <div style={{ overflowX: 'clip', overflowY: 'visible', paddingTop: 'var(--cme-section-service3-pt, 80px)', paddingBottom: 'var(--cme-section-service3-pb, 80px)', background: 'var(--cme-color-dark)' }}>
-        <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad, ...gridStyle }}>
-          <div style={{ marginLeft: 'calc(-1 * var(--cme-diamond-service3-offset-x, 18vw))', transform: 'translateY(var(--cme-diamond-service3-offset-y, 0px))' }}>
-            <DiamondImage src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size="var(--cme-diamond-service3-size, 46vw)" delay={0.1} extraRotate="var(--cme-diamond-service3-rotate, 0deg)" />
-          </div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
-          >
-            <ServiceLabel num="03" tag="Lifecycle" dark />
-            <h3 style={{ color: '#fff' }}>{t.services.lifecycle_title}</h3>
-            <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {t.services.lifecycle_items.map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.80)' }}>
-                  <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </div>
+      {/* ── Service 3: Lifecycle – dark background, diamond left ── */}
+      <ServiceBlock
+        id="service3"
+        bg="var(--cme-color-dark)"
+        diamondSide="left"
+        diamondSrc={IMAGES.lifecycle}
+        diamondAlt={t.services.lifecycle_title}
+        diamondSizeVar="--cme-diamond-service3-size"
+        diamondOffsetXVar="--cme-diamond-service3-offset-x"
+        diamondOffsetYVar="--cme-diamond-service3-offset-y"
+        diamondRotateVar="--cme-diamond-service3-rotate"
+        ptVar="var(--cme-section-service3-pt, 80px)"
+        pbVar="var(--cme-section-service3-pb, 80px)"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+        >
+          <ServiceLabel num="03" tag="Lifecycle" dark />
+          <h3 style={{ color: '#fff' }}>{t.services.lifecycle_title}</h3>
+          <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {t.services.lifecycle_items.map((item, i) => (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.80)' }}>
+                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </ServiceBlock>
     </section>
   );
 }

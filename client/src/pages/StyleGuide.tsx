@@ -230,7 +230,7 @@ function SectionHeightEditor() {
   return (
     <div>
       <div style={{ fontSize: 11, color: '#64748b', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-        Passe die Höhe (Innenabstand oben/unten) jeder Sektion unabhängig von den Rauten an.
+        Passe die Höhe (Innenabstand oben/unten) jeder Sektion an. Negative Werte lassen Sektionen überlappen. Die Rauten schweben unabhängig davon über den Sektionsgrenzen.
       </div>
 
       {ids.map(id => {
@@ -263,10 +263,10 @@ function SectionHeightEditor() {
               )}
             </div>
             <Row label="Oben (pt)">
-              <NumberInput value={cfg.paddingTop} onChange={v => updateSection(id, 'paddingTop', v)} min={0} max={300} unit="px" />
+              <NumberInput value={cfg.paddingTop} onChange={v => updateSection(id, 'paddingTop', v)} min={-100} max={300} unit="px" />
             </Row>
             <Row label="Unten (pb)">
-              <NumberInput value={cfg.paddingBottom} onChange={v => updateSection(id, 'paddingBottom', v)} min={0} max={300} unit="px" />
+              <NumberInput value={cfg.paddingBottom} onChange={v => updateSection(id, 'paddingBottom', v)} min={-100} max={300} unit="px" />
             </Row>
           </div>
         );
