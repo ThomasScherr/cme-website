@@ -1,30 +1,28 @@
 // CME Website – DiamondImage Component
-// Design Philosophy: Techno-Industrial Precision
+// Design: Techno-Industrial Precision
 //
-// Rounded diamond (rhombus) shape matching CME presentation style.
-// The image ALWAYS fills the entire diamond – no white gaps at corners.
+// TECHNIQUE: SVG clipPath on a normal (non-rotated) image.
+// The diamond shape is defined as an SVG polygon in the clip-path definition.
+// The image fills the bounding box 100% – no rotation tricks, no overflow hidden,
+// no white corners ever.
 //
-// Technique:
-//   1. Outer wrapper: square div, rotated 45°, border-radius 12%, overflow hidden
-//   2. Inner img: counter-rotated -45°, sized at 142% (= sqrt(2)) to fill all corners
-//      Plus extra scale(1.05) safety margin to guarantee no white edges
-//
-// Bleed: position the wrapper with negative margin/absolute offset so it
-//        extends beyond the viewport edge (like in the CME presentation).
+// The diamond polygon points (for a square bounding box):
+//   top-center (50%,0) → right (100%,50%) → bottom (50%,100%) → left (0,50%)
+// For rounded corners we use a cubic-bezier approximation via SVG path.
 
 import { motion } from 'framer-motion';
+import { useId } from 'react';
 
 interface DiamondImageProps {
   src: string;
   alt: string;
-  /** Side length of the diamond in px (at 1x). Scales via CSS clamp on parent. */
-  size?: number;
-  /** border-radius of the rotated square – controls corner roundness */
-  borderRadius?: string;
+  /** Fluid CSS size string, e.g. "clamp(260px, 32vw, 560px)" */
+  size?: string;
+  /** Corner radius as fraction of half-side, 0 = sharp, 0.25 = CME style */
+  cornerRadius?: number;
   className?: string;
   animate?: boolean;
   delay?: number;
-  /** Optional RGBA overlay, e.g. "rgba(33,150,211,0.08)" */
   overlayColor?: string;
   style?: React.CSSProperties;
 }
@@ -32,17 +30,35 @@ interface DiamondImageProps {
 export default function DiamondImage({
   src,
   alt,
-  size = 440,
-  borderRadius = '12%',
-  className = '',
+  size = 'clamp(260px, 32vw, 560px)',
+  cornerRadius = 0.22,
   animate = true,
   delay = 0,
   overlayColor,
   style,
 }: DiamondImageProps) {
+  const id = useId().replace(/:/g, '');
+
+  // Build SVG path for a rounded diamond in a 100x100 viewBox.
+  // The four corners are at: top(50,0), right(100,50), bottom(50,100), left(0,50)
+  // We pull each corner back by `r` units along each edge and draw a cubic bezier.
+  const r = cornerRadius * 50; // e.g. 0.22 * 50 = 11
+  const c = r * 0.55; // bezier control point distance ≈ r * (4/3 * tan(π/8)) ≈ r * 0.55
+
+  // top corner → right corner → bottom corner → left corner → back to top
+  const d = [
+    `M ${50},${r}`,                                         // start just below top
+    `C ${50 + c},${r} ${100 - r},${50 - c} ${100 - r},${50}`, // top→right
+    `C ${100 - r},${50 + c} ${50 + c},${100 - r} ${50},${100 - r}`, // right→bottom
+    `C ${50 - c},${100 - r} ${r},${50 + c} ${r},${50}`,     // bottom→left
+    `C ${r},${50 - c} ${50 - c},${r} ${50},${r}`,           // left→top
+    'Z',
+  ].join(' ');
+
+  const clipId = `diamond-clip-${id}`;
+
   const inner = (
     <div
-      className={className}
       style={{
         width: size,
         height: size,
@@ -51,40 +67,49 @@ export default function DiamondImage({
         ...style,
       }}
     >
-      {/* Rotated square → becomes a diamond */}
-      <div
+      {/* Hidden SVG that defines the clip path */}
+      <svg
+        width="0"
+        height="0"
+        style={{ position: 'absolute', overflow: 'hidden' }}
+        aria-hidden="true"
+      >
+        <defs>
+          <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+            {/* Scale the 100x100 path to 0..1 range for objectBoundingBox */}
+            <path d={d} transform="scale(0.01)" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* The image – fills the container 100%, clip-path applied directly */}
+      <img
+        src={src}
+        alt={alt}
         style={{
           width: '100%',
           height: '100%',
-          borderRadius,
-          transform: 'rotate(45deg)',
-          overflow: 'hidden',
-          position: 'relative',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          display: 'block',
+          clipPath: `url(#${clipId})`,
+          WebkitClipPath: `url(#${clipId})`,
         }}
-      >
-        {/*
-          Counter-rotate the image so it appears upright.
-          Size at 145% + scale(1.06) ensures every corner pixel is covered,
-          even at extreme border-radius values.
-        */}
-        <img
-          src={src}
-          alt={alt}
+      />
+
+      {/* Optional color overlay */}
+      {overlayColor && (
+        <div
           style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '145%',
-            height: '145%',
-            transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
-            objectFit: 'cover',
-            objectPosition: 'center',
+            inset: 0,
+            background: overlayColor,
+            clipPath: `url(#${clipId})`,
+            WebkitClipPath: `url(#${clipId})`,
+            pointerEvents: 'none',
           }}
         />
-        {overlayColor && (
-          <div style={{ position: 'absolute', inset: 0, background: overlayColor }} />
-        )}
-      </div>
+      )}
     </div>
   );
 

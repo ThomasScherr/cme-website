@@ -1,11 +1,11 @@
 // CME Website – Hero Section
 // Design: Techno-Industrial Precision
-// Fluid sizing from 375px to 3840px via CSS clamp variables
-// Rounded diamond bleeds off right edge (like CME presentation)
+// Diamond uses SVG clipPath – guaranteed full image fill, no white corners
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import DiamondImage from '@/components/DiamondImage';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -35,55 +35,25 @@ export default function HeroSection() {
       <div
         className="absolute"
         style={{
-          right: 'clamp(-180px, -12vw, -80px)',
+          right: 'clamp(-120px, -8vw, -40px)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 1,
-          /* Fluid diamond size */
-          width:  'clamp(340px, 42vw, 760px)',
-          height: 'clamp(340px, 42vw, 760px)',
         }}
       >
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ width: '100%', height: '100%', position: 'relative' }}
         >
-          {/* Rotated square → rounded diamond */}
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              borderRadius: '12%',
-              transform: 'rotate(45deg)',
-              overflow: 'hidden',
-              position: 'relative',
-            }}
-          >
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
-              alt="Power Electronics"
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                /* 145% + scale(1.06) guarantees full coverage at any size */
-                width: '145%',
-                height: '145%',
-                transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'rgba(33, 150, 211, 0.06)',
-              }}
-            />
-          </div>
+          <DiamondImage
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
+            alt="Power Electronics"
+            size="clamp(320px, 42vw, 760px)"
+            cornerRadius={0.22}
+            animate={false}
+            overlayColor="rgba(33, 150, 211, 0.06)"
+          />
         </motion.div>
 
         {/* Accent diamond – light blue, behind main */}

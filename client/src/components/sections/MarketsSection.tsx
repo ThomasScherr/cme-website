@@ -1,8 +1,10 @@
 // CME Website – Markets Section
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
+// Diamond uses SVG clipPath – guaranteed full fill, no white corners
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import DiamondImage from '@/components/DiamondImage';
 
 const EMC_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/emc_chamber-cLJKtFd6QKvgcotSpka2WN.webp';
 const vp = { once: true, margin: '-80px' };
@@ -16,13 +18,7 @@ export default function MarketsSection() {
 
   return (
     <section id="markets" style={{ overflow: 'hidden', background: '#fff' }}>
-      <div
-        style={{
-          maxWidth: contentMax,
-          margin: '0 auto',
-          padding: `${sectionPad} ${contentPad}`,
-        }}
-      >
+      <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `${sectionPad} ${contentPad}` }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +38,7 @@ export default function MarketsSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
             gap: 'clamp(2rem, 4vw, 5rem)',
             alignItems: 'center',
           }}
@@ -77,55 +73,29 @@ export default function MarketsSection() {
             ))}
           </div>
 
-          {/* EMC Chamber – rounded diamond, bleeds right */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{
-                position: 'relative',
-                width:  'clamp(260px, 30vw, 520px)',
-                height: 'clamp(260px, 30vw, 520px)',
-                flexShrink: 0,
-                marginRight: 'clamp(-40px, -5vw, -90px)',
-              }}
-            >
-              {/* Main diamond */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '12%',
-                  transform: 'rotate(45deg)',
-                  overflow: 'hidden',
-                  position: 'relative',
-                }}
+          {/* EMC Chamber – diamond bleeds right */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
+            <div style={{ marginRight: 'clamp(-40px, -5vw, -80px)', position: 'relative' }}>
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <img
+                <DiamondImage
                   src={EMC_IMAGE}
                   alt="EMC Anechoic Chamber"
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    width: '145%',
-                    height: '145%',
-                    transform: 'translate(-50%, -50%) rotate(-45deg) scale(1.06)',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
+                  size="clamp(240px, 28vw, 480px)"
+                  overlayColor="rgba(10,15,25,0.35)"
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,15,25,0.38)' }} />
-              </div>
+              </motion.div>
 
               {/* Label overlay */}
               <div
                 style={{
                   position: 'absolute',
-                  bottom: '18%',
-                  left: '12%',
+                  bottom: '20%',
+                  left: '15%',
                   color: '#fff',
                   zIndex: 10,
                   pointerEvents: 'none',
@@ -141,22 +111,7 @@ export default function MarketsSection() {
                   Leitungsgebunden & gestrahlt
                 </p>
               </div>
-
-              {/* Accent diamond */}
-              <div
-                style={{
-                  position: 'absolute',
-                  width: 'clamp(60px, 8vw, 130px)',
-                  height: 'clamp(60px, 8vw, 130px)',
-                  borderRadius: '12%',
-                  transform: 'rotate(45deg)',
-                  background: 'rgba(33,150,211,0.12)',
-                  bottom: 'clamp(-20px, -3vw, -45px)',
-                  left:   'clamp(-15px, -2vw, -30px)',
-                  zIndex: -1,
-                }}
-              />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
