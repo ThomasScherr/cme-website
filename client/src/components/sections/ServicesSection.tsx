@@ -1,6 +1,6 @@
 // CME Website – Services Section
 // Design Philosophy: Techno-Industrial Precision
-// Three service pillars with parallelogram images and diamond accents
+// Three service pillars with rounded diamond images bleeding off edges
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -13,171 +13,230 @@ const IMAGES = {
 
 const viewport = { once: true, margin: '-80px' };
 
+// Rounded diamond helper
+function RoundedDiamond({
+  src,
+  alt,
+  size = 420,
+  delay = 0,
+}: {
+  src: string;
+  alt: string;
+  size?: number;
+  delay?: number;
+}) {
+  const innerSize = Math.round(size * 1.42);
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={viewport}
+      transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      style={{ width: size, height: size, flexShrink: 0 }}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          borderRadius: '12%',
+          transform: 'rotate(45deg)',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: `${innerSize}px`,
+            height: `${innerSize}px`,
+            transform: 'translate(-50%, -50%) rotate(-45deg)',
+            objectFit: 'cover',
+          }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ServicesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Header */}
+    <section id="services" className="bg-background">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewport}
           transition={{ duration: 0.5 }}
-          className="mb-20"
         >
           <p className="text-xs font-medium text-primary uppercase tracking-widest mb-3">Services</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4">{t.services.headline}</h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl">{t.services.sub}</p>
         </motion.div>
+      </div>
 
-        {/* Service 1: Development */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={viewport}
-          transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-2 gap-12 items-center mb-24"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.5 }}
-            className="relative"
-          >
-            <div
-              className="relative w-full aspect-[4/3] overflow-hidden"
-              style={{ clipPath: 'polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%)' }}
-            >
-              <img src={IMAGES.dev} alt={t.services.dev_title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 border-4 border-primary/20" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-5"
-          >
-            <div className="inline-flex items-center gap-3">
-              <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1">01</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">Entwicklung</span>
-            </div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.dev_title}</h3>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.dev_desc}</p>
-            <ul className="space-y-2">
-              {t.services.dev_items.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm">
-                  <span className="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </motion.div>
-
-        {/* Service 2: Manufacturing */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={viewport}
-          transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-2 gap-12 items-center mb-24"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.5 }}
-            className="space-y-5 lg:order-1"
-          >
-            <div className="inline-flex items-center gap-3">
-              <span className="bg-foreground text-background text-xs font-bold px-3 py-1">02</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">EMS Fertigung</span>
-            </div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.mfg_title}</h3>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.mfg_desc}</p>
-            <ul className="space-y-2">
-              {t.services.mfg_items.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm">
-                  <span className="w-1.5 h-1.5 bg-foreground rotate-45 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative lg:order-2"
-          >
-            <div
-              className="relative w-full aspect-[4/3] overflow-hidden"
-              style={{ clipPath: 'polygon(0% 0%, 92% 0%, 100% 100%, 8% 100%)' }}
-            >
-              <img src={IMAGES.mfg} alt={t.services.mfg_title} className="w-full h-full object-cover" />
-            </div>
-            <div className="absolute -top-4 -left-4 w-20 h-20 border-4 border-foreground/15" />
-          </motion.div>
-        </motion.div>
-
-        {/* Service 3: Lifecycle */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.5 }}
-          className="relative bg-muted/30 p-8 md:p-12 overflow-hidden"
-        >
-          {/* Background diamond decoration */}
-          <div
-            className="absolute top-0 right-0 w-64 h-64 opacity-5 translate-x-16 -translate-y-16"
-            style={{
-              background: 'oklch(0.62 0.14 230)',
-              clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-            }}
-          />
-          <div className="grid lg:grid-cols-2 gap-12 items-center relative">
-            <div className="space-y-5">
-              <div className="inline-flex items-center gap-3">
-                <span className="bg-primary/10 text-primary text-xs font-bold px-3 py-1">03</span>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">Lifecycle</span>
+      {/* Service 1: Development – Diamond bleeds off LEFT */}
+      <div className="relative overflow-hidden py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Diamond – positioned to bleed off left on desktop */}
+            <div className="relative flex justify-center lg:justify-start">
+              <div
+                className="relative"
+                style={{ marginLeft: 'clamp(-60px, -8vw, -120px)' }}
+              >
+                <RoundedDiamond src={IMAGES.dev} alt={t.services.dev_title} size={400} delay={0.1} />
+                {/* Accent diamond behind */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: '140px',
+                    height: '140px',
+                    borderRadius: '12%',
+                    transform: 'rotate(45deg)',
+                    background: 'rgba(33, 150, 211, 0.10)',
+                    bottom: '-30px',
+                    right: '-20px',
+                    zIndex: -1,
+                  }}
+                />
               </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.lifecycle_title}</h3>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.lifecycle_desc}</p>
-              <ul className="space-y-2">
-                {t.services.lifecycle_items.map((item, i) => (
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="space-y-5"
+            >
+              <div className="inline-flex items-center gap-3">
+                <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5">01</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Entwicklung</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.dev_title}</h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.dev_desc}</p>
+              <ul className="space-y-2.5">
+                {t.services.dev_items.map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm">
                     <span className="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="relative flex items-center justify-center">
-              <div className="relative w-64 h-64">
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Service 2: Manufacturing – Diamond bleeds off RIGHT */}
+      <div className="relative overflow-hidden py-16 lg:py-24 bg-muted/20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.5 }}
+              className="space-y-5 order-2 lg:order-1"
+            >
+              <div className="inline-flex items-center gap-3">
+                <span className="bg-foreground text-background text-xs font-bold px-3 py-1.5">02</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">EMS Fertigung</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl">{t.services.mfg_title}</h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{t.services.mfg_desc}</p>
+              <ul className="space-y-2.5">
+                {t.services.mfg_items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 bg-foreground rotate-45 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Diamond – bleeds off right */}
+            <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
+              <div
+                className="relative"
+                style={{ marginRight: 'clamp(-60px, -8vw, -120px)' }}
+              >
+                <RoundedDiamond src={IMAGES.mfg} alt={t.services.mfg_title} size={400} delay={0.1} />
                 <div
-                  className="w-full h-full overflow-hidden"
-                  style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
-                >
-                  <img src={IMAGES.lifecycle} alt={t.services.lifecycle_title} className="w-full h-full object-cover scale-125" />
-                </div>
-                <div
-                  className="absolute inset-0 -z-10 translate-x-3 translate-y-3 bg-primary/15"
-                  style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
+                  style={{
+                    position: 'absolute',
+                    width: '120px',
+                    height: '120px',
+                    borderRadius: '12%',
+                    transform: 'rotate(45deg)',
+                    background: 'rgba(80, 80, 80, 0.08)',
+                    top: '-25px',
+                    left: '-15px',
+                    zIndex: -1,
+                  }}
                 />
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Service 3: Lifecycle – Diamond centered, bleeds bottom */}
+      <div className="relative overflow-hidden py-16 lg:py-24 bg-foreground text-background">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Diamond – centered, slight bottom bleed */}
+            <div className="relative flex justify-center">
+              <div className="relative" style={{ marginBottom: '-40px' }}>
+                <RoundedDiamond src={IMAGES.lifecycle} alt={t.services.lifecycle_title} size={380} delay={0.1} />
+                {/* Light blue accent diamond */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: '130px',
+                    height: '130px',
+                    borderRadius: '12%',
+                    transform: 'rotate(45deg)',
+                    background: 'rgba(33, 150, 211, 0.18)',
+                    top: '-20px',
+                    right: '-30px',
+                    zIndex: -1,
+                  }}
+                />
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="space-y-5"
+            >
+              <div className="inline-flex items-center gap-3">
+                <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5">03</span>
+                <span className="text-xs text-background/50 uppercase tracking-wider">Lifecycle</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl text-background">{t.services.lifecycle_title}</h3>
+              <p className="text-background/60 text-sm md:text-base leading-relaxed">{t.services.lifecycle_desc}</p>
+              <ul className="space-y-2.5">
+                {t.services.lifecycle_items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm text-background/80">
+                    <span className="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

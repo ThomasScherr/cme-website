@@ -1,6 +1,6 @@
 // CME Website – Markets Section
 // Design Philosophy: Techno-Industrial Precision
-// Grid of markets with EMC chamber image
+// Grid of markets with EMC chamber image in rounded diamond, bleeding right
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -12,7 +12,7 @@ export default function MarketsSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="markets" className="py-24 bg-background">
+    <section id="markets" className="py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -26,7 +26,7 @@ export default function MarketsSection() {
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl">{t.markets.sub}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Markets Grid */}
           <div className="grid grid-cols-2 gap-4">
             {t.markets.items.map((item, i) => (
@@ -45,31 +45,87 @@ export default function MarketsSection() {
             ))}
           </div>
 
-          {/* EMC Chamber Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.5 }}
-            className="relative"
-          >
-            <div
-              className="w-full aspect-[4/3] overflow-hidden relative"
-              style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 92% 100%, 0% 100%)' }}
+          {/* EMC Chamber – rounded diamond, bleeding right */}
+          <div className="relative flex justify-end">
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              style={{ marginRight: 'clamp(-40px, -5vw, -80px)', position: 'relative' }}
             >
-              <img
-                src={EMC_IMAGE}
-                alt="EMC Anechoic Chamber"
-                className="w-full h-full object-cover"
+              {/* Main diamond */}
+              <div
+                style={{
+                  width: '380px',
+                  height: '380px',
+                  borderRadius: '12%',
+                  transform: 'rotate(45deg)',
+                  overflow: 'hidden',
+                  position: 'relative',
+                }}
+              >
+                <img
+                  src={EMC_IMAGE}
+                  alt="EMC Anechoic Chamber"
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    width: '540px',
+                    height: '540px',
+                    transform: 'translate(-50%, -50%) rotate(-45deg)',
+                    objectFit: 'cover',
+                  }}
+                />
+                {/* Dark overlay for text legibility */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(20,20,30,0.35)',
+                  }}
+                />
+              </div>
+
+              {/* Text label – positioned over diamond */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '80px',
+                  left: '50px',
+                  transform: 'rotate(0deg)',
+                  color: 'white',
+                  zIndex: 10,
+                }}
+              >
+                <p style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', opacity: 0.7, marginBottom: '4px' }}>
+                  In-House
+                </p>
+                <p style={{ fontSize: '20px', fontFamily: "'Roboto Condensed', sans-serif", fontWeight: 700, lineHeight: 1.1 }}>
+                  EMV-Messkammer
+                </p>
+                <p style={{ fontSize: '12px', opacity: 0.65, marginTop: '4px' }}>
+                  Leitungsgebunden & gestrahlt
+                </p>
+              </div>
+
+              {/* Accent diamond */}
+              <div
+                style={{
+                  position: 'absolute',
+                  width: '120px',
+                  height: '120px',
+                  borderRadius: '12%',
+                  transform: 'rotate(45deg)',
+                  background: 'rgba(33, 150, 211, 0.12)',
+                  bottom: '-40px',
+                  left: '-30px',
+                  zIndex: -1,
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
-            </div>
-            <div className="absolute bottom-8 left-8 text-white">
-              <p className="text-xs uppercase tracking-widest text-white/60 mb-1">In-House</p>
-              <p className="text-xl font-bold" style={{ fontFamily: "'Roboto Condensed', sans-serif" }}>EMV-Messkammer</p>
-              <p className="text-sm text-white/70 mt-1">Leitungsgebunden & gestrahlt</p>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
