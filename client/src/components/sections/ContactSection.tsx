@@ -45,11 +45,11 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Kontakt
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.contact.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.contact.sub}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.contact.sub}</p>
         </motion.div>
 
         <div
@@ -74,13 +74,13 @@ export default function ContactSection() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                style={{ fontSize: 'var(--text-sm)' }}
+                style={{ fontSize: 'var(--cme-font-size-sm)' }}
               />
               <Input
                 placeholder={t.contact.company}
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                style={{ fontSize: 'var(--text-sm)' }}
+                style={{ fontSize: 'var(--cme-font-size-sm)' }}
               />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 'clamp(0.75rem, 1.5vw, 1rem)' }}>
@@ -90,14 +90,14 @@ export default function ContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                style={{ fontSize: 'var(--text-sm)' }}
+                style={{ fontSize: 'var(--cme-font-size-sm)' }}
               />
               <Input
                 type="tel"
                 placeholder={t.contact.phone}
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                style={{ fontSize: 'var(--text-sm)' }}
+                style={{ fontSize: 'var(--cme-font-size-sm)' }}
               />
             </div>
             <Textarea
@@ -107,7 +107,7 @@ export default function ContactSection() {
               rows={6}
               required
               className="resize-none"
-              style={{ fontSize: 'var(--text-sm)' }}
+              style={{ fontSize: 'var(--cme-font-size-sm)' }}
             />
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
               <input
@@ -118,7 +118,7 @@ export default function ContactSection() {
                 className="mt-1 accent-primary"
                 required
               />
-              <label htmlFor="privacy" style={{ fontSize: 'var(--text-xs)', color: 'var(--cme-color-gray)', cursor: 'pointer', lineHeight: 1.55 }}>
+              <label htmlFor="privacy" style={{ fontSize: 'var(--cme-font-size-xs)', color: 'var(--cme-color-gray)', cursor: 'pointer', lineHeight: 1.55 }}>
                 {t.contact.privacy}
               </label>
             </div>
@@ -127,7 +127,7 @@ export default function ContactSection() {
               style={{
                 background: 'var(--cme-color-primary)',
                 color: '#fff',
-                fontSize: 'var(--text-sm)',
+                fontSize: 'var(--cme-font-size-sm)',
                 padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.5rem, 3vw, 2.5rem)',
                 alignSelf: 'flex-start',
               }}
@@ -146,19 +146,19 @@ export default function ContactSection() {
             style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 3vw, 3rem)' }}
           >
             <div>
-              <h3 style={{ fontSize: 'var(--text-2xl)', marginBottom: 'clamp(1rem, 2vw, 1.75rem)' }}>{t.contact.address_title}</h3>
+              <h3 style={{ fontSize: 'var(--cme-font-size-2xl)', marginBottom: 'clamp(1rem, 2vw, 1.75rem)' }}>{t.contact.address_title}</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                   <MapPin size={18} style={{ color: 'var(--cme-color-primary)', marginTop: '0.1rem', flexShrink: 0 }} />
                   <div>
-                    <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}>CME Control Motion Electronics GmbH</p>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-gray)' }}>Alter Hellweg 48</p>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-gray)' }}>44379 Dortmund, Germany</p>
+                    <p style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 600 }}>CME Control Motion Electronics GmbH</p>
+                    <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-gray)' }}>Alter Hellweg 48</p>
+                    <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-gray)' }}>44379 Dortmund, Germany</p>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <Phone size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
-                  <a href="tel:+4923128667696" style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  <a href="tel:+4923128667696" style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
                     +49 231 28 66 76 96-0
@@ -166,7 +166,7 @@ export default function ContactSection() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <Mail size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
-                  <a href="mailto:info@control-motion.de" style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  <a href="mailto:info@control-motion.de" style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
                     info@control-motion.de
@@ -177,7 +177,7 @@ export default function ContactSection() {
 
             {/* Certifications */}
             <div style={{ borderTop: '1px solid var(--cme-color-border, #dde1e6)', paddingTop: 'clamp(1rem, 2vw, 1.75rem)' }}>
-              <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--cme-color-gray)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+              <p style={{ fontSize: 'var(--cme-font-size-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--cme-color-gray)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
                 Zertifizierungen
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -185,7 +185,7 @@ export default function ContactSection() {
                   <span
                     key={cert}
                     style={{
-                      fontSize: 'var(--text-xs)',
+                      fontSize: 'var(--cme-font-size-xs)',
                       fontWeight: 600,
                       padding: '0.3em 0.75em',
                       border: '1px solid var(--cme-color-border, #dde1e6)',

@@ -175,6 +175,12 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-tablet-font-size-h4', `${tb.tokens.fontSizeH4}px`);
   el.style.setProperty('--cme-tablet-font-size-body', `${tb.tokens.fontSizeBody}px`);
   el.style.setProperty('--cme-tablet-font-size-small', `${tb.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-tablet-font-size-xs', `${tb.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-tablet-font-size-sm', `${Math.round(tb.tokens.fontSizeSmall + (tb.tokens.fontSizeBody - tb.tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-tablet-font-size-base', `${tb.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-tablet-font-size-lg', `${Math.round(tb.tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-tablet-font-size-xl', `${Math.round(tb.tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-tablet-font-size-2xl', `${Math.round(tb.tokens.fontSizeBody * 1.5)}px`);
   el.style.setProperty('--cme-tablet-section-padding', `${tb.tokens.sectionPadding}px`);
   el.style.setProperty('--cme-tablet-line-height-heading', String(tb.tokens.lineHeightHeading));
   el.style.setProperty('--cme-tablet-line-height-body', String(tb.tokens.lineHeightBody));
@@ -205,6 +211,12 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-mobile-font-size-h4', `${mb.tokens.fontSizeH4}px`);
   el.style.setProperty('--cme-mobile-font-size-body', `${mb.tokens.fontSizeBody}px`);
   el.style.setProperty('--cme-mobile-font-size-small', `${mb.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-mobile-font-size-xs', `${mb.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-mobile-font-size-sm', `${Math.round(mb.tokens.fontSizeSmall + (mb.tokens.fontSizeBody - mb.tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-mobile-font-size-base', `${mb.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-mobile-font-size-lg', `${Math.round(mb.tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-mobile-font-size-xl', `${Math.round(mb.tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-mobile-font-size-2xl', `${Math.round(mb.tokens.fontSizeBody * 1.5)}px`);
   el.style.setProperty('--cme-mobile-section-padding', `${mb.tokens.sectionPadding}px`);
   el.style.setProperty('--cme-mobile-line-height-heading', String(mb.tokens.lineHeightHeading));
   el.style.setProperty('--cme-mobile-line-height-body', String(mb.tokens.lineHeightBody));
@@ -240,6 +252,13 @@ export function applyBreakpointToElement(el: HTMLElement, config: FullResponsive
   el.style.setProperty('--cme-font-size-h4', `${bp.tokens.fontSizeH4}px`);
   el.style.setProperty('--cme-font-size-body', `${bp.tokens.fontSizeBody}px`);
   el.style.setProperty('--cme-font-size-small', `${bp.tokens.fontSizeSmall}px`);
+  // Derived inline sizes (proportional to body/small)
+  el.style.setProperty('--cme-font-size-xs', `${bp.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-font-size-sm', `${Math.round(bp.tokens.fontSizeSmall + (bp.tokens.fontSizeBody - bp.tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-font-size-base', `${bp.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-font-size-lg', `${Math.round(bp.tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-font-size-xl', `${Math.round(bp.tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-font-size-2xl', `${Math.round(bp.tokens.fontSizeBody * 1.5)}px`);
   el.style.setProperty('--cme-font-weight-heading', String(bp.tokens.fontWeightHeading));
   el.style.setProperty('--cme-font-weight-body', String(bp.tokens.fontWeightBody));
   el.style.setProperty('--cme-line-height-heading', String(bp.tokens.lineHeightHeading));
@@ -260,6 +279,39 @@ export function applyBreakpointToElement(el: HTMLElement, config: FullResponsive
   el.style.setProperty('--cme-section-padding', `${bp.tokens.sectionPadding}px`);
   el.style.setProperty('--cme-container-max-width', `${bp.tokens.containerMaxWidth}px`);
   el.style.setProperty('--cme-diamond-radius', String(bp.tokens.diamondRadius));
+  
+  // Also set the prefixed tablet/mobile variables so CSS media queries in the iframe
+  // (which fire based on the iframe's physical width) use the correct breakpoint values
+  el.style.setProperty('--cme-tablet-font-size-h1', `${bp.tokens.fontSizeH1}px`);
+  el.style.setProperty('--cme-tablet-font-size-h2', `${bp.tokens.fontSizeH2}px`);
+  el.style.setProperty('--cme-tablet-font-size-h3', `${bp.tokens.fontSizeH3}px`);
+  el.style.setProperty('--cme-tablet-font-size-h4', `${bp.tokens.fontSizeH4}px`);
+  el.style.setProperty('--cme-tablet-font-size-body', `${bp.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-tablet-font-size-small', `${bp.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-tablet-font-size-xs', `${bp.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-tablet-font-size-sm', `${Math.round(bp.tokens.fontSizeSmall + (bp.tokens.fontSizeBody - bp.tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-tablet-font-size-base', `${bp.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-tablet-font-size-lg', `${Math.round(bp.tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-tablet-font-size-xl', `${Math.round(bp.tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-tablet-font-size-2xl', `${Math.round(bp.tokens.fontSizeBody * 1.5)}px`);
+  el.style.setProperty('--cme-tablet-line-height-heading', String(bp.tokens.lineHeightHeading));
+  el.style.setProperty('--cme-tablet-line-height-body', String(bp.tokens.lineHeightBody));
+  el.style.setProperty('--cme-tablet-letter-spacing-heading', `${bp.tokens.letterSpacingHeading}px`);
+  el.style.setProperty('--cme-mobile-font-size-h1', `${bp.tokens.fontSizeH1}px`);
+  el.style.setProperty('--cme-mobile-font-size-h2', `${bp.tokens.fontSizeH2}px`);
+  el.style.setProperty('--cme-mobile-font-size-h3', `${bp.tokens.fontSizeH3}px`);
+  el.style.setProperty('--cme-mobile-font-size-h4', `${bp.tokens.fontSizeH4}px`);
+  el.style.setProperty('--cme-mobile-font-size-body', `${bp.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-mobile-font-size-small', `${bp.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-mobile-font-size-xs', `${bp.tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-mobile-font-size-sm', `${Math.round(bp.tokens.fontSizeSmall + (bp.tokens.fontSizeBody - bp.tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-mobile-font-size-base', `${bp.tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-mobile-font-size-lg', `${Math.round(bp.tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-mobile-font-size-xl', `${Math.round(bp.tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-mobile-font-size-2xl', `${Math.round(bp.tokens.fontSizeBody * 1.5)}px`);
+  el.style.setProperty('--cme-mobile-line-height-heading', String(bp.tokens.lineHeightHeading));
+  el.style.setProperty('--cme-mobile-line-height-body', String(bp.tokens.lineHeightBody));
+  el.style.setProperty('--cme-mobile-letter-spacing-heading', `${bp.tokens.letterSpacingHeading}px`);
   
   // Logo – use the breakpoint-specific value
   const logoHeight = breakpoint === 'desktop' ? bp.tokens.logoHeightDesktop

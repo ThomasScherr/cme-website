@@ -23,11 +23,11 @@ export default function UspSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Alleinstellungsmerkmale
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.usp.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.usp.sub}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.usp.sub}</p>
         </motion.div>
 
         <div
@@ -68,13 +68,13 @@ export default function UspSection() {
                   justifyContent: 'center',
                 }}
               >
-                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--cme-color-primary)', fontFamily: 'var(--cme-font-family)' }}>
+                <span style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, color: 'var(--cme-color-primary)', fontFamily: 'var(--cme-font-family)' }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
               <div style={{ paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                <h4 style={{ fontSize: 'var(--text-lg)', fontWeight: 700 }}>{item.title}</h4>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--cme-color-gray)', lineHeight: 1.65 }}>{item.desc}</p>
+                <h4 style={{ fontSize: 'var(--cme-font-size-lg)', fontWeight: 700 }}>{item.title}</h4>
+                <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-gray)', lineHeight: 1.65 }}>{item.desc}</p>
               </div>
               {/* Bottom accent line on hover */}
               <motion.div

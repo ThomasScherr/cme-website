@@ -20,10 +20,10 @@ const vp = { once: true, margin: '-80px' };
 function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; dark?: boolean }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
-      <span style={{ background: 'var(--cme-color-primary)', color: '#fff', fontSize: 'var(--text-xs)', fontWeight: 700, padding: '0.3em 0.75em' }}>
+      <span style={{ background: 'var(--cme-color-primary)', color: '#fff', fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, padding: '0.3em 0.75em' }}>
         {num}
       </span>
-      <span style={{ fontSize: 'var(--text-xs)', color: dark ? 'rgba(255,255,255,0.45)' : 'var(--cme-color-gray)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+      <span style={{ fontSize: 'var(--cme-font-size-xs)', color: dark ? 'rgba(255,255,255,0.45)' : 'var(--cme-color-gray)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
         {tag}
       </span>
     </div>
@@ -124,11 +124,11 @@ export default function ServicesSection() {
       {/* Header */}
       <div style={{ maxWidth: contentMax, margin: '0 auto', padding: `clamp(3rem, 5vw + 1rem, 9rem) ${contentPad} clamp(2rem, 3vw, 5rem)` }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 0.5 }}>
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Services
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.services.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
             {t.services.sub}
           </p>
         </motion.div>
@@ -153,10 +153,10 @@ export default function ServicesSection() {
         >
           <ServiceLabel num="01" tag="Entwicklung" />
           <h3>{t.services.dev_title}</h3>
-          <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.dev_desc}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'var(--cme-color-gray)' }}>{t.services.dev_desc}</p>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             {t.services.dev_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)' }}>
                 <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
                 {item}
               </li>
@@ -185,10 +185,10 @@ export default function ServicesSection() {
         >
           <ServiceLabel num="02" tag="EMS Fertigung" />
           <h3>{t.services.mfg_title}</h3>
-          <p style={{ fontSize: 'var(--text-base)', color: 'var(--cme-color-gray)' }}>{t.services.mfg_desc}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'var(--cme-color-gray)' }}>{t.services.mfg_desc}</p>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             {t.services.mfg_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)' }}>
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)' }}>
                 <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-dark)', transform: 'rotate(45deg)', flexShrink: 0 }} />
                 {item}
               </li>
@@ -217,10 +217,10 @@ export default function ServicesSection() {
         >
           <ServiceLabel num="03" tag="Lifecycle" dark />
           <h3 style={{ color: '#fff' }}>{t.services.lifecycle_title}</h3>
-          <p style={{ fontSize: 'var(--text-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             {t.services.lifecycle_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.80)' }}>
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.80)' }}>
                 <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
                 {item}
               </li>

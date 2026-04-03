@@ -76,6 +76,12 @@
   --cme-font-size-h4: 20px;
   --cme-font-size-body: 16px;
   --cme-font-size-small: 13px;
+  --cme-font-size-lg: 18px;
+  --cme-font-size-xs: 12px;
+  --cme-font-size-sm: 14px;
+  --cme-font-size-base: 16px;
+  --cme-font-size-xl: 20px;
+  --cme-font-size-2xl: 24px;
   --cme-font-weight-heading: 700;
   --cme-font-weight-body: 400;
   --cme-line-height-heading: 1.15;
@@ -322,18 +328,29 @@
     height: var(--cme-logo-height-tablet, 40px);
   }
 
-  h1 { font-size: var(--cme-tablet-font-size-h1, 48px); }
-  h2 { font-size: var(--cme-tablet-font-size-h2, 34px); }
-  h3 { font-size: var(--cme-tablet-font-size-h3, 24px); }
-  h4 { font-size: var(--cme-tablet-font-size-h4, 17px); }
-  body, p { font-size: var(--cme-tablet-font-size-body, 14px); }
+  h1 { font-size: var(--cme-font-size-h1, 48px); }
+  h2 { font-size: var(--cme-font-size-h2, 34px); }
+  h3 { font-size: var(--cme-font-size-h3, 24px); }
+  h4 { font-size: var(--cme-font-size-h4, 17px); }
+  body, p { font-size: var(--cme-font-size-body, 14px); }
 
   h1, h2, h3, h4 {
-    line-height: var(--cme-tablet-line-height-heading, 1.15);
-    letter-spacing: var(--cme-tablet-letter-spacing-heading, -0.5px);
+    line-height: var(--cme-line-height-heading, 1.15);
+    letter-spacing: var(--cme-letter-spacing-heading, -0.5px);
   }
   body, p {
-    line-height: var(--cme-tablet-line-height-body, 1.65);
+    line-height: var(--cme-line-height-body, 1.65);
+  }
+
+  :root {
+    --cme-font-size-xs: var(--cme-tablet-font-size-xs, 11px);
+    --cme-font-size-sm: var(--cme-tablet-font-size-sm, 12px);
+    --cme-font-size-base: var(--cme-tablet-font-size-base, 14px);
+    --cme-font-size-lg: var(--cme-tablet-font-size-lg, 16px);
+    --cme-font-size-xl: var(--cme-tablet-font-size-xl, 18px);
+    --cme-font-size-2xl: var(--cme-tablet-font-size-2xl, 21px);
+    --cme-font-size-small: var(--cme-tablet-font-size-small, 11px);
+    --cme-font-size-body: var(--cme-tablet-font-size-body, 14px);
   }
 }
 
@@ -343,17 +360,28 @@
     height: var(--cme-logo-height-mobile, 32px);
   }
 
-  h1 { font-size: var(--cme-mobile-font-size-h1, 39px); }
-  h2 { font-size: var(--cme-mobile-font-size-h2, 28px); }
-  h3 { font-size: var(--cme-mobile-font-size-h3, 20px); }
-  h4 { font-size: var(--cme-mobile-font-size-h4, 14px); }
-  body, p { font-size: var(--cme-mobile-font-size-body, 11px); }
+  h1 { font-size: var(--cme-font-size-h1, 39px); }
+  h2 { font-size: var(--cme-font-size-h2, 28px); }
+  h3 { font-size: var(--cme-font-size-h3, 20px); }
+  h4 { font-size: var(--cme-font-size-h4, 14px); }
+  body, p { font-size: var(--cme-font-size-body, 11px); }
 
   h1, h2, h3, h4 {
-    line-height: var(--cme-mobile-line-height-heading, 1.15);
-    letter-spacing: var(--cme-mobile-letter-spacing-heading, -0.5px);
+    line-height: var(--cme-line-height-heading, 1.15);
+    letter-spacing: var(--cme-letter-spacing-heading, -0.5px);
   }
   body, p {
-    line-height: var(--cme-mobile-line-height-body, 1.65);
+    line-height: var(--cme-line-height-body, 1.65);
+  }
+
+  :root {
+    --cme-font-size-xs: var(--cme-mobile-font-size-xs, 9px);
+    --cme-font-size-sm: var(--cme-mobile-font-size-sm, 10px);
+    --cme-font-size-base: var(--cme-mobile-font-size-base, 11px);
+    --cme-font-size-lg: var(--cme-mobile-font-size-lg, 12px);
+    --cme-font-size-xl: var(--cme-mobile-font-size-xl, 14px);
+    --cme-font-size-2xl: var(--cme-mobile-font-size-2xl, 17px);
+    --cme-font-size-small: var(--cme-mobile-font-size-small, 9px);
+    --cme-font-size-body: var(--cme-mobile-font-size-body, 11px);
   }
 }

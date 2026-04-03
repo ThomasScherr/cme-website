@@ -320,6 +320,13 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-font-size-h4', `${tokens.fontSizeH4}px`);
   el.style.setProperty('--cme-font-size-body', `${tokens.fontSizeBody}px`);
   el.style.setProperty('--cme-font-size-small', `${tokens.fontSizeSmall}px`);
+  // Derived inline sizes (proportional to body/small)
+  el.style.setProperty('--cme-font-size-xs', `${tokens.fontSizeSmall}px`);
+  el.style.setProperty('--cme-font-size-sm', `${Math.round(tokens.fontSizeSmall + (tokens.fontSizeBody - tokens.fontSizeSmall) * 0.5)}px`);
+  el.style.setProperty('--cme-font-size-base', `${tokens.fontSizeBody}px`);
+  el.style.setProperty('--cme-font-size-lg', `${Math.round(tokens.fontSizeBody * 1.125)}px`);
+  el.style.setProperty('--cme-font-size-xl', `${Math.round(tokens.fontSizeBody * 1.25)}px`);
+  el.style.setProperty('--cme-font-size-2xl', `${Math.round(tokens.fontSizeBody * 1.5)}px`);
   el.style.setProperty('--cme-font-weight-heading', String(tokens.fontWeightHeading));
   el.style.setProperty('--cme-font-weight-body', String(tokens.fontWeightBody));
   el.style.setProperty('--cme-line-height-heading', String(tokens.lineHeightHeading));

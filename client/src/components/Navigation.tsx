@@ -69,7 +69,7 @@ export default function Navigation() {
                 <button
                   key={item.label}
                   onClick={() => scrollTo(item.target)}
-                  style={{ fontSize: 'var(--text-sm)', fontWeight: 500 }}
+                  style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 500 }}
                   className="text-foreground/80 hover:text-primary transition-colors"
                 >
                   {item.label}
@@ -78,7 +78,7 @@ export default function Navigation() {
               <div className="w-px h-5 bg-border mx-2" />
               <button
                 onClick={() => setLang(lang === 'de' ? 'en' : 'de')}
-                style={{ fontSize: 'var(--text-sm)', fontWeight: 600 }}
+                style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 600 }}
                 className="text-foreground/60 hover:text-primary transition-colors"
               >
                 {t.nav.lang}
@@ -86,7 +86,7 @@ export default function Navigation() {
               <Button
                 size="sm"
                 onClick={() => scrollTo('contact')}
-                style={{ fontSize: 'var(--text-sm)', padding: 'clamp(0.4rem, 0.8vw, 0.6rem) clamp(0.9rem, 1.8vw, 1.5rem)' }}
+                style={{ fontSize: 'var(--cme-font-size-sm)', padding: 'clamp(0.4rem, 0.8vw, 0.6rem) clamp(0.9rem, 1.8vw, 1.5rem)' }}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 ml-2"
               >
                 {t.nav.contact}
@@ -128,7 +128,7 @@ export default function Navigation() {
                 <button
                   key={item.label}
                   onClick={() => scrollTo(item.target)}
-                  style={{ fontSize: 'var(--text-base)', fontWeight: 500 }}
+                  style={{ fontSize: 'var(--cme-font-size-base)', fontWeight: 500 }}
                   className="text-left text-foreground hover:text-primary transition-colors py-2 border-b border-border/50 last:border-0"
                 >
                   {item.label}

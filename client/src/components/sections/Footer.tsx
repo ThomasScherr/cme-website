@@ -40,7 +40,7 @@ export default function Footer() {
               className="cme-logo-img"
               style={{ width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
             />
-            <p style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: 'clamp(260px, 30vw, 420px)', lineHeight: 1.65 }}>
+            <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: 'clamp(260px, 30vw, 420px)', lineHeight: 1.65 }}>
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
@@ -48,7 +48,7 @@ export default function Footer() {
                 <span
                   key={cert}
                   style={{
-                    fontSize: 'var(--text-xs)',
+                    fontSize: 'var(--cme-font-size-xs)',
                     padding: '0.3em 0.6em',
                     border: '1px solid rgba(255,255,255,0.15)',
                     color: 'rgba(255,255,255,0.35)',
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <h4 style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
               Leistungen
             </h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
@@ -78,7 +78,7 @@ export default function Footer() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      fontSize: 'var(--text-sm)',
+                      fontSize: 'var(--cme-font-size-sm)',
                       color: 'rgba(255,255,255,0.55)',
                       textAlign: 'left',
                       cursor: 'pointer',
@@ -96,10 +96,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 style={{ fontSize: 'var(--text-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <h4 style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
               Kontakt
             </h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.55)' }}>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.55)' }}>
               <li>Alter Hellweg 48</li>
               <li>44379 Dortmund</li>
               <li>
@@ -138,8 +138,8 @@ export default function Footer() {
           }}
           className="md:flex-row md:justify-between"
         >
-          <p style={{ fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.30)' }}>{t.footer.copyright}</p>
-          <div style={{ display: 'flex', gap: 'clamp(1rem, 2vw, 2rem)', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.30)' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', color: 'rgba(255,255,255,0.30)' }}>{t.footer.copyright}</p>
+          <div style={{ display: 'flex', gap: 'clamp(1rem, 2vw, 2rem)', fontSize: 'var(--cme-font-size-xs)', color: 'rgba(255,255,255,0.30)' }}>
             <a
               href="#"
               style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}

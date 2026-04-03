@@ -91,7 +91,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             style={{
-              fontSize: 'var(--text-xs)',
+              fontSize: 'var(--cme-font-size-xs)',
               fontWeight: 500,
               color: 'var(--cme-color-primary)',
               textTransform: 'uppercase',
@@ -120,7 +120,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5 }}
             style={{
-              fontSize: 'var(--text-lg)',
+              fontSize: 'var(--cme-font-size-lg)',
               color: 'var(--cme-color-gray)',
               maxWidth: 'clamp(280px, 40vw, 680px)',
               marginBottom: 'clamp(1.5rem, 3vw, 3rem)',
@@ -138,7 +138,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               onClick={() => scrollTo('contact')}
-              style={{ fontSize: 'var(--text-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
+              style={{ fontSize: 'var(--cme-font-size-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
             >
               {t.hero.cta_primary}
@@ -147,7 +147,7 @@ export default function HeroSection() {
               size="lg"
               variant="outline"
               onClick={() => scrollTo('services')}
-              style={{ fontSize: 'var(--text-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
+              style={{ fontSize: 'var(--cme-font-size-sm)', padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.2rem, 2.5vw, 2rem)' }}
               className="border-2 border-foreground/20 hover:border-primary hover:text-primary transition-all"
             >
               {t.hero.cta_secondary}

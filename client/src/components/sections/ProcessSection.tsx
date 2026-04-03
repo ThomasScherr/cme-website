@@ -31,11 +31,11 @@ export default function ProcessSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Prozess
           </p>
           <h2 style={{ color: '#fff', marginBottom: '1rem' }}>{t.process.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'rgba(255,255,255,0.55)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.process.sub}</p>
+          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'rgba(255,255,255,0.55)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.process.sub}</p>
         </motion.div>
 
         <div
@@ -64,7 +64,7 @@ export default function ProcessSection() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: '#fff',
-                    fontSize: 'var(--text-sm)',
+                    fontSize: 'var(--cme-font-size-sm)',
                     fontWeight: 700,
                     fontFamily: 'var(--cme-font-family)',
                   }}
@@ -72,8 +72,8 @@ export default function ProcessSection() {
                   {step.num}
                 </div>
                 <div style={{ paddingTop: '0.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  <h4 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: '#fff' }}>{step.title}</h4>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'rgba(255,255,255,0.50)', lineHeight: 1.65 }}>{step.desc}</p>
+                  <h4 style={{ fontSize: 'var(--cme-font-size-lg)', fontWeight: 700, color: '#fff' }}>{step.title}</h4>
+                  <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', lineHeight: 1.65 }}>{step.desc}</p>
                 </div>
               </div>
             </motion.div>

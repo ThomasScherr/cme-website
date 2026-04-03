@@ -53,13 +53,13 @@ export default function MarketsSection() {
             pointerEvents: 'none',
           }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', opacity: 0.65, marginBottom: '0.3rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', opacity: 0.65, marginBottom: '0.3rem' }}>
             In-House
           </p>
-          <p style={{ fontSize: 'var(--text-xl)', fontFamily: 'var(--cme-font-family)', fontWeight: 700, lineHeight: 1.1 }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xl)', fontFamily: 'var(--cme-font-family)', fontWeight: 700, lineHeight: 1.1 }}>
             EMV-Messkammer
           </p>
-          <p style={{ fontSize: 'var(--text-xs)', opacity: 0.60, marginTop: '0.25rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', opacity: 0.60, marginTop: '0.25rem' }}>
             Leitungsgebunden & gestrahlt
           </p>
         </div>
@@ -82,11 +82,11 @@ export default function MarketsSection() {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
         >
-          <p style={{ fontSize: 'var(--text-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
             Branchen
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.markets.headline}</h2>
-          <p style={{ fontSize: 'var(--text-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
+          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
             {t.markets.sub}
           </p>
         </motion.div>
@@ -118,8 +118,8 @@ export default function MarketsSection() {
                 whileHover={{ borderColor: 'var(--cme-color-primary-50, rgba(33,150,211,0.5))', backgroundColor: 'var(--cme-color-bg-alt, #f5f6f8)' }}
               >
                 <div style={{ width: '7px', height: '7px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', marginBottom: '0.75rem' }} />
-                <h4 style={{ fontSize: 'var(--text-sm)', fontWeight: 700, marginBottom: '0.35rem', lineHeight: 1.3 }}>{item.title}</h4>
-                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--cme-color-gray)', lineHeight: 1.55 }}>{item.desc}</p>
+                <h4 style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 700, marginBottom: '0.35rem', lineHeight: 1.3 }}>{item.title}</h4>
+                <p style={{ fontSize: 'var(--cme-font-size-xs)', color: 'var(--cme-color-gray)', lineHeight: 1.55 }}>{item.desc}</p>
               </motion.div>
             ))}
           </div>

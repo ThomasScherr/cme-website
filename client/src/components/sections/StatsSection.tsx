@@ -51,7 +51,7 @@ export default function StatsSection() {
             >
               <div
                 style={{
-                  fontSize: 'var(--text-4xl)',
+                  fontSize: 'var(--cme-font-size-h2)',
                   fontFamily: 'var(--cme-font-family)',
                   fontWeight: 900,
                   color: 'var(--cme-color-primary)',
@@ -62,7 +62,7 @@ export default function StatsSection() {
               </div>
               <div
                 style={{
-                  fontSize: 'var(--text-xs)',
+                  fontSize: 'var(--cme-font-size-xs)',
                   color: 'rgba(255,255,255,0.50)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.12em',
