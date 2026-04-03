@@ -613,15 +613,21 @@ export default function StyleGuide() {
                 </Section>
 
                 <Section title="Logo-Höhe" badge={bp.toUpperCase()}>
-                  <Row label="Desktop">
-                    <NumberInput value={bpTokens.logoHeightDesktop} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightDesktop', v)} min={16} max={200} unit="px" />
-                  </Row>
-                  <Row label="Tablet">
-                    <NumberInput value={bpTokens.logoHeightTablet} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightTablet', v)} min={16} max={200} unit="px" />
-                  </Row>
-                  <Row label="Mobile">
-                    <NumberInput value={bpTokens.logoHeightMobile} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightMobile', v)} min={16} max={200} unit="px" />
-                  </Row>
+                  {bp === 'desktop' && (
+                    <Row label="Desktop">
+                      <NumberInput value={bpTokens.logoHeightDesktop} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightDesktop', v)} min={16} max={200} unit="px" />
+                    </Row>
+                  )}
+                  {bp === 'tablet' && (
+                    <Row label="Tablet">
+                      <NumberInput value={bpTokens.logoHeightTablet} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightTablet', v)} min={16} max={200} unit="px" />
+                    </Row>
+                  )}
+                  {bp === 'mobile' && (
+                    <Row label="Mobile">
+                      <NumberInput value={bpTokens.logoHeightMobile} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightMobile', v)} min={16} max={200} unit="px" />
+                    </Row>
+                  )}
                 </Section>
 
                 <Section title="Rauten (global)" badge={bp.toUpperCase()}>
