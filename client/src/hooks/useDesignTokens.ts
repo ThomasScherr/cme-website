@@ -400,3 +400,185 @@ export function useDesignTokens() {
 
   return { tokens, updateToken, reset };
 }
+
+// ── Preset / Versioning System ──────────────────────────────────────────────
+
+export interface DesignPreset {
+  id: string;
+  name: string;
+  createdAt: string;       // ISO date string
+  isDefault: boolean;      // if true, this preset is loaded on startup
+  tokens: DesignTokens;
+  diamonds: Record<DiamondId, DiamondConfig>;
+  sectionHeights: Record<SectionId, SectionHeightConfig>;
+}
+
+const PRESETS_STORAGE_KEY = 'cme-design-presets';
+const DEFAULT_PRESET_ID_KEY = 'cme-default-preset-id';
+
+function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
+}
+
+/** Load all saved presets */
+export function loadPresets(): DesignPreset[] {
+  try {
+    const raw = localStorage.getItem(PRESETS_STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return [];
+}
+
+/** Save all presets */
+export function savePresets(presets: DesignPreset[]) {
+  localStorage.setItem(PRESETS_STORAGE_KEY, JSON.stringify(presets));
+  notifySameTab(PRESETS_STORAGE_KEY);
+}
+
+/** Get the default preset ID */
+export function getDefaultPresetId(): string | null {
+  return localStorage.getItem(DEFAULT_PRESET_ID_KEY);
+}
+
+/** Set a preset as the default (loaded on startup) */
+export function setDefaultPresetId(id: string | null) {
+  if (id) {
+    localStorage.setItem(DEFAULT_PRESET_ID_KEY, id);
+  } else {
+    localStorage.removeItem(DEFAULT_PRESET_ID_KEY);
+  }
+  notifySameTab(DEFAULT_PRESET_ID_KEY);
+}
+
+/** Create a new preset from the current state */
+export function createPreset(name: string): DesignPreset {
+  const preset: DesignPreset = {
+    id: generateId(),
+    name,
+    createdAt: new Date().toISOString(),
+    isDefault: false,
+    tokens: loadTokens(),
+    diamonds: loadDiamondConfigs(),
+    sectionHeights: loadSectionHeights(),
+  };
+
+  const presets = loadPresets();
+  presets.push(preset);
+  savePresets(presets);
+  return preset;
+}
+
+/** Update an existing preset with current values */
+export function updatePreset(id: string, name?: string): DesignPreset | null {
+  const presets = loadPresets();
+  const idx = presets.findIndex(p => p.id === id);
+  if (idx === -1) return null;
+
+  presets[idx] = {
+    ...presets[idx],
+    name: name ?? presets[idx].name,
+    createdAt: new Date().toISOString(),
+    tokens: loadTokens(),
+    diamonds: loadDiamondConfigs(),
+    sectionHeights: loadSectionHeights(),
+  };
+
+  savePresets(presets);
+  return presets[idx];
+}
+
+/** Delete a preset */
+export function deletePreset(id: string) {
+  const presets = loadPresets().filter(p => p.id !== id);
+  savePresets(presets);
+
+  // If this was the default, clear it
+  if (getDefaultPresetId() === id) {
+    setDefaultPresetId(null);
+  }
+}
+
+/** Apply a preset (loads all its values into localStorage and :root) */
+export function applyPreset(preset: DesignPreset) {
+  // Save to localStorage
+  saveTokens(preset.tokens);
+  saveDiamondConfigs(preset.diamonds);
+  saveSectionHeights(preset.sectionHeights);
+
+  // Apply to :root
+  applyTokensToRoot(preset.tokens);
+  applyDiamondConfigsToRoot(preset.diamonds);
+  applySectionHeightsToRoot(preset.sectionHeights);
+}
+
+/** Load the default preset on startup (if one is set) */
+export function loadDefaultPreset(): DesignPreset | null {
+  const defaultId = getDefaultPresetId();
+  if (!defaultId) return null;
+
+  const presets = loadPresets();
+  return presets.find(p => p.id === defaultId) ?? null;
+}
+
+// ── usePresets Hook ──────────────────────────────────────────────────────────
+
+export function usePresets() {
+  const [presets, setPresets] = useState<DesignPreset[]>(() => loadPresets());
+  const [defaultId, setDefaultId] = useState<string | null>(() => getDefaultPresetId());
+
+  // Listen for changes from other tabs or same-tab events
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === PRESETS_STORAGE_KEY) {
+        setPresets(loadPresets());
+      }
+      if (e.key === DEFAULT_PRESET_ID_KEY) {
+        setDefaultId(getDefaultPresetId());
+      }
+    };
+    const onCustom = ((e: CustomEvent) => {
+      if (e.detail?.key === PRESETS_STORAGE_KEY) {
+        setPresets(loadPresets());
+      }
+      if (e.detail?.key === DEFAULT_PRESET_ID_KEY) {
+        setDefaultId(getDefaultPresetId());
+      }
+    }) as EventListener;
+
+    window.addEventListener('storage', onStorage);
+    window.addEventListener('cme-token-change', onCustom);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('cme-token-change', onCustom);
+    };
+  }, []);
+
+  const create = useCallback((name: string) => {
+    const preset = createPreset(name);
+    setPresets(loadPresets());
+    return preset;
+  }, []);
+
+  const update = useCallback((id: string, name?: string) => {
+    const preset = updatePreset(id, name);
+    setPresets(loadPresets());
+    return preset;
+  }, []);
+
+  const remove = useCallback((id: string) => {
+    deletePreset(id);
+    setPresets(loadPresets());
+    setDefaultId(getDefaultPresetId());
+  }, []);
+
+  const apply = useCallback((preset: DesignPreset) => {
+    applyPreset(preset);
+  }, []);
+
+  const setAsDefault = useCallback((id: string | null) => {
+    setDefaultPresetId(id);
+    setDefaultId(id);
+  }, []);
+
+  return { presets, defaultId, create, update, remove, apply, setAsDefault };
+}

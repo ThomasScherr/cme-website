@@ -8,15 +8,24 @@ import {
   applyDiamondConfigsToRoot,
   loadSectionHeights,
   applySectionHeightsToRoot,
+  loadDefaultPreset,
+  applyPreset,
   DEFAULT_TOKENS,
   DEFAULT_DIAMOND_CONFIGS,
   DEFAULT_SECTION_HEIGHTS,
 } from "./hooks/useDesignTokens";
 
-// ── Initial load from LocalStorage ───────────────────────────────────────
-applyTokensToRoot(loadTokens());
-applyDiamondConfigsToRoot(loadDiamondConfigs());
-applySectionHeightsToRoot(loadSectionHeights());
+// ── Initial load: check for default preset first, then fall back to localStorage ──
+const defaultPreset = loadDefaultPreset();
+if (defaultPreset) {
+  // Apply the default preset (tokens + diamonds + section heights)
+  applyPreset(defaultPreset);
+} else {
+  // No default preset – load from individual localStorage keys
+  applyTokensToRoot(loadTokens());
+  applyDiamondConfigsToRoot(loadDiamondConfigs());
+  applySectionHeightsToRoot(loadSectionHeights());
+}
 
 // ── Cross-Tab Sync ───────────────────────────────────────────────────────
 // Method 1: Native storage event (fires in OTHER tabs when localStorage changes)

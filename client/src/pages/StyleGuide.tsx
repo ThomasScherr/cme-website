@@ -8,6 +8,7 @@ import {
   useDesignTokens,
   useDiamondConfigs,
   useSectionHeights,
+  usePresets,
   DiamondId,
   SectionId,
   DIAMOND_LABELS,
@@ -20,6 +21,7 @@ import {
   loadTokens,
   loadDiamondConfigs,
   loadSectionHeights,
+  DesignPreset,
 } from '@/hooks/useDesignTokens';
 
 const DEMO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp';
@@ -109,13 +111,14 @@ function CopyButton({ text }: { text: string }) {
 
 // ── Tab navigation ─────────────────────────────────────────────────────────
 
-type Tab = 'design' | 'diamonds' | 'sections' | 'export';
+type Tab = 'design' | 'diamonds' | 'sections' | 'presets' | 'export';
 
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   const tabs: { id: Tab; label: string }[] = [
     { id: 'design', label: 'Design Tokens' },
     { id: 'diamonds', label: 'Rauten' },
     { id: 'sections', label: 'Sektionshöhen' },
+    { id: 'presets', label: 'Presets' },
     { id: 'export', label: 'CSS Export' },
   ];
   return (
@@ -217,6 +220,223 @@ function DiamondEditor() {
       }}>
         Alle Rauten zurücksetzen
       </button>
+    </div>
+  );
+}
+
+// ── Preset Manager ────────────────────────────────────────────────────────
+
+function PresetManager({ onApply }: { onApply: () => void }) {
+  const { presets, defaultId, create, update, remove, apply, setAsDefault } = usePresets();
+  const [showSave, setShowSave] = useState(false);
+  const [presetName, setPresetName] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
+
+  const showNotif = (msg: string) => {
+    setNotification(msg);
+    setTimeout(() => setNotification(null), 2500);
+  };
+
+  const handleSave = () => {
+    if (!presetName.trim()) return;
+    create(presetName.trim());
+    setPresetName('');
+    setShowSave(false);
+    showNotif(`Preset "${presetName.trim()}" gespeichert`);
+  };
+
+  const handleApply = (preset: DesignPreset) => {
+    apply(preset);
+    onApply();
+    showNotif(`Preset "${preset.name}" geladen`);
+  };
+
+  const handleUpdate = (preset: DesignPreset) => {
+    update(preset.id);
+    showNotif(`Preset "${preset.name}" aktualisiert`);
+  };
+
+  const handleSetDefault = (id: string) => {
+    const isAlready = defaultId === id;
+    setAsDefault(isAlready ? null : id);
+    const p = presets.find(pp => pp.id === id);
+    showNotif(isAlready ? 'Standard entfernt' : `"${p?.name}" als Standard gesetzt`);
+  };
+
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+      ' ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  return (
+    <div>
+      {/* Notification */}
+      {notification && (
+        <div style={{
+          background: '#059669', color: '#fff', padding: '0.5rem 0.75rem', borderRadius: 6,
+          fontSize: 11, fontWeight: 600, marginBottom: '1rem', textAlign: 'center',
+          animation: 'fadeIn 0.2s ease-out',
+        }}>
+          {notification}
+        </div>
+      )}
+
+      <div style={{ fontSize: 11, color: '#64748b', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+        Speichere den aktuellen Zustand als Preset. Setze ein Preset als Standard, damit es beim Seitenaufruf automatisch geladen wird.
+      </div>
+
+      {/* Save new preset */}
+      {!showSave ? (
+        <button onClick={() => setShowSave(true)} style={{
+          width: '100%', padding: '0.6rem', background: '#2196D3', color: '#fff',
+          border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 600,
+          marginBottom: '1.25rem',
+        }}>
+          + Aktuellen Zustand speichern
+        </button>
+      ) : (
+        <div style={{
+          background: '#f0f9ff', border: '1px solid #7dd3fc', borderRadius: 8,
+          padding: '0.85rem', marginBottom: '1.25rem',
+        }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: '#0369a1', marginBottom: '0.5rem' }}>
+            Neues Preset speichern
+          </div>
+          <input
+            type="text"
+            value={presetName}
+            onChange={e => setPresetName(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSave()}
+            placeholder="Name eingeben (z.B. 'Entwurf v2')"
+            autoFocus
+            style={{
+              width: '100%', padding: '0.45rem 0.6rem', fontSize: 12,
+              border: '1px solid #bae6fd', borderRadius: 4, marginBottom: '0.5rem',
+              boxSizing: 'border-box',
+            }}
+          />
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button onClick={handleSave} disabled={!presetName.trim()} style={{
+              flex: 1, padding: '0.4rem', background: presetName.trim() ? '#2196D3' : '#94a3b8',
+              color: '#fff', border: 'none', borderRadius: 4, cursor: presetName.trim() ? 'pointer' : 'not-allowed',
+              fontSize: 11, fontWeight: 600,
+            }}>
+              Speichern
+            </button>
+            <button onClick={() => { setShowSave(false); setPresetName(''); }} style={{
+              padding: '0.4rem 0.75rem', background: '#f1f5f9', border: '1px solid #e2e8f0',
+              borderRadius: 4, cursor: 'pointer', fontSize: 11, color: '#64748b',
+            }}>
+              Abbrechen
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Preset list */}
+      {presets.length === 0 ? (
+        <div style={{
+          textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: 12,
+          background: '#f8fafc', borderRadius: 8, border: '1px dashed #e2e8f0',
+        }}>
+          Noch keine Presets gespeichert.
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {presets.map(preset => {
+            const isDefault = defaultId === preset.id;
+            const isDeleting = confirmDelete === preset.id;
+            return (
+              <div key={preset.id} style={{
+                background: isDefault ? '#f0fdf4' : '#f8fafc',
+                border: `1px solid ${isDefault ? '#86efac' : '#e2e8f0'}`,
+                borderRadius: 8, padding: '0.75rem', position: 'relative',
+              }}>
+                {/* Header */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: '#1e293b' }}>
+                      {preset.name}
+                    </span>
+                    {isDefault && (
+                      <span style={{
+                        fontSize: 9, fontWeight: 700, color: '#059669', background: '#d1fae5',
+                        padding: '1px 6px', borderRadius: 3, textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                      }}>
+                        Standard
+                      </span>
+                    )}
+                  </div>
+                  <span style={{ fontSize: 9, color: '#94a3b8', fontFamily: 'monospace' }}>
+                    {formatDate(preset.createdAt)}
+                  </span>
+                </div>
+
+                {/* Color preview */}
+                <div style={{ display: 'flex', gap: '3px', marginBottom: '0.5rem' }}>
+                  {[preset.tokens.colorPrimary, preset.tokens.colorDark, preset.tokens.colorGray, preset.tokens.colorAccent, preset.tokens.colorBg].map((c, i) => (
+                    <div key={i} style={{
+                      width: 18, height: 12, borderRadius: 2, background: c,
+                      border: '1px solid rgba(0,0,0,0.1)',
+                    }} />
+                  ))}
+                </div>
+
+                {/* Actions */}
+                {isDeleting ? (
+                  <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                    <span style={{ fontSize: 10, color: '#dc2626', fontWeight: 600 }}>Wirklich löschen?</span>
+                    <button onClick={() => { remove(preset.id); setConfirmDelete(null); showNotif(`"${preset.name}" gelöscht`); }} style={{
+                      padding: '2px 8px', fontSize: 10, background: '#dc2626', color: '#fff',
+                      border: 'none', borderRadius: 3, cursor: 'pointer',
+                    }}>Ja</button>
+                    <button onClick={() => setConfirmDelete(null)} style={{
+                      padding: '2px 8px', fontSize: 10, background: '#f1f5f9',
+                      border: '1px solid #e2e8f0', borderRadius: 3, cursor: 'pointer', color: '#64748b',
+                    }}>Nein</button>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+                    <button onClick={() => handleApply(preset)} style={{
+                      padding: '3px 10px', fontSize: 10, background: '#2196D3', color: '#fff',
+                      border: 'none', borderRadius: 4, cursor: 'pointer', fontWeight: 600,
+                    }}>Laden</button>
+                    <button onClick={() => handleUpdate(preset)} style={{
+                      padding: '3px 10px', fontSize: 10, background: '#f1f5f9',
+                      border: '1px solid #e2e8f0', borderRadius: 4, cursor: 'pointer', color: '#64748b',
+                    }}>Überschreiben</button>
+                    <button onClick={() => handleSetDefault(preset.id)} style={{
+                      padding: '3px 10px', fontSize: 10,
+                      background: isDefault ? '#d1fae5' : '#f1f5f9',
+                      border: `1px solid ${isDefault ? '#86efac' : '#e2e8f0'}`,
+                      borderRadius: 4, cursor: 'pointer',
+                      color: isDefault ? '#059669' : '#64748b',
+                      fontWeight: isDefault ? 600 : 400,
+                    }}>{isDefault ? 'Standard ✓' : 'Als Standard'}</button>
+                    <button onClick={() => setConfirmDelete(preset.id)} style={{
+                      padding: '3px 10px', fontSize: 10, background: '#fef2f2',
+                      border: '1px solid #fecaca', borderRadius: 4, cursor: 'pointer', color: '#dc2626',
+                    }}>Löschen</button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Info about default */}
+      {presets.length > 0 && (
+        <div style={{
+          marginTop: '1rem', fontSize: 10, color: '#94a3b8', lineHeight: 1.6,
+          background: '#f8fafc', padding: '0.65rem', borderRadius: 6, border: '1px solid #e2e8f0',
+        }}>
+          <strong>Tipp:</strong> Setze ein Preset als "Standard", damit es beim nächsten Seitenaufruf automatisch geladen wird. So gehen deine Einstellungen nie verloren.
+        </div>
+      )}
     </div>
   );
 }
@@ -343,6 +563,12 @@ export default function StyleGuide() {
   const { configs } = useDiamondConfigs();
   const { configs: sectionConfigs } = useSectionHeights();
   const [activeTab, setActiveTab] = useState<Tab>('design');
+
+  // Called when a preset is applied – reload the page in the iframe
+  const handlePresetApply = useCallback(() => {
+    // Reload iframe to pick up all new values
+    setIframeKey(k => k + 1);
+  }, []);
   const [previewMode, setPreviewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [previewScale, setPreviewScale] = useState(65);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -593,6 +819,9 @@ export default function StyleGuide() {
 
             {/* ── TAB: Sektionshöhen ── */}
             {activeTab === 'sections' && <SectionHeightEditor />}
+
+            {/* ── TAB: Presets ── */}
+            {activeTab === 'presets' && <PresetManager onApply={handlePresetApply} />}
 
             {/* ── TAB: CSS Export ── */}
             {activeTab === 'export' && (
