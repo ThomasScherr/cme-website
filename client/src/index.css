@@ -167,7 +167,7 @@
     @apply bg-background text-foreground;
     font-family: var(--cme-font-family, 'Roboto', sans-serif);
     font-weight: var(--cme-font-weight-body, 400);
-    font-size: var(--text-base);
+    font-size: var(--cme-font-size-body, 16px);
     line-height: var(--cme-line-height-body, 1.65);
     color: var(--cme-color-gray, #4a5568);
     /* Prevent horizontal scroll on mobile */
@@ -178,7 +178,7 @@
   h1 {
     font-family: var(--cme-font-family, 'Roboto', sans-serif);
     font-weight: var(--cme-font-weight-heading, 900);
-    font-size: var(--text-6xl);
+    font-size: var(--cme-font-size-h1, 56px);
     line-height: var(--cme-line-height-heading, 1.05);
     letter-spacing: var(--cme-letter-spacing-heading, -0.02em);
     color: var(--cme-color-dark, #1a1a2e);
@@ -186,7 +186,7 @@
   h2 {
     font-family: var(--cme-font-family, 'Roboto', sans-serif);
     font-weight: var(--cme-font-weight-heading, 700);
-    font-size: var(--text-4xl);
+    font-size: var(--cme-font-size-h2, 40px);
     line-height: var(--cme-line-height-heading, 1.1);
     letter-spacing: var(--cme-letter-spacing-heading, -0.015em);
     color: var(--cme-color-dark, #1a1a2e);
@@ -194,7 +194,7 @@
   h3 {
     font-family: var(--cme-font-family, 'Roboto', sans-serif);
     font-weight: var(--cme-font-weight-heading, 700);
-    font-size: var(--text-3xl);
+    font-size: var(--cme-font-size-h3, 28px);
     line-height: var(--cme-line-height-heading, 1.15);
     letter-spacing: var(--cme-letter-spacing-heading, -0.01em);
     color: var(--cme-color-dark, #1a1a2e);
@@ -202,7 +202,7 @@
   h4 {
     font-family: var(--cme-font-family, 'Roboto', sans-serif);
     font-weight: var(--cme-font-weight-heading, 700);
-    font-size: var(--text-2xl);
+    font-size: var(--cme-font-size-h4, 20px);
     line-height: var(--cme-line-height-heading, 1.2);
     color: var(--cme-color-dark, #1a1a2e);
   }
@@ -222,7 +222,7 @@
   }
 
   p {
-    font-size: var(--text-base);
+    font-size: var(--cme-font-size-body, 16px);
     line-height: var(--cme-line-height-body, 1.7);
     color: var(--cme-color-gray, #4a5568);
   }
