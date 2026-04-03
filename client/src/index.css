@@ -316,14 +316,44 @@
   height: var(--cme-logo-height-desktop, 48px);
 }
 
+/* ── Tablet Breakpoint (768px – 1023px) ─────────────────────────────── */
 @media (max-width: 1023px) {
   .cme-logo-img {
     height: var(--cme-logo-height-tablet, 40px);
   }
+
+  h1 { font-size: var(--cme-tablet-font-size-h1, 48px); }
+  h2 { font-size: var(--cme-tablet-font-size-h2, 34px); }
+  h3 { font-size: var(--cme-tablet-font-size-h3, 24px); }
+  h4 { font-size: var(--cme-tablet-font-size-h4, 17px); }
+  body, p { font-size: var(--cme-tablet-font-size-body, 14px); }
+
+  h1, h2, h3, h4 {
+    line-height: var(--cme-tablet-line-height-heading, 1.15);
+    letter-spacing: var(--cme-tablet-letter-spacing-heading, -0.5px);
+  }
+  body, p {
+    line-height: var(--cme-tablet-line-height-body, 1.65);
+  }
 }
 
+/* ── Mobile Breakpoint (< 768px) ──────────────────────────────────── */
 @media (max-width: 767px) {
   .cme-logo-img {
     height: var(--cme-logo-height-mobile, 32px);
+  }
+
+  h1 { font-size: var(--cme-mobile-font-size-h1, 39px); }
+  h2 { font-size: var(--cme-mobile-font-size-h2, 28px); }
+  h3 { font-size: var(--cme-mobile-font-size-h3, 20px); }
+  h4 { font-size: var(--cme-mobile-font-size-h4, 14px); }
+  body, p { font-size: var(--cme-mobile-font-size-body, 11px); }
+
+  h1, h2, h3, h4 {
+    line-height: var(--cme-mobile-line-height-heading, 1.15);
+    letter-spacing: var(--cme-mobile-letter-spacing-heading, -0.5px);
+  }
+  body, p {
+    line-height: var(--cme-mobile-line-height-body, 1.65);
   }
 }
