@@ -179,6 +179,8 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-tablet-line-height-heading', String(tb.tokens.lineHeightHeading));
   el.style.setProperty('--cme-tablet-line-height-body', String(tb.tokens.lineHeightBody));
   el.style.setProperty('--cme-tablet-letter-spacing-heading', `${tb.tokens.letterSpacingHeading}px`);
+  // Tablet logo height
+  el.style.setProperty('--cme-logo-height-tablet', `${tb.tokens.logoHeightTablet}px`);
   
   // Tablet diamonds
   (Object.keys(tb.diamonds) as DiamondId[]).forEach(id => {
@@ -207,6 +209,8 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-mobile-line-height-heading', String(mb.tokens.lineHeightHeading));
   el.style.setProperty('--cme-mobile-line-height-body', String(mb.tokens.lineHeightBody));
   el.style.setProperty('--cme-mobile-letter-spacing-heading', `${mb.tokens.letterSpacingHeading}px`);
+  // Mobile logo height
+  el.style.setProperty('--cme-logo-height-mobile', `${mb.tokens.logoHeightMobile}px`);
   
   // Mobile diamonds
   (Object.keys(mb.diamonds) as DiamondId[]).forEach(id => {
