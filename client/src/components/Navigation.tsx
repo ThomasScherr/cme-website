@@ -58,7 +58,8 @@ export default function Navigation() {
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png"
                 alt="CME Control Motion Electronics"
-                style={{ height: 'var(--cme-logo-height, 40px)', width: 'auto', maxWidth: 'none' }}
+                className="cme-logo-img"
+                style={{ width: 'auto', maxWidth: 'none' }}
               />
             </button>
 

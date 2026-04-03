@@ -244,9 +244,9 @@ export interface DesignTokens {
   borderRadius: number;
   sectionPadding: number;
   containerMaxWidth: number;
-  logoHeightMin: number;
-  logoHeightIdeal: number;
-  logoHeightMax: number;
+  logoHeightDesktop: number;
+  logoHeightTablet: number;
+  logoHeightMobile: number;
 }
 
 export const DEFAULT_TOKENS: DesignTokens = {
@@ -271,9 +271,9 @@ export const DEFAULT_TOKENS: DesignTokens = {
   borderRadius: 4,
   sectionPadding: 80,
   containerMaxWidth: 1280,
-  logoHeightMin: 28,
-  logoHeightIdeal: 3.5,
-  logoHeightMax: 56,
+  logoHeightDesktop: 48,
+  logoHeightTablet: 40,
+  logoHeightMobile: 32,
 };
 
 const STORAGE_KEY = 'cme-design-tokens';
@@ -332,8 +332,10 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--radius', `${tokens.borderRadius / 16}rem`);
   el.style.setProperty('--cme-section-padding', `${tokens.sectionPadding}px`);
   el.style.setProperty('--cme-container-max-width', `${tokens.containerMaxWidth}px`);
-  // Logo
-  el.style.setProperty('--cme-logo-height', `clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px)`);
+  // Logo – responsive per breakpoint
+  el.style.setProperty('--cme-logo-height-desktop', `${tokens.logoHeightDesktop}px`);
+  el.style.setProperty('--cme-logo-height-tablet', `${tokens.logoHeightTablet}px`);
+  el.style.setProperty('--cme-logo-height-mobile', `${tokens.logoHeightMobile}px`);
 }
 
 /** Load tokens from LocalStorage (falls back to defaults) */

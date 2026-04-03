@@ -628,7 +628,9 @@ export default function StyleGuide() {
     el.style.setProperty('--radius', `${currentTokens.borderRadius / 16}rem`);
     el.style.setProperty('--cme-section-padding', `${currentTokens.sectionPadding}px`);
     el.style.setProperty('--cme-container-max-width', `${currentTokens.containerMaxWidth}px`);
-    el.style.setProperty('--cme-logo-height', `clamp(${currentTokens.logoHeightMin}px, ${currentTokens.logoHeightIdeal}vw, ${currentTokens.logoHeightMax}px)`);
+    el.style.setProperty('--cme-logo-height-desktop', `${currentTokens.logoHeightDesktop}px`);
+    el.style.setProperty('--cme-logo-height-tablet', `${currentTokens.logoHeightTablet}px`);
+    el.style.setProperty('--cme-logo-height-mobile', `${currentTokens.logoHeightMobile}px`);
 
     // Diamond configs
     const diamondIds = ['hero', 'service1', 'service2', 'service3', 'markets'] as const;
@@ -693,7 +695,9 @@ export default function StyleGuide() {
   --cme-border-radius: ${tokens.borderRadius}px;
   --cme-section-padding: ${tokens.sectionPadding}px;
   --cme-container-max-width: ${tokens.containerMaxWidth}px;
-  --cme-logo-height: clamp(${tokens.logoHeightMin}px, ${tokens.logoHeightIdeal}vw, ${tokens.logoHeightMax}px);
+  --cme-logo-height-desktop: ${tokens.logoHeightDesktop}px;
+  --cme-logo-height-tablet: ${tokens.logoHeightTablet}px;
+  --cme-logo-height-mobile: ${tokens.logoHeightMobile}px;
 }`;
 
   return (
@@ -777,18 +781,18 @@ export default function StyleGuide() {
                   <Row label="Letter-Spacing H"><NumberInput value={tokens.letterSpacingHeading} onChange={v => updateToken('letterSpacingHeading', v)} min={-3} max={5} step={0.5} unit="px" /></Row>
                 </Section>
 
-                <Section title="Logo">
-                  <Row label="Min (Mobile)">
-                    <NumberInput value={tokens.logoHeightMin} onChange={v => updateToken('logoHeightMin', v)} min={16} max={60} unit="px" />
+                <Section title="Logo-Höhe">
+                  <Row label="Desktop">
+                    <NumberInput value={tokens.logoHeightDesktop} onChange={v => updateToken('logoHeightDesktop', v)} min={16} max={200} unit="px" />
                   </Row>
-                  <Row label="Ideal (vw)">
-                    <NumberInput value={tokens.logoHeightIdeal} onChange={v => updateToken('logoHeightIdeal', v)} min={1} max={10} step={0.5} unit="vw" />
+                  <Row label="Tablet">
+                    <NumberInput value={tokens.logoHeightTablet} onChange={v => updateToken('logoHeightTablet', v)} min={16} max={200} unit="px" />
                   </Row>
-                  <Row label="Max (Desktop)">
-                    <NumberInput value={tokens.logoHeightMax} onChange={v => updateToken('logoHeightMax', v)} min={40} max={200} unit="px" />
+                  <Row label="Mobile">
+                    <NumberInput value={tokens.logoHeightMobile} onChange={v => updateToken('logoHeightMobile', v)} min={16} max={200} unit="px" />
                   </Row>
                   <div style={{ fontSize: 10, color: '#64748b', fontFamily: 'monospace', marginTop: '0.25rem' }}>
-                    clamp({tokens.logoHeightMin}px, {tokens.logoHeightIdeal}vw, {tokens.logoHeightMax}px)
+                    Desktop: {tokens.logoHeightDesktop}px · Tablet: {tokens.logoHeightTablet}px · Mobile: {tokens.logoHeightMobile}px
                   </div>
                 </Section>
 

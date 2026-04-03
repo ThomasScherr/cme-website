@@ -307,3 +307,23 @@
     object-position: center;
   }
 }
+
+/* ── Responsive Logo Height ───────────────────────────────────────────────
+   Uses breakpoint-specific CSS variables set by the Style Guide.
+   Desktop: >= 1024px, Tablet: 768–1023px, Mobile: < 768px
+*/
+.cme-logo-img {
+  height: var(--cme-logo-height-desktop, 48px);
+}
+
+@media (max-width: 1023px) {
+  .cme-logo-img {
+    height: var(--cme-logo-height-tablet, 40px);
+  }
+}
+
+@media (max-width: 767px) {
+  .cme-logo-img {
+    height: var(--cme-logo-height-mobile, 32px);
+  }
+}
