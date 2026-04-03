@@ -156,19 +156,37 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator – animated chevron arrow */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 cursor-pointer"
+        onClick={() => scrollTo('stats')}
       >
-        <span style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', letterSpacing: '0.18em' }}>Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          style={{ width: '1px', height: 'clamp(24px, 3vw, 40px)', background: 'var(--cme-color-primary-40, rgba(33,150,211,0.4))' }}
-        />
+          animate={{ y: [0, 10, 0] }}
+          transition={{
+            duration: 1.4,
+            ease: 'easeInOut',
+            repeat: 1,
+            repeatDelay: 0.3,
+          }}
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--cme-color-accent, #00b4d8)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ opacity: 0.85 }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </motion.div>
       </motion.div>
     </section>
   );
