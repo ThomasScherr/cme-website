@@ -1,5 +1,6 @@
 // CME Website – Footer
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
+// Mobile: Single column layout, no span-2
 
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -25,22 +26,18 @@ export default function Footer() {
     >
       <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
-            gap: 'clamp(2rem, 4vw, 5rem)',
-            marginBottom: 'clamp(2rem, 4vw, 4rem)',
-          }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-[clamp(2rem,4vw,5rem)]"
+          style={{ marginBottom: 'clamp(2rem, 4vw, 4rem)' }}
         >
-          {/* Logo & Tagline */}
-          <div style={{ gridColumn: 'span 2' }}>
+          {/* Logo & Tagline – on desktop: spans 2 columns */}
+          <div className="md:col-span-2">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_white_18093efb.svg"
               alt="CME Control Motion Electronics"
               className="cme-logo-img"
               style={{ width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
             />
-            <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: 'clamp(260px, 30vw, 420px)', lineHeight: 1.65 }}>
+            <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: '420px', lineHeight: 1.65 }}>
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
@@ -83,6 +80,7 @@ export default function Footer() {
                       textAlign: 'left',
                       cursor: 'pointer',
                       transition: 'color 0.2s',
+                      padding: 0,
                     }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
@@ -105,7 +103,7 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+4923128667696"
-                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-all' }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                   onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                 >
@@ -115,7 +113,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@control-motion.de"
-                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s' }}
+                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-all' }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
                   onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                 >

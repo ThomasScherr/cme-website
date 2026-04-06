@@ -3,6 +3,7 @@
 // Diamond images use SVG clipPath – guaranteed full fill, no white corners
 // Diamonds are position:absolute and float independently of section padding
 // Section wrappers use overflow:visible so diamonds bleed beyond boundaries
+// Mobile: Diamonds hidden, text takes full width
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -71,17 +72,20 @@ function ServiceBlock({
       paddingBottom: pbVar,
       background: bg,
     }}>
-      {/* Diamond – absolute, floats independently */}
-      <div style={{
-        position: 'absolute',
-        [isLeft ? 'left' : 'right']: 0,
-        top: '50%',
-        transform: isLeft
-          ? `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, -28vw))`
-          : `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, 28vw))`,
-        zIndex: 1,
-        pointerEvents: 'none',
-      }}>
+      {/* Diamond – absolute, floats independently – hidden on mobile */}
+      <div
+        className="hidden md:block"
+        style={{
+          position: 'absolute',
+          [isLeft ? 'left' : 'right']: 0,
+          top: '50%',
+          transform: isLeft
+            ? `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, -28vw))`
+            : `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, 28vw))`,
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      >
         <DiamondImage
           src={diamondSrc}
           alt={diamondAlt}
@@ -91,7 +95,7 @@ function ServiceBlock({
         />
       </div>
 
-      {/* Text content – positioned on the opposite side of the diamond */}
+      {/* Text content – on mobile: full width. On desktop: positioned opposite the diamond */}
       <div style={{
         position: 'relative',
         zIndex: 2,
@@ -100,12 +104,14 @@ function ServiceBlock({
         paddingLeft: contentPad,
         paddingRight: contentPad,
       }}>
-        <div style={{
-          marginLeft: isLeft ? 'auto' : undefined,
-          marginRight: isLeft ? undefined : 'auto',
-          maxWidth: 'min(600px, 50%)',
-          ...(isLeft ? {} : { marginLeft: 0 }),
-        }}>
+        <div
+          className="max-w-full md:max-w-[min(600px,50%)]"
+          style={{
+            marginLeft: isLeft ? 'auto' : undefined,
+            marginRight: isLeft ? undefined : 'auto',
+            ...(isLeft ? {} : { marginLeft: 0 }),
+          }}
+        >
           {children}
         </div>
       </div>
@@ -128,7 +134,7 @@ export default function ServicesSection() {
             Services
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.services.headline}</h2>
-          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
+          <p className="max-w-full md:max-w-[clamp(280px,40vw,700px)]" style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)' }}>
             {t.services.sub}
           </p>
         </motion.div>

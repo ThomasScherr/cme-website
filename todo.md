@@ -11,3 +11,5 @@
 - [ ] Impressum & Datenschutz Unterseiten
 - [ ] Englische Übersetzung (LanguageContext)
 - [x] Sektionen-Tab: Bei Tablet nur Tablet-Werte, bei Mobile nur Mobile-Werte anzeigen (Desktop zeigt alle drei)
+- [x] Mobile-Ansicht: Hero-Sektion Layout prüfen und fixen
+- [x] Mobile-Ansicht: Alle anderen Sektionen visuell prüfen und fixen

@@ -1,6 +1,7 @@
 // CME Website – Hero Section
 // Design: Techno-Industrial Precision
 // Diamond uses SVG clipPath – guaranteed full image fill, no white corners
+// Mobile: Diamond hidden, text takes full width
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -31,9 +32,9 @@ export default function HeroSection() {
         }}
       />
 
-      {/* ── Large rounded diamond – position/size controlled via CSS Custom Properties ── */}
+      {/* ── Large rounded diamond – hidden on mobile (<768px) ── */}
       <div
-        className="absolute"
+        className="absolute hidden md:block"
         style={{
           right: 0,
           top: '50%',
@@ -85,7 +86,8 @@ export default function HeroSection() {
           paddingRight: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
         }}
       >
-        <div style={{ maxWidth: 'clamp(320px, 50vw, 900px)' }}>
+        {/* On mobile: full width. On desktop: constrained to left half */}
+        <div className="max-w-full md:max-w-[clamp(320px,50vw,900px)]">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,7 +108,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            style={{ marginBottom: 'clamp(1rem, 2vw, 2rem)' }}
+            style={{ marginBottom: 'clamp(1rem, 2vw, 2rem)', wordBreak: 'break-word', overflowWrap: 'break-word' }}
           >
             {t.hero.headline1}
             <br />
@@ -119,10 +121,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5 }}
+            className="max-w-full md:max-w-[clamp(280px,40vw,680px)]"
             style={{
               fontSize: 'var(--cme-font-size-lg)',
               color: 'var(--cme-color-gray)',
-              maxWidth: 'clamp(280px, 40vw, 680px)',
               marginBottom: 'clamp(1.5rem, 3vw, 3rem)',
             }}
           >

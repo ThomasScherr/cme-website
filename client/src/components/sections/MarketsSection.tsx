@@ -2,6 +2,7 @@
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond uses SVG clipPath – guaranteed full fill, no white corners
 // Diamond is position:absolute so it floats independently of section padding
+// Mobile: Diamond hidden, grid takes full width
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -18,15 +19,18 @@ export default function MarketsSection() {
 
   return (
     <section id="markets" style={{ position: 'relative', overflow: 'visible', background: '#fff' }}>
-      {/* Diamond – absolute positioned, floats independently of section padding */}
-      <div style={{
-        position: 'absolute',
-        right: 0,
-        top: '50%',
-        transform: `translateY(calc(-50% + var(--cme-diamond-markets-offset-y, 0px))) translateX(var(--cme-diamond-markets-offset-x, 28vw))`,
-        zIndex: 1,
-        pointerEvents: 'none',
-      }}>
+      {/* Diamond – absolute positioned, floats independently – hidden on mobile */}
+      <div
+        className="hidden md:block"
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: '50%',
+          transform: `translateY(calc(-50% + var(--cme-diamond-markets-offset-y, 0px))) translateX(var(--cme-diamond-markets-offset-x, 28vw))`,
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -86,13 +90,13 @@ export default function MarketsSection() {
             Branchen
           </p>
           <h2 style={{ marginBottom: '1rem' }}>{t.markets.headline}</h2>
-          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>
+          <p className="max-w-full md:max-w-[clamp(280px,40vw,700px)]" style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)' }}>
             {t.markets.sub}
           </p>
         </motion.div>
 
-        {/* Markets Grid – constrained to left ~60% so diamond doesn't overlap */}
-        <div style={{ maxWidth: '60%' }}>
+        {/* Markets Grid – on mobile: full width. On desktop: constrained to left ~60% */}
+        <div className="max-w-full md:max-w-[60%]">
           <div
             style={{
               display: 'grid',
