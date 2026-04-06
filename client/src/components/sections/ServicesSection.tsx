@@ -1,9 +1,8 @@
 // CME Website – Services Section
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond images use SVG clipPath – guaranteed full fill, no white corners
-// Diamonds are position:absolute and float independently of section padding
-// Section wrappers use overflow:visible so diamonds bleed beyond boundaries
-// Mobile: Diamonds hidden, text takes full width
+// Layout: Two-column on desktop (text + diamond), single column on mobile (no diamond)
+// Diamonds are contained within their column – NO overflow overlap
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -31,7 +30,7 @@ function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; da
   );
 }
 
-/** Wrapper for a service sub-section with absolute diamond */
+/** Service block with two-column layout: text on one side, diamond on the other */
 function ServiceBlock({
   id,
   bg,
@@ -61,58 +60,55 @@ function ServiceBlock({
 }) {
   const contentMax = 'min(1600px, 90vw)';
   const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
-
   const isLeft = diamondSide === 'left';
 
   return (
     <div style={{
       position: 'relative',
-      overflow: 'visible',
+      overflow: 'hidden',
       paddingTop: ptVar,
       paddingBottom: pbVar,
       background: bg,
     }}>
-      {/* Diamond – absolute, floats independently – hidden on mobile */}
-      <div
-        className="hidden md:block"
-        style={{
-          position: 'absolute',
-          [isLeft ? 'left' : 'right']: 0,
-          top: '50%',
-          transform: isLeft
-            ? `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, -28vw))`
-            : `translateY(calc(-50% + var(${diamondOffsetYVar}, 0px))) translateX(var(${diamondOffsetXVar}, 28vw))`,
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      >
-        <DiamondImage
-          src={diamondSrc}
-          alt={diamondAlt}
-          size={`var(${diamondSizeVar}, 46vw)`}
-          delay={0.1}
-          extraRotate={`var(${diamondRotateVar}, 0deg)`}
-        />
-      </div>
-
-      {/* Text content – on mobile: full width. On desktop: positioned opposite the diamond */}
       <div style={{
-        position: 'relative',
-        zIndex: 2,
         maxWidth: contentMax,
         margin: '0 auto',
         paddingLeft: contentPad,
         paddingRight: contentPad,
       }}>
+        {/* Two-column grid on desktop: text + diamond */}
         <div
-          className="max-w-full md:max-w-[min(600px,50%)]"
-          style={{
-            marginLeft: isLeft ? 'auto' : undefined,
-            marginRight: isLeft ? undefined : 'auto',
-            ...(isLeft ? {} : { marginLeft: 0 }),
-          }}
+          className="flex flex-col md:flex-row md:items-center"
+          style={{ gap: 'clamp(2rem, 4vw, 4rem)' }}
         >
-          {children}
+          {/* Text column – always first on mobile, order depends on diamondSide on desktop */}
+          <div
+            className="w-full md:w-1/2"
+            style={{ order: isLeft ? 2 : 1 }}
+          >
+            {children}
+          </div>
+
+          {/* Diamond column – hidden on mobile, shown on desktop */}
+          <div
+            className="hidden md:flex md:w-1/2 items-center justify-center"
+            style={{
+              order: isLeft ? 1 : 2,
+              position: 'relative',
+            }}
+          >
+            <div style={{
+              transform: `translateX(var(${diamondOffsetXVar}, 0px)) translateY(var(${diamondOffsetYVar}, 0px))`,
+            }}>
+              <DiamondImage
+                src={diamondSrc}
+                alt={diamondAlt}
+                size={`var(${diamondSizeVar}, clamp(280px, 30vw, 550px))`}
+                delay={0.1}
+                extraRotate={`var(${diamondRotateVar}, 0deg)`}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
