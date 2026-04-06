@@ -221,43 +221,86 @@ function SectionHeightEditor({ bp, config, onUpdate }: {
   onUpdate: (bp: Breakpoint, id: SectionId, key: string, value: number) => void;
 }) {
   const ids = Object.keys(SECTION_LABELS) as SectionId[];
-  const defaults = getDefaultResponsiveConfig()[bp].sectionHeights;
+  const allDefaults = getDefaultResponsiveConfig();
+  const breakpoints: Breakpoint[] = ['desktop', 'tablet', 'mobile'];
+  const bpLabels: Record<Breakpoint, string> = { desktop: 'Desktop', tablet: 'Tablet', mobile: 'Mobile' };
+  const bpColors: Record<Breakpoint, string> = { desktop: '#2196D3', tablet: '#f59e0b', mobile: '#10b981' };
 
   return (
     <div>
-      <div style={{ marginBottom: '0.75rem' }}><BreakpointBadge bp={bp} /></div>
       <div style={{ fontSize: 11, color: '#64748b', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-        Passe die Höhe jeder Sektion für <strong>{bp === 'desktop' ? 'Desktop' : bp === 'tablet' ? 'Tablet' : 'Mobile'}</strong> an. Negative Werte lassen Sektionen überlappen.
+        Passe die Höhe jeder Sektion für <strong>alle Endgeräte</strong> an. Negative Werte lassen Sektionen überlappen.
       </div>
 
       {ids.map(id => {
-        const cfg = config[bp].sectionHeights[id];
-        const def = defaults[id];
-        const isModified = cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;
+        // Check if any breakpoint is modified
+        const anyModified = breakpoints.some(bpKey => {
+          const cfg = config[bpKey].sectionHeights[id];
+          const def = allDefaults[bpKey].sectionHeights[id];
+          return cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;
+        });
         return (
           <div key={id} style={{
-            background: isModified ? '#fffbeb' : '#f8fafc',
-            border: `1px solid ${isModified ? '#fcd34d' : '#e2e8f0'}`,
-            borderRadius: 8, padding: '0.75rem', marginBottom: '0.65rem',
+            background: anyModified ? '#fffbeb' : '#f8fafc',
+            border: `1px solid ${anyModified ? '#fcd34d' : '#e2e8f0'}`,
+            borderRadius: 8, padding: '0.75rem', marginBottom: '0.85rem',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: 11, fontWeight: 600, color: '#334155' }}>{SECTION_LABELS[id]}</span>
-              {isModified && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: '#334155' }}>{SECTION_LABELS[id]}</span>
+              {anyModified && (
                 <button onClick={() => {
-                  onUpdate(bp, id, 'paddingTop', def.paddingTop);
-                  onUpdate(bp, id, 'paddingBottom', def.paddingBottom);
+                  breakpoints.forEach(bpKey => {
+                    const def = allDefaults[bpKey].sectionHeights[id];
+                    onUpdate(bpKey, id, 'paddingTop', def.paddingTop);
+                    onUpdate(bpKey, id, 'paddingBottom', def.paddingBottom);
+                  });
                 }} style={{
                   fontSize: 9, padding: '2px 6px', background: '#fef3c7',
                   border: '1px solid #fcd34d', borderRadius: 3, cursor: 'pointer', color: '#92400e',
-                }}>Reset</button>
+                }}>Alle zurücksetzen</button>
               )}
             </div>
-            <Row label="Oben (pt)">
-              <NumberInput value={cfg.paddingTop} onChange={v => onUpdate(bp, id, 'paddingTop', v)} min={-100} max={300} unit="px" />
-            </Row>
-            <Row label="Unten (pb)">
-              <NumberInput value={cfg.paddingBottom} onChange={v => onUpdate(bp, id, 'paddingBottom', v)} min={-100} max={300} unit="px" />
-            </Row>
+
+            {breakpoints.map(bpKey => {
+              const cfg = config[bpKey].sectionHeights[id];
+              const def = allDefaults[bpKey].sectionHeights[id];
+              const isModified = cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;
+              return (
+                <div key={bpKey} style={{
+                  marginBottom: bpKey !== 'mobile' ? '0.5rem' : 0,
+                  paddingBottom: bpKey !== 'mobile' ? '0.5rem' : 0,
+                  borderBottom: bpKey !== 'mobile' ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.35rem' }}>
+                    <span style={{
+                      fontSize: 9, fontWeight: 700, color: bpColors[bpKey], background: `${bpColors[bpKey]}15`,
+                      padding: '1px 5px', borderRadius: 3, textTransform: 'uppercase', letterSpacing: '0.08em',
+                    }}>{bpLabels[bpKey]}</span>
+                    {isModified && (
+                      <button onClick={() => {
+                        onUpdate(bpKey, id, 'paddingTop', def.paddingTop);
+                        onUpdate(bpKey, id, 'paddingBottom', def.paddingBottom);
+                      }} style={{
+                        fontSize: 8, padding: '1px 4px', background: 'transparent',
+                        border: '1px solid #e2e8f0', borderRadius: 2, cursor: 'pointer', color: '#94a3b8',
+                      }}>Reset</button>
+                    )}
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <div style={{ flex: 1 }}>
+                      <Row label="Oben">
+                        <NumberInput value={cfg.paddingTop} onChange={v => onUpdate(bpKey, id, 'paddingTop', v)} min={-100} max={300} unit="px" />
+                      </Row>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <Row label="Unten">
+                        <NumberInput value={cfg.paddingBottom} onChange={v => onUpdate(bpKey, id, 'paddingBottom', v)} min={-100} max={300} unit="px" />
+                      </Row>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         );
       })}
