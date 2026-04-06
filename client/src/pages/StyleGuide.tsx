@@ -625,6 +625,23 @@ export default function StyleGuide() {
                   <Row label="Letter-Spacing H"><NumberInput value={bpTokens.letterSpacingHeading} onChange={v => updateTokenForBreakpoint(bp, 'letterSpacingHeading', v)} min={-3} max={5} step={0.5} unit="px" /></Row>
                 </Section>
 
+                <Section title="Header-Menü Abstand" badge={bp.toUpperCase()}>
+                  <Row label="Abstand oben">
+                    <NumberInput
+                      value={bpTokens.headerPaddingTop}
+                      onChange={v => updateTokenForBreakpoint(bp, 'headerPaddingTop', v)}
+                      min={0} max={60} unit="px"
+                    />
+                  </Row>
+                  <Row label="Abstand unten">
+                    <NumberInput
+                      value={bpTokens.headerPaddingBottom}
+                      onChange={v => updateTokenForBreakpoint(bp, 'headerPaddingBottom', v)}
+                      min={0} max={60} unit="px"
+                    />
+                  </Row>
+                </Section>
+
                 <Section title="Logo-Höhe" badge={bp.toUpperCase()}>
                   <Row label={bp === 'desktop' ? 'Desktop' : bp === 'tablet' ? 'Tablet' : 'Mobile'}>
                     <NumberInput

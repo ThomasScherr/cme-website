@@ -39,6 +39,8 @@ function scaleTokens(base: DesignTokens, factor: number): DesignTokens {
     logoHeightDesktop: base.logoHeightDesktop,
     logoHeightTablet: base.logoHeightTablet,
     logoHeightMobile: base.logoHeightMobile,
+    headerPaddingTop: Math.round(base.headerPaddingTop * factor),
+    headerPaddingBottom: Math.round(base.headerPaddingBottom * factor),
     sectionPadding: Math.round(base.sectionPadding * factor),
   };
 }
@@ -198,6 +200,9 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-tablet-letter-spacing-heading', `${tb.tokens.letterSpacingHeading}px`);
   // Tablet logo height
   el.style.setProperty('--cme-logo-height-tablet', `${tb.tokens.logoHeightTablet}px`);
+  // Tablet header padding
+  el.style.setProperty('--cme-tablet-header-padding-top', `${tb.tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-tablet-header-padding-bottom', `${tb.tokens.headerPaddingBottom}px`);
   
   // Tablet diamonds
   (Object.keys(tb.diamonds) as DiamondId[]).forEach(id => {
@@ -234,6 +239,9 @@ export function applyResponsiveConfigToRoot(config: FullResponsiveConfig) {
   el.style.setProperty('--cme-mobile-letter-spacing-heading', `${mb.tokens.letterSpacingHeading}px`);
   // Mobile logo height
   el.style.setProperty('--cme-logo-height-mobile', `${mb.tokens.logoHeightMobile}px`);
+  // Mobile header padding
+  el.style.setProperty('--cme-mobile-header-padding-top', `${mb.tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-mobile-header-padding-bottom', `${mb.tokens.headerPaddingBottom}px`);
   
   // Mobile diamonds
   (Object.keys(mb.diamonds) as DiamondId[]).forEach(id => {
@@ -331,6 +339,14 @@ export function applyBreakpointToElement(el: HTMLElement, config: FullResponsive
   el.style.setProperty('--cme-logo-height-desktop', `${logoHeight}px`);
   el.style.setProperty('--cme-logo-height-tablet', `${logoHeight}px`);
   el.style.setProperty('--cme-logo-height-mobile', `${logoHeight}px`);
+  
+  // Header padding – apply for the active breakpoint
+  el.style.setProperty('--cme-header-padding-top', `${bp.tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-header-padding-bottom', `${bp.tokens.headerPaddingBottom}px`);
+  el.style.setProperty('--cme-tablet-header-padding-top', `${bp.tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-tablet-header-padding-bottom', `${bp.tokens.headerPaddingBottom}px`);
+  el.style.setProperty('--cme-mobile-header-padding-top', `${bp.tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-mobile-header-padding-bottom', `${bp.tokens.headerPaddingBottom}px`);
   
   // Diamonds
   (Object.keys(bp.diamonds) as DiamondId[]).forEach(id => {

@@ -91,6 +91,8 @@
   --cme-border-radius: 4px;
   --cme-section-padding: 80px;
   --cme-container-max-width: 1280px;
+  --cme-header-padding-top: 12px;
+  --cme-header-padding-bottom: 12px;
 
   /* CME Primary Blue #2196D3 */
   --primary: oklch(0.62 0.14 230);
@@ -351,6 +353,8 @@
     --cme-font-size-2xl: var(--cme-tablet-font-size-2xl, 21px);
     --cme-font-size-small: var(--cme-tablet-font-size-small, 11px);
     --cme-font-size-body: var(--cme-tablet-font-size-body, 14px);
+    --cme-header-padding-top: var(--cme-tablet-header-padding-top, 10px);
+    --cme-header-padding-bottom: var(--cme-tablet-header-padding-bottom, 10px);
   }
 }
 
@@ -383,5 +387,7 @@
     --cme-font-size-2xl: var(--cme-mobile-font-size-2xl, 17px);
     --cme-font-size-small: var(--cme-mobile-font-size-small, 9px);
     --cme-font-size-body: var(--cme-mobile-font-size-body, 11px);
+    --cme-header-padding-top: var(--cme-mobile-header-padding-top, 8px);
+    --cme-header-padding-bottom: var(--cme-mobile-header-padding-bottom, 8px);
   }
 }

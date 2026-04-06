@@ -1,6 +1,7 @@
 // CME Website – Navigation Component
 // Design Philosophy: Techno-Industrial Precision
 // Sticky header with transparent-to-white transition, mobile hamburger menu, language switcher
+// Header padding (top/bottom) is driven by CSS variables from the Style Guide
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -46,9 +47,13 @@ export default function Navigation() {
             ? 'bg-white/97 backdrop-blur-sm shadow-sm border-b border-border'
             : 'bg-transparent'
         }`}
+        style={{
+          paddingTop: 'var(--cme-header-padding-top, 12px)',
+          paddingBottom: 'var(--cme-header-padding-bottom, 12px)',
+        }}
       >
         <div style={{ maxWidth: 'min(1600px, 90vw)', margin: '0 auto', paddingLeft: 'clamp(1rem, 2vw + 0.5rem, 4rem)', paddingRight: 'clamp(1rem, 2vw + 0.5rem, 4rem)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 'clamp(56px, 6vw, 80px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             {/* Logo */}
             <button
               onClick={() => scrollTo('hero')}

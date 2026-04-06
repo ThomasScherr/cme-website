@@ -247,6 +247,8 @@ export interface DesignTokens {
   logoHeightDesktop: number;
   logoHeightTablet: number;
   logoHeightMobile: number;
+  headerPaddingTop: number;
+  headerPaddingBottom: number;
 }
 
 export const DEFAULT_TOKENS: DesignTokens = {
@@ -274,6 +276,8 @@ export const DEFAULT_TOKENS: DesignTokens = {
   logoHeightDesktop: 48,
   logoHeightTablet: 40,
   logoHeightMobile: 32,
+  headerPaddingTop: 12,
+  headerPaddingBottom: 12,
 };
 
 const STORAGE_KEY = 'cme-design-tokens';
@@ -343,6 +347,9 @@ export function applyTokensToRoot(tokens: DesignTokens) {
   el.style.setProperty('--cme-logo-height-desktop', `${tokens.logoHeightDesktop}px`);
   el.style.setProperty('--cme-logo-height-tablet', `${tokens.logoHeightTablet}px`);
   el.style.setProperty('--cme-logo-height-mobile', `${tokens.logoHeightMobile}px`);
+  // Header padding
+  el.style.setProperty('--cme-header-padding-top', `${tokens.headerPaddingTop}px`);
+  el.style.setProperty('--cme-header-padding-bottom', `${tokens.headerPaddingBottom}px`);
 }
 
 /** Load tokens from LocalStorage (falls back to defaults) */
