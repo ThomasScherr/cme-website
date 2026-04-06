@@ -20,10 +20,13 @@ if (defaultPreset) {
 const responsiveConfig = loadResponsiveConfig();
 applyResponsiveConfigToRoot(responsiveConfig);
 
-// ── Cross-Tab Sync (disabled inside iframes – the parent StyleGuide controls tokens via pushToIframe) ──
+// ── Cross-Tab Sync ──
+// Disabled inside iframes – the parent StyleGuide controls tokens via pushToIframe.
+// Also disabled on the /styleguide route itself – the hook manages state directly.
 const isInsideIframe = window.self !== window.top;
+const isStyleGuidePage = window.location.pathname === '/styleguide';
 
-if (!isInsideIframe) {
+if (!isInsideIframe && !isStyleGuidePage) {
   const RESPONSIVE_KEY = 'cme-responsive-tokens';
 
   // Method 1: Native storage event (fires in OTHER tabs)
@@ -36,35 +39,27 @@ if (!isInsideIframe) {
     }
   });
 
-  // Method 2: Same-tab custom event
+  // Method 2: Same-tab custom event (only for the responsive key, not legacy keys)
   window.addEventListener('cme-token-change' as any, ((e: CustomEvent) => {
     if (e.detail?.key === RESPONSIVE_KEY) {
       const config = loadResponsiveConfig();
       applyResponsiveConfigToRoot(config);
     }
-    if (e.detail?.key === 'cme-design-tokens' || e.detail?.key === 'cme-diamond-configs' || e.detail?.key === 'cme-section-heights') {
-      const config = loadResponsiveConfig();
-      applyResponsiveConfigToRoot(config);
-    }
   }) as EventListener);
 
-  // Method 3: Polling fallback
+  // Method 3: Polling fallback (reduced frequency to 1s)
   let lastResponsiveJson = localStorage.getItem(RESPONSIVE_KEY) || '';
-  let lastOldTokens = localStorage.getItem('cme-design-tokens') || '';
 
   setInterval(() => {
     const currentResponsive = localStorage.getItem(RESPONSIVE_KEY) || '';
-    const currentOldTokens = localStorage.getItem('cme-design-tokens') || '';
-
-    if (currentResponsive !== lastResponsiveJson || currentOldTokens !== lastOldTokens) {
+    if (currentResponsive !== lastResponsiveJson) {
       lastResponsiveJson = currentResponsive;
-      lastOldTokens = currentOldTokens;
       try {
         const config = loadResponsiveConfig();
         applyResponsiveConfigToRoot(config);
       } catch { /* ignore */ }
     }
-  }, 300);
+  }, 1000);
 }
 
 // ── Render App ───────────────────────────────────────────────────────────

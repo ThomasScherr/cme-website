@@ -89,6 +89,10 @@ export function getDefaultResponsiveConfig(): FullResponsiveConfig {
 
 const RESPONSIVE_STORAGE_KEY = 'cme-responsive-tokens';
 
+// Guard flag to prevent feedback loops: when we save from within the hook,
+// we set this to true so our own event listener ignores the resulting event.
+let _isSavingFromHook = false;
+
 function notifySameTab() {
   window.dispatchEvent(new CustomEvent('cme-token-change', { detail: { key: RESPONSIVE_STORAGE_KEY } }));
 }
@@ -148,13 +152,20 @@ export function loadResponsiveConfig(): FullResponsiveConfig {
   return defaults;
 }
 
-export function saveResponsiveConfig(config: FullResponsiveConfig) {
+export function saveResponsiveConfig(config: FullResponsiveConfig, fromHook = false) {
+  if (fromHook) _isSavingFromHook = true;
   localStorage.setItem(RESPONSIVE_STORAGE_KEY, JSON.stringify(config));
   // Also sync to old keys for backward compatibility (desktop values)
-  saveTokens(config.desktop.tokens);
-  saveDiamondConfigs(config.desktop.diamonds);
-  saveSectionHeights(config.desktop.sectionHeights);
+  // Use silent saves to avoid triggering redundant event cascades
+  localStorage.setItem('cme-design-tokens', JSON.stringify(config.desktop.tokens));
+  localStorage.setItem('cme-diamond-configs', JSON.stringify(config.desktop.diamonds));
+  localStorage.setItem('cme-section-heights', JSON.stringify(config.desktop.sectionHeights));
+  // Only dispatch one event (not 4 separate ones)
   notifySameTab();
+  if (fromHook) {
+    // Reset guard after a microtask so the event listener has time to check it
+    Promise.resolve().then(() => { _isSavingFromHook = false; });
+  }
 }
 
 // ── Apply to :root with breakpoint-specific CSS variables ──────────────
@@ -361,6 +372,8 @@ export function useResponsiveTokens() {
       }
     };
     const onCustom = ((e: CustomEvent) => {
+      // Skip if this event was triggered by our own save (prevents feedback loop)
+      if (_isSavingFromHook) return;
       if (e.detail?.key === RESPONSIVE_STORAGE_KEY) {
         setConfig(loadResponsiveConfig());
       }
@@ -386,7 +399,7 @@ export function useResponsiveTokens() {
         },
       };
       applyResponsiveConfigToRoot(next);
-      saveResponsiveConfig(next);
+      saveResponsiveConfig(next, true);
       return next;
     });
   }, []);
@@ -406,7 +419,7 @@ export function useResponsiveTokens() {
         },
       };
       applyResponsiveConfigToRoot(next);
-      saveResponsiveConfig(next);
+      saveResponsiveConfig(next, true);
       return next;
     });
   }, []);
@@ -426,7 +439,7 @@ export function useResponsiveTokens() {
         },
       };
       applyResponsiveConfigToRoot(next);
-      saveResponsiveConfig(next);
+      saveResponsiveConfig(next, true);
       return next;
     });
   }, []);
@@ -436,7 +449,7 @@ export function useResponsiveTokens() {
     setConfig(prev => {
       const next = { ...prev, [breakpoint]: defaults[breakpoint] };
       applyResponsiveConfigToRoot(next);
-      saveResponsiveConfig(next);
+      saveResponsiveConfig(next, true);
       return next;
     });
   }, []);
