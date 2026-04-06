@@ -612,22 +612,16 @@ export default function StyleGuide() {
                   <Row label="Letter-Spacing H"><NumberInput value={bpTokens.letterSpacingHeading} onChange={v => updateTokenForBreakpoint(bp, 'letterSpacingHeading', v)} min={-3} max={5} step={0.5} unit="px" /></Row>
                 </Section>
 
-                <Section title="Logo-Höhe" badge={bp.toUpperCase()}>
-                  {bp === 'desktop' && (
-                    <Row label="Desktop">
-                      <NumberInput value={bpTokens.logoHeightDesktop} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightDesktop', v)} min={16} max={200} unit="px" />
-                    </Row>
-                  )}
-                  {bp === 'tablet' && (
-                    <Row label="Tablet">
-                      <NumberInput value={bpTokens.logoHeightTablet} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightTablet', v)} min={16} max={200} unit="px" />
-                    </Row>
-                  )}
-                  {bp === 'mobile' && (
-                    <Row label="Mobile">
-                      <NumberInput value={bpTokens.logoHeightMobile} onChange={v => updateTokenForBreakpoint(bp, 'logoHeightMobile', v)} min={16} max={200} unit="px" />
-                    </Row>
-                  )}
+                <Section title="Logo-Höhe">
+                  <Row label="Desktop">
+                    <NumberInput value={config.desktop.tokens.logoHeightDesktop} onChange={v => updateTokenForBreakpoint('desktop', 'logoHeightDesktop', v)} min={16} max={200} unit="px" />
+                  </Row>
+                  <Row label="Tablet">
+                    <NumberInput value={config.tablet.tokens.logoHeightTablet} onChange={v => updateTokenForBreakpoint('tablet', 'logoHeightTablet', v)} min={16} max={200} unit="px" />
+                  </Row>
+                  <Row label="Mobile">
+                    <NumberInput value={config.mobile.tokens.logoHeightMobile} onChange={v => updateTokenForBreakpoint('mobile', 'logoHeightMobile', v)} min={16} max={200} unit="px" />
+                  </Row>
                 </Section>
 
                 <Section title="Rauten (global)" badge={bp.toUpperCase()}>
