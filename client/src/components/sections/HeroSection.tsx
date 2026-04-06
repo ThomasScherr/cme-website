@@ -2,7 +2,7 @@
 // Design: Techno-Industrial Precision
 // Diamond uses SVG clipPath – guaranteed full image fill, no white corners
 // Layout: Two-column on desktop (text left + diamond right), single column on mobile
-// Diamond is contained within its column – NO overflow overlap
+// Diamond column has overflow:hidden – diamond NEVER overlaps text
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -39,14 +39,14 @@ export default function HeroSection() {
         style={{
           maxWidth: 'min(1600px, 90vw)',
           margin: '0 auto',
-          paddingLeft:  'clamp(1rem, 2vw + 0.5rem, 4rem)',
+          paddingLeft: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
           paddingRight: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
         }}
       >
         {/* Two-column layout on desktop */}
         <div className="flex flex-col md:flex-row md:items-center" style={{ gap: 'clamp(2rem, 4vw, 4rem)' }}>
           {/* ── Text Column ── */}
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-[55%] relative z-10">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              style={{ marginBottom: 'clamp(1rem, 2vw, 2rem)', wordBreak: 'break-word', overflowWrap: 'break-word' }}
+              style={{ marginBottom: 'clamp(1rem, 2vw, 2rem)' }}
             >
               {t.hero.headline1}
               <br />
@@ -116,20 +116,24 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── Diamond Column – hidden on mobile ── */}
-          <div className="hidden md:flex md:w-1/2 items-center justify-center" style={{ position: 'relative' }}>
+          {/* ── Diamond Column – hidden on mobile, overflow clipped ── */}
+          <div
+            className="hidden md:flex md:w-[45%] items-center justify-center"
+            style={{ position: 'relative', overflow: 'hidden', minHeight: '300px' }}
+          >
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.85, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
-                transform: `translateX(var(--cme-diamond-hero-offset-x, 0px)) translateY(var(--cme-diamond-hero-offset-y, 0px))`,
+                maxWidth: '100%',
+                overflow: 'hidden',
               }}
             >
               <DiamondImage
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero_power_electronics-eKZ2diYBiMBnNwog2o4qTT.webp"
                 alt="Power Electronics"
-                size="var(--cme-diamond-hero-size, clamp(320px, 35vw, 650px))"
+                size="var(--cme-diamond-hero-size, min(100%, clamp(280px, 30vw, 520px)))"
                 animate={false}
                 overlayColor="var(--cme-color-primary-40, rgba(33,150,211,0.06))"
                 extraRotate="var(--cme-diamond-hero-rotate, 0deg)"
@@ -143,13 +147,13 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.7 }}
               style={{
                 position: 'absolute',
-                width: 'clamp(80px, 12vw, 200px)',
-                height: 'clamp(80px, 12vw, 200px)',
+                width: 'clamp(60px, 8vw, 140px)',
+                height: 'clamp(60px, 8vw, 140px)',
                 borderRadius: '12%',
                 transform: 'rotate(45deg)',
                 background: 'var(--cme-color-primary-40, rgba(33,150,211,0.1))',
-                bottom: 'clamp(-30px, -4vw, -60px)',
-                left: 'clamp(-40px, -6vw, -80px)',
+                bottom: 'clamp(-20px, -3vw, -40px)',
+                left: 'clamp(-20px, -3vw, -40px)',
                 zIndex: -1,
               }}
             />

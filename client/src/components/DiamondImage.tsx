@@ -78,7 +78,8 @@ export default function DiamondImage({
       style={{
         width: size,
         height: size,
-        flexShrink: 0,
+        maxWidth: '100%',
+        maxHeight: '100%',
         position: 'relative',
         ...(extraRotate ? { transform: `rotate(${extraRotate})` } : {}),
         ...style,

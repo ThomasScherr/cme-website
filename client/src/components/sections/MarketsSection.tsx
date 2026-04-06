@@ -2,7 +2,7 @@
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond uses SVG clipPath – guaranteed full fill, no white corners
 // Layout: Two-column on desktop (cards left + diamond right), single column on mobile
-// Diamond is contained within its column – NO overflow overlap
+// Diamond column has overflow:hidden – diamond NEVER overlaps cards
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -44,10 +44,10 @@ export default function MarketsSection() {
           </p>
         </motion.div>
 
-        {/* Two-column layout: cards left, diamond right */}
+        {/* Two-column layout: cards left 60%, diamond right 40% */}
         <div className="flex flex-col md:flex-row md:items-start" style={{ gap: 'clamp(2rem, 4vw, 4rem)' }}>
           {/* Cards column */}
-          <div className="w-full md:w-3/5">
+          <div className="w-full md:w-[60%]" style={{ position: 'relative', zIndex: 2 }}>
             <div
               style={{
                 display: 'grid',
@@ -80,8 +80,11 @@ export default function MarketsSection() {
             </div>
           </div>
 
-          {/* Diamond column – hidden on mobile */}
-          <div className="hidden md:flex md:w-2/5 items-center justify-center" style={{ position: 'relative' }}>
+          {/* Diamond column – hidden on mobile, overflow clipped */}
+          <div
+            className="hidden md:flex md:w-[40%] items-center justify-center"
+            style={{ position: 'relative', overflow: 'hidden' }}
+          >
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -89,13 +92,14 @@ export default function MarketsSection() {
               transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
                 position: 'relative',
-                transform: `translateX(var(--cme-diamond-markets-offset-x, 0px)) translateY(var(--cme-diamond-markets-offset-y, 0px))`,
+                maxWidth: '100%',
+                overflow: 'hidden',
               }}
             >
               <DiamondImage
                 src={EMC_IMAGE}
                 alt="EMC Anechoic Chamber"
-                size="var(--cme-diamond-markets-size, clamp(280px, 28vw, 500px))"
+                size="var(--cme-diamond-markets-size, min(100%, clamp(240px, 24vw, 420px)))"
                 overlayColor="rgba(10,15,25,0.35)"
                 extraRotate="var(--cme-diamond-markets-rotate, 0deg)"
               />

@@ -16,3 +16,5 @@
 - [x] Desktop-Ansicht: Bilder überlagern Texte fixen
 - [x] Desktop-Ansicht: Texte kleben an Sektionsrändern - Padding/Spacing fixen
 - [x] Desktop-Ansicht: Alle Sektionen visuell prüfen
+- [x] Hero-Raute überlagert Text auf großen Bildschirmen – Overflow clippen und Größe begrenzen
+- [x] Alle Sektionen mit Rauten auf großen Bildschirmen absichern

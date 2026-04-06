@@ -2,7 +2,7 @@
 // Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
 // Diamond images use SVG clipPath – guaranteed full fill, no white corners
 // Layout: Two-column on desktop (text + diamond), single column on mobile (no diamond)
-// Diamonds are contained within their column – NO overflow overlap
+// Diamond columns have overflow:hidden – diamonds NEVER overlap text
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -76,34 +76,36 @@ function ServiceBlock({
         paddingLeft: contentPad,
         paddingRight: contentPad,
       }}>
-        {/* Two-column grid on desktop: text + diamond */}
+        {/* Two-column grid on desktop: text 55% + diamond 45% */}
         <div
           className="flex flex-col md:flex-row md:items-center"
           style={{ gap: 'clamp(2rem, 4vw, 4rem)' }}
         >
           {/* Text column – always first on mobile, order depends on diamondSide on desktop */}
           <div
-            className="w-full md:w-1/2"
-            style={{ order: isLeft ? 2 : 1 }}
+            className="w-full md:w-[55%]"
+            style={{ order: isLeft ? 2 : 1, position: 'relative', zIndex: 2 }}
           >
             {children}
           </div>
 
-          {/* Diamond column – hidden on mobile, shown on desktop */}
+          {/* Diamond column – hidden on mobile, overflow clipped on desktop */}
           <div
-            className="hidden md:flex md:w-1/2 items-center justify-center"
+            className="hidden md:flex md:w-[45%] items-center justify-center"
             style={{
               order: isLeft ? 1 : 2,
               position: 'relative',
+              overflow: 'hidden',
             }}
           >
             <div style={{
-              transform: `translateX(var(${diamondOffsetXVar}, 0px)) translateY(var(${diamondOffsetYVar}, 0px))`,
+              maxWidth: '100%',
+              overflow: 'hidden',
             }}>
               <DiamondImage
                 src={diamondSrc}
                 alt={diamondAlt}
-                size={`var(${diamondSizeVar}, clamp(280px, 30vw, 550px))`}
+                size={`var(${diamondSizeVar}, min(100%, clamp(240px, 26vw, 460px)))`}
                 delay={0.1}
                 extraRotate={`var(${diamondRotateVar}, 0deg)`}
               />
