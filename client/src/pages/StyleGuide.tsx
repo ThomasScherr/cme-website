@@ -222,19 +222,23 @@ function SectionHeightEditor({ bp, config, onUpdate }: {
 }) {
   const ids = Object.keys(SECTION_LABELS) as SectionId[];
   const allDefaults = getDefaultResponsiveConfig();
-  const breakpoints: Breakpoint[] = ['desktop', 'tablet', 'mobile'];
+  const allBreakpoints: Breakpoint[] = ['desktop', 'tablet', 'mobile'];
+  // Desktop shows all three, Tablet shows only tablet, Mobile shows only mobile
+  const visibleBreakpoints: Breakpoint[] = bp === 'desktop' ? allBreakpoints : [bp];
   const bpLabels: Record<Breakpoint, string> = { desktop: 'Desktop', tablet: 'Tablet', mobile: 'Mobile' };
   const bpColors: Record<Breakpoint, string> = { desktop: '#2196D3', tablet: '#f59e0b', mobile: '#10b981' };
 
   return (
     <div>
       <div style={{ fontSize: 11, color: '#64748b', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-        Passe die Höhe jeder Sektion für <strong>alle Endgeräte</strong> an. Negative Werte lassen Sektionen überlappen.
+        {bp === 'desktop'
+          ? <>Passe die Höhe jeder Sektion für <strong>alle Endgeräte</strong> an. Negative Werte lassen Sektionen überlappen.</>
+          : <>Passe die Höhe jeder Sektion für <strong>{bpLabels[bp]}</strong> an. Negative Werte lassen Sektionen überlappen.</>}
       </div>
 
       {ids.map(id => {
-        // Check if any breakpoint is modified
-        const anyModified = breakpoints.some(bpKey => {
+        // Check if any visible breakpoint is modified
+        const anyModified = visibleBreakpoints.some(bpKey => {
           const cfg = config[bpKey].sectionHeights[id];
           const def = allDefaults[bpKey].sectionHeights[id];
           return cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;
@@ -249,7 +253,7 @@ function SectionHeightEditor({ bp, config, onUpdate }: {
               <span style={{ fontSize: 12, fontWeight: 700, color: '#334155' }}>{SECTION_LABELS[id]}</span>
               {anyModified && (
                 <button onClick={() => {
-                  breakpoints.forEach(bpKey => {
+                  visibleBreakpoints.forEach(bpKey => {
                     const def = allDefaults[bpKey].sectionHeights[id];
                     onUpdate(bpKey, id, 'paddingTop', def.paddingTop);
                     onUpdate(bpKey, id, 'paddingBottom', def.paddingBottom);
@@ -257,11 +261,11 @@ function SectionHeightEditor({ bp, config, onUpdate }: {
                 }} style={{
                   fontSize: 9, padding: '2px 6px', background: '#fef3c7',
                   border: '1px solid #fcd34d', borderRadius: 3, cursor: 'pointer', color: '#92400e',
-                }}>Alle zurücksetzen</button>
+                }}>{bp === 'desktop' ? 'Alle zurücksetzen' : 'Zurücksetzen'}</button>
               )}
             </div>
 
-            {breakpoints.map(bpKey => {
+            {visibleBreakpoints.map(bpKey => {
               const cfg = config[bpKey].sectionHeights[id];
               const def = allDefaults[bpKey].sectionHeights[id];
               const isModified = cfg.paddingTop !== def.paddingTop || cfg.paddingBottom !== def.paddingBottom;

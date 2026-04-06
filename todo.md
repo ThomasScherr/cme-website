@@ -10,3 +10,4 @@
 - [x] Preset "01" in Datenbank migrieren
 - [ ] Impressum & Datenschutz Unterseiten
 - [ ] Englische Übersetzung (LanguageContext)
+- [x] Sektionen-Tab: Bei Tablet nur Tablet-Werte, bei Mobile nur Mobile-Werte anzeigen (Desktop zeigt alle drei)
