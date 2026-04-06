@@ -1,209 +1,121 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  CME Preset Store – Separate, persistente Entity                   ║
+ * ║  CME Preset Store – Persistent via Database (tRPC)                 ║
  * ║                                                                     ║
- * ║  Diese Datei verwaltet Design-Presets unabhängig vom restlichen     ║
- * ║  Token-System. Presets werden im localStorage gespeichert und       ║
- * ║  bleiben über Code-Änderungen hinweg erhalten.                      ║
+ * ║  Presets werden in der Datenbank gespeichert und über die tRPC     ║
+ * ║  API geladen/gespeichert. Sie bleiben über Deployments, Browser    ║
+ * ║  und Geräte hinweg erhalten.                                       ║
  * ║                                                                     ║
  * ║  NICHT ÄNDERN, es sei denn der Benutzer fordert es explizit an.    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useState, useEffect, useCallback } from 'react';
-import type { DesignTokens, DiamondConfig, DiamondId, SectionHeightConfig, SectionId } from './useDesignTokens';
+import { trpc } from '@/lib/trpc';
 import type { FullResponsiveConfig } from './useResponsiveTokens';
 
-// ── Preset Interface ──────────────────────────────────────────────────────
+// ── Preset Interface (frontend-facing) ───────────────────────────────────
 
 export interface DesignPreset {
-  id: string;
+  id: number;
   name: string;
-  createdAt: string;       // ISO date string
-  isDefault: boolean;      // if true, this preset is loaded on startup
-  /** @deprecated Use responsiveConfig instead */
-  tokens?: DesignTokens;
-  /** @deprecated Use responsiveConfig instead */
-  diamonds?: Record<DiamondId, DiamondConfig>;
-  /** @deprecated Use responsiveConfig instead */
-  sectionHeights?: Record<SectionId, SectionHeightConfig>;
-  /** Full responsive config with all breakpoints (desktop, tablet, mobile) */
-  responsiveConfig?: FullResponsiveConfig;
+  createdAt: Date;
+  isDefault: boolean;
+  responsiveConfig: FullResponsiveConfig;
 }
 
-// ── Storage Keys ──────────────────────────────────────────────────────────
-// These keys are ONLY used by the preset store and should never be touched
-// by other parts of the codebase.
+// ── Helper: map DB row to frontend preset ────────────────────────────────
 
-const PRESETS_STORAGE_KEY = 'cme-design-presets';
-const DEFAULT_PRESET_ID_KEY = 'cme-default-preset-id';
-
-// ── Helpers ───────────────────────────────────────────────────────────────
-
-function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
-}
-
-function notifySameTab(key: string) {
-  window.dispatchEvent(new CustomEvent('cme-preset-change', { detail: { key } }));
-}
-
-// ── CRUD Functions ────────────────────────────────────────────────────────
-
-/** Load all saved presets from localStorage */
-export function loadPresets(): DesignPreset[] {
-  try {
-    const raw = localStorage.getItem(PRESETS_STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch { /* ignore */ }
-  return [];
-}
-
-/** Save all presets to localStorage */
-export function savePresets(presets: DesignPreset[]) {
-  localStorage.setItem(PRESETS_STORAGE_KEY, JSON.stringify(presets));
-  notifySameTab(PRESETS_STORAGE_KEY);
-}
-
-/** Get the default preset ID */
-export function getDefaultPresetId(): string | null {
-  return localStorage.getItem(DEFAULT_PRESET_ID_KEY);
-}
-
-/** Set a preset as the default (loaded on startup) */
-export function setDefaultPresetId(id: string | null) {
-  if (id) {
-    localStorage.setItem(DEFAULT_PRESET_ID_KEY, id);
-  } else {
-    localStorage.removeItem(DEFAULT_PRESET_ID_KEY);
-  }
-  notifySameTab(DEFAULT_PRESET_ID_KEY);
-}
-
-/** Create a new preset from the current responsive config */
-export function createPreset(name: string, responsiveConfig: FullResponsiveConfig): DesignPreset {
-  const preset: DesignPreset = {
-    id: generateId(),
-    name,
-    createdAt: new Date().toISOString(),
-    isDefault: false,
-    responsiveConfig,
-    // Also store desktop tokens for backward compatibility display
-    tokens: responsiveConfig.desktop.tokens,
-    diamonds: responsiveConfig.desktop.diamonds,
-    sectionHeights: responsiveConfig.desktop.sectionHeights,
+function mapDbPreset(row: {
+  id: number;
+  name: string;
+  createdAt: Date;
+  isDefault: number;
+  responsiveConfig: unknown;
+}): DesignPreset {
+  return {
+    id: row.id,
+    name: row.name,
+    createdAt: row.createdAt,
+    isDefault: row.isDefault === 1,
+    responsiveConfig: row.responsiveConfig as FullResponsiveConfig,
   };
-
-  const presets = loadPresets();
-  presets.push(preset);
-  savePresets(presets);
-  return preset;
 }
 
-/** Update an existing preset with current responsive config */
-export function updatePreset(id: string, responsiveConfig: FullResponsiveConfig, name?: string): DesignPreset | null {
-  const presets = loadPresets();
-  const idx = presets.findIndex(p => p.id === id);
-  if (idx === -1) return null;
+// ── Helper for startup: get preset config ────────────────────────────────
 
-  presets[idx] = {
-    ...presets[idx],
-    name: name ?? presets[idx].name,
-    createdAt: new Date().toISOString(),
-    responsiveConfig,
-    tokens: responsiveConfig.desktop.tokens,
-    diamonds: responsiveConfig.desktop.diamonds,
-    sectionHeights: responsiveConfig.desktop.sectionHeights,
-  };
-
-  savePresets(presets);
-  return presets[idx];
-}
-
-/** Delete a preset */
-export function deletePreset(id: string) {
-  const presets = loadPresets().filter(p => p.id !== id);
-  savePresets(presets);
-
-  // If this was the default, clear it
-  if (getDefaultPresetId() === id) {
-    setDefaultPresetId(null);
-  }
-}
-
-/** Get the full responsive config from a preset (with migration support) */
 export function getPresetConfig(preset: DesignPreset): FullResponsiveConfig | null {
   if (preset.responsiveConfig) {
     return preset.responsiveConfig;
   }
-  // Legacy preset: only has desktop-level tokens – return null to indicate migration needed
   return null;
 }
 
-/** Load the default preset on startup (if one is set) */
-export function loadDefaultPreset(): DesignPreset | null {
-  const defaultId = getDefaultPresetId();
-  if (!defaultId) return null;
-
-  const presets = loadPresets();
-  return presets.find(p => p.id === defaultId) ?? null;
-}
-
-// ── React Hook ────────────────────────────────────────────────────────────
+// ── React Hook ───────────────────────────────────────────────────────────
 
 export function usePresetStore() {
-  const [presets, setPresets] = useState<DesignPreset[]>(() => loadPresets());
-  const [defaultId, setDefaultIdState] = useState<string | null>(() => getDefaultPresetId());
+  const utils = trpc.useUtils();
 
-  // Listen for changes from other tabs or same-tab events
-  useEffect(() => {
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === PRESETS_STORAGE_KEY) {
-        setPresets(loadPresets());
-      }
-      if (e.key === DEFAULT_PRESET_ID_KEY) {
-        setDefaultIdState(getDefaultPresetId());
-      }
-    };
-    const onCustom = ((e: CustomEvent) => {
-      if (e.detail?.key === PRESETS_STORAGE_KEY) {
-        setPresets(loadPresets());
-      }
-      if (e.detail?.key === DEFAULT_PRESET_ID_KEY) {
-        setDefaultIdState(getDefaultPresetId());
-      }
-    }) as EventListener;
+  // Query all presets
+  const { data: rawPresets, isLoading } = trpc.presets.list.useQuery(undefined, {
+    staleTime: 5000,
+  });
 
-    window.addEventListener('storage', onStorage);
-    window.addEventListener('cme-preset-change', onCustom);
-    return () => {
-      window.removeEventListener('storage', onStorage);
-      window.removeEventListener('cme-preset-change', onCustom);
-    };
-  }, []);
+  const presets: DesignPreset[] = (rawPresets ?? []).map(mapDbPreset);
+  const defaultPreset = presets.find(p => p.isDefault) ?? null;
+  const defaultId = defaultPreset?.id ?? null;
 
-  const create = useCallback((name: string, responsiveConfig: FullResponsiveConfig) => {
-    const preset = createPreset(name, responsiveConfig);
-    setPresets(loadPresets());
-    return preset;
-  }, []);
+  // Mutations
+  const createMutation = trpc.presets.create.useMutation({
+    onSuccess: () => utils.presets.list.invalidate(),
+  });
+  const updateMutation = trpc.presets.update.useMutation({
+    onSuccess: () => utils.presets.list.invalidate(),
+  });
+  const deleteMutation = trpc.presets.delete.useMutation({
+    onSuccess: () => utils.presets.list.invalidate(),
+  });
+  const setDefaultMutation = trpc.presets.setDefault.useMutation({
+    onSuccess: () => utils.presets.list.invalidate(),
+  });
+  const clearDefaultMutation = trpc.presets.clearDefault.useMutation({
+    onSuccess: () => utils.presets.list.invalidate(),
+  });
 
-  const update = useCallback((id: string, responsiveConfig: FullResponsiveConfig, name?: string) => {
-    const preset = updatePreset(id, responsiveConfig, name);
-    setPresets(loadPresets());
-    return preset;
-  }, []);
+  const create = async (name: string, responsiveConfig: FullResponsiveConfig) => {
+    const result = await createMutation.mutateAsync({
+      name,
+      responsiveConfig: responsiveConfig as any,
+    });
+    return result;
+  };
 
-  const remove = useCallback((id: string) => {
-    deletePreset(id);
-    setPresets(loadPresets());
-    setDefaultIdState(getDefaultPresetId());
-  }, []);
+  const update = async (id: number, responsiveConfig: FullResponsiveConfig, name?: string) => {
+    await updateMutation.mutateAsync({
+      id,
+      responsiveConfig: responsiveConfig as any,
+      name,
+    });
+  };
 
-  const setAsDefault = useCallback((id: string | null) => {
-    setDefaultPresetId(id);
-    setDefaultIdState(id);
-  }, []);
+  const remove = async (id: number) => {
+    await deleteMutation.mutateAsync({ id });
+  };
 
-  return { presets, defaultId, create, update, remove, setAsDefault };
+  const setAsDefault = async (id: number | null) => {
+    if (id) {
+      await setDefaultMutation.mutateAsync({ id });
+    } else if (defaultId) {
+      await clearDefaultMutation.mutateAsync({ id: defaultId });
+    }
+  };
+
+  return {
+    presets,
+    defaultId,
+    isLoading,
+    create,
+    update,
+    remove,
+    setAsDefault,
+  };
 }

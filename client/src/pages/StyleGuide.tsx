@@ -314,7 +314,7 @@ function PresetManager({ onApply, config }: { onApply: (config: FullResponsiveCo
   const { presets, defaultId, create, update, remove, setAsDefault } = usePresetStore();
   const [showSave, setShowSave] = useState(false);
   const [presetName, setPresetName] = useState('');
-  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
   const showNotif = (msg: string) => { setNotification(msg); setTimeout(() => setNotification(null), 2500); };
@@ -337,17 +337,17 @@ function PresetManager({ onApply, config }: { onApply: (config: FullResponsiveCo
     }
   };
   const handleUpdate = (preset: DesignPreset) => { update(preset.id, config); showNotif(`Preset "${preset.name}" aktualisiert`); };
-  const handleSetDefault = (id: string) => {
+  const handleSetDefault = (id: number) => {
     const isAlready = defaultId === id;
     setAsDefault(isAlready ? null : id);
     const p = presets.find(pp => pp.id === id);
     showNotif(isAlready ? 'Standard entfernt' : `"${p?.name}" als Standard gesetzt`);
   };
 
-  const formatDate = (iso: string) => {
-    const d = new Date(iso);
-    return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
-      ' ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  const formatDate = (d: Date | string) => {
+    const date = typeof d === 'string' ? new Date(d) : d;
+    return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+      ' ' + date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
@@ -394,7 +394,7 @@ function PresetManager({ onApply, config }: { onApply: (config: FullResponsiveCo
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {presets.map(preset => {
             const isDefault = defaultId === preset.id;
-            const isDeleting = confirmDelete === preset.id;
+            const isDeleting = confirmDelete !== null && confirmDelete === preset.id;
             return (
               <div key={preset.id} style={{
                 background: isDefault ? '#f0fdf4' : '#f8fafc',
@@ -411,7 +411,7 @@ function PresetManager({ onApply, config }: { onApply: (config: FullResponsiveCo
                   <span style={{ fontSize: 9, color: '#94a3b8', fontFamily: 'monospace' }}>{formatDate(preset.createdAt)}</span>
                 </div>
                 <div style={{ display: 'flex', gap: '3px', marginBottom: '0.5rem' }}>
-                  {[preset.tokens?.colorPrimary ?? preset.responsiveConfig?.desktop.tokens.colorPrimary ?? '#2196D3', preset.tokens?.colorDark ?? preset.responsiveConfig?.desktop.tokens.colorDark ?? '#1a1a2e', preset.tokens?.colorGray ?? preset.responsiveConfig?.desktop.tokens.colorGray ?? '#4a5568', preset.tokens?.colorAccent ?? preset.responsiveConfig?.desktop.tokens.colorAccent ?? '#00b4d8', preset.tokens?.colorBg ?? preset.responsiveConfig?.desktop.tokens.colorBg ?? '#ffffff'].map((c, i) => (
+                  {[preset.responsiveConfig?.desktop.tokens.colorPrimary ?? '#2196D3', preset.responsiveConfig?.desktop.tokens.colorDark ?? '#1a1a2e', preset.responsiveConfig?.desktop.tokens.colorGray ?? '#4a5568', preset.responsiveConfig?.desktop.tokens.colorAccent ?? '#00b4d8', preset.responsiveConfig?.desktop.tokens.colorBg ?? '#ffffff'].map((c, i) => (
                     <div key={i} style={{ width: 18, height: 12, borderRadius: 2, background: c, border: '1px solid rgba(0,0,0,0.1)' }} />
                   ))}
                 </div>
