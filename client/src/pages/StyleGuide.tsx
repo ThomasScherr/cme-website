@@ -7,10 +7,8 @@ import DiamondImage from '@/components/DiamondImage';
 import {
   DiamondId, SectionId, DIAMOND_LABELS, SECTION_LABELS,
   DEFAULT_DIAMOND_CONFIGS, DEFAULT_SECTION_HEIGHTS,
-  DesignPreset, usePresets,
-  loadTokens, loadDiamondConfigs, loadSectionHeights,
-  applyTokensToRoot, applyDiamondConfigsToRoot, applySectionHeightsToRoot,
 } from '@/hooks/useDesignTokens';
+import { DesignPreset, usePresetStore, getPresetConfig } from '@/hooks/usePresetStore';
 import {
   Breakpoint, useResponsiveTokens, applyBreakpointToElement,
   getDefaultResponsiveConfig, FullResponsiveConfig, loadResponsiveConfig, saveResponsiveConfig,
@@ -269,8 +267,8 @@ function SectionHeightEditor({ bp, config, onUpdate }: {
 
 // ── Preset Manager ────────────────────────────────────────────────────────
 
-function PresetManager({ onApply }: { onApply: () => void }) {
-  const { presets, defaultId, create, update, remove, apply, setAsDefault } = usePresets();
+function PresetManager({ onApply, config }: { onApply: (config: FullResponsiveConfig) => void; config: FullResponsiveConfig }) {
+  const { presets, defaultId, create, update, remove, setAsDefault } = usePresetStore();
   const [showSave, setShowSave] = useState(false);
   const [presetName, setPresetName] = useState('');
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
@@ -280,14 +278,22 @@ function PresetManager({ onApply }: { onApply: () => void }) {
 
   const handleSave = () => {
     if (!presetName.trim()) return;
-    create(presetName.trim());
+    create(presetName.trim(), config);
     setPresetName('');
     setShowSave(false);
     showNotif(`Preset "${presetName.trim()}" gespeichert`);
   };
 
-  const handleApply = (preset: DesignPreset) => { apply(preset); onApply(); showNotif(`Preset "${preset.name}" geladen`); };
-  const handleUpdate = (preset: DesignPreset) => { update(preset.id); showNotif(`Preset "${preset.name}" aktualisiert`); };
+  const handleApply = (preset: DesignPreset) => {
+    const presetConfig = getPresetConfig(preset);
+    if (presetConfig) {
+      onApply(presetConfig);
+      showNotif(`Preset "${preset.name}" geladen`);
+    } else {
+      showNotif('Legacy-Preset ohne Breakpoint-Daten – bitte neu speichern');
+    }
+  };
+  const handleUpdate = (preset: DesignPreset) => { update(preset.id, config); showNotif(`Preset "${preset.name}" aktualisiert`); };
   const handleSetDefault = (id: string) => {
     const isAlready = defaultId === id;
     setAsDefault(isAlready ? null : id);
@@ -362,7 +368,7 @@ function PresetManager({ onApply }: { onApply: () => void }) {
                   <span style={{ fontSize: 9, color: '#94a3b8', fontFamily: 'monospace' }}>{formatDate(preset.createdAt)}</span>
                 </div>
                 <div style={{ display: 'flex', gap: '3px', marginBottom: '0.5rem' }}>
-                  {[preset.tokens.colorPrimary, preset.tokens.colorDark, preset.tokens.colorGray, preset.tokens.colorAccent, preset.tokens.colorBg].map((c, i) => (
+                  {[preset.tokens?.colorPrimary ?? preset.responsiveConfig?.desktop.tokens.colorPrimary ?? '#2196D3', preset.tokens?.colorDark ?? preset.responsiveConfig?.desktop.tokens.colorDark ?? '#1a1a2e', preset.tokens?.colorGray ?? preset.responsiveConfig?.desktop.tokens.colorGray ?? '#4a5568', preset.tokens?.colorAccent ?? preset.responsiveConfig?.desktop.tokens.colorAccent ?? '#00b4d8', preset.tokens?.colorBg ?? preset.responsiveConfig?.desktop.tokens.colorBg ?? '#ffffff'].map((c, i) => (
                     <div key={i} style={{ width: 18, height: 12, borderRadius: 2, background: c, border: '1px solid rgba(0,0,0,0.1)' }} />
                   ))}
                 </div>
@@ -470,6 +476,13 @@ export default function StyleGuide() {
   }, [setActiveBreakpoint]);
 
   const handlePresetApply = useCallback(() => { setIframeKey(k => k + 1); }, []);
+
+  // Apply a full responsive config from a preset
+  const handlePresetApplyConfig = useCallback((presetConfig: FullResponsiveConfig) => {
+    saveResponsiveConfig(presetConfig, false);
+    // Force a full reload of the responsive hook state by reloading the page state
+    window.location.reload();
+  }, []);
 
   // Current breakpoint's tokens for the controls
   const bp = activeBreakpoint;
@@ -612,15 +625,13 @@ export default function StyleGuide() {
                   <Row label="Letter-Spacing H"><NumberInput value={bpTokens.letterSpacingHeading} onChange={v => updateTokenForBreakpoint(bp, 'letterSpacingHeading', v)} min={-3} max={5} step={0.5} unit="px" /></Row>
                 </Section>
 
-                <Section title="Logo-Höhe">
-                  <Row label="Desktop">
-                    <NumberInput value={config.desktop.tokens.logoHeightDesktop} onChange={v => updateTokenForBreakpoint('desktop', 'logoHeightDesktop', v)} min={16} max={200} unit="px" />
-                  </Row>
-                  <Row label="Tablet">
-                    <NumberInput value={config.tablet.tokens.logoHeightTablet} onChange={v => updateTokenForBreakpoint('tablet', 'logoHeightTablet', v)} min={16} max={200} unit="px" />
-                  </Row>
-                  <Row label="Mobile">
-                    <NumberInput value={config.mobile.tokens.logoHeightMobile} onChange={v => updateTokenForBreakpoint('mobile', 'logoHeightMobile', v)} min={16} max={200} unit="px" />
+                <Section title="Logo-Höhe" badge={bp.toUpperCase()}>
+                  <Row label={bp === 'desktop' ? 'Desktop' : bp === 'tablet' ? 'Tablet' : 'Mobile'}>
+                    <NumberInput
+                      value={bp === 'desktop' ? bpTokens.logoHeightDesktop : bp === 'tablet' ? bpTokens.logoHeightTablet : bpTokens.logoHeightMobile}
+                      onChange={v => updateTokenForBreakpoint(bp, bp === 'desktop' ? 'logoHeightDesktop' : bp === 'tablet' ? 'logoHeightTablet' : 'logoHeightMobile', v)}
+                      min={16} max={200} unit="px"
+                    />
                   </Row>
                 </Section>
 
@@ -662,7 +673,7 @@ export default function StyleGuide() {
             )}
 
             {/* TAB: Presets */}
-            {activeTab === 'presets' && <PresetManager onApply={handlePresetApply} />}
+            {activeTab === 'presets' && <PresetManager config={config} onApply={handlePresetApplyConfig} />}
 
             {/* TAB: CSS Export */}
             {activeTab === 'export' && (

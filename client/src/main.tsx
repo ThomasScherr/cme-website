@@ -4,16 +4,22 @@ import "./index.css";
 import {
   loadResponsiveConfig,
   applyResponsiveConfigToRoot,
+  saveResponsiveConfig,
 } from "./hooks/useResponsiveTokens";
 import {
   loadDefaultPreset,
-  applyPreset,
-} from "./hooks/useDesignTokens";
+  getPresetConfig,
+} from "./hooks/usePresetStore";
 
 // ── Initial load: check for default preset first, then responsive config ──
 const defaultPreset = loadDefaultPreset();
 if (defaultPreset) {
-  applyPreset(defaultPreset);
+  const presetConfig = getPresetConfig(defaultPreset);
+  if (presetConfig) {
+    // Full responsive config available – apply it
+    saveResponsiveConfig(presetConfig);
+    applyResponsiveConfigToRoot(presetConfig);
+  }
 }
 
 // Always apply the responsive config (it includes desktop values + tablet/mobile overrides)
