@@ -145,3 +145,4 @@
 - [x] Leistungselektronik Karte: Akkuschrauber durch Haus+Ladetechnik-Bild ersetzen
 - [x] Smart Devices Karte: IoT-Module-Bild hinzufügen
 - [x] ServicesSection: Hintergrund von dunkel/schwarz auf hellen Blauton ändern
+- [x] Leistungselektronik Kachel: Bild durch neues, größeres Bild (Haus+Solar+Ladesäule) ersetzen
