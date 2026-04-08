@@ -32,3 +32,5 @@
 - [x] Footer-Logo: Verzerrung und Übergröße beheben (feste clamp-Höhe statt cme-logo-img Klasse)
 - [x] Hero-Sektion: Diagonales Bild durch Raute mit einstellbarem Kantenradius ersetzen
 - [x] Styleguide: Rauten-Kantenradius als CSS-Variable (--cme-diamond-radius, Default 0.1) im Styleguide-Editor einstellbar
+- [x] Hero-Rauten: Aus Container herausnehmen, absolut in Sektion positionieren (kein Abschneiden)
+- [x] Hero-Rauten: Bild-Raute und Akzent-Raute zueinander versetzt (nicht zentriert)
