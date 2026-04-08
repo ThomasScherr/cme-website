@@ -34,8 +34,12 @@ export default function Footer() {
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png"
               alt="CME Control Motion Electronics"
-              className="cme-logo-img"
-              style={{ width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
+              style={{
+                height: 'clamp(28px, 3vw, 40px)',
+                width: 'auto',
+                objectFit: 'contain',
+                marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+              }}
             />
             <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: '420px', lineHeight: 1.65 }}>
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.

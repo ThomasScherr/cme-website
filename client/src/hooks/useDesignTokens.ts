@@ -269,7 +269,7 @@ export const DEFAULT_TOKENS: DesignTokens = {
   lineHeightHeading: 1.15,
   lineHeightBody: 1.65,
   letterSpacingHeading: -0.5,
-  diamondRadius: 0.036,
+  diamondRadius: 0.1,
   borderRadius: 4,
   sectionPadding: 80,
   containerMaxWidth: 1280,

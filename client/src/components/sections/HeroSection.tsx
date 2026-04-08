@@ -1,13 +1,13 @@
 // CME Website – Hero Section
-// Design: Based on CME Company Presentation (page 1)
-// Layout: Text left, diagonal-clipped image right (desktop), stacked on mobile
-// Uses the same diagonal image treatment as the CME corporate presentation
+// Design: Text left, diamond (rotated square) image right
+// The diamond has rounded corners controlled by --cme-diamond-radius from the Styleguide
+// The image fills the diamond completely with no clipping artifacts
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
-// Hero image: SMD pick-and-place machine from CME production facility
+// Hero image: Production line overview from CME facility
 const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0658__1920px_20e40d19.jpg';
 
 export default function HeroSection() {
@@ -107,46 +107,61 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── Diagonal Image Column (CME Presentation Style) ── */}
-          <div className="w-full lg:w-[50%] relative" style={{ minHeight: '300px' }}>
+          {/* ── Diamond Image Column ── */}
+          <div className="w-full lg:w-[50%] relative flex items-center justify-center overflow-hidden" style={{ minHeight: '300px' }}>
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.85, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="relative"
+              style={{
+                width: 'min(340px, 48vw)',
+                maxWidth: '100%',
+                aspectRatio: '1 / 1',
+              }}
             >
-              {/* Light blue accent shape behind image */}
+              {/* Light blue accent diamond behind (slightly larger, offset) */}
               <div
                 style={{
                   position: 'absolute',
-                  top: '-3%',
-                  right: '-5%',
-                  bottom: '5%',
-                  left: '5%',
+                  top: '-4%',
+                  left: '-4%',
+                  width: '108%',
+                  height: '108%',
                   background: 'rgba(33, 150, 211, 0.08)',
-                  clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)',
-                  WebkitClipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)',
+                  transform: 'rotate(45deg)',
+                  borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
                   zIndex: 0,
                 }}
               />
 
-              {/* Main hero image with diagonal clip */}
-              <img
-                src={HERO_IMAGE}
-                alt="CME Elektronikentwicklung und Fertigung"
+              {/* Main diamond with image */}
+              <div
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: '600px',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  display: 'block',
                   position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                  transform: 'rotate(45deg)',
+                  borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
+                  overflow: 'hidden',
                   zIndex: 1,
-                  clipPath: 'polygon(25% 0, 100% 0, 100% 100%, 0 100%)',
-                  WebkitClipPath: 'polygon(25% 0, 100% 0, 100% 100%, 0 100%)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
                 }}
-              />
+              >
+                <img
+                  src={HERO_IMAGE}
+                  alt="CME Elektronikentwicklung und Fertigung"
+                  style={{
+                    /* Counter-rotate the image so it appears upright */
+                    transform: 'rotate(-45deg) scale(1.42)',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    display: 'block',
+                  }}
+                />
+              </div>
             </motion.div>
           </div>
         </div>

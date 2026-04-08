@@ -29,3 +29,6 @@
 - [x] Hellblauer Akzent-Shape als wiederkehrendes Element eingebaut
 - [x] Footer-Logo: SVG durch PNG ersetzt (war broken)
 - [x] USP-Karten: group-hover Fix für Akzentlinie
+- [x] Footer-Logo: Verzerrung und Übergröße beheben (feste clamp-Höhe statt cme-logo-img Klasse)
+- [x] Hero-Sektion: Diagonales Bild durch Raute mit einstellbarem Kantenradius ersetzen
+- [x] Styleguide: Rauten-Kantenradius als CSS-Variable (--cme-diamond-radius, Default 0.1) im Styleguide-Editor einstellbar
