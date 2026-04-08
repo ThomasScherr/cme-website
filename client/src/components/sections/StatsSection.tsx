@@ -1,77 +1,69 @@
-// CME Website – Stats Section
-// Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
-
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { Calendar, FolderCheck, Shield, MapPin } from 'lucide-react';
 
-const vp = { once: true, margin: '-80px' };
+function AnimatedNumber({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 2000;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function StatsSection() {
   const { t } = useLanguage();
 
   const stats = [
-    { value: '15+', label: t.stats.years },
-    { value: '500+', label: t.stats.projects },
-    { value: t.stats.standards_val, label: t.stats.standards },
-    { value: t.stats.location_val, label: t.stats.location },
+    { icon: Calendar, value: 25, suffix: '+', label: t.stats.years },
+    { icon: FolderCheck, value: 500, suffix: '+', label: t.stats.projects },
+    { icon: Shield, value: 0, suffix: '', label: t.stats.standards, displayValue: t.stats.standards_val },
+    { icon: MapPin, value: 0, suffix: '', label: t.stats.location, displayValue: t.stats.location_val },
   ];
 
   return (
-    <section
-      style={{
-        background: 'var(--cme-color-dark)',
-        color: '#fff',
-        paddingTop: 'var(--cme-section-stats-pt, 40px)',
-        paddingBottom: 'var(--cme-section-stats-pb, 40px)',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 'min(1600px, 90vw)',
-          margin: '0 auto',
-          paddingLeft: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
-          paddingRight: 'clamp(1rem, 2vw + 0.5rem, 4rem)',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))',
-            gap: 'clamp(1.5rem, 3vw, 4rem)',
-          }}
-        >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              style={{ textAlign: 'center' }}
-            >
-              <div
-                style={{
-                  fontSize: 'var(--cme-font-size-h2)',
-                  fontFamily: 'var(--cme-font-family)',
-                  fontWeight: 900,
-                  color: 'var(--cme-color-primary)',
-                  marginBottom: 'clamp(0.35rem, 0.8vw, 0.75rem)',
-                }}
+    <section className="py-16 bg-cme-light border-y border-gray-100">
+      <div className="container">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="text-center"
               >
-                {stat.value}
-              </div>
-              <div
-                style={{
-                  fontSize: 'var(--cme-font-size-xs)',
-                  color: 'rgba(255,255,255,0.50)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.12em',
-                }}
-              >
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-cme-blue/10 text-cme-blue mb-4">
+                  <Icon size={22} />
+                </div>
+                <div className="text-3xl lg:text-4xl font-bold text-cme-dark mb-1">
+                  {stat.displayValue ? (
+                    stat.displayValue
+                  ) : (
+                    <AnimatedNumber target={stat.value} suffix={stat.suffix} />
+                  )}
+                </div>
+                <div className="text-sm text-cme-gray">{stat.label}</div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

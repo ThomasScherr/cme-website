@@ -34,3 +34,16 @@
 - [x] Styleguide: Rauten-Kantenradius als CSS-Variable (--cme-diamond-radius, Default 0.1) im Styleguide-Editor einstellbar
 - [x] Hero-Rauten: Aus Container herausnehmen, absolut in Sektion positionieren (kein Abschneiden)
 - [x] Hero-Rauten: Bild-Raute und Akzent-Raute zueinander versetzt (nicht zentriert)
+- [ ] REBUILD: Gesamte Website mit Tailwind CSS und React neu aufbauen
+- [x] REBUILD: Alten Styleguide löschen (StyleGuide.tsx, useDesignTokens.ts, etc.)
+- [ ] REBUILD: Rauten korrekt als hochkant-Rauten implementieren (Spitzen oben/unten)
+- [ ] REBUILD: Navigation mit Tailwind neu aufbauen
+- [ ] REBUILD: Hero-Sektion mit korrekten Rauten und Framer Motion
+- [ ] REBUILD: Stats-Sektion mit Tailwind
+- [ ] REBUILD: Services-Sektionen mit Bildern und Tailwind
+- [ ] REBUILD: USP-Sektion mit Tailwind
+- [ ] REBUILD: Process-Sektion mit Tailwind
+- [ ] REBUILD: Markets-Sektion mit Tailwind
+- [ ] REBUILD: Contact-Sektion mit Tailwind
+- [ ] REBUILD: Footer mit Tailwind
+- [ ] REBUILD: App.tsx und Home.tsx aktualisieren

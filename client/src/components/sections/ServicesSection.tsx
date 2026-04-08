@@ -1,115 +1,78 @@
-// CME Website – Services Section
-// Design: Based on CME Company Presentation
-// Images from the actual CME presentation with diagonal clip-path treatment
-// Layout: Two-column on desktop (text + image), single column on mobile
-
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import { Cpu, Factory, RefreshCw, CheckCircle2 } from 'lucide-react';
 
-// Real CME facility photos from control-motion.de
 const IMAGES = {
-  dev: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg', // EMC lab with monitors
-  mfg: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0425__1920px_178fc1eb.jpg', // SMD pick-and-place machine
-  lifecycle: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2412__1920px_2dc0dd4c.jpg', // Testing equipment
+  dev: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg',
+  mfg: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0425__1920px_178fc1eb.jpg',
+  lifecycle: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2055__1920px_00c91d17.jpg',
 };
 
-const vp = { once: true, margin: '-80px' };
-
-/** Fluid section label */
-function ServiceLabel({ num, tag, dark = false }: { num: string; tag: string; dark?: boolean }) {
-  return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
-      <span style={{ background: 'var(--cme-color-primary)', color: '#fff', fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, padding: '0.3em 0.75em' }}>
-        {num}
-      </span>
-      <span style={{ fontSize: 'var(--cme-font-size-xs)', color: dark ? 'rgba(255,255,255,0.45)' : 'var(--cme-color-gray)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
-        {tag}
-      </span>
-    </div>
-  );
+interface ServiceBlockProps {
+  title: string;
+  desc: string;
+  items: readonly string[];
+  image: string;
+  icon: React.ReactNode;
+  reverse?: boolean;
+  index: number;
+  bgClass?: string;
+  darkText?: boolean;
 }
 
-/** Diagonal-clipped image block matching CME presentation style */
-function DiagonalImageBlock({ src, alt, side }: { src: string; alt: string; side: 'left' | 'right' }) {
-  // Clip paths matching the CME presentation diagonal treatment
-  const imageClip = side === 'left'
-    ? 'polygon(0 20%, 80% 0, 100% 100%, 0 100%)'
-    : 'polygon(20% 0, 100% 20%, 100% 100%, 0 100%)';
-
-  const accentClip = side === 'left'
-    ? 'polygon(5% 15%, 85% 0, 95% 90%, 0 95%)'
-    : 'polygon(15% 0, 95% 15%, 100% 95%, 5% 90%)';
+function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass = 'bg-white', darkText = false }: ServiceBlockProps) {
+  const textColor = darkText ? 'text-white' : 'text-cme-dark';
+  const descColor = darkText ? 'text-white/60' : 'text-cme-gray';
+  const itemColor = darkText ? 'text-white/80' : 'text-cme-dark/80';
 
   return (
-    <div className="relative w-full">
-      {/* Light blue accent shape */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: '-4%',
-          background: 'rgba(33, 150, 211, 0.07)',
-          clipPath: accentClip,
-          WebkitClipPath: accentClip,
-          zIndex: 0,
-        }}
-      />
-      {/* Image with diagonal clip */}
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        style={{
-          width: '100%',
-          height: 'auto',
-          maxHeight: '480px',
-          objectFit: 'cover',
-          objectPosition: 'center 30%',
-          display: 'block',
-          position: 'relative',
-          zIndex: 1,
-          clipPath: imageClip,
-          WebkitClipPath: imageClip,
-        }}
-      />
-    </div>
-  );
-}
-
-/** Service block with two-column layout */
-function ServiceBlock({
-  bg,
-  imageSide,
-  imageSrc,
-  imageAlt,
-  children,
-}: {
-  bg?: string;
-  imageSide: 'left' | 'right';
-  imageSrc: string;
-  imageAlt: string;
-  children: React.ReactNode;
-}) {
-  const isLeft = imageSide === 'left';
-
-  return (
-    <div style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(3rem, 5vw, 6rem) 0', background: bg }}>
-      <div style={{ maxWidth: 'min(1400px, 90vw)', margin: '0 auto', padding: '0 clamp(1rem, 3vw, 4rem)' }}>
-        <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
-          {/* Text column */}
-          <div className="w-full lg:w-[55%]" style={{ order: isLeft ? 2 : 1, position: 'relative', zIndex: 2 }}>
-            {children}
-          </div>
-
-          {/* Image column – visible on all devices */}
+    <div className={`py-16 lg:py-24 ${bgClass}`}>
+      <div className="container">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center`}>
+          {/* Image with diamond */}
           <motion.div
-            className="w-full lg:w-[45%]"
-            style={{ order: isLeft ? 1 : 2 }}
-            initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+            initial={{ opacity: 0, x: reverse ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={`${reverse ? 'lg:order-2' : ''}`}
           >
-            <DiagonalImageBlock src={imageSrc} alt={imageAlt} side={imageSide} />
+            <div className="relative mx-auto w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] lg:w-[320px] lg:h-[320px]">
+              {/* Accent diamond behind */}
+              <div className="absolute -top-4 -left-4 w-[90px] sm:w-[110px] lg:w-[130px] diamond bg-cme-blue/[0.07]" />
+              {/* Main image diamond */}
+              <div className="relative diamond w-full shadow-xl shadow-cme-blue/10">
+                <img src={image} alt={title} />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Text content */}
+          <motion.div
+            initial={{ opacity: 0, x: reverse ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className={`${reverse ? 'lg:order-1' : ''}`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-cme-blue/10 text-cme-blue">
+                {icon}
+              </div>
+              <span className="text-xs font-semibold tracking-[0.15em] uppercase text-cme-blue">
+                0{index + 1}
+              </span>
+            </div>
+            <h3 className={`text-2xl lg:text-3xl font-bold ${textColor} mb-4`}>{title}</h3>
+            <p className={`${descColor} leading-relaxed mb-6`}>{desc}</p>
+            <ul className="space-y-2.5">
+              {items.map((item, i) => (
+                <li key={i} className={`flex items-start gap-2.5 text-sm ${itemColor}`}>
+                  <CheckCircle2 size={16} className="text-cme-blue mt-0.5 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </div>
@@ -120,80 +83,66 @@ function ServiceBlock({
 export default function ServicesSection() {
   const { t } = useLanguage();
 
+  const services = [
+    {
+      title: t.services.dev_title,
+      desc: t.services.dev_desc,
+      items: t.services.dev_items,
+      image: IMAGES.dev,
+      icon: <Cpu size={20} />,
+      bgClass: 'bg-white',
+    },
+    {
+      title: t.services.mfg_title,
+      desc: t.services.mfg_desc,
+      items: t.services.mfg_items,
+      image: IMAGES.mfg,
+      icon: <Factory size={20} />,
+      bgClass: 'bg-cme-light',
+    },
+    {
+      title: t.services.lifecycle_title,
+      desc: t.services.lifecycle_desc,
+      items: t.services.lifecycle_items,
+      image: IMAGES.lifecycle,
+      icon: <RefreshCw size={20} />,
+      bgClass: 'bg-cme-dark',
+      darkText: true,
+    },
+  ];
+
   return (
-    <section id="services" className="bg-background">
-      {/* Header */}
-      <div style={{ maxWidth: 'min(1400px, 90vw)', margin: '0 auto', padding: 'clamp(3rem, 5vw, 6rem) clamp(1rem, 3vw, 4rem) clamp(1rem, 2vw, 3rem)' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={vp} transition={{ duration: 0.5 }}>
-          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 600, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
-            Services
-          </p>
-          <h2 style={{ marginBottom: '1rem' }}>{t.services.headline}</h2>
-          <p className="max-w-full md:max-w-[600px]" style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)' }}>
-            {t.services.sub}
-          </p>
-        </motion.div>
+    <section id="services">
+      {/* Section header */}
+      <div className="bg-white pt-20 lg:pt-28 pb-8">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-cme-blue mb-3">
+              Services
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+              {t.services.headline}
+            </h2>
+            <p className="text-cme-gray max-w-2xl">
+              {t.services.sub}
+            </p>
+          </motion.div>
+        </div>
       </div>
 
-      {/* ── Service 1: Development – image left (like presentation page 4) ── */}
-      <ServiceBlock imageSide="left" imageSrc={IMAGES.dev} imageAlt={t.services.dev_title}>
-        <motion.div
-          initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
-        >
-          <ServiceLabel num="01" tag="Entwicklung" />
-          <h3>{t.services.dev_title}</h3>
-          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'var(--cme-color-gray)' }}>{t.services.dev_desc}</p>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {t.services.dev_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)' }}>
-                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      </ServiceBlock>
-
-      {/* ── Service 2: Manufacturing – image right ── */}
-      <ServiceBlock bg="var(--cme-color-bg-alt, #f5f6f8)" imageSide="right" imageSrc={IMAGES.mfg} imageAlt={t.services.mfg_title}>
-        <motion.div
-          initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
-        >
-          <ServiceLabel num="02" tag="EMS Fertigung" />
-          <h3>{t.services.mfg_title}</h3>
-          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'var(--cme-color-gray)' }}>{t.services.mfg_desc}</p>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {t.services.mfg_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)' }}>
-                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-dark)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      </ServiceBlock>
-
-      {/* ── Service 3: Lifecycle – dark background, image left ── */}
-      <ServiceBlock bg="var(--cme-color-dark)" imageSide="left" imageSrc={IMAGES.lifecycle} imageAlt={t.services.lifecycle_title}>
-        <motion.div
-          initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={vp} transition={{ duration: 0.5, delay: 0.15 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
-        >
-          <ServiceLabel num="03" tag="Lifecycle" dark />
-          <h3 style={{ color: '#fff' }}>{t.services.lifecycle_title}</h3>
-          <p style={{ fontSize: 'var(--cme-font-size-base)', color: 'rgba(255,255,255,0.60)' }}>{t.services.lifecycle_desc}</p>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {t.services.lifecycle_items.map((item, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.80)' }}>
-                <span style={{ width: '6px', height: '6px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', flexShrink: 0 }} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      </ServiceBlock>
+      {/* Service blocks */}
+      {services.map((service, i) => (
+        <ServiceBlock
+          key={i}
+          {...service}
+          reverse={i % 2 === 1}
+          index={i}
+        />
+      ))}
     </section>
   );
 }
