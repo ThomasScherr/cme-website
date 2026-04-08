@@ -125,3 +125,4 @@
 - [x] FIX: Röntgeninspektion von Qualitätsseite entfernen (nicht inhouse)
 - [x] FIX: Traceability aufwerten – datenbankgestützt, vernetzte Geräte, maximale Rückverfolgbarkeit
 - [x] UX-Seite: Bilder ohne Hintergrund/Kasten – 3D schwebend darstellen (kein rounded-2xl bg-white p-4 shadow)
+- [x] SubPageTemplate: Intro-Textblock nach rechts, links davon eine Raute mit Bild

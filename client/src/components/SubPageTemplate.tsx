@@ -127,10 +127,43 @@ export default function SubPageTemplate({
       {/* Content */}
       <section className="section-pad">
         <div className="container">
-          <div className="max-w-3xl">
-            <p className="fluid-body-lg text-gray-700 leading-relaxed">
-              {isDE ? introDE : introEN}
-            </p>
+          {/* Intro: Diamond image left + Text right */}
+          <div className="grid lg:grid-cols-[auto_1fr] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
+            {/* Small diamond with hero image */}
+            <div className="relative flex items-center justify-center">
+              <div
+                className="relative overflow-hidden shadow-lg"
+                style={{
+                  width: 'clamp(10rem, 7rem + 7vw, 16rem)',
+                  height: 'clamp(10rem, 7rem + 7vw, 16rem)',
+                  transform: 'rotate(45deg)',
+                  borderRadius: 'clamp(0.5rem, 0.3rem + 0.4vw, 1rem)',
+                }}
+              >
+                <img
+                  src={heroImg}
+                  alt={isDE ? titleDE : titleEN}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ transform: 'rotate(-45deg) scale(1.42)' }}
+                />
+              </div>
+              {/* Accent diamond behind */}
+              <div
+                className="absolute -z-10 bg-cme-blue/8"
+                style={{
+                  width: 'clamp(12rem, 9rem + 8vw, 19rem)',
+                  height: 'clamp(12rem, 9rem + 8vw, 19rem)',
+                  transform: 'rotate(45deg) translate(6%, 6%)',
+                  borderRadius: 'clamp(0.5rem, 0.3rem + 0.4vw, 1rem)',
+                }}
+              />
+            </div>
+            {/* Text on the right */}
+            <div>
+              <p className="fluid-body-lg text-gray-700 leading-relaxed">
+                {isDE ? introDE : introEN}
+              </p>
+            </div>
           </div>
 
           {/* Features Grid */}
