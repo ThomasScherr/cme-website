@@ -83,7 +83,7 @@ export default function MarketsSection() {
           <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             {isDE ? 'Branchenspezifische Elektroniklösungen.' : 'Industry-specific electronics solutions.'}
           </h2>
-          <p className="fluid-body-lg text-gray-500 max-w-xl">
+          <p className="fluid-body-lg text-gray-500">
             {isDE
               ? 'Wir denken in Ihren Systemherausforderungen – nicht in Technologien.'
               : 'We think in your system challenges – not in technologies.'}

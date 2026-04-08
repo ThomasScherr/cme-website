@@ -1,75 +1,73 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowRight, Cpu, MemoryStick, Waves, FlaskConical, MonitorSmartphone, Code2, Cog } from 'lucide-react';
+import { ArrowRight, Cpu, Cog, SlidersHorizontal, Waves, ShieldCheck, FlaskConical } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 const HERO_IMG = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
 
-const subpages = [
+/* ── 6 Competency Cards (ENT-1) ── */
+const competencies = [
   {
     icon: Cpu,
-    titleDE: 'Hardwareentwicklung',
-    titleEN: 'Hardware Development',
-    descDE: 'Systemarchitektur, analoge und digitale Schaltungsentwicklung, PCB-Layout und Leistungselektronik – maximale Effizienz und hohe Energiedichte auf minimalem Bauraum.',
-    descEN: 'System architecture, analog and digital circuit design, PCB layout and power electronics – maximum efficiency and high energy density in minimal space.',
+    titleDE: 'Hard & Software Design',
+    titleEN: 'Hard & Software Design',
+    subtitleDE: 'Embedded Microcontroller Systeme',
+    subtitleEN: 'Embedded Microcontroller Systems',
+    descDE: 'Hardware-Entwicklung, Schaltungsdesign, Embedded Software und Echtzeitsysteme.',
+    descEN: 'Hardware development, circuit design, embedded software and real-time systems.',
     href: '/entwicklung/hardware-software',
-    img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
   },
   {
-    icon: MemoryStick,
-    titleDE: 'Embedded Software',
-    titleEN: 'Embedded Software',
-    descDE: 'Vom Demo-Code bis zur komplexen Serienapplikation: Firmware für Mess-, Steuer- und Regelungssysteme, Antriebs- und Motorsteuerungen sowie Lichttechnik.',
-    descEN: 'From demo code to complex series applications: firmware for measurement, control and regulation systems, drive and motor controllers, and lighting technology.',
-    href: '/entwicklung/hardware-software',
-    img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
+    icon: Cog,
+    titleDE: 'E-Motor Design',
+    titleEN: 'E-Motor Design',
+    subtitleDE: 'PM-Motor-Design – Laminatkonstruktion und -layout',
+    subtitleEN: 'PM Motor Design – Lamination Construction and Layout',
+    descDE: 'Auslegung permanentmagneterregter Motoren, FEA-basiertes Motordesign mit Motor-CAD/ANSYS.',
+    descEN: 'Design of permanent magnet motors, FEA-based motor design with Motor-CAD/ANSYS.',
+    href: '/entwicklung/e-motor-design',
+  },
+  {
+    icon: SlidersHorizontal,
+    titleDE: 'Control Design',
+    titleEN: 'Control Design',
+    subtitleDE: 'Modellbasiertes Reglerdesign · MIL, SIL, HIL',
+    subtitleEN: 'Model-Based Controller Design · MIL, SIL, HIL',
+    descDE: 'Entwicklung und Verifikation von Regelalgorithmen entlang des V-Modells.',
+    descEN: 'Development and verification of control algorithms along the V-model.',
+    href: '/entwicklung/control-design',
   },
   {
     icon: Waves,
     titleDE: 'Simulation',
     titleEN: 'Simulation',
-    descDE: 'Systemsimulation, Antriebssimulation, Reglerentwicklung, Schaltungs- und Verlustsimulation, Thermosimulation und E-Motor-Auslegung – wir validieren Ihr Design vor dem ersten Prototypen.',
-    descEN: 'System simulation, drive simulation, controller development, circuit and loss simulation, thermal simulation and e-motor design – we validate your design before the first prototype.',
+    subtitleDE: 'Elektrische, System- und thermische Simulation',
+    subtitleEN: 'Electrical, System and Thermal Simulation',
+    descDE: 'Risikominimierung vor dem Prototypenbau durch MATLAB, COMSOL und SPICE.',
+    descEN: 'Risk minimization before prototype construction using MATLAB, COMSOL and SPICE.',
     href: '/entwicklung/simulation',
-    img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg`,
+  },
+  {
+    icon: ShieldCheck,
+    titleDE: 'Validierung & EMV',
+    titleEN: 'Validation & EMC',
+    subtitleDE: 'Absicherung unter realen Einsatzbedingungen',
+    subtitleEN: 'Validation Under Real Operating Conditions',
+    descDE: 'Leitungsgebundene EMV-Prüfung in eigener Schirmkabine, Umwelt- und Lebensdauertests.',
+    descEN: 'Conducted EMC testing in our own shielded chamber, environmental and lifetime tests.',
+    href: '/entwicklung/validierung-emv',
   },
   {
     icon: FlaskConical,
-    titleDE: 'Test & Verifikation',
+    titleDE: 'Test & Verification',
     titleEN: 'Test & Verification',
-    descDE: 'EMV-Tests in unserem eigenen EMV-Messbereich, Umweltsimulationen und individuelle Prüfstände – ein hoher Absicherungsgrad für eine reibungslose Serienproduktion.',
-    descEN: 'EMC tests in our own EMC measurement facility, environmental simulations and custom test benches – a high level of validation for smooth series production.',
+    subtitleDE: 'Funktions-, Umwelt- und Lebenszyklustests',
+    subtitleEN: 'Functional, Environmental and Lifecycle Tests',
+    descDE: 'Testautomatisierung und automatische Datenanalyse.',
+    descEN: 'Test automation and automatic data analysis.',
     href: '/entwicklung/test-verifikation',
-    img: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`,
-  },
-  {
-    icon: Cog,
-    titleDE: 'E-Motor-Design',
-    titleEN: 'E-Motor Design',
-    descDE: 'Auslegung und Optimierung von Elektromotoren (EC, DC, Synchronmaschinen) – Magnetkreis-Design, Blechschnitt-Konstruktion und Hochtemperatur-Auslegung.',
-    descEN: 'Design and optimization of electric motors (EC, DC, synchronous machines) – magnetic circuit design, lamination construction and high-temperature design.',
-    href: '/entwicklung/e-motor-design',
-    img: `${CDN}/JK_1736__1920px_e713f7ca.jpg`,
-  },
-  {
-    icon: MonitorSmartphone,
-    titleDE: 'UX & Interface Engineering',
-    titleEN: 'UX & Interface Engineering',
-    descDE: 'Bedienkonzepte, Userflows und Interface-Design für technische Systeme – von der Analyse bis zur seriennahen Umsetzung.',
-    descEN: 'Operating concepts, user flows and interface design for technical systems – from analysis to production-ready implementation.',
-    href: '/entwicklung/ux-interface-engineering',
-    img: `${CDN}/interface-prototyping_a2418e21.png`,
-  },
-  {
-    icon: Code2,
-    titleDE: 'Software & Digitale Systeme',
-    titleEN: 'Software & Digital Systems',
-    descDE: 'Web-Apps, Mobile Apps, Backend-Architektur und Cloud-Integration – digitale Lösungen für Ihre Produkte.',
-    descEN: 'Web apps, mobile apps, backend architecture and cloud integration – digital solutions for your products.',
-    href: '/entwicklung/software-digitale-systeme',
-    img: `${CDN}/web-apps_26e3e533.png`,
   },
 ];
 
@@ -104,7 +102,7 @@ export default function Entwicklung() {
                 </Link>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative flex items-center justify-center">
               <div
                 className="diamond mx-auto"
                 style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}
@@ -116,61 +114,67 @@ export default function Entwicklung() {
         </div>
       </section>
 
-      {/* Subpages Grid */}
+      {/* ── 2×3 Competency Grid (ENT-1) ── */}
       <section className="section-pad">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">
-            {isDE ? 'Unsere Entwicklungsleistungen' : 'Our Development Services'}
+            {isDE ? 'Entwicklung Services – Elektronik im Überblick' : 'Development Services – Electronics Overview'}
           </h2>
-          <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
-            {isDE
-              ? 'Sieben Kompetenzfelder für Ihre Elektronikentwicklung – von der Hardwareentwicklung über E-Motor-Design bis zum fertigen digitalen Produkt.'
-              : 'Seven competence areas for your electronics development – from hardware development through e-motor design to the finished digital product.'}
-          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
-            {subpages.map((page, i) => (
+            {competencies.map((card, i) => (
               <motion.div
-                key={page.href + i}
+                key={card.href}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
               >
-                <Link href={page.href} className="group block h-full">
-                  <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={page.img}
-                        alt={isDE ? page.titleDE : page.titleEN}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
+                <Link href={card.href} className="group block h-full">
+                  <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col fluid-card">
+                    {/* Icon + Title */}
+                    <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
+                      <div
+                        className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                        style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                      >
+                        <card.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+                      </div>
+                      <h3 className="fluid-h4 text-cme-dark font-bold">
+                        {isDE ? card.titleDE : card.titleEN}
+                      </h3>
                     </div>
-                    <div className="fluid-card flex flex-col flex-1">
-                      <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
-                        <div
-                          className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
-                          style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
-                        >
-                          <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
-                        </div>
-                        <h3 className="fluid-h4 text-cme-dark">
-                          {isDE ? page.titleDE : page.titleEN}
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 fluid-small leading-relaxed flex-1">
-                        {isDE ? page.descDE : page.descEN}
-                      </p>
-                      <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-xs)' }}>
-                        {isDE ? 'Mehr erfahren' : 'Learn more'}
-                        <ArrowRight size={16} />
-                      </div>
+                    {/* Subtitle */}
+                    <p className="text-cme-blue font-medium fluid-small" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+                      {isDE ? card.subtitleDE : card.subtitleEN}
+                    </p>
+                    {/* Description */}
+                    <p className="text-gray-600 fluid-small leading-relaxed flex-1">
+                      {isDE ? card.descDE : card.descEN}
+                    </p>
+                    {/* Link arrow */}
+                    <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-sm)' }}>
+                      {isDE ? 'Mehr erfahren' : 'Learn more'}
+                      <ArrowRight size={16} />
                     </div>
                   </div>
                 </Link>
               </motion.div>
             ))}
           </div>
+
+          {/* Closing statement below grid */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-gray-600 fluid-body-lg text-center max-w-3xl mx-auto"
+            style={{ marginTop: 'var(--space-gap-lg)' }}
+          >
+            {isDE
+              ? 'Technische Tiefe statt Koordination. Alle Leistungen erbringen wir im Rahmen von Entwicklungsprojekten und auch als Einzelleistung zur Absicherung Ihrer Projekte.'
+              : 'Technical depth instead of coordination. We deliver all services as part of development projects and also as individual services to safeguard your projects.'}
+          </motion.p>
         </div>
       </section>
 

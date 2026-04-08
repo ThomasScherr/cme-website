@@ -17,6 +17,9 @@ const TestVerifikation = lazy(() => import("./pages/entwicklung/TestVerifikation
 const UxInterfaceEngineering = lazy(() => import("./pages/entwicklung/UxInterfaceEngineering"));
 const SoftwareDigitaleSysteme = lazy(() => import("./pages/entwicklung/SoftwareDigitaleSysteme"));
 const EMotorDesign = lazy(() => import("./pages/entwicklung/EMotorDesign"));
+const ControlDesign = lazy(() => import("./pages/entwicklung/ControlDesign"));
+const ValidierungEmv = lazy(() => import("./pages/entwicklung/ValidierungEmv"));
+const KiEntwicklung = lazy(() => import("./pages/entwicklung/KiEntwicklung"));
 
 const Fertigung = lazy(() => import("./pages/Fertigung"));
 const Leiterplatten = lazy(() => import("./pages/fertigung/Leiterplatten"));
@@ -61,6 +64,9 @@ function Router() {
         <Route path="/entwicklung/ux-interface-engineering" component={UxInterfaceEngineering} />
         <Route path="/entwicklung/software-digitale-systeme" component={SoftwareDigitaleSysteme} />
         <Route path="/entwicklung/e-motor-design" component={EMotorDesign} />
+        <Route path="/entwicklung/control-design" component={ControlDesign} />
+        <Route path="/entwicklung/validierung-emv" component={ValidierungEmv} />
+        <Route path="/entwicklung/ki-entwicklung" component={KiEntwicklung} />
 
         {/* Fertigung */}
         <Route path="/fertigung" component={Fertigung} />

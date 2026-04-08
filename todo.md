@@ -165,3 +165,8 @@
 - [ ] Vollständiges Textdokument mit Strukturbaum aller Website-Texte erstellen
 - [x] NEU: 'Ihr Nutzen'-Sektion mit 7 Vorteilskarten als Icon-Card-Grid zwischen Services und USP auf Startseite
 - [x] FIX: Footer Copyright von 2025 auf 2026 ändern
+- [x] ENT-1: Entwicklung-Hauptseite mit 2x3 Kompetenzfeld-Grid (Hard & Software, E-Motor, Control, Simulation, Validierung & EMV, Test & Verification)
+- [x] ENT-2: Navigation-Dropdown auf 8 Einträge erweitern (+ Control Design, Validierung & EMV, KI-gestützte Entwicklung)
+- [x] ENT-2: Neue Unterseiten erstellen (Control Design, Validierung & EMV, KI-gestützte Entwicklung)
+- [x] ENT-2: App.tsx Routing für neue Unterseiten
+- [x] FIX: Unnötigen Umbruch in MarketsSection Subtitle entfernen (max-w-xl)
