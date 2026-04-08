@@ -155,3 +155,7 @@
 - [x] Neue Unterseite: E-Motor-Design (/entwicklung/e-motor-design) erstellen
 - [x] Entwicklungsübersicht: E-Motor-Design als 7. Kompetenzfeld hinzufügen + bestehende Karten mit OE-Know-how anreichern
 - [x] Navigation/Routing: E-Motor-Design in Dropdown und App.tsx einbinden
+- [x] MÄRKTE REBUILD: Maerkte.tsx komplett neu mit 6 strategischen Verticals (Energy, Motion, Automotive, Industrial, MedTech, Smart Infrastructure)
+- [x] MÄRKTE REBUILD: Jede Vertical mit 3 Ebenen (Branche, Systemanwendungen, technische Herausforderungen)
+- [x] MÄRKTE REBUILD: MarketsSection auf Startseite an neue Vertical-Struktur anpassen
+- [x] MÄRKTE REBUILD: i18n-Übersetzungen für neue Märkte-Struktur aktualisieren
