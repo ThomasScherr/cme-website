@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { Car, Factory, Zap, Building2, Cpu, HeartPulse, Wind } from 'lucide-react';
+import { Car, Factory, Zap, Building2, Cpu, HeartPulse } from 'lucide-react';
 
 const markets = [
   {
@@ -44,14 +44,6 @@ const markets = [
     descDE: 'Smart-Home-Steuerungen, Gebäudeautomation und Energiemanagement. Vernetzte Systeme für intelligente Gebäude.',
     descEN: 'Smart home controls, building automation and energy management. Connected systems for intelligent buildings.',
     img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg',
-  },
-  {
-    icon: Wind,
-    titleDE: 'Erneuerbare Energien',
-    titleEN: 'Renewable Energy',
-    descDE: 'Wechselrichter, Laderegler und Energiespeichersysteme. Leistungselektronik für die Energiewende.',
-    descEN: 'Inverters, charge controllers and energy storage systems. Power electronics for the energy transition.',
-    img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg',
   },
   {
     icon: Cpu,
