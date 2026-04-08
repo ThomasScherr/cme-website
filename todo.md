@@ -144,3 +144,4 @@
 - [x] FIX: Alle Röntgeninspektion-Referenzen auf der gesamten Website entfernen (CME macht AOI + MOI, kein Röntgen) – bereits komplett entfernt
 - [x] Leistungselektronik Karte: Akkuschrauber durch Haus+Ladetechnik-Bild ersetzen
 - [x] Smart Devices Karte: IoT-Module-Bild hinzufügen
+- [x] ServicesSection: Hintergrund von dunkel/schwarz auf hellen Blauton ändern

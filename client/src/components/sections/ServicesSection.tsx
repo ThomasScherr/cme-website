@@ -118,8 +118,8 @@ export default function ServicesSection() {
       items: t.services.lifecycle_items,
       image: IMAGES.lifecycle,
       icon: <RefreshCw style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
-      bgClass: 'bg-cme-dark',
-      darkText: true,
+      bgClass: 'bg-sky-50',
+      darkText: false,
     },
   ];
 
