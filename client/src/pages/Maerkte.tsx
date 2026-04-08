@@ -2,7 +2,22 @@ import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Cog, Car, Factory, HeartPulse, Building2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Zap,
+  Cog,
+  Car,
+  Factory,
+  HeartPulse,
+  Building2,
+  Cpu,
+  Flame,
+  Radio,
+  Code2,
+  LineChart,
+  ShieldCheck,
+  CircuitBoard,
+} from 'lucide-react';
 
 /* ──────────────────────────────────────────────────────────────
    6 Strategic Verticals – each with 3 layers:
@@ -255,80 +270,76 @@ const verticals: Vertical[] = [
   },
 ];
 
-/* ──────────────────────────────────────────────────────────────
-   Accent colors per vertical (subtle, not overwhelming)
-   ────────────────────────────────────────────────────────────── */
-const accentColors: Record<string, { bg: string; border: string; tag: string; iconBg: string }> = {
-  energy:         { bg: 'bg-amber-50',   border: 'border-amber-200',   tag: 'bg-amber-100 text-amber-800',     iconBg: 'bg-amber-100' },
-  motion:         { bg: 'bg-blue-50',    border: 'border-blue-200',    tag: 'bg-blue-100 text-blue-800',       iconBg: 'bg-blue-100' },
-  automotive:     { bg: 'bg-slate-50',   border: 'border-slate-200',   tag: 'bg-slate-100 text-slate-800',     iconBg: 'bg-slate-100' },
-  industrial:     { bg: 'bg-emerald-50', border: 'border-emerald-200', tag: 'bg-emerald-100 text-emerald-800', iconBg: 'bg-emerald-100' },
-  medtech:        { bg: 'bg-rose-50',    border: 'border-rose-200',    tag: 'bg-rose-100 text-rose-800',       iconBg: 'bg-rose-100' },
-  infrastructure: { bg: 'bg-violet-50',  border: 'border-violet-200',  tag: 'bg-violet-100 text-violet-800',   iconBg: 'bg-violet-100' },
-};
+/* Underlying Capabilities */
+const capabilities = [
+  { de: 'Leistungselektronik (SiC, GaN)', en: 'Power Electronics (SiC, GaN)', icon: Cpu },
+  { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control', icon: Cog },
+  { de: 'Thermisches Management', en: 'Thermal Management', icon: Flame },
+  { de: 'EMV-Design & Qualifikation', en: 'EMC Design & Qualification', icon: Radio },
+  { de: 'Embedded Software (C/C++)', en: 'Embedded Software (C/C++)', icon: Code2 },
+  { de: 'Simulation & Modellierung', en: 'Simulation & Modeling', icon: LineChart },
+  { de: 'Funktionale Sicherheit', en: 'Functional Safety', icon: ShieldCheck },
+  { de: 'Elektronikfertigung (EMS)', en: 'Electronics Manufacturing (EMS)', icon: CircuitBoard },
+];
 
 /* ──────────────────────────────────────────────────────────────
-   Component
+   Vertical Card – consistent with site-wide card style
    ────────────────────────────────────────────────────────────── */
 
 function VerticalCard({ vertical, index, isDE }: { vertical: Vertical; index: number; isDE: boolean }) {
-  const accent = accentColors[vertical.slug];
-  const isEven = index % 2 === 0;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className={`rounded-2xl border ${accent.border} overflow-hidden`}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08 }}
+      className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
     >
-      <div className={`grid lg:grid-cols-5 ${isEven ? '' : 'lg:direction-rtl'}`}>
-        {/* Visual placeholder – left on even, right on odd */}
-        <div className={`lg:col-span-2 ${accent.bg} flex items-center justify-center p-8 lg:p-12 ${isEven ? '' : 'lg:order-2'}`}>
-          <div className="w-full aspect-[4/3] bg-gray-200 rounded-xl flex items-center justify-center">
-            <vertical.icon className="text-gray-400" style={{ width: 'clamp(3rem, 2rem + 3vw, 5rem)', height: 'clamp(3rem, 2rem + 3vw, 5rem)' }} />
+      {/* Header with icon */}
+      <div className="fluid-card border-b border-gray-50">
+        <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+          <div
+            className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+            style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+          >
+            <vertical.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
           </div>
+          <h3 className="fluid-h4 text-cme-dark font-bold">
+            {isDE ? vertical.titleDE : vertical.titleEN}
+          </h3>
         </div>
+        <p className="fluid-body text-gray-600 leading-relaxed" style={{ marginTop: 'var(--space-gap-xs)' }}>
+          {isDE ? vertical.taglineDE : vertical.taglineEN}
+        </p>
+      </div>
 
-        {/* Content – 3 layers */}
-        <div className={`lg:col-span-3 p-6 lg:p-10 flex flex-col justify-center ${isEven ? '' : 'lg:order-1'}`}>
-          {/* Layer 1: Vertical / Industry */}
-          <div className="flex items-center gap-3" style={{ marginBottom: 'var(--space-gap-xs)' }}>
-            <div className={`rounded-lg ${accent.iconBg} flex items-center justify-center`} style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
-              <vertical.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
-            </div>
-            <h2 className="fluid-h3 text-cme-dark font-bold">
-              {isDE ? vertical.titleDE : vertical.titleEN}
-            </h2>
-          </div>
-          <p className="fluid-body text-gray-600 leading-relaxed" style={{ marginBottom: 'var(--space-gap-md)' }}>
-            {isDE ? vertical.taglineDE : vertical.taglineEN}
-          </p>
-
-          {/* Layer 2: Typical system applications */}
-          <div style={{ marginBottom: 'var(--space-gap-md)' }}>
-            <h3 className="fluid-small font-semibold text-cme-dark uppercase tracking-wider" style={{ marginBottom: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Typische Systemanwendungen' : 'Typical System Applications'}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {(isDE ? vertical.applicationsDE : vertical.applicationsEN).map((app, i) => (
-                <span key={i} className={`inline-block px-3 py-1.5 rounded-full text-xs font-medium ${accent.tag}`}>
-                  {app}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Layer 3: CME-relevant technical challenges */}
+      {/* Content: Applications + Challenges side by side */}
+      <div className="fluid-card">
+        <div className="grid md:grid-cols-2" style={{ gap: 'var(--space-gap-md)' }}>
+          {/* Applications */}
           <div>
-            <h3 className="fluid-small font-semibold text-cme-dark uppercase tracking-wider" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+            <h4 className="fluid-small font-semibold text-cme-dark uppercase tracking-wider" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+              {isDE ? 'Typische Systemanwendungen' : 'Typical System Applications'}
+            </h4>
+            <ul className="space-y-1.5">
+              {(isDE ? vertical.applicationsDE : vertical.applicationsEN).map((app, i) => (
+                <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                  {app}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Challenges */}
+          <div>
+            <h4 className="fluid-small font-semibold text-cme-dark uppercase tracking-wider" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               {isDE ? 'Technische Herausforderungen' : 'Technical Challenges'}
-            </h3>
+            </h4>
             <ul className="space-y-1.5">
               {(isDE ? vertical.challengesDE : vertical.challengesEN).map((challenge, i) => (
                 <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 flex-shrink-0" />
                   {challenge}
                 </li>
               ))}
@@ -340,13 +351,17 @@ function VerticalCard({ vertical, index, isDE }: { vertical: Vertical; index: nu
   );
 }
 
+/* ──────────────────────────────────────────────────────────────
+   Page Component
+   ────────────────────────────────────────────────────────────── */
+
 export default function Maerkte() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
   return (
     <Layout>
-      {/* Hero */}
+      {/* Hero – same style as Fertigung, Lifecycle, Entwicklung */}
       <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
           <div className="max-w-3xl">
@@ -358,88 +373,83 @@ export default function Maerkte() {
                 ? 'Branchenspezifische Elektroniklösungen.'
                 : 'Industry-specific electronics solutions.'}
             </h1>
-            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
+            <p className="fluid-body-lg text-gray-600 max-w-2xl" style={{ marginTop: 'var(--space-gap-sm)' }}>
               {isDE
                 ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs strategische Verticals, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
                 : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six strategic verticals where power density, reliability and series readiness are decisive.'}
             </p>
+            <div style={{ marginTop: 'var(--space-gap-md)' }}>
+              <Link
+                href="/kontakt"
+                className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+              >
+                {isDE ? 'Projekt anfragen' : 'Request Project'}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Vertical Navigation */}
-      <section className="py-4 border-b border-gray-100 bg-white sticky top-[var(--nav-height)] z-30">
+      {/* Vertical Cards – 2-column grid like Fertigung subpages */}
+      <section className="section-pad">
         <div className="container">
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-            {verticals.map((v) => {
-              const accent = accentColors[v.slug];
+          <h2 className="fluid-h2 text-cme-dark text-center">
+            {isDE ? 'Unsere Branchen' : 'Our Industries'}
+          </h2>
+          <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
+            {isDE
+              ? 'Sechs strategische Verticals – jedes mit spezifischen Systemanwendungen und technischen Herausforderungen.'
+              : 'Six strategic verticals – each with specific system applications and technical challenges.'}
+          </p>
+
+          <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
+            {verticals.map((vertical, i) => (
+              <VerticalCard key={vertical.slug} vertical={vertical} index={i} isDE={isDE} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Underlying Capabilities – same style as Fertigung capabilities */}
+      <section className="section-pad bg-gray-50">
+        <div className="container">
+          <h2 className="fluid-h2 text-cme-dark text-center">
+            {isDE ? 'Technologie-Fundament' : 'Technology Foundation'}
+          </h2>
+          <p className="fluid-body-lg text-gray-600 max-w-2xl mx-auto text-center" style={{ marginTop: 'var(--space-gap-xs)' }}>
+            {isDE
+              ? 'Unsere Branchenlösungen basieren auf einem gemeinsamen Technologie-Fundament – tief verankert in Leistungselektronik, Antriebstechnik und thermischem Management.'
+              : 'Our industry solutions are built on a shared technology foundation – deeply rooted in power electronics, drive technology and thermal management.'}
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
+            {capabilities.map((cap, i) => {
+              const Icon = cap.icon;
               return (
-                <a
-                  key={v.slug}
-                  href={`#${v.slug}`}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full border ${accent.border} ${accent.bg} hover:shadow-sm transition-all whitespace-nowrap fluid-small font-medium text-cme-dark`}
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
                 >
-                  <v.icon size={16} className="text-cme-blue" />
-                  {isDE ? v.titleDE : v.titleEN}
-                </a>
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <Icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+                    </div>
+                    <p className="font-medium text-cme-dark fluid-small">{isDE ? cap.de : cap.en}</p>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Vertical Cards */}
-      <section className="section-pad">
-        <div className="container flex flex-col" style={{ gap: 'var(--space-gap-lg)' }}>
-          {verticals.map((vertical, i) => (
-            <div key={vertical.slug} id={vertical.slug}>
-              <VerticalCard vertical={vertical} index={i} isDE={isDE} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Underlying Capabilities */}
-      <section className="section-pad bg-gray-50">
-        <div className="container">
-          <div className="text-center" style={{ marginBottom: 'var(--space-section-header)' }}>
-            <h2 className="fluid-h2 text-cme-dark">
-              {isDE ? 'Underlying Capabilities' : 'Underlying Capabilities'}
-            </h2>
-            <p className="fluid-body-lg text-gray-600 max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE
-                ? 'Unsere Branchenlösungen basieren auf einem gemeinsamen Technologie-Fundament – tief verankert in Leistungselektronik, Antriebstechnik und thermischem Management.'
-                : 'Our industry solutions are built on a shared technology foundation – deeply rooted in power electronics, drive technology and thermal management.'}
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
-            {[
-              { de: 'Leistungselektronik (SiC, GaN)', en: 'Power Electronics (SiC, GaN)' },
-              { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control' },
-              { de: 'Thermisches Management', en: 'Thermal Management' },
-              { de: 'EMV-Design & Qualifikation', en: 'EMC Design & Qualification' },
-              { de: 'Embedded Software (C/C++)', en: 'Embedded Software (C/C++)' },
-              { de: 'Simulation & Modellierung', en: 'Simulation & Modeling' },
-              { de: 'Funktionale Sicherheit', en: 'Functional Safety' },
-              { de: 'Elektronikfertigung (EMS)', en: 'Electronics Manufacturing (EMS)' },
-            ].map((cap, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
-              >
-                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
-                <p className="font-medium text-cme-dark fluid-small">{isDE ? cap.de : cap.en}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* CTA – same style as Fertigung/Lifecycle */}
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
@@ -452,11 +462,10 @@ export default function Maerkte() {
           </p>
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+            className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
             {isDE ? 'Projekt anfragen' : 'Request Project'}
-            <ArrowRight size={18} />
           </Link>
         </div>
       </section>

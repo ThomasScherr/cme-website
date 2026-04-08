@@ -159,3 +159,4 @@
 - [x] MÄRKTE REBUILD: Jede Vertical mit 3 Ebenen (Branche, Systemanwendungen, technische Herausforderungen)
 - [x] MÄRKTE REBUILD: MarketsSection auf Startseite an neue Vertical-Struktur anpassen
 - [x] MÄRKTE REBUILD: i18n-Übersetzungen für neue Märkte-Struktur aktualisieren
+- [x] FIX: Märkte-Seite visuell an den Rest der Website angleichen (Stil, Farben, Layout konsistent mit anderen Unterseiten)
