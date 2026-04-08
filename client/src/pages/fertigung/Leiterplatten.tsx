@@ -29,14 +29,14 @@ export default function Leiterplatten() {
       ctaDE="Angebot anfragen"
       ctaEN="Request Quote"
       features={[
-        { de: 'SMD-Bestückung bis Baugröße 01005', en: 'SMD Assembly down to 01005 package size', icon: Cpu },
+        { de: 'SMD-Bestückung', en: 'SMD Assembly', icon: Cpu },
         { de: 'THT-Bestückung & Wellenlöten', en: 'THT Assembly & Wave Soldering', icon: CircuitBoard },
         { de: 'Selektivlöten für Mixed-Technology', en: 'Selective Soldering for Mixed Technology', icon: Flame },
         { de: 'Reflow-Löten (bleihaltig & bleifrei)', en: 'Reflow Soldering (leaded & lead-free)', icon: ThermometerSun },
         { de: 'Dampfphasenlöten für Leistungselektronik', en: 'Vapor Phase Soldering for Power Electronics', icon: Zap },
         { de: 'Pastendruck mit SPI-Kontrolle', en: 'Paste Printing with SPI Control', icon: Layers },
-        { de: 'Prototypen in 24-48h', en: 'Prototypes in 24-48h', icon: Timer },
-        { de: 'Flexible Losgrößen (1 bis 10.000+)', en: 'Flexible Lot Sizes (1 to 10,000+)', icon: SlidersHorizontal },
+        { de: 'Schnelle Prototypenfertigung', en: 'Fast Prototype Production', icon: Timer },
+        { de: 'Flexible Losgrößen', en: 'Flexible Lot Sizes', icon: SlidersHorizontal },
         { de: 'NPI-Prozess (New Product Introduction)', en: 'NPI Process (New Product Introduction)', icon: Rocket },
       ]}
 

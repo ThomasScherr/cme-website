@@ -177,7 +177,7 @@ export default function Entwicklung() {
               { de: 'Leistungselektronik (SiC, GaN)', en: 'Power Electronics (SiC, GaN)' },
               { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control' },
               { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)' },
-              { de: 'Automotive SPICE Level 2', en: 'Automotive SPICE Level 2' },
+              { de: 'Automotive SPICE (ASPICE)', en: 'Automotive SPICE (ASPICE)' },
               { de: 'EMV-Design & Qualifikation', en: 'EMC Design & Qualification' },
               { de: 'Thermisches Management', en: 'Thermal Management' },
               { de: 'Embedded Software (C/C++)', en: 'Embedded Software (C/C++)' },

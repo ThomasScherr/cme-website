@@ -12,10 +12,10 @@ export default function Unternehmen() {
   const isDE = lang === 'de';
 
   const stats = [
-    { icon: Calendar, value: '2007', labelDE: 'Gegründet', labelEN: 'Founded' },
-    { icon: Users, value: '120+', labelDE: 'Mitarbeiter', labelEN: 'Employees' },
+    { icon: Calendar, value: '2008', labelDE: 'Gegründet', labelEN: 'Founded' },
     { icon: MapPin, value: 'Dortmund', labelDE: 'Standort', labelEN: 'Location' },
-    { icon: Award, value: '500+', labelDE: 'Projekte', labelEN: 'Projects' },
+    { icon: Award, value: 'ISO 9001', labelDE: 'Zertifiziert', labelEN: 'Certified' },
+    { icon: Users, value: 'Inhabergeführt', labelDE: 'Unternehmen', labelEN: 'Company' },
   ];
 
   return (
@@ -33,8 +33,8 @@ export default function Unternehmen() {
               </h1>
               <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
                 {isDE
-                  ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2007 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
-                  : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2007, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
+                  ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
+                  : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
               </p>
             </div>
             <div className="relative">
@@ -94,8 +94,8 @@ export default function Unternehmen() {
               <div className="text-gray-600 leading-relaxed fluid-body-lg" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-sm)' }}>
                 <p>
                   {isDE
-                    ? 'CME wurde 2007 in Dortmund gegründet – mit der Vision, Elektronikentwicklung und -fertigung unter einem Dach zu vereinen. Was als kleines Ingenieurbüro begann, ist heute ein Unternehmen mit über 120 Mitarbeitern und einer eigenen Fertigungsstätte.'
-                    : 'CME was founded in 2007 in Dortmund – with the vision of uniting electronics development and manufacturing under one roof. What started as a small engineering office is today a company with over 120 employees and its own manufacturing facility.'}
+                    ? 'CME wurde 2008 in Dortmund gegründet – mit der Vision, Elektronikentwicklung und -fertigung unter einem Dach zu vereinen. Was als Ingenieurbüro begann, ist heute ein etablierter Entwicklungsdienstleister und EMS-Partner mit eigener Fertigungsstätte.'
+                    : 'CME was founded in 2008 in Dortmund – with the vision of uniting electronics development and manufacturing under one roof. What started as an engineering office is today an established development service provider and EMS partner with its own manufacturing facility.'}
                 </p>
                 <p>
                   {isDE

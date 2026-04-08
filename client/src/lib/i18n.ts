@@ -26,7 +26,8 @@ export const translations = {
     },
     stats: {
       years: 'Jahre Erfahrung',
-      projects: 'Projekte realisiert',
+      projects: 'Inhabergeführt',
+      projects_val: 'Seit 2008',
       standards: 'Normkonformität',
       standards_val: 'ISO 9001 & 14001',
       location: 'Standort',
@@ -151,7 +152,8 @@ export const translations = {
     },
     stats: {
       years: 'Years of Experience',
-      projects: 'Projects Delivered',
+      projects: 'Owner-Managed',
+      projects_val: 'Since 2008',
       standards: 'Compliance',
       standards_val: 'ISO 9001 & 14001',
       location: 'Location',

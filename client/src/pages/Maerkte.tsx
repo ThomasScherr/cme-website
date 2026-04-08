@@ -9,8 +9,8 @@ const markets = [
     icon: Car,
     titleDE: 'Automotive',
     titleEN: 'Automotive',
-    descDE: 'Antriebselektronik, Ladeinfrastruktur, ADAS-Systeme und Bordnetzsteuerungen. Automotive SPICE Level 2 und ISO 26262 konform.',
-    descEN: 'Drive electronics, charging infrastructure, ADAS systems and power distribution. Automotive SPICE Level 2 and ISO 26262 compliant.',
+    descDE: 'Antriebselektronik, Ladeinfrastruktur, ADAS-Systeme und Bordnetzsteuerungen. Entwicklung nach Automotive SPICE (ASPICE) und ISO 26262.',
+    descEN: 'Drive electronics, charging infrastructure, ADAS systems and power distribution. Development according to Automotive SPICE (ASPICE) and ISO 26262.',
     img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg',
   },
   {
@@ -41,8 +41,8 @@ const markets = [
     icon: Train,
     titleDE: 'Bahntechnik',
     titleEN: 'Railway Technology',
-    descDE: 'Leistungselektronik und Steuerungssysteme für Schienenfahrzeuge. Entwicklung nach EN 50155 und EN 45545.',
-    descEN: 'Power electronics and control systems for rail vehicles. Development according to EN 50155 and EN 45545.',
+    descDE: 'Leistungselektronik und Steuerungssysteme für Schienenfahrzeuge. Entwicklung nach bahntechnischen Normen und Standards.',
+    descEN: 'Power electronics and control systems for rail vehicles. Development according to railway norms and standards.',
     img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg',
   },
   {

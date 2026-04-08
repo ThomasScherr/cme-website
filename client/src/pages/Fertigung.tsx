@@ -50,7 +50,7 @@ const subpages = [
 ];
 
 const capabilities = [
-  { de: 'SMD-Bestückung bis 01005', en: 'SMD Assembly down to 01005', icon: Cpu },
+  { de: 'SMD-Bestückung', en: 'SMD Assembly', icon: Cpu },
   { de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering', icon: Wrench },
   { de: 'AOI & MOI', en: 'AOI & MOI', icon: Eye },
   { de: 'Verguss & Schutzlackierung', en: 'Potting & Conformal Coating', icon: Paintbrush },

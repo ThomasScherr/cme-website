@@ -31,7 +31,7 @@ export default function HardwareSoftware() {
         { de: 'Analoge & digitale Schaltungsentwicklung', en: 'Analog & Digital Circuit Design', icon: CircuitBoard },
         { de: 'Leistungselektronik (SiC, GaN, IGBT)', en: 'Power Electronics (SiC, GaN, IGBT)', icon: Zap },
         { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control', icon: Cog },
-        { de: 'Multi-Layer PCB-Layout (bis 24 Lagen)', en: 'Multi-Layer PCB Layout (up to 24 layers)', icon: Layers },
+        { de: 'Multi-Layer PCB-Layout', en: 'Multi-Layer PCB Layout', icon: Layers },
         { de: 'Embedded C/C++ Firmware', en: 'Embedded C/C++ Firmware', icon: Code },
         { de: 'FPGA-Entwicklung', en: 'FPGA Development', icon: Cpu },
         { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },

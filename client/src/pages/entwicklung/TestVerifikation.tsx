@@ -29,7 +29,7 @@ export default function TestVerifikation() {
       features={[
         { de: 'EMV-Vorabprüfung (eigene Vorkammer)', en: 'EMC Pre-Compliance (own chamber)', icon: Radio },
         { de: 'EMV-Qualifikation nach Automotive & Industrienormen', en: 'EMC Qualification per Automotive & Industrial Standards', icon: Award },
-        { de: 'Klimatests (-40°C bis +150°C)', en: 'Climate Tests (-40°C to +150°C)', icon: Snowflake },
+        { de: 'Klimatests & Umwelttests', en: 'Climate & Environmental Tests', icon: Snowflake },
         { de: 'Vibrations- & Schocktests', en: 'Vibration & Shock Tests', icon: Activity },
         { de: 'Automatisierter Funktionstest (EOL)', en: 'Automated Functional Test (EOL)', icon: SquareFunction },
         { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)', icon: CircuitBoard },

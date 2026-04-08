@@ -5,7 +5,7 @@ import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
 
 const benefits = [
   { icon: Zap, titleDE: 'Spannende Projekte', titleEN: 'Exciting Projects', descDE: 'Arbeiten Sie an Elektronik für Automotive, Medizintechnik und Industrie.', descEN: 'Work on electronics for automotive, medical technology and industry.' },
-  { icon: Users, titleDE: 'Starkes Team', titleEN: 'Strong Team', descDE: 'Über 120 Kolleginnen und Kollegen mit Leidenschaft für Elektronik.', descEN: 'Over 120 colleagues with a passion for electronics.' },
+  { icon: Users, titleDE: 'Starkes Team', titleEN: 'Strong Team', descDE: 'Ein engagiertes Team mit Leidenschaft für Elektronik.', descEN: 'A dedicated team with a passion for electronics.' },
   { icon: GraduationCap, titleDE: 'Weiterbildung', titleEN: 'Training', descDE: 'Individuelle Weiterbildungsmöglichkeiten und Konferenzbesuche.', descEN: 'Individual training opportunities and conference visits.' },
   { icon: Heart, titleDE: 'Work-Life-Balance', titleEN: 'Work-Life Balance', descDE: 'Flexible Arbeitszeiten und Homeoffice-Möglichkeiten.', descEN: 'Flexible working hours and home office options.' },
   { icon: MapPin, titleDE: 'Standort Dortmund', titleEN: 'Location Dortmund', descDE: 'Modernes Büro im Technologiepark Dortmund mit guter Anbindung.', descEN: 'Modern office in Dortmund Technology Park with good connections.' },

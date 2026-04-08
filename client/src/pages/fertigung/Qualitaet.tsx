@@ -35,7 +35,7 @@ export default function Qualitaet() {
         { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)', icon: CircuitBoard },
         { de: 'Datenbankgestützte Traceability mit vernetzten Geräten', en: 'Database-Driven Traceability with Connected Equipment', icon: Database },
         { de: 'Wareneingangskontrolle & IPC-Prüfung', en: 'Incoming Goods Inspection & IPC Testing', icon: PackageCheck },
-        { de: 'IPC-A-610 Class 2 & 3', en: 'IPC-A-610 Class 2 & 3', icon: Award },
+        { de: 'Qualitätsprüfung nach IPC-Standards', en: 'Quality Inspection per IPC Standards', icon: Award },
       ]}
 
       relatedPages={[

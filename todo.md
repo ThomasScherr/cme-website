@@ -148,3 +148,4 @@
 - [x] Leistungselektronik Kachel: Bild durch neues, größeres Bild (Haus+Solar+Ladesäule) ersetzen
 - [x] Crisp.chat Live-Chat Widget auf allen Seiten integrieren
 - [x] Entwicklung-Übersichtsseite: Mindestens 6 Leistungskarten (Hardwareentwicklung, Embedded Software, Simulation, Test & Verifikation, UX & Interface Engineering, Software & Digitale Systeme)
+- [x] Alle erfundenen technischen Spezifikationen auf der gesamten Website identifizieren und entfernen
