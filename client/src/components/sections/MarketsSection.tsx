@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
 const INDUSTRY_IMAGES = [
-  { img: `${CDN}/automotive_5dbb4af9.png`, de: 'Automotive', en: 'Automotive' },
-  { img: `${CDN}/ebike_1852d25f.png`, de: 'E-Mobilität', en: 'E-Mobility' },
-  { img: `${CDN}/drill_f35b523b.png`, de: 'Elektrowerkzeuge', en: 'Power Tools' },
-  { img: `${CDN}/robot_32f2ffb4.png`, de: 'Robotik & Automation', en: 'Robotics & Automation' },
+  { img: `${CDN}/automotive_5dbb4af9.png`, de: 'Automotive & SPICE', en: 'Automotive & SPICE' },
+  { img: `${CDN}/ebike_1852d25f.png`, de: 'Antriebstechnik', en: 'Drive Technology' },
+  { img: `${CDN}/drill_f35b523b.png`, de: 'Leistungselektronik', en: 'Power Electronics' },
+  { img: `${CDN}/robot_32f2ffb4.png`, de: 'Industrieautomation', en: 'Industrial Automation' },
   { img: `${CDN}/dental_d96808d3.png`, de: 'Medizintechnik', en: 'Medical Technology' },
   { img: `${CDN}/pump_a049c023.png`, de: 'Pumpen & HVAC', en: 'Pumps & HVAC' },
-  { img: `${CDN}/elevator_462326a9.png`, de: 'Aufzüge & Gebäudetechnik', en: 'Elevators & Building Tech' },
+  { img: `${CDN}/elevator_462326a9.png`, de: 'Gebäudetechnik', en: 'Building Technology' },
 ];
 
 const vp = { once: true, margin: '-80px' as const };
