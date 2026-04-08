@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { Car, Factory, Zap, Train, Building2, Cpu, HeartPulse, Wind } from 'lucide-react';
+import { Car, Factory, Zap, Building2, Cpu, HeartPulse, Wind } from 'lucide-react';
 
 const markets = [
   {
@@ -36,14 +36,6 @@ const markets = [
     descDE: 'Elektronik für Diagnostik, Therapie und Laborgeräte. Entwicklung und Fertigung nach regulatorischen Anforderungen.',
     descEN: 'Electronics for diagnostics, therapy and laboratory devices. Development and manufacturing according to regulatory requirements.',
     img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2055__1920px_00c91d17.jpg',
-  },
-  {
-    icon: Train,
-    titleDE: 'Bahntechnik',
-    titleEN: 'Railway Technology',
-    descDE: 'Leistungselektronik und Steuerungssysteme für Schienenfahrzeuge. Entwicklung nach bahntechnischen Normen und Standards.',
-    descEN: 'Power electronics and control systems for rail vehicles. Development according to railway norms and standards.',
-    img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg',
   },
   {
     icon: Building2,
