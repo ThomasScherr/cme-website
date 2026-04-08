@@ -143,13 +143,13 @@ export default function Navigation() {
           : 'bg-transparent'
       }`}
     >
-      <div className="container flex items-center justify-between h-16 lg:h-20">
+      <div className="container flex items-center justify-between h-20 lg:h-28">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <img
             src={LOGO_URL}
             alt="CME Control Motion Electronics"
-            className="h-8 lg:h-10 w-auto"
+            className="h-12 lg:h-20 w-auto"
           />
         </Link>
 
