@@ -161,3 +161,5 @@
 - [x] MÄRKTE REBUILD: i18n-Übersetzungen für neue Märkte-Struktur aktualisieren
 - [x] FIX: Märkte-Seite visuell an den Rest der Website angleichen (Stil, Farben, Layout konsistent mit anderen Unterseiten)
 - [x] Startseiten-MarketsSection an neuen konsistenten Stil anpassen (keine Custom-Farbpalette, gleicher Stil wie Maerkte.tsx)
+- [x] FIX: Alle 'Verticals'/'Vertical Solutions'-Begriffe durch kundengerechte Begriffe ersetzen (Branchen, Anwendungsfelder, Märkte)
+- [ ] Vollständiges Textdokument mit Strukturbaum aller Website-Texte erstellen

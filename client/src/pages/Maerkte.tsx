@@ -20,13 +20,13 @@ import {
 } from 'lucide-react';
 
 /* ──────────────────────────────────────────────────────────────
-   6 Strategic Verticals – each with 3 layers:
-   1. Vertical / Industry
+   6 Branchen & Anwendungsfelder – each with 3 layers:
+   1. Branche / Industry
    2. Typical system applications
    3. CME-relevant technical challenges
    ────────────────────────────────────────────────────────────── */
 
-interface Vertical {
+interface MarketSegment {
   icon: React.ElementType;
   slug: string;
   titleDE: string;
@@ -39,7 +39,7 @@ interface Vertical {
   challengesEN: string[];
 }
 
-const verticals: Vertical[] = [
+const marketSegments: MarketSegment[] = [
   {
     icon: Zap,
     slug: 'energy',
@@ -283,10 +283,10 @@ const capabilities = [
 ];
 
 /* ──────────────────────────────────────────────────────────────
-   Vertical Card – consistent with site-wide card style
+   Market Card – consistent with site-wide card style
    ────────────────────────────────────────────────────────────── */
 
-function VerticalCard({ vertical, index, isDE }: { vertical: Vertical; index: number; isDE: boolean }) {
+function MarketCard({ vertical, index, isDE }: { vertical: MarketSegment; index: number; isDE: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -366,7 +366,7 @@ export default function Maerkte() {
         <div className="container">
           <div className="max-w-3xl">
             <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-              {isDE ? 'Vertical Solutions' : 'Vertical Solutions'}
+              {isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications'}
             </span>
             <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE
@@ -375,8 +375,8 @@ export default function Maerkte() {
             </h1>
             <p className="fluid-body-lg text-gray-600 max-w-2xl" style={{ marginTop: 'var(--space-gap-sm)' }}>
               {isDE
-                ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs strategische Verticals, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
-                : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six strategic verticals where power density, reliability and series readiness are decisive.'}
+                ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
+                : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.'}
             </p>
             <div style={{ marginTop: 'var(--space-gap-md)' }}>
               <Link
@@ -390,7 +390,7 @@ export default function Maerkte() {
         </div>
       </section>
 
-      {/* Vertical Cards – 2-column grid like Fertigung subpages */}
+      {/* Market Cards – 2-column grid like Fertigung subpages */}
       <section className="section-pad">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">
@@ -398,19 +398,19 @@ export default function Maerkte() {
           </h2>
           <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sechs strategische Verticals – jedes mit spezifischen Systemanwendungen und technischen Herausforderungen.'
-              : 'Six strategic verticals – each with specific system applications and technical challenges.'}
+              ? 'Sechs Branchen – jede mit spezifischen Systemanwendungen und technischen Herausforderungen.'
+              : 'Six industries – each with specific system applications and technical challenges.'}
           </p>
 
           <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
-            {verticals.map((vertical, i) => (
-              <VerticalCard key={vertical.slug} vertical={vertical} index={i} isDE={isDE} />
+            {marketSegments.map((vertical, i) => (
+              <MarketCard key={vertical.slug} vertical={vertical} index={i} isDE={isDE} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Underlying Capabilities – same style as Fertigung capabilities */}
+      {/* Technologie-Fundament – same style as Fertigung capabilities */}
       <section className="section-pad bg-gray-50">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">

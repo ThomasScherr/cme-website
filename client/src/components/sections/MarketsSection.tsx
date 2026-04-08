@@ -5,7 +5,7 @@ import { ArrowRight, Zap, Cog, Car, Factory, HeartPulse, Building2 } from 'lucid
 
 const vp = { once: true, margin: '-80px' as const };
 
-const verticals = [
+const markets = [
   {
     icon: Zap,
     titleDE: 'Energy & Power Systems',
@@ -78,7 +78,7 @@ export default function MarketsSection() {
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
           <p className="fluid-xs font-semibold text-cme-blue uppercase tracking-[0.18em]" style={{ marginBottom: 'var(--space-gap-xs)' }}>
-            Vertical Solutions
+            {isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications'}
           </p>
           <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             {isDE ? 'Branchenspezifische Elektroniklösungen.' : 'Industry-specific electronics solutions.'}
@@ -90,9 +90,9 @@ export default function MarketsSection() {
           </p>
         </motion.div>
 
-        {/* Vertical Cards Grid – 3x2 */}
+        {/* Market Cards Grid – 3x2 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
-          {verticals.map((v, i) => (
+          {markets.map((v, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 15 }}
@@ -146,7 +146,7 @@ export default function MarketsSection() {
             href="/maerkte"
             className="inline-flex items-center gap-2 text-cme-blue font-semibold fluid-small hover:gap-3 transition-all"
           >
-            {isDE ? 'Alle Verticals entdecken' : 'Explore all verticals'}
+            {isDE ? 'Alle Branchen entdecken' : 'Explore all industries'}
             <ArrowRight size={16} />
           </Link>
         </motion.div>
