@@ -37,13 +37,7 @@ export default function Qualitaet() {
         { de: 'Wareneingangskontrolle & IPC-Prüfung', en: 'Incoming Goods Inspection & IPC Testing', icon: PackageCheck },
         { de: 'IPC-A-610 Class 2 & 3', en: 'IPC-A-610 Class 2 & 3', icon: Award },
       ]}
-      gallery={[
-        { img: `${CDN}/aoi-machine_643926d3.png`, captionDE: 'Automatische Optische Inspektion (AOI)', captionEN: 'Automated Optical Inspection (AOI)' },
-        { img: `${CDN}/microscope-inspection_a3967815.png`, captionDE: 'Mikroskopische Inspektion (Lynx EVO)', captionEN: 'Microscopic Inspection (Lynx EVO)' },
-        { img: `${CDN}/test-verification_63ae8f78.png`, captionDE: 'Nadelbett-Prüfadapter (ICT)', captionEN: 'Bed-of-Nails Test Adapter (ICT)' },
-      ]}
-      galleryTitleDE="Unsere Prüf- und Inspektionsausstattung"
-      galleryTitleEN="Our Testing & Inspection Equipment"
+
       relatedPages={[
         { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: `${CDN}/pick-and-place_4f13096b.png` },
         { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: `${CDN}/dental-system-complete_8d86b9f8.png` },

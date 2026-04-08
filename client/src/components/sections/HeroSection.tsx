@@ -1,10 +1,88 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
 
 const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg';
 
+function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
+  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const [phase, setPhase] = useState<'typing' | 'pause' | 'done'>('typing');
+
+  // Cursor blink
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+    return () => clearInterval(interval);
+  }, []);
+
+  const tick = useCallback(() => {
+    if (phase === 'done') return;
+
+    if (phase === 'pause') return;
+
+    if (currentLineIndex >= lines.length) {
+      setPhase('done');
+      return;
+    }
+
+    const currentLine = lines[currentLineIndex];
+
+    if (currentCharIndex < currentLine.length) {
+      // Still typing current line
+      setDisplayedLines(prev => {
+        const updated = [...prev];
+        updated[currentLineIndex] = currentLine.slice(0, currentCharIndex + 1);
+        return updated;
+      });
+      setCurrentCharIndex(prev => prev + 1);
+    } else {
+      // Line complete – decide what pause to use
+      const isLastBeforeAccent = currentLineIndex === lines.length - 2;
+      const delay = isLastBeforeAccent ? pauseBeforeAccent : pauseBetweenLines;
+
+      setPhase('pause');
+      setTimeout(() => {
+        setCurrentLineIndex(prev => prev + 1);
+        setCurrentCharIndex(0);
+        setDisplayedLines(prev => [...prev, '']);
+        setPhase('typing');
+      }, delay);
+    }
+  }, [phase, currentLineIndex, currentCharIndex, lines, pauseBetweenLines, pauseBeforeAccent]);
+
+  useEffect(() => {
+    if (phase !== 'typing') return;
+    const timer = setTimeout(tick, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [tick, phase, typingSpeed, currentCharIndex]);
+
+  // Initialize first line
+  useEffect(() => {
+    setDisplayedLines(['']);
+  }, []);
+
+  return { displayedLines, showCursor, isDone: phase === 'done', currentLineIndex };
+}
+
 export default function HeroSection() {
   const { t } = useLanguage();
+
+  const lines = [
+    t.hero.headline1,
+    t.hero.headline2,
+    t.hero.headline3,
+  ];
+
+  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(
+    lines,
+    55,   // typing speed (ms per char)
+    400,  // pause between line 1 and 2
+    3000  // 3 second pause before "Aus einer Hand."
+  );
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white">
@@ -22,17 +100,77 @@ export default function HeroSection() {
             <p className="text-cme-blue font-semibold tracking-[0.2em] uppercase fluid-xs" style={{ marginBottom: 'var(--space-gap-sm)' }}>
               {t.hero.tagline}
             </p>
-            <h1 className="fluid-h1 text-cme-dark whitespace-nowrap" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-              {t.hero.headline1}
-              <br />
-              {t.hero.headline2}
-              <br />
-              <span className="text-cme-blue">{t.hero.headline3}</span>
-            </h1>
-            <p className="fluid-body-lg text-cme-gray max-w-xl leading-relaxed" style={{ marginBottom: 'var(--space-gap-md)' }}>
+            <div className="fluid-h1 text-cme-dark whitespace-nowrap" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+              {/* Line 1 */}
+              <div className="min-h-[1.2em]">
+                {displayedLines[0] || ''}
+                {currentLineIndex === 0 && !isDone && (
+                  <span
+                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
+                    style={{
+                      height: '0.85em',
+                      opacity: showCursor ? 1 : 0,
+                      transition: 'opacity 0.1s',
+                    }}
+                  />
+                )}
+              </div>
+              {/* Line 2 */}
+              <div className="min-h-[1.2em]">
+                {displayedLines[1] || ''}
+                {currentLineIndex === 1 && !isDone && (
+                  <span
+                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
+                    style={{
+                      height: '0.85em',
+                      opacity: showCursor ? 1 : 0,
+                      transition: 'opacity 0.1s',
+                    }}
+                  />
+                )}
+              </div>
+              {/* Line 3 – accent color */}
+              <div className="min-h-[1.2em] text-cme-blue">
+                {displayedLines[2] || ''}
+                {currentLineIndex === 2 && !isDone && (
+                  <span
+                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
+                    style={{
+                      height: '0.85em',
+                      opacity: showCursor ? 1 : 0,
+                      transition: 'opacity 0.1s',
+                    }}
+                  />
+                )}
+                {/* Blinking cursor during the 3s pause (after line 2, before line 3) */}
+                {currentLineIndex === 2 && !displayedLines[2] && (
+                  <span
+                    className="inline-block w-[3px] bg-cme-dark ml-0.5 align-baseline"
+                    style={{
+                      height: '0.85em',
+                      opacity: showCursor ? 1 : 0,
+                      transition: 'opacity 0.1s',
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+            <motion.p
+              className="fluid-body-lg text-cme-gray max-w-xl leading-relaxed"
+              style={{ marginBottom: 'var(--space-gap-md)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isDone ? 1 : 0.3 }}
+              transition={{ duration: 0.6 }}
+            >
               {t.hero.sub}
-            </p>
-            <div className="flex flex-wrap" style={{ gap: 'var(--space-gap-xs)' }}>
+            </motion.p>
+            <motion.div
+              className="flex flex-wrap"
+              style={{ gap: 'var(--space-gap-xs)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isDone ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-all hover:shadow-lg hover:shadow-cme-blue/20 fluid-btn"
@@ -45,7 +183,7 @@ export default function HeroSection() {
               >
                 {t.hero.cta_secondary}
               </button>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right: Two offset diamonds – fluid sizing up to 4K */}

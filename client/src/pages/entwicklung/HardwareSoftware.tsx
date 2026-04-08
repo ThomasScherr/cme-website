@@ -37,13 +37,7 @@ export default function HardwareSoftware() {
         { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },
         { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)', icon: ShieldCheck },
       ]}
-      gallery={[
-        { img: `${CDN}/e-motor-design_3c371049.png`, captionDE: 'E-Motor Design – FEM-Simulation', captionEN: 'E-Motor Design – FEM Simulation' },
-        { img: `${CDN}/control-design_62833780.png`, captionDE: 'Control Design – Simulink-Modell', captionEN: 'Control Design – Simulink Model' },
-        { img: `${CDN}/dental-assembly_05a6609d.png`, captionDE: 'Entwicklung & Fertigung aus einer Hand', captionEN: 'Development & Manufacturing from One Source' },
-      ]}
-      galleryTitleDE="Entwicklungsbeispiele"
-      galleryTitleEN="Development Examples"
+
       relatedPages={[
         { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
         { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verifikation', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },

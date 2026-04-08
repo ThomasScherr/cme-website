@@ -126,3 +126,6 @@
 - [x] FIX: Traceability aufwerten – datenbankgestützt, vernetzte Geräte, maximale Rückverfolgbarkeit
 - [x] UX-Seite: Bilder ohne Hintergrund/Kasten – 3D schwebend darstellen (kein rounded-2xl bg-white p-4 shadow)
 - [x] SubPageTemplate: Intro-Textblock nach rechts, links davon eine Raute mit Bild
+- [x] SubPageTemplate: Feature-Karten Icons deutlich größer machen
+- [x] SubPageTemplate: Gallery-Sektion entfernen (macht keinen Sinn)
+- [x] Hero: Typewriter-Effekt für Headline (Zeile 1+2 tippen, 3s Pause mit Cursor, dann "Aus einer Hand.")

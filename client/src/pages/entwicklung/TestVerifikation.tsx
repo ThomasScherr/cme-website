@@ -37,13 +37,7 @@ export default function TestVerifikation() {
         { de: 'Lebensdauertests & HALT/HASS', en: 'Lifetime Tests & HALT/HASS', icon: Clock },
         { de: 'Testkonzeptentwicklung & Prüfmittelbau', en: 'Test Concept Development & Fixture Design', icon: Wrench },
       ]}
-      gallery={[
-        { img: `${CDN}/dental-assembly_05a6609d.png`, captionDE: 'EMV-Messkammer – eigene Testinfrastruktur', captionEN: 'EMC Measurement Chamber – Own Test Infrastructure' },
-        { img: `${CDN}/test-verification_63ae8f78.png`, captionDE: 'Nadelbett-Prüfadapter für In-Circuit-Test', captionEN: 'Bed-of-Nails Adapter for In-Circuit Test' },
-        { img: `${CDN}/vv-photo_938bee1f.png`, captionDE: 'Verifikation & Validierung im Prüflabor', captionEN: 'Verification & Validation in Test Lab' },
-      ]}
-      galleryTitleDE="Unsere Testinfrastruktur"
-      galleryTitleEN="Our Test Infrastructure"
+
       relatedPages={[
         { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
         { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },

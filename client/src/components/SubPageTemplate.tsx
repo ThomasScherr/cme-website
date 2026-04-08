@@ -10,12 +10,6 @@ interface Feature {
   icon?: LucideIcon;
 }
 
-interface GalleryItem {
-  img: string;
-  captionDE: string;
-  captionEN: string;
-}
-
 interface SubPageProps {
   parentHref: string;
   parentLabelDE: string;
@@ -28,9 +22,6 @@ interface SubPageProps {
   introDE: string;
   introEN: string;
   features: Feature[];
-  gallery?: GalleryItem[];
-  galleryTitleDE?: string;
-  galleryTitleEN?: string;
   ctaDE?: string;
   ctaEN?: string;
   relatedPages?: { href: string; titleDE: string; titleEN: string; img: string }[];
@@ -48,9 +39,6 @@ export default function SubPageTemplate({
   introDE,
   introEN,
   features,
-  gallery = [],
-  galleryTitleDE = 'Einblicke',
-  galleryTitleEN = 'Insights',
   ctaDE = 'Projekt anfragen',
   ctaEN = 'Request Project',
   relatedPages = [],
@@ -181,10 +169,10 @@ export default function SubPageTemplate({
                 >
                   {Icon ? (
                     <div
-                      className="w-10 h-10 rounded-lg bg-cme-blue/10 flex items-center justify-center"
+                      className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center"
                       style={{ marginBottom: 'var(--space-gap-xs)' }}
                     >
-                      <Icon size={20} className="text-cme-blue" strokeWidth={1.5} />
+                      <Icon size={28} className="text-cme-blue" strokeWidth={1.5} />
                     </div>
                   ) : (
                     <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
@@ -197,39 +185,6 @@ export default function SubPageTemplate({
         </div>
       </section>
 
-      {/* Gallery */}
-      {gallery.length > 0 && (
-        <section className="section-pad">
-          <div className="container">
-            <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
-              {isDE ? galleryTitleDE : galleryTitleEN}
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
-              {gallery.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-50">
-                    <img
-                      src={item.img}
-                      alt={isDE ? item.captionDE : item.captionEN}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="fluid-card">
-                    <p className="font-medium text-cme-dark fluid-small">{isDE ? item.captionDE : item.captionEN}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Related Pages */}
       {relatedPages.length > 0 && (

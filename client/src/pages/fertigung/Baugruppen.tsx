@@ -39,13 +39,7 @@ export default function Baugruppen() {
         { de: 'Verpackung & Versandlogistik', en: 'Packaging & Shipping Logistics', icon: Package },
         { de: 'Arbeitsplatzspezifische Montageanleitungen', en: 'Workstation-Specific Assembly Instructions', icon: FileText },
       ]}
-      gallery={[
-        { img: `${CDN}/dental-system-complete_8d86b9f8.png`, captionDE: 'Komplettes System – Entwicklung & Fertigung aus einer Hand', captionEN: 'Complete System – Development & Manufacturing from One Source' },
-        { img: `${CDN}/manual-assembly_cfb75b16.png`, captionDE: 'Handmontage an ESD-geschützten Arbeitsplätzen', captionEN: 'Manual Assembly at ESD-Protected Workstations' },
-        { img: `${CDN}/pcb-stacks_e8411dfc.png`, captionDE: 'Serienfertigung mit reproduzierbarer Qualität', captionEN: 'Series Production with Reproducible Quality' },
-      ]}
-      galleryTitleDE="Einblicke in die Baugruppenfertigung"
-      galleryTitleEN="Insights into Module Assembly"
+
       relatedPages={[
         { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: `${CDN}/pick-and-place_4f13096b.png` },
         { href: '/fertigung/qualitaet', titleDE: 'Qualitätsmanagement', titleEN: 'Quality Management', img: `${CDN}/microscope-inspection_a3967815.png` },

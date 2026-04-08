@@ -39,16 +39,7 @@ export default function Leiterplatten() {
         { de: 'Flexible Losgrößen (1 bis 10.000+)', en: 'Flexible Lot Sizes (1 to 10,000+)', icon: SlidersHorizontal },
         { de: 'NPI-Prozess (New Product Introduction)', en: 'NPI Process (New Product Introduction)', icon: Rocket },
       ]}
-      gallery={[
-        { img: `${CDN}/pick-and-place_4f13096b.png`, captionDE: 'SMD-Bestückungsautomat', captionEN: 'SMD Pick & Place Machine' },
-        { img: `${CDN}/selective-soldering_86f15224.png`, captionDE: 'Selektivlötanlage', captionEN: 'Selective Soldering System' },
-        { img: `${CDN}/manual-assembly_cfb75b16.png`, captionDE: 'Manuelle Bestückung & Montage', captionEN: 'Manual Assembly & Mounting' },
-        { img: `${CDN}/pcb-stacks_e8411dfc.png`, captionDE: 'Serienfertigung – bestückte Baugruppen', captionEN: 'Series Production – Assembled PCBs' },
-        { img: `${CDN}/aoi-machine_643926d3.png`, captionDE: 'Automatische Optische Inspektion (AOI)', captionEN: 'Automated Optical Inspection (AOI)' },
-        { img: `${CDN}/microscope-inspection_a3967815.png`, captionDE: 'Mikroskopische Qualitätskontrolle', captionEN: 'Microscopic Quality Control' },
-      ]}
-      galleryTitleDE="Unsere Fertigungsausstattung"
-      galleryTitleEN="Our Manufacturing Equipment"
+
       relatedPages={[
         { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: `${CDN}/dental-system-complete_8d86b9f8.png` },
         { href: '/fertigung/qualitaet', titleDE: 'Qualitätsmanagement', titleEN: 'Quality Management', img: `${CDN}/microscope-inspection_a3967815.png` },
