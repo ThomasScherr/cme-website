@@ -160,3 +160,4 @@
 - [x] MÄRKTE REBUILD: MarketsSection auf Startseite an neue Vertical-Struktur anpassen
 - [x] MÄRKTE REBUILD: i18n-Übersetzungen für neue Märkte-Struktur aktualisieren
 - [x] FIX: Märkte-Seite visuell an den Rest der Website angleichen (Stil, Farben, Layout konsistent mit anderen Unterseiten)
+- [x] Startseiten-MarketsSection an neuen konsistenten Stil anpassen (keine Custom-Farbpalette, gleicher Stil wie Maerkte.tsx)

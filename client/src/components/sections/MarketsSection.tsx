@@ -14,9 +14,6 @@ const verticals = [
     tagsEN: ['PV Inverters', 'Wallbox', 'BMS', 'DC/DC'],
     challengeDE: 'Thermik, EMV, SiC/GaN, Serienfähigkeit',
     challengeEN: 'Thermal, EMC, SiC/GaN, series readiness',
-    accent: 'bg-amber-50 border-amber-200',
-    tagStyle: 'bg-amber-100 text-amber-800',
-    iconBg: 'bg-amber-100',
   },
   {
     icon: Cog,
@@ -26,9 +23,6 @@ const verticals = [
     tagsEN: ['BLDC/PMSM', 'FOC Inverters', 'E-Mobility', 'Robotics'],
     challengeDE: 'Regelung, Geräusch, Kompaktheit, Robustheit',
     challengeEN: 'Control, noise, compactness, robustness',
-    accent: 'bg-blue-50 border-blue-200',
-    tagStyle: 'bg-blue-100 text-blue-800',
-    iconBg: 'bg-blue-100',
   },
   {
     icon: Car,
@@ -38,9 +32,6 @@ const verticals = [
     tagsEN: ['ECU', 'Sensors', 'OBC', 'ADAS'],
     challengeDE: 'ISO 26262, ASPICE, AEC-Q, Hochvolt-EMV',
     challengeEN: 'ISO 26262, ASPICE, AEC-Q, HV-EMC',
-    accent: 'bg-slate-50 border-slate-200',
-    tagStyle: 'bg-slate-100 text-slate-800',
-    iconBg: 'bg-slate-100',
   },
   {
     icon: Factory,
@@ -50,9 +41,6 @@ const verticals = [
     tagsEN: ['Machine Control', 'HMI', 'AGV/AMR', 'Safety'],
     challengeDE: 'Echtzeit, Robustheit, Langlebigkeit, Safety',
     challengeEN: 'Real-time, robustness, longevity, safety',
-    accent: 'bg-emerald-50 border-emerald-200',
-    tagStyle: 'bg-emerald-100 text-emerald-800',
-    iconBg: 'bg-emerald-100',
   },
   {
     icon: HeartPulse,
@@ -62,9 +50,6 @@ const verticals = [
     tagsEN: ['Embedded Systems', 'Precision', 'Sensors', 'Diagnostics'],
     challengeDE: 'MDR, Zuverlässigkeit, Miniaturisierung, Lifecycle',
     challengeEN: 'MDR, reliability, miniaturization, lifecycle',
-    accent: 'bg-rose-50 border-rose-200',
-    tagStyle: 'bg-rose-100 text-rose-800',
-    iconBg: 'bg-rose-100',
   },
   {
     icon: Building2,
@@ -74,9 +59,6 @@ const verticals = [
     tagsEN: ['Elevator', 'HVAC', 'Smart Access', 'Building Automation'],
     challengeDE: 'Langlebigkeit, Safety, Integration, Effizienz',
     challengeEN: 'Longevity, safety, integration, efficiency',
-    accent: 'bg-violet-50 border-violet-200',
-    tagStyle: 'bg-violet-100 text-violet-800',
-    iconBg: 'bg-violet-100',
   },
 ];
 
@@ -117,12 +99,15 @@ export default function MarketsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={vp}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className={`border rounded-xl ${v.accent} hover:shadow-lg transition-all cursor-default group overflow-hidden`}
+              className="bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 cursor-default group overflow-hidden"
             >
-              <div className="p-5 sm:p-6 flex flex-col h-full">
+              <div className="fluid-card flex flex-col h-full">
                 {/* Icon + Title */}
-                <div className="flex items-center gap-3" style={{ marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
-                  <div className={`rounded-lg ${v.iconBg} flex items-center justify-center shrink-0`} style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
+                <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
+                  <div
+                    className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                    style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                  >
                     <v.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                   </div>
                   <h4 className="fluid-small font-bold text-cme-dark leading-tight">
@@ -133,7 +118,7 @@ export default function MarketsSection() {
                 {/* Application tags */}
                 <div className="flex flex-wrap gap-1.5" style={{ marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
                   {(isDE ? v.tagsDE : v.tagsEN).map((tag, j) => (
-                    <span key={j} className={`inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium ${v.tagStyle}`}>
+                    <span key={j} className="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium bg-cme-blue-light text-cme-blue">
                       {tag}
                     </span>
                   ))}
