@@ -141,3 +141,6 @@
 - [x] Icons überall quadratisch und konsistent auf der gesamten Website (via --icon-box / --icon-size CSS vars)
 - [x] Styleguide: Navigation-Abstände konfigurierbar machen (navGap Token + Menüpunkt-Abstand Slider)
 - [x] Styleguide: Footer Spaltenbreite und Textgrößen konfigurierbar machen (Footer Tab mit fsFooter + fsFooterHeading)
+- [x] FIX: Alle Röntgeninspektion-Referenzen auf der gesamten Website entfernen (CME macht AOI + MOI, kein Röntgen) – bereits komplett entfernt
+- [x] Leistungselektronik Karte: Akkuschrauber durch Haus+Ladetechnik-Bild ersetzen
+- [x] Smart Devices Karte: IoT-Module-Bild hinzufügen

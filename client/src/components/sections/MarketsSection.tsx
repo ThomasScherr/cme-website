@@ -5,13 +5,14 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 
 /* Map each market card (by index from i18n) to the correct product image */
 const CARD_IMAGES: Record<number, string> = {
-  0: `${CDN}/drill_f35b523b.png`,       // Leistungselektronik → Akkuschrauber
+  0: `${CDN}/leistungselektronik-haus-ladetechnik_ff3a14e5.webp`, // Leistungselektronik → Haus mit Ladetechnik
   1: `${CDN}/ebike_1852d25f.png`,        // Antriebstechnik → E-Bike
   2: `${CDN}/automotive_5dbb4af9.png`,   // Automotive & SPICE → Auto
   3: `${CDN}/robot_32f2ffb4.png`,        // Industrieautomation → Roboter
   4: `${CDN}/dental_d96808d3.png`,       // Medizintechnik → Dental
   5: `${CDN}/pump_a049c023.png`,         // Bahntechnik & Off-Highway → Pumpe (closest match)
   6: `${CDN}/elevator_462326a9.png`,     // Gebäudetechnik → Aufzug
+  7: `${CDN}/smart-devices-iot-modules_e9b77cfe.webp`, // Smart Devices → IoT-Module
 };
 
 const vp = { once: true, margin: '-80px' as const };
