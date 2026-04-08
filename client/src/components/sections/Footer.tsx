@@ -17,14 +17,14 @@ export default function Footer() {
               alt="CME Control Motion Electronics"
               className="h-8 lg:h-10 w-auto object-contain mb-4"
             />
-            <p className="text-sm text-white/50 max-w-md leading-relaxed">
+            <p className="text-sm text-white/80 max-w-md leading-relaxed">
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
             <div className="flex flex-wrap gap-2 mt-4">
               {['ISO 9001', 'ISO 14001'].map((cert) => (
                 <span
                   key={cert}
-                  className="text-xs px-2.5 py-1 border border-white/15 text-white/35 rounded"
+                  className="text-xs px-2.5 py-1 border border-white/30 text-white/70 rounded"
                 >
                   {cert}
                 </span>
@@ -34,7 +34,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/80 mb-4">
               Leistungen
             </h4>
             <ul className="space-y-2.5">
@@ -45,7 +45,7 @@ export default function Footer() {
                 { label: 'Märkte & Branchen', href: '/maerkte' },
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-sm text-white/55 hover:text-cme-blue transition-colors">
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-cme-blue transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -55,10 +55,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/80 mb-4">
               Kontakt
             </h4>
-            <ul className="space-y-2.5 text-sm text-white/55">
+            <ul className="space-y-2.5 text-sm text-white/80">
               <li>Alter Hellweg 48</li>
               <li>44379 Dortmund</li>
               <li>
@@ -76,16 +76,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
-          <p className="text-xs text-white/30">{t.footer.copyright}</p>
+        <div className="border-t border-white/15 pt-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+          <p className="text-xs text-white/80">{t.footer.copyright}</p>
           <div className="flex gap-6 text-xs">
-            <Link href="/impressum" className="text-white/30 hover:text-cme-blue transition-colors">
+            <Link href="/impressum" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.imprint}
             </Link>
-            <Link href="/datenschutz" className="text-white/30 hover:text-cme-blue transition-colors">
+            <Link href="/datenschutz" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.privacy}
             </Link>
-            <Link href="/agb" className="text-white/30 hover:text-cme-blue transition-colors">
+            <Link href="/agb" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.agb}
             </Link>
           </div>

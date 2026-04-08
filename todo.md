@@ -72,3 +72,4 @@
 - [x] BLOG-CMS: Einzelne Artikelseite mit Markdown-Rendering
 - [x] MULTI-PAGE: Seite "Lifecycle Services" (neu, nicht auf alter Website)
 - [x] MULTI-PAGE: Seite "Märkte & Anwendungen"
+- [x] FIX: Text auf dunklem Hintergrund weiß darstellen (Footer, dunkle Sektionen)

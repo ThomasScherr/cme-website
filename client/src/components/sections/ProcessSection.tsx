@@ -17,7 +17,7 @@ export default function ProcessSection() {
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             {t.process.headline}
           </h2>
-          <p className="text-white/50 max-w-2xl mx-auto">
+          <p className="text-white/80 max-w-2xl mx-auto">
             {t.process.sub}
           </p>
         </motion.div>
@@ -55,7 +55,7 @@ export default function ProcessSection() {
                 <div className={`flex-1 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
                   <div className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-5 hover:border-cme-blue/30 hover:bg-white/[0.06] transition-all duration-300">
                     <h4 className="text-lg font-semibold text-white mb-2">{step.title}</h4>
-                    <p className="text-sm text-white/50 leading-relaxed">{step.desc}</p>
+                    <p className="text-sm text-white/80 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
 

@@ -22,8 +22,8 @@ interface ServiceBlockProps {
 
 function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass = 'bg-white', darkText = false }: ServiceBlockProps) {
   const textColor = darkText ? 'text-white' : 'text-cme-dark';
-  const descColor = darkText ? 'text-white/60' : 'text-cme-gray';
-  const itemColor = darkText ? 'text-white/80' : 'text-cme-dark/80';
+  const descColor = darkText ? 'text-white/80' : 'text-cme-gray';
+  const itemColor = darkText ? 'text-white/90' : 'text-cme-dark/80';
 
   return (
     <div className={`py-16 lg:py-24 ${bgClass}`}>
