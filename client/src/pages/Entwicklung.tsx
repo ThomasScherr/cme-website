@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowRight, Cpu, Waves, FlaskConical, MonitorSmartphone, Code2 } from 'lucide-react';
+import { ArrowRight, Cpu, MemoryStick, Waves, FlaskConical, MonitorSmartphone, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -10,10 +10,19 @@ const HERO_IMG = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
 const subpages = [
   {
     icon: Cpu,
-    titleDE: 'Hardware & Software',
-    titleEN: 'Hardware & Software',
-    descDE: 'Von der Systemarchitektur über Schaltungsentwicklung bis zur Embedded-Firmware – wir entwickeln die komplette Elektronik.',
-    descEN: 'From system architecture through circuit design to embedded firmware – we develop the complete electronics.',
+    titleDE: 'Hardwareentwicklung',
+    titleEN: 'Hardware Development',
+    descDE: 'Systemarchitektur, Schaltungsentwicklung, PCB-Layout und Leistungselektronik – wir entwickeln die komplette Hardware für Ihre Elektronikprodukte.',
+    descEN: 'System architecture, circuit design, PCB layout and power electronics – we develop the complete hardware for your electronic products.',
+    href: '/entwicklung/hardware-software',
+    img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
+  },
+  {
+    icon: MemoryStick,
+    titleDE: 'Entwicklung Embedded Software',
+    titleEN: 'Embedded Software Development',
+    descDE: 'Firmware, Echtzeit-Betriebssysteme, Bootloader und Treiber – Embedded Software für Mikrocontroller und DSPs, nah an der Hardware.',
+    descEN: 'Firmware, real-time operating systems, bootloaders and drivers – embedded software for microcontrollers and DSPs, close to the hardware.',
     href: '/entwicklung/hardware-software',
     img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
   },
@@ -106,22 +115,22 @@ export default function Entwicklung() {
           </h2>
           <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Fünf Kompetenzfelder für Ihre Elektronikentwicklung – von der ersten Simulation bis zum fertigen digitalen Produkt.'
-              : 'Five competence areas for your electronics development – from first simulation to the finished digital product.'}
+              ? 'Sechs Kompetenzfelder für Ihre Elektronikentwicklung – von der Hardwareentwicklung bis zum fertigen digitalen Produkt.'
+              : 'Six competence areas for your electronics development – from hardware development to the finished digital product.'}
           </p>
 
-          {/* Top row: 3 cards */}
-          <div className="grid md:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
-            {subpages.slice(0, 3).map((page, i) => (
+          {/* 3x2 Grid: 6 cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
+            {subpages.map((page, i) => (
               <motion.div
-                key={page.href}
+                key={page.href + i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
-                <Link href={page.href} className="group block">
-                  <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <Link href={page.href} className="group block h-full">
+                  <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
                         src={page.img}
@@ -129,10 +138,10 @@ export default function Entwicklung() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="fluid-card">
+                    <div className="fluid-card flex flex-col flex-1">
                       <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
                         <div
-                          className="rounded-lg bg-cme-blue-light flex items-center justify-center"
+                          className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
                           style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
                         >
                           <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
@@ -141,52 +150,7 @@ export default function Entwicklung() {
                           {isDE ? page.titleDE : page.titleEN}
                         </h3>
                       </div>
-                      <p className="text-gray-600 fluid-small leading-relaxed">
-                        {isDE ? page.descDE : page.descEN}
-                      </p>
-                      <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-xs)' }}>
-                        {isDE ? 'Mehr erfahren' : 'Learn more'}
-                        <ArrowRight size={16} />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom row: 2 cards centered */}
-          <div className="grid md:grid-cols-2 max-w-4xl mx-auto" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-gap-md)' }}>
-            {subpages.slice(3).map((page, i) => (
-              <motion.div
-                key={page.href}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (i + 3) * 0.1 }}
-              >
-                <Link href={page.href} className="group block">
-                  <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={page.img}
-                        alt={isDE ? page.titleDE : page.titleEN}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="fluid-card">
-                      <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
-                        <div
-                          className="rounded-lg bg-cme-blue-light flex items-center justify-center"
-                          style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
-                        >
-                          <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
-                        </div>
-                        <h3 className="fluid-h4 text-cme-dark">
-                          {isDE ? page.titleDE : page.titleEN}
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 fluid-small leading-relaxed">
+                      <p className="text-gray-600 fluid-small leading-relaxed flex-1">
                         {isDE ? page.descDE : page.descEN}
                       </p>
                       <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-xs)' }}>
