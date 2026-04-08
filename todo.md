@@ -135,3 +135,4 @@
 - [ ] Smart Devices Karte: Passendes Produktbild generieren und einfügen
 - [x] ProcessSection: Hintergrund aufhellen/aufwerten (zu flach und düster)
 - [x] ProcessSection: Flat-Design-Icons/Symbole für die 6 Prozessschritte
+- [x] ProcessSection: Timeline-Layout zurückbringen mit hellem Hintergrund und cooler Scroll-Animation (Linie füllt sich, Schritte erscheinen nacheinander)

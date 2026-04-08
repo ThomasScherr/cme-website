@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef } from 'react';
 import {
   MessageSquareText,
   Lightbulb,
@@ -10,24 +11,38 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-/* Icon per step index – flat design, white on blue accent */
 const STEP_ICONS: LucideIcon[] = [
-  MessageSquareText, // 01 Anfrage & Analyse
-  Lightbulb,         // 02 Konzept & Planung
-  Cpu,               // 03 Entwicklung & Prototyp
-  ShieldCheck,       // 04 Qualifikation & Test
-  Factory,           // 05 Serienfertigung
-  LifeBuoy,          // 06 After-Sales & Lifecycle
+  MessageSquareText,
+  Lightbulb,
+  Cpu,
+  ShieldCheck,
+  Factory,
+  LifeBuoy,
 ];
-
-const vp = { once: true, margin: '-60px' as const };
 
 export default function ProcessSection() {
   const { t } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  /* Track scroll progress through the timeline container */
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 80%', 'end 60%'],
+  });
+
+  /* Smooth spring for the progress line */
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 20,
+    restDelta: 0.001,
+  });
+
+  /* Line height driven by scroll */
+  const lineHeight = useTransform(smoothProgress, [0, 1], ['0%', '100%']);
 
   return (
     <section className="section-pad relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-sky-50/40">
-      {/* Subtle decorative elements */}
+      {/* Subtle decorative blurs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-cme-blue/[0.03] rounded-full blur-3xl translate-x-1/4 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-cme-blue/[0.02] rounded-full blur-3xl -translate-x-1/4 translate-y-1/4" />
@@ -38,7 +53,7 @@ export default function ProcessSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={vp}
+          viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
@@ -53,46 +68,79 @@ export default function ProcessSection() {
           </p>
         </motion.div>
 
-        {/* Process Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
+        {/* Timeline */}
+        <div ref={containerRef} className="relative max-w-4xl mx-auto">
+          {/* Background line (gray track) */}
+          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gray-200" />
+
+          {/* Animated progress line (blue, fills on scroll) */}
+          <motion.div
+            className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 w-0.5 bg-gradient-to-b from-cme-blue to-cme-blue/60 origin-top"
+            style={{ height: lineHeight }}
+          />
+
           {t.process.steps.map((step: { num: string; title: string; desc: string }, i: number) => {
+            const isLeft = i % 2 === 0;
             const Icon = STEP_ICONS[i] || Cpu;
+
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative bg-white border border-gray-200 rounded-xl hover:border-cme-blue/40 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                initial={{ opacity: 0, x: isLeft ? -40 : 40, y: 10 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                className={`relative flex items-start md:gap-0 ${
+                  isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+                style={{
+                  gap: 'var(--space-gap-sm)',
+                  marginBottom: i < t.process.steps.length - 1 ? 'clamp(2rem, 1.5rem + 1.5vw, 3.5rem)' : '0',
+                }}
               >
-                {/* Top accent bar */}
-                <div className="h-1 bg-gradient-to-r from-cme-blue to-cme-blue/60 w-0 group-hover:w-full transition-all duration-500" />
+                {/* Center node with icon */}
+                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.4, delay: 0.2, type: 'spring', stiffness: 200 }}
+                    className="rounded-full bg-white border-2 border-cme-blue shadow-md shadow-cme-blue/10 flex items-center justify-center"
+                    style={{
+                      width: 'var(--icon-box)',
+                      height: 'var(--icon-box)',
+                    }}
+                  >
+                    <Icon
+                      className="text-cme-blue"
+                      style={{
+                        width: 'calc(var(--icon-box) * 0.45)',
+                        height: 'calc(var(--icon-box) * 0.45)',
+                      }}
+                      strokeWidth={1.8}
+                    />
+                  </motion.div>
+                </div>
 
-                <div className="p-6 sm:p-7">
-                  {/* Icon + Step number row */}
-                  <div className="flex items-center gap-4" style={{ marginBottom: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem)' }}>
-                    <div
-                      className="flex-shrink-0 rounded-xl bg-cme-blue/10 flex items-center justify-center group-hover:bg-cme-blue/15 transition-colors"
-                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
-                    >
-                      <Icon className="text-cme-blue" style={{ width: 'calc(var(--icon-box) * 0.5)', height: 'calc(var(--icon-box) * 0.5)' }} strokeWidth={1.5} />
-                    </div>
-                    <span className="fluid-xs font-bold text-cme-blue/50 uppercase tracking-widest">
+                {/* Spacer for mobile */}
+                <div className="w-12 flex-shrink-0 md:hidden" />
+
+                {/* Card */}
+                <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:pr-14 md:text-right' : 'md:pl-14'}`}>
+                  <div className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 hover:border-cme-blue/30 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 group">
+                    {/* Step label */}
+                    <span className="inline-block fluid-xs font-bold text-cme-blue/50 uppercase tracking-widest mb-1">
                       Schritt {step.num}
                     </span>
+                    <h4 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)' }}>
+                      {step.title}
+                    </h4>
+                    <p className="fluid-small text-gray-500 leading-relaxed">{step.desc}</p>
                   </div>
-
-                  {/* Title */}
-                  <h4 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)' }}>
-                    {step.title}
-                  </h4>
-
-                  {/* Description */}
-                  <p className="fluid-small text-gray-500 leading-relaxed">
-                    {step.desc}
-                  </p>
                 </div>
+
+                {/* Hidden spacer for desktop */}
+                <div className="hidden md:block md:w-[calc(50%-2.5rem)]" />
               </motion.div>
             );
           })}
