@@ -1,11 +1,12 @@
 // CME Control Motion Electronics – Home Page
 // Design Philosophy: Techno-Industrial Precision
-// Sections: Hero, Stats, Services (3 pillars), USPs, Process, Markets, Contact, Footer
+// Sections: Hero, Stats, Services (3 pillars), Benefits, USPs, Process, Markets, Contact, Footer
 
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/sections/HeroSection';
 import StatsSection from '@/components/sections/StatsSection';
 import ServicesSection from '@/components/sections/ServicesSection';
+import BenefitsSection from '@/components/sections/BenefitsSection';
 import UspSection from '@/components/sections/UspSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import MarketsSection from '@/components/sections/MarketsSection';
@@ -20,6 +21,7 @@ export default function Home() {
         <HeroSection />
         <StatsSection />
         <ServicesSection />
+        <BenefitsSection />
         <UspSection />
         <ProcessSection />
         <MarketsSection />
