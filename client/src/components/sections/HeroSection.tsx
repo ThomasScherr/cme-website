@@ -48,12 +48,12 @@ export default function HeroSection() {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="absolute hidden lg:block"
           style={{
-            width: 'min(340px, 27vw)',
+            width: 'min(280px, 22vw)',
             aspectRatio: '1 / 1',
             top: '12%',
-            right: '18%',
+            right: '14%',
             background: 'rgba(33, 150, 211, 0.07)',
-            transform: 'rotate(45deg)',
+            transform: 'rotate(45deg) scaleY(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             zIndex: 1,
           }}
@@ -66,11 +66,11 @@ export default function HeroSection() {
           transition={{ duration: 0.85, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="absolute hidden lg:block"
           style={{
-            width: 'min(380px, 30vw)',
+            width: 'min(320px, 25vw)',
             aspectRatio: '1 / 1',
-            top: '25%',
-            right: '5%',
-            transform: 'rotate(45deg)',
+            top: '22%',
+            right: '4%',
+            transform: 'rotate(45deg) scaleY(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             overflow: 'hidden',
             zIndex: 2,
@@ -81,7 +81,8 @@ export default function HeroSection() {
             src={HERO_IMAGE}
             alt="CME Elektronikentwicklung und Fertigung"
             style={{
-              transform: 'rotate(-45deg) scale(1.42)',
+              /* Counter-rotate and counter-scale to keep image upright */
+              transform: 'rotate(-45deg) scaleY(0.77) scale(1.42)',
               width: '100%',
               height: '100%',
               objectFit: 'cover',
@@ -98,11 +99,11 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="lg:hidden absolute"
           style={{
-            width: 'min(220px, 55vw)',
+            width: 'min(180px, 45vw)',
             aspectRatio: '1 / 1',
-            top: '8%',
+            top: '6%',
             right: '5%',
-            transform: 'rotate(45deg)',
+            transform: 'rotate(45deg) scaleY(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             overflow: 'hidden',
             zIndex: 2,
@@ -113,7 +114,8 @@ export default function HeroSection() {
             src={HERO_IMAGE}
             alt="CME Elektronikentwicklung und Fertigung"
             style={{
-              transform: 'rotate(-45deg) scale(1.42)',
+              /* Counter-rotate and counter-scale to keep image upright */
+              transform: 'rotate(-45deg) scaleY(0.77) scale(1.42)',
               width: '100%',
               height: '100%',
               objectFit: 'cover',
