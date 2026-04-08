@@ -49,6 +49,7 @@ export interface StyleTokens {
   // ── Navigation ──
   navHeight: ClampValue;
   navLogo: ClampValue;
+  navGap: ClampValue;
 
   // ── Hero ──
   heroDiamondW: ClampValue;
@@ -100,6 +101,7 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   // Navigation
   navHeight: { min: 4,    vw: 5.2,  offset: 2,    max: 8.75 },
   navLogo:   { min: 2.5,  vw: 5.2,  offset: 0.5,  max: 7.5 },
+  navGap:    { min: 0.25, vw: 0.8,  offset: 0.1,  max: 1.5 },
 
   // Hero
   heroDiamondW:     { min: 17.5,  vw: 24,  offset: 8,  max: 37.5 },
@@ -167,6 +169,7 @@ export function tokensToCSSVars(tokens: StyleTokens): Record<string, string> {
     "--fs-footer-heading": clampToCSS(tokens.fsFooterHeading),
     "--nav-height": clampToCSS(tokens.navHeight),
     "--nav-logo": clampToCSS(tokens.navLogo),
+    "--nav-gap": clampToCSS(tokens.navGap),
     "--hero-diamond-w": clampToCSS(tokens.heroDiamondW),
     "--hero-diamond-h": clampToCSS(tokens.heroDiamondH),
     "--hero-accent-diamond": clampToCSS(tokens.heroAccentDiamond),

@@ -137,3 +137,7 @@
 - [x] ProcessSection: Flat-Design-Icons/Symbole für die 6 Prozessschritte
 - [x] ProcessSection: Timeline-Layout zurückbringen mit hellem Hintergrund und cooler Scroll-Animation (Linie füllt sich, Schritte erscheinen nacheinander)
 - [ ] BUG FIX: tRPC returning HTML instead of JSON (Unexpected token '<', "<!doctype"...)
+- [x] Fertigung Feature-Liste: Blaue Punkte durch Lucide-Icons ersetzen (groß wie auf Startseite)
+- [x] Icons überall quadratisch und konsistent auf der gesamten Website (via --icon-box / --icon-size CSS vars)
+- [x] Styleguide: Navigation-Abstände konfigurierbar machen (navGap Token + Menüpunkt-Abstand Slider)
+- [x] Styleguide: Footer Spaltenbreite und Textgrößen konfigurierbar machen (Footer Tab mit fsFooter + fsFooterHeading)

@@ -145,6 +145,8 @@
   --nav-height: clamp(4rem, 2rem + 5.2vw, 8.75rem);
   /* Nav logo height: 40px → 120px (no container blocking!) */
   --nav-logo: clamp(2.5rem, 0.5rem + 5.2vw, 7.5rem);
+  /* Nav item gap: 4px → 24px */
+  --nav-gap: clamp(0.25rem, 0.1rem + 0.8vw, 1.5rem);
   /* Nav font size: 13px → 17px (capped to prevent wrapping at 4K) */
   --fs-nav: clamp(0.8125rem, 0.6rem + 0.35vw, 1.0625rem);
   /* Nav dropdown font size: 12px → 16px */

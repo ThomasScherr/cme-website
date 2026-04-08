@@ -1,7 +1,20 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowRight, CircuitBoard, Boxes, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  CircuitBoard,
+  Boxes,
+  ShieldCheck,
+  Cpu,
+  Wrench,
+  Eye,
+  Paintbrush,
+  Cable,
+  FlaskConical,
+  Database,
+  PenTool,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const HERO_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0425__1920px_178fc1eb.jpg';
@@ -34,6 +47,17 @@ const subpages = [
     href: '/fertigung/qualitaet',
     img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2055__1920px_00c91d17.jpg',
   },
+];
+
+const capabilities = [
+  { de: 'SMD-Bestückung bis 01005', en: 'SMD Assembly down to 01005', icon: Cpu },
+  { de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering', icon: Wrench },
+  { de: 'AOI & MOI', en: 'AOI & MOI', icon: Eye },
+  { de: 'Verguss & Schutzlackierung', en: 'Potting & Conformal Coating', icon: Paintbrush },
+  { de: 'Kabelkonfektionierung', en: 'Cable Assembly', icon: Cable },
+  { de: 'Funktionstest & ICT', en: 'Functional Test & ICT', icon: FlaskConical },
+  { de: 'Traceability & MES', en: 'Traceability & MES', icon: Database },
+  { de: 'Design for Manufacturing', en: 'Design for Manufacturing', icon: PenTool },
 ];
 
 export default function Fertigung() {
@@ -112,7 +136,7 @@ export default function Fertigung() {
                     <div className="fluid-card">
                       <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
                         <div
-                          className="rounded-lg bg-cme-blue-light flex items-center justify-center"
+                          className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
                           style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
                         >
                           <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
@@ -144,28 +168,29 @@ export default function Fertigung() {
             {isDE ? 'Fertigungskapazitäten' : 'Manufacturing Capabilities'}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
-            {[
-              { de: 'SMD-Bestückung bis 01005', en: 'SMD Assembly down to 01005' },
-              { de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering' },
-              { de: 'AOI & MOI', en: 'AOI & MOI' },
-              { de: 'Verguss & Schutzlackierung', en: 'Potting & Conformal Coating' },
-              { de: 'Kabelkonfektionierung', en: 'Cable Assembly' },
-              { de: 'Funktionstest & ICT', en: 'Functional Test & ICT' },
-              { de: 'Traceability & MES', en: 'Traceability & MES' },
-              { de: 'Design for Manufacturing', en: 'Design for Manufacturing' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
-              >
-                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
-                <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
-              </motion.div>
-            ))}
+            {capabilities.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                >
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <Icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+                    </div>
+                    <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

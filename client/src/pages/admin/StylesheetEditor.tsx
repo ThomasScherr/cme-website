@@ -488,6 +488,7 @@ export default function StylesheetEditor() {
                   <TabsTrigger value="spacing">Abstände</TabsTrigger>
                   <TabsTrigger value="components">Komponenten</TabsTrigger>
                   <TabsTrigger value="colors">Farben</TabsTrigger>
+                  <TabsTrigger value="footer">Footer</TabsTrigger>
                   <TabsTrigger value="presets">Presets</TabsTrigger>
                 </TabsList>
 
@@ -515,6 +516,22 @@ export default function StylesheetEditor() {
                   </Card>
                 </TabsContent>
 
+                {/* ── Footer Tab ── */}
+                <TabsContent value="footer">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Footer</CardTitle>
+                      <CardDescription>
+                        Schriftgrößen für den Footer-Bereich. Spaltenbreite und Textgrößen skalieren responsive mit der Auflösung.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-1">
+                      <ClampEditor label="Footer Text" description="Schriftgröße für Fließtext im Footer" value={tokens.fsFooter} onChange={v => updateToken('fsFooter', v)} />
+                      <ClampEditor label="Footer Überschriften" description="Schriftgröße für Spaltenüberschriften im Footer" value={tokens.fsFooterHeading} onChange={v => updateToken('fsFooterHeading', v)} />
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
                 {/* ── Navigation Tab ── */}
                 <TabsContent value="navigation">
                   <Card>
@@ -528,6 +545,7 @@ export default function StylesheetEditor() {
                       <ClampEditor label="Logo-Höhe" description="Höhe des Logos in der Navigation" value={tokens.navLogo} onChange={v => updateToken('navLogo', v)} />
                       <ClampEditor label="Navigationsleisten-Höhe" description="Gesamthöhe der Navigationsleiste" value={tokens.navHeight} onChange={v => updateToken('navHeight', v)} />
                       <ClampEditor label="Menü-Schriftgröße" description="Schriftgröße der Menüpunkte" value={tokens.fsNav} onChange={v => updateToken('fsNav', v)} />
+                      <ClampEditor label="Menüpunkt-Abstand" description="Abstand zwischen den Menüpunkten" value={tokens.navGap} onChange={v => updateToken('navGap', v)} />
                     </CardContent>
                   </Card>
                 </TabsContent>

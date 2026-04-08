@@ -161,7 +161,7 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+        <nav className="hidden lg:flex items-center" style={{ gap: 'var(--nav-gap)' }}>
           {navItems.map((item) => (
             <div key={item.label} className="relative">
               {item.dropdown ? (
