@@ -11,8 +11,8 @@ export default function HeroSection() {
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(33,150,211,0.04),transparent_70%)]" />
 
-      <div className="container relative z-10 pt-24 pb-16 lg:pt-0 lg:pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10 pt-24 pb-16 lg:pt-0 lg:pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
           {/* Left: Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -22,7 +22,7 @@ export default function HeroSection() {
             <p className="text-cme-blue font-semibold tracking-[0.2em] uppercase text-xs mb-6">
               {t.hero.tagline}
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cme-dark leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-cme-dark leading-[1.1] mb-6 whitespace-nowrap">
               {t.hero.headline1}
               <br />
               {t.hero.headline2}
