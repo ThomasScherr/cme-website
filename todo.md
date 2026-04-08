@@ -18,3 +18,14 @@
 - [x] Desktop-Ansicht: Alle Sektionen visuell prüfen
 - [x] Hero-Raute überlagert Text auf großen Bildschirmen – Overflow clippen und Größe begrenzen
 - [x] Alle Sektionen mit Rauten auf großen Bildschirmen absichern
+- [x] Bilder aus CME-Präsentation extrahieren und als CDN-Assets hochladen
+- [x] DiamondImage-Komponente durch DiagonalImage (schräger Schnitt wie Präsentation) ersetzen
+- [x] Hero-Sektion: Redesign nach CME-Präsentationsstil (diagonales Bild rechts)
+- [x] Services-Sektionen: Redesign mit echten CME-Fotos und Diagonalschnitt
+- [x] USP-Sektion: Redesign mit Thermosimulations-Bild
+- [x] Märkte-Sektion: Redesign mit PCB-Assembly-Bildstreifen
+- [ ] Prozess-Sektion: Prüfen und ggf. anpassen
+- [ ] Heller, cleaner Hintergrund statt dunkler Sektionen
+- [x] Hellblauer Akzent-Shape als wiederkehrendes Element eingebaut
+- [x] Footer-Logo: SVG durch PNG ersetzt (war broken)
+- [x] USP-Karten: group-hover Fix für Akzentlinie

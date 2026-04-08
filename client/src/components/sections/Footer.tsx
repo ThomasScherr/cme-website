@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Logo & Tagline – on desktop: spans 2 columns */}
           <div className="md:col-span-2">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_white_18093efb.svg"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png"
               alt="CME Control Motion Electronics"
               className="cme-logo-img"
               style={{ width: 'auto', marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}
