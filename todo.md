@@ -132,3 +132,6 @@
 - [x] FIX: MarketsSection – Bilder korrekt den Branchen zuordnen (Aufzug→Gebäudetechnik, Roboter→Industrieautomation, Dental→Medizintechnik, Auto→Automotive, E-Bike→Antriebstechnik)
 - [x] Simulation-Seite: Blaue Punkte durch passende Lucide-Icons auf Feature-Karten ersetzen
 - [x] MarketsSection: Produktbilder in die Branchen-Karten integrieren, separate Bilderleiste entfernen, Karten breiter machen
+- [ ] Smart Devices Karte: Passendes Produktbild generieren und einfügen
+- [x] ProcessSection: Hintergrund aufhellen/aufwerten (zu flach und düster)
+- [x] ProcessSection: Flat-Design-Icons/Symbole für die 6 Prozessschritte
