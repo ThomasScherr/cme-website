@@ -1,59 +1,30 @@
-// CME Website – Footer
-// Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
-// Mobile: Single column layout, no span-2
-
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from 'wouter';
+
+const LOGO_WHITE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png';
 
 export default function Footer() {
   const { t } = useLanguage();
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const contentMax = 'min(1600px, 90vw)';
-  const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
-
   return (
-    <footer
-      style={{
-        background: 'var(--cme-color-dark)',
-        color: '#fff',
-        paddingTop: 'clamp(3rem, 5vw, 6rem)',
-        paddingBottom: 'clamp(2rem, 4vw, 4rem)',
-      }}
-    >
-      <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
-        <div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-[clamp(2rem,4vw,5rem)]"
-          style={{ marginBottom: 'clamp(2rem, 4vw, 4rem)' }}
-        >
-          {/* Logo & Tagline – on desktop: spans 2 columns */}
+    <footer className="bg-cme-dark text-white py-16 lg:py-20">
+      <div className="container max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-12">
+          {/* Logo & Tagline */}
           <div className="md:col-span-2">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png"
+              src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
-              style={{
-                height: 'clamp(28px, 3vw, 40px)',
-                width: 'auto',
-                objectFit: 'contain',
-                marginBottom: 'clamp(0.75rem, 1.5vw, 1.5rem)',
-              }}
+              className="h-8 lg:h-10 w-auto object-contain mb-4"
             />
-            <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.50)', maxWidth: '420px', lineHeight: 1.65 }}>
+            <p className="text-sm text-white/50 max-w-md leading-relaxed">
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <div className="flex flex-wrap gap-2 mt-4">
               {['ISO 9001', 'ISO 14001'].map((cert) => (
                 <span
                   key={cert}
-                  style={{
-                    fontSize: 'var(--cme-font-size-xs)',
-                    padding: '0.3em 0.6em',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: 'rgba(255,255,255,0.35)',
-                  }}
+                  className="text-xs px-2.5 py-1 border border-white/15 text-white/35 rounded"
                 >
                   {cert}
                 </span>
@@ -63,34 +34,20 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4">
               Leistungen
             </h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul className="space-y-2.5">
               {[
-                { label: t.footer.dev, target: 'services' },
-                { label: t.footer.mfg, target: 'services' },
-                { label: t.footer.lifecycle, target: 'services' },
-                { label: 'Märkte & Branchen', target: 'markets' },
+                { label: t.footer.dev, href: '/entwicklung' },
+                { label: t.footer.mfg, href: '/fertigung' },
+                { label: t.footer.lifecycle, href: '/lifecycle' },
+                { label: 'Märkte & Branchen', href: '/maerkte' },
               ].map((link, i) => (
                 <li key={i}>
-                  <button
-                    onClick={() => scrollTo(link.target)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      fontSize: 'var(--cme-font-size-sm)',
-                      color: 'rgba(255,255,255,0.55)',
-                      textAlign: 'left',
-                      cursor: 'pointer',
-                      transition: 'color 0.2s',
-                      padding: 0,
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
-                  >
+                  <Link href={link.href} className="text-sm text-white/55 hover:text-cme-blue transition-colors">
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,29 +55,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.30)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4">
               Kontakt
             </h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: 'var(--cme-font-size-sm)', color: 'rgba(255,255,255,0.55)' }}>
+            <ul className="space-y-2.5 text-sm text-white/55">
               <li>Alter Hellweg 48</li>
               <li>44379 Dortmund</li>
               <li>
-                <a
-                  href="tel:+4923128667696"
-                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-all' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
-                >
+                <a href="tel:+4923128667696" className="hover:text-cme-blue transition-colors">
                   +49 231 28 66 76 96-0
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:info@control-motion.de"
-                  style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'color 0.2s', wordBreak: 'break-all' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
-                >
+                <a href="mailto:info@control-motion.de" className="hover:text-cme-blue transition-colors">
                   info@control-motion.de
                 </a>
               </li>
@@ -129,43 +76,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div
-          style={{
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            paddingTop: 'clamp(1rem, 2vw, 2rem)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            alignItems: 'center',
-          }}
-          className="md:flex-row md:justify-between"
-        >
-          <p style={{ fontSize: 'var(--cme-font-size-xs)', color: 'rgba(255,255,255,0.30)' }}>{t.footer.copyright}</p>
-          <div style={{ display: 'flex', gap: 'clamp(1rem, 2vw, 2rem)', fontSize: 'var(--cme-font-size-xs)', color: 'rgba(255,255,255,0.30)' }}>
-            <a
-              href="#"
-              style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
-            >
+        <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
+          <p className="text-xs text-white/30">{t.footer.copyright}</p>
+          <div className="flex gap-6 text-xs">
+            <Link href="/impressum" className="text-white/30 hover:text-cme-blue transition-colors">
               {t.footer.imprint}
-            </a>
-            <a
-              href="#"
-              style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
-            >
+            </Link>
+            <Link href="/datenschutz" className="text-white/30 hover:text-cme-blue transition-colors">
               {t.footer.privacy}
-            </a>
-            <a
-              href="#"
-              style={{ color: 'rgba(255,255,255,0.30)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.30)')}
-            >
+            </Link>
+            <Link href="/agb" className="text-white/30 hover:text-cme-blue transition-colors">
               {t.footer.agb}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

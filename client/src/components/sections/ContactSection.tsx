@@ -1,6 +1,3 @@
-// CME Website – Contact Section
-// Design: Techno-Industrial Precision – fluid sizing from 375px to 3840px
-
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,14 +5,23 @@ import { Textarea } from '@/components/ui/textarea';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { trpc } from '@/lib/trpc';
+import { MapPin, Phone, Mail, Send, Loader2 } from 'lucide-react';
 
-const vp = { once: true, margin: '-80px' };
+const vp = { once: true, margin: '-80px' as const };
 
 export default function ContactSection() {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '', company: '', email: '', phone: '', message: '', privacy: false,
+  });
+
+  const submitMutation = trpc.contact.submit.useMutation({
+    onSuccess: () => {
+      toast.success('Ihre Anfrage wurde gesendet. Wir melden uns in Kürze bei Ihnen.');
+      setFormData({ name: '', company: '', email: '', phone: '', message: '', privacy: false });
+    },
+    onError: (err) => toast.error(err.message || 'Fehler beim Senden. Bitte versuchen Sie es erneut.'),
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,41 +30,39 @@ export default function ContactSection() {
       toast.error('Bitte akzeptieren Sie die Datenschutzerklärung.');
       return;
     }
-    toast.success('Ihre Anfrage wurde gesendet. Wir melden uns in Kürze bei Ihnen.');
-    setFormData({ name: '', company: '', email: '', phone: '', message: '', privacy: false });
+    submitMutation.mutate({
+      name: formData.name,
+      company: formData.company || undefined,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      message: formData.message,
+      source: 'homepage',
+    });
   };
 
-  const sectionPad = 'clamp(3rem, 5vw + 1rem, 9rem)';
-  const contentMax = 'min(1600px, 90vw)';
-  const contentPad = 'clamp(1rem, 2vw + 0.5rem, 4rem)';
-
   return (
-    <section
-      id="contact"
-      style={{ paddingTop: 'var(--cme-section-contact-pt, 80px)', paddingBottom: 'var(--cme-section-contact-pb, 80px)', background: 'var(--cme-color-bg-alt, #f5f6f8)' }}
-    >
-      <div style={{ maxWidth: contentMax, margin: '0 auto', paddingLeft: contentPad, paddingRight: contentPad }}>
+    <section id="contact" className="py-20 lg:py-28 bg-gray-50">
+      <div className="container max-w-6xl">
+        {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.5 }}
-          style={{ marginBottom: 'clamp(2rem, 4vw, 5rem)' }}
+          className="mb-12 lg:mb-16"
         >
-          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 500, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p className="text-xs font-semibold text-cme-blue uppercase tracking-[0.18em] mb-3">
             Kontakt
           </p>
-          <h2 style={{ marginBottom: '1rem' }}>{t.contact.headline}</h2>
-          <p style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)', maxWidth: 'clamp(280px, 40vw, 700px)' }}>{t.contact.sub}</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+            {t.contact.headline}
+          </h2>
+          <p className="text-lg text-gray-500 max-w-xl">
+            {t.contact.sub}
+          </p>
         </motion.div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-            gap: 'clamp(2rem, 5vw, 6rem)',
-          }}
-        >
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Contact Form */}
           <motion.form
             initial={{ opacity: 0, x: -20 }}
@@ -66,38 +70,38 @@ export default function ContactSection() {
             viewport={vp}
             transition={{ duration: 0.5 }}
             onSubmit={handleSubmit}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}
+            className="space-y-4"
           >
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 'clamp(0.75rem, 1.5vw, 1rem)' }}>
+            <div className="grid sm:grid-cols-2 gap-4">
               <Input
                 placeholder={t.contact.name + ' *'}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                style={{ fontSize: 'var(--cme-font-size-sm)' }}
+                className="text-sm"
               />
               <Input
                 placeholder={t.contact.company}
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                style={{ fontSize: 'var(--cme-font-size-sm)' }}
+                className="text-sm"
               />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 'clamp(0.75rem, 1.5vw, 1rem)' }}>
+            <div className="grid sm:grid-cols-2 gap-4">
               <Input
                 type="email"
                 placeholder={t.contact.email + ' *'}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                style={{ fontSize: 'var(--cme-font-size-sm)' }}
+                className="text-sm"
               />
               <Input
                 type="tel"
                 placeholder={t.contact.phone}
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                style={{ fontSize: 'var(--cme-font-size-sm)' }}
+                className="text-sm"
               />
             </div>
             <Textarea
@@ -106,33 +110,31 @@ export default function ContactSection() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={6}
               required
-              className="resize-none"
-              style={{ fontSize: 'var(--cme-font-size-sm)' }}
+              className="resize-none text-sm"
             />
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+            <div className="flex items-start gap-3">
               <input
                 type="checkbox"
                 id="privacy"
                 checked={formData.privacy}
                 onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-                className="mt-1 accent-primary"
+                className="mt-1 accent-cme-blue"
                 required
               />
-              <label htmlFor="privacy" style={{ fontSize: 'var(--cme-font-size-xs)', color: 'var(--cme-color-gray)', cursor: 'pointer', lineHeight: 1.55 }}>
+              <label htmlFor="privacy" className="text-xs text-gray-500 cursor-pointer leading-relaxed">
                 {t.contact.privacy}
               </label>
             </div>
             <Button
               type="submit"
-              style={{
-                background: 'var(--cme-color-primary)',
-                color: '#fff',
-                fontSize: 'var(--cme-font-size-sm)',
-                padding: 'clamp(0.6rem, 1vw, 0.9rem) clamp(1.5rem, 3vw, 2.5rem)',
-                alignSelf: 'flex-start',
-              }}
-              className="hover:bg-primary/90 shadow-md transition-all"
+              disabled={submitMutation.isPending}
+              className="bg-cme-blue hover:bg-cme-blue/90 text-white shadow-md self-start"
             >
+              {submitMutation.isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              ) : (
+                <Send size={16} className="mr-2" />
+              )}
               {t.contact.submit}
             </Button>
           </motion.form>
@@ -143,32 +145,30 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={vp}
             transition={{ duration: 0.5, delay: 0.1 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1.5rem, 3vw, 3rem)' }}
+            className="space-y-8"
           >
             <div>
-              <h3 style={{ fontSize: 'var(--cme-font-size-2xl)', marginBottom: 'clamp(1rem, 2vw, 1.75rem)' }}>{t.contact.address_title}</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <MapPin size={18} style={{ color: 'var(--cme-color-primary)', marginTop: '0.1rem', flexShrink: 0 }} />
+              <h3 className="text-2xl font-bold text-cme-dark mb-6">
+                {t.contact.address_title}
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="text-cme-blue mt-0.5 shrink-0" />
                   <div>
-                    <p style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 600 }}>CME Control Motion Electronics GmbH</p>
-                    <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-gray)' }}>Alter Hellweg 48</p>
-                    <p style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-gray)' }}>44379 Dortmund, Germany</p>
+                    <p className="text-sm font-semibold text-cme-dark">CME Control Motion Electronics GmbH</p>
+                    <p className="text-sm text-gray-500">Alter Hellweg 48</p>
+                    <p className="text-sm text-gray-500">44379 Dortmund, Germany</p>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Phone size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
-                  <a href="tel:+4923128667696" style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
+                <div className="flex items-center gap-3">
+                  <Phone size={18} className="text-cme-blue shrink-0" />
+                  <a href="tel:+4923128667696" className="text-sm text-cme-dark hover:text-cme-blue transition-colors">
                     +49 231 28 66 76 96-0
                   </a>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Mail size={18} style={{ color: 'var(--cme-color-primary)', flexShrink: 0 }} />
-                  <a href="mailto:info@control-motion.de" style={{ fontSize: 'var(--cme-font-size-sm)', color: 'var(--cme-color-dark)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--cme-color-primary)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--cme-color-dark)')}>
+                <div className="flex items-center gap-3">
+                  <Mail size={18} className="text-cme-blue shrink-0" />
+                  <a href="mailto:info@control-motion.de" className="text-sm text-cme-dark hover:text-cme-blue transition-colors">
                     info@control-motion.de
                   </a>
                 </div>
@@ -176,21 +176,15 @@ export default function ContactSection() {
             </div>
 
             {/* Certifications */}
-            <div style={{ borderTop: '1px solid var(--cme-color-border, #dde1e6)', paddingTop: 'clamp(1rem, 2vw, 1.75rem)' }}>
-              <p style={{ fontSize: 'var(--cme-font-size-xs)', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--cme-color-gray)', marginBottom: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+            <div className="border-t border-gray-200 pt-6">
+              <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">
                 Zertifizierungen
               </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div className="flex flex-wrap gap-2">
                 {['ISO 9001', 'ISO 14001', 'ISO 26262', 'IATF 16949'].map((cert) => (
                   <span
                     key={cert}
-                    style={{
-                      fontSize: 'var(--cme-font-size-xs)',
-                      fontWeight: 600,
-                      padding: '0.3em 0.75em',
-                      border: '1px solid var(--cme-color-border, #dde1e6)',
-                      color: 'var(--cme-color-gray)',
-                    }}
+                    className="text-xs font-semibold px-3 py-1.5 border border-gray-200 rounded text-gray-600"
                   >
                     {cert}
                   </span>

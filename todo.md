@@ -34,17 +34,41 @@
 - [x] Styleguide: Rauten-Kantenradius als CSS-Variable (--cme-diamond-radius, Default 0.1) im Styleguide-Editor einstellbar
 - [x] Hero-Rauten: Aus Container herausnehmen, absolut in Sektion positionieren (kein Abschneiden)
 - [x] Hero-Rauten: Bild-Raute und Akzent-Raute zueinander versetzt (nicht zentriert)
-- [ ] REBUILD: Gesamte Website mit Tailwind CSS und React neu aufbauen
+- [x] REBUILD: Gesamte Website mit Tailwind CSS und React neu aufbauen
 - [x] REBUILD: Alten Styleguide löschen (StyleGuide.tsx, useDesignTokens.ts, etc.)
-- [ ] REBUILD: Rauten korrekt als hochkant-Rauten implementieren (Spitzen oben/unten)
-- [ ] REBUILD: Navigation mit Tailwind neu aufbauen
-- [ ] REBUILD: Hero-Sektion mit korrekten Rauten und Framer Motion
-- [ ] REBUILD: Stats-Sektion mit Tailwind
-- [ ] REBUILD: Services-Sektionen mit Bildern und Tailwind
-- [ ] REBUILD: USP-Sektion mit Tailwind
-- [ ] REBUILD: Process-Sektion mit Tailwind
-- [ ] REBUILD: Markets-Sektion mit Tailwind
-- [ ] REBUILD: Contact-Sektion mit Tailwind
-- [ ] REBUILD: Footer mit Tailwind
-- [ ] REBUILD: App.tsx und Home.tsx aktualisieren
+- [x] REBUILD: Rauten korrekt als hochkant-Rauten implementieren (Spitzen oben/unten)
+- [x] REBUILD: Navigation mit Tailwind neu aufbauen
+- [x] REBUILD: Hero-Sektion mit korrekten Rauten und Framer Motion
+- [x] REBUILD: Stats-Sektion mit Tailwind
+- [x] REBUILD: Services-Sektionen mit Bildern und Tailwind
+- [x] REBUILD: USP-Sektion mit Tailwind
+- [x] REBUILD: Process-Sektion mit Tailwind
+- [x] REBUILD: Markets-Sektion mit Tailwind
+- [x] REBUILD: Contact-Sektion mit Tailwind
+- [x] REBUILD: Footer mit Tailwind
+- [x] REBUILD: App.tsx und Home.tsx aktualisieren
 - [x] USP-Sektion: CME-Video von control-motion.de Hero einbauen (statt Bild)
+- [x] MULTI-PAGE: Seitenstruktur von control-motion.de analysieren
+- [x] MULTI-PAGE: Routing-System für alle Unterseiten implementieren
+- [x] MULTI-PAGE: Navigation mit Dropdown-Menüs für Unterseiten
+- [x] MULTI-PAGE: Seite "Unternehmen"
+- [x] MULTI-PAGE: Seite "Elektronikentwicklung" (Übersicht)
+- [x] MULTI-PAGE: Seite "Hardware & Software"
+- [x] MULTI-PAGE: Seite "Simulation"
+- [x] MULTI-PAGE: Seite "Test & Verifikation"
+- [x] MULTI-PAGE: Seite "Elektronikfertigung" (Übersicht)
+- [x] MULTI-PAGE: Seite "Leiterplatten bestücken"
+- [x] MULTI-PAGE: Seite "Baugruppen fertigen"
+- [x] MULTI-PAGE: Seite "Qualitätsmanagement"
+- [x] MULTI-PAGE: Seite "Kontakt" (eigenständig)
+- [x] MULTI-PAGE: Seite "Jobs / Karriere"
+- [x] MULTI-PAGE: Seite "Impressum"
+- [x] MULTI-PAGE: Seite "Datenschutzerklärung"
+- [x] MULTI-PAGE: Seite "AGB"
+- [x] BLOG-CMS: Datenbank-Schema (articles, categories, tags)
+- [x] BLOG-CMS: tRPC-Prozeduren für CRUD (create, read, update, delete, list)
+- [x] BLOG-CMS: Admin-Bereich zum Erstellen/Bearbeiten/Löschen von Artikeln
+- [x] BLOG-CMS: Insights-Übersichtsseite mit Filterung nach Kategorien
+- [x] BLOG-CMS: Einzelne Artikelseite mit Markdown-Rendering
+- [x] MULTI-PAGE: Seite "Lifecycle Services" (neu, nicht auf alter Website)
+- [x] MULTI-PAGE: Seite "Märkte & Anwendungen"

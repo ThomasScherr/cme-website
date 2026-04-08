@@ -1,11 +1,11 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, and, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, designPresets, InsertDesignPreset } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertCategory } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
@@ -17,6 +17,8 @@ export async function getDb() {
   }
   return _db;
 }
+
+// ── User Queries ────────────────────────────────────────────────
 
 export async function upsertUser(user: InsertUser): Promise<void> {
   if (!user.openId) {
@@ -85,79 +87,152 @@ export async function getUserByOpenId(openId: string) {
   }
 
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
   return result.length > 0 ? result[0] : undefined;
 }
 
-// ── Design Preset Queries ────────────────────────────────────────────────
+// ── Category Queries ────────────────────────────────────────────
 
-export async function getAllPresets() {
+export async function getAllCategories() {
   const db = await getDb();
   if (!db) return [];
-  return db.select().from(designPresets).orderBy(designPresets.createdAt);
+  return db.select().from(categories).orderBy(categories.name);
 }
 
-export async function getPresetById(id: number) {
+export async function getCategoryBySlug(slug: string) {
   const db = await getDb();
   if (!db) return undefined;
-  const result = await db.select().from(designPresets).where(eq(designPresets.id, id)).limit(1);
+  const result = await db.select().from(categories).where(eq(categories.slug, slug)).limit(1);
   return result.length > 0 ? result[0] : undefined;
 }
 
-export async function createPreset(data: { name: string; responsiveConfig: unknown; isDefault?: number }) {
+export async function createCategory(data: InsertCategory) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
-
-  // If this preset should be default, unset all others first
-  if (data.isDefault) {
-    await db.update(designPresets).set({ isDefault: 0 });
-  }
-
-  const result = await db.insert(designPresets).values({
-    name: data.name,
-    responsiveConfig: data.responsiveConfig,
-    isDefault: data.isDefault ?? 0,
-  });
-
+  const result = await db.insert(categories).values(data);
   return { id: Number(result[0].insertId) };
 }
 
-export async function updatePreset(id: number, data: { name?: string; responsiveConfig?: unknown; isDefault?: number }) {
+export async function updateCategory(id: number, data: Partial<InsertCategory>) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
+  await db.update(categories).set(data).where(eq(categories.id, id));
+}
 
-  // If setting as default, unset all others first
-  if (data.isDefault) {
-    await db.update(designPresets).set({ isDefault: 0 });
+export async function deleteCategory(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(categories).where(eq(categories.id, id));
+}
+
+// ── Article Queries ─────────────────────────────────────────────
+
+export async function getPublishedArticles(limit = 20, offset = 0, categoryId?: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  if (categoryId) {
+    return db.select().from(articles)
+      .where(and(eq(articles.status, "published"), eq(articles.categoryId, categoryId)))
+      .orderBy(desc(articles.publishedAt))
+      .limit(limit)
+      .offset(offset);
   }
 
-  const updateSet: Record<string, unknown> = {};
-  if (data.name !== undefined) updateSet.name = data.name;
-  if (data.responsiveConfig !== undefined) updateSet.responsiveConfig = data.responsiveConfig;
-  if (data.isDefault !== undefined) updateSet.isDefault = data.isDefault;
+  return db.select().from(articles)
+    .where(eq(articles.status, "published"))
+    .orderBy(desc(articles.publishedAt))
+    .limit(limit)
+    .offset(offset);
+}
 
-  if (Object.keys(updateSet).length > 0) {
-    await db.update(designPresets).set(updateSet).where(eq(designPresets.id, id));
+export async function getAllArticles(limit = 50, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(articles)
+    .orderBy(desc(articles.updatedAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+export async function getArticleBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(articles).where(eq(articles.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getArticleById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(articles).where(eq(articles.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createArticle(data: InsertArticle) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+
+  // Calculate reading time (~200 words per minute)
+  const wordCount = data.content.split(/\s+/).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  const result = await db.insert(articles).values({
+    ...data,
+    readingTime,
+    publishedAt: data.status === "published" ? new Date() : null,
+  });
+  return { id: Number(result[0].insertId) };
+}
+
+export async function updateArticle(id: number, data: Partial<InsertArticle>) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+
+  const updateSet: Record<string, unknown> = { ...data };
+
+  // Recalculate reading time if content changed
+  if (data.content) {
+    const wordCount = data.content.split(/\s+/).length;
+    updateSet.readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
+
+  // Set publishedAt when first published
+  if (data.status === "published") {
+    const existing = await getArticleById(id);
+    if (existing && !existing.publishedAt) {
+      updateSet.publishedAt = new Date();
+    }
+  }
+
+  await db.update(articles).set(updateSet).where(eq(articles.id, id));
 }
 
-export async function deletePreset(id: number) {
+export async function deleteArticle(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
-  await db.delete(designPresets).where(eq(designPresets.id, id));
+  await db.delete(articles).where(eq(articles.id, id));
 }
 
-export async function setPresetAsDefault(id: number) {
+// ── Contact Submission Queries ──────────────────────────────────
+
+export async function createContactSubmission(data: InsertContactSubmission) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
-  // Unset all defaults
-  await db.update(designPresets).set({ isDefault: 0 });
-  // Set the chosen one
-  await db.update(designPresets).set({ isDefault: 1 }).where(eq(designPresets.id, id));
+  const result = await db.insert(contactSubmissions).values(data);
+  return { id: Number(result[0].insertId) };
 }
 
-export async function clearPresetDefault(id: number) {
+export async function getAllContactSubmissions(limit = 50, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(contactSubmissions)
+    .orderBy(desc(contactSubmissions.createdAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+export async function markContactAsRead(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
-  await db.update(designPresets).set({ isDefault: 0 }).where(eq(designPresets.id, id));
+  await db.update(contactSubmissions).set({ isRead: true }).where(eq(contactSubmissions.id, id));
 }

@@ -1,82 +1,54 @@
-// CME Website – Markets Section
-// Design: Based on CME Company Presentation
-// Uses product illustration strip from presentation page 12
-// Layout: Headline + cards grid, with a product image strip below
-
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
-// Real CME facility photos from control-motion.de
-const MARKETS_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg'; // PCB assembly close-up
+const ELECTRONICS_GRID = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1281__1920px_d8b02519.jpg';
 
-// Production overview showing assembled electronics
-const ELECTRONICS_GRID = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1281__1920px_d8b02519.jpg'; // PCB assembly line
-
-const vp = { once: true, margin: '-80px' };
+const vp = { once: true, margin: '-80px' as const };
 
 export default function MarketsSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="markets" style={{ position: 'relative', overflow: 'hidden', background: '#fff' }}>
-      <div style={{
-        maxWidth: 'min(1400px, 90vw)',
-        margin: '0 auto',
-        paddingTop: 'clamp(3rem, 5vw, 6rem)',
-        paddingBottom: 'clamp(2rem, 4vw, 4rem)',
-        paddingLeft: 'clamp(1rem, 3vw, 4rem)',
-        paddingRight: 'clamp(1rem, 3vw, 4rem)',
-      }}>
-        {/* ── Headline ── */}
+    <section id="markets" className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <div className="container max-w-6xl">
+        {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.5 }}
-          style={{ marginBottom: 'clamp(2rem, 4vw, 4rem)' }}
+          className="mb-12 lg:mb-16"
         >
-          <p style={{ fontSize: 'var(--cme-font-size-xs)', fontWeight: 600, color: 'var(--cme-color-primary)', textTransform: 'uppercase', letterSpacing: '0.18em', marginBottom: '0.75rem' }}>
+          <p className="text-xs font-semibold text-cme-blue uppercase tracking-[0.18em] mb-3">
             Branchen
           </p>
-          <h2 style={{ marginBottom: '1rem' }}>{t.markets.headline}</h2>
-          <p className="max-w-full md:max-w-[600px]" style={{ fontSize: 'var(--cme-font-size-lg)', color: 'var(--cme-color-gray)' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+            {t.markets.headline}
+          </h2>
+          <p className="text-lg text-gray-500 max-w-xl">
             {t.markets.sub}
           </p>
         </motion.div>
 
-        {/* ── Market Cards Grid ── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 240px), 1fr))',
-            gap: 'clamp(0.75rem, 1.5vw, 1.25rem)',
-            marginBottom: 'clamp(2rem, 4vw, 4rem)',
-          }}
-        >
-          {t.markets.items.map((item, i) => (
+        {/* Market Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 lg:mb-16">
+          {t.markets.items.map((item: { title: string; desc: string }, i: number) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={vp}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              style={{
-                padding: 'clamp(1rem, 2vw, 1.5rem)',
-                border: '1px solid var(--cme-color-border, #dde1e6)',
-                transition: 'border-color 0.25s, box-shadow 0.25s',
-                cursor: 'default',
-                background: '#fff',
-              }}
-              className="hover:border-[rgba(33,150,211,0.4)] hover:shadow-sm"
+              className="p-5 border border-gray-200 rounded-lg bg-white hover:border-cme-blue/40 hover:shadow-sm transition-all cursor-default"
             >
-              <div style={{ width: '7px', height: '7px', background: 'var(--cme-color-primary)', transform: 'rotate(45deg)', marginBottom: '0.75rem' }} />
-              <h4 style={{ fontSize: 'var(--cme-font-size-sm)', fontWeight: 700, marginBottom: '0.35rem', lineHeight: 1.3 }}>{item.title}</h4>
-              <p style={{ fontSize: 'var(--cme-font-size-xs)', color: 'var(--cme-color-gray)', lineHeight: 1.55 }}>{item.desc}</p>
+              <div className="w-2 h-2 bg-cme-blue rotate-45 mb-3" />
+              <h4 className="text-sm font-bold text-cme-dark mb-1 leading-tight">{item.title}</h4>
+              <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* ── Product Image Strip from Presentation ── */}
+        {/* Product Image Strip */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,34 +56,12 @@ export default function MarketsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          {/* Light blue accent behind */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '-8%',
-              left: '-2%',
-              right: '-2%',
-              bottom: '-8%',
-              background: 'rgba(33, 150, 211, 0.05)',
-              borderRadius: '4px',
-              zIndex: 0,
-            }}
-          />
+          <div className="absolute -inset-x-4 -inset-y-4 bg-cme-blue/5 rounded-xl -z-10" />
           <img
             src={ELECTRONICS_GRID}
             alt="CME Elektronik-Produktportfolio"
             loading="lazy"
-            style={{
-              width: '100%',
-              height: 'auto',
-              maxHeight: '400px',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              display: 'block',
-              position: 'relative',
-              zIndex: 1,
-              borderRadius: '2px',
-            }}
+            className="w-full h-auto max-h-[400px] object-cover object-top rounded-lg"
           />
         </motion.div>
       </div>
