@@ -126,7 +126,7 @@ export const translations = {
       imprint: 'Impressum',
       privacy: 'Datenschutz',
       agb: 'AGB',
-      copyright: '© 2025 CME Control Motion Electronics GmbH. Alle Rechte vorbehalten.',
+      copyright: '© 2026 CME Control Motion Electronics GmbH. Alle Rechte vorbehalten.',
     },
   },
   en: {
@@ -250,7 +250,7 @@ export const translations = {
       imprint: 'Imprint',
       privacy: 'Privacy Policy',
       agb: 'Terms & Conditions',
-      copyright: '© 2025 CME Control Motion Electronics GmbH. All rights reserved.',
+      copyright: '© 2026 CME Control Motion Electronics GmbH. All rights reserved.',
     },
   },
 } as const;

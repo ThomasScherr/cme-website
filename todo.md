@@ -164,3 +164,4 @@
 - [x] FIX: Alle 'Verticals'/'Vertical Solutions'-Begriffe durch kundengerechte Begriffe ersetzen (Branchen, Anwendungsfelder, Märkte)
 - [ ] Vollständiges Textdokument mit Strukturbaum aller Website-Texte erstellen
 - [x] NEU: 'Ihr Nutzen'-Sektion mit 7 Vorteilskarten als Icon-Card-Grid zwischen Services und USP auf Startseite
+- [x] FIX: Footer Copyright von 2025 auf 2026 ändern
