@@ -1,6 +1,5 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
 
@@ -20,23 +19,24 @@ export default function Karriere() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-white to-cme-blue-light/30">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
           <div className="max-w-3xl">
-            <span className="text-cme-blue text-sm font-semibold tracking-widest uppercase">
+            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
               {isDE ? 'Karriere' : 'Careers'}
             </span>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-cme-dark mt-4 leading-tight">
+            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.'}
             </h1>
-            <p className="text-lg text-gray-600 mt-6">
+            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
               {isDE
                 ? 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.'
                 : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.'}
             </p>
             <a
               href="mailto:karriere@control-motion.de"
-              className="inline-block bg-cme-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors mt-8"
+              className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+              style={{ marginTop: 'var(--space-gap-md)' }}
             >
               {isDE ? 'Initiativbewerbung senden' : 'Send Speculative Application'}
             </a>
@@ -45,12 +45,12 @@ export default function Karriere() {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 lg:py-28">
+      <section className="section-pad">
         <div className="container">
-          <h2 className="text-3xl font-bold text-cme-dark text-center mb-12">
+          <h2 className="fluid-h2 text-cme-dark text-center" style={{ marginBottom: 'var(--space-section-header)' }}>
             {isDE ? 'Was CME als Arbeitgeber bietet' : 'What CME offers as an employer'}
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
             {benefits.map((benefit, i) => (
               <motion.div
                 key={i}
@@ -58,13 +58,18 @@ export default function Karriere() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all"
+                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all fluid-card"
               >
-                <div className="w-10 h-10 rounded-xl bg-cme-blue-light flex items-center justify-center mb-4">
-                  <benefit.icon size={20} className="text-cme-blue" />
+                <div
+                  className="rounded-xl bg-cme-blue-light flex items-center justify-center"
+                  style={{ width: 'var(--icon-box)', height: 'var(--icon-box)', marginBottom: 'var(--space-gap-xs)' }}
+                >
+                  <benefit.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                 </div>
-                <h3 className="font-bold text-cme-dark mb-2">{isDE ? benefit.titleDE : benefit.titleEN}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{isDE ? benefit.descDE : benefit.descEN}</p>
+                <h3 className="font-bold text-cme-dark fluid-body" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)' }}>
+                  {isDE ? benefit.titleDE : benefit.titleEN}
+                </h3>
+                <p className="text-gray-600 fluid-small leading-relaxed">{isDE ? benefit.descDE : benefit.descEN}</p>
               </motion.div>
             ))}
           </div>
@@ -72,19 +77,20 @@ export default function Karriere() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="section-pad bg-gray-50">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold text-cme-dark">
+          <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Keine passende Stelle gefunden?' : 'No suitable position found?'}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Wir freuen uns immer über Initiativbewerbungen von talentierten Menschen, die Elektronik lieben. Senden Sie uns Ihre Unterlagen.'
               : 'We always welcome speculative applications from talented people who love electronics. Send us your documents.'}
           </p>
           <a
             href="mailto:karriere@control-motion.de"
-            className="inline-block bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors mt-8"
+            className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+            style={{ marginTop: 'var(--space-gap-md)' }}
           >
             {isDE ? 'karriere@control-motion.de' : 'karriere@control-motion.de'}
           </a>

@@ -23,16 +23,16 @@ export default function Kontakt() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-br from-white to-cme-blue-light/30">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
           <div className="max-w-2xl">
-            <span className="text-cme-blue text-sm font-semibold tracking-widest uppercase">
+            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
               {isDE ? 'Kontakt' : 'Contact'}
             </span>
-            <h1 className="text-4xl lg:text-5xl font-bold text-cme-dark mt-4 leading-tight">
+            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE ? 'Sprechen Sie mit uns.' : 'Talk to us.'}
             </h1>
-            <p className="text-lg text-gray-600 mt-4">
+            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE
                 ? 'Ob Projektanfrage, technische Frage oder Besuch in Dortmund – wir freuen uns auf Ihre Nachricht.'
                 : 'Whether project inquiry, technical question or visit in Dortmund – we look forward to your message.'}
@@ -42,41 +42,50 @@ export default function Kontakt() {
       </section>
 
       {/* Contact Info + Form */}
-      <section className="py-16 lg:py-24">
+      <section className="section-pad">
         <div className="container">
-          <div className="grid lg:grid-cols-5 gap-12">
+          <div className="grid lg:grid-cols-5" style={{ gap: 'var(--space-gap-lg)' }}>
             {/* Contact Info */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-md)' }}>
               <div>
-                <h2 className="text-xl font-bold text-cme-dark mb-6">
+                <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
                   {isDE ? 'Kontaktdaten' : 'Contact Details'}
                 </h2>
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0">
-                      <MapPin size={20} className="text-cme-blue" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-sm)' }}>
+                  <div className="flex" style={{ gap: 'var(--space-gap-xs)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <MapPin style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <div>
-                      <p className="font-medium text-cme-dark">CME Control Motion Electronics GmbH</p>
-                      <p className="text-gray-600 text-sm mt-1">Hauert 10<br />44227 Dortmund<br />{isDE ? 'Deutschland' : 'Germany'}</p>
+                      <p className="font-medium text-cme-dark fluid-small">CME Control Motion Electronics GmbH</p>
+                      <p className="text-gray-600 fluid-xs" style={{ marginTop: 'clamp(0.125rem, 0.05rem + 0.15vw, 0.25rem)' }}>Alter Hellweg 48<br />44379 Dortmund<br />{isDE ? 'Deutschland' : 'Germany'}</p>
                     </div>
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0">
-                      <Phone size={20} className="text-cme-blue" />
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <Phone style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <div>
-                      <p className="font-medium text-cme-dark">{isDE ? 'Telefon' : 'Phone'}</p>
-                      <a href="tel:+492319799700" className="text-gray-600 text-sm hover:text-cme-blue transition-colors">+49 231 979 970-0</a>
+                      <p className="font-medium text-cme-dark fluid-small">{isDE ? 'Telefon' : 'Phone'}</p>
+                      <a href="tel:+4923128667696" className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">+49 231 28 66 76 96-0</a>
                     </div>
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0">
-                      <Mail size={20} className="text-cme-blue" />
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center flex-shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <Mail style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <div>
-                      <p className="font-medium text-cme-dark">E-Mail</p>
-                      <a href="mailto:info@control-motion.de" className="text-gray-600 text-sm hover:text-cme-blue transition-colors">info@control-motion.de</a>
+                      <p className="font-medium text-cme-dark fluid-small">E-Mail</p>
+                      <a href="mailto:info@control-motion.de" className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">info@control-motion.de</a>
                     </div>
                   </div>
                 </div>
@@ -89,23 +98,24 @@ export default function Kontakt() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-green-50 border border-green-200 rounded-2xl p-12 text-center"
+                  className="bg-green-50 border border-green-200 rounded-2xl text-center fluid-card"
+                  style={{ padding: 'var(--space-section-sm)' }}
                 >
-                  <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-cme-dark">
+                  <CheckCircle className="text-green-500 mx-auto" style={{ width: 'var(--icon-box)', height: 'var(--icon-box)', marginBottom: 'var(--space-gap-xs)' }} />
+                  <h3 className="fluid-h3 text-cme-dark">
                     {isDE ? 'Vielen Dank!' : 'Thank you!'}
                   </h3>
-                  <p className="text-gray-600 mt-2">
+                  <p className="text-gray-600 fluid-body" style={{ marginTop: 'var(--space-gap-xs)' }}>
                     {isDE
                       ? 'Ihre Nachricht ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden bei Ihnen.'
                       : 'Your message has been received. We will get back to you within 24 hours.'}
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-sm)' }}>
+                  <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-sm)' }}>
                     <div>
-                      <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                      <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                         {isDE ? 'Name' : 'Name'} *
                       </label>
                       <input
@@ -113,12 +123,13 @@ export default function Kontakt() {
                         required
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm"
+                        className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small"
+                        style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                         placeholder={isDE ? 'Ihr Name' : 'Your name'}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                      <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                         E-Mail *
                       </label>
                       <input
@@ -126,46 +137,50 @@ export default function Kontakt() {
                         required
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm"
+                        className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small"
+                        style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                         placeholder={isDE ? 'ihre@email.de' : 'your@email.com'}
                       />
                     </div>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-sm)' }}>
                     <div>
-                      <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                      <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                         {isDE ? 'Unternehmen' : 'Company'}
                       </label>
                       <input
                         type="text"
                         value={form.company}
                         onChange={(e) => setForm({ ...form, company: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm"
+                        className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small"
+                        style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                         placeholder={isDE ? 'Ihr Unternehmen' : 'Your company'}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                      <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                         {isDE ? 'Telefon' : 'Phone'}
                       </label>
                       <input
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm"
+                        className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small"
+                        style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                         placeholder={isDE ? '+49 ...' : '+49 ...'}
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                    <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                       {isDE ? 'Betreff' : 'Subject'} *
                     </label>
                     <select
                       required
                       value={form.subject}
                       onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm bg-white"
+                      className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small bg-white"
+                      style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                     >
                       <option value="">{isDE ? 'Bitte wählen...' : 'Please select...'}</option>
                       <option value="development">{isDE ? 'Entwicklungsprojekt' : 'Development Project'}</option>
@@ -176,7 +191,7 @@ export default function Kontakt() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-cme-dark mb-1.5">
+                    <label className="block fluid-xs font-medium text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.375rem)' }}>
                       {isDE ? 'Nachricht' : 'Message'} *
                     </label>
                     <textarea
@@ -184,14 +199,15 @@ export default function Kontakt() {
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all text-sm resize-none"
+                      className="w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small resize-none"
+                      style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                       placeholder={isDE ? 'Beschreiben Sie Ihr Projekt oder Ihre Anfrage...' : 'Describe your project or inquiry...'}
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={submitMutation.isPending}
-                    className="bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors flex items-center gap-2 disabled:opacity-50"
+                    className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors flex items-center gap-2 disabled:opacity-50 self-start fluid-btn"
                   >
                     {submitMutation.isPending ? (
                       <>{isDE ? 'Wird gesendet...' : 'Sending...'}</>
@@ -203,7 +219,7 @@ export default function Kontakt() {
                     )}
                   </button>
                   {submitMutation.isError && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 fluid-xs">
                       {isDE ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.' : 'Error sending. Please try again.'}
                     </p>
                   )}

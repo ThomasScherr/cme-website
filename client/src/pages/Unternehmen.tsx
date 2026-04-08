@@ -21,24 +21,30 @@ export default function Unternehmen() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-white to-cme-blue-light/30">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
             <div>
-              <span className="text-cme-blue text-sm font-semibold tracking-widest uppercase">
+              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
                 {isDE ? 'Über CME' : 'About CME'}
               </span>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-cme-dark mt-4 leading-tight">
+              <h1 className="fluid-h1 text-cme-dark" style={{ marginTop: 'var(--space-gap-xs)' }}>
                 {isDE ? 'The Electronic Company.' : 'The Electronic Company.'}
               </h1>
-              <p className="text-lg text-gray-600 mt-6">
+              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
                 {isDE
                   ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2007 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
                   : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2007, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
               </p>
             </div>
             <div className="relative">
-              <div className="diamond w-72 h-72 lg:w-96 lg:h-96 mx-auto">
+              <div
+                className="diamond mx-auto"
+                style={{
+                  width: 'clamp(18rem, 12rem + 12vw, 24rem)',
+                  height: 'clamp(18rem, 12rem + 12vw, 24rem)',
+                }}
+              >
                 <img src={BUILDING_IMG} alt="CME Gebäude" className="object-cover" />
               </div>
             </div>
@@ -47,9 +53,9 @@ export default function Unternehmen() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-white">
+      <section className="section-pad-sm bg-white">
         <div className="container">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
@@ -57,13 +63,20 @@ export default function Unternehmen() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-6"
+                className="text-center fluid-card"
               >
-                <div className="w-12 h-12 rounded-xl bg-cme-blue-light flex items-center justify-center mx-auto mb-4">
-                  <stat.icon size={24} className="text-cme-blue" />
+                <div
+                  className="rounded-xl bg-cme-blue-light flex items-center justify-center mx-auto"
+                  style={{
+                    width: 'var(--icon-box)',
+                    height: 'var(--icon-box)',
+                    marginBottom: 'var(--space-gap-xs)',
+                  }}
+                >
+                  <stat.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                 </div>
-                <div className="text-3xl font-bold text-cme-dark">{stat.value}</div>
-                <div className="text-gray-500 text-sm mt-1">{isDE ? stat.labelDE : stat.labelEN}</div>
+                <div className="fluid-h2 text-cme-dark">{stat.value}</div>
+                <div className="text-gray-500 fluid-small" style={{ marginTop: 'clamp(0.125rem, 0.05rem + 0.15vw, 0.25rem)' }}>{isDE ? stat.labelDE : stat.labelEN}</div>
               </motion.div>
             ))}
           </div>
@@ -71,14 +84,14 @@ export default function Unternehmen() {
       </section>
 
       {/* Story */}
-      <section className="py-20 lg:py-28">
+      <section className="section-pad">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
             <div>
-              <h2 className="text-3xl font-bold text-cme-dark">
+              <h2 className="fluid-h2 text-cme-dark">
                 {isDE ? 'Unsere Geschichte' : 'Our Story'}
               </h2>
-              <div className="space-y-4 mt-6 text-gray-600 leading-relaxed">
+              <div className="text-gray-600 leading-relaxed fluid-body-lg" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-sm)' }}>
                 <p>
                   {isDE
                     ? 'CME wurde 2007 in Dortmund gegründet – mit der Vision, Elektronikentwicklung und -fertigung unter einem Dach zu vereinen. Was als kleines Ingenieurbüro begann, ist heute ein Unternehmen mit über 120 Mitarbeitern und einer eigenen Fertigungsstätte.'
@@ -103,12 +116,12 @@ export default function Unternehmen() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="section-pad bg-gray-50">
         <div className="container">
-          <h2 className="text-3xl font-bold text-cme-dark text-center">
+          <h2 className="fluid-h2 text-cme-dark text-center">
             {isDE ? 'Was uns antreibt' : 'What drives us'}
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="grid md:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
             {[
               {
                 titleDE: 'Technische Exzellenz',
@@ -135,13 +148,13 @@ export default function Unternehmen() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-8 border border-gray-100"
+                className="bg-white rounded-2xl border border-gray-100 fluid-card"
               >
-                <div className="w-2 h-8 rounded-full bg-cme-blue mb-5" />
-                <h3 className="text-xl font-bold text-cme-dark mb-3">
+                <div className="w-2 rounded-full bg-cme-blue" style={{ height: 'var(--space-gap-md)', marginBottom: 'var(--space-gap-sm)' }} />
+                <h3 className="fluid-h4 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
                   {isDE ? value.titleDE : value.titleEN}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed fluid-body">
                   {isDE ? value.descDE : value.descEN}
                 </p>
               </motion.div>
@@ -151,26 +164,26 @@ export default function Unternehmen() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="section-pad">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold text-cme-dark">
+          <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Lernen Sie uns kennen' : 'Get to know us'}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-600 max-w-xl mx-auto fluid-body-lg" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Besuchen Sie uns in Dortmund oder vereinbaren Sie ein virtuelles Meeting mit unseren Ingenieuren.'
               : 'Visit us in Dortmund or schedule a virtual meeting with our engineers.'}
           </p>
-          <div className="flex gap-4 justify-center mt-8">
+          <div className="flex flex-wrap justify-center" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-md)' }}>
             <Link
               href="/kontakt"
-              className="bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors"
+              className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             >
               {isDE ? 'Kontakt aufnehmen' : 'Get in Touch'}
             </Link>
             <Link
               href="/karriere"
-              className="border-2 border-cme-blue text-cme-blue px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/5 transition-colors"
+              className="border-2 border-cme-blue text-cme-blue rounded-lg font-semibold hover:bg-cme-blue/5 transition-colors fluid-btn"
             >
               {isDE ? 'Karriere bei CME' : 'Careers at CME'}
             </Link>

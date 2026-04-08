@@ -91,7 +91,7 @@ function DropdownMenu({ items, isOpen, onClose }: { items: DropdownItem[]; isOpe
                 key={item.href}
                 href={item.href}
                 onClick={onClose}
-                className="block px-4 py-2.5 text-sm text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
+                className="block px-4 py-2.5 fluid-small text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
               >
                 {item.label}
               </Link>
@@ -143,18 +143,22 @@ export default function Navigation() {
           : 'bg-transparent'
       }`}
     >
-      <div className="container flex items-center justify-between h-20 lg:h-28">
+      <div
+        className="container flex items-center justify-between"
+        style={{ height: 'var(--nav-height)' }}
+      >
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <img
             src={LOGO_URL}
             alt="CME Control Motion Electronics"
-            className="h-12 lg:h-20 w-auto"
+            className="w-auto"
+            style={{ height: 'var(--nav-logo)' }}
           />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
           {navItems.map((item) => (
             <div key={item.label} className="relative">
               {item.dropdown ? (
@@ -162,11 +166,12 @@ export default function Navigation() {
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
+                  className={`flex items-center gap-1 px-3 py-2 font-medium transition-colors rounded-lg ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'
                   }`}
+                  style={{ fontSize: 'var(--fs-nav)' }}
                 >
                   {item.label}
                   <ChevronDown
@@ -177,11 +182,12 @@ export default function Navigation() {
               ) : (
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium transition-colors rounded-lg block ${
+                  className={`px-3 py-2 font-medium transition-colors rounded-lg block ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'
                   }`}
+                  style={{ fontSize: 'var(--fs-nav)' }}
                 >
                   {item.label}
                 </Link>
@@ -206,14 +212,15 @@ export default function Navigation() {
 
           <button
             onClick={() => setLang(lang === 'de' ? 'en' : 'de')}
-            className="text-sm font-semibold text-cme-dark/60 hover:text-cme-blue transition-colors px-2"
+            className="font-semibold text-cme-dark/60 hover:text-cme-blue transition-colors px-2"
+            style={{ fontSize: 'var(--fs-nav)' }}
           >
             {lang === 'de' ? 'EN' : 'DE'}
           </button>
 
           <Link
             href="/kontakt"
-            className="bg-cme-blue text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-cme-blue/90 transition-colors ml-2"
+            className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors ml-2 fluid-btn"
           >
             {lang === 'de' ? 'Kontakt' : 'Contact'}
           </Link>
@@ -223,7 +230,7 @@ export default function Navigation() {
         <div className="lg:hidden flex items-center gap-3">
           <button
             onClick={() => setLang(lang === 'de' ? 'en' : 'de')}
-            className="text-sm font-semibold text-cme-dark/60"
+            className="fluid-small font-semibold text-cme-dark/60"
           >
             {lang === 'de' ? 'EN' : 'DE'}
           </button>
@@ -252,7 +259,7 @@ export default function Navigation() {
                     <>
                       <button
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                        className={`flex items-center justify-between w-full py-3 px-4 text-sm font-medium rounded-lg transition-colors ${
+                        className={`flex items-center justify-between w-full py-3 px-4 fluid-body font-medium rounded-lg transition-colors ${
                           isActive(item.href)
                             ? 'text-cme-blue bg-cme-blue-light/50'
                             : 'text-cme-dark/80 hover:text-cme-blue hover:bg-cme-blue-light/30'
@@ -277,7 +284,7 @@ export default function Navigation() {
                                 <Link
                                   key={sub.href}
                                   href={sub.href}
-                                  className={`py-2.5 px-4 text-sm rounded-lg transition-colors block ${
+                                  className={`py-2.5 px-4 fluid-small rounded-lg transition-colors block ${
                                     location === sub.href
                                       ? 'text-cme-blue font-medium'
                                       : 'text-gray-600 hover:text-cme-blue hover:bg-cme-blue-light/30'
@@ -294,7 +301,7 @@ export default function Navigation() {
                   ) : (
                     <Link
                       href={item.href}
-                      className={`block py-3 px-4 text-sm font-medium rounded-lg transition-colors ${
+                      className={`block py-3 px-4 fluid-body font-medium rounded-lg transition-colors ${
                         isActive(item.href)
                           ? 'text-cme-blue bg-cme-blue-light/50'
                           : 'text-cme-dark/80 hover:text-cme-blue hover:bg-cme-blue-light/30'
@@ -308,7 +315,7 @@ export default function Navigation() {
               <div className="border-t border-gray-100 my-2" />
               <Link
                 href="/kontakt"
-                className="bg-cme-blue text-white py-2.5 rounded-lg text-sm font-semibold text-center block"
+                className="bg-cme-blue text-white py-2.5 rounded-lg fluid-body font-semibold text-center block"
               >
                 {lang === 'de' ? 'Kontakt' : 'Contact'}
               </Link>

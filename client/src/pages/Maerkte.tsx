@@ -78,16 +78,16 @@ export default function Maerkte() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-white to-cme-blue-light/30">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
           <div className="max-w-3xl">
-            <span className="text-cme-blue text-sm font-semibold tracking-widest uppercase">
+            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
               {isDE ? 'Branchen & Märkte' : 'Industries & Markets'}
             </span>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-cme-dark mt-4 leading-tight">
+            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE ? 'Elektronik für anspruchsvolle Branchen.' : 'Electronics for demanding industries.'}
             </h1>
-            <p className="text-lg text-gray-600 mt-6">
+            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
               {isDE
                 ? 'Von Automotive über Medizintechnik bis zur Energiewende – CME entwickelt und fertigt Elektronik für Branchen, in denen Zuverlässigkeit keine Option, sondern Voraussetzung ist.'
                 : 'From automotive through medical technology to the energy transition – CME develops and manufactures electronics for industries where reliability is not an option, but a prerequisite.'}
@@ -97,9 +97,9 @@ export default function Maerkte() {
       </section>
 
       {/* Markets Grid */}
-      <section className="py-20 lg:py-28">
+      <section className="section-pad">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
             {markets.map((market, i) => (
               <motion.div
                 key={i}
@@ -117,16 +117,19 @@ export default function Maerkte() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <div className="absolute bottom-3 left-3">
-                    <div className="w-9 h-9 rounded-lg bg-white/90 flex items-center justify-center">
-                      <market.icon size={18} className="text-cme-blue" />
+                    <div
+                      className="rounded-lg bg-white/90 flex items-center justify-center"
+                      style={{ width: 'clamp(2rem, 1.5rem + 1vw, 2.5rem)', height: 'clamp(2rem, 1.5rem + 1vw, 2.5rem)' }}
+                    >
+                      <market.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-cme-dark mb-2">
+                <div className="fluid-card">
+                  <h3 className="font-bold text-cme-dark fluid-body" style={{ marginBottom: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)' }}>
                     {isDE ? market.titleDE : market.titleEN}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 fluid-small leading-relaxed">
                     {isDE ? market.descDE : market.descEN}
                   </p>
                 </div>
@@ -137,19 +140,20 @@ export default function Maerkte() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="section-pad bg-gray-50">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold text-cme-dark">
+          <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Ihre Branche ist nicht dabei?' : 'Your industry is not listed?'}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Kein Problem – unsere Kernkompetenzen in Leistungselektronik und thermischem Management sind branchenübergreifend einsetzbar. Sprechen Sie mit uns über Ihr Projekt.'
               : 'No problem – our core competencies in power electronics and thermal management are applicable across industries. Talk to us about your project.'}
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors mt-8"
+            className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+            style={{ marginTop: 'var(--space-gap-md)' }}
           >
             {isDE ? 'Projekt anfragen' : 'Request Project'}
           </Link>

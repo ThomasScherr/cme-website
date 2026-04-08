@@ -7,24 +7,25 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-cme-dark text-white py-16 lg:py-20">
+    <footer className="bg-cme-dark text-white section-pad">
       <div className="container max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4" style={{ gap: 'var(--space-gap-lg)', marginBottom: 'var(--space-gap-lg)' }}>
           {/* Logo & Tagline */}
           <div className="md:col-span-2">
             <img
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
-              className="h-8 lg:h-10 w-auto object-contain mb-4"
+              className="w-auto object-contain"
+              style={{ height: 'var(--nav-logo)', marginBottom: 'var(--space-gap-xs)' }}
             />
-            <p className="text-sm text-white/80 max-w-md leading-relaxed">
+            <p className="fluid-small text-white/80 max-w-md leading-relaxed">
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-2" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {['ISO 9001', 'ISO 14001'].map((cert) => (
                 <span
                   key={cert}
-                  className="text-xs px-2.5 py-1 border border-white/30 text-white/70 rounded"
+                  className="fluid-xs px-2.5 py-1 border border-white/30 text-white/70 rounded"
                 >
                   {cert}
                 </span>
@@ -34,10 +35,10 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white/80 mb-4">
+            <h4 className="fluid-xs font-bold uppercase tracking-wider text-white/80" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               Leistungen
             </h4>
-            <ul className="space-y-2.5">
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
               {[
                 { label: t.footer.dev, href: '/entwicklung' },
                 { label: t.footer.mfg, href: '/fertigung' },
@@ -45,7 +46,7 @@ export default function Footer() {
                 { label: 'Märkte & Branchen', href: '/maerkte' },
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-sm text-white/80 hover:text-cme-blue transition-colors">
+                  <Link href={link.href} className="fluid-small text-white/80 hover:text-cme-blue transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -55,19 +56,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white/80 mb-4">
+            <h4 className="fluid-xs font-bold uppercase tracking-wider text-white/80" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               Kontakt
             </h4>
-            <ul className="space-y-2.5 text-sm text-white/80">
-              <li>Alter Hellweg 48</li>
-              <li>44379 Dortmund</li>
+            <ul className="text-white/80" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
+              <li className="fluid-small">Alter Hellweg 48</li>
+              <li className="fluid-small">44379 Dortmund</li>
               <li>
-                <a href="tel:+4923128667696" className="hover:text-cme-blue transition-colors">
+                <a href="tel:+4923128667696" className="fluid-small hover:text-cme-blue transition-colors">
                   +49 231 28 66 76 96-0
                 </a>
               </li>
               <li>
-                <a href="mailto:info@control-motion.de" className="hover:text-cme-blue transition-colors">
+                <a href="mailto:info@control-motion.de" className="fluid-small hover:text-cme-blue transition-colors">
                   info@control-motion.de
                 </a>
               </li>
@@ -76,9 +77,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/15 pt-6 flex flex-col md:flex-row md:justify-between items-center gap-4">
-          <p className="text-xs text-white/80">{t.footer.copyright}</p>
-          <div className="flex gap-6 text-xs">
+        <div className="border-t border-white/15 flex flex-col md:flex-row md:justify-between items-center" style={{ paddingTop: 'var(--space-gap-sm)', gap: 'var(--space-gap-xs)' }}>
+          <p className="fluid-xs text-white/80">{t.footer.copyright}</p>
+          <div className="flex fluid-xs" style={{ gap: 'var(--space-gap-sm)' }}>
             <Link href="/impressum" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.imprint}
             </Link>

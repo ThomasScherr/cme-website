@@ -43,32 +43,35 @@ export default function Fertigung() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-white to-cme-blue-light/30">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
             <div>
-              <span className="text-cme-blue text-sm font-semibold tracking-widest uppercase">
+              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
                 {isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)'}
               </span>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-cme-dark mt-4 leading-tight">
+              <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
                 {isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.'}
               </h1>
-              <p className="text-lg text-gray-600 mt-6 max-w-lg">
+              <p className="fluid-body-lg text-gray-600 max-w-lg" style={{ marginTop: 'var(--space-gap-sm)' }}>
                 {isDE
                   ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
                   : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.'}
               </p>
-              <div className="flex gap-4 mt-8">
+              <div style={{ marginTop: 'var(--space-gap-md)' }}>
                 <Link
                   href="/kontakt"
-                  className="bg-cme-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors"
+                  className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
                 >
                   {isDE ? 'Angebot anfragen' : 'Request Quote'}
                 </Link>
               </div>
             </div>
             <div className="relative">
-              <div className="diamond w-72 h-72 lg:w-96 lg:h-96 mx-auto">
+              <div
+                className="diamond mx-auto"
+                style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}
+              >
                 <img src={HERO_IMG} alt="Elektronikfertigung" className="object-cover" />
               </div>
             </div>
@@ -77,18 +80,18 @@ export default function Fertigung() {
       </section>
 
       {/* Subpages Grid */}
-      <section className="py-20 lg:py-28">
+      <section className="section-pad">
         <div className="container">
-          <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark text-center">
+          <h2 className="fluid-h2 text-cme-dark text-center">
             {isDE ? 'Unsere Fertigungsleistungen' : 'Our Manufacturing Services'}
           </h2>
-          <p className="text-gray-600 text-center mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Von der Leiterplattenbestückung über die Baugruppenmontage bis zur Qualitätssicherung – alles unter einem Dach.'
               : 'From PCB assembly through module integration to quality assurance – all under one roof.'}
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="grid md:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
             {subpages.map((page, i) => (
               <motion.div
                 key={page.href}
@@ -106,19 +109,22 @@ export default function Fertigung() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-cme-blue-light flex items-center justify-center">
-                          <page.icon size={20} className="text-cme-blue" />
+                    <div className="fluid-card">
+                      <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
+                        <div
+                          className="rounded-lg bg-cme-blue-light flex items-center justify-center"
+                          style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                        >
+                          <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                         </div>
-                        <h3 className="text-xl font-bold text-cme-dark">
+                        <h3 className="fluid-h4 text-cme-dark">
                           {isDE ? page.titleDE : page.titleEN}
                         </h3>
                       </div>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-gray-600 fluid-small leading-relaxed">
                         {isDE ? page.descDE : page.descEN}
                       </p>
-                      <div className="flex items-center gap-2 mt-4 text-cme-blue font-semibold text-sm group-hover:gap-3 transition-all">
+                      <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-xs)' }}>
                         {isDE ? 'Mehr erfahren' : 'Learn more'}
                         <ArrowRight size={16} />
                       </div>
@@ -132,12 +138,12 @@ export default function Fertigung() {
       </section>
 
       {/* Key Facts */}
-      <section className="py-20 bg-gray-50">
+      <section className="section-pad bg-gray-50">
         <div className="container">
-          <h2 className="text-3xl font-bold text-cme-dark text-center">
+          <h2 className="fluid-h2 text-cme-dark text-center">
             {isDE ? 'Fertigungskapazitäten' : 'Manufacturing Capabilities'}
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
             {[
               { de: 'SMD-Bestückung bis 01005', en: 'SMD Assembly down to 01005' },
               { de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering' },
@@ -154,10 +160,10 @@ export default function Fertigung() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl p-5 border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all"
+                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
               >
-                <div className="w-2 h-2 rounded-full bg-cme-blue mb-3" />
-                <p className="font-medium text-cme-dark text-sm">{isDE ? item.de : item.en}</p>
+                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
+                <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
               </motion.div>
             ))}
           </div>
@@ -165,19 +171,20 @@ export default function Fertigung() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="section-pad">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold text-cme-dark">
+          <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Fertigung anfragen' : 'Request Manufacturing'}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Senden Sie uns Ihre Stückliste und Gerber-Daten – wir kalkulieren schnell und transparent.'
               : 'Send us your BOM and Gerber data – we calculate quickly and transparently.'}
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors mt-8"
+            className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+            style={{ marginTop: 'var(--space-gap-md)' }}
           >
             {isDE ? 'Angebot anfragen' : 'Request Quote'}
           </Link>

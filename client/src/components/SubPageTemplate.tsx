@@ -48,10 +48,10 @@ export default function SubPageTemplate({
   return (
     <Layout>
       {/* Breadcrumb + Hero */}
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-24 bg-gradient-to-br from-white to-cme-blue-light/20">
+      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/20">
         <div className="container">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+          <div className="flex items-center fluid-xs text-gray-500" style={{ gap: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)', marginBottom: 'var(--space-gap-md)' }}>
             <Link href="/" className="hover:text-cme-blue transition-colors">Home</Link>
             <span>/</span>
             <Link href={parentHref} className="hover:text-cme-blue transition-colors">
@@ -61,19 +61,20 @@ export default function SubPageTemplate({
             <span className="text-cme-dark font-medium">{isDE ? titleDE : titleEN}</span>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
             <div>
               <Link
                 href={parentHref}
-                className="inline-flex items-center gap-2 text-cme-blue text-sm font-medium mb-4 hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-cme-blue fluid-small font-medium hover:gap-3 transition-all"
+                style={{ marginBottom: 'var(--space-gap-xs)' }}
               >
                 <ArrowLeft size={16} />
                 {isDE ? parentLabelDE : parentLabelEN}
               </Link>
-              <h1 className="text-3xl lg:text-5xl font-bold text-cme-dark leading-tight">
+              <h1 className="fluid-h1 text-cme-dark leading-tight">
                 {isDE ? titleDE : titleEN}
               </h1>
-              <p className="text-lg text-gray-600 mt-4">
+              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
                 {isDE ? subtitleDE : subtitleEN}
               </p>
             </div>
@@ -91,16 +92,16 @@ export default function SubPageTemplate({
       </section>
 
       {/* Content */}
-      <section className="py-16 lg:py-24">
+      <section className="section-pad">
         <div className="container">
           <div className="max-w-3xl">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="fluid-body-lg text-gray-700 leading-relaxed">
               {isDE ? introDE : introEN}
             </p>
           </div>
 
           {/* Features Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
             {features.map((feature, i) => (
               <motion.div
                 key={i}
@@ -108,10 +109,10 @@ export default function SubPageTemplate({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl p-6 border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all"
+                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
               >
-                <div className="w-2 h-2 rounded-full bg-cme-blue mb-3" />
-                <p className="font-medium text-cme-dark">{isDE ? feature.de : feature.en}</p>
+                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
+                <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
               </motion.div>
             ))}
           </div>
@@ -120,12 +121,12 @@ export default function SubPageTemplate({
 
       {/* Related Pages */}
       {relatedPages.length > 0 && (
-        <section className="py-16 bg-gray-50">
+        <section className="section-pad bg-gray-50">
           <div className="container">
-            <h2 className="text-2xl font-bold text-cme-dark mb-8">
+            <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
               {isDE ? 'Weitere Leistungen' : 'Related Services'}
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
               {relatedPages.map((page) => (
                 <Link key={page.href} href={page.href} className="group block">
                   <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">
@@ -136,8 +137,8 @@ export default function SubPageTemplate({
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-5 flex items-center justify-between">
-                      <h3 className="font-semibold text-cme-dark">{isDE ? page.titleDE : page.titleEN}</h3>
+                    <div className="flex items-center justify-between fluid-card">
+                      <h3 className="font-semibold text-cme-dark fluid-body">{isDE ? page.titleDE : page.titleEN}</h3>
                       <ArrowRight size={18} className="text-cme-blue group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
@@ -149,19 +150,20 @@ export default function SubPageTemplate({
       )}
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="section-pad">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold text-cme-dark">
+          <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
           </h2>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+          <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
               ? 'Sprechen Sie mit uns – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
               : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
           </p>
           <Link
             href="/kontakt"
-            className="inline-block bg-cme-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors mt-8"
+            className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+            style={{ marginTop: 'var(--space-gap-md)' }}
           >
             {isDE ? ctaDE : ctaEN}
           </Link>

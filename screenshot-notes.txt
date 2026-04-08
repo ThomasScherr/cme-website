@@ -1,0 +1,7 @@
+Screenshot-Analyse (Sandbox-Viewport ~1280px):
+- Logo in der Navigation: Sieht auf dem Screenshot noch relativ klein aus. Auf 4K sollte es durch die clamp()-Variable deutlich größer werden.
+- Hero-Rauten: Sind sichtbar und gut positioniert, das Bild füllt die Raute komplett aus.
+- Typografie: H1 ist gut lesbar, Tagline und Body-Text skalieren korrekt.
+- Navigation: Menüpunkte sind gut lesbar.
+- Buttons: Proportional zum Text.
+- Der Screenshot zeigt den Sandbox-Viewport (~1280px), nicht 4K. Die clamp()-Werte mit vw-Einheiten werden auf 4K (3840px) deutlich größer skalieren.

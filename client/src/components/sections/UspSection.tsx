@@ -10,19 +10,20 @@ export default function UspSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 lg:py-28 bg-cme-light">
+    <section className="section-pad bg-cme-light">
       <div className="container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center"
+          style={{ marginBottom: 'var(--space-section-header)' }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+          <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             {t.usp.headline}
           </h2>
-          <p className="text-cme-gray max-w-2xl mx-auto">
+          <p className="fluid-body-lg text-cme-gray max-w-2xl mx-auto">
             {t.usp.sub}
           </p>
         </motion.div>
@@ -32,7 +33,8 @@ export default function UspSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 rounded-2xl overflow-hidden shadow-lg shadow-cme-blue/5"
+          className="rounded-2xl overflow-hidden shadow-lg shadow-cme-blue/5"
+          style={{ marginBottom: 'var(--space-section-header)' }}
         >
           <video
             src={CME_VIDEO}
@@ -40,12 +42,13 @@ export default function UspSection() {
             loop
             muted
             playsInline
-            className="w-full h-[200px] sm:h-[280px] lg:h-[360px] object-cover"
+            className="w-full object-cover"
+            style={{ height: 'clamp(12.5rem, 6rem + 14vw, 22.5rem)' }}
           />
         </motion.div>
 
         {/* USP Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
           {t.usp.items.map((item, i) => {
             const Icon = icons[i];
             return (
@@ -55,14 +58,21 @@ export default function UspSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group relative bg-white p-6 rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300"
+                className="group relative bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 fluid-card"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-cme-blue rounded-t-xl scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-cme-blue/10 text-cme-blue mb-4">
-                  <Icon size={20} />
+                <div
+                  className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue"
+                  style={{
+                    width: 'var(--icon-box)',
+                    height: 'var(--icon-box)',
+                    marginBottom: 'var(--space-gap-xs)',
+                  }}
+                >
+                  <Icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />
                 </div>
-                <h4 className="text-base font-semibold text-cme-dark mb-2">{item.title}</h4>
-                <p className="text-sm text-cme-gray leading-relaxed">{item.desc}</p>
+                <h4 className="fluid-h4 text-cme-dark" style={{ marginBottom: 'clamp(0.25rem, 0.1rem + 0.3vw, 0.5rem)' }}>{item.title}</h4>
+                <p className="fluid-small text-cme-gray leading-relaxed">{item.desc}</p>
               </motion.div>
             );
           })}

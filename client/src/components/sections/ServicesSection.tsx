@@ -26,9 +26,9 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
   const itemColor = darkText ? 'text-white/90' : 'text-cme-dark/80';
 
   return (
-    <div className={`py-16 lg:py-24 ${bgClass}`}>
+    <div className={`section-pad ${bgClass}`}>
       <div className="container">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
           {/* Image with diamond */}
           <motion.div
             initial={{ opacity: 0, x: reverse ? 30 : -30 }}
@@ -37,9 +37,18 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
             transition={{ duration: 0.6 }}
             className={`${reverse ? 'lg:order-2' : ''}`}
           >
-            <div className="relative mx-auto w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] lg:w-[320px] lg:h-[320px]">
+            <div
+              className="relative mx-auto"
+              style={{
+                width: 'clamp(15rem, 10rem + 10vw, 20rem)',
+                height: 'clamp(15rem, 10rem + 10vw, 20rem)',
+              }}
+            >
               {/* Accent diamond behind */}
-              <div className="absolute -top-4 -left-4 w-[90px] sm:w-[110px] lg:w-[130px] diamond bg-cme-blue/[0.07]" />
+              <div
+                className="absolute -top-4 -left-4 diamond bg-cme-blue/[0.07]"
+                style={{ width: 'clamp(5.5rem, 3.5rem + 4vw, 8rem)' }}
+              />
               {/* Main image diamond */}
               <div className="relative diamond w-full shadow-xl shadow-cme-blue/10">
                 <img src={image} alt={title} />
@@ -55,20 +64,23 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
             transition={{ duration: 0.6, delay: 0.1 }}
             className={`${reverse ? 'lg:order-1' : ''}`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-cme-blue/10 text-cme-blue">
+            <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
+              <div
+                className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue"
+                style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+              >
                 {icon}
               </div>
-              <span className="text-xs font-semibold tracking-[0.15em] uppercase text-cme-blue">
+              <span className="fluid-xs font-semibold tracking-[0.15em] uppercase text-cme-blue">
                 0{index + 1}
               </span>
             </div>
-            <h3 className={`text-2xl lg:text-3xl font-bold ${textColor} mb-4`}>{title}</h3>
-            <p className={`${descColor} leading-relaxed mb-6`}>{desc}</p>
-            <ul className="space-y-2.5">
+            <h3 className={`fluid-h3 ${textColor}`} style={{ marginBottom: 'var(--space-gap-xs)' }}>{title}</h3>
+            <p className={`${descColor} fluid-body-lg leading-relaxed`} style={{ marginBottom: 'var(--space-gap-sm)' }}>{desc}</p>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
               {items.map((item, i) => (
-                <li key={i} className={`flex items-start gap-2.5 text-sm ${itemColor}`}>
-                  <CheckCircle2 size={16} className="text-cme-blue mt-0.5 flex-shrink-0" />
+                <li key={i} className={`flex items-start fluid-small ${itemColor}`} style={{ gap: 'var(--space-gap-xs)' }}>
+                  <CheckCircle2 style={{ width: 'var(--icon-size)', height: 'var(--icon-size)', flexShrink: 0, marginTop: '0.125rem' }} className="text-cme-blue" />
                   {item}
                 </li>
               ))}
@@ -89,7 +101,7 @@ export default function ServicesSection() {
       desc: t.services.dev_desc,
       items: t.services.dev_items,
       image: IMAGES.dev,
-      icon: <Cpu size={20} />,
+      icon: <Cpu style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-white',
     },
     {
@@ -97,7 +109,7 @@ export default function ServicesSection() {
       desc: t.services.mfg_desc,
       items: t.services.mfg_items,
       image: IMAGES.mfg,
-      icon: <Factory size={20} />,
+      icon: <Factory style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-cme-light',
     },
     {
@@ -105,7 +117,7 @@ export default function ServicesSection() {
       desc: t.services.lifecycle_desc,
       items: t.services.lifecycle_items,
       image: IMAGES.lifecycle,
-      icon: <RefreshCw size={20} />,
+      icon: <RefreshCw style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-cme-dark',
       darkText: true,
     },
@@ -114,20 +126,20 @@ export default function ServicesSection() {
   return (
     <section id="services">
       {/* Section header */}
-      <div className="bg-white pt-20 lg:pt-28 pb-8">
+      <div className="bg-white" style={{ paddingTop: 'var(--space-section)', paddingBottom: 'var(--space-gap-md)' }}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-cme-blue mb-3">
+            <p className="fluid-xs font-semibold tracking-[0.18em] uppercase text-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               Services
             </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+            <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               {t.services.headline}
             </h2>
-            <p className="text-cme-gray max-w-2xl">
+            <p className="fluid-body-lg text-cme-gray max-w-2xl">
               {t.services.sub}
             </p>
           </motion.div>

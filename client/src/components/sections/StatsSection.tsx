@@ -36,9 +36,9 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-16 bg-cme-light border-y border-gray-100">
+    <section className="section-pad-sm bg-cme-light border-y border-gray-100">
       <div className="container">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-md)' }}>
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -50,17 +50,24 @@ export default function StatsSection() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-cme-blue/10 text-cme-blue mb-4">
-                  <Icon size={22} />
+                <div
+                  className="inline-flex items-center justify-center rounded-xl bg-cme-blue/10 text-cme-blue"
+                  style={{
+                    width: 'var(--icon-box)',
+                    height: 'var(--icon-box)',
+                    marginBottom: 'var(--space-gap-xs)',
+                  }}
+                >
+                  <Icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />
                 </div>
-                <div className="text-3xl lg:text-4xl font-bold text-cme-dark mb-1">
+                <div className="fluid-h2 text-cme-dark mb-1">
                   {stat.displayValue ? (
                     stat.displayValue
                   ) : (
                     <AnimatedNumber target={stat.value} suffix={stat.suffix} />
                   )}
                 </div>
-                <div className="text-sm text-cme-gray">{stat.label}</div>
+                <div className="fluid-small text-cme-gray">{stat.label}</div>
               </motion.div>
             );
           })}

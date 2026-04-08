@@ -41,7 +41,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-gray-50">
+    <section id="contact" className="section-pad bg-gray-50">
       <div className="container max-w-6xl">
         {/* Headline */}
         <motion.div
@@ -49,20 +49,20 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.5 }}
-          className="mb-12 lg:mb-16"
+          style={{ marginBottom: 'var(--space-section-header)' }}
         >
-          <p className="text-xs font-semibold text-cme-blue uppercase tracking-[0.18em] mb-3">
+          <p className="fluid-xs font-semibold text-cme-blue uppercase tracking-[0.18em]" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             Kontakt
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-cme-dark mb-4">
+          <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             {t.contact.headline}
           </h2>
-          <p className="text-lg text-gray-500 max-w-xl">
+          <p className="fluid-body-lg text-gray-500 max-w-xl">
             {t.contact.sub}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-lg)' }}>
           {/* Contact Form */}
           <motion.form
             initial={{ opacity: 0, x: -20 }}
@@ -70,38 +70,38 @@ export default function ContactSection() {
             viewport={vp}
             transition={{ duration: 0.5 }}
             onSubmit={handleSubmit}
-            className="space-y-4"
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)' }}
           >
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-xs)' }}>
               <Input
                 placeholder={t.contact.name + ' *'}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="text-sm"
+                className="fluid-small"
               />
               <Input
                 placeholder={t.contact.company}
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="text-sm"
+                className="fluid-small"
               />
             </div>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-xs)' }}>
               <Input
                 type="email"
                 placeholder={t.contact.email + ' *'}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="text-sm"
+                className="fluid-small"
               />
               <Input
                 type="tel"
                 placeholder={t.contact.phone}
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="text-sm"
+                className="fluid-small"
               />
             </div>
             <Textarea
@@ -110,7 +110,7 @@ export default function ContactSection() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={6}
               required
-              className="resize-none text-sm"
+              className="resize-none fluid-small"
             />
             <div className="flex items-start gap-3">
               <input
@@ -121,14 +121,14 @@ export default function ContactSection() {
                 className="mt-1 accent-cme-blue"
                 required
               />
-              <label htmlFor="privacy" className="text-xs text-gray-500 cursor-pointer leading-relaxed">
+              <label htmlFor="privacy" className="fluid-xs text-gray-500 cursor-pointer leading-relaxed">
                 {t.contact.privacy}
               </label>
             </div>
             <Button
               type="submit"
               disabled={submitMutation.isPending}
-              className="bg-cme-blue hover:bg-cme-blue/90 text-white shadow-md self-start"
+              className="bg-cme-blue hover:bg-cme-blue/90 text-white shadow-md self-start fluid-btn"
             >
               {submitMutation.isPending ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
@@ -145,30 +145,30 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={vp}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-8"
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-md)' }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-cme-dark mb-6">
+              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
                 {t.contact.address_title}
               </h3>
-              <div className="space-y-4">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)' }}>
                 <div className="flex items-start gap-3">
-                  <MapPin size={18} className="text-cme-blue mt-0.5 shrink-0" />
+                  <MapPin style={{ width: 'var(--icon-size)', height: 'var(--icon-size)', flexShrink: 0, marginTop: '0.125rem' }} className="text-cme-blue" />
                   <div>
-                    <p className="text-sm font-semibold text-cme-dark">CME Control Motion Electronics GmbH</p>
-                    <p className="text-sm text-gray-500">Alter Hellweg 48</p>
-                    <p className="text-sm text-gray-500">44379 Dortmund, Germany</p>
+                    <p className="fluid-small font-semibold text-cme-dark">CME Control Motion Electronics GmbH</p>
+                    <p className="fluid-small text-gray-500">Alter Hellweg 48</p>
+                    <p className="fluid-small text-gray-500">44379 Dortmund, Germany</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone size={18} className="text-cme-blue shrink-0" />
-                  <a href="tel:+4923128667696" className="text-sm text-cme-dark hover:text-cme-blue transition-colors">
+                  <Phone style={{ width: 'var(--icon-size)', height: 'var(--icon-size)', flexShrink: 0 }} className="text-cme-blue" />
+                  <a href="tel:+4923128667696" className="fluid-small text-cme-dark hover:text-cme-blue transition-colors">
                     +49 231 28 66 76 96-0
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail size={18} className="text-cme-blue shrink-0" />
-                  <a href="mailto:info@control-motion.de" className="text-sm text-cme-dark hover:text-cme-blue transition-colors">
+                  <Mail style={{ width: 'var(--icon-size)', height: 'var(--icon-size)', flexShrink: 0 }} className="text-cme-blue" />
+                  <a href="mailto:info@control-motion.de" className="fluid-small text-cme-dark hover:text-cme-blue transition-colors">
                     info@control-motion.de
                   </a>
                 </div>
@@ -176,15 +176,15 @@ export default function ContactSection() {
             </div>
 
             {/* Certifications */}
-            <div className="border-t border-gray-200 pt-6">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">
+            <div className="border-t border-gray-200" style={{ paddingTop: 'var(--space-gap-sm)' }}>
+              <p className="fluid-xs uppercase tracking-wider text-gray-500" style={{ marginBottom: 'var(--space-gap-xs)' }}>
                 Zertifizierungen
               </p>
               <div className="flex flex-wrap gap-2">
                 {['ISO 9001', 'ISO 14001', 'ISO 26262', 'IATF 16949'].map((cert) => (
                   <span
                     key={cert}
-                    className="text-xs font-semibold px-3 py-1.5 border border-gray-200 rounded text-gray-600"
+                    className="fluid-xs font-semibold px-3 py-1.5 border border-gray-200 rounded text-gray-600"
                   >
                     {cert}
                   </span>

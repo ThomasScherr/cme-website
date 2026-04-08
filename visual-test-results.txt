@@ -1,0 +1,29 @@
+Visuelle Prüfung der CME-Website (Sandbox-Viewport ~880px):
+
+1. Hero-Sektion: 
+   - Text gut lesbar, Rauten mit Bild sichtbar und gut positioniert
+   - Akzent-Raute und Bild-Raute versetzt zueinander
+   - Buttons proportional
+
+2. Stats-Sektion:
+   - Zahlen (19+, 387+, ISO 9001 & 14001, Made in Dortmund) gut lesbar
+   - Grid-Layout funktioniert
+
+3. Services-Sektion:
+   - Drei Service-Blöcke mit Rauten-Bildern und Text
+   - Auflistungen mit Check-Icons
+   - Abwechselnd heller/dunkler Hintergrund
+
+4. USP-Sektion:
+   - "Warum CME?" Überschrift und Video/Bild gut sichtbar
+   - 6 USP-Karten im Grid
+
+5. Navigation:
+   - Logo oben links, Menüpunkte gut lesbar
+   - Kontakt-Button rechts
+
+HINWEIS: Der Sandbox-Browser zeigt ~880px Viewport. Auf 4K (3840px) werden alle clamp()-Werte 
+deutlich größer skalieren, da sie vw-basiert sind und keine feste Obergrenze bei 1440px haben.
+Die Logo-Höhe wächst von 40px (Mobile) bis 120px (4K).
+Die Hero-Rauten wachsen von 220px bis 450px.
+Alle Schriftgrößen, Abstände und Paddings skalieren proportional mit.

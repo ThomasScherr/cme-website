@@ -73,3 +73,22 @@
 - [x] MULTI-PAGE: Seite "Lifecycle Services" (neu, nicht auf alter Website)
 - [x] MULTI-PAGE: Seite "Märkte & Anwendungen"
 - [x] FIX: Text auf dunklem Hintergrund weiß darstellen (Footer, dunkle Sektionen)
+- [x] Navigation-Logo auf 80px Höhe vergrößern
+- [x] CLAMP: Globale CSS-Tokens für fluid-responsive Typografie (H1-H6, Body, Small)
+- [x] CLAMP: Globale CSS-Tokens für fluid-responsive Spacing (Section-Padding, Gaps)
+- [x] CLAMP: Navigation fluid-responsive
+- [x] CLAMP: Hero-Sektion fluid-responsive
+- [x] CLAMP: Stats-Sektion fluid-responsive
+- [x] CLAMP: Services-Sektion fluid-responsive
+- [x] CLAMP: USP-Sektion fluid-responsive
+- [x] CLAMP: Process-Sektion fluid-responsive
+- [x] CLAMP: Markets-Sektion fluid-responsive
+- [x] CLAMP: Contact-Sektion fluid-responsive
+- [x] CLAMP: Footer fluid-responsive
+- [x] CLAMP: Unterseiten (Unternehmen, Entwicklung, Fertigung, etc.) fluid-responsive
+- [x] CLAMP: Kontakt-Seite fluid-responsive
+- [x] FIX: InsightsAdmin Import-Fehler beheben (Vite-Cache bereinigt)
+- [x] 4K: Logo in Navigation deutlich größer machen (Container-Blockierung prüfen)
+- [x] 4K: Hero-Rauten und Bilder deutlich größer skalieren
+- [x] 4K: Obere clamp()-Grenzen aller globalen Tokens für 4K anpassen (2560px+)
+- [x] 4K: Alle Unterseiten-Hero-Diamonds ebenfalls vergrößern
