@@ -158,8 +158,8 @@ export default function HeroSection() {
             <motion.p
               className="fluid-body-lg text-cme-gray max-w-xl leading-relaxed"
               style={{ marginBottom: 'var(--space-gap-md)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isDone ? 1 : 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: isDone ? 1 : 0, y: isDone ? 0 : 10 }}
               transition={{ duration: 0.6 }}
             >
               {t.hero.sub}
@@ -167,9 +167,9 @@ export default function HeroSection() {
             <motion.div
               className="flex flex-wrap"
               style={{ gap: 'var(--space-gap-xs)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isDone ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: isDone ? 1 : 0, y: isDone ? 0 : 10 }}
+              transition={{ duration: 0.5, delay: isDone ? 0.2 : 0 }}
             >
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
