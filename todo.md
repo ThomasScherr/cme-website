@@ -136,3 +136,4 @@
 - [x] ProcessSection: Hintergrund aufhellen/aufwerten (zu flach und düster)
 - [x] ProcessSection: Flat-Design-Icons/Symbole für die 6 Prozessschritte
 - [x] ProcessSection: Timeline-Layout zurückbringen mit hellem Hintergrund und cooler Scroll-Animation (Linie füllt sich, Schritte erscheinen nacheinander)
+- [ ] BUG FIX: tRPC returning HTML instead of JSON (Unexpected token '<', "<!doctype"...)

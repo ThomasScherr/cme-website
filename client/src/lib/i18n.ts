@@ -94,7 +94,7 @@ export const translations = {
       headline: 'Märkte & Anwendungen',
       sub: 'Unsere Entwicklungsprozesse sind in der Automobilindustrie erprobt – unsere Anwendungen erstrecken sich über viele Branchen.',
       items: [
-        { title: 'Leistungselektronik', desc: 'Stromversorgungen, Wechselrichter, Gate-Treiber, DC/DC-Wandler' },
+        { title: 'Leistungselektronik', desc: 'Stromversorgungen, Wechselrichter, Ladetechnik für E-Mobilität, Gate-Treiber, DC/DC-Wandler' },
         { title: 'Antriebstechnik', desc: 'BLDC, PMSM, Motorsteuerungen, Inverter für E-Mobility' },
         { title: 'Automotive & SPICE', desc: 'Steuergeräte, Sensorinterfaces, funktionale Sicherheit' },
         { title: 'Industrieautomation', desc: 'SPS-Interfaces, Maschinensteuerungen, Industriecomputer' },
@@ -219,7 +219,7 @@ export const translations = {
       headline: 'Markets & Applications',
       sub: 'Our development processes are proven in the automotive industry – our applications span multiple industries.',
       items: [
-        { title: 'Power Electronics', desc: 'Power supplies, inverters, gate drivers, DC/DC converters' },
+        { title: 'Power Electronics', desc: 'Power supplies, inverters, EV charging technology, gate drivers, DC/DC converters' },
         { title: 'Drive Technology', desc: 'BLDC, PMSM, motor controllers, inverters for e-mobility' },
         { title: 'Automotive & SPICE', desc: 'ECUs, sensor interfaces, functional safety' },
         { title: 'Industrial Automation', desc: 'PLC interfaces, machine controls, industrial computers' },
