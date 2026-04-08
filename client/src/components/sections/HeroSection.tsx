@@ -53,7 +53,7 @@ export default function HeroSection() {
             top: '12%',
             right: '14%',
             background: 'rgba(33, 150, 211, 0.07)',
-            transform: 'rotate(45deg) scaleY(1.3)',
+            transform: 'rotate(45deg) scaleX(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             zIndex: 1,
           }}
@@ -70,7 +70,7 @@ export default function HeroSection() {
             aspectRatio: '1 / 1',
             top: '22%',
             right: '4%',
-            transform: 'rotate(45deg) scaleY(1.3)',
+            transform: 'rotate(45deg) scaleX(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             overflow: 'hidden',
             zIndex: 2,
@@ -82,7 +82,7 @@ export default function HeroSection() {
             alt="CME Elektronikentwicklung und Fertigung"
             style={{
               /* Counter-rotate and counter-scale to keep image upright */
-              transform: 'rotate(-45deg) scaleY(0.77) scale(1.42)',
+              transform: 'rotate(-45deg) scaleX(0.77) scale(1.42)',
               width: '100%',
               height: '100%',
               objectFit: 'cover',
@@ -103,7 +103,7 @@ export default function HeroSection() {
             aspectRatio: '1 / 1',
             top: '6%',
             right: '5%',
-            transform: 'rotate(45deg) scaleY(1.3)',
+            transform: 'rotate(45deg) scaleX(1.3)',
             borderRadius: 'calc(var(--cme-diamond-radius, 0.1) * 100%)',
             overflow: 'hidden',
             zIndex: 2,
@@ -115,7 +115,7 @@ export default function HeroSection() {
             alt="CME Elektronikentwicklung und Fertigung"
             style={{
               /* Counter-rotate and counter-scale to keep image upright */
-              transform: 'rotate(-45deg) scaleY(0.77) scale(1.42)',
+              transform: 'rotate(-45deg) scaleX(0.77) scale(1.42)',
               width: '100%',
               height: '100%',
               objectFit: 'cover',
