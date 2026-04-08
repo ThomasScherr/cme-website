@@ -1,12 +1,19 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Feature {
   de: string;
   en: string;
+  icon?: LucideIcon;
+}
+
+interface GalleryItem {
+  img: string;
+  captionDE: string;
+  captionEN: string;
 }
 
 interface SubPageProps {
@@ -21,6 +28,9 @@ interface SubPageProps {
   introDE: string;
   introEN: string;
   features: Feature[];
+  gallery?: GalleryItem[];
+  galleryTitleDE?: string;
+  galleryTitleEN?: string;
   ctaDE?: string;
   ctaEN?: string;
   relatedPages?: { href: string; titleDE: string; titleEN: string; img: string }[];
@@ -38,6 +48,9 @@ export default function SubPageTemplate({
   introDE,
   introEN,
   features,
+  gallery = [],
+  galleryTitleDE = 'Einblicke',
+  galleryTitleEN = 'Insights',
   ctaDE = 'Projekt anfragen',
   ctaEN = 'Request Project',
   relatedPages = [],
@@ -78,14 +91,34 @@ export default function SubPageTemplate({
                 {isDE ? subtitleDE : subtitleEN}
               </p>
             </div>
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+            {/* Diamond Hero Image */}
+            <div className="relative flex items-center justify-center">
+              <div
+                className="relative overflow-hidden shadow-xl"
+                style={{
+                  width: 'clamp(14rem, 10rem + 10vw, 22rem)',
+                  height: 'clamp(14rem, 10rem + 10vw, 22rem)',
+                  transform: 'rotate(45deg)',
+                  borderRadius: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem)',
+                }}
+              >
                 <img
                   src={heroImg}
                   alt={isDE ? titleDE : titleEN}
-                  className="w-full aspect-[4/3] object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ transform: 'rotate(-45deg) scale(1.42)' }}
                 />
               </div>
+              {/* Accent diamond behind */}
+              <div
+                className="absolute -z-10 bg-cme-blue/8"
+                style={{
+                  width: 'clamp(16rem, 12rem + 11vw, 25rem)',
+                  height: 'clamp(16rem, 12rem + 11vw, 25rem)',
+                  transform: 'rotate(45deg) translate(8%, 8%)',
+                  borderRadius: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem)',
+                }}
+              />
             </div>
           </div>
         </div>
@@ -102,22 +135,68 @@ export default function SubPageTemplate({
 
           {/* Features Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
-              >
-                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
-                <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
-              </motion.div>
-            ))}
+            {features.map((feature, i) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                >
+                  {Icon ? (
+                    <div
+                      className="w-10 h-10 rounded-lg bg-cme-blue/10 flex items-center justify-center"
+                      style={{ marginBottom: 'var(--space-gap-xs)' }}
+                    >
+                      <Icon size={20} className="text-cme-blue" strokeWidth={1.5} />
+                    </div>
+                  ) : (
+                    <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
+                  )}
+                  <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
+
+      {/* Gallery */}
+      {gallery.length > 0 && (
+        <section className="section-pad">
+          <div className="container">
+            <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
+              {isDE ? galleryTitleDE : galleryTitleEN}
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
+              {gallery.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-gray-50">
+                    <img
+                      src={item.img}
+                      alt={isDE ? item.captionDE : item.captionEN}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="fluid-card">
+                    <p className="font-medium text-cme-dark fluid-small">{isDE ? item.captionDE : item.captionEN}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Pages */}
       {relatedPages.length > 0 && (

@@ -1,4 +1,16 @@
 import SubPageTemplate from '@/components/SubPageTemplate';
+import {
+  ShieldCheck,
+  Leaf,
+  ScanEye,
+  Printer,
+  CircuitBoard,
+  Database,
+  PackageCheck,
+  Award,
+} from 'lucide-react';
+
+const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
 export default function Qualitaet() {
   return (
@@ -8,27 +20,33 @@ export default function Qualitaet() {
       parentLabelEN="Electronics Manufacturing"
       titleDE="Qualitätsmanagement"
       titleEN="Quality Management"
-      subtitleDE="ISO 9001 & 14001 zertifiziert. AOI, Röntgeninspektion und lückenlose Rückverfolgbarkeit."
-      subtitleEN="ISO 9001 & 14001 certified. AOI, X-ray inspection and complete traceability."
-      heroImg="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2055__1920px_00c91d17.jpg"
-      introDE="Qualität ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil jedes Fertigungsprozesses. Unser Qualitätsmanagementsystem ist nach ISO 9001 und ISO 14001 zertifiziert. Jede Baugruppe durchläuft automatisierte optische Inspektion (AOI), und für BGA- und QFN-Bauteile steht unsere Röntgeninspektion bereit. Lückenlose Traceability vom Wareneingang bis zum Versand ist Standard."
-      introEN="Quality at CME is not a downstream inspection step, but an integral part of every manufacturing process. Our quality management system is ISO 9001 and ISO 14001 certified. Every assembly undergoes automated optical inspection (AOI), and our X-ray inspection is available for BGA and QFN components. Complete traceability from incoming goods to shipping is standard."
+      subtitleDE="ISO 9001 & 14001 zertifiziert. AOI, lückenlose Rückverfolgbarkeit und datenbankgestützte Traceability."
+      subtitleEN="ISO 9001 & 14001 certified. AOI, complete traceability and database-driven tracking systems."
+      heroImg={`${CDN}/microscope-inspection_a3967815.png`}
+      introDE="Qualität ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil jedes Fertigungsprozesses. Unser Qualitätsmanagementsystem ist nach ISO 9001 und ISO 14001 zertifiziert. Jede Baugruppe durchläuft automatisierte optische Inspektion (AOI). Unsere datenbankgestützte Traceability mit vernetzten Fertigungsgeräten gewährleistet maximale Rückverfolgbarkeit – vom Wareneingang über jeden Fertigungsschritt bis zum Versand."
+      introEN="Quality at CME is not a downstream inspection step, but an integral part of every manufacturing process. Our quality management system is ISO 9001 and ISO 14001 certified. Every assembly undergoes automated optical inspection (AOI). Our database-driven traceability with connected manufacturing equipment ensures maximum traceability – from incoming goods through every production step to shipping."
       ctaDE="Angebot anfragen"
       ctaEN="Request Quote"
       features={[
-        { de: 'ISO 9001:2015 zertifiziert', en: 'ISO 9001:2015 Certified' },
-        { de: 'ISO 14001:2015 zertifiziert', en: 'ISO 14001:2015 Certified' },
-        { de: 'Automatische Optische Inspektion (AOI)', en: 'Automated Optical Inspection (AOI)' },
-        { de: 'Röntgeninspektion (BGA, QFN)', en: 'X-Ray Inspection (BGA, QFN)' },
-        { de: 'Solder Paste Inspection (SPI)', en: 'Solder Paste Inspection (SPI)' },
-        { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)' },
-        { de: 'Lückenlose Traceability & MES', en: 'Complete Traceability & MES' },
-        { de: 'Wareneingangskontrolle & IPC-Prüfung', en: 'Incoming Goods Inspection & IPC Testing' },
-        { de: 'IPC-A-610 Class 2 & 3', en: 'IPC-A-610 Class 2 & 3' },
+        { de: 'ISO 9001:2015 zertifiziert', en: 'ISO 9001:2015 Certified', icon: ShieldCheck },
+        { de: 'ISO 14001:2015 zertifiziert', en: 'ISO 14001:2015 Certified', icon: Leaf },
+        { de: 'Automatische Optische Inspektion (AOI)', en: 'Automated Optical Inspection (AOI)', icon: ScanEye },
+        { de: 'Solder Paste Inspection (SPI)', en: 'Solder Paste Inspection (SPI)', icon: Printer },
+        { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)', icon: CircuitBoard },
+        { de: 'Datenbankgestützte Traceability mit vernetzten Geräten', en: 'Database-Driven Traceability with Connected Equipment', icon: Database },
+        { de: 'Wareneingangskontrolle & IPC-Prüfung', en: 'Incoming Goods Inspection & IPC Testing', icon: PackageCheck },
+        { de: 'IPC-A-610 Class 2 & 3', en: 'IPC-A-610 Class 2 & 3', icon: Award },
       ]}
+      gallery={[
+        { img: `${CDN}/aoi-machine_643926d3.png`, captionDE: 'Automatische Optische Inspektion (AOI)', captionEN: 'Automated Optical Inspection (AOI)' },
+        { img: `${CDN}/microscope-inspection_a3967815.png`, captionDE: 'Mikroskopische Inspektion (Lynx EVO)', captionEN: 'Microscopic Inspection (Lynx EVO)' },
+        { img: `${CDN}/test-verification_63ae8f78.png`, captionDE: 'Nadelbett-Prüfadapter (ICT)', captionEN: 'Bed-of-Nails Test Adapter (ICT)' },
+      ]}
+      galleryTitleDE="Unsere Prüf- und Inspektionsausstattung"
+      galleryTitleEN="Our Testing & Inspection Equipment"
       relatedPages={[
-        { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg' },
-        { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1736__1920px_e713f7ca.jpg' },
+        { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: `${CDN}/pick-and-place_4f13096b.png` },
+        { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: `${CDN}/dental-system-complete_8d86b9f8.png` },
       ]}
     />
   );

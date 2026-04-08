@@ -241,9 +241,9 @@ export async function markContactAsRead(id: number) {
 
 export async function getSiteStyles() {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(siteStyles).where(eq(siteStyles.id, 1)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? result[0] : null;
 }
 
 export async function upsertSiteStyles(stylesJson: string) {

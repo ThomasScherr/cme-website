@@ -1,4 +1,17 @@
 import SubPageTemplate from '@/components/SubPageTemplate';
+import {
+  Radio,
+  Award,
+  Snowflake,
+  Activity,
+  SquareFunction,
+  CircuitBoard,
+  Zap,
+  Clock,
+  Wrench,
+} from 'lucide-react';
+
+const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
 export default function TestVerifikation() {
   return (
@@ -14,16 +27,23 @@ export default function TestVerifikation() {
       introDE="Qualität beginnt bei der Verifikation. CME verfügt über eine eigene Testinfrastruktur am Standort Dortmund – von der EMV-Vorkammer über Klimaschränke bis zum automatisierten Funktionstest. Wir testen Ihre Elektronik nach den relevanten Normen und Standards, bevor sie in die Serie geht. So stellen wir sicher, dass Ihr Produkt nicht nur funktioniert, sondern auch die Zulassungsanforderungen erfüllt."
       introEN="Quality starts with verification. CME has its own test infrastructure at the Dortmund site – from EMC pre-compliance chambers through climate chambers to automated functional testing. We test your electronics according to relevant norms and standards before series production. This ensures your product not only works, but also meets certification requirements."
       features={[
-        { de: 'EMV-Vorabprüfung (eigene Vorkammer)', en: 'EMC Pre-Compliance (own chamber)' },
-        { de: 'EMV-Qualifikation nach Automotive & Industrienormen', en: 'EMC Qualification per Automotive & Industrial Standards' },
-        { de: 'Klimatests (-40°C bis +150°C)', en: 'Climate Tests (-40°C to +150°C)' },
-        { de: 'Vibrations- & Schocktests', en: 'Vibration & Shock Tests' },
-        { de: 'Automatisierter Funktionstest (EOL)', en: 'Automated Functional Test (EOL)' },
-        { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)' },
-        { de: 'Hochspannungsprüfung & Isolationstest', en: 'High Voltage & Insulation Test' },
-        { de: 'Lebensdauertests & HALT/HASS', en: 'Lifetime Tests & HALT/HASS' },
-        { de: 'Testkonzeptentwicklung & Prüfmittelbau', en: 'Test Concept Development & Fixture Design' },
+        { de: 'EMV-Vorabprüfung (eigene Vorkammer)', en: 'EMC Pre-Compliance (own chamber)', icon: Radio },
+        { de: 'EMV-Qualifikation nach Automotive & Industrienormen', en: 'EMC Qualification per Automotive & Industrial Standards', icon: Award },
+        { de: 'Klimatests (-40°C bis +150°C)', en: 'Climate Tests (-40°C to +150°C)', icon: Snowflake },
+        { de: 'Vibrations- & Schocktests', en: 'Vibration & Shock Tests', icon: Activity },
+        { de: 'Automatisierter Funktionstest (EOL)', en: 'Automated Functional Test (EOL)', icon: SquareFunction },
+        { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)', icon: CircuitBoard },
+        { de: 'Hochspannungsprüfung & Isolationstest', en: 'High Voltage & Insulation Test', icon: Zap },
+        { de: 'Lebensdauertests & HALT/HASS', en: 'Lifetime Tests & HALT/HASS', icon: Clock },
+        { de: 'Testkonzeptentwicklung & Prüfmittelbau', en: 'Test Concept Development & Fixture Design', icon: Wrench },
       ]}
+      gallery={[
+        { img: `${CDN}/dental-assembly_05a6609d.png`, captionDE: 'EMV-Messkammer – eigene Testinfrastruktur', captionEN: 'EMC Measurement Chamber – Own Test Infrastructure' },
+        { img: `${CDN}/test-verification_63ae8f78.png`, captionDE: 'Nadelbett-Prüfadapter für In-Circuit-Test', captionEN: 'Bed-of-Nails Adapter for In-Circuit Test' },
+        { img: `${CDN}/vv-photo_938bee1f.png`, captionDE: 'Verifikation & Validierung im Prüflabor', captionEN: 'Verification & Validation in Test Lab' },
+      ]}
+      galleryTitleDE="Unsere Testinfrastruktur"
+      galleryTitleEN="Our Test Infrastructure"
       relatedPages={[
         { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
         { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },

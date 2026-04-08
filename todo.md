@@ -103,3 +103,25 @@
 - [x] STYLESHEET: Live-Preview im Editor
 - [x] FIX: Menü-Text umbricht bei hoher Auflösung – Nav-Font-Size begrenzen + whitespace-nowrap
 - [x] FIX: Stats-Wert "Jahre Erfahrung" von 25+ auf 15+ geändert
+- [ ] STYLESHEET: Menüunterpunkte (Dropdown-Items) als steuerbare Schriftgröße im Editor hinzufügen
+- [ ] STYLESHEET: Footer-Schriftgrößen (Body + Heading) als steuerbare Tokens im Editor
+- [ ] STYLESHEET: Menüunterpunkte (Dropdown) als steuerbare Schriftgröße im Editor
+- [ ] FIX: Footer-Layout – Logo-Spalte schmaler, Kontakt/Links-Spalten breiter (Telefonnummer umbrechen verhindern)
+- [ ] DESIGN: Technische Illustrationen für USP-Kernkompetenzen-Kästchen generieren
+- [ ] DESIGN: Illustrationen in USP-Sektion einbauen
+- [x] IMAGES: Upload all customer images to CDN (dental, EMV, CFD, thermal, automotive, industries, quality, tool logos, UX, software graphics)
+- [x] NEW PAGE: UX & Interface Engineering (/entwicklung/ux-interface-engineering) with 5 service areas and graphics
+- [x] NEW PAGE: Software Engineering & Digitale Systeme (/entwicklung/software-digitale-systeme) with 5 service areas and graphics
+- [x] ENHANCE: Simulation page with toolchain details and tool logos (MathWorks, PLECS, COMSOL, Micro-Cap, LTspice, Motor-CAD/ANSYS)
+- [x] UPDATE: CoreCompetencies section with real customer photos (dental, EMV, CFD, thermal, automotive, test/verification)
+- [x] UPDATE: Markets section with industry graphics (auto, e-bike, drill, robot, dental, pump, elevator)
+- [ ] UPDATE: Quality badges (ISO 9001, ISO 14001, UL) into relevant sections
+- [x] UPDATE: Navigation to include new pages (UX, Software/Digitale Systeme)
+- [ ] UPDATE: Process images (V-model, Leistungskreis) on relevant pages
+- [x] IMAGES: Upload EMS/manufacturing images to CDN (pick&place, dental assembly, PCB stacks, microscope, AOI, selective soldering, manual assembly)
+- [x] UPDATE: Fertigung pages with real EMS equipment photos (Bestückungsautomat, AOI, Selektivlöt, Mikroskop, Handbestückung)
+- [x] SubPageTemplate: Hero-Bild als Raute (Diamond) darstellen, kleiner, nicht verpixelt
+- [x] Feature-Karten: Blaue Punkte durch passende Lucide-Icons ersetzen (alle Unterseiten)
+- [x] FIX: Röntgeninspektion von Qualitätsseite entfernen (nicht inhouse)
+- [x] FIX: Traceability aufwerten – datenbankgestützt, vernetzte Geräte, maximale Rückverfolgbarkeit
+- [x] UX-Seite: Bilder ohne Hintergrund/Kasten – 3D schwebend darstellen (kein rounded-2xl bg-white p-4 shadow)

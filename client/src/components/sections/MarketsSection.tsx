@@ -1,12 +1,23 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
-const ELECTRONICS_GRID = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1281__1920px_d8b02519.jpg';
+const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+
+const INDUSTRY_IMAGES = [
+  { img: `${CDN}/automotive_5dbb4af9.png`, de: 'Automotive', en: 'Automotive' },
+  { img: `${CDN}/ebike_1852d25f.png`, de: 'E-Mobilität', en: 'E-Mobility' },
+  { img: `${CDN}/drill_f35b523b.png`, de: 'Elektrowerkzeuge', en: 'Power Tools' },
+  { img: `${CDN}/robot_32f2ffb4.png`, de: 'Robotik & Automation', en: 'Robotics & Automation' },
+  { img: `${CDN}/dental_d96808d3.png`, de: 'Medizintechnik', en: 'Medical Technology' },
+  { img: `${CDN}/pump_a049c023.png`, de: 'Pumpen & HVAC', en: 'Pumps & HVAC' },
+  { img: `${CDN}/elevator_462326a9.png`, de: 'Aufzüge & Gebäudetechnik', en: 'Elevators & Building Tech' },
+];
 
 const vp = { once: true, margin: '-80px' as const };
 
 export default function MarketsSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
 
   return (
     <section id="markets" className="relative overflow-hidden bg-white section-pad">
@@ -48,22 +59,35 @@ export default function MarketsSection() {
           ))}
         </div>
 
-        {/* Product Image Strip */}
+        {/* Industry Product Images */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={vp}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative"
         >
-          <div className="absolute -inset-x-4 -inset-y-4 bg-cme-blue/5 rounded-xl -z-10" />
-          <img
-            src={ELECTRONICS_GRID}
-            alt="CME Elektronik-Produktportfolio"
-            loading="lazy"
-            className="w-full h-auto rounded-lg object-cover object-top"
-            style={{ maxHeight: 'clamp(15rem, 10rem + 10vw, 25rem)' }}
-          />
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7" style={{ gap: 'var(--space-gap-sm)' }}>
+            {INDUSTRY_IMAGES.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <div className="w-full aspect-square rounded-xl bg-gray-50 border border-gray-100 p-3 flex items-center justify-center group-hover:border-cme-blue/30 group-hover:shadow-md transition-all">
+                  <img
+                    src={item.img}
+                    alt={isDE ? item.de : item.en}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <p className="fluid-xs text-gray-600 font-medium mt-2">{isDE ? item.de : item.en}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

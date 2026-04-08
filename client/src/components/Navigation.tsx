@@ -30,6 +30,8 @@ function useNavItems() {
         { label: isDE ? 'Hardware & Software' : 'Hardware & Software', href: '/entwicklung/hardware-software' },
         { label: isDE ? 'Simulation' : 'Simulation', href: '/entwicklung/simulation' },
         { label: isDE ? 'Test & Verifikation' : 'Test & Verification', href: '/entwicklung/test-verifikation' },
+        { label: isDE ? 'UX & Interface Engineering' : 'UX & Interface Engineering', href: '/entwicklung/ux-interface-engineering' },
+        { label: isDE ? 'Software & Digitale Systeme' : 'Software & Digital Systems', href: '/entwicklung/software-digitale-systeme' },
       ],
     },
     {
@@ -91,7 +93,8 @@ function DropdownMenu({ items, isOpen, onClose }: { items: DropdownItem[]; isOpe
                 key={item.href}
                 href={item.href}
                 onClick={onClose}
-                className="block px-4 py-2.5 fluid-small text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
+                className="block px-4 py-2.5 text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
+                style={{ fontSize: 'var(--fs-nav-dropdown)' }}
               >
                 {item.label}
               </Link>

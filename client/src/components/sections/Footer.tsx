@@ -9,23 +9,31 @@ export default function Footer() {
   return (
     <footer className="bg-cme-dark text-white section-pad">
       <div className="container max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-4" style={{ gap: 'var(--space-gap-lg)', marginBottom: 'var(--space-gap-lg)' }}>
-          {/* Logo & Tagline */}
-          <div className="md:col-span-2">
+        {/* Main grid: Logo-Spalte 1fr, Leistungen 1.5fr, Kontakt 1.5fr */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1.5fr]"
+          style={{ gap: 'var(--space-gap-lg)', marginBottom: 'var(--space-gap-lg)' }}
+        >
+          {/* Logo & Tagline – schmalere Spalte */}
+          <div>
             <img
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
               className="w-auto object-contain"
               style={{ height: 'var(--nav-logo)', marginBottom: 'var(--space-gap-xs)' }}
             />
-            <p className="fluid-small text-white/80 max-w-md leading-relaxed">
+            <p
+              className="text-white/80 max-w-md leading-relaxed"
+              style={{ fontSize: 'var(--fs-footer)' }}
+            >
               Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
             </p>
             <div className="flex flex-wrap gap-2" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {['ISO 9001', 'ISO 14001'].map((cert) => (
                 <span
                   key={cert}
-                  className="fluid-xs px-2.5 py-1 border border-white/30 text-white/70 rounded"
+                  className="px-2.5 py-1 border border-white/30 text-white/70 rounded"
+                  style={{ fontSize: 'var(--fs-footer-heading)' }}
                 >
                   {cert}
                 </span>
@@ -33,9 +41,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services Links */}
+          {/* Services Links – breitere Spalte */}
           <div>
-            <h4 className="fluid-xs font-bold uppercase tracking-wider text-white/80" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+            <h4
+              className="font-bold uppercase tracking-wider text-white/80"
+              style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
+            >
               Leistungen
             </h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
@@ -46,7 +57,11 @@ export default function Footer() {
                 { label: 'Märkte & Branchen', href: '/maerkte' },
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="fluid-small text-white/80 hover:text-cme-blue transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-white/80 hover:text-cme-blue transition-colors"
+                    style={{ fontSize: 'var(--fs-footer)' }}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -54,21 +69,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact – breitere Spalte, whitespace-nowrap für Telefon */}
           <div>
-            <h4 className="fluid-xs font-bold uppercase tracking-wider text-white/80" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+            <h4
+              className="font-bold uppercase tracking-wider text-white/80"
+              style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
+            >
               Kontakt
             </h4>
             <ul className="text-white/80" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
-              <li className="fluid-small">Alter Hellweg 48</li>
-              <li className="fluid-small">44379 Dortmund</li>
+              <li style={{ fontSize: 'var(--fs-footer)' }}>Alter Hellweg 48</li>
+              <li style={{ fontSize: 'var(--fs-footer)' }}>44379 Dortmund</li>
               <li>
-                <a href="tel:+4923128667696" className="fluid-small hover:text-cme-blue transition-colors">
+                <a
+                  href="tel:+4923128667696"
+                  className="hover:text-cme-blue transition-colors whitespace-nowrap"
+                  style={{ fontSize: 'var(--fs-footer)' }}
+                >
                   +49 231 28 66 76 96-0
                 </a>
               </li>
               <li>
-                <a href="mailto:info@control-motion.de" className="fluid-small hover:text-cme-blue transition-colors">
+                <a
+                  href="mailto:info@control-motion.de"
+                  className="hover:text-cme-blue transition-colors whitespace-nowrap"
+                  style={{ fontSize: 'var(--fs-footer)' }}
+                >
                   info@control-motion.de
                 </a>
               </li>
@@ -77,9 +103,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/15 flex flex-col md:flex-row md:justify-between items-center" style={{ paddingTop: 'var(--space-gap-sm)', gap: 'var(--space-gap-xs)' }}>
-          <p className="fluid-xs text-white/80">{t.footer.copyright}</p>
-          <div className="flex fluid-xs" style={{ gap: 'var(--space-gap-sm)' }}>
+        <div
+          className="border-t border-white/15 flex flex-col md:flex-row md:justify-between items-center"
+          style={{ paddingTop: 'var(--space-gap-sm)', gap: 'var(--space-gap-xs)' }}
+        >
+          <p className="text-white/80" style={{ fontSize: 'var(--fs-footer-heading)' }}>
+            {t.footer.copyright}
+          </p>
+          <div className="flex" style={{ gap: 'var(--space-gap-sm)', fontSize: 'var(--fs-footer-heading)' }}>
             <Link href="/impressum" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.imprint}
             </Link>

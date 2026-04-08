@@ -42,6 +42,9 @@ export interface StyleTokens {
   fsSmall: ClampValue;
   fsXs: ClampValue;
   fsNav: ClampValue;
+  fsNavDropdown: ClampValue;
+  fsFooter: ClampValue;
+  fsFooterHeading: ClampValue;
 
   // ── Navigation ──
   navHeight: ClampValue;
@@ -90,6 +93,9 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   fsSmall:  { min: 0.75,  vw: 0.28, offset: 0.64, max: 1.0625 },
   fsXs:     { min: 0.6875, vw: 0.23, offset: 0.6,  max: 0.9375 },
   fsNav:    { min: 0.8125, vw: 0.35, offset: 0.6,  max: 1.0625 },
+  fsNavDropdown: { min: 0.75, vw: 0.28, offset: 0.58, max: 1 },
+  fsFooter:       { min: 0.75, vw: 0.28, offset: 0.64, max: 1.0625 },
+  fsFooterHeading: { min: 0.6875, vw: 0.23, offset: 0.6, max: 0.9375 },
 
   // Navigation
   navHeight: { min: 4,    vw: 5.2,  offset: 2,    max: 8.75 },
@@ -156,6 +162,9 @@ export function tokensToCSSVars(tokens: StyleTokens): Record<string, string> {
     "--fs-small": clampToCSS(tokens.fsSmall),
     "--fs-xs": clampToCSS(tokens.fsXs),
     "--fs-nav": clampToCSS(tokens.fsNav),
+    "--fs-nav-dropdown": clampToCSS(tokens.fsNavDropdown),
+    "--fs-footer": clampToCSS(tokens.fsFooter),
+    "--fs-footer-heading": clampToCSS(tokens.fsFooterHeading),
     "--nav-height": clampToCSS(tokens.navHeight),
     "--nav-logo": clampToCSS(tokens.navLogo),
     "--hero-diamond-w": clampToCSS(tokens.heroDiamondW),
