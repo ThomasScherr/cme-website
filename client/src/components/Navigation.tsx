@@ -32,6 +32,7 @@ function useNavItems() {
         { label: isDE ? 'Test & Verifikation' : 'Test & Verification', href: '/entwicklung/test-verifikation' },
         { label: isDE ? 'UX & Interface Engineering' : 'UX & Interface Engineering', href: '/entwicklung/ux-interface-engineering' },
         { label: isDE ? 'Software & Digitale Systeme' : 'Software & Digital Systems', href: '/entwicklung/software-digitale-systeme' },
+        { label: isDE ? 'E-Motor-Design' : 'E-Motor Design', href: '/entwicklung/e-motor-design' },
       ],
     },
     {

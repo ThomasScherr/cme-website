@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowRight, Cpu, MemoryStick, Waves, FlaskConical, MonitorSmartphone, Code2 } from 'lucide-react';
+import { ArrowRight, Cpu, MemoryStick, Waves, FlaskConical, MonitorSmartphone, Code2, Cog } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -12,17 +12,17 @@ const subpages = [
     icon: Cpu,
     titleDE: 'Hardwareentwicklung',
     titleEN: 'Hardware Development',
-    descDE: 'Systemarchitektur, Schaltungsentwicklung, PCB-Layout und Leistungselektronik – wir entwickeln die komplette Hardware für Ihre Elektronikprodukte.',
-    descEN: 'System architecture, circuit design, PCB layout and power electronics – we develop the complete hardware for your electronic products.',
+    descDE: 'Systemarchitektur, analoge und digitale Schaltungsentwicklung, PCB-Layout und Leistungselektronik – maximale Effizienz und hohe Energiedichte auf minimalem Bauraum.',
+    descEN: 'System architecture, analog and digital circuit design, PCB layout and power electronics – maximum efficiency and high energy density in minimal space.',
     href: '/entwicklung/hardware-software',
     img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
   },
   {
     icon: MemoryStick,
-    titleDE: 'Entwicklung Embedded Software',
-    titleEN: 'Embedded Software Development',
-    descDE: 'Firmware, Echtzeit-Betriebssysteme, Bootloader und Treiber – Embedded Software für Mikrocontroller und DSPs, nah an der Hardware.',
-    descEN: 'Firmware, real-time operating systems, bootloaders and drivers – embedded software for microcontrollers and DSPs, close to the hardware.',
+    titleDE: 'Embedded Software',
+    titleEN: 'Embedded Software',
+    descDE: 'Vom Demo-Code bis zur komplexen Serienapplikation: Firmware für Mess-, Steuer- und Regelungssysteme, Antriebs- und Motorsteuerungen sowie Lichttechnik.',
+    descEN: 'From demo code to complex series applications: firmware for measurement, control and regulation systems, drive and motor controllers, and lighting technology.',
     href: '/entwicklung/hardware-software',
     img: `${CDN}/JK_2392__1920px_af02a6b7.jpg`,
   },
@@ -30,8 +30,8 @@ const subpages = [
     icon: Waves,
     titleDE: 'Simulation',
     titleEN: 'Simulation',
-    descDE: 'Thermische, elektrische und mechatronische Simulation – wir validieren Ihr Design vor dem ersten Prototypen.',
-    descEN: 'Thermal, electrical and mechatronic simulation – we validate your design before the first prototype.',
+    descDE: 'Systemsimulation, Antriebssimulation, Reglerentwicklung, Schaltungs- und Verlustsimulation, Thermosimulation und E-Motor-Auslegung – wir validieren Ihr Design vor dem ersten Prototypen.',
+    descEN: 'System simulation, drive simulation, controller development, circuit and loss simulation, thermal simulation and e-motor design – we validate your design before the first prototype.',
     href: '/entwicklung/simulation',
     img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg`,
   },
@@ -39,10 +39,19 @@ const subpages = [
     icon: FlaskConical,
     titleDE: 'Test & Verifikation',
     titleEN: 'Test & Verification',
-    descDE: 'EMV-Tests, Umwelttests und funktionale Verifikation – in unserer eigenen Testinfrastruktur am Standort Dortmund.',
-    descEN: 'EMC tests, environmental tests and functional verification – in our own test infrastructure in Dortmund.',
+    descDE: 'EMV-Tests in unserem eigenen EMV-Messbereich, Umweltsimulationen und individuelle Prüfstände – ein hoher Absicherungsgrad für eine reibungslose Serienproduktion.',
+    descEN: 'EMC tests in our own EMC measurement facility, environmental simulations and custom test benches – a high level of validation for smooth series production.',
     href: '/entwicklung/test-verifikation',
     img: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`,
+  },
+  {
+    icon: Cog,
+    titleDE: 'E-Motor-Design',
+    titleEN: 'E-Motor Design',
+    descDE: 'Auslegung und Optimierung von Elektromotoren (EC, DC, Synchronmaschinen) – Magnetkreis-Design, Blechschnitt-Konstruktion und Hochtemperatur-Auslegung.',
+    descEN: 'Design and optimization of electric motors (EC, DC, synchronous machines) – magnetic circuit design, lamination construction and high-temperature design.',
+    href: '/entwicklung/e-motor-design',
+    img: `${CDN}/JK_1736__1920px_e713f7ca.jpg`,
   },
   {
     icon: MonitorSmartphone,
@@ -83,8 +92,8 @@ export default function Entwicklung() {
               </h1>
               <p className="fluid-body-lg text-gray-600 max-w-lg" style={{ marginTop: 'var(--space-gap-sm)' }}>
                 {isDE
-                  ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware und Software bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.'
-                  : 'We develop electronics that work – from system architecture through hardware and software to qualification. With focus on power electronics, drive technology and thermally demanding projects.'}
+                  ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
+                  : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.'}
               </p>
               <div style={{ marginTop: 'var(--space-gap-md)' }}>
                 <Link
@@ -115,11 +124,10 @@ export default function Entwicklung() {
           </h2>
           <p className="text-gray-600 text-center fluid-body-lg max-w-2xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sechs Kompetenzfelder für Ihre Elektronikentwicklung – von der Hardwareentwicklung bis zum fertigen digitalen Produkt.'
-              : 'Six competence areas for your electronics development – from hardware development to the finished digital product.'}
+              ? 'Sieben Kompetenzfelder für Ihre Elektronikentwicklung – von der Hardwareentwicklung über E-Motor-Design bis zum fertigen digitalen Produkt.'
+              : 'Seven competence areas for your electronics development – from hardware development through e-motor design to the finished digital product.'}
           </p>
 
-          {/* 3x2 Grid: 6 cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
             {subpages.map((page, i) => (
               <motion.div
@@ -176,11 +184,15 @@ export default function Entwicklung() {
             {[
               { de: 'Leistungselektronik (SiC, GaN)', en: 'Power Electronics (SiC, GaN)' },
               { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control' },
+              { de: 'E-Motor-Design & -Auslegung', en: 'E-Motor Design & Engineering' },
+              { de: 'Umrichter mit hohem Wirkungsgrad', en: 'High-Efficiency Inverters' },
+              { de: 'Robuste Elektronik für raue Umgebungen', en: 'Robust Electronics for Harsh Environments' },
+              { de: 'Thermisches Management', en: 'Thermal Management' },
               { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)' },
               { de: 'Automotive SPICE (ASPICE)', en: 'Automotive SPICE (ASPICE)' },
               { de: 'EMV-Design & Qualifikation', en: 'EMC Design & Qualification' },
-              { de: 'Thermisches Management', en: 'Thermal Management' },
               { de: 'Embedded Software (C/C++)', en: 'Embedded Software (C/C++)' },
+              { de: 'Redesign & Produktoptimierung', en: 'Redesign & Product Optimization' },
               { de: 'UX & Interface Engineering', en: 'UX & Interface Engineering' },
             ].map((item, i) => (
               <motion.div
@@ -199,8 +211,68 @@ export default function Entwicklung() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Additional Services: Redesign & Beratung */}
       <section className="section-pad">
+        <div className="container">
+          <div className="grid md:grid-cols-2" style={{ gap: 'var(--space-gap-lg)' }}>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE ? 'Redesign & Produktoptimierung' : 'Redesign & Product Optimization'}
+              </h2>
+              <p className="fluid-body text-gray-600 leading-relaxed" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE
+                  ? 'Wir optimieren bestehende Produkte und passen sie an neue Anforderungen an. Nicht mehr erhältliche oder nicht mehr zeitgemäße Bauteile ersetzen wir durch neu entwickelte Versionen.'
+                  : 'We optimize existing products and adapt them to new requirements. We replace discontinued or outdated components with newly developed versions.'}
+              </p>
+              <ul className="space-y-2">
+                {(isDE
+                  ? ['Verbesserung des Wirkungsgrades', 'Leistungserhöhung', 'Reduktion von Energieverbrauch', 'Anpassung an verringerten Bauraum', 'Erhöhung der Lebensdauer', 'Reduzierung von Stück- oder Produktionskosten']
+                  : ['Efficiency improvement', 'Power increase', 'Energy consumption reduction', 'Adaptation to reduced installation space', 'Lifetime extension', 'Reduction of unit or production costs']
+                ).map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE ? 'Beratung' : 'Consulting'}
+              </h2>
+              <p className="fluid-body text-gray-600 leading-relaxed" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE
+                  ? 'Wir beraten Sie als unabhängiger Partner – von der Ideenentwicklung über Troubleshooting bis zum Second-Source-Management.'
+                  : 'We advise you as an independent partner – from idea development through troubleshooting to second-source management.'}
+              </p>
+              <ul className="space-y-2">
+                {(isDE
+                  ? ['Produktentwicklung & Ideenentwicklung', 'Troubleshooting: Findung & Behebung von Fehlerquellen', 'Second-Source-Management: alternative Bauelemente', 'Planung & Durchführung von Projekten', 'Unabhängige Beurteilung von Entwicklungen']
+                  : ['Product development & ideation', 'Troubleshooting: finding & fixing root causes', 'Second-source management: alternative components', 'Project planning & execution', 'Independent assessment of developments']
+                ).map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}

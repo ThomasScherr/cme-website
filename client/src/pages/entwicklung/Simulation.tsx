@@ -1,51 +1,121 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, ArrowRight, Thermometer, Zap, Radio, ShieldCheck, Cog, Wind, Droplets, BarChart3, Target } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, Waves, Box, CircuitBoard } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+
+/* ── Six core simulation domains ── */
+const simDomains = [
+  {
+    icon: Cog,
+    titleDE: 'Systemsimulation',
+    titleEN: 'System Simulation',
+    descDE: 'Gesamtsystem-Simulationen, modellbasierte Funktionsentwicklung gemäß V-Modell, transiente Zeitbereichsanalysen und kundenspezifische Modellentwicklung. Wir simulieren das Verhalten komplexer, stark vernetzter Systeme und lösen regelungstechnische Aufgaben.',
+    descEN: 'Full system simulations, model-based function development according to V-model, transient time-domain analyses and custom model development. We simulate the behavior of complex, highly interconnected systems and solve control engineering tasks.',
+    items: {
+      de: ['Gesamtsystem-Simulationen & -studien', 'Modellbasierte Funktionsentwicklung (V-Modell)', 'Transiente Zeitbereichsanalysen', 'Kundenspezifische Modelle & Erweiterungen', 'Regelungstechnische Aufgabenstellungen'],
+      en: ['Full system simulations & studies', 'Model-based function development (V-model)', 'Transient time-domain analyses', 'Custom models & extensions', 'Control engineering tasks'],
+    },
+  },
+  {
+    icon: Gauge,
+    titleDE: 'Antriebssimulation',
+    titleEN: 'Drive Simulation',
+    descDE: 'Konzeptvergleich und Optimierung von Antriebssystemen – vom Zusammenspiel zwischen Motor, Elektronik und Regelungsstrategie bis zur applikationsspezifischen Feinabstimmung. Simulation von EC-Antrieben mit Fokus auf Verlustleistung, Effizienz und Geräuschoptimierung.',
+    descEN: 'Concept comparison and optimization of drive systems – from the interplay between motor, electronics and control strategy to application-specific fine-tuning. Simulation of EC drives with focus on power loss, efficiency and noise optimization.',
+    items: {
+      de: ['Konzeptvergleich & Optimierung von Antriebssystemen', 'Zusammenspiel Motor, Elektronik & Regelungsstrategie', 'EC-Antriebe: Verlustleistung, Effizienz, Geräusch', 'Simulation in verschiedenen Modelltiefen', 'Grenzwert- & Worst-case-Simulationen'],
+      en: ['Concept comparison & optimization of drive systems', 'Interplay of motor, electronics & control strategy', 'EC drives: power loss, efficiency, noise', 'Simulation at various model depths', 'Limit value & worst-case simulations'],
+    },
+  },
+  {
+    icon: Activity,
+    titleDE: 'Reglerentwicklung & -Design',
+    titleEN: 'Controller Development & Design',
+    descDE: 'Entwurf digitaler Regelungskonzepte mit MIL-, SIL- und HIL-Simulation. Entwicklung robuster Ansteuer-Algorithmen, sensorloser Regelungsverfahren und Rapid-Control-Prototyping mit Echtzeit-Entwicklungssystemen.',
+    descEN: 'Design of digital control concepts with MIL, SIL and HIL simulation. Development of robust drive algorithms, sensorless control methods and rapid control prototyping with real-time development systems.',
+    items: {
+      de: ['MIL-, SIL- & HIL-Simulation', 'Robuste Ansteuer-Algorithmen für EC-Antriebe', 'Sensorlose Ansteuer- & Regelungsverfahren', 'Rapid-Control-Prototyping (Echtzeit)', 'Regler-Parametrierung durch Offline- & Online-Simulation'],
+      en: ['MIL, SIL & HIL simulation', 'Robust drive algorithms for EC drives', 'Sensorless drive & control methods', 'Rapid control prototyping (real-time)', 'Controller parameterization via offline & online simulation'],
+    },
+  },
+  {
+    icon: CircuitBoard,
+    titleDE: 'Schaltungs- & Verlustsimulation',
+    titleEN: 'Circuit & Loss Simulation',
+    descDE: 'Analoge und digitale Schaltungssimulationen, Leistungsberechnung von Endstufen und Umrichtersystemen. Detaillierte Verlustleistungssimulation in Leistungshalbleitern (MOSFETs, IGBTs) mit herstellerspezifischen SPICE-Modellen.',
+    descEN: 'Analog and digital circuit simulations, power calculation of output stages and inverter systems. Detailed power loss simulation in power semiconductors (MOSFETs, IGBTs) with manufacturer-specific SPICE models.',
+    items: {
+      de: ['Analoge & digitale Schaltungssimulationen', 'Leistungsberechnung Endstufen & Umrichter', 'Verlustleistung in MOSFETs & IGBTs', 'Eingangsfilter, Entstör- & Schutzbeschaltungen', 'Bauteil-Dimensionierung mit SPICE-Modellen'],
+      en: ['Analog & digital circuit simulations', 'Power calculation for output stages & inverters', 'Power loss in MOSFETs & IGBTs', 'Input filters, EMI suppression & protection circuits', 'Component dimensioning with SPICE models'],
+    },
+  },
+  {
+    icon: Thermometer,
+    titleDE: 'Thermosimulation',
+    titleEN: 'Thermal Simulation',
+    descDE: 'Thermische 3D-FEM-Berechnungen für statische und dynamische Szenarien. Simulation von Entwärmungskonzepten, Ermittlung thermischer Widerstände (Rth/Zth) und Erstellung thermischer Ersatzmodelle zur Kopplung mit der Systemsimulation.',
+    descEN: 'Thermal 3D FEM calculations for static and dynamic scenarios. Simulation of cooling concepts, determination of thermal resistances (Rth/Zth) and creation of thermal equivalent models for coupling with system simulation.',
+    items: {
+      de: ['Thermische 3D-FEM-Berechnungen', 'Statische & dynamische Simulationen', 'Entwärmungskonzepte für Baugruppen & Bauteile', 'Rth- / Zth-Widerstand im Gesamtsystem', 'Thermische Ersatzmodelle für Systemsimulation'],
+      en: ['Thermal 3D FEM calculations', 'Static & dynamic simulations', 'Cooling concepts for assemblies & components', 'Rth / Zth resistance in overall system', 'Thermal equivalent models for system simulation'],
+    },
+  },
+  {
+    icon: Waves,
+    titleDE: 'E-Motor-Simulation',
+    titleEN: 'E-Motor Simulation',
+    descDE: 'Elektromagnetische FEA für Elektromotoren (EC, DC, Synchronmaschinen). Geometrie-Design des Magnetkreises, Blechschnitt-Konstruktion und Auslegung für Hochtemperaturanwendungen.',
+    descEN: 'Electromagnetic FEA for electric motors (EC, DC, synchronous machines). Geometry design of the magnetic circuit, lamination construction and design for high-temperature applications.',
+    items: {
+      de: ['Elektromagnetische FEA (Motor-CAD / ANSYS)', 'Geometrie-Design Magnetkreis (Rotor & Stator)', 'Blechschnitt-Konstruktion', 'Auslegung für Hochtemperaturen', 'Analytische Berechnung & FEM-Optimierung'],
+      en: ['Electromagnetic FEA (Motor-CAD / ANSYS)', 'Magnetic circuit geometry design (rotor & stator)', 'Lamination construction', 'Design for high temperatures', 'Analytical calculation & FEM optimization'],
+    },
+  },
+];
 
 const toolchain = [
   {
     toolDE: 'MATLAB & Simulink',
     toolEN: 'MATLAB & Simulink',
-    areaDE: 'Modellbasierte Funktionsentwicklung',
-    areaEN: 'Model-Based Function Development',
-    descDE: 'Algorithmus- und Steuerungsdesign, System- und Elektrosimulation',
-    descEN: 'Algorithm and control design, system and electrical simulation',
+    areaDE: 'System- & Antriebssimulation',
+    areaEN: 'System & Drive Simulation',
+    descDE: 'Modellbasierte Funktionsentwicklung, Regelungsdesign, MIL/SIL/HIL',
+    descEN: 'Model-based function development, control design, MIL/SIL/HIL',
   },
   {
     toolDE: 'Simscape Electrical',
     toolEN: 'Simscape Electrical',
-    areaDE: 'System- & Elektrosimulation',
-    areaEN: 'System & Electrical Simulation',
+    areaDE: 'Elektro- & Antriebssimulation',
+    areaEN: 'Electrical & Drive Simulation',
     descDE: 'Detaillierte Modellierung elektrischer Antriebe und Leistungselektronik',
     descEN: 'Detailed modeling of electric drives and power electronics',
   },
   {
     toolDE: 'SPICE (LTspice, Micro-Cap)',
     toolEN: 'SPICE (LTspice, Micro-Cap)',
-    areaDE: 'Elektronische Schaltungssimulation',
-    areaEN: 'Electronic Circuit Simulation',
-    descDE: 'Leistungsverlustsimulation, Bauteilstress-Analyse, Filterdimensionierung',
-    descEN: 'Power loss simulation, component stress analysis, filter dimensioning',
+    areaDE: 'Schaltungs- & Verlustsimulation',
+    areaEN: 'Circuit & Loss Simulation',
+    descDE: 'Verlustleistungssimulation, Bauteilstress, Filterdimensionierung, SPICE-Modelle',
+    descEN: 'Power loss simulation, component stress, filter dimensioning, SPICE models',
   },
   {
     toolDE: 'COMSOL Multiphysics',
     toolEN: 'COMSOL Multiphysics',
-    areaDE: 'FEA & Thermisches Design',
-    areaEN: 'FEA & Thermal Design',
-    descDE: 'Finite-Elemente-Analyse, Multiphysik-Kopplung (thermisch, elektrisch, mechanisch)',
-    descEN: 'Finite element analysis, multiphysics coupling (thermal, electrical, mechanical)',
+    areaDE: 'Thermosimulation & FEA',
+    areaEN: 'Thermal Simulation & FEA',
+    descDE: '3D-FEM, Multiphysik-Kopplung (thermisch, elektrisch, mechanisch)',
+    descEN: '3D FEM, multiphysics coupling (thermal, electrical, mechanical)',
   },
   {
     toolDE: 'Motor-CAD (ANSYS)',
     toolEN: 'Motor-CAD (ANSYS)',
-    areaDE: 'E-Motor Design',
-    areaEN: 'E-Motor Design',
-    descDE: 'Elektromagnetische FEA, Motordesign und -optimierung',
-    descEN: 'Electromagnetic FEA, motor design and optimization',
+    areaDE: 'E-Motor-Auslegung & FEA',
+    areaEN: 'E-Motor Design & FEA',
+    descDE: 'Elektromagnetische FEA, Motordesign, Magnetkreis-Optimierung',
+    descEN: 'Electromagnetic FEA, motor design, magnetic circuit optimization',
   },
   {
     toolDE: 'PLECS',
@@ -100,8 +170,8 @@ export default function Simulation() {
               </h1>
               <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
                 {isDE
-                  ? 'Thermische, elektrische und mechatronische Simulation – wir validieren Ihr Design vor dem ersten Prototypen.'
-                  : 'Thermal, electrical and mechatronic simulation – we validate your design before the first prototype.'}
+                  ? 'Bevor Konzepte technisch umgesetzt werden, durchlaufen sie bei uns eine umfassende Simulation. So kürzen wir Entwicklungsprozesse ab, reduzieren Kosten und erreichen maximale Effizienz.'
+                  : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.'}
               </p>
             </div>
             <div className="relative">
@@ -123,38 +193,68 @@ export default function Simulation() {
           <div className="max-w-3xl">
             <p className="fluid-body-lg text-gray-700 leading-relaxed">
               {isDE
-                ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil der Entwicklung. Wir simulieren thermische Belastungen, elektrische Felder und mechatronische Systeme bereits in der Konzeptphase. So identifizieren wir Schwachstellen frühzeitig und optimieren das Design iterativ – bevor der erste Prototyp gefertigt wird. Das spart Iterationsschleifen, senkt Kosten und beschleunigt die Time-to-Market.'
-                : 'Simulation at CME is not a downstream verification step, but an integral part of development. We simulate thermal loads, electrical fields and mechatronic systems already in the concept phase. This allows us to identify weaknesses early and optimize the design iteratively – before the first prototype is manufactured. This saves iteration loops, reduces costs and accelerates time-to-market.'}
+                ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil der Entwicklung. Mit modernsten Simulationswerkzeugen decken wir die Bereiche Systemsimulation, Antriebssimulation, Reglerentwicklung, Schaltungs- und Verlustsimulation, Thermosimulation sowie E-Motor-Auslegung ab. So identifizieren wir Schwachstellen frühzeitig und optimieren das Design iterativ – bevor der erste Prototyp gefertigt wird.'
+                : 'Simulation at CME is not a downstream verification step, but an integral part of development. With state-of-the-art simulation tools, we cover system simulation, drive simulation, controller development, circuit and loss simulation, thermal simulation and e-motor design. This allows us to identify weaknesses early and optimize the design iteratively – before the first prototype is manufactured.'}
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Features Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
-            {[
-              { de: 'Thermische Simulation (CFD, FEM)', en: 'Thermal Simulation (CFD, FEM)', icon: Thermometer },
-              { de: 'Elektrische Feldsimulation', en: 'Electrical Field Simulation', icon: Zap },
-              { de: 'Signalintegrität (SI) & Power Integrity (PI)', en: 'Signal Integrity (SI) & Power Integrity (PI)', icon: Radio },
-              { de: 'EMV-Vorabsimulation', en: 'EMC Pre-Simulation', icon: ShieldCheck },
-              { de: 'Mechatronische Systemsimulation', en: 'Mechatronic System Simulation', icon: Cog },
-              { de: 'Thermisches Management & Entwärmungskonzepte', en: 'Thermal Management & Cooling Concepts', icon: Wind },
-              { de: 'Strömungssimulation für Kühlkörper', en: 'Flow Simulation for Heat Sinks', icon: Droplets },
-              { de: 'Zuverlässigkeitssimulation', en: 'Reliability Simulation', icon: BarChart3 },
-              { de: 'Design-Optimierung durch Simulationsergebnisse', en: 'Design Optimization through Simulation Results', icon: Target },
-            ].map((feature, i) => {
-              const Icon = feature.icon;
+      {/* Six Simulation Domains */}
+      <section className="section-pad bg-gray-50">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{ marginBottom: 'var(--space-section-header)' }}
+          >
+            <p className="fluid-xs font-semibold text-cme-blue uppercase tracking-[0.18em]" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+              {isDE ? 'Simulationsbereiche' : 'Simulation Domains'}
+            </p>
+            <h2 className="fluid-h2 text-cme-dark">
+              {isDE ? 'Sechs Simulationsdisziplinen' : 'Six Simulation Disciplines'}
+            </h2>
+            <p className="fluid-body-lg text-gray-500 max-w-2xl" style={{ marginTop: 'var(--space-gap-xs)' }}>
+              {isDE
+                ? 'Von der Systemsimulation bis zur E-Motor-Auslegung – wir beherrschen alle relevanten Simulationsdisziplinen für die Elektronik- und Antriebsentwicklung.'
+                : 'From system simulation to e-motor design – we master all relevant simulation disciplines for electronics and drive development.'}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
+            {simDomains.map((domain, i) => {
+              const Icon = domain.icon;
+              const items = isDE ? domain.items.de : domain.items.en;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg transition-all fluid-card"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-cme-blue-light/30 flex items-center justify-center" style={{ marginBottom: 'var(--space-gap-xs)' }}>
-                    <Icon size={28} className="text-cme-blue" />
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
+                    <div className="w-12 h-12 rounded-xl bg-cme-blue-light/30 flex items-center justify-center flex-shrink-0">
+                      <Icon size={24} className="text-cme-blue" />
+                    </div>
+                    <h3 className="font-bold text-cme-dark fluid-body">
+                      {isDE ? domain.titleDE : domain.titleEN}
+                    </h3>
                   </div>
-                  <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
+                  <p className="text-gray-600 fluid-small leading-relaxed" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                    {isDE ? domain.descDE : domain.descEN}
+                  </p>
+                  <ul className="space-y-1.5">
+                    {items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 fluid-xs text-gray-500">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-1.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               );
             })}
@@ -163,7 +263,7 @@ export default function Simulation() {
       </section>
 
       {/* Toolchain Section */}
-      <section className="section-pad bg-gray-50">
+      <section className="section-pad">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">
             {isDE ? 'Unsere Simulations-Toolchain' : 'Our Simulation Toolchain'}
@@ -203,7 +303,7 @@ export default function Simulation() {
       </section>
 
       {/* Tool Logos */}
-      <section className="section-pad">
+      <section className="section-pad bg-gray-50">
         <div className="container">
           <h3 className="fluid-h4 text-cme-dark text-center" style={{ marginBottom: 'var(--space-gap-md)' }}>
             {isDE ? 'Tools & Plattformen' : 'Tools & Platforms'}
@@ -230,14 +330,15 @@ export default function Simulation() {
       </section>
 
       {/* Related Pages */}
-      <section className="section-pad bg-gray-50">
+      <section className="section-pad">
         <div className="container">
           <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
             {isDE ? 'Weitere Leistungen' : 'Related Services'}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
             {[
-              { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+              { href: '/entwicklung/hardware-software', titleDE: 'Hardwareentwicklung', titleEN: 'Hardware Development', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+              { href: '/entwicklung/e-motor-design', titleDE: 'E-Motor-Design', titleEN: 'E-Motor Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1736__1920px_e713f7ca.jpg' },
               { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verifikation', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
             ].map((page) => (
               <Link key={page.href} href={page.href} className="group block">
@@ -261,7 +362,7 @@ export default function Simulation() {
       </section>
 
       {/* CTA */}
-      <section className="section-pad">
+      <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
             {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}

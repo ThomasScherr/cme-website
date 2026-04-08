@@ -151,3 +151,7 @@
 - [x] Alle erfundenen technischen Spezifikationen auf der gesamten Website identifizieren und entfernen
 - [x] Bahntechnik-Kachel von Märkte-Seite und Startseiten-Märkte-Sektion entfernen
 - [x] Erneuerbare Energien-Kachel von Märkte-Unterseite entfernen
+- [x] Simulation-Seite: Detaillierte Simulationsbereiche ergänzen (System, Antrieb, Regler, Schaltung/Verlust, Thermo, E-Motor)
+- [x] Neue Unterseite: E-Motor-Design (/entwicklung/e-motor-design) erstellen
+- [x] Entwicklungsübersicht: E-Motor-Design als 7. Kompetenzfeld hinzufügen + bestehende Karten mit OE-Know-how anreichern
+- [x] Navigation/Routing: E-Motor-Design in Dropdown und App.tsx einbinden

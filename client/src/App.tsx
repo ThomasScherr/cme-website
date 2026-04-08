@@ -16,6 +16,7 @@ const Simulation = lazy(() => import("./pages/entwicklung/Simulation"));
 const TestVerifikation = lazy(() => import("./pages/entwicklung/TestVerifikation"));
 const UxInterfaceEngineering = lazy(() => import("./pages/entwicklung/UxInterfaceEngineering"));
 const SoftwareDigitaleSysteme = lazy(() => import("./pages/entwicklung/SoftwareDigitaleSysteme"));
+const EMotorDesign = lazy(() => import("./pages/entwicklung/EMotorDesign"));
 
 const Fertigung = lazy(() => import("./pages/Fertigung"));
 const Leiterplatten = lazy(() => import("./pages/fertigung/Leiterplatten"));
@@ -59,6 +60,7 @@ function Router() {
         <Route path="/entwicklung/test-verifikation" component={TestVerifikation} />
         <Route path="/entwicklung/ux-interface-engineering" component={UxInterfaceEngineering} />
         <Route path="/entwicklung/software-digitale-systeme" component={SoftwareDigitaleSysteme} />
+        <Route path="/entwicklung/e-motor-design" component={EMotorDesign} />
 
         {/* Fertigung */}
         <Route path="/fertigung" component={Fertigung} />
