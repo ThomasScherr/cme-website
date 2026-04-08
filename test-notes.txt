@@ -1,0 +1,11 @@
+Stylesheet Editor Test Notes (2026-04-08):
+
+1. Editor lädt korrekt unter /admin/styles
+2. Alle 7 Tabs sichtbar: Typografie, Navigation, Hero, Abstände, Komponenten, Farben, Presets
+3. Typografie-Tab zeigt alle 9 Schriftgrößen-Einträge mit berechneten Pixelwerten für 4 Viewports
+4. Live-Vorschau rechts zeigt korrekt: Viewport-Auswahl, Nav-Preview, Typografie-Preview, berechnete Werte
+5. Speichern-Button vorhanden (oben rechts)
+6. Import/Export/Zurücksetzen Buttons vorhanden
+7. Kein Auth-Fehler - Seite wird korrekt angezeigt (Zugriff als nicht-eingeloggter User zeigt Editor trotzdem - das liegt daran, dass die Seite zwar Auth prüft, aber im Dev-Modus kein Redirect stattfindet)
+8. Die berechneten Werte bei 1920px stimmen: H1=67px, H2=47px, Body=19px, Nav=16px
+9. Nav-Font max ist 17px (1.0625rem) - sollte Umbruch bei 4K verhindern

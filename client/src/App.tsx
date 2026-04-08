@@ -6,6 +6,7 @@ import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { StyleProvider } from "./contexts/StyleContext";
 import Home from "./pages/Home";
 
 // Lazy-load pages for better performance
@@ -32,6 +33,7 @@ const AGB = lazy(() => import("./pages/legal/AGB"));
 const Insights = lazy(() => import("./pages/Insights"));
 const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const InsightsAdmin = lazy(() => import("./pages/admin/InsightsAdmin"));
+const StylesheetEditor = lazy(() => import("./pages/admin/StylesheetEditor"));
 
 function PageLoader() {
   return (
@@ -71,6 +73,7 @@ function Router() {
         <Route path="/insights" component={Insights} />
         <Route path="/insights/:slug" component={InsightArticle} />
         <Route path="/admin/insights" component={InsightsAdmin} />
+        <Route path="/admin/styles" component={StylesheetEditor} />
 
         {/* Rechtliches */}
         <Route path="/impressum" component={Impressum} />
@@ -90,10 +93,12 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <LanguageProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-          </TooltipProvider>
+          <StyleProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Router />
+            </TooltipProvider>
+          </StyleProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>

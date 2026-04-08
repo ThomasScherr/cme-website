@@ -166,7 +166,7 @@ export default function Navigation() {
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1 px-3 py-2 font-medium transition-colors rounded-lg ${
+                  className={`flex items-center gap-1 px-3 py-2 font-medium transition-colors rounded-lg whitespace-nowrap ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'
@@ -182,7 +182,7 @@ export default function Navigation() {
               ) : (
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 font-medium transition-colors rounded-lg block ${
+                  className={`px-3 py-2 font-medium transition-colors rounded-lg block whitespace-nowrap ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'

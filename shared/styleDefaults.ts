@@ -89,7 +89,7 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   fsBody:   { min: 0.875, vw: 0.35, offset: 0.74, max: 1.25 },
   fsSmall:  { min: 0.75,  vw: 0.28, offset: 0.64, max: 1.0625 },
   fsXs:     { min: 0.6875, vw: 0.23, offset: 0.6,  max: 0.9375 },
-  fsNav:    { min: 0.8125, vw: 0.55, offset: 0.6,  max: 1.25 },
+  fsNav:    { min: 0.8125, vw: 0.35, offset: 0.6,  max: 1.0625 },
 
   // Navigation
   navHeight: { min: 4,    vw: 5.2,  offset: 2,    max: 8.75 },

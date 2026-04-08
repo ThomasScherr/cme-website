@@ -228,7 +228,8 @@ export const appRouter = router({
   siteStyles: router({
     /** Public: get current site styles (for applying on every page) */
     get: publicProcedure.query(async () => {
-      return getSiteStyles();
+      const result = await getSiteStyles();
+      return result ?? null;
     }),
 
     /** Admin: update site styles */

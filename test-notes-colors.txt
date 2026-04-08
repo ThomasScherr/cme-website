@@ -1,0 +1,15 @@
+Stylesheet Editor - Farben-Tab Test (2026-04-08):
+
+Alle 9 Sektionen sichtbar mit Color-Pickern:
+1. Hero (ID: hero) - bg: #ffffff, text: #1a1a2e
+2. Statistiken (ID: stats) - bg: #f8f9fa, text: #1a1a2e
+3. Leistungen (ID: services) - bg: #ffffff, text: #1a1a2e
+4. Warum CME? (ID: usp) - bg: #1a1a2e, text: #ffffff
+5. Unser Prozess (ID: process) - bg: #f8f9fa, text: #1a1a2e
+6. Märkte (ID: markets) - bg: #ffffff, text: #1a1a2e
+7. Kontakt (ID: contact) - bg: #f8f9fa, text: #1a1a2e
+8. Footer (ID: footer) - bg: #0a0a1a, text: #e0e0e0
+9. Navigation (ID: nav) - bg: #ffffff, text: #1a1a2e
+
+Jede Sektion hat einen Color-Picker und ein Text-Input für Hintergrund und Textfarbe.
+Live-Vorschau rechts zeigt korrekt die aktuelle Konfiguration.
