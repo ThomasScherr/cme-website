@@ -19,6 +19,11 @@ import {
   createContactSubmission,
   getAllContactSubmissions,
   markContactAsRead,
+  getSiteStyles,
+  upsertSiteStyles,
+  getAllStylePresets,
+  createStylePreset,
+  deleteStylePreset,
 } from "./db";
 import { TRPCError } from "@trpc/server";
 import { notifyOwner } from "./_core/notification";
@@ -215,6 +220,48 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await markContactAsRead(input.id);
+        return { success: true };
+      }),
+  }),
+
+  // ── Site Styles (Stylesheet Editor) ────────────────────────────
+  siteStyles: router({
+    /** Public: get current site styles (for applying on every page) */
+    get: publicProcedure.query(async () => {
+      return getSiteStyles();
+    }),
+
+    /** Admin: update site styles */
+    update: adminProcedure
+      .input(z.object({ styles: z.string() }))
+      .mutation(async ({ input }) => {
+        await upsertSiteStyles(input.styles);
+        return { success: true };
+      }),
+  }),
+
+  // ── Style Presets ───────────────────────────────────────────
+  stylePresets: router({
+    /** Admin: list all presets */
+    list: adminProcedure.query(async () => {
+      return getAllStylePresets();
+    }),
+
+    /** Admin: save current styles as a new preset */
+    create: adminProcedure
+      .input(z.object({
+        name: z.string().min(1).max(255),
+        styles: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return createStylePreset(input);
+      }),
+
+    /** Admin: delete a preset */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteStylePreset(input.id);
         return { success: true };
       }),
   }),

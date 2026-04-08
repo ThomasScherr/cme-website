@@ -29,7 +29,7 @@ export default function StatsSection() {
   const { t } = useLanguage();
 
   const stats = [
-    { icon: Calendar, value: 25, suffix: '+', label: t.stats.years },
+    { icon: Calendar, value: 15, suffix: '+', label: t.stats.years },
     { icon: FolderCheck, value: 500, suffix: '+', label: t.stats.projects },
     { icon: Shield, value: 0, suffix: '', label: t.stats.standards, displayValue: t.stats.standards_val },
     { icon: MapPin, value: 0, suffix: '', label: t.stats.location, displayValue: t.stats.location_val },

@@ -92,3 +92,14 @@
 - [x] 4K: Hero-Rauten und Bilder deutlich größer skalieren
 - [x] 4K: Obere clamp()-Grenzen aller globalen Tokens für 4K anpassen (2560px+)
 - [x] 4K: Alle Unterseiten-Hero-Diamonds ebenfalls vergrößern
+- [x] STYLESHEET: Datenbank-Schema für Stylesheet-Einstellungen (siteStyles)
+- [x] STYLESHEET: tRPC-Prozeduren (get/update) für Stylesheet-Einstellungen
+- [ ] STYLESHEET: Admin-Seite mit visuellem Editor für alle CSS-Variablen
+- [ ] STYLESHEET: Logo-Größe (min/max) steuerbar
+- [ ] STYLESHEET: Schriftgrößen (H1-H4, Body, Menü, Footer) steuerbar
+- [ ] STYLESHEET: Sektions-Hintergrundfarben steuerbar
+- [ ] STYLESHEET: Abstände (Section-Padding, Gaps) steuerbar
+- [ ] STYLESHEET: CSS-Variablen dynamisch aus DB laden und anwenden
+- [ ] STYLESHEET: Live-Preview im Editor
+- [ ] FIX: Menü-Text umbricht bei hoher Auflösung – Nav-Font-Size begrenzen
+- [x] FIX: Stats-Wert "Jahre Erfahrung" von 25+ auf 15+ geändert

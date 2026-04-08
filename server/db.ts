@@ -1,7 +1,7 @@
 import { eq, desc, and, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertCategory } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, siteStyles, stylePresets } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertCategory, InsertSiteStyle, InsertStylePreset } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -235,4 +235,46 @@ export async function markContactAsRead(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   await db.update(contactSubmissions).set({ isRead: true }).where(eq(contactSubmissions.id, id));
+}
+
+// ── Site Styles Queries (Singleton) ────────────────────────────
+
+export async function getSiteStyles() {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(siteStyles).where(eq(siteStyles.id, 1)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function upsertSiteStyles(stylesJson: string) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  // Try update first, then insert if no rows affected
+  const existing = await getSiteStyles();
+  if (existing) {
+    await db.update(siteStyles).set({ styles: stylesJson }).where(eq(siteStyles.id, 1));
+  } else {
+    await db.insert(siteStyles).values({ id: 1, styles: stylesJson });
+  }
+}
+
+// ── Style Presets Queries ──────────────────────────────────────
+
+export async function getAllStylePresets() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(stylePresets).orderBy(desc(stylePresets.createdAt));
+}
+
+export async function createStylePreset(data: { name: string; styles: string }) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(stylePresets).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+export async function deleteStylePreset(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(stylePresets).where(eq(stylePresets.id, id));
 }

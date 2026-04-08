@@ -89,3 +89,32 @@ export const contactSubmissions = mysqlTable("contact_submissions", {
 
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 export type InsertContactSubmission = typeof contactSubmissions.$inferInsert;
+
+/**
+ * Site stylesheet settings – singleton row (id=1)
+ * Stores all customizable CSS variables as a JSON blob
+ */
+export const siteStyles = mysqlTable("site_styles", {
+  id: int("id").autoincrement().primaryKey(),
+  /** JSON blob with all style tokens */
+  styles: text("styles").notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SiteStyle = typeof siteStyles.$inferSelect;
+export type InsertSiteStyle = typeof siteStyles.$inferInsert;
+
+/**
+ * Saved style presets – named configurations that can be loaded
+ * Presets are never auto-overwritten; user must explicitly choose to load/delete them
+ */
+export const stylePresets = mysqlTable("style_presets", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  /** JSON blob with all style tokens (same structure as siteStyles.styles) */
+  styles: text("styles").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type StylePreset = typeof stylePresets.$inferSelect;
+export type InsertStylePreset = typeof stylePresets.$inferInsert;
