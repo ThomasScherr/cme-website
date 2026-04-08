@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Thermometer, Zap, Radio, ShieldCheck, Cog, Wind, Droplets, BarChart3, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -131,28 +131,33 @@ export default function Simulation() {
           {/* Features Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
             {[
-              { de: 'Thermische Simulation (CFD, FEM)', en: 'Thermal Simulation (CFD, FEM)' },
-              { de: 'Elektrische Feldsimulation', en: 'Electrical Field Simulation' },
-              { de: 'Signalintegrität (SI) & Power Integrity (PI)', en: 'Signal Integrity (SI) & Power Integrity (PI)' },
-              { de: 'EMV-Vorabsimulation', en: 'EMC Pre-Simulation' },
-              { de: 'Mechatronische Systemsimulation', en: 'Mechatronic System Simulation' },
-              { de: 'Thermisches Management & Entwärmungskonzepte', en: 'Thermal Management & Cooling Concepts' },
-              { de: 'Strömungssimulation für Kühlkörper', en: 'Flow Simulation for Heat Sinks' },
-              { de: 'Zuverlässigkeitssimulation', en: 'Reliability Simulation' },
-              { de: 'Design-Optimierung durch Simulationsergebnisse', en: 'Design Optimization through Simulation Results' },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
-              >
-                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
-                <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
-              </motion.div>
-            ))}
+              { de: 'Thermische Simulation (CFD, FEM)', en: 'Thermal Simulation (CFD, FEM)', icon: Thermometer },
+              { de: 'Elektrische Feldsimulation', en: 'Electrical Field Simulation', icon: Zap },
+              { de: 'Signalintegrität (SI) & Power Integrity (PI)', en: 'Signal Integrity (SI) & Power Integrity (PI)', icon: Radio },
+              { de: 'EMV-Vorabsimulation', en: 'EMC Pre-Simulation', icon: ShieldCheck },
+              { de: 'Mechatronische Systemsimulation', en: 'Mechatronic System Simulation', icon: Cog },
+              { de: 'Thermisches Management & Entwärmungskonzepte', en: 'Thermal Management & Cooling Concepts', icon: Wind },
+              { de: 'Strömungssimulation für Kühlkörper', en: 'Flow Simulation for Heat Sinks', icon: Droplets },
+              { de: 'Zuverlässigkeitssimulation', en: 'Reliability Simulation', icon: BarChart3 },
+              { de: 'Design-Optimierung durch Simulationsergebnisse', en: 'Design Optimization through Simulation Results', icon: Target },
+            ].map((feature, i) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-cme-blue-light/30 flex items-center justify-center" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+                    <Icon size={28} className="text-cme-blue" />
+                  </div>
+                  <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
