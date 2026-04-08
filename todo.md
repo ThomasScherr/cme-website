@@ -47,3 +47,4 @@
 - [ ] REBUILD: Contact-Sektion mit Tailwind
 - [ ] REBUILD: Footer mit Tailwind
 - [ ] REBUILD: App.tsx und Home.tsx aktualisieren
+- [x] USP-Sektion: CME-Video von control-motion.de Hero einbauen (statt Bild)

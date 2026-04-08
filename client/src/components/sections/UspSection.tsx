@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import { Combine, Radio, Thermometer, ShieldCheck, Award, Scaling } from 'lucide-react';
 
-const THERMO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg';
+const CME_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/cme_loop_v11_16cf9640.mp4';
 
 const icons = [Combine, Radio, Thermometer, ShieldCheck, Award, Scaling];
 
@@ -27,16 +27,19 @@ export default function UspSection() {
           </p>
         </motion.div>
 
-        {/* Featured image */}
+        {/* Featured video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16 rounded-2xl overflow-hidden shadow-lg shadow-cme-blue/5"
         >
-          <img
-            src={THERMO_IMAGE}
-            alt="Thermische Simulation"
+          <video
+            src={CME_VIDEO}
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-[200px] sm:h-[280px] lg:h-[360px] object-cover"
           />
         </motion.div>
