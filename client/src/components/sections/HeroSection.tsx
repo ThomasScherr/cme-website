@@ -1,10 +1,10 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
 const HERO_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_a6b28cee.mp4';
 
-// ─── Typewriter Hook (initial typing animation) ───
+// ─── Typewriter Hook ───
 function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -58,26 +58,28 @@ export default function HeroSection() {
   const { t, lang } = useLanguage();
   const isDE = lang === 'de';
 
-  // Two headline sets: first shown via typewriter, second via fade-blur
   const secondHeadline = useMemo(() => ({
     line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
     line2: isDE ? 'die auch morgen noch' : 'that are still available',
     accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
   }), [isDE]);
 
-  const lines = [t.hero.headline1, t.hero.headline2, t.hero.headline3];
+  const lines = useMemo(() => [t.hero.headline1, t.hero.headline2, t.hero.headline3], [t]);
   const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 3000);
 
-  // State machine: 'typewriter' → 'holding' → 'morphing' → 'final'
-  const [stage, setStage] = useState<'typewriter' | 'holding' | 'morphing' | 'final'>('typewriter');
+  // Simple flag: false = show first text, true = show second text
+  const [showSecondText, setShowSecondText] = useState(false);
+  const transitionScheduled = useRef(false);
 
-  // After typewriter finishes → hold for 3.5 seconds
+  // Schedule the one-time transition 3.5s after typewriter finishes
   useEffect(() => {
-    if (!isDone || stage !== 'typewriter') return;
-    setStage('holding');
-    const timer = setTimeout(() => setStage('morphing'), 3500);
+    if (!isDone || transitionScheduled.current) return;
+    transitionScheduled.current = true;
+    const timer = setTimeout(() => {
+      setShowSecondText(true);
+    }, 3500);
     return () => clearTimeout(timer);
-  }, [isDone, stage]);
+  }, [isDone]);
 
   // Cursor element
   const CursorEl = ({ visible, color = 'bg-cme-blue' }: { visible: boolean; color?: string }) => (
@@ -86,30 +88,6 @@ export default function HeroSection() {
       style={{ height: '0.85em', opacity: visible ? 1 : 0, transition: 'opacity 0.1s' }}
     />
   );
-
-  // Fade-blur animation variants
-  const fadeOut = {
-    opacity: 0,
-    y: -14,
-    filter: 'blur(8px)',
-  };
-
-  const fadeIn = {
-    opacity: 0,
-    y: 14,
-    filter: 'blur(8px)',
-  };
-
-  const visible = {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-  };
-
-  const transitionConfig = {
-    duration: 0.9,
-    ease: [0.25, 0.1, 0.25, 1] as const,
-  };
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white">
@@ -133,15 +111,19 @@ export default function HeroSection() {
               {t.hero.tagline}
             </p>
 
-            {/* Headline area */}
+            {/* Headline area – fixed height container to prevent layout shifts */}
             <div className="fluid-h1 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
               <AnimatePresence mode="wait">
-                {/* ── Phase 1: Typewriter (first text types in with cursor) ── */}
-                {(stage === 'typewriter' || stage === 'holding') && (
+                {!showSecondText ? (
+                  /* ── First headline: typed in by cursor ── */
                   <motion.div
-                    key="typewriter"
-                    exit={fadeOut}
-                    transition={transitionConfig}
+                    key="first-headline"
+                    exit={{
+                      opacity: 0,
+                      y: -16,
+                      filter: 'blur(8px)',
+                      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+                    }}
                   >
                     <div className="min-h-[1.2em] whitespace-nowrap">
                       {displayedLines[0] || ''}
@@ -159,16 +141,13 @@ export default function HeroSection() {
                       )}
                     </div>
                   </motion.div>
-                )}
-
-                {/* ── Phase 2: Second headline fades in (stays permanently) ── */}
-                {(stage === 'morphing' || stage === 'final') && (
+                ) : (
+                  /* ── Second headline: fades in once and stays ── */
                   <motion.div
-                    key="second"
-                    initial={fadeIn}
-                    animate={visible}
-                    transition={transitionConfig}
-                    onAnimationComplete={() => setStage('final')}
+                    key="second-headline"
+                    initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <div className="min-h-[1.2em] whitespace-nowrap">{secondHeadline.line1}</div>
                     <div className="min-h-[1.2em] whitespace-nowrap">{secondHeadline.line2}</div>
