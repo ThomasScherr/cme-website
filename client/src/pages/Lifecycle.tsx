@@ -118,19 +118,19 @@ export default function Lifecycle() {
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Lifecycle-Analyse für Ihr Produkt' : 'Lifecycle Analysis for Your Product'}
+            {isDE ? 'Abkündigungen kommen. Die Frage ist, ob Sie vorbereitet sind.' : 'Obsolescence is coming. The question is whether you\'re prepared.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Wir analysieren die Bauteilversorgung Ihrer bestehenden Produkte und erstellen einen Lifecycle-Report mit konkreten Handlungsempfehlungen.'
-              : 'We analyze the component supply of your existing products and create a lifecycle report with concrete recommendations.'}
+              ? 'Wir analysieren Ihre Stückliste auf Obsoleszenz-Risiken und zeigen konkrete Handlungsoptionen.'
+              : 'We analyze your BOM for obsolescence risks and show concrete options.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Analyse anfragen' : 'Request Analysis'}
+            {isDE ? 'BOM-Analyse anfragen' : 'Request BOM analysis'}
           </Link>
         </div>
       </section>

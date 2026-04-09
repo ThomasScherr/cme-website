@@ -191,19 +191,19 @@ export default function UxInterfaceEngineering() {
       <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
+            {isDE ? 'Gute Bedienkonzepte entstehen nicht am Schreibtisch.' : 'Good interface concepts don\'t emerge at a desk.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit uns – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
-              : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
+              ? 'Zeigen Sie uns Ihr System – wir entwickeln eine Bedienoberfläche, die Ihre Anwender tatsächlich nutzen.'
+              : 'Show us your system – we\'ll develop an interface your users actually want to use.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Projekt anfragen' : 'Request Project'}
+            {isDE ? 'UX-Konzept besprechen' : 'Discuss UX concept'}
           </Link>
         </div>
       </section>

@@ -167,19 +167,19 @@ export default function Unternehmen() {
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Lernen Sie uns kennen' : 'Get to know us'}
+            {isDE ? 'Lernen Sie das Team kennen, das Ihr Projekt umsetzt.' : 'Meet the team that delivers your project.'}
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto fluid-body-lg" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Besuchen Sie uns in Dortmund oder vereinbaren Sie ein virtuelles Meeting mit unseren Ingenieuren.'
-              : 'Visit us in Dortmund or schedule a virtual meeting with our engineers.'}
+              ? 'Kein Vertrieb. Kein Callcenter. Sie sprechen direkt mit Ingenieuren.'
+              : 'No sales pitch. No call center. You talk directly to engineers.'}
           </p>
           <div className="flex flex-wrap justify-center" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-md)' }}>
             <Link
               href="/kontakt"
               className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             >
-              {isDE ? 'Kontakt aufnehmen' : 'Get in Touch'}
+              {isDE ? 'Gespräch vereinbaren' : 'Schedule a call'}
             </Link>
             <Link
               href="/karriere"

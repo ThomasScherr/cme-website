@@ -151,10 +151,30 @@
   --fs-nav: clamp(0.8125rem, 0.6rem + 0.35vw, 1.0625rem);
   /* Nav dropdown font size: 12px → 16px */
   --fs-nav-dropdown: clamp(0.75rem, 0.58rem + 0.28vw, 1rem);
+  /* Nav item padding X: 8px → 20px */
+  --nav-item-px: clamp(0.5rem, 0.3rem + 0.4vw, 1.25rem);
+  /* Nav item padding Y: 6px → 12px */
+  --nav-item-py: clamp(0.375rem, 0.3rem + 0.2vw, 0.75rem);
+  /* Nav dropdown min-width: 192px → 320px */
+  --nav-dd-min-w: clamp(12rem, 10rem + 2vw, 20rem);
+  /* Nav dropdown item padding X: 12px → 24px */
+  --nav-dd-item-px: clamp(0.75rem, 0.5rem + 0.3vw, 1.5rem);
+  /* Nav dropdown item padding Y: 8px → 16px */
+  --nav-dd-item-py: clamp(0.5rem, 0.4rem + 0.2vw, 1rem);
   /* Footer body text: 12px → 17px */
   --fs-footer: clamp(0.75rem, 0.64rem + 0.28vw, 1.0625rem);
   /* Footer heading (uppercase labels): 11px → 15px */
   --fs-footer-heading: clamp(0.6875rem, 0.6rem + 0.23vw, 0.9375rem);
+  /* Footer padding Y: 48px → 160px */
+  --footer-pad-y: clamp(3rem, 0.8rem + 5.7vw, 10rem);
+  /* Footer logo height: 40px → 120px */
+  --footer-logo: clamp(2.5rem, 0.5rem + 5.2vw, 7.5rem);
+  /* Footer column gap: 24px → 96px */
+  --footer-col-gap: clamp(1.5rem, 0rem + 3.9vw, 6rem);
+  /* Footer list row gap: 4px → 10px */
+  --footer-row-gap: clamp(0.25rem, 0.15rem + 0.3vw, 0.625rem);
+  /* Footer bottom bar padding Y: 12px → 32px */
+  --footer-bottom-pad-y: clamp(0.75rem, 0.3rem + 1.2vw, 2rem);
 
   /* ── Hero-specific ── */
   /* Hero diamond wrapper width: 280px → 600px */

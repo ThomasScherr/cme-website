@@ -53,6 +53,15 @@ function useNavItems() {
     {
       label: isDE ? 'Märkte' : 'Markets',
       href: '/maerkte',
+      dropdown: [
+        { label: isDE ? 'Übersicht' : 'Overview', href: '/maerkte' },
+        { label: 'Energy & Power Systems', href: '/maerkte#energy-power' },
+        { label: 'Motion & Drive Systems', href: '/maerkte#motion-drive' },
+        { label: 'Automotive & Functional Safety', href: '/maerkte#automotive' },
+        { label: 'Industrial Automation & Robotics', href: '/maerkte#industrial' },
+        { label: 'MedTech & Precision Devices', href: '/maerkte#medtech' },
+        { label: 'Smart Infrastructure & Building', href: '/maerkte#smart-infra' },
+      ],
     },
     {
       label: isDE ? 'Insights' : 'Insights',
@@ -89,14 +98,14 @@ function DropdownMenu({ items, isOpen, onClose }: { items: DropdownItem[]; isOpe
           transition={{ duration: 0.15 }}
           className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50"
         >
-          <div className="bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[220px]">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 py-2" style={{ minWidth: 'var(--nav-dd-min-w)' }}>
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={onClose}
-                className="block px-4 py-2.5 text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
-                style={{ fontSize: 'var(--fs-nav-dropdown)' }}
+                className="block text-gray-700 hover:text-cme-blue hover:bg-cme-blue-light/50 transition-colors"
+                style={{ fontSize: 'var(--fs-nav-dropdown)', paddingLeft: 'var(--nav-dd-item-px)', paddingRight: 'var(--nav-dd-item-px)', paddingTop: 'var(--nav-dd-item-py)', paddingBottom: 'var(--nav-dd-item-py)' }}
               >
                 {item.label}
               </Link>
@@ -171,12 +180,12 @@ export default function Navigation() {
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
                   onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1 px-3 py-2 font-medium transition-colors rounded-lg whitespace-nowrap ${
+                  className={`flex items-center gap-1 font-medium transition-colors rounded-lg whitespace-nowrap ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'
                   }`}
-                  style={{ fontSize: 'var(--fs-nav)' }}
+                  style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
                 >
                   {item.label}
                   <ChevronDown
@@ -187,12 +196,12 @@ export default function Navigation() {
               ) : (
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 font-medium transition-colors rounded-lg block whitespace-nowrap ${
+                  className={`font-medium transition-colors rounded-lg block whitespace-nowrap ${
                     isActive(item.href)
                       ? 'text-cme-blue'
                       : 'text-cme-dark/80 hover:text-cme-blue'
                   }`}
-                  style={{ fontSize: 'var(--fs-nav)' }}
+                  style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
                 >
                   {item.label}
                 </Link>

@@ -50,6 +50,19 @@ export interface StyleTokens {
   navHeight: ClampValue;
   navLogo: ClampValue;
   navGap: ClampValue;
+  navItemPx: ClampValue;
+  navItemPy: ClampValue;
+  navDropdownMinW: ClampValue;
+  navDropdownItemPx: ClampValue;
+  navDropdownItemPy: ClampValue;
+
+  // ── Footer ──
+  footerPadY: ClampValue;
+  footerLogo: ClampValue;
+  footerMaxW: number; // px value
+  footerColGap: ClampValue;
+  footerRowGap: ClampValue;
+  footerBottomPadY: ClampValue;
 
   // ── Hero ──
   heroDiamondW: ClampValue;
@@ -99,9 +112,22 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   fsFooterHeading: { min: 0.6875, vw: 0.23, offset: 0.6, max: 0.9375 },
 
   // Navigation
-  navHeight: { min: 4,    vw: 5.2,  offset: 2,    max: 8.75 },
-  navLogo:   { min: 2.5,  vw: 5.2,  offset: 0.5,  max: 7.5 },
-  navGap:    { min: 0.25, vw: 0.8,  offset: 0.1,  max: 1.5 },
+  navHeight:  { min: 4,    vw: 5.2,  offset: 2,    max: 8.75 },
+  navLogo:    { min: 2.5,  vw: 5.2,  offset: 0.5,  max: 7.5 },
+  navGap:     { min: 0.25, vw: 0.8,  offset: 0.1,  max: 1.5 },
+  navItemPx:  { min: 0.5,  vw: 0.4,  offset: 0.3,  max: 1.25 },
+  navItemPy:  { min: 0.375, vw: 0.2, offset: 0.3,  max: 0.75 },
+  navDropdownMinW: { min: 12, vw: 2, offset: 10, max: 20 },
+  navDropdownItemPx: { min: 0.75, vw: 0.3, offset: 0.5, max: 1.5 },
+  navDropdownItemPy: { min: 0.5,  vw: 0.2, offset: 0.4, max: 1 },
+
+  // Footer
+  footerPadY:      { min: 3,    vw: 5.7,  offset: 0.8,  max: 10 },
+  footerLogo:      { min: 2.5,  vw: 5.2,  offset: 0.5,  max: 7.5 },
+  footerMaxW:      1200,
+  footerColGap:    { min: 1.5,  vw: 3.9,  offset: 0,    max: 6 },
+  footerRowGap:    { min: 0.25, vw: 0.3,  offset: 0.15, max: 0.625 },
+  footerBottomPadY: { min: 0.75, vw: 1.2, offset: 0.3,  max: 2 },
 
   // Hero
   heroDiamondW:     { min: 17.5,  vw: 24,  offset: 8,  max: 37.5 },
@@ -170,6 +196,16 @@ export function tokensToCSSVars(tokens: StyleTokens): Record<string, string> {
     "--nav-height": clampToCSS(tokens.navHeight),
     "--nav-logo": clampToCSS(tokens.navLogo),
     "--nav-gap": clampToCSS(tokens.navGap),
+    "--nav-item-px": clampToCSS(tokens.navItemPx),
+    "--nav-item-py": clampToCSS(tokens.navItemPy),
+    "--nav-dd-min-w": clampToCSS(tokens.navDropdownMinW),
+    "--nav-dd-item-px": clampToCSS(tokens.navDropdownItemPx),
+    "--nav-dd-item-py": clampToCSS(tokens.navDropdownItemPy),
+    "--footer-pad-y": clampToCSS(tokens.footerPadY),
+    "--footer-logo": clampToCSS(tokens.footerLogo),
+    "--footer-col-gap": clampToCSS(tokens.footerColGap),
+    "--footer-row-gap": clampToCSS(tokens.footerRowGap),
+    "--footer-bottom-pad-y": clampToCSS(tokens.footerBottomPadY),
     "--hero-diamond-w": clampToCSS(tokens.heroDiamondW),
     "--hero-diamond-h": clampToCSS(tokens.heroDiamondH),
     "--hero-accent-diamond": clampToCSS(tokens.heroAccentDiamond),

@@ -63,6 +63,24 @@ describe('styleDefaults', () => {
       expect(vars).toHaveProperty('--container-px');
     });
 
+    it('should return new navigation CSS variable keys', () => {
+      const vars = tokensToCSSVars(DEFAULT_STYLE_TOKENS);
+      expect(vars).toHaveProperty('--nav-item-px');
+      expect(vars).toHaveProperty('--nav-item-py');
+      expect(vars).toHaveProperty('--nav-dd-min-w');
+      expect(vars).toHaveProperty('--nav-dd-item-px');
+      expect(vars).toHaveProperty('--nav-dd-item-py');
+    });
+
+    it('should return new footer CSS variable keys', () => {
+      const vars = tokensToCSSVars(DEFAULT_STYLE_TOKENS);
+      expect(vars).toHaveProperty('--footer-pad-y');
+      expect(vars).toHaveProperty('--footer-logo');
+      expect(vars).toHaveProperty('--footer-col-gap');
+      expect(vars).toHaveProperty('--footer-row-gap');
+      expect(vars).toHaveProperty('--footer-bottom-pad-y');
+    });
+
     it('should generate valid clamp() values for all properties', () => {
       const vars = tokensToCSSVars(DEFAULT_STYLE_TOKENS);
       Object.values(vars).forEach(val => {
@@ -87,6 +105,28 @@ describe('styleDefaults', () => {
       expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondW');
       expect(DEFAULT_STYLE_TOKENS).toHaveProperty('sectionColors');
       expect(DEFAULT_STYLE_TOKENS).toHaveProperty('containerMaxWidth');
+    });
+
+    it('should have all new navigation token keys', () => {
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('navItemPx');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('navItemPy');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('navDropdownMinW');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('navDropdownItemPx');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('navDropdownItemPy');
+    });
+
+    it('should have all new footer token keys', () => {
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerPadY');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerLogo');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerMaxW');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerColGap');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerRowGap');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('footerBottomPadY');
+    });
+
+    it('should have reasonable footer max width', () => {
+      expect(DEFAULT_STYLE_TOKENS.footerMaxW).toBeGreaterThanOrEqual(800);
+      expect(DEFAULT_STYLE_TOKENS.footerMaxW).toBeLessThanOrEqual(2400);
     });
 
     it('should have valid section colors', () => {

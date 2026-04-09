@@ -199,19 +199,19 @@ export default function Fertigung() {
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Fertigung anfragen' : 'Request Manufacturing'}
+            {isDE ? 'Serienfertigung beginnt mit einer belastbaren Kalkulation.' : 'Series production starts with a reliable quote.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Senden Sie uns Ihre Stückliste und Gerber-Daten – wir kalkulieren schnell und transparent.'
-              : 'Send us your BOM and Gerber data – we calculate quickly and transparently.'}
+              ? 'Stückzahl, Technologie, Zeitplan – senden Sie uns die Eckdaten. Wir kalkulieren verbindlich.'
+              : 'Volume, technology, timeline – send us the key data. We provide a binding quote.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Angebot anfragen' : 'Request Quote'}
+            {isDE ? 'Fertigungsanfrage stellen' : 'Submit manufacturing inquiry'}
           </Link>
         </div>
       </section>

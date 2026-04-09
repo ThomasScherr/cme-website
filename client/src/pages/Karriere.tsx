@@ -80,12 +80,12 @@ export default function Karriere() {
       <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Keine passende Stelle gefunden?' : 'No suitable position found?'}
+            {isDE ? 'Kein Standardjob. Echte Projekte. Echte Verantwortung.' : 'Not a standard job. Real projects. Real responsibility.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Wir freuen uns immer über Initiativbewerbungen von talentierten Menschen, die Elektronik lieben. Senden Sie uns Ihre Unterlagen.'
-              : 'We always welcome speculative applications from talented people who love electronics. Send us your documents.'}
+              ? 'Wenn Sie Elektronik nicht nur entwickeln, sondern bis zur Serie begleiten wollen – melden Sie sich.'
+              : 'If you want to develop electronics and see them through to production – get in touch.'}
           </p>
           <a
             href="mailto:karriere@control-motion.de"

@@ -29,7 +29,9 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
   const tokens = useMemo<StyleTokens>(() => {
     if (savedStyles?.styles) {
       try {
-        return JSON.parse(savedStyles.styles) as StyleTokens;
+        const saved = JSON.parse(savedStyles.styles) as Partial<StyleTokens>;
+        // Merge saved tokens with defaults so new tokens always have values
+        return { ...DEFAULT_STYLE_TOKENS, ...saved };
       } catch {
         return DEFAULT_STYLE_TOKENS;
       }
@@ -46,8 +48,9 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
       root.style.setProperty(prop, val);
     });
 
-    // Also apply container max-width
+    // Also apply container max-width and footer max-width
     root.style.setProperty('--container-max', `${tokens.containerMaxWidth}px`);
+    root.style.setProperty('--footer-max-w', `${tokens.footerMaxW ?? 1200}px`);
 
     // Cleanup: remove custom properties on unmount
     return () => {
@@ -55,6 +58,7 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
         root.style.removeProperty(prop);
       });
       root.style.removeProperty('--container-max');
+      root.style.removeProperty('--footer-max-w');
     };
   }, [tokens]);
 

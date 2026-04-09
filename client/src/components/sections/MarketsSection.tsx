@@ -146,7 +146,7 @@ export default function MarketsSection() {
             href="/maerkte"
             className="inline-flex items-center gap-2 text-cme-blue font-semibold fluid-small hover:gap-3 transition-all"
           >
-            {isDE ? 'Alle Branchen entdecken' : 'Explore all industries'}
+            {isDE ? 'Branchen & Anwendungsfelder im Detail' : 'Industries & applications in detail'}
             <ArrowRight size={16} />
           </Link>
         </motion.div>

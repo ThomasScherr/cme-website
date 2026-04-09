@@ -21,8 +21,8 @@ export const translations = {
       headline2: 'Elektronikfertigung.',
       headline3: 'Aus einer Hand.',
       sub: 'Vom ersten Entwurf bis zur Serie – für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.',
-      cta_primary: 'Projekt anfragen',
-      cta_secondary: 'Leistungen entdecken',
+      cta_primary: 'Machbarkeit prüfen lassen',
+      cta_secondary: 'Leistungen im Überblick',
     },
     stats: {
       years: 'Jahre Erfahrung',
@@ -104,8 +104,8 @@ export const translations = {
       ],
     },
     contact: {
-      headline: 'Projekt anfragen',
-      sub: 'Sprechen Sie mit uns – wir kalkulieren Ihre Anfrage schnell und transparent.',
+      headline: 'Sprechen Sie mit Ingenieuren – nicht mit dem Vertrieb.',
+      sub: 'Beschreiben Sie Ihr Vorhaben. Wir geben Ihnen eine erste technische Einschätzung – ehrlich und unverbindlich.',
       name: 'Name',
       company: 'Unternehmen',
       email: 'E-Mail',
@@ -145,8 +145,8 @@ export const translations = {
       headline2: 'Electronics Manufacturing.',
       headline3: 'From a Single Source.',
       sub: 'From first concept to series production – for power electronics, drive technology, and thermally demanding projects.',
-      cta_primary: 'Request a Project',
-      cta_secondary: 'Explore Services',
+      cta_primary: 'Get a feasibility check',
+      cta_secondary: 'View our services',
     },
     stats: {
       years: 'Years of Experience',
@@ -228,8 +228,8 @@ export const translations = {
       ],
     },
     contact: {
-      headline: 'Request a Project',
-      sub: 'Talk to us – we calculate your inquiry quickly and transparently.',
+      headline: 'Talk to engineers – not to sales.',
+      sub: 'Describe your project. We\'ll give you an initial technical assessment – honest and non-binding.',
       name: 'Name',
       company: 'Company',
       email: 'Email',

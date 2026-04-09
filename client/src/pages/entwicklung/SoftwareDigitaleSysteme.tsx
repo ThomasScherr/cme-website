@@ -191,19 +191,19 @@ export default function SoftwareDigitaleSysteme() {
       <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
+            {isDE ? 'Software, die auf Ihrer Hardware läuft – nicht nur im Datenblatt.' : 'Software that runs on your hardware – not just on paper.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit uns – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
-              : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
+              ? 'Beschreiben Sie Ihr System und die Schnittstellen – wir definieren die Architektur und den Entwicklungsplan.'
+              : 'Describe your system and interfaces – we\'ll define the architecture and development plan.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Projekt anfragen' : 'Request Project'}
+            {isDE ? 'Architektur besprechen' : 'Discuss architecture'}
           </Link>
         </div>
       </section>

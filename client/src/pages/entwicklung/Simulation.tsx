@@ -365,19 +365,19 @@ export default function Simulation() {
       <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
+            {isDE ? 'Risiken erkennen, bevor der erste Prototyp gebaut wird.' : 'Identify risks before the first prototype is built.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit uns – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
-              : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
+              ? 'Senden Sie uns Ihre Systemdaten – wir zeigen, welche Simulationen Ihr Projekt absichern.'
+              : 'Send us your system data – we\'ll show which simulations secure your project.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Projekt anfragen' : 'Request Project'}
+            {isDE ? 'Simulationsanfrage stellen' : 'Submit simulation inquiry'}
           </Link>
         </div>
       </section>

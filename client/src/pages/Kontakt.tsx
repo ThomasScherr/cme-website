@@ -30,12 +30,12 @@ export default function Kontakt() {
               {isDE ? 'Kontakt' : 'Contact'}
             </span>
             <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Sprechen Sie mit uns.' : 'Talk to us.'}
+              {isDE ? 'Direkter Draht zu unseren Ingenieuren.' : 'Direct line to our engineers.'}
             </h1>
             <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE
-                ? 'Ob Projektanfrage, technische Frage oder Besuch in Dortmund – wir freuen uns auf Ihre Nachricht.'
-                : 'Whether project inquiry, technical question or visit in Dortmund – we look forward to your message.'}
+                ? 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.'
+                : 'Project inquiry, technical question or visit in Dortmund – we respond personally.'}
             </p>
           </div>
         </div>

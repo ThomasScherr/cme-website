@@ -39,8 +39,8 @@ export default function SubPageTemplate({
   introDE,
   introEN,
   features,
-  ctaDE = 'Projekt anfragen',
-  ctaEN = 'Request Project',
+  ctaDE = 'Anforderungen senden',
+  ctaEN = 'Send requirements',
   relatedPages = [],
 }: SubPageProps) {
   const { lang } = useLanguage();
@@ -220,12 +220,12 @@ export default function SubPageTemplate({
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
+            {isDE ? 'Machbarkeit klären – bevor Kosten entstehen.' : 'Clarify feasibility – before costs arise.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit uns – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
-              : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
+              ? 'Senden Sie uns Ihre Anforderungen. Wir prüfen Machbarkeit, Risiken und Zeitrahmen – und sagen ehrlich, was geht.'
+              : 'Send us your requirements. We evaluate feasibility, risks and timeline – and tell you honestly what works.'}
           </p>
           <Link
             href="/kontakt"

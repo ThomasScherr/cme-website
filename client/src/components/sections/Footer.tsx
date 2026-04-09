@@ -4,15 +4,19 @@ import { Link } from 'wouter';
 const LOGO_WHITE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png';
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
 
   return (
-    <footer className="bg-cme-dark text-white section-pad">
-      <div className="container max-w-6xl">
+    <footer
+      className="bg-cme-dark text-white"
+      style={{ paddingTop: 'var(--footer-pad-y)', paddingBottom: 'var(--footer-pad-y)' }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 'var(--footer-max-w, 1200px)', paddingLeft: 'var(--container-px)', paddingRight: 'var(--container-px)' }}>
         {/* Main grid: Logo-Spalte 1fr, Leistungen 1.5fr, Kontakt 1.5fr */}
         <div
           className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1.5fr]"
-          style={{ gap: 'var(--space-gap-lg)', marginBottom: 'var(--space-gap-lg)' }}
+          style={{ gap: 'var(--footer-col-gap)', marginBottom: 'var(--footer-col-gap)' }}
         >
           {/* Logo & Tagline – schmalere Spalte */}
           <div>
@@ -20,13 +24,15 @@ export default function Footer() {
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
               className="w-auto object-contain"
-              style={{ height: 'var(--nav-logo)', marginBottom: 'var(--space-gap-xs)' }}
+              style={{ height: 'var(--footer-logo)', marginBottom: 'var(--space-gap-xs)' }}
             />
             <p
               className="text-white/80 max-w-md leading-relaxed"
               style={{ fontSize: 'var(--fs-footer)' }}
             >
-              Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.
+              {isDE
+                ? 'Entwicklung und Fertigung elektronischer Produkte – mit technischer Tiefe und Serienblick. Made in Dortmund.'
+                : 'Development and manufacturing of electronic products – with technical depth and series-production focus. Made in Dortmund.'}
             </p>
             <div className="flex flex-wrap gap-2" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {['ISO 9001', 'ISO 14001'].map((cert) => (
@@ -47,14 +53,14 @@ export default function Footer() {
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
             >
-              Leistungen
+              {isDE ? 'Leistungen' : 'Services'}
             </h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--footer-row-gap)' }}>
               {[
                 { label: t.footer.dev, href: '/entwicklung' },
                 { label: t.footer.mfg, href: '/fertigung' },
                 { label: t.footer.lifecycle, href: '/lifecycle' },
-                { label: 'Märkte & Branchen', href: '/maerkte' },
+                { label: isDE ? 'Märkte & Branchen' : 'Markets & Industries', href: '/maerkte' },
               ].map((link, i) => (
                 <li key={i}>
                   <Link
@@ -75,11 +81,11 @@ export default function Footer() {
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
             >
-              Kontakt
+              {isDE ? 'Kontakt' : 'Contact'}
             </h4>
-            <ul className="text-white/80" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.4rem, 0.2rem + 0.5vw, 0.625rem)' }}>
+            <ul className="text-white/80" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--footer-row-gap)' }}>
               <li style={{ fontSize: 'var(--fs-footer)' }}>Alter Hellweg 48</li>
-              <li style={{ fontSize: 'var(--fs-footer)' }}>44379 Dortmund</li>
+              <li style={{ fontSize: 'var(--fs-footer)' }}>44379 Dortmund, {isDE ? 'Deutschland' : 'Germany'}</li>
               <li>
                 <a
                   href="tel:+4923128667696"
@@ -105,7 +111,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div
           className="border-t border-white/15 flex flex-col md:flex-row md:justify-between items-center"
-          style={{ paddingTop: 'var(--space-gap-sm)', gap: 'var(--space-gap-xs)' }}
+          style={{ paddingTop: 'var(--footer-bottom-pad-y)', gap: 'var(--space-gap-xs)' }}
         >
           <p className="text-white/80" style={{ fontSize: 'var(--fs-footer-heading)' }}>
             {t.footer.copyright}

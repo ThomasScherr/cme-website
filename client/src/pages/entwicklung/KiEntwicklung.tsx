@@ -21,21 +21,23 @@ export default function KiEntwicklung() {
       parentLabelEN="Electronics Development"
       titleDE="KI-gestützte Entwicklung"
       titleEN="AI-Powered Development"
-      subtitleDE="Machine Learning und KI-Methoden für intelligentere Produkte – von der Datenanalyse bis zur Edge-Inferenz auf Embedded-Systemen."
-      subtitleEN="Machine learning and AI methods for smarter products – from data analysis to edge inference on embedded systems."
+      subtitleDE="Datengetriebene Methoden für Leistungselektronik, Antriebssysteme und Embedded-Anwendungen – vom Algorithmus bis zur Inferenz auf dem Zielsystem."
+      subtitleEN="Data-driven methods for power electronics, drive systems and embedded applications – from algorithm to inference on the target system."
       heroImg={`${CDN}/JK_2392__1920px_af02a6b7.jpg`}
-      introDE="CME integriert KI-Methoden in die Elektronikentwicklung, um Produkte intelligenter und effizienter zu machen. Wir setzen Machine Learning ein, um Muster in Sensordaten zu erkennen, Regelungsstrategien zu optimieren und prädiktive Wartung zu ermöglichen. Von der Datenaufbereitung über das Modelltraining bis zur Inferenz auf ressourcenbeschränkten Embedded-Systemen – wir begleiten den gesamten Weg vom Algorithmus zum Serienprodukt."
-      introEN="CME integrates AI methods into electronics development to make products smarter and more efficient. We use machine learning to detect patterns in sensor data, optimize control strategies and enable predictive maintenance. From data preparation through model training to inference on resource-constrained embedded systems – we accompany the entire path from algorithm to series product."
+      introDE="KI ist kein Selbstzweck – sie löst konkrete Probleme in der Elektronikentwicklung. CME setzt Machine-Learning-Methoden dort ein, wo klassische Regelungs- oder Analyseansätze an ihre Grenzen stoßen: bei der Erkennung von Mustern in Sensordaten, bei der Optimierung nichtlinearer Regelstrecken und bei der vorausschauenden Wartung komplexer Systeme. Entscheidend ist dabei nicht die Modellkomplexität, sondern die Fähigkeit, trainierte Modelle auf ressourcenbeschränkter Embedded-Hardware zuverlässig auszuführen – in Echtzeit, bei begrenztem Speicher und unter industriellen Umgebungsbedingungen."
+      introEN="AI is not an end in itself – it solves concrete problems in electronics development. CME applies machine learning methods where classical control or analysis approaches reach their limits: detecting patterns in sensor data, optimizing nonlinear control systems, and enabling predictive maintenance of complex systems. What matters is not model complexity, but the ability to reliably run trained models on resource-constrained embedded hardware – in real time, with limited memory, and under industrial environmental conditions."
+      ctaDE="KI-Anwendungsfall besprechen"
+      ctaEN="Discuss AI use case"
       features={[
-        { de: 'Machine Learning für Sensordatenanalyse', en: 'Machine learning for sensor data analysis', icon: BrainCircuit },
-        { de: 'KI-basierte Regelungsoptimierung', en: 'AI-based control optimization', icon: Gauge },
-        { de: 'Predictive Maintenance & Anomalieerkennung', en: 'Predictive maintenance & anomaly detection', icon: BarChart3 },
-        { de: 'Computer Vision für Qualitätskontrolle', en: 'Computer vision for quality control', icon: Eye },
-        { de: 'Edge-Inferenz auf Embedded-Systemen', en: 'Edge inference on embedded systems', icon: Cpu },
-        { de: 'Modelltraining & Datenaufbereitung', en: 'Model training & data preparation', icon: Database },
-        { de: 'TinyML & Modellkomprimierung', en: 'TinyML & model compression', icon: Zap },
-        { de: 'MLOps & Modell-Deployment', en: 'MLOps & model deployment', icon: GitBranch },
-        { de: 'Integration in bestehende Systemarchitekturen', en: 'Integration into existing system architectures', icon: Settings },
+        { de: 'Sensorbasierte Zustandserkennung – ML-Modelle für Vibration, Strom, Temperatur und akustische Signale zur Erkennung von Verschleiß, Fehlern oder Betriebszuständen', en: 'Sensor-based condition detection – ML models for vibration, current, temperature and acoustic signals to detect wear, faults or operating states', icon: BrainCircuit },
+        { de: 'Regelungsoptimierung mit KI – Selbstadaptierende Regler für nichtlineare Strecken, z.\u00A0B. bei Motorsteuerungen mit variablen Lasten oder thermischen Drifts', en: 'AI-based control optimization – Self-adapting controllers for nonlinear systems, e.g. motor controls with variable loads or thermal drift', icon: Gauge },
+        { de: 'Predictive Maintenance – Frühzeitige Erkennung von Degradation in Antrieben, Netzteilen oder Leistungsmodulen auf Basis von Betriebsdaten', en: 'Predictive maintenance – Early detection of degradation in drives, power supplies or power modules based on operational data', icon: BarChart3 },
+        { de: 'Visuelle Qualitätskontrolle – Bildverarbeitung und Objekterkennung für Lötstellen, Bestückung und Oberflächeninspektion in der Elektronikfertigung', en: 'Visual quality control – Image processing and object detection for solder joints, component placement and surface inspection in electronics manufacturing', icon: Eye },
+        { de: 'Edge-Inferenz auf Embedded-Zielen – Deployment trainierter Modelle auf MCUs und FPGAs mit Fokus auf Latenz, Speicherbedarf und Energieverbrauch', en: 'Edge inference on embedded targets – Deployment of trained models on MCUs and FPGAs with focus on latency, memory footprint and power consumption', icon: Cpu },
+        { de: 'Datenaufbereitung & Feature Engineering – Aufbereitung von Rohdaten aus Prüfständen, Feldtests und Serienfertigung für reproduzierbare Trainingspipelines', en: 'Data preparation & feature engineering – Processing raw data from test benches, field tests and series production for reproducible training pipelines', icon: Database },
+        { de: 'TinyML & Modellkomprimierung – Quantisierung, Pruning und Destillation für den Einsatz auf Cortex-M-Klasse-Prozessoren und vergleichbaren Plattformen', en: 'TinyML & model compression – Quantization, pruning and distillation for deployment on Cortex-M class processors and comparable platforms', icon: Zap },
+        { de: 'Modell-Lifecycle & Versionierung – Nachvollziehbare Modellversionen, Testabdeckung und Dokumentation für regulierte Branchen', en: 'Model lifecycle & versioning – Traceable model versions, test coverage and documentation for regulated industries', icon: GitBranch },
+        { de: 'Integration in bestehende Systeme – Einbettung von KI-Funktionen in vorhandene Firmware-, RTOS- oder SPS-Architekturen ohne Systembruch', en: 'Integration into existing systems – Embedding AI functions into existing firmware, RTOS or PLC architectures without system disruption', icon: Settings },
       ]}
       relatedPages={[
         { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },

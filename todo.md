@@ -173,3 +173,7 @@
 - [x] FIX: Unterseiten-Titel an Navigation-Dropdown-Titel angleichen (Konsistenz)
 - [x] STYLESHEET: Logo-Größe im Editor mit aktuellem px-Wert anzeigen
 - [x] STYLESHEET: Alle rem-Angaben im Editor mit px-Äquivalent ergänzen
+- [x] COPY: Alle CTA-Sektionen mit professionellem B2B-Tech-Copywriting überarbeiten (keine KI-Floskeln, kundenzentriert, branchenspezifisch)
+- [x] STYLESHEET: Footer-Tab erweitern (Footer-Padding, Footer-Logo-Größe, Footer-Spalten-Gap, Footer-Link-Schriftgröße)
+- [x] STYLESHEET: Navigation-Tab erweitern (Dropdown-Schriftgröße, Dropdown-Min-Breite, Nav-Button-Padding)
+- [x] STYLESHEET: Dropdown-Menü Schriftgröße als steuerbare Variable im Editor

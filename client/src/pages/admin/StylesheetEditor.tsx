@@ -191,9 +191,17 @@ function PreviewBar({ tokens }: { tokens: StyleTokens }) {
     h2: clampToPx(tokens.fsH2, viewportWidth),
     body: clampToPx(tokens.fsBody, viewportWidth),
     nav: clampToPx(tokens.fsNav, viewportWidth),
+    navDropdown: clampToPx(tokens.fsNavDropdown, viewportWidth),
     logo: clampToPx(tokens.navLogo, viewportWidth),
     navH: clampToPx(tokens.navHeight, viewportWidth),
+    navGap: clampToPx(tokens.navGap, viewportWidth),
+    navItemPx: clampToPx(tokens.navItemPx, viewportWidth),
     small: clampToPx(tokens.fsSmall, viewportWidth),
+    footerText: clampToPx(tokens.fsFooter, viewportWidth),
+    footerHeading: clampToPx(tokens.fsFooterHeading, viewportWidth),
+    footerLogo: clampToPx(tokens.footerLogo, viewportWidth),
+    footerPadY: clampToPx(tokens.footerPadY, viewportWidth),
+    footerColGap: clampToPx(tokens.footerColGap, viewportWidth),
   }), [tokens, viewportWidth]);
 
   return (
@@ -253,6 +261,18 @@ function PreviewBar({ tokens }: { tokens: StyleTokens }) {
           </div>
         </div>
 
+        {/* Footer Preview */}
+        <div className="bg-gray-900 rounded-lg overflow-hidden" style={{ padding: `${Math.min(previewData.footerPadY, 20)}px` }}>
+          <div className="flex items-center" style={{ gap: `${Math.min(previewData.footerColGap, 16)}px` }}>
+            <div className="bg-gray-600 rounded" style={{ height: `${Math.min(previewData.footerLogo, 30)}px`, width: `${Math.min(previewData.footerLogo * 3, 90)}px` }} />
+            <div className="flex flex-col gap-0.5">
+              <span style={{ fontSize: `${Math.min(previewData.footerHeading, 11)}px` }} className="text-gray-400 uppercase font-bold">Links</span>
+              <span style={{ fontSize: `${Math.min(previewData.footerText, 12)}px` }} className="text-gray-300">Entwicklung</span>
+              <span style={{ fontSize: `${Math.min(previewData.footerText, 12)}px` }} className="text-gray-300">Fertigung</span>
+            </div>
+          </div>
+        </div>
+
         {/* Computed Values Table */}
         <div className="text-xs">
           <div className="font-medium text-gray-700 mb-1">Berechnete Werte bei {viewportWidth}px:</div>
@@ -261,8 +281,14 @@ function PreviewBar({ tokens }: { tokens: StyleTokens }) {
             <span>H2: {Math.round(previewData.h2)}px</span>
             <span>Body: {Math.round(previewData.body)}px</span>
             <span>Nav: {Math.round(previewData.nav)}px</span>
+            <span>Nav-Dropdown: {Math.round(previewData.navDropdown)}px</span>
             <span>Logo: {Math.round(previewData.logo)}px</span>
             <span>Nav-Höhe: {Math.round(previewData.navH)}px</span>
+            <span>Nav-Gap: {Math.round(previewData.navGap)}px</span>
+            <span>Footer-Text: {Math.round(previewData.footerText)}px</span>
+            <span>Footer-Logo: {Math.round(previewData.footerLogo)}px</span>
+            <span>Footer-Pad: {Math.round(previewData.footerPadY)}px</span>
+            <span>Footer-Col-Gap: {Math.round(previewData.footerColGap)}px</span>
           </div>
         </div>
       </CardContent>
@@ -312,12 +338,12 @@ export default function StylesheetEditor() {
   const [presetName, setPresetName] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
 
-  // Load saved styles from DB
+  // Load saved styles from DB (merge with defaults so new tokens are always present)
   useEffect(() => {
     if (savedStyles?.styles) {
       try {
-        const parsed = JSON.parse(savedStyles.styles) as StyleTokens;
-        setTokens(parsed);
+        const parsed = JSON.parse(savedStyles.styles) as Partial<StyleTokens>;
+        setTokens({ ...DEFAULT_STYLE_TOKENS, ...parsed });
       } catch {
         setTokens(DEFAULT_STYLE_TOKENS);
       }
@@ -544,12 +570,41 @@ export default function StylesheetEditor() {
                     <CardHeader>
                       <CardTitle>Footer</CardTitle>
                       <CardDescription>
-                        Schriftgrößen für den Footer-Bereich. Spaltenbreite und Textgrößen skalieren responsive mit der Auflösung.
+                        Alle Footer-Einstellungen: Schriftgrößen, Abstände, Logo-Größe und Breite. Alle Werte skalieren responsive mit der Auflösung.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-1">
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-2 pb-1">Typografie</div>
                       <ClampEditor label="Footer Text" description="Schriftgröße für Fließtext im Footer" value={tokens.fsFooter} onChange={v => updateToken('fsFooter', v)} />
                       <ClampEditor label="Footer Überschriften" description="Schriftgröße für Spaltenüberschriften im Footer" value={tokens.fsFooterHeading} onChange={v => updateToken('fsFooterHeading', v)} />
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-4 pb-1">Layout & Abstände</div>
+                      <ClampEditor label="Footer Padding (vertikal)" description="Oberer und unterer Abstand des Footers" value={tokens.footerPadY} onChange={v => updateToken('footerPadY', v)} />
+                      <ClampEditor label="Footer Logo-Höhe" description="Höhe des weißen Logos im Footer" value={tokens.footerLogo} onChange={v => updateToken('footerLogo', v)} />
+                      <ClampEditor label="Spalten-Abstand" description="Abstand zwischen den drei Footer-Spalten" value={tokens.footerColGap} onChange={v => updateToken('footerColGap', v)} />
+                      <ClampEditor label="Zeilen-Abstand" description="Abstand zwischen Einträgen in den Link-Listen" value={tokens.footerRowGap} onChange={v => updateToken('footerRowGap', v)} />
+                      <ClampEditor label="Bottom-Bar Padding" description="Abstand über der Copyright-Zeile" value={tokens.footerBottomPadY} onChange={v => updateToken('footerBottomPadY', v)} />
+                      <div className="border border-gray-200 rounded-lg p-3 bg-white">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium text-sm text-gray-900">Footer Max-Breite</div>
+                            <div className="text-xs text-gray-500">Maximale Breite des Footer-Inhaltsbereichs</div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Input
+                              type="number"
+                              step="50"
+                              value={tokens.footerMaxW}
+                              onChange={e => {
+                                const val = parseInt(e.target.value) || 1200;
+                                setTokens(prev => ({ ...prev, footerMaxW: val }));
+                                setHasChanges(true);
+                              }}
+                              className="h-8 text-sm w-28"
+                            />
+                            <span className="text-xs text-gray-400">px</span>
+                          </div>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -560,14 +615,22 @@ export default function StylesheetEditor() {
                     <CardHeader>
                       <CardTitle>Navigation</CardTitle>
                       <CardDescription>
-                        Logo-Größe und Navigationsleisten-Höhe. Das Logo skaliert proportional mit der Auflösung.
+                        Alle Navigations-Einstellungen: Logo, Menüpunkte, Dropdown-Menü. Alle Werte skalieren responsive mit der Auflösung.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-1">
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-2 pb-1">Navigationsleiste</div>
                       <ClampEditor label="Logo-Höhe" description="Höhe des Logos in der Navigation" value={tokens.navLogo} onChange={v => updateToken('navLogo', v)} />
                       <ClampEditor label="Navigationsleisten-Höhe" description="Gesamthöhe der Navigationsleiste" value={tokens.navHeight} onChange={v => updateToken('navHeight', v)} />
                       <ClampEditor label="Menü-Schriftgröße" description="Schriftgröße der Menüpunkte" value={tokens.fsNav} onChange={v => updateToken('fsNav', v)} />
                       <ClampEditor label="Menüpunkt-Abstand" description="Abstand zwischen den Menüpunkten" value={tokens.navGap} onChange={v => updateToken('navGap', v)} />
+                      <ClampEditor label="Menüpunkt Padding X" description="Horizontaler Innenabstand der Menüpunkte" value={tokens.navItemPx} onChange={v => updateToken('navItemPx', v)} />
+                      <ClampEditor label="Menüpunkt Padding Y" description="Vertikaler Innenabstand der Menüpunkte" value={tokens.navItemPy} onChange={v => updateToken('navItemPy', v)} />
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-4 pb-1">Dropdown-Menü</div>
+                      <ClampEditor label="Dropdown Schriftgröße" description="Schriftgröße der Dropdown-Einträge" value={tokens.fsNavDropdown} onChange={v => updateToken('fsNavDropdown', v)} />
+                      <ClampEditor label="Dropdown Mindestbreite" description="Minimale Breite des Dropdown-Panels" value={tokens.navDropdownMinW} onChange={v => updateToken('navDropdownMinW', v)} />
+                      <ClampEditor label="Dropdown Eintrag Padding X" description="Horizontaler Innenabstand der Dropdown-Einträge" value={tokens.navDropdownItemPx} onChange={v => updateToken('navDropdownItemPx', v)} />
+                      <ClampEditor label="Dropdown Eintrag Padding Y" description="Vertikaler Innenabstand der Dropdown-Einträge" value={tokens.navDropdownItemPy} onChange={v => updateToken('navDropdownItemPy', v)} />
                     </CardContent>
                   </Card>
                 </TabsContent>

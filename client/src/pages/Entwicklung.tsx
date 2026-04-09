@@ -98,7 +98,7 @@ export default function Entwicklung() {
                   href="/kontakt"
                   className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
                 >
-                  {isDE ? 'Projekt anfragen' : 'Request Project'}
+                  {isDE ? 'Projekt besprechen' : 'Discuss your project'}
                 </Link>
               </div>
             </div>
@@ -279,19 +279,19 @@ export default function Entwicklung() {
       <section className="section-pad bg-gray-50">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Bereit für Ihr Projekt?' : 'Ready for your project?'}
+            {isDE ? 'Technische Machbarkeit klären – bevor es teuer wird.' : 'Clarify technical feasibility – before it gets expensive.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit unseren Entwicklern – wir geben ehrliches technisches Feedback und kalkulieren Ihr Projekt.'
-              : 'Talk to our engineers – we provide honest technical feedback and calculate your project.'}
+              ? 'Senden Sie uns Ihr Lastenheft oder Ihre Projektskizze. Wir bewerten Aufwand, Risiken und den schnellsten Weg zur Serie.'
+              : 'Send us your specification or project outline. We assess effort, risks and the fastest path to series production.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Projekt anfragen' : 'Request Project'}
+            {isDE ? 'Lastenheft einreichen' : 'Submit specification'}
           </Link>
         </div>
       </section>

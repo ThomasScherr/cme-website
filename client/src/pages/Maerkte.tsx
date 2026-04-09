@@ -286,14 +286,24 @@ const capabilities = [
    Market Card – consistent with site-wide card style
    ────────────────────────────────────────────────────────────── */
 
+const slugToAnchor: Record<string, string> = {
+  energy: 'energy-power',
+  motion: 'motion-drive',
+  automotive: 'automotive',
+  industrial: 'industrial',
+  medtech: 'medtech',
+  infrastructure: 'smart-infra',
+};
+
 function MarketCard({ vertical, index, isDE }: { vertical: MarketSegment; index: number; isDE: boolean }) {
   return (
     <motion.div
+      id={slugToAnchor[vertical.slug]}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
-      className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 scroll-mt-24"
     >
       {/* Header with icon */}
       <div className="fluid-card border-b border-gray-50">
@@ -383,7 +393,7 @@ export default function Maerkte() {
                 href="/kontakt"
                 className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
               >
-                {isDE ? 'Projekt anfragen' : 'Request Project'}
+                {isDE ? 'Branche & Anforderung schildern' : 'Describe your industry & requirements'}
               </Link>
             </div>
           </div>
@@ -453,19 +463,19 @@ export default function Maerkte() {
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
-            {isDE ? 'Ihre Branche. Unsere Elektronik.' : 'Your industry. Our electronics.'}
+            {isDE ? 'Ihre Branche kennen wir. Ihre Herausforderung noch nicht.' : 'We know your industry. Not yet your challenge.'}
           </h2>
           <p className="text-gray-600 fluid-body-lg max-w-xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sprechen Sie mit unseren Branchenexperten – wir verstehen Ihre Systemherausforderungen und entwickeln die passende Lösung.'
-              : 'Talk to our industry experts – we understand your system challenges and develop the right solution.'}
+              ? 'Schildern Sie uns Ihre Anwendung und die Rahmenbedingungen – wir sagen Ihnen, ob und wie wir helfen können.'
+              : 'Describe your application and constraints – we\'ll tell you if and how we can help.'}
           </p>
           <Link
             href="/kontakt"
             className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Projekt anfragen' : 'Request Project'}
+            {isDE ? 'Anwendung schildern' : 'Describe your application'}
           </Link>
         </div>
       </section>
