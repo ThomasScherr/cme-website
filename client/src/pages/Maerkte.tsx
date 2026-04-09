@@ -19,6 +19,8 @@ import {
   CircuitBoard,
 } from 'lucide-react';
 
+const HERO_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_a6b28cee.mp4';
+
 /* ──────────────────────────────────────────────────────────────
    6 Branchen & Anwendungsfelder – each with 3 layers:
    1. Branche / Industry
@@ -371,30 +373,103 @@ export default function Maerkte() {
 
   return (
     <Layout>
-      {/* Hero – same style as Fertigung, Lifecycle, Entwicklung */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="max-w-3xl">
-            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-              {isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications'}
-            </span>
-            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE
-                ? 'Branchenspezifische Elektroniklösungen.'
-                : 'Industry-specific electronics solutions.'}
-            </h1>
-            <p className="fluid-body-lg text-gray-600 max-w-2xl" style={{ marginTop: 'var(--space-gap-sm)' }}>
-              {isDE
-                ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
-                : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.'}
-            </p>
-            <div style={{ marginTop: 'var(--space-gap-md)' }}>
-              <Link
-                href="/kontakt"
-                className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
+      {/* Hero with diamond pattern matching homepage/lifecycle */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-white to-cme-blue-light/30">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(33,150,211,0.04),transparent_70%)]" />
+
+        <div
+          className="container relative z-10"
+          style={{
+            paddingTop: 'var(--nav-height)',
+            paddingBottom: 'var(--space-section)',
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
+            {/* Left: Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              className="max-w-3xl"
+            >
+              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
+                {isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications'}
+              </span>
+              <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
+                {isDE
+                  ? 'Branchenspezifische Elektroniklösungen.'
+                  : 'Industry-specific electronics solutions.'}
+              </h1>
+              <p className="fluid-body-lg text-gray-600 max-w-xl leading-relaxed" style={{ marginTop: 'var(--space-gap-sm)' }}>
+                {isDE
+                  ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
+                  : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.'}
+              </p>
+              <motion.div
+                className="flex flex-wrap"
+                style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-md)' }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
-                {isDE ? 'Branche & Anforderung schildern' : 'Describe your industry & requirements'}
-              </Link>
+                <Link
+                  href="/kontakt"
+                  className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-all hover:shadow-lg hover:shadow-cme-blue/20 fluid-btn"
+                >
+                  {isDE ? 'Branche & Anforderung schildern' : 'Describe your industry & requirements'}
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Two offset diamonds – only visible on lg+ screens */}
+            <div className="hidden lg:flex relative items-center justify-end">
+              <div
+                className="relative"
+                style={{
+                  width: 'var(--hero-diamond-w)',
+                  height: 'var(--hero-diamond-h)',
+                  marginTop: '-13px',
+                  marginRight: '5px',
+                  marginLeft: '28px',
+                }}
+              >
+                {/* Accent diamond (behind, offset top-left) */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="absolute top-0 left-0"
+                  style={{ zIndex: 1 }}
+                >
+                  <div
+                    className="diamond bg-cme-blue/[0.07]"
+                    style={{ width: 'var(--hero-accent-diamond)' }}
+                  />
+                </motion.div>
+
+                {/* Video diamond (main, offset bottom-right) */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="absolute bottom-0 right-0"
+                  style={{ zIndex: 2 }}
+                >
+                  <div
+                    className="diamond shadow-xl shadow-cme-blue/15"
+                    style={{ width: 'var(--hero-image-diamond)' }}
+                  >
+                    <video
+                      src={HERO_VIDEO}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>

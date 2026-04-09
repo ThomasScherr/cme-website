@@ -190,3 +190,4 @@
 - [x] Hero-Headline: Typewriter für ersten Text, einmaliger Fade-Blur zum zweiten Text, dann stehen bleiben (kein Loop)
 - [x] FIX: Hero-Headline Überblendung zum zweiten Text - vereinfacht mit useRef-Flag, einmalig pro Page Load
 - [x] Alle Unterseiten-Hero-Sections viewport-responsiv machen (Rauten/Bilder unterhalb lg ausblenden, kein Überlappen)
+- [x] Märkte-Seite Hero: Rauten-Diamanten (Akzent-Raute + Video-Raute) wie auf Startseite/Lifecycle integrieren
