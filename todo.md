@@ -182,3 +182,4 @@
 - [x] BenefitsSection: Karten-Titel auf font-weight 700, Erklärungstexte unter jedem Karten-Titel hinzufügen
 - [x] Hero-Raute: Bild durch Loop-Sample.mp4 Video ersetzen
 - [x] Hero-Raute: Größe um 20% vergrößern
+- [x] FIX: Hero-Section responsive Layout - Überlappung von Text und Raute bei mittleren Bildschirmbreiten verhindern

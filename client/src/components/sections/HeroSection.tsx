@@ -89,7 +89,13 @@ export default function HeroSection() {
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(33,150,211,0.04),transparent_70%)]" />
 
-      <div className="container relative z-10" style={{ paddingTop: '0px', paddingBottom: 'var(--space-section)' }}>
+      <div
+        className="container relative z-10"
+        style={{
+          paddingTop: 'var(--nav-height)',
+          paddingBottom: 'var(--space-section)',
+        }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
           {/* Left: Text Content */}
           <motion.div
@@ -186,8 +192,8 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Two offset diamonds – fluid sizing up to 4K */}
-          <div className="relative flex items-center justify-center lg:justify-end">
+          {/* Right: Two offset diamonds – only visible on lg+ screens to prevent layout shifts */}
+          <div className="hidden lg:flex relative items-center justify-end">
             <div
               className="relative"
               style={{
