@@ -79,8 +79,8 @@ export default function SubPageTemplate({
                 {isDE ? subtitleDE : subtitleEN}
               </p>
             </div>
-            {/* Diamond Hero Image */}
-            <div className="relative flex items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
+            {/* Diamond Hero Image – hidden below lg to prevent overlap */}
+            <div className="hidden lg:flex relative items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
               <div
                 className="relative overflow-hidden shadow-xl"
                 style={{

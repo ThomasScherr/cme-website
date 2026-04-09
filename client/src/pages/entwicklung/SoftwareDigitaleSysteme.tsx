@@ -85,7 +85,7 @@ export default function SoftwareDigitaleSysteme() {
                   : 'Web apps, mobile apps, cloud integration and backend architecture – the digital layer of your electronic products.'}
               </p>
             </div>
-            <div className="relative">
+            <div className="hidden lg:block relative">
               <img
                 src={`${CDN}/web-apps_26e3e533.png`}
                 alt={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}

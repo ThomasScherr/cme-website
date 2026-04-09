@@ -85,7 +85,7 @@ export default function UxInterfaceEngineering() {
                   : 'Operating software and UI/UX for technical systems – from user analysis to production-ready implementation.'}
               </p>
             </div>
-            <div className="relative">
+            <div className="hidden lg:block relative">
               <img
                 src={`${CDN}/operating-concepts_3d4b7f77.png`}
                 alt="UX & Interface Engineering"

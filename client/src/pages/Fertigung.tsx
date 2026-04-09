@@ -91,7 +91,7 @@ export default function Fertigung() {
                 </Link>
               </div>
             </div>
-            <div className="relative">
+            <div className="hidden lg:block relative">
               <div
                 className="diamond mx-auto"
                 style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}

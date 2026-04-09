@@ -174,7 +174,7 @@ export default function Simulation() {
                   : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.'}
               </p>
             </div>
-            <div className="relative">
+            <div className="hidden lg:block relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg"

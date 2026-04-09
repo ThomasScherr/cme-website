@@ -37,7 +37,7 @@ export default function Unternehmen() {
                   : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
               </p>
             </div>
-            <div className="relative">
+            <div className="hidden lg:block relative">
               <div
                 className="diamond mx-auto"
                 style={{

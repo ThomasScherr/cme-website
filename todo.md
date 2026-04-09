@@ -189,3 +189,4 @@
 - [x] Hero-Headline: Glitch-Scramble durch ruhigen Fade-Blur-Morph ersetzen (kein Wackeln der Rauten)
 - [x] Hero-Headline: Typewriter für ersten Text, einmaliger Fade-Blur zum zweiten Text, dann stehen bleiben (kein Loop)
 - [x] FIX: Hero-Headline Überblendung zum zweiten Text - vereinfacht mit useRef-Flag, einmalig pro Page Load
+- [x] Alle Unterseiten-Hero-Sections viewport-responsiv machen (Rauten/Bilder unterhalb lg ausblenden, kein Überlappen)

@@ -102,7 +102,7 @@ export default function Entwicklung() {
                 </Link>
               </div>
             </div>
-            <div className="relative flex items-center justify-center">
+            <div className="hidden lg:flex relative items-center justify-center">
               <div
                 className="diamond mx-auto"
                 style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}
