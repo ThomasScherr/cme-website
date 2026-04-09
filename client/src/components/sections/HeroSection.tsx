@@ -1,9 +1,13 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
-import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
 const HERO_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_a6b28cee.mp4';
 
+// Characters used for the scramble/glitch effect
+const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
+
+// ─── Typewriter Hook (Phase 1: initial typing) ───
 function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -11,28 +15,17 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
   const [showCursor, setShowCursor] = useState(true);
   const [phase, setPhase] = useState<'typing' | 'pause' | 'done'>('typing');
 
-  // Cursor blink
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
+    const interval = setInterval(() => setShowCursor(prev => !prev), 530);
     return () => clearInterval(interval);
   }, []);
 
   const tick = useCallback(() => {
-    if (phase === 'done') return;
-
-    if (phase === 'pause') return;
-
-    if (currentLineIndex >= lines.length) {
-      setPhase('done');
-      return;
-    }
+    if (phase === 'done' || phase === 'pause') return;
+    if (currentLineIndex >= lines.length) { setPhase('done'); return; }
 
     const currentLine = lines[currentLineIndex];
-
     if (currentCharIndex < currentLine.length) {
-      // Still typing current line
       setDisplayedLines(prev => {
         const updated = [...prev];
         updated[currentLineIndex] = currentLine.slice(0, currentCharIndex + 1);
@@ -40,10 +33,8 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
       });
       setCurrentCharIndex(prev => prev + 1);
     } else {
-      // Line complete – decide what pause to use
       const isLastBeforeAccent = currentLineIndex === lines.length - 2;
       const delay = isLastBeforeAccent ? pauseBeforeAccent : pauseBetweenLines;
-
       setPhase('pause');
       setTimeout(() => {
         setCurrentLineIndex(prev => prev + 1);
@@ -60,41 +51,249 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
     return () => clearTimeout(timer);
   }, [tick, phase, typingSpeed, currentCharIndex]);
 
-  // Initialize first line
-  useEffect(() => {
-    setDisplayedLines(['']);
-  }, []);
+  useEffect(() => { setDisplayedLines(['']); }, []);
 
   return { displayedLines, showCursor, isDone: phase === 'done', currentLineIndex };
 }
 
+// ─── Scramble/Decode Hook (Phase 2: text morphing) ───
+function useTextScramble(
+  targetText: string,
+  isActive: boolean,
+  duration = 1200,
+  staggerPerChar = 30,
+) {
+  const [display, setDisplay] = useState('');
+  const frameRef = useRef<number>(0);
+  const startTimeRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    const totalChars = targetText.length;
+    startTimeRef.current = performance.now();
+
+    const animate = (now: number) => {
+      const elapsed = now - startTimeRef.current;
+      let result = '';
+
+      for (let i = 0; i < totalChars; i++) {
+        const charStart = i * staggerPerChar;
+        const charEnd = charStart + duration * 0.6;
+        const charElapsed = elapsed - charStart;
+
+        if (targetText[i] === ' ') {
+          result += ' ';
+        } else if (charElapsed >= charEnd) {
+          // Resolved
+          result += targetText[i];
+        } else if (charElapsed > 0) {
+          // Scrambling
+          result += GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+        } else {
+          // Not started yet
+          result += ' ';
+        }
+      }
+
+      setDisplay(result);
+
+      const totalDuration = totalChars * staggerPerChar + duration * 0.6;
+      if (elapsed < totalDuration) {
+        frameRef.current = requestAnimationFrame(animate);
+      } else {
+        setDisplay(targetText);
+      }
+    };
+
+    frameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameRef.current);
+  }, [isActive, targetText, duration, staggerPerChar]);
+
+  return display;
+}
+
+// ─── Single character with decode animation ───
+function ScrambleChar({
+  char,
+  delay,
+  duration,
+  isAccent,
+}: {
+  char: string;
+  delay: number;
+  duration: number;
+  isAccent?: boolean;
+}) {
+  const [display, setDisplay] = useState(' ');
+  const [resolved, setResolved] = useState(false);
+
+  useEffect(() => {
+    if (char === ' ') { setDisplay(' '); setResolved(true); return; }
+
+    const scrambleStart = setTimeout(() => {
+      const scrambleInterval = setInterval(() => {
+        setDisplay(GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]);
+      }, 40);
+
+      const resolveTimeout = setTimeout(() => {
+        clearInterval(scrambleInterval);
+        setDisplay(char);
+        setResolved(true);
+      }, duration);
+
+      return () => { clearInterval(scrambleInterval); clearTimeout(resolveTimeout); };
+    }, delay);
+
+    return () => clearTimeout(scrambleStart);
+  }, [char, delay, duration]);
+
+  return (
+    <span
+      className={`inline-block transition-all duration-300 ${
+        resolved
+          ? isAccent ? 'text-cme-blue' : 'text-cme-dark'
+          : 'text-cme-blue/60'
+      }`}
+      style={{
+        textShadow: !resolved ? '0 0 8px rgba(33,150,211,0.4)' : 'none',
+        minWidth: char === ' ' ? '0.3em' : undefined,
+      }}
+    >
+      {display}
+    </span>
+  );
+}
+
+// ─── Headline set type ───
+interface HeadlineSet {
+  line1: string;
+  line2: string;
+  accent: string;
+}
+
+// ─── Main Hero Component ───
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
 
-  const lines = [
-    t.hero.headline1,
-    t.hero.headline2,
-    t.hero.headline3,
-  ];
+  // Two headline sets
+  const headlineSets: [HeadlineSet, HeadlineSet] = useMemo(() => [
+    {
+      line1: t.hero.headline1,
+      line2: t.hero.headline2,
+      accent: t.hero.headline3,
+    },
+    {
+      line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
+      line2: isDE ? 'die auch morgen noch' : 'that are still available',
+      accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
+    },
+  ], [t, isDE]);
 
-  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(
-    lines,
-    55,   // typing speed (ms per char)
-    400,  // pause between line 1 and 2
-    3000  // 3 second pause before "Aus einer Hand."
+  const lines = [headlineSets[0].line1, headlineSets[0].line2, headlineSets[0].accent];
+
+  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 3000);
+
+  // Phase management: 'typing' → 'holding' → 'scrambling-out' → 'scrambling-in' → 'holding2' → loop
+  const [heroPhase, setHeroPhase] = useState<'typing' | 'holding' | 'scrambling-out' | 'scrambling-in' | 'holding2' | 'scrambling-back-out' | 'scrambling-back-in'>('typing');
+  const [activeSet, setActiveSet] = useState(0);
+  const [scrambleKey, setScrambleKey] = useState(0);
+
+  // After typewriter finishes, wait 3.5s then start morph
+  useEffect(() => {
+    if (isDone && heroPhase === 'typing') {
+      setHeroPhase('holding');
+    }
+  }, [isDone, heroPhase]);
+
+  useEffect(() => {
+    if (heroPhase === 'holding') {
+      const timer = setTimeout(() => {
+        setHeroPhase('scrambling-out');
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+    if (heroPhase === 'scrambling-out') {
+      const timer = setTimeout(() => {
+        setActiveSet(1);
+        setScrambleKey(prev => prev + 1);
+        setHeroPhase('scrambling-in');
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+    if (heroPhase === 'scrambling-in') {
+      // Wait for scramble-in to finish, then hold
+      const maxChars = Math.max(
+        headlineSets[1].line1.length,
+        headlineSets[1].line2.length,
+        headlineSets[1].accent.length,
+      );
+      const timer = setTimeout(() => {
+        setHeroPhase('holding2');
+      }, maxChars * 25 + 800);
+      return () => clearTimeout(timer);
+    }
+    if (heroPhase === 'holding2') {
+      const timer = setTimeout(() => {
+        setHeroPhase('scrambling-back-out');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+    if (heroPhase === 'scrambling-back-out') {
+      const timer = setTimeout(() => {
+        setActiveSet(0);
+        setScrambleKey(prev => prev + 1);
+        setHeroPhase('scrambling-back-in');
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+    if (heroPhase === 'scrambling-back-in') {
+      const maxChars = Math.max(
+        headlineSets[0].line1.length,
+        headlineSets[0].line2.length,
+        headlineSets[0].accent.length,
+      );
+      const timer = setTimeout(() => {
+        setHeroPhase('holding');
+      }, maxChars * 25 + 800);
+      return () => clearTimeout(timer);
+    }
+  }, [heroPhase, headlineSets]);
+
+  const isScrambling = heroPhase === 'scrambling-out' || heroPhase === 'scrambling-back-out';
+  const isDecoding = heroPhase === 'scrambling-in' || heroPhase === 'scrambling-back-in';
+  const showTypewriter = heroPhase === 'typing';
+  const currentSet = headlineSets[activeSet];
+
+  // Render a scramble-decode line
+  const renderScrambleLine = (text: string, isAccent: boolean) => {
+    return text.split('').map((char, i) => (
+      <ScrambleChar
+        key={`${scrambleKey}-${i}`}
+        char={char}
+        delay={i * 25}
+        duration={400 + Math.random() * 300}
+        isAccent={isAccent}
+      />
+    ));
+  };
+
+  // Cursor element
+  const CursorEl = ({ visible, color = 'bg-cme-blue' }: { visible: boolean; color?: string }) => (
+    <span
+      className={`inline-block w-[3px] ${color} ml-0.5 align-baseline`}
+      style={{ height: '0.85em', opacity: visible ? 1 : 0, transition: 'opacity 0.1s' }}
+    />
   );
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white">
-      {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(33,150,211,0.04),transparent_70%)]" />
 
       <div
         className="container relative z-10"
-        style={{
-          paddingTop: 'var(--nav-height)',
-          paddingBottom: 'var(--space-section)',
-        }}
+        style={{ paddingTop: 'var(--nav-height)', paddingBottom: 'var(--space-section)' }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
           {/* Left: Text Content */}
@@ -103,64 +302,77 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-cme-blue font-semibold tracking-[0.2em] uppercase fluid-xs" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+            <p
+              className="text-cme-blue font-semibold tracking-[0.2em] uppercase fluid-xs"
+              style={{ marginBottom: 'var(--space-gap-sm)' }}
+            >
               {t.hero.tagline}
             </p>
-            <div className="fluid-h1 text-cme-dark whitespace-nowrap" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-              {/* Line 1 */}
-              <div className="min-h-[1.2em]">
-                {displayedLines[0] || ''}
-                {currentLineIndex === 0 && !isDone && (
-                  <span
-                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
-                    style={{
-                      height: '0.85em',
-                      opacity: showCursor ? 1 : 0,
-                      transition: 'opacity 0.1s',
-                    }}
-                  />
-                )}
-              </div>
-              {/* Line 2 */}
-              <div className="min-h-[1.2em]">
-                {displayedLines[1] || ''}
-                {currentLineIndex === 1 && !isDone && (
-                  <span
-                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
-                    style={{
-                      height: '0.85em',
-                      opacity: showCursor ? 1 : 0,
-                      transition: 'opacity 0.1s',
-                    }}
-                  />
-                )}
-              </div>
-              {/* Line 3 – accent color */}
-              <div className="min-h-[1.2em] text-cme-blue">
-                {displayedLines[2] || ''}
-                {currentLineIndex === 2 && !isDone && (
-                  <span
-                    className="inline-block w-[3px] bg-cme-blue ml-0.5 align-baseline"
-                    style={{
-                      height: '0.85em',
-                      opacity: showCursor ? 1 : 0,
-                      transition: 'opacity 0.1s',
-                    }}
-                  />
-                )}
-                {/* Blinking cursor during the 3s pause (after line 2, before line 3) */}
-                {currentLineIndex === 2 && !displayedLines[2] && (
-                  <span
-                    className="inline-block w-[3px] bg-cme-dark ml-0.5 align-baseline"
-                    style={{
-                      height: '0.85em',
-                      opacity: showCursor ? 1 : 0,
-                      transition: 'opacity 0.1s',
-                    }}
-                  />
-                )}
-              </div>
+
+            <div className="fluid-h1 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+              {/* ── Typewriter phase ── */}
+              {showTypewriter && (
+                <>
+                  <div className="min-h-[1.2em] whitespace-nowrap">
+                    {displayedLines[0] || ''}
+                    {currentLineIndex === 0 && !isDone && <CursorEl visible={showCursor} />}
+                  </div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">
+                    {displayedLines[1] || ''}
+                    {currentLineIndex === 1 && !isDone && <CursorEl visible={showCursor} />}
+                  </div>
+                  <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">
+                    {displayedLines[2] || ''}
+                    {currentLineIndex === 2 && !isDone && <CursorEl visible={showCursor} />}
+                    {currentLineIndex === 2 && !displayedLines[2] && (
+                      <CursorEl visible={showCursor} color="bg-cme-dark" />
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* ── Scramble-out phase: dissolve current text ── */}
+              {isScrambling && (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0, filter: 'blur(2px)' }}
+                  transition={{ duration: 0.5, ease: 'easeIn' }}
+                >
+                  <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line1}</div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line2}</div>
+                  <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">{currentSet.accent}</div>
+                </motion.div>
+              )}
+
+              {/* ── Decode-in phase: scramble-resolve new text ── */}
+              {isDecoding && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="min-h-[1.2em] whitespace-nowrap">
+                    {renderScrambleLine(currentSet.line1, false)}
+                  </div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">
+                    {renderScrambleLine(currentSet.line2, false)}
+                  </div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">
+                    {renderScrambleLine(currentSet.accent, true)}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* ── Static hold phases ── */}
+              {(heroPhase === 'holding' || heroPhase === 'holding2') && (
+                <div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line1}</div>
+                  <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line2}</div>
+                  <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">{currentSet.accent}</div>
+                </div>
+              )}
             </div>
+
             <motion.p
               className="fluid-body-lg text-cme-gray max-w-xl leading-relaxed"
               style={{ marginBottom: 'var(--space-gap-md)' }}
@@ -192,7 +404,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Two offset diamonds – only visible on lg+ screens to prevent layout shifts */}
+          {/* Right: Two offset diamonds – only visible on lg+ screens */}
           <div className="hidden lg:flex relative items-center justify-end">
             <div
               className="relative"
@@ -204,7 +416,6 @@ export default function HeroSection() {
                 marginLeft: '28px',
               }}
             >
-              {/* Accent diamond (behind, offset top-left) */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -218,7 +429,6 @@ export default function HeroSection() {
                 />
               </motion.div>
 
-              {/* Image diamond (main, offset bottom-right) */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
