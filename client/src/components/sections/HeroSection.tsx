@@ -53,57 +53,31 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
   return { displayedLines, showCursor, isDone: phase === 'done', currentLineIndex };
 }
 
-// ─── Headline set type ───
-interface HeadlineSet {
-  line1: string;
-  line2: string;
-  accent: string;
-}
-
 // ─── Main Hero Component ───
 export default function HeroSection() {
   const { t, lang } = useLanguage();
   const isDE = lang === 'de';
 
-  const headlineSets: HeadlineSet[] = useMemo(() => [
-    {
-      line1: t.hero.headline1,
-      line2: t.hero.headline2,
-      accent: t.hero.headline3,
-    },
-    {
-      line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
-      line2: isDE ? 'die auch morgen noch' : 'that are still available',
-      accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
-    },
-  ], [t, isDE]);
+  // Two headline sets: first shown via typewriter, second via fade-blur
+  const secondHeadline = useMemo(() => ({
+    line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
+    line2: isDE ? 'die auch morgen noch' : 'that are still available',
+    accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
+  }), [isDE]);
 
-  const lines = [headlineSets[0].line1, headlineSets[0].line2, headlineSets[0].accent];
+  const lines = [t.hero.headline1, t.hero.headline2, t.hero.headline3];
   const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 3000);
 
-  // After typewriter: cycle between headline sets with fade-blur
-  const [activeSet, setActiveSet] = useState(0);
-  const [morphStarted, setMorphStarted] = useState(false);
+  // State machine: 'typewriter' → 'holding' → 'morphing' → 'final'
+  const [stage, setStage] = useState<'typewriter' | 'holding' | 'morphing' | 'final'>('typewriter');
 
-  // Start the morph cycle 3.5s after typewriter finishes
+  // After typewriter finishes → hold for 3.5 seconds
   useEffect(() => {
-    if (!isDone) return;
-    const timer = setTimeout(() => setMorphStarted(true), 3500);
+    if (!isDone || stage !== 'typewriter') return;
+    setStage('holding');
+    const timer = setTimeout(() => setStage('morphing'), 3500);
     return () => clearTimeout(timer);
-  }, [isDone]);
-
-  // Cycle between sets
-  useEffect(() => {
-    if (!morphStarted) return;
-    const holdDuration = activeSet === 0 ? 6000 : 5000; // hold set 0 longer (original), set 1 shorter
-    const timer = setTimeout(() => {
-      setActiveSet(prev => (prev + 1) % headlineSets.length);
-    }, holdDuration);
-    return () => clearTimeout(timer);
-  }, [morphStarted, activeSet, headlineSets.length]);
-
-  const currentSet = headlineSets[activeSet];
-  const showTypewriter = !morphStarted;
+  }, [isDone, stage]);
 
   // Cursor element
   const CursorEl = ({ visible, color = 'bg-cme-blue' }: { visible: boolean; color?: string }) => (
@@ -113,23 +87,28 @@ export default function HeroSection() {
     />
   );
 
-  // Fade-blur animation variants – smooth and calm
-  const fadeBlurVariants = {
-    enter: {
-      opacity: 0,
-      y: 12,
-      filter: 'blur(6px)',
-    },
-    center: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-    },
-    exit: {
-      opacity: 0,
-      y: -12,
-      filter: 'blur(6px)',
-    },
+  // Fade-blur animation variants
+  const fadeOut = {
+    opacity: 0,
+    y: -14,
+    filter: 'blur(8px)',
+  };
+
+  const fadeIn = {
+    opacity: 0,
+    y: 14,
+    filter: 'blur(8px)',
+  };
+
+  const visible = {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+  };
+
+  const transitionConfig = {
+    duration: 0.9,
+    ease: [0.25, 0.1, 0.25, 1] as const,
   };
 
   return (
@@ -154,49 +133,49 @@ export default function HeroSection() {
               {t.hero.tagline}
             </p>
 
-            {/* Headline area with fixed height to prevent layout shifts */}
+            {/* Headline area */}
             <div className="fluid-h1 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-              {/* ── Typewriter phase ── */}
-              {showTypewriter && (
-                <>
-                  <div className="min-h-[1.2em] whitespace-nowrap">
-                    {displayedLines[0] || ''}
-                    {currentLineIndex === 0 && !isDone && <CursorEl visible={showCursor} />}
-                  </div>
-                  <div className="min-h-[1.2em] whitespace-nowrap">
-                    {displayedLines[1] || ''}
-                    {currentLineIndex === 1 && !isDone && <CursorEl visible={showCursor} />}
-                  </div>
-                  <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">
-                    {displayedLines[2] || ''}
-                    {currentLineIndex === 2 && !isDone && <CursorEl visible={showCursor} />}
-                    {currentLineIndex === 2 && !displayedLines[2] && (
-                      <CursorEl visible={showCursor} color="bg-cme-dark" />
-                    )}
-                  </div>
-                </>
-              )}
-
-              {/* ── Fade-Blur morph phase ── */}
-              {morphStarted && (
-                <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait">
+                {/* ── Phase 1: Typewriter (first text types in with cursor) ── */}
+                {(stage === 'typewriter' || stage === 'holding') && (
                   <motion.div
-                    key={activeSet}
-                    variants={fadeBlurVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.1, 0.25, 1],
-                    }}
+                    key="typewriter"
+                    exit={fadeOut}
+                    transition={transitionConfig}
                   >
-                    <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line1}</div>
-                    <div className="min-h-[1.2em] whitespace-nowrap">{currentSet.line2}</div>
-                    <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">{currentSet.accent}</div>
+                    <div className="min-h-[1.2em] whitespace-nowrap">
+                      {displayedLines[0] || ''}
+                      {currentLineIndex === 0 && !isDone && <CursorEl visible={showCursor} />}
+                    </div>
+                    <div className="min-h-[1.2em] whitespace-nowrap">
+                      {displayedLines[1] || ''}
+                      {currentLineIndex === 1 && !isDone && <CursorEl visible={showCursor} />}
+                    </div>
+                    <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">
+                      {displayedLines[2] || ''}
+                      {currentLineIndex === 2 && !isDone && <CursorEl visible={showCursor} />}
+                      {currentLineIndex === 2 && !displayedLines[2] && (
+                        <CursorEl visible={showCursor} color="bg-cme-dark" />
+                      )}
+                    </div>
                   </motion.div>
-                </AnimatePresence>
-              )}
+                )}
+
+                {/* ── Phase 2: Second headline fades in (stays permanently) ── */}
+                {(stage === 'morphing' || stage === 'final') && (
+                  <motion.div
+                    key="second"
+                    initial={fadeIn}
+                    animate={visible}
+                    transition={transitionConfig}
+                    onAnimationComplete={() => setStage('final')}
+                  >
+                    <div className="min-h-[1.2em] whitespace-nowrap">{secondHeadline.line1}</div>
+                    <div className="min-h-[1.2em] whitespace-nowrap">{secondHeadline.line2}</div>
+                    <div className="min-h-[1.2em] text-cme-blue whitespace-nowrap">{secondHeadline.accent}</div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <motion.p

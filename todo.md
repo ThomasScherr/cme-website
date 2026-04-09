@@ -187,3 +187,4 @@
 - [x] Navigation: "Lifecycle Services" → "Lifecycle & Reparatur" (DE) / "Lifecycle & Repair" (EN)
 - [x] Hero-Headline: Glitch-Morph-Überblendung nach 3-4 Sek. von "Elektronikentwicklung. Elektronikfertigung. Aus einer Hand." zu "Für Elektronikprodukte, die auch morgen noch lieferbar sind."
 - [x] Hero-Headline: Glitch-Scramble durch ruhigen Fade-Blur-Morph ersetzen (kein Wackeln der Rauten)
+- [x] Hero-Headline: Typewriter für ersten Text, einmaliger Fade-Blur zum zweiten Text, dann stehen bleiben (kein Loop)
