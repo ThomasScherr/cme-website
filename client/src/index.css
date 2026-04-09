@@ -177,14 +177,14 @@
   --footer-bottom-pad-y: clamp(0.75rem, 0.3rem + 1.2vw, 2rem);
 
   /* ── Hero-specific ── */
-  /* Hero diamond wrapper width: 280px → 600px */
-  --hero-diamond-w: clamp(17.5rem, 8rem + 24vw, 37.5rem);
-  /* Hero diamond wrapper height: 380px → 750px */
-  --hero-diamond-h: clamp(23.75rem, 10rem + 34vw, 46.875rem);
-  /* Hero accent diamond: 200px → 420px */
-  --hero-accent-diamond: clamp(12.5rem, 5rem + 19vw, 26.25rem);
-  /* Hero image diamond: 220px → 450px */
-  --hero-image-diamond: clamp(13.75rem, 6rem + 20vw, 28.125rem);
+  /* Hero diamond wrapper width: 336px → 720px (+20%) */
+  --hero-diamond-w: clamp(21rem, 9.6rem + 28.8vw, 45rem);
+  /* Hero diamond wrapper height: 456px → 900px (+20%) */
+  --hero-diamond-h: clamp(28.5rem, 12rem + 40.8vw, 56.25rem);
+  /* Hero accent diamond: 240px → 504px (+20%) */
+  --hero-accent-diamond: clamp(15rem, 6rem + 22.8vw, 31.5rem);
+  /* Hero image diamond: 264px → 540px (+20%) */
+  --hero-image-diamond: clamp(16.5rem, 7.2rem + 24vw, 33.75rem);
 
   /* ── Container ── */
   /* Container padding: 16px → 80px */
@@ -273,7 +273,8 @@
     overflow: hidden;
   }
 
-  .diamond img {
+  .diamond img,
+  .diamond video {
     width: 163%;
     height: 163%;
     max-width: none;

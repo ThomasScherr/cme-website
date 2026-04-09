@@ -180,3 +180,5 @@
 - [x] REBUILD: StatsSection als Premium-Engineering-Trust-Section mit 4 Elementen, visueller Priorisierung von "Einzeln oder komplett", hellem Hintergrund, vertikalen Trennern
 - [x] Rauten-Spacing (marginRight 20px, marginLeft 35px) auf alle Rauten-Objekte in SubPageTemplate anwenden (Hero + Intro)
 - [x] BenefitsSection: Karten-Titel auf font-weight 700, Erklärungstexte unter jedem Karten-Titel hinzufügen
+- [x] Hero-Raute: Bild durch Loop-Sample.mp4 Video ersetzen
+- [x] Hero-Raute: Größe um 20% vergrößern

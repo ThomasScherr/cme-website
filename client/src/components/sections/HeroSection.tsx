@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 
-const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg';
+const HERO_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_a6b28cee.mp4';
 
 function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -221,9 +221,12 @@ export default function HeroSection() {
                   className="diamond shadow-xl shadow-cme-blue/15"
                   style={{ width: 'var(--hero-image-diamond)' }}
                 >
-                  <img
-                    src={HERO_IMAGE}
-                    alt="CME Elektronikentwicklung und Fertigung"
+                  <video
+                    src={HERO_VIDEO}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                   />
                 </div>
               </motion.div>
