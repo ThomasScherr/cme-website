@@ -186,3 +186,4 @@
 - [x] Lifecycle-Services Hero: Rauten-Design (Akzent-Raute + Video-Raute) aus Startseiten-Hero integrieren
 - [x] Navigation: "Lifecycle Services" → "Lifecycle & Reparatur" (DE) / "Lifecycle & Repair" (EN)
 - [x] Hero-Headline: Glitch-Morph-Überblendung nach 3-4 Sek. von "Elektronikentwicklung. Elektronikfertigung. Aus einer Hand." zu "Für Elektronikprodukte, die auch morgen noch lieferbar sind."
+- [x] Hero-Headline: Glitch-Scramble durch ruhigen Fade-Blur-Morph ersetzen (kein Wackeln der Rauten)
