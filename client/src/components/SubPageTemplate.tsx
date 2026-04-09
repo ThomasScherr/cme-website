@@ -80,7 +80,7 @@ export default function SubPageTemplate({
               </p>
             </div>
             {/* Diamond Hero Image */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
               <div
                 className="relative overflow-hidden shadow-xl"
                 style={{
@@ -118,7 +118,7 @@ export default function SubPageTemplate({
           {/* Intro: Diamond image left + Text right */}
           <div className="grid lg:grid-cols-[auto_1fr] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
             {/* Small diamond with hero image */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
               <div
                 className="relative overflow-hidden shadow-lg"
                 style={{
