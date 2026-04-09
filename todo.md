@@ -177,3 +177,4 @@
 - [x] STYLESHEET: Footer-Tab erweitern (Footer-Padding, Footer-Logo-Größe, Footer-Spalten-Gap, Footer-Link-Schriftgröße)
 - [x] STYLESHEET: Navigation-Tab erweitern (Dropdown-Schriftgröße, Dropdown-Min-Breite, Nav-Button-Padding)
 - [x] STYLESHEET: Dropdown-Menü Schriftgröße als steuerbare Variable im Editor
+- [x] REBUILD: StatsSection als Premium-Engineering-Trust-Section mit 4 Elementen, visueller Priorisierung von "Einzeln oder komplett", hellem Hintergrund, vertikalen Trennern
