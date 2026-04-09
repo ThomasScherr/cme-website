@@ -79,8 +79,8 @@ export default function StatsSection() {
                 {/* Featured subtle background accent */}
                 {item.featured && (
                   <div
-                    className="absolute inset-x-2 inset-y-1 rounded-xl bg-cme-blue/[0.04]"
-                    style={{ zIndex: 0 }}
+                    className="absolute inset-x-2 inset-y-1 rounded-xl"
+                    style={{ zIndex: 0, backgroundColor: '#f6f7f9' }}
                   />
                 )}
 
