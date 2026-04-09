@@ -67,17 +67,17 @@ export default function BenefitsSection() {
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
           <p className="fluid-xs font-semibold text-cme-blue uppercase tracking-[0.18em]" style={{ marginBottom: 'var(--space-gap-xs)' }}>
-            {isDE ? 'Ihr Nutzen' : 'Your Benefits'}
+            {isDE ? 'Ihr Vorteil durch integrierte Entwicklung & EMS' : 'Your Advantage Through Integrated Development & EMS'}
           </p>
           <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Sie erhalten nicht nur eine Entwicklungsleistung.'
-              : 'You don\'t just get a development service.'}
+              ? 'Vom ersten Designschritt bis zur Serie entstehen belastbare, produzierbare Produkte.'
+              : 'From the first design step to series production \u2013 robust, manufacturable products.'}
           </h2>
           <p className="fluid-body-lg text-gray-500 max-w-2xl mx-auto">
             {isDE
-              ? 'Sie erhalten ein serienreifes, belastbares Produkt mit Mehrwert:'
-              : 'You get a series-ready, robust product with added value:'}
+              ? 'Durch fr\u00fche Simulation, Design-for-Manufacturing, Tests und kurze Wege zwischen Entwicklung und Fertigung reduzieren Sie Risiken, Iterationen und Time-to-Market.'
+              : 'Through early simulation, design-for-manufacturing, testing and short paths between development and production, you reduce risks, iterations and time-to-market.'}
           </p>
         </motion.div>
 
