@@ -14,30 +14,30 @@ interface TrustItem {
 const trustItems: TrustItem[] = [
   {
     icon: Cpu,
-    headlineDE: '15+',
-    headlineEN: '15+',
-    subDE: 'Elektronikentwicklung & EMS',
-    subEN: 'Electronics Development & EMS',
+    headlineDE: 'Entwicklung & EMS',
+    headlineEN: 'Development & EMS',
+    subDE: 'Von der Schaltung bis Serienfertigung',
+    subEN: 'From circuit design to series production',
   },
   {
     icon: Blocks,
-    headlineDE: 'Einzeln oder komplett',
-    headlineEN: 'Individual or complete',
-    subDE: 'Simulation, Tests, EMS & Entwicklung',
-    subEN: 'Simulation, Testing, EMS & Development',
+    headlineDE: 'Modular beauftragbar',
+    headlineEN: 'Modular commissioning',
+    subDE: 'Entwicklung, Validierung, Simulation, Tests, Electronic Manufacturing Services',
+    subEN: 'Development, validation, simulation, testing, electronic manufacturing services',
     featured: true,
   },
   {
     icon: Factory,
     headlineDE: 'Design for Manufacturing',
     headlineEN: 'Design for Manufacturing',
-    subDE: 'Produzierbare Designs mit eigener EMS-Option',
-    subEN: 'Producible designs with in-house EMS option',
+    subDE: 'Produzierbare Designs \u2013 mit \u00dcbergabe an den Serienfertiger oder Produktion durch uns',
+    subEN: 'Producible designs \u2013 handover to your manufacturer or production by us',
   },
   {
     icon: ShieldCheck,
-    headlineDE: 'ISO 9001 & 14001',
-    headlineEN: 'ISO 9001 & 14001',
+    headlineDE: 'ISO 9001 & 14001, UL, SPICE, ...',
+    headlineEN: 'ISO 9001 & 14001, UL, SPICE, ...',
     subDE: 'Qualitätsgesicherte Prozesse',
     subEN: 'Quality-assured processes',
   },
@@ -127,7 +127,7 @@ export default function StatsSection() {
                     className="text-gray-500 leading-snug"
                     style={{
                       fontSize: 'clamp(0.75rem, 0.6rem + 0.35vw, 0.9rem)',
-                      maxWidth: '14rem',
+                      maxWidth: '18rem',
                     }}
                   >
                     {isDE ? item.subDE : item.subEN}
