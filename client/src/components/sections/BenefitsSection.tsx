@@ -17,36 +17,50 @@ const benefits = [
     icon: ShieldCheck,
     de: 'Geringeres Entwicklungsrisiko',
     en: 'Lower development risk',
+    descDE: 'Durch Simulation, Pre-Tests und fertigungsgerechtes Design werden Fehler früh erkannt, bevor sie kostenkritisch werden.',
+    descEN: 'Through simulation, pre-tests and design-for-manufacturing, errors are detected early – before they become cost-critical.',
   },
   {
     icon: RotateCcw,
     de: 'Weniger teure Iterationsschleifen',
     en: 'Fewer costly iteration loops',
+    descDE: 'Abgestimmte Entwicklungs- und Fertigungsprozesse vermeiden unnötige Redesigns und verkürzen den Weg zur Serie.',
+    descEN: 'Aligned development and manufacturing processes avoid unnecessary redesigns and shorten the path to series production.',
   },
   {
     icon: Thermometer,
     de: 'Frühzeitige Identifikation thermischer und elektrischer Schwachstellen',
     en: 'Early identification of thermal and electrical weak points',
+    descDE: 'Thermische Simulationen und elektrische Analysen decken kritische Punkte auf, bevor der erste Prototyp entsteht.',
+    descEN: 'Thermal simulations and electrical analyses reveal critical points before the first prototype is built.',
   },
   {
     icon: Factory,
     de: 'Design-for-Manufacturing von Anfang an',
     en: 'Design-for-manufacturing from day one',
+    descDE: 'Jedes Schaltungsdesign wird von Beginn an auf Produzierbarkeit, Testbarkeit und Serienfähigkeit ausgelegt.',
+    descEN: 'Every circuit design is optimised for producibility, testability and series capability from the start.',
   },
   {
     icon: Link2,
     de: 'Keine Schnittstellenverluste zwischen Entwicklung und Fertigung',
     en: 'No interface losses between development and manufacturing',
+    descDE: 'Entwicklung und EMS unter einem Dach – ohne Informationsverluste, Abstimmungsschleifen oder Missverständnisse.',
+    descEN: 'Development and EMS under one roof – without information loss, coordination loops or misunderstandings.',
   },
   {
     icon: CalendarCheck,
     de: 'Hohe Terminsicherheit',
     en: 'High schedule reliability',
+    descDE: 'Kurze Wege, klare Verantwortlichkeiten und integrierte Prozesse sorgen für verlässliche Meilensteine.',
+    descEN: 'Short paths, clear responsibilities and integrated processes ensure reliable milestones.',
   },
   {
     icon: TrendingUp,
     de: 'Produkte, die langfristig stabil und wirtschaftlich funktionieren',
     en: 'Products that work reliably and economically in the long term',
+    descDE: 'Robuste Designs, validierte Fertigungsprozesse und durchdachtes Lifecycle-Management sichern die Langzeitstabilität.',
+    descEN: 'Robust designs, validated manufacturing processes and thoughtful lifecycle management ensure long-term stability.',
   },
 ];
 
@@ -74,9 +88,9 @@ export default function BenefitsSection() {
               ? 'Vom ersten Designschritt bis zur Serie entstehen belastbare, produzierbare Produkte.'
               : 'From the first design step to series production \u2013 robust, manufacturable products.'}
           </h2>
-          <p className="fluid-body-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="fluid-body-lg text-gray-500 max-w-3xl mx-auto">
             {isDE
-              ? 'Durch fr\u00fche Simulation, Design-for-Manufacturing, Tests und kurze Wege zwischen Entwicklung und Fertigung reduzieren Sie Risiken, Iterationen und Time-to-Market.'
+              ? 'Durch frühe Simulation, Design-for-Manufacturing, Tests und kurze Wege zwischen Entwicklung und Fertigung reduzieren Sie Risiken, Iterationen und Time-to-Market.'
               : 'Through early simulation, design-for-manufacturing, testing and short paths between development and production, you reduce risks, iterations and time-to-market.'}
           </p>
         </motion.div>
@@ -109,9 +123,14 @@ export default function BenefitsSection() {
                   />
                 </div>
 
-                {/* Benefit text */}
-                <p className="fluid-small font-medium text-cme-dark leading-snug">
+                {/* Benefit title */}
+                <p className="fluid-small text-cme-dark leading-snug" style={{ fontWeight: 700, marginBottom: '0.5rem' }}>
                   {isDE ? benefit.de : benefit.en}
+                </p>
+
+                {/* Benefit description */}
+                <p className="text-gray-500 leading-relaxed" style={{ fontSize: 'clamp(0.72rem, 0.6rem + 0.3vw, 0.85rem)' }}>
+                  {isDE ? benefit.descDE : benefit.descEN}
                 </p>
               </motion.div>
             );
