@@ -163,9 +163,9 @@ export default function UxInterfaceEngineering() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
             {[
-              { href: '/entwicklung/software-digitale-systeme', titleDE: 'Software & Digitale Systeme', titleEN: 'Software & Digital Systems', img: `${CDN}/web-apps_26e3e533.png` },
-              { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-              { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verifikation', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
+              { href: '/entwicklung/software-digitale-systeme', titleDE: 'Software Engineering & Digitale Systeme', titleEN: 'Software Engineering & Digital Systems', img: `${CDN}/web-apps_26e3e533.png` },
+              { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+              { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verification', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
             ].map((page) => (
               <Link key={page.href} href={page.href} className="group block">
                 <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">

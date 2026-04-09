@@ -19,7 +19,7 @@ export default function TestVerifikation() {
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"
-      titleDE="Test & Verifikation"
+      titleDE="Test & Verification"
       titleEN="Test & Verification"
       subtitleDE="EMV-Tests, Umwelttests und funktionale Verifikation – in unserer eigenen Testinfrastruktur am Standort Dortmund."
       subtitleEN="EMC tests, environmental tests and functional verification – in our own test infrastructure in Dortmund."
@@ -39,8 +39,8 @@ export default function TestVerifikation() {
       ]}
 
       relatedPages={[
-        { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-        { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
+        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
       ]}
     />
   );

@@ -170,3 +170,4 @@
 - [x] ENT-2: Neue Unterseiten erstellen (Control Design, Validierung & EMV, KI-gestützte Entwicklung)
 - [x] ENT-2: App.tsx Routing für neue Unterseiten
 - [x] FIX: Unnötigen Umbruch in MarketsSection Subtitle entfernen (max-w-xl)
+- [x] FIX: Unterseiten-Titel an Navigation-Dropdown-Titel angleichen (Konsistenz)

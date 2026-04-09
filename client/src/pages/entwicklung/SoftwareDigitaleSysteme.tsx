@@ -62,7 +62,7 @@ export default function SoftwareDigitaleSysteme() {
             </Link>
             <span>/</span>
             <span className="text-cme-dark font-medium">
-              {isDE ? 'Software & Digitale Systeme' : 'Software & Digital Systems'}
+              {isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
             </span>
           </div>
 
@@ -77,7 +77,7 @@ export default function SoftwareDigitaleSysteme() {
                 {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
               </Link>
               <h1 className="fluid-h1 text-cme-dark leading-tight">
-                {isDE ? 'Software & Digitale Systeme' : 'Software & Digital Systems'}
+                {isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
               </h1>
               <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
                 {isDE
@@ -88,7 +88,7 @@ export default function SoftwareDigitaleSysteme() {
             <div className="relative">
               <img
                 src={`${CDN}/web-apps_26e3e533.png`}
-                alt={isDE ? 'Software & Digitale Systeme' : 'Software & Digital Systems'}
+                alt={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
                 className="w-full aspect-[4/3] object-contain"
                 style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))' }}
               />
@@ -164,8 +164,8 @@ export default function SoftwareDigitaleSysteme() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
             {[
               { href: '/entwicklung/ux-interface-engineering', titleDE: 'UX & Interface Engineering', titleEN: 'UX & Interface Engineering', img: `${CDN}/operating-concepts_3d4b7f77.png` },
-              { href: '/entwicklung/hardware-software', titleDE: 'Hardware & Software', titleEN: 'Hardware & Software', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-              { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
+              { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+              { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
             ].map((page) => (
               <Link key={page.href} href={page.href} className="group block">
                 <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">

@@ -38,8 +38,8 @@ export default function ControlDesign() {
         { de: 'Integration Motor/Elektronik/Regelung', en: 'Integration motor/electronics/control', icon: Cpu },
       ]}
       relatedPages={[
-        { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
-        { href: '/entwicklung/e-motor-design', titleDE: 'E-Motor-Design', titleEN: 'E-Motor Design', img: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
+        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
+        { href: '/entwicklung/e-motor-design', titleDE: 'E-Motor Design', titleEN: 'E-Motor Design', img: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
         { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
       ]}
     />

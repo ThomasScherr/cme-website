@@ -39,8 +39,8 @@ export default function KiEntwicklung() {
       ]}
       relatedPages={[
         { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
-        { href: '/entwicklung/software-digitale-systeme', titleDE: 'Software & Digitale Systeme', titleEN: 'Software & Digital Systems', img: `${CDN}/web-apps_26e3e533.png` },
-        { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
+        { href: '/entwicklung/software-digitale-systeme', titleDE: 'Software Engineering & Digitale Systeme', titleEN: 'Software Engineering & Digital Systems', img: `${CDN}/web-apps_26e3e533.png` },
+        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
       ]}
     />
   );

@@ -17,7 +17,7 @@ export default function EMotorDesign() {
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"
-      titleDE="E-Motor-Design"
+      titleDE="E-Motor Design"
       titleEN="E-Motor Design"
       subtitleDE="Auslegung, Berechnung und Optimierung von Elektromotoren – vom Konzept bis zur serienreifen Lösung."
       subtitleEN="Design, calculation and optimization of electric motors – from concept to series-ready solution."
@@ -36,9 +36,9 @@ export default function EMotorDesign() {
         { de: 'Ansteuerstrategien für EC-Antriebe (Effizienz, Geräusch, Robustheit)', en: 'Drive strategies for EC motors (efficiency, noise, robustness)', icon: Cpu },
       ]}
       relatedPages={[
-        { href: '/entwicklung/simulation', titleDE: 'Simulation', titleEN: 'Simulation', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
-        { href: '/entwicklung/hardware-software', titleDE: 'Hardwareentwicklung', titleEN: 'Hardware Development', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-        { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verifikation', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
+        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
+        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
+        { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verification', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
       ]}
     />
   );
