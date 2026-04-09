@@ -183,3 +183,4 @@
 - [x] Hero-Raute: Bild durch Loop-Sample.mp4 Video ersetzen
 - [x] Hero-Raute: Größe um 20% vergrößern
 - [x] FIX: Hero-Section responsive Layout - Überlappung von Text und Raute bei mittleren Bildschirmbreiten verhindern
+- [ ] Lifecycle-Services Hero: Rauten-Design (Akzent-Raute + Video-Raute) aus Startseiten-Hero integrieren

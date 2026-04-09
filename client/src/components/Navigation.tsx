@@ -47,7 +47,7 @@ function useNavItems() {
       ],
     },
     {
-      label: isDE ? 'Lifecycle Services' : 'Lifecycle Services',
+      label: isDE ? 'Lifecycle & Reparatur' : 'Lifecycle & Repair',
       href: '/lifecycle',
     },
     {
