@@ -171,3 +171,5 @@
 - [x] ENT-2: App.tsx Routing für neue Unterseiten
 - [x] FIX: Unnötigen Umbruch in MarketsSection Subtitle entfernen (max-w-xl)
 - [x] FIX: Unterseiten-Titel an Navigation-Dropdown-Titel angleichen (Konsistenz)
+- [x] STYLESHEET: Logo-Größe im Editor mit aktuellem px-Wert anzeigen
+- [x] STYLESHEET: Alle rem-Angaben im Editor mit px-Äquivalent ergänzen

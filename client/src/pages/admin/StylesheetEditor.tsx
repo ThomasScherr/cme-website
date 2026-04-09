@@ -32,18 +32,26 @@ function ClampEditor({ label, description, value, onChange, unit = 'rem', previe
     [value, previewWidths]
   );
 
+  const remToPx = (rem: number) => Math.round(rem * 16);
+  const vpLabels: Record<number, string> = { 375: 'Mobile', 768: 'Tablet', 1920: 'Desktop', 3840: '4K' };
+
   return (
     <div className="border border-gray-200 rounded-lg p-3 mb-2 bg-white">
       <div className="flex items-center justify-between cursor-pointer" onClick={() => setExpanded(!expanded)}>
         <div className="flex-1">
-          <div className="font-medium text-sm text-gray-900">{label}</div>
+          <div className="flex items-center gap-2">
+            <span className="font-medium text-sm text-gray-900">{label}</span>
+            <span className="text-xs font-mono bg-cme-blue/10 text-cme-blue px-1.5 py-0.5 rounded">
+              {remToPx(value.min)}px – {remToPx(value.max)}px
+            </span>
+          </div>
           {description && <div className="text-xs text-gray-500">{description}</div>}
         </div>
         <div className="flex items-center gap-3">
           <div className="flex gap-1 text-xs text-gray-400">
             {previewValues.map(({ vp, px }) => (
-              <span key={vp} className="bg-gray-50 px-1.5 py-0.5 rounded" title={`${vp}px viewport`}>
-                {Math.round(px)}px
+              <span key={vp} className="bg-gray-50 px-1.5 py-0.5 rounded" title={`${vpLabels[vp] || vp + 'px'} viewport`}>
+                <span className="text-gray-300">{vpLabels[vp] || vp}:</span> {Math.round(px)}px
               </span>
             ))}
           </div>
@@ -52,46 +60,60 @@ function ClampEditor({ label, description, value, onChange, unit = 'rem', previe
       </div>
 
       {expanded && (
-        <div className="mt-3 grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <div>
-            <label className="text-xs text-gray-500 mb-1 block">Min ({unit})</label>
-            <Input
-              type="number"
-              step="0.0625"
-              value={value.min}
-              onChange={e => onChange({ ...value, min: parseFloat(e.target.value) || 0 })}
-              className="h-8 text-sm"
-            />
+        <div className="mt-3 space-y-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">Min ({unit}) <span className="text-gray-400">= {remToPx(value.min)}px</span></label>
+              <Input
+                type="number"
+                step="0.0625"
+                value={value.min}
+                onChange={e => onChange({ ...value, min: parseFloat(e.target.value) || 0 })}
+                className="h-8 text-sm"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">vw-Koeffizient</label>
+              <Input
+                type="number"
+                step="0.05"
+                value={value.vw}
+                onChange={e => onChange({ ...value, vw: parseFloat(e.target.value) || 0 })}
+                className="h-8 text-sm"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">Offset ({unit}) <span className="text-gray-400">= {remToPx(value.offset)}px</span></label>
+              <Input
+                type="number"
+                step="0.05"
+                value={value.offset}
+                onChange={e => onChange({ ...value, offset: parseFloat(e.target.value) || 0 })}
+                className="h-8 text-sm"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">Max ({unit}) <span className="text-gray-400">= {remToPx(value.max)}px</span></label>
+              <Input
+                type="number"
+                step="0.0625"
+                value={value.max}
+                onChange={e => onChange({ ...value, max: parseFloat(e.target.value) || 0 })}
+                className="h-8 text-sm"
+              />
+            </div>
           </div>
-          <div>
-            <label className="text-xs text-gray-500 mb-1 block">vw-Koeffizient</label>
-            <Input
-              type="number"
-              step="0.05"
-              value={value.vw}
-              onChange={e => onChange({ ...value, vw: parseFloat(e.target.value) || 0 })}
-              className="h-8 text-sm"
-            />
-          </div>
-          <div>
-            <label className="text-xs text-gray-500 mb-1 block">Offset ({unit})</label>
-            <Input
-              type="number"
-              step="0.05"
-              value={value.offset}
-              onChange={e => onChange({ ...value, offset: parseFloat(e.target.value) || 0 })}
-              className="h-8 text-sm"
-            />
-          </div>
-          <div>
-            <label className="text-xs text-gray-500 mb-1 block">Max ({unit})</label>
-            <Input
-              type="number"
-              step="0.0625"
-              value={value.max}
-              onChange={e => onChange({ ...value, max: parseFloat(e.target.value) || 0 })}
-              className="h-8 text-sm"
-            />
+          {/* Viewport-Vorschau-Tabelle */}
+          <div className="bg-gray-50 rounded-md p-2">
+            <div className="text-xs font-medium text-gray-600 mb-1">Berechnete Größe je Viewport:</div>
+            <div className="grid grid-cols-4 gap-2 text-xs">
+              {previewValues.map(({ vp, px }) => (
+                <div key={vp} className="flex justify-between">
+                  <span className="text-gray-400">{vpLabels[vp] || vp + 'px'}:</span>
+                  <span className="font-mono text-gray-700 font-medium">{Math.round(px)}px</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
