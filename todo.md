@@ -204,3 +204,6 @@
 - [x] Video-Optimierung: Loop-Sample.mp4 (40MB) als WebM (6MB) + komprimiertes MP4 (4.4MB) mit Poster-Bild
 - [x] Hero-Template: 6 neue CSS-Variablen (Content-Padding, Diamond-Margins, Border-Radius) im Stylesheet Editor
 - [x] relatedPages-Props aus allen 9 Unterseiten entfernt (nach "Weitere Leistungen"-Bereinigung)
+- [x] MarketsSection: Anwendungsbeispiele pro Branche überarbeiten (Aufzug/HVAC entfernen, Ladesäulen/Onboard-Charging/Fuel-Cell/Actuatoren ergänzen, HMI/AGV/AMR erklären oder entfernen)
+- [x] ContactSection & gesamte Website: Abwertende Formulierungen gegenüber Vertriebsleuten entfernen/umformulieren
+- [x] Gesamte Website: UX-Expertise als eigenen Wert respektvoll kommunizieren, nicht als Gegensatz zu Ingenieuren

@@ -30,7 +30,7 @@ export default function Kontakt() {
               {isDE ? 'Kontakt' : 'Contact'}
             </span>
             <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Direkter Draht zu unseren Ingenieuren.' : 'Direct line to our engineers.'}
+              {isDE ? 'Direkter Draht zu unseren Fachleuten.' : 'Direct line to our specialists.'}
             </h1>
             <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
               {isDE

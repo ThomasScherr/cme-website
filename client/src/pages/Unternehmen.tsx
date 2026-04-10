@@ -171,8 +171,8 @@ export default function Unternehmen() {
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto fluid-body-lg" style={{ marginTop: 'var(--space-gap-xs)' }}>
             {isDE
-              ? 'Kein Vertrieb. Kein Callcenter. Sie sprechen direkt mit Ingenieuren.'
-              : 'No sales pitch. No call center. You talk directly to engineers.'}
+              ? 'Kurze Wege, schnelle Entscheidungen – Sie arbeiten direkt mit den Fachleuten, die Ihr Projekt umsetzen.'
+              : 'Short paths, fast decisions – you work directly with the specialists who implement your project.'}
           </p>
           <div className="flex flex-wrap justify-center" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-md)' }}>
             <Link
