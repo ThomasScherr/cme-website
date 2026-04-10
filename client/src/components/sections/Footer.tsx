@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Services Links */}
-          <div>
+          <div className="md:ml-[clamp(2rem,1rem+4vw,5.625rem)]">
             <h4
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}

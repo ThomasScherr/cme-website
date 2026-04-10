@@ -207,3 +207,4 @@
 - [x] MarketsSection: Anwendungsbeispiele pro Branche überarbeiten (Aufzug/HVAC entfernen, Ladesäulen/Onboard-Charging/Fuel-Cell/Actuatoren ergänzen, HMI/AGV/AMR erklären oder entfernen)
 - [x] ContactSection & gesamte Website: Abwertende Formulierungen gegenüber Vertriebsleuten entfernen/umformulieren
 - [x] Gesamte Website: UX-Expertise als eigenen Wert respektvoll kommunizieren, nicht als Gegensatz zu Ingenieuren
+- [x] Footer: Services-Spalte nach rechts verschoben (responsive clamp 2rem–5.625rem auf md+)
