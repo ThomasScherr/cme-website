@@ -191,3 +191,10 @@
 - [x] FIX: Hero-Headline Überblendung zum zweiten Text - vereinfacht mit useRef-Flag, einmalig pro Page Load
 - [x] Alle Unterseiten-Hero-Sections viewport-responsiv machen (Rauten/Bilder unterhalb lg ausblenden, kein Überlappen)
 - [x] Märkte-Seite Hero: Rauten-Diamanten (Akzent-Raute + Video-Raute) wie auf Startseite/Lifecycle integrieren
+- [x] Footer: "UL Wiring Harness Zertifiziert" hinzufügen
+- [x] ContactSection: ISO 26262 & IATF 16949 entfernt, UL Wiring Harness hinzugefügt
+- [x] MarketsSection: Tag-Styling auf alle Cards anwenden (weiß, grauer Rand #bdbdbd, dunkler Text #4f4f4f)
+- [x] ProcessSection: CTA am Ende der Sektion hinzufügen
+- [x] UspSection: Info-Block zu unabhängiger Beauftragbarkeit + Partnernetzwerk ergänzt, Sub-Text mit EMS-Bezug aktualisiert
+- [x] BenefitsSection: Obsoleszenzmanagement-Karte hinzufügen (8. Karte mit Eye-Icon)
+- [ ] HeroSection: Als HERO01-Template im Stylesheet Editor verfügbar und zentral bearbeitbar machen

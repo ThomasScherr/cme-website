@@ -8,6 +8,7 @@ import {
   Link2,
   CalendarCheck,
   TrendingUp,
+  Eye,
 } from 'lucide-react';
 
 const vp = { once: true, margin: '-60px' as const };
@@ -61,6 +62,13 @@ const benefits = [
     en: 'Products that work reliably and economically in the long term',
     descDE: 'Robuste Designs, validierte Fertigungsprozesse und durchdachtes Lifecycle-Management sichern die Langzeitstabilität.',
     descEN: 'Robust designs, validated manufacturing processes and thoughtful lifecycle management ensure long-term stability.',
+  },
+  {
+    icon: Eye,
+    de: 'Vorausschauendes Obsoleszenzmanagement',
+    en: 'Proactive obsolescence management',
+    descDE: 'Wir antizipieren Bauteilabkündigungen frühzeitig und entwickeln Ersatzstrategien, bevor Lieferengpässe entstehen.',
+    descEN: 'We anticipate component discontinuations early and develop replacement strategies before supply bottlenecks arise.',
   },
 ];
 

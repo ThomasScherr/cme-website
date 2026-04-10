@@ -118,7 +118,7 @@ export default function MarketsSection() {
                 {/* Application tags */}
                 <div className="flex flex-wrap gap-1.5" style={{ marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
                   {(isDE ? v.tagsDE : v.tagsEN).map((tag, j) => (
-                    <span key={j} className="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium bg-cme-blue-light text-cme-blue">
+                    <span key={j} className="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium border" style={{ backgroundColor: '#ffffff', color: '#4f4f4f', borderWidth: '1px', borderColor: '#bdbdbd' }}>
                       {tag}
                     </span>
                   ))}

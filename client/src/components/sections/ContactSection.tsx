@@ -181,7 +181,7 @@ export default function ContactSection() {
                 Zertifizierungen
               </p>
               <div className="flex flex-wrap gap-2">
-                {['ISO 9001', 'ISO 14001', 'ISO 26262', 'IATF 16949'].map((cert) => (
+                {['ISO 9001', 'ISO 14001', 'UL Wiring Harness'].map((cert) => (
                   <span
                     key={cert}
                     className="fluid-xs font-semibold px-3 py-1.5 border border-gray-200 rounded text-gray-600"

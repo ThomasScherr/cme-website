@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowRight } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 import {
@@ -21,7 +22,8 @@ const STEP_ICONS: LucideIcon[] = [
 ];
 
 export default function ProcessSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
   const containerRef = useRef<HTMLDivElement>(null);
 
   /* Track scroll progress through the timeline container */
@@ -145,6 +147,30 @@ export default function ProcessSection() {
             );
           })}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center"
+          style={{ marginTop: 'var(--space-section-header)' }}
+        >
+          <p className="fluid-body text-gray-500 max-w-xl mx-auto" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+            {isDE
+              ? 'Jeder Prozessschritt ist einzeln oder als Gesamtpaket beauftragbar \u2013 abgestimmt auf Ihren Projektstand.'
+              : 'Every process step can be commissioned individually or as a complete package \u2013 tailored to your project stage.'}
+          </p>
+          <a
+            href="/kontakt"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors duration-200"
+            style={{ fontSize: 'var(--fs-body)' }}
+          >
+            {isDE ? 'Prozessschritt besprechen' : 'Discuss your process step'}
+            <ArrowRight style={{ width: '1.1em', height: '1.1em' }} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

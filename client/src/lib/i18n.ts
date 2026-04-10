@@ -69,7 +69,7 @@ export const translations = {
     },
     usp: {
       headline: 'Warum CME?',
-      sub: 'Entwicklung und Fertigung unter einem Dach – ohne Informationsverlust, ohne Schnittstellenprobleme.',
+      sub: 'Entwicklung und Fertigung unter einem Dach \u2013 in Verbindung mit unseren EMS-Leistungen ohne Informationsverlust und Schnittstellenprobleme.',
       items: [
         { title: 'Entwicklung + Fertigung', desc: 'Kein Informationsverlust zwischen Entwicklung und Produktion – Design for Manufacturing von Anfang an.' },
         { title: 'Eigene EMV-Messkammer', desc: 'Absorberhalle für leitungsgebundene und gestrahlte EMV-Tests direkt am Standort Dortmund.' },
@@ -193,7 +193,7 @@ export const translations = {
     },
     usp: {
       headline: 'Why CME?',
-      sub: 'Development and manufacturing under one roof – no information loss, no interface problems.',
+      sub: 'Development and manufacturing under one roof \u2013 combined with our EMS services, no information loss and no interface problems.',
       items: [
         { title: 'Development + Manufacturing', desc: 'No information loss between development and production – Design for Manufacturing from the very start.' },
         { title: 'In-House EMC Chamber', desc: 'Anechoic chamber for conducted and radiated EMC tests directly at our Dortmund facility.' },

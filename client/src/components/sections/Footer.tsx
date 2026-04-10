@@ -35,7 +35,7 @@ export default function Footer() {
                 : 'Development and manufacturing of electronic products – with technical depth and series-production focus. Made in Dortmund.'}
             </p>
             <div className="flex flex-wrap gap-2" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {['ISO 9001', 'ISO 14001'].map((cert) => (
+              {['ISO 9001', 'ISO 14001', 'UL Wiring Harness'].map((cert) => (
                 <span
                   key={cert}
                   className="px-2.5 py-1 border border-white/30 text-white/70 rounded"

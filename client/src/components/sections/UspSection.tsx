@@ -1,13 +1,14 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
-import { Combine, Radio, Thermometer, ShieldCheck, Award, Scaling } from 'lucide-react';
+import { Combine, Radio, Thermometer, ShieldCheck, Award, Scaling, Blocks, Network } from 'lucide-react';
 
 const CME_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/cme_loop_v11_16cf9640.mp4';
 
 const icons = [Combine, Radio, Thermometer, ShieldCheck, Award, Scaling];
 
 export default function UspSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
 
   return (
     <section className="section-pad bg-cme-light">
@@ -77,6 +78,55 @@ export default function UspSection() {
             );
           })}
         </div>
+
+        {/* Modular commissioning info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          style={{ marginTop: 'var(--space-section-header)' }}
+        >
+          {/* Independent commissioning */}
+          <div className="relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <div className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue flex-shrink-0"
+                style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
+                <Blocks style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />
+              </div>
+              <div>
+                <h4 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'clamp(0.25rem, 0.1rem + 0.3vw, 0.5rem)' }}>
+                  {isDE ? 'Unabh\u00e4ngig beauftragbar' : 'Independently Commissionable'}
+                </h4>
+                <p className="fluid-small text-cme-gray leading-relaxed">
+                  {isDE
+                    ? 'Entwicklung und Produktion k\u00f6nnen unabh\u00e4ngig voneinander beauftragt werden. Viele unserer Kunden haben eigene EMS-Partner \u2013 wir arbeiten sehr gerne und eng mit den Fertigungspartnern unserer Kunden zusammen.'
+                    : 'Development and production can be commissioned independently. Many of our customers have their own EMS partners \u2013 we work closely and effectively with our customers\u2019 manufacturing partners.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Strong partner network */}
+          <div className="relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <div className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue flex-shrink-0"
+                style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
+                <Network style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />
+              </div>
+              <div>
+                <h4 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'clamp(0.25rem, 0.1rem + 0.3vw, 0.5rem)' }}>
+                  {isDE ? 'Starkes Partnernetzwerk' : 'Strong Partner Network'}
+                </h4>
+                <p className="fluid-small text-cme-gray leading-relaxed">
+                  {isDE
+                    ? 'Wir verf\u00fcgen \u00fcber ein bew\u00e4hrtes Netzwerk aus spezialisierten Partnern f\u00fcr Leiterplattendesign, Geh\u00e4useentwicklung, EMV-Pr\u00fcfung und Zulassung. So k\u00f6nnen wir auch komplexe, interdisziplin\u00e4re Projekte effizient abwickeln.'
+                    : 'We maintain a proven network of specialized partners for PCB design, enclosure development, EMC testing and certification. This enables us to efficiently handle complex, interdisciplinary projects.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
