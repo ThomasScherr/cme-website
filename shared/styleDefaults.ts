@@ -69,6 +69,12 @@ export interface StyleTokens {
   heroDiamondH: ClampValue;
   heroAccentDiamond: ClampValue;
   heroImageDiamond: ClampValue;
+  heroContentPadTop: ClampValue;
+  heroContentPadBottom: ClampValue;
+  heroDiamondMarginTop: ClampValue;
+  heroDiamondMarginRight: ClampValue;
+  heroDiamondMarginLeft: ClampValue;
+  heroDiamondBorderRadius: ClampValue;
 
   // ── Spacing ──
   spaceSection: ClampValue;
@@ -134,6 +140,12 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   heroDiamondH:     { min: 23.75, vw: 34,  offset: 10, max: 46.875 },
   heroAccentDiamond: { min: 12.5, vw: 19,  offset: 5,  max: 26.25 },
   heroImageDiamond:  { min: 13.75, vw: 20, offset: 6,  max: 28.125 },
+  heroContentPadTop:     { min: 4,   vw: 5.2,  offset: 2,    max: 8.75 },
+  heroContentPadBottom:  { min: 3,   vw: 5.7,  offset: 0.8,  max: 10 },
+  heroDiamondMarginTop:  { min: -1.5, vw: 0,   offset: -0.8125, max: 0 },
+  heroDiamondMarginRight: { min: 0,   vw: 0.3, offset: 0.1,  max: 0.5 },
+  heroDiamondMarginLeft:  { min: 1,   vw: 0.5, offset: 1,    max: 2.5 },
+  heroDiamondBorderRadius: { min: 0.5, vw: 0.3, offset: 0.3, max: 1.25 },
 
   // Spacing
   spaceSection:       { min: 3,    vw: 5.7,  offset: 0.8,  max: 10 },
@@ -210,6 +222,12 @@ export function tokensToCSSVars(tokens: StyleTokens): Record<string, string> {
     "--hero-diamond-h": clampToCSS(tokens.heroDiamondH),
     "--hero-accent-diamond": clampToCSS(tokens.heroAccentDiamond),
     "--hero-image-diamond": clampToCSS(tokens.heroImageDiamond),
+    "--hero-content-pad-top": clampToCSS(tokens.heroContentPadTop),
+    "--hero-content-pad-bottom": clampToCSS(tokens.heroContentPadBottom),
+    "--hero-diamond-mt": clampToCSS(tokens.heroDiamondMarginTop),
+    "--hero-diamond-mr": clampToCSS(tokens.heroDiamondMarginRight),
+    "--hero-diamond-ml": clampToCSS(tokens.heroDiamondMarginLeft),
+    "--hero-diamond-radius": clampToCSS(tokens.heroDiamondBorderRadius),
     "--space-section": clampToCSS(tokens.spaceSection),
     "--space-section-sm": clampToCSS(tokens.spaceSectionSm),
     "--space-section-header": clampToCSS(tokens.spaceSectionHeader),

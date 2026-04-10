@@ -39,11 +39,6 @@ export default function Baugruppen() {
         { de: 'Verpackung & Versandlogistik', en: 'Packaging & Shipping Logistics', icon: Package },
         { de: 'Arbeitsplatzspezifische Montageanleitungen', en: 'Workstation-Specific Assembly Instructions', icon: FileText },
       ]}
-
-      relatedPages={[
-        { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: `${CDN}/pick-and-place_4f13096b.png` },
-        { href: '/fertigung/qualitaet', titleDE: 'Qualitätsmanagement', titleEN: 'Quality Management', img: `${CDN}/microscope-inspection_a3967815.png` },
-      ]}
     />
   );
 }

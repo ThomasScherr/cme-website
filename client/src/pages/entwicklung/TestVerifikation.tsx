@@ -37,11 +37,6 @@ export default function TestVerifikation() {
         { de: 'Lebensdauertests & HALT/HASS', en: 'Lifetime Tests & HALT/HASS', icon: Clock },
         { de: 'Testkonzeptentwicklung & Prüfmittelbau', en: 'Test Concept Development & Fixture Design', icon: Wrench },
       ]}
-
-      relatedPages={[
-        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
-      ]}
     />
   );
 }

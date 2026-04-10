@@ -13,13 +13,13 @@ export default function Footer() {
       style={{ paddingTop: 'var(--footer-pad-y)', paddingBottom: 'var(--footer-pad-y)' }}
     >
       <div className="mx-auto" style={{ maxWidth: 'var(--footer-max-w, 1200px)', paddingLeft: 'var(--container-px)', paddingRight: 'var(--container-px)' }}>
-        {/* Main grid: Logo-Spalte 1fr, Leistungen 1.5fr, Kontakt 1.5fr */}
+        {/* Main grid: responsive columns */}
         <div
-          className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1.5fr]"
+          className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: 'var(--footer-col-gap)', marginBottom: 'var(--footer-col-gap)' }}
         >
-          {/* Logo & Tagline – schmalere Spalte */}
-          <div style={{width: '264px'}}>
+          {/* Logo & Tagline */}
+          <div className="max-w-xs">
             <img
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
@@ -27,7 +27,7 @@ export default function Footer() {
               style={{ height: 'var(--footer-logo)', marginBottom: 'var(--space-gap-xs)' }}
             />
             <p
-              className="text-white/80 max-w-md leading-relaxed"
+              className="text-white/80 leading-relaxed"
               style={{ fontSize: 'var(--fs-footer)' }}
             >
               {isDE
@@ -47,8 +47,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services Links – breitere Spalte */}
-          <div style={{ width: '262px', marginLeft: '52px' }}>
+          {/* Services Links */}
+          <div>
             <h4
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
@@ -75,8 +75,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact – breitere Spalte, whitespace-nowrap für Telefon */}
-          <div style={{marginLeft: '-103px'}}>
+          {/* Contact */}
+          <div>
             <h4
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}

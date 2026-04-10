@@ -39,11 +39,6 @@ export default function KiEntwicklung() {
         { de: 'Modell-Lifecycle & Versionierung – Nachvollziehbare Modellversionen, Testabdeckung und Dokumentation für regulierte Branchen', en: 'Model lifecycle & versioning – Traceable model versions, test coverage and documentation for regulated industries', icon: GitBranch },
         { de: 'Integration in bestehende Systeme – Einbettung von KI-Funktionen in vorhandene Firmware-, RTOS- oder SPS-Architekturen ohne Systembruch', en: 'Integration into existing systems – Embedding AI functions into existing firmware, RTOS or PLC architectures without system disruption', icon: Settings },
       ]}
-      relatedPages={[
-        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
-        { href: '/entwicklung/software-digitale-systeme', titleDE: 'Software Engineering & Digitale Systeme', titleEN: 'Software Engineering & Digital Systems', img: `${CDN}/web-apps_26e3e533.png` },
-        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
-      ]}
     />
   );
 }

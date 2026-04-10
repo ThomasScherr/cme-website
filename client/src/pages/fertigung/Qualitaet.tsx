@@ -37,11 +37,6 @@ export default function Qualitaet() {
         { de: 'Wareneingangskontrolle & IPC-Prüfung', en: 'Incoming Goods Inspection & IPC Testing', icon: PackageCheck },
         { de: 'Qualitätsprüfung nach IPC-Standards', en: 'Quality Inspection per IPC Standards', icon: Award },
       ]}
-
-      relatedPages={[
-        { href: '/fertigung/leiterplatten', titleDE: 'Leiterplatten bestücken', titleEN: 'PCB Assembly', img: `${CDN}/pick-and-place_4f13096b.png` },
-        { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: `${CDN}/dental-system-complete_8d86b9f8.png` },
-      ]}
     />
   );
 }

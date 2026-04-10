@@ -37,11 +37,6 @@ export default function ValidierungEmv() {
         { de: 'Automatische Datenerfassung & -analyse', en: 'Automatic data acquisition & analysis', icon: BarChart3 },
         { de: 'Prüfberichte & Dokumentation', en: 'Test reports & documentation', icon: FileCheck },
       ]}
-      relatedPages={[
-        { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verification', titleEN: 'Test & Verification', img: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
-        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
-        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
-      ]}
     />
   );
 }

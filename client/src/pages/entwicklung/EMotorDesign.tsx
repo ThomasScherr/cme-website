@@ -35,11 +35,6 @@ export default function EMotorDesign() {
         { de: 'Integration mit Leistungselektronik & Regelung', en: 'Integration with power electronics & control', icon: Zap },
         { de: 'Ansteuerstrategien für EC-Antriebe (Effizienz, Geräusch, Robustheit)', en: 'Drive strategies for EC motors (efficiency, noise, robustness)', icon: Cpu },
       ]}
-      relatedPages={[
-        { href: '/entwicklung/simulation', titleDE: 'Simulation & Toolchain', titleEN: 'Simulation & Toolchain', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg' },
-        { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-        { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verification', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
-      ]}
     />
   );
 }

@@ -24,7 +24,7 @@ interface SubPageProps {
   features: Feature[];
   ctaDE?: string;
   ctaEN?: string;
-  relatedPages?: { href: string; titleDE: string; titleEN: string; img: string }[];
+
 }
 
 export default function SubPageTemplate({
@@ -41,7 +41,6 @@ export default function SubPageTemplate({
   features,
   ctaDE = 'Anforderungen senden',
   ctaEN = 'Send requirements',
-  relatedPages = [],
 }: SubPageProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -185,36 +184,6 @@ export default function SubPageTemplate({
         </div>
       </section>
 
-
-      {/* Related Pages */}
-      {relatedPages.length > 0 && (
-        <section className="section-pad bg-gray-50">
-          <div className="container">
-            <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
-              {isDE ? 'Weitere Leistungen' : 'Related Services'}
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
-              {relatedPages.map((page) => (
-                <Link key={page.href} href={page.href} className="group block">
-                  <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">
-                    <div className="aspect-[16/9] overflow-hidden">
-                      <img
-                        src={page.img}
-                        alt={isDE ? page.titleDE : page.titleEN}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between fluid-card">
-                      <h3 className="font-semibold text-cme-dark fluid-body">{isDE ? page.titleDE : page.titleEN}</h3>
-                      <ArrowRight size={18} className="text-cme-blue group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* CTA */}
       <section className="section-pad">

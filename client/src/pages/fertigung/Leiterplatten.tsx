@@ -39,11 +39,6 @@ export default function Leiterplatten() {
         { de: 'Flexible Losgrößen', en: 'Flexible Lot Sizes', icon: SlidersHorizontal },
         { de: 'NPI-Prozess (New Product Introduction)', en: 'NPI Process (New Product Introduction)', icon: Rocket },
       ]}
-
-      relatedPages={[
-        { href: '/fertigung/baugruppen', titleDE: 'Baugruppen fertigen', titleEN: 'Module Assembly', img: `${CDN}/dental-system-complete_8d86b9f8.png` },
-        { href: '/fertigung/qualitaet', titleDE: 'Qualitätsmanagement', titleEN: 'Quality Management', img: `${CDN}/microscope-inspection_a3967815.png` },
-      ]}
     />
   );
 }

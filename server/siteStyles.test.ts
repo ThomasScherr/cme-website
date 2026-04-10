@@ -81,6 +81,20 @@ describe('styleDefaults', () => {
       expect(vars).toHaveProperty('--footer-bottom-pad-y');
     });
 
+    it('should return hero layout CSS variable keys', () => {
+      const vars = tokensToCSSVars(DEFAULT_STYLE_TOKENS);
+      expect(vars).toHaveProperty('--hero-diamond-w');
+      expect(vars).toHaveProperty('--hero-diamond-h');
+      expect(vars).toHaveProperty('--hero-accent-diamond');
+      expect(vars).toHaveProperty('--hero-image-diamond');
+      expect(vars).toHaveProperty('--hero-content-pad-top');
+      expect(vars).toHaveProperty('--hero-content-pad-bottom');
+      expect(vars).toHaveProperty('--hero-diamond-mt');
+      expect(vars).toHaveProperty('--hero-diamond-mr');
+      expect(vars).toHaveProperty('--hero-diamond-ml');
+      expect(vars).toHaveProperty('--hero-diamond-radius');
+    });
+
     it('should generate valid clamp() values for all properties', () => {
       const vars = tokensToCSSVars(DEFAULT_STYLE_TOKENS);
       Object.values(vars).forEach(val => {
@@ -148,6 +162,19 @@ describe('styleDefaults', () => {
     it('should have reasonable container max width', () => {
       expect(DEFAULT_STYLE_TOKENS.containerMaxWidth).toBeGreaterThanOrEqual(1200);
       expect(DEFAULT_STYLE_TOKENS.containerMaxWidth).toBeLessThanOrEqual(2400);
+    });
+
+    it('should have all hero layout token keys', () => {
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondW');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondH');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroAccentDiamond');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroImageDiamond');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroContentPadTop');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroContentPadBottom');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondMarginTop');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondMarginRight');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondMarginLeft');
+      expect(DEFAULT_STYLE_TOKENS).toHaveProperty('heroDiamondBorderRadius');
     });
   });
 

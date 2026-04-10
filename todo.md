@@ -197,4 +197,10 @@
 - [x] ProcessSection: CTA am Ende der Sektion hinzufügen
 - [x] UspSection: Info-Block zu unabhängiger Beauftragbarkeit + Partnernetzwerk ergänzt, Sub-Text mit EMS-Bezug aktualisiert
 - [x] BenefitsSection: Obsoleszenzmanagement-Karte hinzufügen (8. Karte mit Eye-Icon)
-- [ ] HeroSection: Als HERO01-Template im Stylesheet Editor verfügbar und zentral bearbeitbar machen
+- [x] HeroSection: Als HERO01-Template im Stylesheet Editor verfügbar und zentral bearbeitbar machen
+- [x] "Weitere Leistungen"-Bereich aus SubPageTemplate und allen Unterseiten entfernen
+- [x] ProcessSection CTA-Text kürzen: Langen Button-Text in Subline + "Projekt besprechen" Button aufgeteilt
+- [x] Footer responsive: Feste Pixel-Werte (264px, 262px, -103px) durch responsive grid-cols-3 ersetzt
+- [x] Video-Optimierung: Loop-Sample.mp4 (40MB) als WebM (6MB) + komprimiertes MP4 (4.4MB) mit Poster-Bild
+- [x] Hero-Template: 6 neue CSS-Variablen (Content-Padding, Diamond-Margins, Border-Radius) im Stylesheet Editor
+- [x] relatedPages-Props aus allen 9 Unterseiten entfernt (nach "Weitere Leistungen"-Bereinigung)

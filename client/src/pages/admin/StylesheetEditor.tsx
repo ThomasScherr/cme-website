@@ -645,10 +645,19 @@ export default function StylesheetEditor() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-1">
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-2 pb-1">Rauten-Größen</div>
                       <ClampEditor label="Diamond-Wrapper Breite" description="Gesamtbreite des Rauten-Containers" value={tokens.heroDiamondW} onChange={v => updateToken('heroDiamondW', v)} />
                       <ClampEditor label="Diamond-Wrapper Höhe" description="Gesamthöhe des Rauten-Containers" value={tokens.heroDiamondH} onChange={v => updateToken('heroDiamondH', v)} />
                       <ClampEditor label="Akzent-Raute" description="Größe der halbtransparenten Akzent-Raute" value={tokens.heroAccentDiamond} onChange={v => updateToken('heroAccentDiamond', v)} />
-                      <ClampEditor label="Bild-Raute" description="Größe der Raute mit dem Hauptbild" value={tokens.heroImageDiamond} onChange={v => updateToken('heroImageDiamond', v)} />
+                      <ClampEditor label="Bild-Raute" description="Größe der Raute mit dem Hauptbild/Video" value={tokens.heroImageDiamond} onChange={v => updateToken('heroImageDiamond', v)} />
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-4 pb-1">Rauten-Positionierung</div>
+                      <ClampEditor label="Rauten Margin Top" description="Vertikaler Versatz des Rauten-Containers (negativ = nach oben)" value={tokens.heroDiamondMarginTop} onChange={v => updateToken('heroDiamondMarginTop', v)} />
+                      <ClampEditor label="Rauten Margin Right" description="Rechter Abstand des Rauten-Containers" value={tokens.heroDiamondMarginRight} onChange={v => updateToken('heroDiamondMarginRight', v)} />
+                      <ClampEditor label="Rauten Margin Left" description="Linker Abstand des Rauten-Containers" value={tokens.heroDiamondMarginLeft} onChange={v => updateToken('heroDiamondMarginLeft', v)} />
+                      <ClampEditor label="Rauten Eckenradius" description="Abrundung der Rauten-Ecken" value={tokens.heroDiamondBorderRadius} onChange={v => updateToken('heroDiamondBorderRadius', v)} />
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider pt-4 pb-1">Content-Abstände</div>
+                      <ClampEditor label="Hero Padding Top" description="Oberer Abstand des Hero-Inhalts (Standard = Nav-Höhe)" value={tokens.heroContentPadTop} onChange={v => updateToken('heroContentPadTop', v)} />
+                      <ClampEditor label="Hero Padding Bottom" description="Unterer Abstand des Hero-Inhalts" value={tokens.heroContentPadBottom} onChange={v => updateToken('heroContentPadBottom', v)} />
                     </CardContent>
                   </Card>
                 </TabsContent>
