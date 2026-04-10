@@ -159,15 +159,15 @@ export default function ProcessSection() {
         >
           <p className="fluid-body text-gray-500 max-w-xl mx-auto" style={{ marginBottom: 'var(--space-gap-sm)' }}>
             {isDE
-              ? 'Jeder Prozessschritt ist einzeln oder als Gesamtpaket beauftragbar \u2013 abgestimmt auf Ihren Projektstand.'
-              : 'Every process step can be commissioned individually or as a complete package \u2013 tailored to your project stage.'}
+              ? 'Wir bieten kundenspezifische Leistungen an. Als Gesamtprojekt \u2013 und auch f\u00fcr einzelne Bereiche, abgestimmt auf Ihren Bedarf.'
+              : 'We offer customer-specific services. As a complete project \u2013 and also for individual areas, tailored to your needs.'}
           </p>
           <a
             href="/kontakt"
             className="inline-flex items-center gap-2 px-6 py-3 bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors duration-200"
             style={{ fontSize: 'var(--fs-body)' }}
           >
-            {isDE ? 'Prozessschritt besprechen' : 'Discuss your process step'}
+            {isDE ? 'Wie und in welchen Bereichen k\u00f6nnten wir Ihnen Mehrwert bieten? Wir h\u00f6ren Ihnen gerne zu!' : 'How and in which areas could we add value for you? We look forward to hearing from you!'}
             <ArrowRight style={{ width: '1.1em', height: '1.1em' }} />
           </a>
         </motion.div>

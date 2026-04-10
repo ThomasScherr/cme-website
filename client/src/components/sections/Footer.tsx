@@ -19,7 +19,7 @@ export default function Footer() {
           style={{ gap: 'var(--footer-col-gap)', marginBottom: 'var(--footer-col-gap)' }}
         >
           {/* Logo & Tagline – schmalere Spalte */}
-          <div>
+          <div style={{width: '264px'}}>
             <img
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Services Links – breitere Spalte */}
-          <div>
+          <div style={{ width: '262px', marginLeft: '52px' }}>
             <h4
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
 
           {/* Contact – breitere Spalte, whitespace-nowrap für Telefon */}
-          <div>
+          <div style={{marginLeft: '-103px'}}>
             <h4
               className="font-bold uppercase tracking-wider text-white/80"
               style={{ fontSize: 'var(--fs-footer-heading)', marginBottom: 'var(--space-gap-xs)' }}
