@@ -212,3 +212,4 @@
 - [x] Asset-Inventur: Kontext und zugehörigen Text pro Bild dokumentieren
 - [x] Asset-Inventur: Strukturiertes Asset-Register als Markdown-Dokument erstellen
 - [x] FIX: Letzte verbliebene "Weitere Leistungen"-Sektion aus Simulation.tsx entfernt
+- [x] FIX: "Weitere Leistungen"-Sektionen auf allen Entwicklungs-Unterseiten endgültig entfernen (UxInterfaceEngineering.tsx + SoftwareDigitaleSysteme.tsx)
