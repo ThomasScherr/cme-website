@@ -208,3 +208,7 @@
 - [x] ContactSection & gesamte Website: Abwertende Formulierungen gegenüber Vertriebsleuten entfernen/umformulieren
 - [x] Gesamte Website: UX-Expertise als eigenen Wert respektvoll kommunizieren, nicht als Gegensatz zu Ingenieuren
 - [x] Footer: Services-Spalte nach rechts verschoben (responsive clamp 2rem–5.625rem auf md+)
+- [x] Asset-Inventur: Alle Bilder/Grafiken von www.control-motion.de herunterladen
+- [x] Asset-Inventur: Kontext und zugehörigen Text pro Bild dokumentieren
+- [x] Asset-Inventur: Strukturiertes Asset-Register als Markdown-Dokument erstellen
+- [x] FIX: Letzte verbliebene "Weitere Leistungen"-Sektion aus Simulation.tsx entfernt

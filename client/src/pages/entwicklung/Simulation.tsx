@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, ArrowRight, Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, Waves, Box, CircuitBoard } from 'lucide-react';
+import { ArrowLeft, Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, Waves, Box, CircuitBoard } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -329,37 +329,6 @@ export default function Simulation() {
         </div>
       </section>
 
-      {/* Related Pages */}
-      <section className="section-pad">
-        <div className="container">
-          <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
-            {isDE ? 'Weitere Leistungen' : 'Related Services'}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
-            {[
-              { href: '/entwicklung/hardware-software', titleDE: 'Hard & Software Design', titleEN: 'Hard & Software Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg' },
-              { href: '/entwicklung/e-motor-design', titleDE: 'E-Motor Design', titleEN: 'E-Motor Design', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1736__1920px_e713f7ca.jpg' },
-              { href: '/entwicklung/test-verifikation', titleDE: 'Test & Verification', titleEN: 'Test & Verification', img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg' },
-            ].map((page) => (
-              <Link key={page.href} href={page.href} className="group block">
-                <div className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img
-                      src={page.img}
-                      alt={isDE ? page.titleDE : page.titleEN}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between fluid-card">
-                    <h3 className="font-semibold text-cme-dark fluid-body">{isDE ? page.titleDE : page.titleEN}</h3>
-                    <ArrowRight size={18} className="text-cme-blue group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="section-pad bg-gray-50">
