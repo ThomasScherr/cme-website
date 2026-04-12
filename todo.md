@@ -254,3 +254,4 @@
 - [x] Simulation: Toolchain-Logos nochmals deutlich vergrößern (128px, immer noch nicht erkennbar)
 - [x] Lifecycle: Obsolescence Management Text überarbeiten (datenbankgestützt, kundenspezifische Workflows, Simulationen auf Bestands-/Marktdaten, Liefermarktzugang)
 - [x] Lifecycle: Reparatur & Service Text überarbeiten (Fokus auf geschäftskritische Elektronik, nicht Consumer, teure Folgekosten bei Ausfall)
+- [x] Simulation: Toolchain-Kacheln Layout ändern – Logo oben, Text darunter (nicht nebeneinander)

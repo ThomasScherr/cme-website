@@ -267,23 +267,26 @@ export default function Simulation() {
                 transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg transition-all fluid-card"
               >
-                {/* Tool logo + name */}
-                <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
-                  <div className="w-32 h-32 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 p-3">
+                {/* Tool logo */}
+                <div className="flex justify-center" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                  <div className="w-28 h-28 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-3">
                     <img
                       src={tool.logo}
                       alt={isDE ? tool.toolDE : tool.toolEN}
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>
-                  <h3 className="font-semibold text-cme-dark fluid-body">
-                    {isDE ? tool.toolDE : tool.toolEN}
-                  </h3>
                 </div>
-                <p className="text-cme-blue font-medium fluid-small" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+                {/* Tool name */}
+                <h3 className="font-semibold text-cme-dark fluid-body text-center" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+                  {isDE ? tool.toolDE : tool.toolEN}
+                </h3>
+                {/* Area */}
+                <p className="text-cme-blue font-medium fluid-small text-center" style={{ marginBottom: 'var(--space-gap-xs)' }}>
                   {isDE ? tool.areaDE : tool.areaEN}
                 </p>
-                <p className="text-gray-600 fluid-xs leading-relaxed">
+                {/* Description */}
+                <p className="text-gray-600 fluid-xs leading-relaxed text-center">
                   {isDE ? tool.descDE : tool.descEN}
                 </p>
               </motion.div>
