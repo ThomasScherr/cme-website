@@ -1,4 +1,4 @@
-import { COOKIE_NAME } from "@shared/const";
+import { COOKIE_NAME, SITE_ACCESS_COOKIE } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { systemRouter } from "./_core/systemRouter";
@@ -26,6 +26,7 @@ import {
   deleteStylePreset,
 } from "./db";
 import { TRPCError } from "@trpc/server";
+import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
 
 // Admin-only procedure
@@ -46,6 +47,41 @@ export const appRouter = router({
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
     }),
+  }),
+
+  // ── Site Access (Password Protection) ─────────────────────────
+  siteAccess: router({
+    /** Check if password protection is enabled and if user has access */
+    check: publicProcedure.query(({ ctx }) => {
+      const password = ENV.siteAccessPassword;
+      if (!password) return { required: false, granted: true };
+      const cookieHeader = ctx.req.headers.cookie || '';
+      const cookies = cookieHeader.split(';').reduce((acc, c) => {
+        const [k, ...v] = c.trim().split('=');
+        if (k) acc[k] = v.join('=');
+        return acc;
+      }, {} as Record<string, string>);
+      const granted = cookies[SITE_ACCESS_COOKIE] === 'granted';
+      return { required: true, granted };
+    }),
+
+    /** Verify password and set access cookie */
+    verify: publicProcedure
+      .input(z.object({ password: z.string() }))
+      .mutation(({ ctx, input }) => {
+        const password = ENV.siteAccessPassword;
+        if (!password) return { success: true };
+        if (input.password !== password) {
+          throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Falsches Passwort' });
+        }
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(SITE_ACCESS_COOKIE, 'granted', {
+          ...cookieOptions,
+          httpOnly: false,
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+        return { success: true };
+      }),
   }),
 
   // ── Categories ──────────────────────────────────────────────────

@@ -260,3 +260,6 @@
 - [x] Simulation: Simscape-Logo von MathWorks herunterladen, aufbereiten und einsetzen
 - [x] Simulation: Ansys-Logo korrigieren (offizielles Ansys-Logo eingesetzt)
 - [x] Hero-Sektion: Verzögerung nach zweiter Zeile in Cursor-Animation entfernen (pauseBeforeAccent von 3000ms auf 400ms)
+- [x] Passwortschutz: Server-seitige Middleware für Passwort-Validierung
+- [x] Passwortschutz: Frontend-Gate mit Passwort-Eingabeformular
+- [x] Passwortschutz: Cookie-basierte Speicherung nach erfolgreicher Eingabe
