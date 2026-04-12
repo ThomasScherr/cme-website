@@ -279,3 +279,4 @@
 - [x] SEO: Prompt optimiert für KI-Suchsysteme (ChatGPT, Perplexity, Google AI Overview)
 - [x] EDITOR: Rich-Text-Editor (Tiptap) für Artikelinhalt installieren und integrieren
 - [x] EDITOR: Toolbar mit Formatierungen (Überschriften, Fett, Kursiv, Listen, Links, Code)
+- [x] UPLOAD: Cover-Bild-Upload im Insights-Admin (Datei-Upload statt nur URL, S3-Speicherung)

@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
-import { useState, lazy, Suspense } from 'react';
+import { useState, useRef, useCallback, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import {
@@ -15,6 +15,9 @@ import {
   RotateCcw,
   Check,
   AlertCircle,
+  Upload,
+  ImageIcon,
+  Trash,
 } from 'lucide-react';
 import { getLoginUrl } from '@/const';
 
@@ -41,8 +44,52 @@ export default function InsightsAdmin() {
   // SEO generation state
   const [seoGenerated, setSeoGenerated] = useState(false);
 
+  // Cover image upload state
+  const [isUploading, setIsUploading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const utils = trpc.useUtils();
   const { data: articles, isLoading } = trpc.articles.listAll.useQuery();
+
+  const uploadCoverMutation = trpc.articles.uploadCover.useMutation({
+    onSuccess: (data) => {
+      setCoverImage(data.url);
+      setIsUploading(false);
+      toast.success('Cover-Bild hochgeladen');
+    },
+    onError: (err) => {
+      setIsUploading(false);
+      toast.error(`Upload fehlgeschlagen: ${err.message}`);
+    },
+  });
+
+  const handleFileUpload = useCallback((file: File) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Nur Bilder (JPEG, PNG, WebP, GIF, SVG) erlaubt.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Datei zu gro\u00df (max. 10 MB).');
+      return;
+    }
+    setIsUploading(true);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = (reader.result as string).split(',')[1];
+      uploadCoverMutation.mutate({
+        fileName: file.name,
+        fileBase64: base64,
+        mimeType: file.type,
+      });
+    };
+    reader.onerror = () => {
+      setIsUploading(false);
+      toast.error('Datei konnte nicht gelesen werden.');
+    };
+    reader.readAsDataURL(file);
+  }, [uploadCoverMutation]);
 
   const createMutation = trpc.articles.create.useMutation({
     onSuccess: () => {
@@ -278,20 +325,97 @@ export default function InsightsAdmin() {
                   </Suspense>
                 </div>
 
-                {/* Cover, Author, Status */}
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Cover-Bild URL
-                    </label>
-                    <input
-                      type="text"
-                      value={coverImage}
-                      onChange={(e) => setCoverImage(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cme-blue focus:border-transparent"
-                      placeholder="https://…"
-                    />
-                  </div>
+                {/* Cover Image Upload */}
+                <div className="mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Cover-Bild
+                  </label>
+                  {coverImage ? (
+                    <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
+                      <img
+                        src={coverImage}
+                        alt="Cover-Vorschau"
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="absolute top-2 right-2 flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          className="p-1.5 bg-white/90 hover:bg-white rounded-lg shadow-sm text-gray-600 hover:text-cme-blue transition-colors"
+                          title="Bild ersetzen"
+                        >
+                          <Upload size={14} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setCoverImage('')}
+                          className="p-1.5 bg-white/90 hover:bg-white rounded-lg shadow-sm text-gray-600 hover:text-red-500 transition-colors"
+                          title="Bild entfernen"
+                        >
+                          <Trash size={14} />
+                        </button>
+                      </div>
+                      <div className="px-3 py-2 bg-white border-t border-gray-200">
+                        <p className="text-xs text-gray-400 truncate">{coverImage}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer ${
+                        isDragging
+                          ? 'border-cme-blue bg-cme-blue/5'
+                          : 'border-gray-300 hover:border-cme-blue/50 hover:bg-gray-50'
+                      }`}
+                      onClick={() => fileInputRef.current?.click()}
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragging(true);
+                      }}
+                      onDragLeave={() => setIsDragging(false)}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setIsDragging(false);
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) handleFileUpload(file);
+                      }}
+                    >
+                      {isUploading || uploadCoverMutation.isPending ? (
+                        <div className="flex flex-col items-center gap-2">
+                          <Loader2 className="w-8 h-8 animate-spin text-cme-blue" />
+                          <p className="text-sm text-gray-500">Bild wird hochgeladen…</p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                            <ImageIcon size={24} className="text-gray-400" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-gray-700">
+                              Bild hochladen oder hierher ziehen
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              JPEG, PNG, WebP, GIF oder SVG · max. 10 MB
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) handleFileUpload(file);
+                      e.target.value = '';
+                    }}
+                  />
+                </div>
+
+                {/* Author, Status */}
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Autor

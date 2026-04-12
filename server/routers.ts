@@ -29,6 +29,8 @@ import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
 import { generateSeoContent } from "./seoGenerator";
+import { storagePut } from "./storage";
+import crypto from "crypto";
 
 // Admin-only procedure
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -214,6 +216,29 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         await deleteArticle(input.id);
         return { success: true };
+      }),
+
+    /** Admin: upload cover image to S3 */
+    uploadCover: adminProcedure
+      .input(z.object({
+        fileName: z.string().min(1),
+        fileBase64: z.string().min(1),
+        mimeType: z.string().refine(
+          (v) => ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"].includes(v),
+          { message: "Nur Bilder (JPEG, PNG, WebP, GIF, SVG) erlaubt" }
+        ),
+      }))
+      .mutation(async ({ input }) => {
+        const buffer = Buffer.from(input.fileBase64, "base64");
+        // Max 10 MB
+        if (buffer.length > 10 * 1024 * 1024) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Datei zu groß (max. 10 MB)" });
+        }
+        const ext = input.fileName.split(".").pop() || "jpg";
+        const randomSuffix = crypto.randomBytes(8).toString("hex");
+        const fileKey = `insights/covers/${Date.now()}-${randomSuffix}.${ext}`;
+        const { url } = await storagePut(fileKey, buffer, input.mimeType);
+        return { url };
       }),
 
     /** Admin: generate SEO metadata using OpenAI */
