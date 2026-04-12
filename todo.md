@@ -213,3 +213,6 @@
 - [x] Asset-Inventur: Strukturiertes Asset-Register als Markdown-Dokument erstellen
 - [x] FIX: Letzte verbliebene "Weitere Leistungen"-Sektion aus Simulation.tsx entfernt
 - [x] FIX: "Weitere Leistungen"-Sektionen auf allen Entwicklungs-Unterseiten endgültig entfernen (UxInterfaceEngineering.tsx + SoftwareDigitaleSysteme.tsx)
+- [x] Trust-Sektion: 9 Kundenlogos auf CDN hochladen
+- [x] Trust-Sektion: React-Komponente TrustSection erstellen (monochrom, dezent, proportional)
+- [x] Trust-Sektion: Zwischen MarketsSection und ContactSection auf Startseite einbinden

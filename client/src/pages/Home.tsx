@@ -10,6 +10,7 @@ import BenefitsSection from '@/components/sections/BenefitsSection';
 import UspSection from '@/components/sections/UspSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import MarketsSection from '@/components/sections/MarketsSection';
+import TrustSection from '@/components/sections/TrustSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 
@@ -25,6 +26,7 @@ export default function Home() {
         <UspSection />
         <ProcessSection />
         <MarketsSection />
+        <TrustSection />
         <ContactSection />
       </main>
       <Footer />
