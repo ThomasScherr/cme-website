@@ -305,3 +305,4 @@
 - [x] FIX: Content-Manager muss Default-Werte (aktuelle hartcodierte Texte/Bilder) als Platzhalter anzeigen
 - [x] FIX: Feature-Cards und weitere Sektionen im Content-Manager ergänzen
 - [x] FIX: Entwicklung-Seite im Hauptmenü auf oberster Ebene verlinken (Homepage Navigation)
+- [x] FIX: FPGA-Referenzen entfernen und betroffene Feature-Card-Sektionen anpassen
