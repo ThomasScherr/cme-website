@@ -95,7 +95,7 @@ const toolchain = [
   {
     toolDE: 'Simscape Electrical',
     toolEN: 'Simscape Electrical',
-    logo: `${CDN}/simscape-electrical-icon_dc0d506e.png`,
+    logo: `${CDN}/simscape-logo-clean_717d5027.png`,
     areaDE: 'Elektro- & Antriebssimulation',
     areaEN: 'Electrical & Drive Simulation',
     descDE: 'Detaillierte Modellierung elektrischer Antriebe und Leistungselektronik',

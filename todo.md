@@ -257,3 +257,4 @@
 - [x] Simulation: Toolchain-Kacheln Layout ändern – Logo oben, Text darunter (nicht nebeneinander)
 - [x] Simulation: Toolchain-Logos werden abgeschnitten – Container auf w-36 h-36 vergrößert, overflow visible
 - [x] Simulation: Toolchain-Logo-Container von quadratisch auf rechteckig ändern (w-full h-24, px-6 py-4)
+- [x] Simulation: Simscape-Logo von MathWorks herunterladen, aufbereiten und einsetzen
