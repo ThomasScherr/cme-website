@@ -317,3 +317,4 @@
 - [x] ADD: Kontakt-Seite Telefon und E-Mail zusätzlich im Hero-Bereich (sales@control-motion.de, +49 231 28 66 76 96-0)
 - [x] FIX: Kontakt-Seite in admin/content CMS-Definitionen erweitert – Hero (inkl. Telefon/E-Mail), Kontaktdaten, Kontaktformular
 - [x] FIX: Alle Seiten in contentDefinitions.ts geprüft – Kontakt war die einzige mit fehlenden Sektionen
+- [x] FIX: Hero-Bilder/Videos für ALLE 20 Seiten im CMS Content Editor ergänzt (Home, Entwicklung + 9 Unterseiten, Fertigung + 3 Unterseiten, Lifecycle, Märkte, Unternehmen, Kontakt, Karriere)

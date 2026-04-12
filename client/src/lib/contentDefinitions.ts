@@ -73,6 +73,9 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
           { key: 'videoWebm', label: 'Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'videoMp4', label: 'Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'videoPoster', label: 'Video-Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
@@ -129,6 +132,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Elektronikentwicklung', defaultEn: 'Electronics Development' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Von der Idee zur serienreifen Elektronik.', defaultEn: 'From idea to series-ready electronics.' },
@@ -193,6 +197,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
         ],
       },
@@ -230,6 +235,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_1736__1920px_e713f7ca.jpg`, defaultEn: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_1736__1920px_e713f7ca.jpg`, defaultEn: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
         ],
       },
@@ -268,6 +274,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
@@ -306,6 +313,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg`, defaultEn: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image' },
         ],
       },
@@ -329,6 +337,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
@@ -367,6 +376,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
@@ -405,6 +415,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
         ],
       },
@@ -439,7 +450,8 @@ export const PAGES: PageDef[] = [
     label: 'Entwicklung: UX & Interface Engineering',
     path: '/entwicklung/ux-interface-engineering',
     sections: [
-      { key: 'hero', label: 'Hero-Bereich', fields: [{ key: 'image', label: 'Hero-Bild', type: 'image' }] },
+      { key: 'hero', label: 'Hero-Bereich', fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/operating-concepts_3d4b7f77.png`, defaultEn: `${CDN}/operating-concepts_3d4b7f77.png` },{ key: 'image', label: 'Hero-Bild', type: 'image' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'UX & Interface Engineering', defaultEn: 'UX & Interface Engineering' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Benutzeroberflächen für Embedded-Systeme und industrielle Anwendungen', defaultEn: 'User interfaces for embedded systems and industrial applications' },
@@ -451,7 +463,8 @@ export const PAGES: PageDef[] = [
     label: 'Entwicklung: Software & Digitale Systeme',
     path: '/entwicklung/software-digitale-systeme',
     sections: [
-      { key: 'hero', label: 'Hero-Bereich', fields: [{ key: 'image', label: 'Hero-Bild', type: 'image' }] },
+      { key: 'hero', label: 'Hero-Bereich', fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/web-apps_26e3e533.png`, defaultEn: `${CDN}/web-apps_26e3e533.png` },{ key: 'image', label: 'Hero-Bild', type: 'image' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Software & Digitale Systeme', defaultEn: 'Software & Digital Systems' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Embedded Software und digitale Systemarchitekturen', defaultEn: 'Embedded software and digital system architectures' },
@@ -471,6 +484,9 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
           { key: 'videoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
           { key: 'videoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
           { key: 'videoPoster', label: 'Video-Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
@@ -526,6 +542,9 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
           { key: 'videoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
           { key: 'videoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
           { key: 'videoPoster', label: 'Video-Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
@@ -566,6 +585,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/baugruppen-hero_b99b1505.webp`, defaultEn: `${CDN}/baugruppen-hero_b99b1505.webp` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/baugruppen-hero_b99b1505.webp`, defaultEn: `${CDN}/baugruppen-hero_b99b1505.webp` },
         ],
       },
@@ -604,6 +624,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/microscope-inspection_a3967815.png`, defaultEn: `${CDN}/microscope-inspection_a3967815.png` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/microscope-inspection_a3967815.png`, defaultEn: `${CDN}/microscope-inspection_a3967815.png` },
         ],
       },
@@ -645,6 +666,9 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
           { key: 'videoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'videoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'videoPoster', label: 'Video-Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
@@ -678,6 +702,9 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
           { key: 'videoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'videoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'videoPoster', label: 'Video-Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
@@ -701,6 +728,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_0425__1920px_178fc1eb.jpg`, defaultEn: `${CDN}/JK_0425__1920px_178fc1eb.jpg` },
           { key: 'image', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_0425__1920px_178fc1eb.jpg`, defaultEn: `${CDN}/JK_0425__1920px_178fc1eb.jpg` },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Über CME', defaultEn: 'About CME' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'The Electronic Company.', defaultEn: 'The Electronic Company.' },
@@ -755,6 +783,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/K5A0004_retouch_b2db17ab.jpg`, defaultEn: `${CDN}/K5A0004_retouch_b2db17ab.jpg` },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Kontakt', defaultEn: 'Contact' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Direkter Draht zu unseren Experten.', defaultEn: 'Direct line to our experts.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.', defaultEn: 'Project inquiry, technical question or visit in Dortmund – we respond personally.' },
@@ -804,6 +833,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/K5A0004_retouch_b2db17ab.jpg`, defaultEn: `${CDN}/K5A0004_retouch_b2db17ab.jpg` },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Karriere', defaultEn: 'Careers' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Gestalten Sie die Elektronik von morgen.', defaultEn: 'Shape the electronics of tomorrow.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.', defaultEn: 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.' },
