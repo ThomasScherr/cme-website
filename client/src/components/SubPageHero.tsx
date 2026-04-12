@@ -7,16 +7,18 @@
  * - Description paragraph
  * - Optional CTA button
  * - Optional breadcrumb navigation
- * - Diamond image/video on the right (desktop only)
+ * - Diamond or rectangular image/video on the right (desktop only)
  *
  * All sizing is controlled via CSS class `.subpage-hero` and
  * CSS variables defined in index.css, editable through the Stylesheet Editor.
  *
  * Usage variants:
- *   1. With image diamond:  pass `heroImage` prop
- *   2. With video diamond:  pass `heroVideo` prop
- *   3. Without diamond:     omit both (text-only hero, e.g. Kontakt, Insights)
- *   4. With breadcrumb:     pass `breadcrumb` prop
+ *   1. Diamond image:      pass `heroImage` (default imageVariant='diamond')
+ *   2. Diamond video:      pass `heroVideo` (default imageVariant='diamond')
+ *   3. Rectangular image:  pass `heroImage` + `imageVariant='rectangular'`
+ *   4. Rectangular video:  pass `heroVideo` + `imageVariant='rectangular'`
+ *   5. Without media:      omit both (text-only hero, e.g. Kontakt, Insights)
+ *   6. With breadcrumb:    pass `breadcrumb` prop
  */
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
@@ -53,12 +55,14 @@ interface SubPageHeroProps {
     label: string;
     href: string;
   };
-  /** Image URL for the diamond on the right */
+  /** Image URL for the media on the right */
   heroImage?: string;
   /** Alt text for the hero image */
   heroImageAlt?: string;
-  /** Video sources for the diamond on the right (overrides heroImage) */
+  /** Video sources for the media on the right (overrides heroImage) */
   heroVideo?: HeroVideo;
+  /** Image display variant: 'diamond' (rotated rhombus) or 'rectangular' (rounded rect with accent diamond behind) */
+  imageVariant?: 'diamond' | 'rectangular';
   /** Breadcrumb trail (renders above the headline) */
   breadcrumb?: BreadcrumbItem[];
   /** Back link (renders a "← Parent" link above the headline) */
@@ -115,6 +119,67 @@ function DiamondMedia({ image, imageAlt, video }: {
   return null;
 }
 
+// ── Rectangular Media Component (with accent diamond behind) ───
+
+function RectangularMedia({ image, imageAlt, video }: {
+  image?: string;
+  imageAlt?: string;
+  video?: HeroVideo;
+}) {
+  const mediaContent = video ? (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      poster={video.poster}
+      className="w-full aspect-[4/3] object-cover"
+    >
+      {video.webm && <source src={video.webm} type="video/webm" />}
+      {video.mp4 && <source src={video.mp4} type="video/mp4" />}
+    </video>
+  ) : image ? (
+    <img
+      src={image}
+      alt={imageAlt || ''}
+      className="w-full aspect-[4/3] object-cover"
+    />
+  ) : null;
+
+  if (!mediaContent) return null;
+
+  return (
+    <div className="relative">
+      {/* Accent diamond behind the rectangular image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute"
+        style={{
+          zIndex: 0,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-42%, -50%)',
+        }}
+      >
+        <div
+          className="diamond bg-cme-blue/[0.06]"
+          style={{ width: 'var(--subpage-hero-accent-size)' }}
+        />
+      </motion.div>
+
+      {/* Rectangular image/video */}
+      <div
+        className="relative rounded-2xl overflow-hidden shadow-xl shadow-cme-blue/10"
+        style={{ zIndex: 1 }}
+      >
+        {mediaContent}
+      </div>
+    </div>
+  );
+}
+
 // ── Main Component ─────────────────────────────────────────────
 
 export default function SubPageHero({
@@ -126,11 +191,12 @@ export default function SubPageHero({
   heroImage,
   heroImageAlt,
   heroVideo,
+  imageVariant = 'diamond',
   breadcrumb,
   backLink,
   children,
 }: SubPageHeroProps) {
-  const hasDiamond = !!(heroImage || heroVideo);
+  const hasMedia = !!(heroImage || heroVideo);
 
   return (
     <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
@@ -157,7 +223,7 @@ export default function SubPageHero({
         )}
 
         <div
-          className={`grid items-center ${hasDiamond ? 'lg:grid-cols-2' : ''}`}
+          className={`grid items-center ${hasMedia ? 'lg:grid-cols-2' : ''}`}
           style={{ gap: 'var(--space-gap-lg)' }}
         >
           {/* Left: Text Content */}
@@ -165,7 +231,7 @@ export default function SubPageHero({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className={hasDiamond ? '' : 'max-w-3xl'}
+            className={hasMedia ? '' : 'max-w-3xl'}
           >
             {/* Back link */}
             {backLink && (
@@ -233,41 +299,60 @@ export default function SubPageHero({
             {children}
           </motion.div>
 
-          {/* Right: Diamond – desktop only */}
-          {hasDiamond && (
+          {/* Right: Media – desktop only */}
+          {hasMedia && (
             <div className="hidden lg:flex relative items-center justify-center">
-              {/* Accent diamond behind */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute"
-                style={{
-                  zIndex: 1,
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%) translate(8%, 8%)',
-                }}
-              >
-                <div
-                  className="diamond bg-cme-blue/[0.07]"
-                  style={{ width: 'var(--subpage-hero-accent-size)' }}
-                />
-              </motion.div>
+              {imageVariant === 'rectangular' ? (
+                /* Rectangular variant: rounded rect image with accent diamond behind */
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="w-full"
+                >
+                  <RectangularMedia
+                    image={heroImage}
+                    imageAlt={heroImageAlt}
+                    video={heroVideo}
+                  />
+                </motion.div>
+              ) : (
+                /* Diamond variant: rotated rhombus with accent diamond behind */
+                <>
+                  {/* Accent diamond behind */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="absolute"
+                    style={{
+                      zIndex: 1,
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%) translate(8%, 8%)',
+                    }}
+                  >
+                    <div
+                      className="diamond bg-cme-blue/[0.07]"
+                      style={{ width: 'var(--subpage-hero-accent-size)' }}
+                    />
+                  </motion.div>
 
-              {/* Main diamond */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                style={{ zIndex: 2, position: 'relative' }}
-              >
-                <DiamondMedia
-                  image={heroImage}
-                  imageAlt={heroImageAlt}
-                  video={heroVideo}
-                />
-              </motion.div>
+                  {/* Main diamond */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    style={{ zIndex: 2, position: 'relative' }}
+                  >
+                    <DiamondMedia
+                      image={heroImage}
+                      imageAlt={heroImageAlt}
+                      video={heroVideo}
+                    />
+                  </motion.div>
+                </>
+              )}
             </div>
           )}
         </div>

@@ -1,8 +1,9 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, Waves, Box, CircuitBoard } from 'lucide-react';
+import { Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, Waves, Box, CircuitBoard } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SubPageHero from '@/components/SubPageHero';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
@@ -144,50 +145,24 @@ export default function Simulation() {
 
   return (
     <Layout>
-      {/* Breadcrumb + Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/20">
-        <div className="container">
-          <div className="flex items-center fluid-xs text-gray-500" style={{ gap: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)', marginBottom: 'var(--space-gap-md)' }}>
-            <Link href="/" className="hover:text-cme-blue transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/entwicklung" className="hover:text-cme-blue transition-colors">
-              {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-            </Link>
-            <span>/</span>
-            <span className="text-cme-dark font-medium">{isDE ? 'Simulation & Toolchain' : 'Simulation & Toolchain'}</span>
-          </div>
-
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <Link
-                href="/entwicklung"
-                className="inline-flex items-center gap-2 text-cme-blue fluid-small font-medium hover:gap-3 transition-all"
-                style={{ marginBottom: 'var(--space-gap-xs)' }}
-              >
-                <ArrowLeft size={16} />
-                {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-              </Link>
-              <h1 className="fluid-h1 text-cme-dark leading-tight">
-                Simulation & Toolchain
-              </h1>
-              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE
-                  ? 'Bevor Konzepte technisch umgesetzt werden, durchlaufen sie bei uns eine umfassende Simulation. So kürzen wir Entwicklungsprozesse ab, reduzieren Kosten und erreichen maximale Effizienz.'
-                  : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.'}
-              </p>
-            </div>
-            <div className="hidden lg:block relative">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg"
-                  alt="Simulation"
-                  className="w-full aspect-[4/3] object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        headline="Simulation & Toolchain"
+        description={isDE
+          ? 'Bevor Konzepte technisch umgesetzt werden, durchlaufen sie bei uns eine umfassende Simulation. So kürzen wir Entwicklungsprozesse ab, reduzieren Kosten und erreichen maximale Effizienz.'
+          : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.'}
+        heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg"
+        heroImageAlt="Thermosimulation"
+        imageVariant="rectangular"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: isDE ? 'Elektronikentwicklung' : 'Electronics Development', href: '/entwicklung' },
+          { label: 'Simulation & Toolchain' },
+        ]}
+        backLink={{
+          label: isDE ? 'Elektronikentwicklung' : 'Electronics Development',
+          href: '/entwicklung',
+        }}
+      />
 
       {/* Intro */}
       <section className="section-pad">

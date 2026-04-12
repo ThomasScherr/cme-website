@@ -238,3 +238,6 @@
 - [x] TrustSection: Max 4 Logos pro Zeile, bei mehr Logos weitere Zeilen
 - [x] TrustSection: Logos größer darstellen
 - [x] TrustSection: Framer Motion Animation mit verzögertem Viewport-Trigger (nicht sofort am oberen Bildrand, sondern einige % weiter)
+- [x] SubPageHero: imageVariant-Prop hinzufügen (diamond | rectangular)
+- [x] SubPageHero: Rectangular-Variante mit dezenter Hintergrund-Raute hinter dem Bild
+- [x] Simulation-Seite: imageVariant='rectangular' nutzen
