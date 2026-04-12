@@ -88,7 +88,7 @@ export default function HeroSection() {
   }), [isDE]);
 
   const lines = useMemo(() => [t.hero.headline1, t.hero.headline2, t.hero.headline3], [t]);
-  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 3000);
+  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 400);
 
   // Simple flag: false = show first text, true = show second text
   const [showSecondText, setShowSecondText] = useState(false);

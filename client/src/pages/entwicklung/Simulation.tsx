@@ -122,7 +122,7 @@ const toolchain = [
   {
     toolDE: 'Motor-CAD (ANSYS)',
     toolEN: 'Motor-CAD (ANSYS)',
-    logo: `${CDN}/motorcad_1b971003.png`,
+    logo: `${CDN}/ansys-logo_db7a517c.jpg`,
     areaDE: 'E-Motor-Auslegung & FEA',
     areaEN: 'E-Motor Design & FEA',
     descDE: 'Elektromagnetische FEA, Motordesign, Magnetkreis-Optimierung',

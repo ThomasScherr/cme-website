@@ -258,3 +258,5 @@
 - [x] Simulation: Toolchain-Logos werden abgeschnitten – Container auf w-36 h-36 vergrößert, overflow visible
 - [x] Simulation: Toolchain-Logo-Container von quadratisch auf rechteckig ändern (w-full h-24, px-6 py-4)
 - [x] Simulation: Simscape-Logo von MathWorks herunterladen, aufbereiten und einsetzen
+- [x] Simulation: Ansys-Logo korrigieren (offizielles Ansys-Logo eingesetzt)
+- [x] Hero-Sektion: Verzögerung nach zweiter Zeile in Cursor-Animation entfernen (pauseBeforeAccent von 3000ms auf 400ms)
