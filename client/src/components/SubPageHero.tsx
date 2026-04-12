@@ -17,8 +17,9 @@
  *   2. Diamond video:      pass `heroVideo` (default imageVariant='diamond')
  *   3. Rectangular image:  pass `heroImage` + `imageVariant='rectangular'`
  *   4. Rectangular video:  pass `heroVideo` + `imageVariant='rectangular'`
- *   5. Without media:      omit both (text-only hero, e.g. Kontakt, Insights)
- *   6. With breadcrumb:    pass `breadcrumb` prop
+ *   5. Floating image:     pass `heroImage` + `imageVariant='floating'` (transparent/cutout images, no frame/shadow)
+ *   6. Without media:      omit both (text-only hero, e.g. Kontakt, Insights)
+ *   7. With breadcrumb:    pass `breadcrumb` prop
  */
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
@@ -61,8 +62,8 @@ interface SubPageHeroProps {
   heroImageAlt?: string;
   /** Video sources for the media on the right (overrides heroImage) */
   heroVideo?: HeroVideo;
-  /** Image display variant: 'diamond' (rotated rhombus) or 'rectangular' (rounded rect with accent diamond behind) */
-  imageVariant?: 'diamond' | 'rectangular';
+  /** Image display variant: 'diamond' (rotated rhombus), 'rectangular' (rounded rect with shadow + accent diamond), or 'floating' (transparent/cutout image, no frame, accent diamond behind) */
+  imageVariant?: 'diamond' | 'rectangular' | 'floating';
   /** Breadcrumb trail (renders above the headline) */
   breadcrumb?: BreadcrumbItem[];
   /** Back link (renders a "← Parent" link above the headline) */
@@ -180,7 +181,68 @@ function RectangularMedia({ image, imageAlt, video }: {
   );
 }
 
-// ── Main Component ─────────────────────────────────────────────
+// ── Floating Media Component (transparent image, no frame, accent diamond) ──
+
+function FloatingMedia({ image, imageAlt, video }: {
+  image?: string;
+  imageAlt?: string;
+  video?: HeroVideo;
+}) {
+  const mediaContent = video ? (
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      poster={video.poster}
+      className="w-full aspect-[4/3] object-contain"
+    >
+      {video.webm && <source src={video.webm} type="video/webm" />}
+      {video.mp4 && <source src={video.mp4} type="video/mp4" />}
+    </video>
+  ) : image ? (
+    <img
+      src={image}
+      alt={imageAlt || ''}
+      className="w-full aspect-[4/3] object-contain"
+    />
+  ) : null;
+
+  if (!mediaContent) return null;
+
+  return (
+    <div className="relative">
+      {/* Accent diamond behind the floating image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute"
+        style={{
+          zIndex: 0,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-42%, -50%)',
+        }}
+      >
+        <div
+          className="diamond bg-cme-blue/[0.06]"
+          style={{ width: 'var(--subpage-hero-accent-size)' }}
+        />
+      </motion.div>
+
+      {/* Floating image/video – no frame, no shadow */}
+      <div
+        className="relative"
+        style={{ zIndex: 1 }}
+      >
+        {mediaContent}
+      </div>
+    </div>
+  );
+}
+
+// ── Main Component ─────────────────────────────────────────────────────
 
 export default function SubPageHero({
   tagline,
@@ -311,6 +373,20 @@ export default function SubPageHero({
                   className="w-full"
                 >
                   <RectangularMedia
+                    image={heroImage}
+                    imageAlt={heroImageAlt}
+                    video={heroVideo}
+                  />
+                </motion.div>
+              ) : imageVariant === 'floating' ? (
+                /* Floating variant: transparent image, no frame/shadow, accent diamond behind */
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="w-full"
+                >
+                  <FloatingMedia
                     image={heroImage}
                     imageAlt={heroImageAlt}
                     video={heroVideo}

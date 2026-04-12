@@ -241,3 +241,11 @@
 - [x] SubPageHero: imageVariant-Prop hinzufügen (diamond | rectangular)
 - [x] SubPageHero: Rectangular-Variante mit dezenter Hintergrund-Raute hinter dem Bild
 - [x] Simulation-Seite: imageVariant='rectangular' nutzen
+- [x] UX & Interface Engineering: Auf SubPageHero migrieren (wurde bei der Migration übersehen)
+- [x] Software Engineering & Digitale Systeme: Auf SubPageHero migrieren (wurde bei der Migration übersehen)
+- [x] SubPageHero: imageVariant='floating' hinzufügen (freigestelltes Bild ohne Rahmen/Schatten, nur Schmuck-Raute)
+- [x] UX & Interface Engineering: imageVariant auf 'floating' umstellen
+- [x] Software Engineering: imageVariant auf 'floating' umstellen
+- [x] Simulation-Seite: Bildelement als Platzhalter in Intro-Sektion hinzufügen (nicht nur Text)
+- [x] Simulation-Seite: Defektes Intro-Bild durch Raute mit Platzhalterbild ersetzen (wie auf anderen Unterseiten)
+- [x] Simulation-Seite: Toolchain-Logos viel zu klein, deutlich vergrößern

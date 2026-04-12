@@ -1,8 +1,8 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SubPageHero from '@/components/SubPageHero';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
@@ -50,52 +50,24 @@ export default function SoftwareDigitaleSysteme() {
 
   return (
     <Layout>
-      {/* Breadcrumb + Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/20">
-        <div className="container">
-          {/* Breadcrumb */}
-          <div className="flex items-center fluid-xs text-gray-500" style={{ gap: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)', marginBottom: 'var(--space-gap-md)' }}>
-            <Link href="/" className="hover:text-cme-blue transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/entwicklung" className="hover:text-cme-blue transition-colors">
-              {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-            </Link>
-            <span>/</span>
-            <span className="text-cme-dark font-medium">
-              {isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
-            </span>
-          </div>
-
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <Link
-                href="/entwicklung"
-                className="inline-flex items-center gap-2 text-cme-blue fluid-small font-medium hover:gap-3 transition-all"
-                style={{ marginBottom: 'var(--space-gap-xs)' }}
-              >
-                <ArrowLeft size={16} />
-                {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-              </Link>
-              <h1 className="fluid-h1 text-cme-dark leading-tight">
-                {isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
-              </h1>
-              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE
-                  ? 'Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur – die digitale Ebene Ihrer Elektronikprodukte.'
-                  : 'Web apps, mobile apps, cloud integration and backend architecture – the digital layer of your electronic products.'}
-              </p>
-            </div>
-            <div className="hidden lg:block relative">
-              <img
-                src={`${CDN}/web-apps_26e3e533.png`}
-                alt={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
-                className="w-full aspect-[4/3] object-contain"
-                style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        headline={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
+        description={isDE
+          ? 'Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur \u2013 die digitale Ebene Ihrer Elektronikprodukte.'
+          : 'Web apps, mobile apps, cloud integration and backend architecture \u2013 the digital layer of your electronic products.'}
+        heroImage={`${CDN}/web-apps_26e3e533.png`}
+        heroImageAlt={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
+        imageVariant="floating"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: isDE ? 'Elektronikentwicklung' : 'Electronics Development', href: '/entwicklung' },
+          { label: isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems' },
+        ]}
+        backLink={{
+          label: isDE ? 'Elektronikentwicklung' : 'Electronics Development',
+          href: '/entwicklung',
+        }}
+      />
 
       {/* Intro */}
       <section className="section-pad">

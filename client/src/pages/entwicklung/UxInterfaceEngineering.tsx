@@ -1,8 +1,8 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SubPageHero from '@/components/SubPageHero';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
@@ -50,52 +50,24 @@ export default function UxInterfaceEngineering() {
 
   return (
     <Layout>
-      {/* Breadcrumb + Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/20">
-        <div className="container">
-          {/* Breadcrumb */}
-          <div className="flex items-center fluid-xs text-gray-500" style={{ gap: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)', marginBottom: 'var(--space-gap-md)' }}>
-            <Link href="/" className="hover:text-cme-blue transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/entwicklung" className="hover:text-cme-blue transition-colors">
-              {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-            </Link>
-            <span>/</span>
-            <span className="text-cme-dark font-medium">
-              {isDE ? 'UX & Interface Engineering' : 'UX & Interface Engineering'}
-            </span>
-          </div>
-
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <Link
-                href="/entwicklung"
-                className="inline-flex items-center gap-2 text-cme-blue fluid-small font-medium hover:gap-3 transition-all"
-                style={{ marginBottom: 'var(--space-gap-xs)' }}
-              >
-                <ArrowLeft size={16} />
-                {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-              </Link>
-              <h1 className="fluid-h1 text-cme-dark leading-tight">
-                UX & Interface Engineering
-              </h1>
-              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE
-                  ? 'Bediensoftware und UI/UX für technische Systeme – von der Nutzeranalyse bis zur serienreifen Umsetzung.'
-                  : 'Operating software and UI/UX for technical systems – from user analysis to production-ready implementation.'}
-              </p>
-            </div>
-            <div className="hidden lg:block relative">
-              <img
-                src={`${CDN}/operating-concepts_3d4b7f77.png`}
-                alt="UX & Interface Engineering"
-                className="w-full aspect-[4/3] object-contain"
-                style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        headline="UX & Interface Engineering"
+        description={isDE
+          ? 'Bediensoftware und UI/UX für technische Systeme \u2013 von der Nutzeranalyse bis zur serienreifen Umsetzung.'
+          : 'Operating software and UI/UX for technical systems \u2013 from user analysis to production-ready implementation.'}
+        heroImage={`${CDN}/operating-concepts_3d4b7f77.png`}
+        heroImageAlt="UX & Interface Engineering"
+        imageVariant="floating"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: isDE ? 'Elektronikentwicklung' : 'Electronics Development', href: '/entwicklung' },
+          { label: 'UX & Interface Engineering' },
+        ]}
+        backLink={{
+          label: isDE ? 'Elektronikentwicklung' : 'Electronics Development',
+          href: '/entwicklung',
+        }}
+      />
 
       {/* Intro */}
       <section className="section-pad">
