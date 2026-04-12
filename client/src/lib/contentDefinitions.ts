@@ -246,7 +246,7 @@ export const PAGES: PageDef[] = [
         key: 'features',
         label: 'Feature-Cards',
         fields: featureFields([
-          { de: 'Auslegung & Design von EC-, DC- und Synchronmaschinen', en: 'Design of EC, DC and synchronous machines' },
+          { de: 'Auslegung & Design von EC- und Synchronmaschinen', en: 'Design of EC and synchronous machines' },
           { de: 'Geometrie-Design des Magnetkreises (Rotor & Stator)', en: 'Magnetic circuit geometry design (rotor & stator)' },
           { de: 'Blechschnitt-Konstruktion', en: 'Lamination construction' },
           { de: 'Auslegung für Hochtemperaturanwendungen', en: 'Design for high-temperature applications' },

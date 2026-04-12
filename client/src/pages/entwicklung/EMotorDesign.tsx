@@ -26,7 +26,7 @@ export default function EMotorDesign() {
       introDE="CME wählt für Ihre Applikation den passenden Elektromotor aus und optimiert das Design entsprechend Ihren Vorgaben. Unsere Experten berechnen und simulieren Magnetkreise, Blechschnitte und thermische Belastungen – für Motoren mit besonders hohem Wirkungsgrad, auch unter rauen Umgebungsbedingungen und bei hohen Temperaturen. Durch die enge Verzahnung von E-Motor-Design, Leistungselektronik und Regelungstechnik entstehen optimal aufeinander abgestimmte Antriebssysteme."
       introEN="CME selects the right electric motor for your application and optimizes the design according to your specifications. Our experts calculate and simulate magnetic circuits, lamination cuts and thermal loads – for motors with particularly high efficiency, even under harsh environmental conditions and at high temperatures. Through the close integration of e-motor design, power electronics and control engineering, optimally coordinated drive systems are created."
       features={[
-        { de: 'Auslegung & Design von EC-, DC- und Synchronmaschinen', en: 'Design of EC, DC and synchronous machines', icon: Cog },
+        { de: 'Auslegung & Design von EC- und Synchronmaschinen', en: 'Design of EC and synchronous machines', icon: Cog },
         { de: 'Geometrie-Design des Magnetkreises (Rotor & Stator)', en: 'Magnetic circuit geometry design (rotor & stator)', icon: Target },
         { de: 'Blechschnitt-Konstruktion', en: 'Lamination construction', icon: Layers },
         { de: 'Auslegung für Hochtemperaturanwendungen', en: 'Design for high-temperature applications', icon: Thermometer },
