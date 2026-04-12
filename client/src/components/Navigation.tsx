@@ -26,6 +26,7 @@ function useNavItems() {
       label: isDE ? 'Entwicklung' : 'Development',
       href: '/entwicklung',
       dropdown: [
+        { label: isDE ? 'Übersicht' : 'Overview', href: '/entwicklung' },
         { label: 'Hard & Software Design', href: '/entwicklung/hardware-software' },
         { label: 'E-Motor Design', href: '/entwicklung/e-motor-design' },
         { label: 'Control Design', href: '/entwicklung/control-design' },
@@ -167,23 +168,30 @@ export default function Navigation() {
           {navItems.map((item) => (
             <div key={item.label} className="relative">
               {item.dropdown ? (
-                <button
+                <div
+                  className="flex items-center"
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
-                  onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1 font-medium transition-colors rounded-lg whitespace-nowrap ${
-                    isActive(item.href)
-                      ? 'text-cme-blue'
-                      : 'text-cme-dark/80 hover:text-cme-blue'
-                  }`}
-                  style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
                 >
-                  {item.label}
+                  <Link
+                    href={item.href}
+                    className={`font-medium transition-colors rounded-lg whitespace-nowrap ${
+                      isActive(item.href)
+                        ? 'text-cme-blue'
+                        : 'text-cme-dark/80 hover:text-cme-blue'
+                    }`}
+                    style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
+                  >
+                    {item.label}
+                  </Link>
                   <ChevronDown
                     size={14}
-                    className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                    className={`transition-transform cursor-pointer ${
+                      isActive(item.href) ? 'text-cme-blue' : 'text-cme-dark/80'
+                    } ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); toggleDropdown(item.label); }}
                   />
-                </button>
+                </div>
               ) : (
                 <Link
                   href={item.href}
@@ -262,20 +270,27 @@ export default function Navigation() {
                 <div key={item.label}>
                   {item.dropdown ? (
                     <>
-                      <button
-                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                        className={`flex items-center justify-between w-full py-3 px-4 fluid-body font-medium rounded-lg transition-colors ${
+                      <div className={`flex items-center justify-between w-full py-3 px-4 rounded-lg transition-colors ${
                           isActive(item.href)
                             ? 'text-cme-blue bg-cme-blue-light/50'
                             : 'text-cme-dark/80 hover:text-cme-blue hover:bg-cme-blue-light/30'
-                        }`}
-                      >
-                        {item.label}
-                        <ChevronDown
-                          size={16}
-                          className={`transition-transform ${mobileExpanded === item.label ? 'rotate-180' : ''}`}
-                        />
-                      </button>
+                        }`}>
+                        <Link
+                          href={item.href}
+                          className="fluid-body font-medium flex-1"
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                          className="p-1"
+                        >
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform ${mobileExpanded === item.label ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </div>
                       <AnimatePresence>
                         {mobileExpanded === item.label && (
                           <motion.div
