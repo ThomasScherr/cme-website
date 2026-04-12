@@ -280,3 +280,5 @@
 - [x] EDITOR: Rich-Text-Editor (Tiptap) für Artikelinhalt installieren und integrieren
 - [x] EDITOR: Toolbar mit Formatierungen (Überschriften, Fett, Kursiv, Listen, Links, Code)
 - [x] UPLOAD: Cover-Bild-Upload im Insights-Admin (Datei-Upload statt nur URL, S3-Speicherung)
+- [x] PREVIEW: Vorschau-Button im Insights-Admin – Artikel in neuem Tab als Vollansicht anzeigen
+- [x] DESIGN: Cover-Bild in Insights-Übersicht im 4:3-Format anzeigen

@@ -28,7 +28,7 @@ export default function Insights() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-md)' }}>
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden animate-pulse">
-                  <div className="h-48 bg-gray-200" />
+                  <div className="aspect-[4/3] bg-gray-200" />
                   <div className="fluid-card" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)' }}>
                     <div className="h-4 bg-gray-200 rounded w-1/3" />
                     <div className="h-6 bg-gray-200 rounded w-full" />
@@ -50,7 +50,7 @@ export default function Insights() {
                   <Link href={`/insights/${article.slug}`}>
                     <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                       {article.coverImage ? (
-                        <div className="h-48 overflow-hidden">
+                        <div className="aspect-[4/3] overflow-hidden">
                           <img
                             src={article.coverImage}
                             alt={article.title}
@@ -58,7 +58,7 @@ export default function Insights() {
                           />
                         </div>
                       ) : (
-                        <div className="h-48 bg-gradient-to-br from-cme-blue-light to-cme-blue/10 flex items-center justify-center">
+                        <div className="aspect-[4/3] bg-gradient-to-br from-cme-blue-light to-cme-blue/10 flex items-center justify-center">
                           <Tag size={32} className="text-cme-blue/40" />
                         </div>
                       )}

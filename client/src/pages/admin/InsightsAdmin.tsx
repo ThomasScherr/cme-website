@@ -18,6 +18,7 @@ import {
   Upload,
   ImageIcon,
   Trash,
+  Eye,
 } from 'lucide-react';
 import { getLoginUrl } from '@/const';
 
@@ -190,11 +191,21 @@ export default function InsightsAdmin() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Tiptap may produce empty HTML like '<p></p>' – treat as empty
+    const strippedContent = content.replace(/<[^>]*>/g, '').trim();
+    if (!title.trim()) {
+      toast.error('Bitte geben Sie einen Titel ein.');
+      return;
+    }
+    if (!strippedContent) {
+      toast.error('Bitte geben Sie Artikelinhalt ein.');
+      return;
+    }
     const data = {
       slug,
       title,
       excerpt: excerpt || undefined,
-      content,
+      content: strippedContent ? content : '',
       coverImage: coverImage || undefined,
       author,
       status,
@@ -674,6 +685,13 @@ export default function InsightsAdmin() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 ml-4">
+                    <button
+                      onClick={() => window.open(`/admin/insights/preview/${article.id}`, '_blank')}
+                      className="p-2 text-gray-400 hover:text-green-600 rounded-lg hover:bg-gray-50 transition-colors"
+                      title="Vorschau"
+                    >
+                      <Eye size={16} />
+                    </button>
                     <button
                       onClick={() => startEdit(article)}
                       className="p-2 text-gray-400 hover:text-cme-blue rounded-lg hover:bg-gray-50 transition-colors"
