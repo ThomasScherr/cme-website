@@ -290,3 +290,4 @@
 - [x] SubPageHero: Standard-Bild durch CME-Foto (K5A0004_retouch) von control-motion.de ersetzen
 - [x] Leiterplatten bestücken: Hero-Bild durch neues Video (0412(2).mp4) ersetzen
 - [x] Fertigung (/fertigung): Hero-Bild durch neues Video (0412(2).mp4) ersetzen
+- [x] Baugruppen (/fertigung/baugruppen): Hero-Bild durch _JK_5455_v1.webp ersetzen

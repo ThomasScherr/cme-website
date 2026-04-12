@@ -23,7 +23,7 @@ export default function Baugruppen() {
       titleEN="Module Assembly"
       subtitleDE="Komplette Baugruppenmontage inkl. Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage."
       subtitleEN="Complete module assembly including potting, conformal coating, cable assembly and final assembly."
-      heroImg={`${CDN}/dental-system-complete_8d86b9f8.png`}
+      heroImg={`${CDN}/baugruppen-hero_b99b1505.webp`}
       introDE="Elektronik ist mehr als eine bestückte Leiterplatte. CME bietet die komplette Baugruppenfertigung aus einer Hand – von der bestückten PCB über Verguss und Schutzlackierung bis zur Endmontage im Gehäuse. Unsere Mitarbeiter sind in der Verarbeitung anspruchsvoller Materialien und Prozesse geschult, insbesondere für Leistungselektronik und thermisch belastete Baugruppen."
       introEN="Electronics is more than a populated PCB. CME offers complete module assembly from a single source – from populated PCB through potting and conformal coating to final assembly in the housing. Our staff is trained in processing demanding materials and processes, especially for power electronics and thermally stressed assemblies."
       ctaDE="Angebot anfragen"
