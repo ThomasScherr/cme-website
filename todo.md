@@ -249,3 +249,8 @@
 - [x] Simulation-Seite: Bildelement als Platzhalter in Intro-Sektion hinzufügen (nicht nur Text)
 - [x] Simulation-Seite: Defektes Intro-Bild durch Raute mit Platzhalterbild ersetzen (wie auf anderen Unterseiten)
 - [x] Simulation-Seite: Toolchain-Logos viel zu klein, deutlich vergrößern
+- [x] Simulation: Intro-Bild mit Rechteck-Hintergrund entfernen (passt nicht)
+- [x] Simulation: Simscape Electrical Logo korrigieren (falsches Logo)
+- [x] Simulation: Toolchain-Logos nochmals deutlich vergrößern (128px, immer noch nicht erkennbar)
+- [x] Lifecycle: Obsolescence Management Text überarbeiten (datenbankgestützt, kundenspezifische Workflows, Simulationen auf Bestands-/Marktdaten, Liefermarktzugang)
+- [x] Lifecycle: Reparatur & Service Text überarbeiten (Fokus auf geschäftskritische Elektronik, nicht Consumer, teure Folgekosten bei Ausfall)

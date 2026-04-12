@@ -14,8 +14,8 @@ const services = [
     icon: RefreshCcw,
     titleDE: 'Obsolescence Management',
     titleEN: 'Obsolescence Management',
-    descDE: 'Proaktive Überwachung der Bauteilversorgung. Wir identifizieren Abkündigungen frühzeitig und qualifizieren Alternativbauteile – bevor Ihre Produktion stillsteht.',
-    descEN: 'Proactive monitoring of component supply. We identify end-of-life notices early and qualify alternative components – before your production stops.',
+    descDE: 'Datenbankgestützte Überwachung Ihrer Bauteilversorgung mit automatisierten Prozessen zur frühzeitigen Problemerkennung. Wir entwickeln kundenspezifische Workflows und Strategien – inklusive Simulationen auf Basis von Bestands- und Marktdaten. Durch unseren hervorragenden Zugang zum Liefermarkt qualifizieren wir Alternativbauteile, bevor Ihre Produktion gefährdet ist.',
+    descEN: 'Database-driven monitoring of your component supply with automated processes for early problem detection. We develop customer-specific workflows and strategies – including simulations based on inventory and market data. Through our excellent access to the supplier market, we qualify alternative components before your production is at risk.',
   },
   {
     icon: ShieldAlert,
@@ -35,8 +35,8 @@ const services = [
     icon: Wrench,
     titleDE: 'Reparatur & Service',
     titleEN: 'Repair & Service',
-    descDE: 'Professionelle Reparatur und Instandsetzung Ihrer elektronischen Baugruppen – mit Fehleranalyse, Dokumentation und Rückverfolgbarkeit.',
-    descEN: 'Professional repair and refurbishment of your electronic assemblies – with failure analysis, documentation and traceability.',
+    descDE: 'Professionelle Reparatur und Instandsetzung geschäftskritischer elektronischer Baugruppen. Wenn der Ausfall oder Verlust Ihrer Elektronik zu erheblichen Folgekosten führt – in der Produktion, im Feld oder in sicherheitsrelevanten Anwendungen – bieten wir systematische Fehleranalyse, fachgerechte Instandsetzung und lückenlose Dokumentation mit Rückverfolgbarkeit.',
+    descEN: 'Professional repair and refurbishment of business-critical electronic assemblies. When the failure or loss of your electronics leads to significant consequential costs – in production, in the field, or in safety-relevant applications – we provide systematic failure analysis, expert repair and complete documentation with traceability.',
   },
 ];
 

@@ -95,7 +95,7 @@ const toolchain = [
   {
     toolDE: 'Simscape Electrical',
     toolEN: 'Simscape Electrical',
-    logo: `${CDN}/mathworks_c08e88a4.png`,
+    logo: `${CDN}/simscape-electrical-icon_dc0d506e.png`,
     areaDE: 'Elektro- & Antriebssimulation',
     areaEN: 'Electrical & Drive Simulation',
     descDE: 'Detaillierte Modellierung elektrischer Antriebe und Leistungselektronik',
@@ -167,52 +167,19 @@ export default function Simulation() {
       {/* Intro */}
       <section className="section-pad">
         <div className="container">
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <p className="fluid-body-lg text-gray-700 leading-relaxed">
-                {isDE
-                  ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil des Entwicklungsprozesses. Bereits in der Konzeptphase setzen wir auf modellbasierte Simulation, um Designentscheidungen abzusichern, Risiken frühzeitig zu erkennen und die Anzahl physischer Prototypen zu minimieren.'
-                  : 'At CME, simulation is not a downstream verification step but an integral part of the development process. Already in the concept phase, we rely on model-based simulation to validate design decisions, identify risks early and minimize the number of physical prototypes.'}
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="hidden lg:flex items-center justify-center"
-            >
-              <div className="relative">
-                {/* Accent diamond behind */}
-                <div
-                  className="absolute diamond bg-cme-blue/[0.06]"
-                  style={{
-                    zIndex: 0,
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-42%, -50%)',
-                    width: '340px',
-                  }}
-                />
-                {/* Main diamond with image */}
-                <div
-                  className="diamond overflow-hidden relative"
-                  style={{ width: '280px', zIndex: 1 }}
-                >
-                  <img
-                    src="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg"
-                    alt={isDE ? 'Simulation & Toolchain' : 'Simulation & Toolchain'}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl"
+          >
+            <p className="fluid-body-lg text-gray-700 leading-relaxed">
+              {isDE
+                ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil des Entwicklungsprozesses. Bereits in der Konzeptphase setzen wir auf modellbasierte Simulation, um Designentscheidungen abzusichern, Risiken frühzeitig zu erkennen und die Anzahl physischer Prototypen zu minimieren.'
+                : 'At CME, simulation is not a downstream verification step but an integral part of the development process. Already in the concept phase, we rely on model-based simulation to validate design decisions, identify risks early and minimize the number of physical prototypes.'}
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -302,7 +269,7 @@ export default function Simulation() {
               >
                 {/* Tool logo + name */}
                 <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
-                  <div className="w-20 h-20 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 p-2.5">
+                  <div className="w-32 h-32 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 p-3">
                     <img
                       src={tool.logo}
                       alt={isDE ? tool.toolDE : tool.toolEN}
