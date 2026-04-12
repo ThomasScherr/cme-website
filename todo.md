@@ -255,3 +255,4 @@
 - [x] Lifecycle: Obsolescence Management Text überarbeiten (datenbankgestützt, kundenspezifische Workflows, Simulationen auf Bestands-/Marktdaten, Liefermarktzugang)
 - [x] Lifecycle: Reparatur & Service Text überarbeiten (Fokus auf geschäftskritische Elektronik, nicht Consumer, teure Folgekosten bei Ausfall)
 - [x] Simulation: Toolchain-Kacheln Layout ändern – Logo oben, Text darunter (nicht nebeneinander)
+- [x] Simulation: Toolchain-Logos werden abgeschnitten – Container auf w-36 h-36 vergrößert, overflow visible

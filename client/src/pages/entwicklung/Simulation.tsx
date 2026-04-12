@@ -269,7 +269,7 @@ export default function Simulation() {
               >
                 {/* Tool logo */}
                 <div className="flex justify-center" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-                  <div className="w-28 h-28 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-3">
+                  <div className="w-36 h-36 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-4 overflow-visible">
                     <img
                       src={tool.logo}
                       alt={isDE ? tool.toolDE : tool.toolEN}
