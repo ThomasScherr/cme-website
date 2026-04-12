@@ -309,3 +309,5 @@
 - [x] ADD: Expertenwissen-Sektion auf Hardware & Software Seite (>150°C, >300A, >20g)
 - [x] FIX: Letzte FPGA-Referenzen aus contentDefinitions.ts und HardwareSoftware.tsx entfernt
 - [x] ADD: Eigene Embedded-Software-Sektion auf Hardware & Software Seite (ISO 15504, MISRA, SW-Tests, MCU-Optimierung, Low-cost-Antriebe)
+- [x] ADD: Aufbau- & Verbindungstechnik als Feature-Card auf Hardware & Software Seite
+- [x] FIX: Expertenwissen >500 A Beschreibungstext anpassen

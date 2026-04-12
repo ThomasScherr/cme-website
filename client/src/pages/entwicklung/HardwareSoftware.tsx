@@ -39,6 +39,7 @@ const features = [
   { de: 'Embedded C/C++ Firmware', en: 'Embedded C/C++ Firmware', icon: Code },
   { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },
   { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)', icon: ShieldCheck },
+  { de: 'Aufbau- & Verbindungstechnik (Keramik, IMS, Stanzgitter, Bare-Die)', en: 'Assembly & Interconnection Technology (Ceramic, IMS, Leadframe, Bare-Die)', icon: CircuitBoard },
 ];
 
 /* ── Embedded Software ── */
@@ -73,9 +74,9 @@ const expertiseItems = [
     icon: Zap,
     value: '>500 A',
     de: 'Schaltungsauslegung',
-    descDE: 'Hochstrom-Designs für Antriebsumrichter, Ladetechnik und Schweißstromquellen – mit optimierter Aufbau- und Verbindungstechnik.',
+    descDE: 'Hochstrom-Designs für Antriebsumrichter, Ladetechnik und industrielle Stromversorgungen – optimierte Stromschienen, Kupfer-Inlays und AVT für Dauerströme jenseits von 500 A.',
     en: 'Circuit Design',
-    descEN: 'High-current designs for drive inverters, charging technology and welding power sources – with optimized assembly and interconnection technology.',
+    descEN: 'High-current designs for drive inverters, charging technology and industrial power supplies – optimized busbars, copper inlays and assembly technology for continuous currents beyond 500 A.',
   },
   {
     icon: Activity,
