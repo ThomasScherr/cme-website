@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { RefreshCcw, ShieldAlert, Package, Wrench } from 'lucide-react';
+import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_d94dc755.webm';
@@ -21,8 +21,10 @@ const services = [
     icon: ShieldAlert,
     titleDE: 'Redesign & Re-Engineering',
     titleEN: 'Redesign & Re-Engineering',
-    descDE: 'Wenn ein Redesign unvermeidbar ist: Wir überarbeiten Ihre Elektronik unter Berücksichtigung der bestehenden Zulassungen und minimieren den Requalifizierungsaufwand.',
-    descEN: 'When redesign is unavoidable: We rework your electronics considering existing certifications and minimize requalification effort.',
+    descDE: 'Wenn ein Redesign unvermeidbar ist, machen wir aus der Pflicht eine Chance: Wir überarbeiten Ihre Elektronik unter Berücksichtigung der bestehenden Zulassungen und minimieren den Requalifizierungsaufwand. Gleichzeitig nutzen wir die Gelegenheit, Ihr Produkt gezielt zu verbessern.',
+    descEN: 'When redesign is unavoidable, we turn necessity into opportunity: We rework your electronics considering existing certifications and minimize requalification effort. At the same time, we use the opportunity to specifically improve your product.',
+    bulletsDe: ['Verbesserung des Wirkungsgrades', 'Leistungserhöhung', 'Reduktion von Energieverbrauch', 'Anpassung an verringerten Bauraum', 'Erhöhung der Lebensdauer', 'Implementierung neuer Funktionen', 'Verbesserung von Fertigungsprozessen', 'Reduzierung von Stück- oder Produktionskosten'],
+    bulletsEn: ['Efficiency improvement', 'Power increase', 'Energy consumption reduction', 'Adaptation to reduced installation space', 'Lifetime extension', 'Implementation of new functions', 'Manufacturing process improvement', 'Reduction of unit or production costs'],
   },
   {
     icon: Package,
@@ -85,6 +87,16 @@ export default function Lifecycle() {
                 <p className="text-gray-600 leading-relaxed fluid-body">
                   {isDE ? service.descDE : service.descEN}
                 </p>
+                {'bulletsDe' in service && (service as any).bulletsDe && (
+                  <ul className="space-y-1.5" style={{ marginTop: 'var(--space-gap-xs)' }}>
+                    {((isDE ? (service as any).bulletsDe : (service as any).bulletsEn) as string[]).map((item: string, j: number) => (
+                      <li key={j} className="flex items-start gap-2 fluid-small text-gray-600">
+                        <CheckCircle2 className="text-cme-blue shrink-0 mt-0.5" size={14} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </motion.div>
             ))}
           </div>

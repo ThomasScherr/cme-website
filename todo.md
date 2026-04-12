@@ -311,3 +311,5 @@
 - [x] ADD: Eigene Embedded-Software-Sektion auf Hardware & Software Seite (ISO 15504, MISRA, SW-Tests, MCU-Optimierung, Low-cost-Antriebe)
 - [x] ADD: Aufbau- & Verbindungstechnik als Feature-Card auf Hardware & Software Seite
 - [x] FIX: Expertenwissen >500 A Beschreibungstext anpassen
+- [x] FIX: Kachel "Vibrations- & Schockprüfungen" von Validierung & EMV Seite entfernt
+- [x] ADD: Lifecycle-Seite Redesign-Service um Optimierungsziele im Lifecycle-Kontext erweitert
