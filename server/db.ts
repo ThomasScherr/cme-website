@@ -1,7 +1,7 @@
-import { eq, desc, and, sql } from "drizzle-orm";
+import { eq, desc, and, sql, like, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions, siteStyles, stylePresets } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertCategory, InsertSiteStyle, InsertStylePreset } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, siteStyles, stylePresets, siteContent, mediaLibrary } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -277,4 +277,120 @@ export async function deleteStylePreset(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   await db.delete(stylePresets).where(eq(stylePresets.id, id));
+}
+
+// ── CMS: Site Content Queries ─────────────────────────────────────────────
+
+/** Get all content entries for a given page (prefix match on contentKey) */
+export async function getContentByPage(pageKey: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(siteContent)
+    .where(like(siteContent.contentKey, `${pageKey}.%`));
+}
+
+/** Get all site content (for bulk loading) */
+export async function getAllContent() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(siteContent);
+}
+
+/** Get a single content entry by key */
+export async function getContentByKey(key: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(siteContent)
+    .where(eq(siteContent.contentKey, key)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/** Get multiple content entries by keys */
+export async function getContentByKeys(keys: string[]) {
+  const db = await getDb();
+  if (!db) return [];
+  if (keys.length === 0) return [];
+  return db.select().from(siteContent)
+    .where(inArray(siteContent.contentKey, keys));
+}
+
+/** Upsert a content entry (insert or update) */
+export async function upsertContent(data: InsertSiteContent) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const existing = await getContentByKey(data.contentKey);
+  if (existing) {
+    await db.update(siteContent).set({
+      valueDe: data.valueDe,
+      valueEn: data.valueEn,
+      contentType: data.contentType,
+    }).where(eq(siteContent.contentKey, data.contentKey));
+    return { id: existing.id };
+  } else {
+    const result = await db.insert(siteContent).values(data);
+    return { id: Number(result[0].insertId) };
+  }
+}
+
+/** Bulk upsert multiple content entries */
+export async function bulkUpsertContent(entries: InsertSiteContent[]) {
+  for (const entry of entries) {
+    await upsertContent(entry);
+  }
+}
+
+/** Delete a content entry by key */
+export async function deleteContent(key: string) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(siteContent).where(eq(siteContent.contentKey, key));
+}
+
+// ── CMS: Media Library Queries ───────────────────────────────────────────
+
+/** Get all media items, newest first */
+export async function getAllMedia(limit = 100, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(mediaLibrary)
+    .orderBy(desc(mediaLibrary.uploadedAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+/** Get media items filtered by MIME type prefix (e.g. 'image/', 'video/') */
+export async function getMediaByType(typePrefix: string, limit = 100) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(mediaLibrary)
+    .where(like(mediaLibrary.mimeType, `${typePrefix}%`))
+    .orderBy(desc(mediaLibrary.uploadedAt))
+    .limit(limit);
+}
+
+/** Add a new media item */
+export async function createMediaItem(data: InsertMediaItem) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(mediaLibrary).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+/** Delete a media item */
+export async function deleteMediaItem(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(mediaLibrary).where(eq(mediaLibrary.id, id));
+}
+
+/** Search media by filename or tags */
+export async function searchMedia(query: string, limit = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(mediaLibrary)
+    .where(
+      sql`${mediaLibrary.filename} LIKE ${`%${query}%`} OR ${mediaLibrary.tags} LIKE ${`%${query}%`}`
+    )
+    .orderBy(desc(mediaLibrary.uploadedAt))
+    .limit(limit);
 }

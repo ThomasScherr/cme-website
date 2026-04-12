@@ -42,6 +42,7 @@ const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const InsightsAdmin = lazy(() => import("./pages/admin/InsightsAdmin"));
 const StylesheetEditor = lazy(() => import("./pages/admin/StylesheetEditor"));
 const InsightPreview = lazy(() => import("./pages/admin/InsightPreview"));
+const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
 
 function PageLoader() {
   return (
@@ -89,6 +90,7 @@ function Router() {
         <Route path="/admin/insights" component={InsightsAdmin} />
         <Route path="/admin/insights/preview/:id" component={InsightPreview} />
         <Route path="/admin/styles" component={StylesheetEditor} />
+        <Route path="/admin/content" component={ContentManager} />
 
         {/* Rechtliches */}
         <Route path="/impressum" component={Impressum} />

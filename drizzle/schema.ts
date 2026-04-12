@@ -125,3 +125,48 @@ export const stylePresets = mysqlTable("style_presets", {
 
 export type StylePreset = typeof stylePresets.$inferSelect;
 export type InsertStylePreset = typeof stylePresets.$inferInsert;
+
+/**
+ * CMS: Editable site content – every text, image and video on every page
+ * contentKey format: "pageKey.sectionKey.fieldKey" (e.g. "home.hero.headline")
+ */
+export const siteContent = mysqlTable("site_content", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Unique content key, e.g. "home.hero.headline" */
+  contentKey: varchar("contentKey", { length: 255 }).notNull().unique(),
+  /** Content type: text, richtext, image, video */
+  contentType: mysqlEnum("contentType", ["text", "richtext", "image", "video"]).notNull(),
+  /** German value */
+  valueDe: text("valueDe"),
+  /** English value */
+  valueEn: text("valueEn"),
+  /** Updated timestamp */
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SiteContent = typeof siteContent.$inferSelect;
+export type InsertSiteContent = typeof siteContent.$inferInsert;
+
+/**
+ * CMS: Media library – all uploaded assets for reuse across the site
+ */
+export const mediaLibrary = mysqlTable("media_library", {
+  id: int("id").autoincrement().primaryKey(),
+  /** CDN URL of the uploaded file */
+  url: text("url").notNull(),
+  /** Original filename */
+  filename: varchar("filename", { length: 500 }).notNull(),
+  /** MIME type (image/jpeg, video/mp4, etc.) */
+  mimeType: varchar("mimeType", { length: 100 }).notNull(),
+  /** File size in bytes */
+  fileSize: int("fileSize").default(0).notNull(),
+  /** Comma-separated tags for search/filter */
+  tags: text("tags"),
+  /** Alt text for accessibility */
+  altText: varchar("altText", { length: 500 }),
+  /** Upload timestamp */
+  uploadedAt: timestamp("uploadedAt").defaultNow().notNull(),
+});
+
+export type MediaItem = typeof mediaLibrary.$inferSelect;
+export type InsertMediaItem = typeof mediaLibrary.$inferInsert;

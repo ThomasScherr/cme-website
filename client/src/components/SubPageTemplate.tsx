@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { ArrowRight, type LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -18,6 +19,8 @@ interface HeroVideo {
 }
 
 interface SubPageProps {
+  /** CMS page key for content overrides */
+  pageKey?: string;
   parentHref: string;
   parentLabelDE: string;
   parentLabelEN: string;
@@ -35,6 +38,7 @@ interface SubPageProps {
 }
 
 export default function SubPageTemplate({
+  pageKey,
   parentHref,
   parentLabelDE,
   parentLabelEN,
@@ -53,6 +57,26 @@ export default function SubPageTemplate({
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
+  // CMS content overrides
+  const { img, vid, t: cmsText } = useContent(pageKey || '');
+
+  // Override hero media from CMS if available
+  const effectiveHeroImg = (pageKey && img('hero.image')) || heroImg;
+  const effectiveHeroVideo: HeroVideo | undefined = (() => {
+    if (!pageKey) return heroVideo;
+    const webm = vid('hero.videoWebm');
+    const mp4 = vid('hero.videoMp4');
+    if (webm || mp4) {
+      return { webm: webm || undefined, mp4: mp4 || undefined, poster: heroVideo?.poster };
+    }
+    return heroVideo;
+  })();
+
+  // Override text from CMS if available
+  const effectiveTitle = (pageKey && cmsText('content.title')) || (isDE ? titleDE : titleEN);
+  const effectiveSubtitle = (pageKey && cmsText('content.subtitle')) || (isDE ? subtitleDE : subtitleEN);
+  const effectiveIntro = (pageKey && cmsText('content.intro')) || (isDE ? introDE : introEN);
+
   return (
     <Layout>
       <SubPageHero
@@ -65,11 +89,11 @@ export default function SubPageTemplate({
           label: isDE ? parentLabelDE : parentLabelEN,
           href: parentHref,
         }}
-        headline={isDE ? titleDE : titleEN}
-        description={isDE ? subtitleDE : subtitleEN}
-        heroImage={heroImg}
-        heroImageAlt={isDE ? titleDE : titleEN}
-        heroVideo={heroVideo}
+        headline={effectiveTitle}
+        description={effectiveSubtitle}
+        heroImage={effectiveHeroImg}
+        heroImageAlt={effectiveTitle}
+        heroVideo={effectiveHeroVideo}
       />
 
       {/* Content */}
@@ -89,7 +113,7 @@ export default function SubPageTemplate({
                 }}
               >
                 <img
-                  src={heroImg}
+                  src={effectiveHeroImg}
                   alt={isDE ? titleDE : titleEN}
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ transform: 'rotate(-45deg) scale(1.42)' }}
@@ -109,7 +133,7 @@ export default function SubPageTemplate({
             {/* Text on the right */}
             <div>
               <p className="fluid-body-lg text-gray-700 leading-relaxed">
-                {isDE ? introDE : introEN}
+                {effectiveIntro}
               </p>
             </div>
           </div>

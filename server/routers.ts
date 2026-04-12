@@ -30,8 +30,22 @@ import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
 import { generateSeoContent } from "./seoGenerator";
 import { translateArticle } from "./articleTranslator";
+import { batchTranslateFields } from "./contentTranslator";
 import { storagePut } from "./storage";
 import crypto from "crypto";
+import {
+  getAllContent,
+  getContentByPage,
+  getContentByKeys,
+  upsertContent,
+  bulkUpsertContent,
+  deleteContent,
+  getAllMedia,
+  getMediaByType,
+  createMediaItem,
+  deleteMediaItem,
+  searchMedia,
+} from "./db";
 
 // Admin-only procedure
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -368,7 +382,221 @@ export const appRouter = router({
       }),
   }),
 
-  // ── Style Presets ───────────────────────────────────────────
+  // ── CMS: Site Content ─────────────────────────────────────────────
+  cms: router({
+    /** Public: get all content (bulk load for frontend) */
+    getAll: publicProcedure.query(async () => {
+      return getAllContent();
+    }),
+
+    /** Public: get content for a specific page */
+    getByPage: publicProcedure
+      .input(z.object({ pageKey: z.string() }))
+      .query(async ({ input }) => {
+        return getContentByPage(input.pageKey);
+      }),
+
+    /** Public: get content by specific keys */
+    getByKeys: publicProcedure
+      .input(z.object({ keys: z.array(z.string()) }))
+      .query(async ({ input }) => {
+        return getContentByKeys(input.keys);
+      }),
+
+    /** Admin: update a single content field (with auto-translation) */
+    update: adminProcedure
+      .input(z.object({
+        contentKey: z.string().min(1),
+        contentType: z.enum(["text", "richtext", "image", "video"]),
+        valueDe: z.string().nullable().optional(),
+        valueEn: z.string().nullable().optional(),
+        /** Which language was edited (triggers translation to the other) */
+        editedLang: z.enum(["de", "en"]).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { contentKey, contentType, valueDe, valueEn, editedLang } = input;
+
+        // Save the content first
+        const result = await upsertContent({
+          contentKey,
+          contentType,
+          valueDe: valueDe ?? undefined,
+          valueEn: valueEn ?? undefined,
+        });
+
+        // Auto-translate text/richtext if a language was edited
+        if (editedLang && (contentType === "text" || contentType === "richtext")) {
+          const sourceText = editedLang === "de" ? valueDe : valueEn;
+          if (sourceText) {
+            const fromLang = editedLang;
+            const toLang = editedLang === "de" ? "en" : "de";
+            // Non-blocking async translation
+            batchTranslateFields({
+              fields: { [contentKey]: sourceText },
+              fromLang,
+              toLang,
+              pageContext: contentKey.split(".").slice(0, 2).join(" "),
+            }).then(async (translations) => {
+              const translated = translations[contentKey];
+              if (translated) {
+                await upsertContent({
+                  contentKey,
+                  contentType,
+                  valueDe: toLang === "de" ? translated : valueDe ?? undefined,
+                  valueEn: toLang === "en" ? translated : valueEn ?? undefined,
+                });
+                console.log(`[CMS] Auto-translated ${contentKey} ${fromLang}→${toLang}`);
+              }
+            }).catch((err) => {
+              console.error(`[CMS] Auto-translation failed for ${contentKey}:`, err);
+            });
+          }
+        }
+
+        return { success: true, id: result.id };
+      }),
+
+    /** Admin: bulk update multiple content fields */
+    bulkUpdate: adminProcedure
+      .input(z.object({
+        entries: z.array(z.object({
+          contentKey: z.string().min(1),
+          contentType: z.enum(["text", "richtext", "image", "video"]),
+          valueDe: z.string().nullable().optional(),
+          valueEn: z.string().nullable().optional(),
+        })),
+        /** Which language was edited (triggers batch translation) */
+        editedLang: z.enum(["de", "en"]).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { entries, editedLang } = input;
+
+        // Save all entries
+        await bulkUpsertContent(entries.map(e => ({
+          contentKey: e.contentKey,
+          contentType: e.contentType,
+          valueDe: e.valueDe ?? undefined,
+          valueEn: e.valueEn ?? undefined,
+        })));
+
+        // Auto-translate text fields if a language was edited
+        if (editedLang) {
+          const textEntries = entries.filter(
+            e => (e.contentType === "text" || e.contentType === "richtext")
+          );
+          const fieldsToTranslate: Record<string, string> = {};
+          for (const entry of textEntries) {
+            const sourceText = editedLang === "de" ? entry.valueDe : entry.valueEn;
+            if (sourceText) {
+              fieldsToTranslate[entry.contentKey] = sourceText;
+            }
+          }
+
+          if (Object.keys(fieldsToTranslate).length > 0) {
+            const fromLang = editedLang;
+            const toLang = editedLang === "de" ? "en" : "de";
+            // Non-blocking async batch translation
+            batchTranslateFields({
+              fields: fieldsToTranslate,
+              fromLang,
+              toLang,
+            }).then(async (translations) => {
+              const updates = Object.entries(translations).map(([key, translated]) => {
+                const original = entries.find(e => e.contentKey === key);
+                return {
+                  contentKey: key,
+                  contentType: (original?.contentType || "text") as "text" | "richtext" | "image" | "video",
+                  valueDe: toLang === "de" ? translated : original?.valueDe ?? undefined,
+                  valueEn: toLang === "en" ? translated : original?.valueEn ?? undefined,
+                };
+              });
+              await bulkUpsertContent(updates);
+              console.log(`[CMS] Batch auto-translated ${updates.length} fields ${fromLang}→${toLang}`);
+            }).catch((err) => {
+              console.error(`[CMS] Batch auto-translation failed:`, err);
+            });
+          }
+        }
+
+        return { success: true };
+      }),
+
+    /** Admin: delete a content entry */
+    delete: adminProcedure
+      .input(z.object({ contentKey: z.string() }))
+      .mutation(async ({ input }) => {
+        await deleteContent(input.contentKey);
+        return { success: true };
+      }),
+  }),
+
+  // ── CMS: Media Library ───────────────────────────────────────────
+  media: router({
+    /** Admin: list all media */
+    list: adminProcedure
+      .input(z.object({
+        limit: z.number().min(1).max(200).default(100),
+        offset: z.number().min(0).default(0),
+        typeFilter: z.string().optional(), // e.g. "image/" or "video/"
+      }).optional())
+      .query(async ({ input }) => {
+        const { limit = 100, offset = 0, typeFilter } = input ?? {};
+        if (typeFilter) {
+          return getMediaByType(typeFilter, limit);
+        }
+        return getAllMedia(limit, offset);
+      }),
+
+    /** Admin: search media by filename or tags */
+    search: adminProcedure
+      .input(z.object({ query: z.string().min(1) }))
+      .query(async ({ input }) => {
+        return searchMedia(input.query);
+      }),
+
+    /** Admin: upload a media file to S3 and add to library */
+    upload: adminProcedure
+      .input(z.object({
+        fileName: z.string().min(1),
+        fileBase64: z.string().min(1),
+        mimeType: z.string().min(1),
+        tags: z.string().optional(),
+        altText: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const buffer = Buffer.from(input.fileBase64, "base64");
+        // Max 50 MB for videos
+        if (buffer.length > 50 * 1024 * 1024) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Datei zu groß (max. 50 MB)" });
+        }
+        const ext = input.fileName.split(".").pop() || "bin";
+        const randomSuffix = crypto.randomBytes(8).toString("hex");
+        const fileKey = `cms/media/${Date.now()}-${randomSuffix}.${ext}`;
+        const { url } = await storagePut(fileKey, buffer, input.mimeType);
+
+        // Add to media library
+        const result = await createMediaItem({
+          url,
+          filename: input.fileName,
+          mimeType: input.mimeType,
+          fileSize: buffer.length,
+          tags: input.tags,
+          altText: input.altText,
+        });
+
+        return { id: result.id, url };
+      }),
+
+    /** Admin: delete a media item */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteMediaItem(input.id);
+        return { success: true };
+      }),
+  }),
+
+  // ── Style Presets ───────────────────────────────────────────────────
   stylePresets: router({
     /** Admin: list all presets */
     list: adminProcedure.query(async () => {

@@ -14,6 +14,7 @@ import {
 export default function EMotorDesign() {
   return (
     <SubPageTemplate
+      pageKey="entwicklung.emotordesign"
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"
