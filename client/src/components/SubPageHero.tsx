@@ -26,6 +26,9 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
 
+// ── Default fallback image ────────────────────────────────────
+const DEFAULT_HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/K5A0004_retouch_b2db17ab.jpg';
+
 // ── Types ──────────────────────────────────────────────────────
 
 interface BreadcrumbItem {
@@ -258,7 +261,9 @@ export default function SubPageHero({
   backLink,
   children,
 }: SubPageHeroProps) {
-  const hasMedia = !!(heroImage || heroVideo);
+  // Use fallback image when no heroImage and no heroVideo is provided
+  const effectiveImage = heroImage || (!heroVideo ? DEFAULT_HERO_IMAGE : undefined);
+  const hasMedia = !!(effectiveImage || heroVideo);
 
   return (
     <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
@@ -373,7 +378,7 @@ export default function SubPageHero({
                   className="w-full"
                 >
                   <RectangularMedia
-                    image={heroImage}
+                    image={effectiveImage}
                     imageAlt={heroImageAlt}
                     video={heroVideo}
                   />
@@ -387,7 +392,7 @@ export default function SubPageHero({
                   className="w-full"
                 >
                   <FloatingMedia
-                    image={heroImage}
+                    image={effectiveImage}
                     imageAlt={heroImageAlt}
                     video={heroVideo}
                   />
@@ -422,7 +427,7 @@ export default function SubPageHero({
                     style={{ zIndex: 2, position: 'relative' }}
                   >
                     <DiamondMedia
-                      image={heroImage}
+                      image={effectiveImage}
                       imageAlt={heroImageAlt}
                       video={heroVideo}
                     />

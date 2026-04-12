@@ -287,3 +287,4 @@
 - [x] I18N: Automatische Übersetzung bei Artikel-Erstellung und -Aktualisierung auslösen
 - [x] I18N: Frontend – Sprachabhängige Anzeige der Artikel (DE/EN) in Übersicht und Detailseite
 - [x] I18N: Vorschau-Seite ebenfalls sprachabhängig machen
+- [x] SubPageHero: Standard-Bild durch CME-Foto (K5A0004_retouch) von control-motion.de ersetzen
