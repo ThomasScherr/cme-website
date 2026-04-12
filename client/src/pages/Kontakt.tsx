@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { trpc } from '@/lib/trpc';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
@@ -9,6 +10,7 @@ import { useState } from 'react';
 export default function Kontakt() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t, img } = useContent('kontakt');
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', company: '', phone: '', subject: '', message: '' });
 
@@ -24,20 +26,19 @@ export default function Kontakt() {
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Kontakt' : 'Contact'}
-        headline={isDE ? 'Direkter Draht zu unseren Experten.' : 'Direct line to our experts.'}
-        description={isDE
-          ? 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.'
-          : 'Project inquiry, technical question or visit in Dortmund – we respond personally.'}
+        tagline={t('hero.tagline')}
+        headline={t('hero.headline')}
+        description={t('hero.description')}
+        heroImage={img('hero.heroImage')}
       >
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
-          <a href="tel:+492312866769600" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
+          <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
             <Phone size={18} className="text-cme-accent" />
-            +49 231 28 66 76 96-0
+            {t('contact.phone')}
           </a>
-          <a href="mailto:sales@control-motion.de" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
+          <a href={`mailto:${t('contact.email')}`} className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
             <Mail size={18} className="text-cme-accent" />
-            sales@control-motion.de
+            {t('contact.email')}
           </a>
         </div>
       </SubPageHero>
@@ -61,8 +62,12 @@ export default function Kontakt() {
                       <MapPin style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <div>
-                      <p className="font-medium text-cme-dark fluid-small">CME Control Motion Electronics GmbH</p>
-                      <p className="text-gray-600 fluid-xs" style={{ marginTop: 'clamp(0.125rem, 0.05rem + 0.15vw, 0.25rem)' }}>Alter Hellweg 48<br />44379 Dortmund<br />{isDE ? 'Deutschland' : 'Germany'}</p>
+                      <p className="font-medium text-cme-dark fluid-small">{t('contact.companyName')}</p>
+                      <p className="text-gray-600 fluid-xs" style={{ marginTop: 'clamp(0.125rem, 0.05rem + 0.15vw, 0.25rem)' }}>
+                        {t('contact.street')}<br />
+                        {t('contact.zipCity')}<br />
+                        {t('contact.country')}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
@@ -74,7 +79,7 @@ export default function Kontakt() {
                     </div>
                     <div>
                       <p className="font-medium text-cme-dark fluid-small">{isDE ? 'Telefon' : 'Phone'}</p>
-                      <a href="tel:+4923128667696" className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">+49 231 28 66 76 96-0</a>
+                      <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contact.phone')}</a>
                     </div>
                   </div>
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
@@ -86,7 +91,7 @@ export default function Kontakt() {
                     </div>
                     <div>
                       <p className="font-medium text-cme-dark fluid-small">E-Mail</p>
-                      <a href="mailto:info@control-motion.de" className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">info@control-motion.de</a>
+                      <a href={`mailto:${t('contact.emailInfo')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contact.emailInfo')}</a>
                     </div>
                   </div>
                 </div>
@@ -104,12 +109,10 @@ export default function Kontakt() {
                 >
                   <CheckCircle className="text-green-500 mx-auto" style={{ width: 'var(--icon-box)', height: 'var(--icon-box)', marginBottom: 'var(--space-gap-xs)' }} />
                   <h3 className="fluid-h3 text-cme-dark">
-                    {isDE ? 'Vielen Dank!' : 'Thank you!'}
+                    {t('form.successTitle')}
                   </h3>
                   <p className="text-gray-600 fluid-body" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                    {isDE
-                      ? 'Ihre Nachricht ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden bei Ihnen.'
-                      : 'Your message has been received. We will get back to you within 24 hours.'}
+                    {t('form.successMessage')}
                   </p>
                 </motion.div>
               ) : (
@@ -184,11 +187,11 @@ export default function Kontakt() {
                       style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                     >
                       <option value="">{isDE ? 'Bitte wählen...' : 'Please select...'}</option>
-                      <option value="development">{isDE ? 'Entwicklungsprojekt' : 'Development Project'}</option>
-                      <option value="manufacturing">{isDE ? 'Fertigungsanfrage' : 'Manufacturing Inquiry'}</option>
-                      <option value="lifecycle">{isDE ? 'Lifecycle Services' : 'Lifecycle Services'}</option>
-                      <option value="general">{isDE ? 'Allgemeine Anfrage' : 'General Inquiry'}</option>
-                      <option value="career">{isDE ? 'Karriere / Bewerbung' : 'Career / Application'}</option>
+                      <option value="development">{t('form.subjectDevelopment')}</option>
+                      <option value="manufacturing">{t('form.subjectManufacturing')}</option>
+                      <option value="lifecycle">{t('form.subjectLifecycle')}</option>
+                      <option value="general">{t('form.subjectGeneral')}</option>
+                      <option value="career">{t('form.subjectCareer')}</option>
                     </select>
                   </div>
                   <div>
@@ -215,7 +218,7 @@ export default function Kontakt() {
                     ) : (
                       <>
                         <Send size={18} />
-                        {isDE ? 'Nachricht senden' : 'Send Message'}
+                        {t('form.sendButton')}
                       </>
                     )}
                   </button>

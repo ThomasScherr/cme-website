@@ -114,7 +114,7 @@ function DiamondMedia({ image, imageAlt, video }: {
         <img
           src={image}
           alt={imageAlt || ''}
-          className="object-cover"
+          className="object-cover" style={{marginTop: '64px', marginRight: '-102px', marginLeft: '-4px'}}
         />
       </div>
     );

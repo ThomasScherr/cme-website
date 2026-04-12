@@ -318,3 +318,7 @@
 - [x] FIX: Kontakt-Seite in admin/content CMS-Definitionen erweitert – Hero (inkl. Telefon/E-Mail), Kontaktdaten, Kontaktformular
 - [x] FIX: Alle Seiten in contentDefinitions.ts geprüft – Kontakt war die einzige mit fehlenden Sektionen
 - [x] FIX: Hero-Bilder/Videos für ALLE 20 Seiten im CMS Content Editor ergänzt (Home, Entwicklung + 9 Unterseiten, Fertigung + 3 Unterseiten, Lifecycle, Märkte, Unternehmen, Kontakt, Karriere)
+- [ ] FIX: CMS-Änderungen werden nicht auf den Seiten angezeigt – alle Seiten mit useContent-Hook verbinden
+- [x] FIX: Kontakt-Seite mit CMS verbinden (Hero-Bild, Texte, Kontaktdaten)
+- [ ] FIX: SubPageTemplate-basierte Seiten mit CMS verbinden (alle Entwicklung/Fertigung-Unterseiten)
+- [ ] FIX: Hub-Seiten (Entwicklung, Fertigung) und Standalone-Seiten (Lifecycle, Märkte, Unternehmen, Karriere, Home) mit CMS verbinden
