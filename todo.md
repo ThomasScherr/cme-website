@@ -313,3 +313,5 @@
 - [x] FIX: Expertenwissen >500 A Beschreibungstext anpassen
 - [x] FIX: Kachel "Vibrations- & Schockprüfungen" von Validierung & EMV Seite entfernt
 - [x] ADD: Lifecycle-Seite Redesign-Service um Optimierungsziele im Lifecycle-Kontext erweitert
+- [x] FIX: Kontakt-Seite "Fachleuten" → "Experten" geändert
+- [x] ADD: Kontakt-Seite Telefon und E-Mail zusätzlich im Hero-Bereich (sales@control-motion.de, +49 231 28 66 76 96-0)

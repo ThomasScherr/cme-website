@@ -25,11 +25,22 @@ export default function Kontakt() {
     <Layout>
       <SubPageHero
         tagline={isDE ? 'Kontakt' : 'Contact'}
-        headline={isDE ? 'Direkter Draht zu unseren Fachleuten.' : 'Direct line to our specialists.'}
+        headline={isDE ? 'Direkter Draht zu unseren Experten.' : 'Direct line to our experts.'}
         description={isDE
           ? 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.'
           : 'Project inquiry, technical question or visit in Dortmund – we respond personally.'}
-      />
+      >
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
+          <a href="tel:+492312866769600" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
+            <Phone size={18} className="text-cme-accent" />
+            +49 231 28 66 76 96-0
+          </a>
+          <a href="mailto:sales@control-motion.de" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
+            <Mail size={18} className="text-cme-accent" />
+            sales@control-motion.de
+          </a>
+        </div>
+      </SubPageHero>
 
       {/* Contact Info + Form */}
       <section className="section-pad">
