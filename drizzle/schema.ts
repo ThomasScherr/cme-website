@@ -59,6 +59,13 @@ export const articles = mysqlTable("articles", {
   metaTitle: varchar("metaTitle", { length: 255 }),
   /** SEO meta description (optional, falls back to excerpt) */
   metaDescription: text("metaDescription"),
+  /** ── English translation fields (auto-generated via OpenAI) ── */
+  titleEn: varchar("titleEn", { length: 500 }),
+  excerptEn: text("excerptEn"),
+  contentEn: text("contentEn"),
+  tagsEn: text("tagsEn"),
+  metaTitleEn: varchar("metaTitleEn", { length: 255 }),
+  metaDescriptionEn: text("metaDescriptionEn"),
   /** Reading time in minutes (calculated on save) */
   readingTime: int("readingTime").default(5),
   /** Published date (set when status changes to published) */

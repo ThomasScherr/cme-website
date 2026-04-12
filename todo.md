@@ -282,3 +282,8 @@
 - [x] UPLOAD: Cover-Bild-Upload im Insights-Admin (Datei-Upload statt nur URL, S3-Speicherung)
 - [x] PREVIEW: Vorschau-Button im Insights-Admin – Artikel in neuem Tab als Vollansicht anzeigen
 - [x] DESIGN: Cover-Bild in Insights-Übersicht im 4:3-Format anzeigen
+- [x] I18N: Datenbank-Schema erweitern – EN-Übersetzungsfelder für Artikel (titleEn, excerptEn, contentEn, tagsEn, metaTitleEn, metaDescriptionEn)
+- [x] I18N: OpenAI-Übersetzungsfunktion (translateArticle) – automatische DE→EN Übersetzung
+- [x] I18N: Automatische Übersetzung bei Artikel-Erstellung und -Aktualisierung auslösen
+- [x] I18N: Frontend – Sprachabhängige Anzeige der Artikel (DE/EN) in Übersicht und Detailseite
+- [x] I18N: Vorschau-Seite ebenfalls sprachabhängig machen

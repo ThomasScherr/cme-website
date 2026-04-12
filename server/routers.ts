@@ -29,6 +29,7 @@ import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
 import { generateSeoContent } from "./seoGenerator";
+import { translateArticle } from "./articleTranslator";
 import { storagePut } from "./storage";
 import crypto from "crypto";
 
@@ -185,7 +186,26 @@ export const appRouter = router({
         metaDescription: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        return createArticle(input);
+        const result = await createArticle(input);
+        // Trigger async EN translation (non-blocking)
+        translateArticle({
+          title: input.title,
+          excerpt: input.excerpt,
+          content: input.content,
+          tags: input.tags,
+          metaTitle: input.metaTitle,
+          metaDescription: input.metaDescription,
+        }).then(async (translation) => {
+          try {
+            await updateArticle(result.id, translation);
+            console.log(`[Translation] EN translation saved for article ${result.id}`);
+          } catch (err) {
+            console.error(`[Translation] Failed to save EN translation for article ${result.id}:`, err);
+          }
+        }).catch((err) => {
+          console.error(`[Translation] Failed to translate article ${result.id}:`, err);
+        });
+        return result;
       }),
 
     /** Admin: update article */
@@ -207,6 +227,30 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const { id, ...data } = input;
         await updateArticle(id, data);
+        // Trigger async EN translation if title or content changed (non-blocking)
+        if (input.title || input.content) {
+          // Fetch the full article to get all fields for translation
+          const fullArticle = await getArticleById(id);
+          if (fullArticle) {
+            translateArticle({
+              title: fullArticle.title,
+              excerpt: fullArticle.excerpt || undefined,
+              content: fullArticle.content,
+              tags: fullArticle.tags || undefined,
+              metaTitle: fullArticle.metaTitle || undefined,
+              metaDescription: fullArticle.metaDescription || undefined,
+            }).then(async (translation) => {
+              try {
+                await updateArticle(id, translation);
+                console.log(`[Translation] EN translation updated for article ${id}`);
+              } catch (err) {
+                console.error(`[Translation] Failed to save EN translation for article ${id}:`, err);
+              }
+            }).catch((err) => {
+              console.error(`[Translation] Failed to translate article ${id}:`, err);
+            });
+          }
+        }
         return { success: true };
       }),
 

@@ -12,6 +12,12 @@ export default function InsightArticle() {
   const slug = params?.slug || '';
   const { data: article, isLoading } = trpc.articles.getBySlug.useQuery({ slug }, { enabled: !!slug });
 
+  // Helper: pick the correct language field, falling back to German
+  function localized<T>(de: T | null | undefined, en: T | null | undefined): T | undefined {
+    if (!isDE && en) return en;
+    return de ?? undefined;
+  }
+
   if (isLoading) {
     return (
       <Layout>
@@ -44,6 +50,12 @@ export default function InsightArticle() {
     );
   }
 
+  // Resolve language-specific fields
+  const title = localized(article.title, article.titleEn) || article.title;
+  const excerpt = localized(article.excerpt, article.excerptEn);
+  const content = localized(article.content, article.contentEn) || article.content;
+  const tags = localized(article.tags, article.tagsEn);
+
   return (
     <Layout>
       <article className="subpage-hero" style={{ paddingBottom: 'var(--space-section)' }}>
@@ -55,18 +67,18 @@ export default function InsightArticle() {
           </Link>
 
           {/* Category */}
-          {article.tags && (
+          {tags && (
             <div className="flex items-center gap-2" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               <Tag size={14} className="text-cme-blue" />
               <span className="text-cme-blue fluid-xs font-semibold tracking-wider uppercase">
-                {article.tags.split(',')[0]}
+                {tags.split(',')[0]}
               </span>
             </div>
           )}
 
           {/* Title */}
           <h1 className="fluid-h1 text-cme-dark leading-tight">
-            {article.title}
+            {title}
           </h1>
 
           {/* Meta */}
@@ -79,19 +91,19 @@ export default function InsightArticle() {
                 day: 'numeric',
               })}
             </div>
-            {article.author && <span>von {article.author}</span>}
+            {article.author && <span>{isDE ? 'von' : 'by'} {article.author}</span>}
           </div>
 
           {/* Cover Image */}
           {article.coverImage && (
             <div className="rounded-2xl overflow-hidden" style={{ marginTop: 'var(--space-gap-md)' }}>
-              <img src={article.coverImage} alt={article.title} className="w-full h-auto" />
+              <img src={article.coverImage} alt={title} className="w-full h-auto" />
             </div>
           )}
 
           {/* Content */}
           <div className="prose prose-gray max-w-none fluid-body-lg" style={{ marginTop: 'var(--space-gap-lg)' }}>
-            <Streamdown>{article.content}</Streamdown>
+            <Streamdown>{content}</Streamdown>
           </div>
 
           {/* Back CTA */}

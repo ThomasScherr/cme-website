@@ -3,14 +3,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
 import { Link, useRoute } from 'wouter';
-import { Calendar, ArrowLeft, Tag, Eye, AlertTriangle } from 'lucide-react';
+import { Calendar, ArrowLeft, Tag, Eye, AlertTriangle, Globe } from 'lucide-react';
 import { Streamdown } from 'streamdown';
 
 /**
  * InsightPreview – Shows a full article preview for admins.
- * Works in two modes:
- * 1. By article ID (for saved drafts): /admin/insights/preview/:id
- * 2. The admin form opens this in a new tab with the article ID
+ * Supports language switching: shows EN translation when language is set to English.
  */
 export default function InsightPreview() {
   const { lang } = useLanguage();
@@ -23,6 +21,12 @@ export default function InsightPreview() {
     { id: articleId! },
     { enabled: !!articleId && isAuthenticated && user?.role === 'admin' }
   );
+
+  // Helper: pick the correct language field, falling back to German
+  function localized<T>(de: T | null | undefined, en: T | null | undefined): T | undefined {
+    if (!isDE && en) return en;
+    return de ?? undefined;
+  }
 
   if (authLoading) {
     return (
@@ -87,17 +91,32 @@ export default function InsightPreview() {
     );
   }
 
+  // Resolve language-specific fields
+  const title = localized(article.title, article.titleEn) || article.title;
+  const excerpt = localized(article.excerpt, article.excerptEn);
+  const content = localized(article.content, article.contentEn) || article.content;
+  const tags = localized(article.tags, article.tagsEn);
+  const metaTitle = localized(article.metaTitle, article.metaTitleEn);
+  const metaDescription = localized(article.metaDescription, article.metaDescriptionEn);
+  const hasEnTranslation = !!(article.titleEn && article.contentEn);
+
   return (
     <Layout>
       {/* Preview Banner */}
       <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-500 text-white text-center py-2 px-4 fluid-small font-semibold shadow-lg">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2 flex-wrap">
           <Eye size={16} />
           <span>Vorschau-Modus</span>
           {article.status === 'draft' && (
-            <span className="bg-amber-600 px-2 py-0.5 rounded text-xs ml-2">Entwurf</span>
+            <span className="bg-amber-600 px-2 py-0.5 rounded text-xs ml-1">Entwurf</span>
           )}
-          <span className="mx-2">|</span>
+          <span className="mx-1">|</span>
+          <Globe size={14} />
+          <span className="text-xs">
+            {isDE ? 'DE' : 'EN'}
+            {!isDE && !hasEnTranslation && ' (Übersetzung ausstehend)'}
+          </span>
+          <span className="mx-1">|</span>
           <Link href="/admin/insights" className="underline hover:no-underline">
             Zurück zum Editor
           </Link>
@@ -112,19 +131,27 @@ export default function InsightPreview() {
             {isDE ? 'Zurück zur Verwaltung' : 'Back to Admin'}
           </Link>
 
+          {/* Translation status notice */}
+          {!isDE && !hasEnTranslation && (
+            <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-amber-800 text-sm mb-4">
+              <Globe size={14} className="inline mr-2" />
+              Die englische Übersetzung wird gerade erstellt. Bitte laden Sie die Seite in wenigen Sekunden neu.
+            </div>
+          )}
+
           {/* Category */}
-          {article.tags && (
+          {tags && (
             <div className="flex items-center gap-2" style={{ marginBottom: 'var(--space-gap-xs)' }}>
               <Tag size={14} className="text-cme-blue" />
               <span className="text-cme-blue fluid-xs font-semibold tracking-wider uppercase">
-                {article.tags.split(',')[0]}
+                {tags.split(',')[0]}
               </span>
             </div>
           )}
 
           {/* Title */}
           <h1 className="fluid-h1 text-cme-dark leading-tight">
-            {article.title}
+            {title}
           </h1>
 
           {/* Meta */}
@@ -137,45 +164,45 @@ export default function InsightPreview() {
                 day: 'numeric',
               })}
             </div>
-            {article.author && <span>von {article.author}</span>}
+            {article.author && <span>{isDE ? 'von' : 'by'} {article.author}</span>}
           </div>
 
           {/* Cover Image */}
           {article.coverImage && (
             <div className="rounded-2xl overflow-hidden" style={{ marginTop: 'var(--space-gap-md)' }}>
-              <img src={article.coverImage} alt={article.title} className="w-full h-auto" />
+              <img src={article.coverImage} alt={title} className="w-full h-auto" />
             </div>
           )}
 
           {/* Excerpt */}
-          {article.excerpt && (
+          {excerpt && (
             <div className="border-l-4 border-cme-blue bg-cme-blue/5 rounded-r-lg" style={{ padding: 'var(--space-gap-sm) var(--space-gap-md)', marginTop: 'var(--space-gap-lg)' }}>
-              <p className="text-gray-700 fluid-body italic">{article.excerpt}</p>
+              <p className="text-gray-700 fluid-body italic">{excerpt}</p>
             </div>
           )}
 
           {/* Content */}
           <div className="prose prose-gray max-w-none fluid-body-lg" style={{ marginTop: 'var(--space-gap-lg)' }}>
-            <Streamdown>{article.content}</Streamdown>
+            <Streamdown>{content}</Streamdown>
           </div>
 
           {/* SEO Preview */}
-          {(article.metaTitle || article.metaDescription) && (
+          {(metaTitle || metaDescription) && (
             <div className="border border-gray-200 rounded-xl bg-gray-50" style={{ marginTop: 'var(--space-section-sm)', padding: 'var(--space-gap-md)' }}>
               <h3 className="fluid-small font-semibold text-gray-500 mb-3 flex items-center gap-2">
                 <Eye size={14} />
-                SEO-Vorschau (Google-Suchergebnis)
+                {isDE ? 'SEO-Vorschau (Google-Suchergebnis)' : 'SEO Preview (Google Search Result)'}
               </h3>
               <div className="bg-white rounded-lg p-4 border border-gray-100">
                 <p className="text-blue-700 fluid-body font-medium hover:underline cursor-pointer">
-                  {article.metaTitle || article.title}
+                  {metaTitle || title}
                 </p>
                 <p className="text-green-700 fluid-xs mt-1">
                   controlmotion.de/insights/{article.slug}
                 </p>
-                {article.metaDescription && (
+                {metaDescription && (
                   <p className="text-gray-600 fluid-small mt-1 line-clamp-2">
-                    {article.metaDescription}
+                    {metaDescription}
                   </p>
                 )}
               </div>
