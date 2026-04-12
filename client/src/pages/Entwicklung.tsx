@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import {
@@ -101,42 +102,16 @@ export default function Entwicklung() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-                {isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-              </span>
-              <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE ? 'Von der Idee zur serienreifen Elektronik.' : 'From idea to series-ready electronics.'}
-              </h1>
-              <p className="fluid-body-lg text-gray-600 max-w-lg" style={{ marginTop: 'var(--space-gap-sm)' }}>
-                {isDE
-                  ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
-                  : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.'}
-              </p>
-              <div style={{ marginTop: 'var(--space-gap-md)' }}>
-                <Link
-                  href="/kontakt"
-                  className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
-                >
-                  {isDE ? 'Projekt besprechen' : 'Discuss your project'}
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:flex relative items-center justify-center">
-              <div
-                className="diamond mx-auto"
-                style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}
-              >
-                <img src={HERO_IMG} alt="Elektronikentwicklung" className="object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
+        headline={isDE ? 'Von der Idee zur serienreifen Elektronik.' : 'From idea to series-ready electronics.'}
+        description={isDE
+          ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
+          : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.'}
+        cta={{ label: isDE ? 'Projekt besprechen' : 'Discuss your project', href: '/kontakt' }}
+        heroImage={HERO_IMG}
+        heroImageAlt="Elektronikentwicklung"
+      />
 
       {/* ── 2×3 Competency Grid (ENT-1) ── */}
       <section className="section-pad">

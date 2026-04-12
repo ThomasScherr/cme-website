@@ -194,6 +194,16 @@
   --hero-diamond-ml: clamp(1rem, 1rem + 0.5vw, 2.5rem);
   --hero-diamond-radius: clamp(0.5rem, 0.3rem + 0.3vw, 1.25rem);
 
+  /* ── Subpage Hero ── */
+  /* Subpage hero top padding: 112px → 224px */
+  --subpage-hero-pad-top: clamp(7rem, 3rem + 10.4vw, 14rem);
+  /* Subpage hero bottom padding (uses section spacing) */
+  --subpage-hero-pad-bottom: var(--space-section);
+  /* Subpage hero diamond size: 256px → 544px */
+  --subpage-hero-diamond-size: clamp(16rem, 6rem + 20vw, 34rem);
+  /* Subpage hero accent diamond size: 288px → 608px */
+  --subpage-hero-accent-size: clamp(18rem, 7rem + 22vw, 38rem);
+
   /* ── Container ── */
   /* Container padding: 16px → 80px */
   --container-px: clamp(1rem, -0.2rem + 3.1vw, 5rem);
@@ -363,7 +373,30 @@
 
   /* ── Subpage Hero ── */
   .subpage-hero {
-    padding-top: clamp(7rem, 3rem + 10.4vw, 14rem);
-    padding-bottom: var(--space-section);
+    padding-top: var(--subpage-hero-pad-top);
+    padding-bottom: var(--subpage-hero-pad-bottom);
+  }
+
+  .subpage-hero-tagline {
+    display: block;
+    color: var(--subpage-hero-tagline-color, #2196d3);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .subpage-hero-headline {
+    font-size: var(--subpage-hero-headline-fs, var(--fs-h1));
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--subpage-hero-headline-color, #1a1a2e);
+  }
+
+  .subpage-hero-description {
+    font-size: var(--subpage-hero-desc-fs, var(--fs-body-lg));
+    line-height: 1.6;
+    color: var(--subpage-hero-desc-color, #6b7280);
+    max-width: 36rem;
   }
 }

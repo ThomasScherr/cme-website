@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { Link } from 'wouter';
@@ -12,24 +13,13 @@ export default function Insights() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="max-w-3xl">
-            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-              {isDE ? 'Engineering Insights' : 'Engineering Insights'}
-            </span>
-            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Fachwissen aus der Elektronikentwicklung' : 'Expert Knowledge from Electronics Development'}
-            </h1>
-            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE
-                ? 'Einblicke in Leistungselektronik, EMV, thermisches Management und aktuelle Technologietrends.'
-                : 'Insights into power electronics, EMC, thermal management and current technology trends.'}
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Engineering Insights' : 'Engineering Insights'}
+        headline={isDE ? 'Fachwissen aus der Elektronikentwicklung' : 'Expert Knowledge from Electronics Development'}
+        description={isDE
+          ? 'Einblicke in Leistungselektronik, EMV, thermisches Management und aktuelle Technologietrends.'
+          : 'Insights into power electronics, EMC, thermal management and current technology trends.'}
+      />
 
       {/* Articles Grid */}
       <section className="section-pad">

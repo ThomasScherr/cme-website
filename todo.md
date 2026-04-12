@@ -223,3 +223,18 @@
 - [x] Entwicklung.tsx: Fakten von control-motion.de und online-engineering.de recherchieren und ergänzen
 - [x] Trust-Sektion: Graufilter von Insight Instruments und W&H Logos entfernen (transparente Bereiche werden eingegraut)
 - [x] Simulation-Seite: Tool-Logos in Hauptsektion bei passenden Inhalten integrieren, separate Logo-Sektion am Ende entfernen (redundant)
+- [x] Märkte-Navigation: Dropdown-Untermenüpunkte entfernen, direkter Top-Level-Link ohne Dropdown
+- [x] SubPageHero-Komponente erstellen mit einheitlichem Layout, CSS-Variablen für zentrale Steuerung
+- [x] SubPageHero CSS-Variablen im Stylesheet definieren (Höhe, Textgrößen, Diamond-Größe, Farben)
+- [x] Fertigung.tsx auf SubPageHero migrieren
+- [x] Entwicklung.tsx auf SubPageHero migrieren
+- [x] Unternehmen.tsx auf SubPageHero migrieren
+- [x] Lifecycle.tsx auf SubPageHero migrieren
+- [x] Maerkte.tsx auf SubPageHero migrieren
+- [x] Kontakt.tsx auf SubPageHero migrieren
+- [x] Karriere.tsx auf SubPageHero migrieren
+- [x] Insights.tsx auf SubPageHero migrieren
+- [x] SubPageTemplate.tsx auf SubPageHero migrieren (Fertigung-Unterseiten, Entwicklung-Unterseiten)
+- [x] TrustSection: Max 4 Logos pro Zeile, bei mehr Logos weitere Zeilen
+- [x] TrustSection: Logos größer darstellen
+- [x] TrustSection: Framer Motion Animation mit verzögertem Viewport-Trigger (nicht sofort am oberen Bildrand, sondern einige % weiter)

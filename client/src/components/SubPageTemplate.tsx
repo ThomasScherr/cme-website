@@ -1,7 +1,8 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
+import { ArrowRight, type LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface Feature {
@@ -24,7 +25,6 @@ interface SubPageProps {
   features: Feature[];
   ctaDE?: string;
   ctaEN?: string;
-
 }
 
 export default function SubPageTemplate({
@@ -47,69 +47,21 @@ export default function SubPageTemplate({
 
   return (
     <Layout>
-      {/* Breadcrumb + Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/20">
-        <div className="container">
-          {/* Breadcrumb */}
-          <div className="flex items-center fluid-xs text-gray-500" style={{ gap: 'clamp(0.25rem, 0.15rem + 0.2vw, 0.5rem)', marginBottom: 'var(--space-gap-md)' }}>
-            <Link href="/" className="hover:text-cme-blue transition-colors">Home</Link>
-            <span>/</span>
-            <Link href={parentHref} className="hover:text-cme-blue transition-colors">
-              {isDE ? parentLabelDE : parentLabelEN}
-            </Link>
-            <span>/</span>
-            <span className="text-cme-dark font-medium">{isDE ? titleDE : titleEN}</span>
-          </div>
-
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <Link
-                href={parentHref}
-                className="inline-flex items-center gap-2 text-cme-blue fluid-small font-medium hover:gap-3 transition-all"
-                style={{ marginBottom: 'var(--space-gap-xs)' }}
-              >
-                <ArrowLeft size={16} />
-                {isDE ? parentLabelDE : parentLabelEN}
-              </Link>
-              <h1 className="fluid-h1 text-cme-dark leading-tight">
-                {isDE ? titleDE : titleEN}
-              </h1>
-              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE ? subtitleDE : subtitleEN}
-              </p>
-            </div>
-            {/* Diamond Hero Image – hidden below lg to prevent overlap */}
-            <div className="hidden lg:flex relative items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
-              <div
-                className="relative overflow-hidden shadow-xl"
-                style={{
-                  width: 'clamp(14rem, 10rem + 10vw, 22rem)',
-                  height: 'clamp(14rem, 10rem + 10vw, 22rem)',
-                  transform: 'rotate(45deg)',
-                  borderRadius: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem)',
-                }}
-              >
-                <img
-                  src={heroImg}
-                  alt={isDE ? titleDE : titleEN}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{ transform: 'rotate(-45deg) scale(1.42)' }}
-                />
-              </div>
-              {/* Accent diamond behind */}
-              <div
-                className="absolute -z-10 bg-cme-blue/8"
-                style={{
-                  width: 'clamp(16rem, 12rem + 11vw, 25rem)',
-                  height: 'clamp(16rem, 12rem + 11vw, 25rem)',
-                  transform: 'rotate(45deg) translate(8%, 8%)',
-                  borderRadius: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem)',
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: isDE ? parentLabelDE : parentLabelEN, href: parentHref },
+          { label: isDE ? titleDE : titleEN },
+        ]}
+        backLink={{
+          label: isDE ? parentLabelDE : parentLabelEN,
+          href: parentHref,
+        }}
+        headline={isDE ? titleDE : titleEN}
+        description={isDE ? subtitleDE : subtitleEN}
+        heroImage={heroImg}
+        heroImageAlt={isDE ? titleDE : titleEN}
+      />
 
       {/* Content */}
       <section className="section-pad">
@@ -183,7 +135,6 @@ export default function SubPageTemplate({
           </div>
         </div>
       </section>
-
 
       {/* CTA */}
       <section className="section-pad">

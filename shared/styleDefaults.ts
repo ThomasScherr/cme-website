@@ -76,8 +76,14 @@ export interface StyleTokens {
   heroDiamondMarginLeft: ClampValue;
   heroDiamondBorderRadius: ClampValue;
 
+  // ── Subpage Hero ──
+  subpageHeroPadTop: ClampValue;
+  subpageHeroPadBottom: ClampValue;
+  subpageHeroDiamondSize: ClampValue;
+  subpageHeroAccentSize: ClampValue;
+
   // ── Spacing ──
-  spaceSection: ClampValue;
+  spaceSection:       ClampValue;
   spaceSectionSm: ClampValue;
   spaceSectionHeader: ClampValue;
   spaceGapLg: ClampValue;
@@ -146,6 +152,12 @@ export const DEFAULT_STYLE_TOKENS: StyleTokens = {
   heroDiamondMarginRight: { min: 0,   vw: 0.3, offset: 0.1,  max: 0.5 },
   heroDiamondMarginLeft:  { min: 1,   vw: 0.5, offset: 1,    max: 2.5 },
   heroDiamondBorderRadius: { min: 0.5, vw: 0.3, offset: 0.3, max: 1.25 },
+
+  // Subpage Hero
+  subpageHeroPadTop:      { min: 7,  vw: 10.4, offset: 3,   max: 14 },
+  subpageHeroPadBottom:   { min: 3,  vw: 5.7,  offset: 0.8, max: 10 },
+  subpageHeroDiamondSize: { min: 16, vw: 20,   offset: 6,   max: 34 },
+  subpageHeroAccentSize:  { min: 18, vw: 22,   offset: 7,   max: 38 },
 
   // Spacing
   spaceSection:       { min: 3,    vw: 5.7,  offset: 0.8,  max: 10 },
@@ -241,6 +253,10 @@ export function tokensToCSSVars(tokens: StyleTokens): Record<string, string> {
     "--icon-box": clampToCSS(tokens.iconBox),
     "--icon-size": clampToCSS(tokens.iconSize),
     "--container-px": clampToCSS(tokens.containerPx),
+    "--subpage-hero-pad-top": clampToCSS(tokens.subpageHeroPadTop),
+    "--subpage-hero-pad-bottom": clampToCSS(tokens.subpageHeroPadBottom),
+    "--subpage-hero-diamond-size": clampToCSS(tokens.subpageHeroDiamondSize),
+    "--subpage-hero-accent-size": clampToCSS(tokens.subpageHeroAccentSize),
   };
 }
 

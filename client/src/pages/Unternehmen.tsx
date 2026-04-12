@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
@@ -20,37 +21,15 @@ export default function Unternehmen() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-                {isDE ? 'Über CME' : 'About CME'}
-              </span>
-              <h1 className="fluid-h1 text-cme-dark" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE ? 'The Electronic Company.' : 'The Electronic Company.'}
-              </h1>
-              <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
-                {isDE
-                  ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
-                  : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
-              </p>
-            </div>
-            <div className="hidden lg:block relative">
-              <div
-                className="diamond mx-auto"
-                style={{
-                  width: 'clamp(18rem, 12rem + 12vw, 24rem)',
-                  height: 'clamp(18rem, 12rem + 12vw, 24rem)',
-                }}
-              >
-                <img src={BUILDING_IMG} alt="CME Gebäude" className="object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Über CME' : 'About CME'}
+        headline={isDE ? 'The Electronic Company.' : 'The Electronic Company.'}
+        description={isDE
+          ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
+          : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
+        heroImage={BUILDING_IMG}
+        heroImageAlt="CME Gebäude"
+      />
 
       {/* Stats */}
       <section className="section-pad-sm bg-white">

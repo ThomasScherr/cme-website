@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
@@ -18,31 +19,14 @@ export default function Karriere() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="max-w-3xl">
-            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-              {isDE ? 'Karriere' : 'Careers'}
-            </span>
-            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.'}
-            </h1>
-            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-sm)' }}>
-              {isDE
-                ? 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.'
-                : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.'}
-            </p>
-            <a
-              href="mailto:karriere@control-motion.de"
-              className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
-              style={{ marginTop: 'var(--space-gap-md)' }}
-            >
-              {isDE ? 'Initiativbewerbung senden' : 'Send Speculative Application'}
-            </a>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Karriere' : 'Careers'}
+        headline={isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.'}
+        description={isDE
+          ? 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.'
+          : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.'}
+        cta={{ label: isDE ? 'Initiativbewerbung senden' : 'Send Speculative Application', href: 'mailto:karriere@control-motion.de' }}
+      />
 
       {/* Benefits */}
       <section className="section-pad">

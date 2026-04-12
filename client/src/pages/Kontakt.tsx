@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { motion } from 'framer-motion';
@@ -22,24 +23,13 @@ export default function Kontakt() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="max-w-2xl">
-            <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-              {isDE ? 'Kontakt' : 'Contact'}
-            </span>
-            <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE ? 'Direkter Draht zu unseren Fachleuten.' : 'Direct line to our specialists.'}
-            </h1>
-            <p className="fluid-body-lg text-gray-600" style={{ marginTop: 'var(--space-gap-xs)' }}>
-              {isDE
-                ? 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.'
-                : 'Project inquiry, technical question or visit in Dortmund – we respond personally.'}
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Kontakt' : 'Contact'}
+        headline={isDE ? 'Direkter Draht zu unseren Fachleuten.' : 'Direct line to our specialists.'}
+        description={isDE
+          ? 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.'
+          : 'Project inquiry, technical question or visit in Dortmund – we respond personally.'}
+      />
 
       {/* Contact Info + Form */}
       <section className="section-pad">

@@ -53,15 +53,6 @@ function useNavItems() {
     {
       label: isDE ? 'Märkte' : 'Markets',
       href: '/maerkte',
-      dropdown: [
-        { label: isDE ? 'Übersicht' : 'Overview', href: '/maerkte' },
-        { label: 'Energy & Power Systems', href: '/maerkte#energy-power' },
-        { label: 'Motion & Drive Systems', href: '/maerkte#motion-drive' },
-        { label: 'Automotive & Functional Safety', href: '/maerkte#automotive' },
-        { label: 'Industrial Automation & Robotics', href: '/maerkte#industrial' },
-        { label: 'MedTech & Precision Devices', href: '/maerkte#medtech' },
-        { label: 'Smart Infrastructure & Building', href: '/maerkte#smart-infra' },
-      ],
     },
     {
       label: isDE ? 'Insights' : 'Insights',

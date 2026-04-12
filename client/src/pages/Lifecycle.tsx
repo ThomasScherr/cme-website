@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import { RefreshCcw, ShieldAlert, Package, Wrench } from 'lucide-react';
@@ -45,108 +46,19 @@ export default function Lifecycle() {
 
   return (
     <Layout>
-      {/* Hero with diamond pattern matching homepage */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-white to-cme-blue-light/30">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(33,150,211,0.04),transparent_70%)]" />
-
-        <div
-          className="container relative z-10"
-          style={{
-            paddingTop: 'var(--nav-height)',
-            paddingBottom: 'var(--space-section)',
-          }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            {/* Left: Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-3xl"
-            >
-              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-                Lifecycle Services
-              </span>
-              <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE ? 'Wir begleiten Ihr Produkt. Über den gesamten Lebenszyklus.' : 'We support your product. Throughout the entire lifecycle.'}
-              </h1>
-              <p className="fluid-body-lg text-gray-600 max-w-xl leading-relaxed" style={{ marginTop: 'var(--space-gap-sm)' }}>
-                {isDE
-                  ? 'Elektronik lebt länger als die Bauteile, aus denen sie besteht. CME sichert die Verfügbarkeit Ihrer Produkte durch proaktives Obsolescence Management, Redesign-Services und langfristige Ersatzteilversorgung.'
-                  : 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.'}
-              </p>
-              <motion.div
-                className="flex flex-wrap"
-                style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-md)' }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Link
-                  href="/kontakt"
-                  className="inline-block bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-all hover:shadow-lg hover:shadow-cme-blue/20 fluid-btn"
-                >
-                  {isDE ? 'Beratung anfragen' : 'Request Consultation'}
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            {/* Right: Two offset diamonds – only visible on lg+ screens */}
-            <div className="hidden lg:flex relative items-center justify-end">
-              <div
-                className="relative"
-                style={{
-                  width: 'var(--hero-diamond-w)',
-                  height: 'var(--hero-diamond-h)',
-                  marginTop: '-13px',
-                  marginRight: '5px',
-                  marginLeft: '28px',
-                }}
-              >
-                {/* Accent diamond (behind, offset top-left) */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="absolute top-0 left-0"
-                  style={{ zIndex: 1 }}
-                >
-                  <div
-                    className="diamond bg-cme-blue/[0.07]"
-                    style={{ width: 'var(--hero-accent-diamond)' }}
-                  />
-                </motion.div>
-
-                {/* Video diamond (main, offset bottom-right) */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="absolute bottom-0 right-0"
-                  style={{ zIndex: 2 }}
-                >
-                  <div
-                    className="diamond shadow-xl shadow-cme-blue/15"
-                    style={{ width: 'var(--hero-image-diamond)' }}
-                  >
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      poster={HERO_VIDEO_POSTER}
-                    >
-                      <source src={HERO_VIDEO_WEBM} type="video/webm" />
-                      <source src={HERO_VIDEO_MP4} type="video/mp4" />
-                    </video>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline="Lifecycle Services"
+        headline={isDE ? 'Wir begleiten Ihr Produkt. Über den gesamten Lebenszyklus.' : 'We support your product. Throughout the entire lifecycle.'}
+        description={isDE
+          ? 'Elektronik lebt länger als die Bauteile, aus denen sie besteht. CME sichert die Verfügbarkeit Ihrer Produkte durch proaktives Obsolescence Management, Redesign-Services und langfristige Ersatzteilversorgung.'
+          : 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.'}
+        cta={{ label: isDE ? 'Beratung anfragen' : 'Request Consultation', href: '/kontakt' }}
+        heroVideo={{
+          webm: HERO_VIDEO_WEBM,
+          mp4: HERO_VIDEO_MP4,
+          poster: HERO_VIDEO_POSTER,
+        }}
+      />
 
       {/* Services */}
       <section className="section-pad">

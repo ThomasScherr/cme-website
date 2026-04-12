@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
 import {
@@ -66,42 +67,16 @@ export default function Fertigung() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            <div>
-              <span className="text-cme-blue fluid-small font-semibold tracking-widest uppercase">
-                {isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)'}
-              </span>
-              <h1 className="fluid-h1 text-cme-dark leading-tight" style={{ marginTop: 'var(--space-gap-xs)' }}>
-                {isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.'}
-              </h1>
-              <p className="fluid-body-lg text-gray-600 max-w-lg" style={{ marginTop: 'var(--space-gap-sm)' }}>
-                {isDE
-                  ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
-                  : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.'}
-              </p>
-              <div style={{ marginTop: 'var(--space-gap-md)' }}>
-                <Link
-                  href="/kontakt"
-                  className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors fluid-btn"
-                >
-                  {isDE ? 'Angebot anfragen' : 'Request Quote'}
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block relative">
-              <div
-                className="diamond mx-auto"
-                style={{ width: 'clamp(16rem, 6rem + 20vw, 34rem)', height: 'clamp(16rem, 6rem + 20vw, 34rem)' }}
-              >
-                <img src={HERO_IMG} alt="Elektronikfertigung" className="object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        tagline={isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)'}
+        headline={isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.'}
+        description={isDE
+          ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
+          : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.'}
+        cta={{ label: isDE ? 'Angebot anfragen' : 'Request Quote', href: '/kontakt' }}
+        heroImage={HERO_IMG}
+        heroImageAlt="Elektronikfertigung"
+      />
 
       {/* Subpages Grid */}
       <section className="section-pad">
