@@ -301,3 +301,4 @@
 - [ ] CMS: Admin-UI – Asset-Bibliothek mit Upload, Suche und Wiederverwendung
 - [ ] CMS: Frontend – useContent Hook für alle Seiten (DB-Werte mit Fallback)
 - [ ] CMS: Frontend – Alle Seiten auf DB-Content umstellen
+- [x] ADD: UL Wiring Harness Kachel auf /fertigung/qualitaet ergänzen (CME ist UL-gelistet)

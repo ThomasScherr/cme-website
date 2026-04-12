@@ -8,6 +8,7 @@ import {
   Database,
   PackageCheck,
   Award,
+  Cable,
 } from 'lucide-react';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -30,6 +31,7 @@ export default function Qualitaet() {
       features={[
         { de: 'ISO 9001:2015 zertifiziert', en: 'ISO 9001:2015 Certified', icon: ShieldCheck },
         { de: 'ISO 14001:2015 zertifiziert', en: 'ISO 14001:2015 Certified', icon: Leaf },
+        { de: 'UL-gelistet – Wiring Harness', en: 'UL Listed – Wiring Harness', icon: Cable },
         { de: 'Automatische Optische Inspektion (AOI)', en: 'Automated Optical Inspection (AOI)', icon: ScanEye },
         { de: 'Solder Paste Inspection (SPI)', en: 'Solder Paste Inspection (SPI)', icon: Printer },
         { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)', icon: CircuitBoard },
