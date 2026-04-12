@@ -305,3 +305,4 @@
 - [x] FIX: Reihenfolge der Märkte-Karten ändern (Motion & Drive, Automotive, Med Tech, Industrial, Smart Infra, Energy)
 - [x] FIX: Hauptmenüpunkt "Entwicklung" als direkten Link auf /entwicklung setzen
 - [x] FIX: Hauptmenüpunkt "Fertigung" als direkten Link auf /fertigung setzen, "Übersicht" aus Dropdown entfernen
+- [x] FIX: /admin/content Route gibt 404 zurück (ContentManager.tsx + contentDefinitions.ts + useContent.ts wiederhergestellt, Route in App.tsx ergänzt)
