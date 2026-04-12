@@ -6,6 +6,7 @@ import {
   Cog,
   Layers,
   Code,
+  Cpu,
   Wifi,
   ShieldCheck,
 } from 'lucide-react';
@@ -15,7 +16,6 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 export default function HardwareSoftware() {
   return (
     <SubPageTemplate
-      pageKey="entwicklung.hardwaresoftware"
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"
@@ -33,6 +33,7 @@ export default function HardwareSoftware() {
         { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control', icon: Cog },
         { de: 'Multi-Layer PCB-Layout', en: 'Multi-Layer PCB Layout', icon: Layers },
         { de: 'Embedded C/C++ Firmware', en: 'Embedded C/C++ Firmware', icon: Code },
+        { de: 'FPGA-Entwicklung', en: 'FPGA Development', icon: Cpu },
         { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },
         { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)', icon: ShieldCheck },
       ]}

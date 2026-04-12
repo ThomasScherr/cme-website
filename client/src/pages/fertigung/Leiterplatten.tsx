@@ -16,7 +16,6 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 export default function Leiterplatten() {
   return (
     <SubPageTemplate
-      pageKey="fertigung.leiterplatten"
       parentHref="/fertigung"
       parentLabelDE="Elektronikfertigung"
       parentLabelEN="Electronics Manufacturing"

@@ -16,7 +16,6 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 export default function KiEntwicklung() {
   return (
     <SubPageTemplate
-      pageKey="entwicklung.kientwicklung"
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"
@@ -34,7 +33,7 @@ export default function KiEntwicklung() {
         { de: 'Regelungsoptimierung mit KI – Selbstadaptierende Regler für nichtlineare Strecken, z.\u00A0B. bei Motorsteuerungen mit variablen Lasten oder thermischen Drifts', en: 'AI-based control optimization – Self-adapting controllers for nonlinear systems, e.g. motor controls with variable loads or thermal drift', icon: Gauge },
         { de: 'Predictive Maintenance – Frühzeitige Erkennung von Degradation in Antrieben, Netzteilen oder Leistungsmodulen auf Basis von Betriebsdaten', en: 'Predictive maintenance – Early detection of degradation in drives, power supplies or power modules based on operational data', icon: BarChart3 },
         { de: 'Visuelle Qualitätskontrolle – Bildverarbeitung und Objekterkennung für Lötstellen, Bestückung und Oberflächeninspektion in der Elektronikfertigung', en: 'Visual quality control – Image processing and object detection for solder joints, component placement and surface inspection in electronics manufacturing', icon: Eye },
-        { de: 'Edge-Inferenz auf Embedded-Zielen – Deployment trainierter Modelle auf MCUs und Embedded-Targets mit Fokus auf Latenz, Speicherbedarf und Energieverbrauch', en: 'Edge inference on embedded targets – Deployment of trained models on MCUs and embedded targets with focus on latency, memory footprint and power consumption', icon: Cpu },
+        { de: 'Edge-Inferenz auf Embedded-Zielen – Deployment trainierter Modelle auf MCUs mit Fokus auf Latenz, Speicherbedarf und Energieverbrauch', en: 'Edge inference on embedded targets – Deployment of trained models on MCUs with focus on latency, memory footprint and power consumption', icon: Cpu },
         { de: 'Datenaufbereitung & Feature Engineering – Aufbereitung von Rohdaten aus Prüfständen, Feldtests und Serienfertigung für reproduzierbare Trainingspipelines', en: 'Data preparation & feature engineering – Processing raw data from test benches, field tests and series production for reproducible training pipelines', icon: Database },
         { de: 'TinyML & Modellkomprimierung – Quantisierung, Pruning und Destillation für den Einsatz auf Cortex-M-Klasse-Prozessoren und vergleichbaren Plattformen', en: 'TinyML & model compression – Quantization, pruning and distillation for deployment on Cortex-M class processors and comparable platforms', icon: Zap },
         { de: 'Modell-Lifecycle & Versionierung – Nachvollziehbare Modellversionen, Testabdeckung und Dokumentation für regulierte Branchen', en: 'Model lifecycle & versioning – Traceable model versions, test coverage and documentation for regulated industries', icon: GitBranch },
