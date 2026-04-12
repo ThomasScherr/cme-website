@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { motion } from 'framer-motion';
 import { Cpu, Factory, RefreshCw, CheckCircle2 } from 'lucide-react';
 
@@ -94,29 +95,30 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
 
 export default function ServicesSection() {
   const { t } = useLanguage();
+  const { t: cms, img } = useContent('home');
 
   const services = [
     {
-      title: t.services.dev_title,
-      desc: t.services.dev_desc,
+      title: cms('services.0.title') || t.services.dev_title,
+      desc: cms('services.0.description') || t.services.dev_desc,
       items: t.services.dev_items,
-      image: IMAGES.dev,
+      image: img('services.0.image') || IMAGES.dev,
       icon: <Cpu style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-white',
     },
     {
-      title: t.services.mfg_title,
-      desc: t.services.mfg_desc,
+      title: cms('services.1.title') || t.services.mfg_title,
+      desc: cms('services.1.description') || t.services.mfg_desc,
       items: t.services.mfg_items,
-      image: IMAGES.mfg,
+      image: img('services.1.image') || IMAGES.mfg,
       icon: <Factory style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-cme-light',
     },
     {
-      title: t.services.lifecycle_title,
-      desc: t.services.lifecycle_desc,
+      title: cms('services.2.title') || t.services.lifecycle_title,
+      desc: cms('services.2.description') || t.services.lifecycle_desc,
       items: t.services.lifecycle_items,
-      image: IMAGES.lifecycle,
+      image: img('services.2.image') || IMAGES.lifecycle,
       icon: <RefreshCw style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} />,
       bgClass: 'bg-sky-50',
       darkText: false,

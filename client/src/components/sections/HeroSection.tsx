@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
@@ -80,6 +81,7 @@ function DiamondVideo({ className = '', style = {} }: { className?: string; styl
 export default function HeroSection() {
   const { t, lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('home');
 
   const secondHeadline = useMemo(() => ({
     line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
@@ -87,7 +89,11 @@ export default function HeroSection() {
     accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
   }), [isDE]);
 
-  const lines = useMemo(() => [t.hero.headline1, t.hero.headline2, t.hero.headline3], [t]);
+  // CMS overrides for hero headlines, falling back to i18n
+  const h1 = cms('hero.headline1') || t.hero.headline1;
+  const h2 = cms('hero.headline2') || t.hero.headline2;
+  const h3 = cms('hero.headline3') || t.hero.headline3;
+  const lines = useMemo(() => [h1, h2, h3], [h1, h2, h3]);
   const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 400);
 
   // Simple flag: false = show first text, true = show second text
@@ -131,7 +137,7 @@ export default function HeroSection() {
               className="text-cme-blue font-semibold tracking-[0.2em] uppercase fluid-xs"
               style={{ marginBottom: 'var(--space-gap-sm)' }}
             >
-              {t.hero.tagline}
+              {cms('hero.tagline') || t.hero.tagline}
             </p>
 
             {/* Headline area – fixed height container to prevent layout shifts */}
@@ -187,7 +193,7 @@ export default function HeroSection() {
               animate={{ opacity: isDone ? 1 : 0, y: isDone ? 0 : 10 }}
               transition={{ duration: 0.6 }}
             >
-              {t.hero.sub}
+              {cms('hero.description') || t.hero.sub}
             </motion.p>
             <motion.div
               className="flex flex-wrap relative z-20"
@@ -200,13 +206,13 @@ export default function HeroSection() {
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-all hover:shadow-lg hover:shadow-cme-blue/20 fluid-btn"
               >
-                {t.hero.cta_primary}
+                {cms('hero.ctaLabel') || t.hero.cta_primary}
               </button>
               <button
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border-2 border-cme-dark/15 text-cme-dark rounded-lg font-semibold hover:border-cme-blue hover:text-cme-blue transition-all fluid-btn"
               >
-                {t.hero.cta_secondary}
+                {cms('hero.ctaSecondaryLabel') || t.hero.cta_secondary}
               </button>
             </motion.div>
           </motion.div>

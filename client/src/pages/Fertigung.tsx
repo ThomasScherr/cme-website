@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import {
   ArrowRight,
@@ -69,15 +70,16 @@ const capabilities = [
 export default function Fertigung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('fertigung');
 
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)'}
-        headline={isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.'}
-        description={isDE
+        tagline={cms('hero.tagline') || (isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)')}
+        headline={cms('hero.headline') || (isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.')}
+        description={cms('hero.description') || (isDE
           ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
-          : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.'}
+          : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.')}
         cta={{ label: isDE ? 'Angebot anfragen' : 'Request Quote', href: '/kontakt' }}
         heroVideo={HERO_VIDEO}
         heroImageAlt="Elektronikfertigung"

@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import SubPageHero from '@/components/SubPageHero';
@@ -47,15 +48,16 @@ const services = [
 export default function UxInterfaceEngineering() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('entwicklung.uxinterfaceengineering');
 
   return (
     <Layout>
       <SubPageHero
-        headline="UX & Interface Engineering"
-        description={isDE
+        headline={cms('hero.headline') || 'UX & Interface Engineering'}
+        description={cms('hero.description') || (isDE
           ? 'Bediensoftware und UI/UX für technische Systeme \u2013 von der Nutzeranalyse bis zur serienreifen Umsetzung.'
-          : 'Operating software and UI/UX for technical systems \u2013 from user analysis to production-ready implementation.'}
-        heroImage={`${CDN}/operating-concepts_3d4b7f77.png`}
+          : 'Operating software and UI/UX for technical systems \u2013 from user analysis to production-ready implementation.')}
+        heroImage={img('hero.heroImage') || `${CDN}/operating-concepts_3d4b7f77.png`}
         heroImageAlt="UX & Interface Engineering"
         imageVariant="floating"
         breadcrumb={[

@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import SubPageHero from '@/components/SubPageHero';
@@ -47,15 +48,16 @@ const services = [
 export default function SoftwareDigitaleSysteme() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('entwicklung.softwaredigitalesysteme');
 
   return (
     <Layout>
       <SubPageHero
-        headline={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
-        description={isDE
+        headline={cms('hero.headline') || (isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems')}
+        description={cms('hero.description') || (isDE
           ? 'Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur \u2013 die digitale Ebene Ihrer Elektronikprodukte.'
-          : 'Web apps, mobile apps, cloud integration and backend architecture \u2013 the digital layer of your electronic products.'}
-        heroImage={`${CDN}/web-apps_26e3e533.png`}
+          : 'Web apps, mobile apps, cloud integration and backend architecture \u2013 the digital layer of your electronic products.')}
+        heroImage={img('hero.heroImage') || `${CDN}/web-apps_26e3e533.png`}
         heroImageAlt={isDE ? 'Software Engineering & Digitale Systeme' : 'Software Engineering & Digital Systems'}
         imageVariant="floating"
         breadcrumb={[

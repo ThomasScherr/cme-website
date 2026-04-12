@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import {
@@ -373,15 +374,16 @@ function MarketCard({ vertical, index, isDE }: { vertical: MarketSegment; index:
 export default function Maerkte() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms } = useContent('maerkte');
 
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications'}
-        headline={isDE ? 'Branchenspezifische Elektroniklösungen.' : 'Industry-specific electronics solutions.'}
-        description={isDE
+        tagline={cms('hero.tagline') || (isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications')}
+        headline={cms('hero.headline') || (isDE ? 'Branchenspezifische Elektroniklösungen.' : 'Industry-specific electronics solutions.')}
+        description={cms('hero.description') || (isDE
           ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
-          : 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.'}
+          : 'We don\'t think in technologies \u2013 we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.')}
         cta={{ label: isDE ? 'Branche & Anforderung schildern' : 'Describe your industry & requirements', href: '/kontakt' }}
         heroVideo={{
           webm: HERO_VIDEO_WEBM,

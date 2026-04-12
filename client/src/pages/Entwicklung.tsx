@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import {
   ArrowRight, Cpu, Cog, SlidersHorizontal, Waves, ShieldCheck, FlaskConical,
@@ -99,17 +100,18 @@ const coreCompetencies = [
 export default function Entwicklung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('entwicklung');
 
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Elektronikentwicklung' : 'Electronics Development'}
-        headline={isDE ? 'Von der Idee zur serienreifen Elektronik.' : 'From idea to series-ready electronics.'}
-        description={isDE
+        tagline={cms('hero.tagline') || (isDE ? 'Elektronikentwicklung' : 'Electronics Development')}
+        headline={cms('hero.headline') || (isDE ? 'Von der Idee zur serienreifen Elektronik.' : 'From idea to series-ready electronics.')}
+        description={cms('hero.description') || (isDE
           ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
-          : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.'}
+          : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.')}
         cta={{ label: isDE ? 'Projekt besprechen' : 'Discuss your project', href: '/kontakt' }}
-        heroImage={HERO_IMG}
+        heroImage={img('hero.heroImage') || HERO_IMG}
         heroImageAlt="Elektronikentwicklung"
       />
 

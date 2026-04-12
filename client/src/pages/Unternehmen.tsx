@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { MapPin, Users, Calendar, Award } from 'lucide-react';
@@ -11,6 +12,7 @@ const BUILDING_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9
 export default function Unternehmen() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('unternehmen');
 
   const stats = [
     { icon: Calendar, value: '2008', labelDE: 'Gegründet', labelEN: 'Founded' },
@@ -22,12 +24,12 @@ export default function Unternehmen() {
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Über CME' : 'About CME'}
-        headline={isDE ? 'The Electronic Company.' : 'The Electronic Company.'}
-        description={isDE
+        tagline={cms('hero.tagline') || (isDE ? 'Über CME' : 'About CME')}
+        headline={cms('hero.headline') || (isDE ? 'The Electronic Company.' : 'The Electronic Company.')}
+        description={cms('hero.description') || (isDE
           ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
-          : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.'}
-        heroImage={BUILDING_IMG}
+          : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.')}
+        heroImage={img('hero.heroImage') || BUILDING_IMG}
         heroImageAlt="CME Gebäude"
       />
 

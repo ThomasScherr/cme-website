@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { motion } from 'framer-motion';
 import { Cpu, Blocks, Factory, ShieldCheck } from 'lucide-react';
 
@@ -46,6 +47,7 @@ const trustItems: TrustItem[] = [
 export default function StatsSection() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms } = useContent('home');
 
   return (
     <section className="bg-[#f6f7f9]" style={{ paddingTop: 'var(--space-section-sm)', paddingBottom: 'var(--space-section-sm)' }}>
@@ -119,7 +121,7 @@ export default function StatsSection() {
                       marginBottom: 'clamp(0.2rem, 0.1rem + 0.2vw, 0.375rem)',
                     }}
                   >
-                    {isDE ? item.headlineDE : item.headlineEN}
+                    {cms(`stats.${i}.headline`) || (isDE ? item.headlineDE : item.headlineEN)}
                   </h3>
 
                   {/* Subline */}
@@ -130,7 +132,7 @@ export default function StatsSection() {
                       maxWidth: '18rem',
                     }}
                   >
-                    {isDE ? item.subDE : item.subEN}
+                    {cms(`stats.${i}.sub`) || (isDE ? item.subDE : item.subEN)}
                   </p>
                 </div>
               </motion.div>

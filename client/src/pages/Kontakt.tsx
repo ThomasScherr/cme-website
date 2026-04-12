@@ -32,13 +32,13 @@ export default function Kontakt() {
         heroImage={img('hero.heroImage')}
       >
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
-          <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
-            <Phone size={18} className="text-cme-accent" />
-            {t('contact.phone')}
+          <a href={`tel:${t('hero.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-cme-dark/80 hover:text-cme-blue transition-colors fluid-small">
+            <Phone size={18} className="text-cme-blue" />
+            {t('hero.phone')}
           </a>
-          <a href={`mailto:${t('contact.email')}`} className="flex items-center gap-2 text-white/90 hover:text-white transition-colors fluid-small">
-            <Mail size={18} className="text-cme-accent" />
-            {t('contact.email')}
+          <a href={`mailto:${t('hero.email')}`} className="flex items-center gap-2 text-cme-dark/80 hover:text-cme-blue transition-colors fluid-small">
+            <Mail size={18} className="text-cme-blue" />
+            {t('hero.email')}
           </a>
         </div>
       </SubPageHero>
@@ -51,7 +51,7 @@ export default function Kontakt() {
             <div className="lg:col-span-2" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-md)' }}>
               <div>
                 <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-                  {isDE ? 'Kontaktdaten' : 'Contact Details'}
+                  {t('contactInfo.sectionTitle')}
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-sm)' }}>
                   <div className="flex" style={{ gap: 'var(--space-gap-xs)' }}>
@@ -62,11 +62,11 @@ export default function Kontakt() {
                       <MapPin style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <div>
-                      <p className="font-medium text-cme-dark fluid-small">{t('contact.companyName')}</p>
+                      <p className="font-medium text-cme-dark fluid-small">{t('contactInfo.companyName')}</p>
                       <p className="text-gray-600 fluid-xs" style={{ marginTop: 'clamp(0.125rem, 0.05rem + 0.15vw, 0.25rem)' }}>
-                        {t('contact.street')}<br />
-                        {t('contact.zipCity')}<br />
-                        {t('contact.country')}
+                        {t('contactInfo.street')}<br />
+                        {t('contactInfo.city')}<br />
+                        {t('contactInfo.country')}
                       </p>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ export default function Kontakt() {
                     </div>
                     <div>
                       <p className="font-medium text-cme-dark fluid-small">{isDE ? 'Telefon' : 'Phone'}</p>
-                      <a href={`tel:${t('contact.phone').replace(/\s/g, '')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contact.phone')}</a>
+                      <a href={`tel:${t('contactInfo.phone').replace(/\s/g, '')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contactInfo.phone')}</a>
                     </div>
                   </div>
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
@@ -91,7 +91,7 @@ export default function Kontakt() {
                     </div>
                     <div>
                       <p className="font-medium text-cme-dark fluid-small">E-Mail</p>
-                      <a href={`mailto:${t('contact.emailInfo')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contact.emailInfo')}</a>
+                      <a href={`mailto:${t('contactInfo.email')}`} className="text-gray-600 fluid-xs hover:text-cme-blue transition-colors">{t('contactInfo.email')}</a>
                     </div>
                   </div>
                 </div>
@@ -187,8 +187,8 @@ export default function Kontakt() {
                       style={{ padding: 'var(--btn-py) var(--btn-px)' }}
                     >
                       <option value="">{isDE ? 'Bitte wählen...' : 'Please select...'}</option>
-                      <option value="development">{t('form.subjectDevelopment')}</option>
-                      <option value="manufacturing">{t('form.subjectManufacturing')}</option>
+                      <option value="development">{t('form.subjectDev')}</option>
+                      <option value="manufacturing">{t('form.subjectMfg')}</option>
                       <option value="lifecycle">{t('form.subjectLifecycle')}</option>
                       <option value="general">{t('form.subjectGeneral')}</option>
                       <option value="career">{t('form.subjectCareer')}</option>
@@ -218,7 +218,7 @@ export default function Kontakt() {
                     ) : (
                       <>
                         <Send size={18} />
-                        {t('form.sendButton')}
+                        {t('form.submitLabel')}
                       </>
                     )}
                   </button>

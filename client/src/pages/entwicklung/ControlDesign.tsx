@@ -16,6 +16,7 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 export default function ControlDesign() {
   return (
     <SubPageTemplate
+      pageKey="entwicklung.controldesign"
       parentHref="/entwicklung"
       parentLabelDE="Elektronikentwicklung"
       parentLabelEN="Electronics Development"

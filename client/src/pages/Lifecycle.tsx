@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -45,15 +46,16 @@ const services = [
 export default function Lifecycle() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms } = useContent('lifecycle');
 
   return (
     <Layout>
       <SubPageHero
-        tagline="Lifecycle Services"
-        headline={isDE ? 'Wir begleiten Ihr Produkt. Über den gesamten Lebenszyklus.' : 'We support your product. Throughout the entire lifecycle.'}
-        description={isDE
+        tagline={cms('hero.tagline') || 'Lifecycle Services'}
+        headline={cms('hero.headline') || (isDE ? 'Wir begleiten Ihr Produkt. Über den gesamten Lebenszyklus.' : 'We support your product. Throughout the entire lifecycle.')}
+        description={cms('hero.description') || (isDE
           ? 'Elektronik lebt länger als die Bauteile, aus denen sie besteht. CME sichert die Verfügbarkeit Ihrer Produkte durch proaktives Obsolescence Management, Redesign-Services und langfristige Ersatzteilversorgung.'
-          : 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.'}
+          : 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.')}
         cta={{ label: isDE ? 'Beratung anfragen' : 'Request Consultation', href: '/kontakt' }}
         heroVideo={{
           webm: HERO_VIDEO_WEBM,

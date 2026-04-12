@@ -2,6 +2,7 @@ import SubPageTemplate from '@/components/SubPageTemplate';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -91,6 +92,7 @@ const expertiseItems = [
 export default function HardwareSoftware() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms, img } = useContent('entwicklung.hardwaresoftware');
 
   return (
     <Layout>
@@ -104,11 +106,11 @@ export default function HardwareSoftware() {
           label: isDE ? 'Elektronikentwicklung' : 'Electronics Development',
           href: '/entwicklung',
         }}
-        headline="Hard & Software Design"
-        description={isDE
+        headline={cms('hero.headline') || 'Hard & Software Design'}
+        description={cms('hero.description') || (isDE
           ? 'Von der Systemarchitektur über Schaltungsentwicklung und PCB-Layout bis zur Embedded-Firmware.'
-          : 'From system architecture through circuit design and PCB layout to embedded firmware.'}
-        heroImage={heroImg}
+          : 'From system architecture through circuit design and PCB layout to embedded firmware.')}
+        heroImage={img('hero.heroImage') || heroImg}
         heroImageAlt="Hard & Software Design"
       />
 

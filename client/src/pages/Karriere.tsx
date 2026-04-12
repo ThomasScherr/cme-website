@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useContent } from '@/hooks/useContent';
 import { motion } from 'framer-motion';
 import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
 
@@ -16,15 +17,16 @@ const benefits = [
 export default function Karriere() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
+  const { t: cms } = useContent('karriere');
 
   return (
     <Layout>
       <SubPageHero
-        tagline={isDE ? 'Karriere' : 'Careers'}
-        headline={isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.'}
-        description={isDE
+        tagline={cms('hero.tagline') || (isDE ? 'Karriere' : 'Careers')}
+        headline={cms('hero.headline') || (isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.')}
+        description={cms('hero.description') || (isDE
           ? 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.'
-          : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.'}
+          : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.')}
         cta={{ label: isDE ? 'Initiativbewerbung senden' : 'Send Speculative Application', href: 'mailto:karriere@control-motion.de' }}
       />
 
