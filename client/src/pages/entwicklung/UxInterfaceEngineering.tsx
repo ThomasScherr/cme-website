@@ -57,7 +57,7 @@ export default function UxInterfaceEngineering() {
         description={cms('hero.description') || (isDE
           ? 'Bediensoftware und UI/UX für technische Systeme \u2013 von der Nutzeranalyse bis zur serienreifen Umsetzung.'
           : 'Operating software and UI/UX for technical systems \u2013 from user analysis to production-ready implementation.')}
-        heroImage={img('hero.heroImage') || `${CDN}/operating-concepts_3d4b7f77.png`}
+        heroImage={img('hero.heroImage', `${CDN}/operating-concepts_3d4b7f77.png`)}
         heroImageAlt="UX & Interface Engineering"
         imageVariant="floating"
         breadcrumb={[

@@ -418,6 +418,7 @@ export default function ContentManager() {
     { staleTime: 30_000 }
   );
   const bulkUpdateMutation = trpc.cms.bulkUpdate.useMutation();
+  const trpcUtils = trpc.useUtils();
 
   // Build content map from DB
   const contentMap = useMemo(() => {
@@ -540,8 +541,11 @@ export default function ContentManager() {
         return next;
       });
 
-      // Refetch content after a delay to pick up translations
-      setTimeout(() => refetch(), 8000);
+      // Immediately invalidate all CMS queries so other pages pick up changes
+      trpcUtils.cms.getByPage.invalidate();
+      trpcUtils.cms.getAll.invalidate();
+      // Also refetch after delay to pick up auto-translations
+      setTimeout(() => { refetch(); trpcUtils.cms.getByPage.invalidate(); }, 8000);
     } catch (err: any) {
       toast.error(err.message || "Speichern fehlgeschlagen");
     } finally {

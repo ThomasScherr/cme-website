@@ -57,7 +57,7 @@ export function useContent(pageKey: string, explicitDefaults?: ContentDefaults) 
   const { lang: language } = useLanguage();
   const { data: contentEntries, isLoading } = trpc.cms.getByPage.useQuery(
     { pageKey },
-    { staleTime: 60_000 }
+    { staleTime: 5_000 }
   );
 
   // Merge: explicit defaults override auto-derived ones
@@ -93,24 +93,36 @@ export function useContent(pageKey: string, explicitDefaults?: ContentDefaults) 
     return "";
   };
 
-  const img = (key: string): string => {
+  /**
+   * img() returns the CMS image URL.
+   * If a DB entry exists (even with empty value = image was deleted), the DB value wins.
+   * Only falls back to contentDefinitions default when NO DB entry exists at all.
+   * This ensures that deleting an image in the CMS actually removes it from the page.
+   */
+  const img = (key: string, fallback?: string): string => {
     const fullKey = `${pageKey}.${key}`;
     const dbEntry = contentMap.get(fullKey);
     if (dbEntry) {
+      // DB entry exists – return its value (may be empty string if image was deleted)
+      // When a DB entry exists, we NEVER fall back to the hardcoded fallback
       return dbEntry.valueDe || dbEntry.valueEn || "";
     }
+    // No DB entry at all – use fallback param, then contentDefinitions default
     const def = defaults[key];
-    return def?.de || def?.en || "";
+    return fallback || def?.de || def?.en || "";
   };
 
-  const vid = (key: string): string => {
+  /**
+   * vid() returns the CMS video URL. Same logic as img().
+   */
+  const vid = (key: string, fallback?: string): string => {
     const fullKey = `${pageKey}.${key}`;
     const dbEntry = contentMap.get(fullKey);
     if (dbEntry) {
       return dbEntry.valueDe || dbEntry.valueEn || "";
     }
     const def = defaults[key];
-    return def?.de || def?.en || "";
+    return fallback || def?.de || def?.en || "";
   };
 
   const hasOverride = (key: string): boolean => {

@@ -110,7 +110,7 @@ export default function HardwareSoftware() {
         description={cms('hero.description') || (isDE
           ? 'Von der Systemarchitektur über Schaltungsentwicklung und PCB-Layout bis zur Embedded-Firmware.'
           : 'From system architecture through circuit design and PCB layout to embedded firmware.')}
-        heroImage={img('hero.heroImage') || heroImg}
+        heroImage={img('hero.heroImage', heroImg)}
         heroImageAlt="Hard & Software Design"
       />
 

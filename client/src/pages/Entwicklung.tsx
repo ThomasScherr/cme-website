@@ -111,7 +111,7 @@ export default function Entwicklung() {
           ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
           : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.')}
         cta={{ label: isDE ? 'Projekt besprechen' : 'Discuss your project', href: '/kontakt' }}
-        heroImage={img('hero.heroImage') || HERO_IMG}
+        heroImage={img('hero.heroImage', HERO_IMG)}
         heroImageAlt="Elektronikentwicklung"
       />
 

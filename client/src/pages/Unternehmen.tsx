@@ -29,7 +29,7 @@ export default function Unternehmen() {
         description={cms('hero.description') || (isDE
           ? 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.'
           : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.')}
-        heroImage={img('hero.heroImage') || BUILDING_IMG}
+        heroImage={img('hero.heroImage', BUILDING_IMG)}
         heroImageAlt="CME Gebäude"
       />
 

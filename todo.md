@@ -323,3 +323,5 @@
 - [x] FIX: SubPageTemplate-basierte Seiten mit CMS verbinden (alle Entwicklung/Fertigung-Unterseiten)
 - [x] FIX: Hub-Seiten (Entwicklung, Fertigung) und Standalone-Seiten (Lifecycle, Märkte, Unternehmen, Karriere, Home) mit CMS verbinden
 - [x] BUG: Kontakt-Seite CMS-Key-Mismatch – Kontaktdaten (Telefon, E-Mail, Adresse) werden nicht korrekt angezeigt
+- [x] BUG: CMS-Bildänderungen werden nicht auf /entwicklung und /hardware-software übernommen – gelöschte/geänderte Bilder bleiben nach Seitenaktualisierung bestehen
+- [x] BUG: Hero-Bild wird im CMS-Editor doppelt angezeigt

@@ -64,7 +64,7 @@ export default function SubPageTemplate({
   const title = pageKey ? (t('content.title') || (isDE ? titleDE : titleEN)) : (isDE ? titleDE : titleEN);
   const subtitle = pageKey ? (t('content.subtitle') || (isDE ? subtitleDE : subtitleEN)) : (isDE ? subtitleDE : subtitleEN);
   const intro = pageKey ? (t('content.intro') || (isDE ? introDE : introEN)) : (isDE ? introDE : introEN);
-  const heroImage = pageKey ? (img('hero.heroImage') || img('hero.image') || heroImg) : heroImg;
+  const heroImage = pageKey ? img('hero.heroImage', heroImg || '') : heroImg;
 
   return (
     <Layout>
