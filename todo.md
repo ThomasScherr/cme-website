@@ -268,3 +268,14 @@
 - [ ] SECURITY: Backend-Prozeduren bereits mit adminProcedure geschützt – Frontend-Schutz nachrüsten
 - [x] FIX: Mobile Hero – Video-Diamond überlagert "Machbarkeit prüfen lassen" und "Leistungen im Überblick" Buttons
 - [x] FIX: Mobile Hero – Inhalt klebt an Navigation, "THE ELECTRONIC COMPANY" direkt unter Logo, mehr Abstand nötig
+- [ ] SEO: Datenbank-Schema erweitern um summary, tags, metaTitle, metaDescription
+- [ ] SEO: Server-seitige tRPC-Prozedur für KI-basierte SEO-Generierung (OpenAI)
+- [ ] SEO: Admin-UI – KI-Generierung nach Inhaltseingabe mit Vorschau und Bearbeitungsmöglichkeit
+- [ ] SEO: OpenAI API-Key als Secret einrichten
+- [ ] SEO: Meta-Tags im Frontend-Head für SEO-Ausgabe rendern
+- [x] SEO: Server-seitige OpenAI SEO-Generator-Funktion (seoGenerator.ts)
+- [x] SEO: tRPC-Prozedur articles.generateSeo für KI-basierte SEO-Generierung
+- [x] SEO: KI-Button in Admin-UI mit Vorschau und Bearbeitungsmöglichkeit der generierten Felder
+- [x] SEO: Prompt optimiert für KI-Suchsysteme (ChatGPT, Perplexity, Google AI Overview)
+- [x] EDITOR: Rich-Text-Editor (Tiptap) für Artikelinhalt installieren und integrieren
+- [x] EDITOR: Toolbar mit Formatierungen (Überschriften, Fett, Kursiv, Listen, Links, Code)

@@ -28,6 +28,7 @@ import {
 import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
+import { generateSeoContent } from "./seoGenerator";
 
 // Admin-only procedure
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -213,6 +214,27 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         await deleteArticle(input.id);
         return { success: true };
+      }),
+
+    /** Admin: generate SEO metadata using OpenAI */
+    generateSeo: adminProcedure
+      .input(z.object({
+        title: z.string().min(1),
+        content: z.string().min(1),
+      }))
+      .mutation(async ({ input }) => {
+        try {
+          const result = await generateSeoContent({
+            title: input.title,
+            content: input.content,
+          });
+          return result;
+        } catch (err: any) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: err.message || "SEO-Generierung fehlgeschlagen",
+          });
+        }
       }),
   }),
 
