@@ -40,7 +40,6 @@ function useNavItems() {
       label: isDE ? 'Fertigung' : 'Manufacturing',
       href: '/fertigung',
       dropdown: [
-        { label: isDE ? 'Übersicht' : 'Overview', href: '/fertigung' },
         { label: isDE ? 'Leiterplatten bestücken' : 'PCB Assembly', href: '/fertigung/leiterplatten' },
         { label: isDE ? 'Baugruppen fertigen' : 'Module Assembly', href: '/fertigung/baugruppen' },
         { label: isDE ? 'Qualitätsmanagement' : 'Quality Management', href: '/fertigung/qualitaet' },
@@ -167,23 +166,37 @@ export default function Navigation() {
           {navItems.map((item) => (
             <div key={item.label} className="relative">
               {item.dropdown ? (
-                <button
+                <div
+                  className="flex items-center"
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => setOpenDropdown(null)}
-                  onClick={() => toggleDropdown(item.label)}
-                  className={`flex items-center gap-1 font-medium transition-colors rounded-lg whitespace-nowrap ${
-                    isActive(item.href)
-                      ? 'text-cme-blue'
-                      : 'text-cme-dark/80 hover:text-cme-blue'
-                  }`}
-                  style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
                 >
-                  {item.label}
-                  <ChevronDown
-                    size={14}
-                    className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
-                  />
-                </button>
+                  <Link
+                    href={item.href}
+                    className={`font-medium transition-colors rounded-lg whitespace-nowrap ${
+                      isActive(item.href)
+                        ? 'text-cme-blue'
+                        : 'text-cme-dark/80 hover:text-cme-blue'
+                    }`}
+                    style={{ fontSize: 'var(--fs-nav)', paddingLeft: 'var(--nav-item-px)', paddingRight: '0.25rem', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
+                  >
+                    {item.label}
+                  </Link>
+                  <button
+                    onClick={() => toggleDropdown(item.label)}
+                    className={`transition-colors ${
+                      isActive(item.href)
+                        ? 'text-cme-blue'
+                        : 'text-cme-dark/80 hover:text-cme-blue'
+                    }`}
+                    style={{ fontSize: 'var(--fs-nav)', paddingRight: 'var(--nav-item-px)', paddingTop: 'var(--nav-item-py)', paddingBottom: 'var(--nav-item-py)' }}
+                  >
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
               ) : (
                 <Link
                   href={item.href}
@@ -262,20 +275,27 @@ export default function Navigation() {
                 <div key={item.label}>
                   {item.dropdown ? (
                     <>
-                      <button
-                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                        className={`flex items-center justify-between w-full py-3 px-4 fluid-body font-medium rounded-lg transition-colors ${
+                      <div className={`flex items-center justify-between w-full rounded-lg transition-colors ${
                           isActive(item.href)
                             ? 'text-cme-blue bg-cme-blue-light/50'
                             : 'text-cme-dark/80 hover:text-cme-blue hover:bg-cme-blue-light/30'
-                        }`}
-                      >
-                        {item.label}
-                        <ChevronDown
-                          size={16}
-                          className={`transition-transform ${mobileExpanded === item.label ? 'rotate-180' : ''}`}
-                        />
-                      </button>
+                        }`}>
+                        <Link
+                          href={item.href}
+                          className="flex-1 py-3 px-4 fluid-body font-medium"
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                          className="py-3 px-4"
+                        >
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform ${mobileExpanded === item.label ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </div>
                       <AnimatePresence>
                         {mobileExpanded === item.label && (
                           <motion.div

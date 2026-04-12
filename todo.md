@@ -303,3 +303,5 @@
 - [ ] CMS: Frontend – Alle Seiten auf DB-Content umstellen
 - [x] ADD: UL Wiring Harness Kachel auf /fertigung/qualitaet ergänzen (CME ist UL-gelistet)
 - [x] FIX: Reihenfolge der Märkte-Karten ändern (Motion & Drive, Automotive, Med Tech, Industrial, Smart Infra, Energy)
+- [x] FIX: Hauptmenüpunkt "Entwicklung" als direkten Link auf /entwicklung setzen
+- [x] FIX: Hauptmenüpunkt "Fertigung" als direkten Link auf /fertigung setzen, "Übersicht" aus Dropdown entfernen
