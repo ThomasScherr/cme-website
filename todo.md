@@ -301,3 +301,6 @@
 - [x] CMS: Admin-UI – Asset-Bibliothek mit Upload, Suche und Wiederverwendung
 - [x] CMS: Frontend – useContent Hook für alle Seiten (DB-Werte mit Fallback)
 - [x] CMS: Frontend – Alle Seiten auf DB-Content umstellen
+- [x] FIX: Content-Manager zeigt leere Felder statt bestehende Seiteninhalte
+- [x] FIX: Content-Manager muss Default-Werte (aktuelle hartcodierte Texte/Bilder) als Platzhalter anzeigen
+- [x] FIX: Feature-Cards und weitere Sektionen im Content-Manager ergänzen

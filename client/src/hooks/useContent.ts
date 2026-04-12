@@ -1,9 +1,11 @@
 /**
  * useContent Hook – Loads CMS content from the database with fallback to default values.
  * 
+ * Defaults are now automatically derived from contentDefinitions.ts when not explicitly provided.
+ * 
  * Usage:
- *   const { t, img, vid } = useContent('home', defaultContent);
- *   // t('hero.title') → returns DB value or fallback
+ *   const { t, img, vid } = useContent('home');
+ *   // t('hero.title') → returns DB value or fallback from contentDefinitions
  *   // img('hero.image') → returns DB image URL or fallback
  *   // vid('hero.video') → returns DB video URL or fallback
  */
@@ -11,6 +13,7 @@
 import { useMemo } from "react";
 import { trpc } from "@/lib/trpc";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PAGES } from "@/lib/contentDefinitions";
 type LangType = "de" | "en";
 
 export interface ContentDefaults {
@@ -28,12 +31,41 @@ interface ContentEntry {
   valueEn: string | null;
 }
 
-export function useContent(pageKey: string, defaults: ContentDefaults = {}) {
+/**
+ * Build a defaults map from the PAGES definition for a given pageKey.
+ * Keys are in the format "section.field" (e.g. "hero.tagline", "features.feature.0").
+ */
+function buildDefaultsFromDefinitions(pageKey: string): ContentDefaults {
+  const pageDef = PAGES.find((p) => p.key === pageKey);
+  if (!pageDef) return {};
+
+  const defaults: ContentDefaults = {};
+  for (const section of pageDef.sections) {
+    for (const field of section.fields) {
+      const key = `${section.key}.${field.key}`;
+      defaults[key] = {
+        de: field.defaultDe || "",
+        en: field.defaultEn || "",
+        type: field.type,
+      };
+    }
+  }
+  return defaults;
+}
+
+export function useContent(pageKey: string, explicitDefaults?: ContentDefaults) {
   const { lang: language } = useLanguage();
   const { data: contentEntries, isLoading } = trpc.cms.getByPage.useQuery(
     { pageKey },
     { staleTime: 60_000 }
   );
+
+  // Merge: explicit defaults override auto-derived ones
+  const defaults = useMemo(() => {
+    const auto = buildDefaultsFromDefinitions(pageKey);
+    if (!explicitDefaults) return auto;
+    return { ...auto, ...explicitDefaults };
+  }, [pageKey, explicitDefaults]);
 
   const contentMap = useMemo(() => {
     const map = new Map<string, ContentEntry>();

@@ -26,310 +26,10 @@ import {
   Search,
   X,
   FileText,
-  Trash2,
-  Check,
 } from "lucide-react";
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "wouter";
-
-// ── Page & Section Definitions ──────────────────────────────────────
-
-interface FieldDef {
-  key: string;
-  label: string;
-  type: "text" | "richtext" | "image" | "video";
-  defaultDe?: string;
-  defaultEn?: string;
-}
-
-interface SectionDef {
-  key: string;
-  label: string;
-  fields: FieldDef[];
-}
-
-interface PageDef {
-  key: string;
-  label: string;
-  path: string;
-  sections: SectionDef[];
-}
-
-// Define all pages and their editable content
-const PAGES: PageDef[] = [
-  {
-    key: "home",
-    label: "Startseite",
-    path: "/",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "videoWebm", label: "Video (WebM)", type: "video" },
-          { key: "videoMp4", label: "Video (MP4)", type: "video" },
-          { key: "videoPoster", label: "Video-Poster", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text", defaultDe: "THE ELECTRONIC COMPANY", defaultEn: "THE ELECTRONIC COMPANY" },
-          { key: "headline", label: "Überschrift", type: "text", defaultDe: "Elektronik. Entwickelt. Gefertigt.", defaultEn: "Electronics. Developed. Manufactured." },
-          { key: "description", label: "Beschreibung", type: "text", defaultDe: "Von der Idee bis zur Serie...", defaultEn: "From idea to series production..." },
-          { key: "ctaLabel", label: "CTA Button", type: "text", defaultDe: "Machbarkeit prüfen lassen", defaultEn: "Request feasibility check" },
-          { key: "ctaSecondaryLabel", label: "Sekundärer Button", type: "text", defaultDe: "Leistungen im Überblick", defaultEn: "Services overview" },
-        ],
-      },
-      {
-        key: "stats",
-        label: "Statistiken",
-        fields: [
-          { key: "experience.value", label: "Erfahrung Wert", type: "text", defaultDe: "25+", defaultEn: "25+" },
-          { key: "experience.label", label: "Erfahrung Label", type: "text", defaultDe: "Jahre Erfahrung", defaultEn: "Years Experience" },
-          { key: "projects.value", label: "Projekte Wert", type: "text", defaultDe: "500+", defaultEn: "500+" },
-          { key: "projects.label", label: "Projekte Label", type: "text", defaultDe: "Projekte realisiert", defaultEn: "Projects realized" },
-          { key: "employees.value", label: "Mitarbeiter Wert", type: "text", defaultDe: "120+", defaultEn: "120+" },
-          { key: "employees.label", label: "Mitarbeiter Label", type: "text", defaultDe: "Mitarbeiter", defaultEn: "Employees" },
-          { key: "certifications.value", label: "Zertifizierungen Wert", type: "text", defaultDe: "ISO 9001", defaultEn: "ISO 9001" },
-          { key: "certifications.label", label: "Zertifizierungen Label", type: "text", defaultDe: "Zertifiziert", defaultEn: "Certified" },
-        ],
-      },
-      {
-        key: "services",
-        label: "Leistungen (3 Säulen)",
-        fields: [
-          { key: "0.title", label: "Säule 1 Titel", type: "text", defaultDe: "Entwicklung", defaultEn: "Development" },
-          { key: "0.description", label: "Säule 1 Beschreibung", type: "text" },
-          { key: "0.image", label: "Säule 1 Bild", type: "image" },
-          { key: "1.title", label: "Säule 2 Titel", type: "text", defaultDe: "Fertigung", defaultEn: "Manufacturing" },
-          { key: "1.description", label: "Säule 2 Beschreibung", type: "text" },
-          { key: "1.image", label: "Säule 2 Bild", type: "image" },
-          { key: "2.title", label: "Säule 3 Titel", type: "text", defaultDe: "Lifecycle", defaultEn: "Lifecycle" },
-          { key: "2.description", label: "Säule 3 Beschreibung", type: "text" },
-          { key: "2.image", label: "Säule 3 Bild", type: "image" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "entwicklung",
-    label: "Entwicklung",
-    path: "/entwicklung",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "videoWebm", label: "Hero-Video (WebM)", type: "video" },
-          { key: "videoMp4", label: "Hero-Video (MP4)", type: "video" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "fertigung",
-    label: "Fertigung",
-    path: "/fertigung",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "videoWebm", label: "Hero-Video (WebM)", type: "video" },
-          { key: "videoMp4", label: "Hero-Video (MP4)", type: "video" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "fertigung.leiterplatten",
-    label: "Leiterplatten bestücken",
-    path: "/fertigung/leiterplatten",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "videoWebm", label: "Hero-Video (WebM)", type: "video" },
-          { key: "videoMp4", label: "Hero-Video (MP4)", type: "video" },
-        ],
-      },
-      {
-        key: "content",
-        label: "Seiteninhalt",
-        fields: [
-          { key: "title", label: "Titel", type: "text" },
-          { key: "subtitle", label: "Untertitel", type: "text" },
-          { key: "intro", label: "Einleitung", type: "richtext" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "fertigung.baugruppen",
-    label: "Baugruppen fertigen",
-    path: "/fertigung/baugruppen",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "videoWebm", label: "Hero-Video (WebM)", type: "video" },
-          { key: "videoMp4", label: "Hero-Video (MP4)", type: "video" },
-        ],
-      },
-      {
-        key: "content",
-        label: "Seiteninhalt",
-        fields: [
-          { key: "title", label: "Titel", type: "text" },
-          { key: "subtitle", label: "Untertitel", type: "text" },
-          { key: "intro", label: "Einleitung", type: "richtext" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "fertigung.qualitaet",
-    label: "Qualitätsmanagement",
-    path: "/fertigung/qualitaet",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-        ],
-      },
-      {
-        key: "content",
-        label: "Seiteninhalt",
-        fields: [
-          { key: "title", label: "Titel", type: "text" },
-          { key: "subtitle", label: "Untertitel", type: "text" },
-          { key: "intro", label: "Einleitung", type: "richtext" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "lifecycle",
-    label: "Lifecycle",
-    path: "/lifecycle",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "maerkte",
-    label: "Märkte",
-    path: "/maerkte",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "unternehmen",
-    label: "Unternehmen",
-    path: "/unternehmen",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "kontakt",
-    label: "Kontakt",
-    path: "/kontakt",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  {
-    key: "karriere",
-    label: "Karriere",
-    path: "/karriere",
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" },
-          { key: "tagline", label: "Tagline", type: "text" },
-          { key: "headline", label: "Überschrift", type: "text" },
-          { key: "description", label: "Beschreibung", type: "text" },
-        ],
-      },
-    ],
-  },
-  // Entwicklung sub-pages
-  ...["hardware-software", "simulation", "test-verifikation", "ux-interface-engineering", "software-digitale-systeme", "e-motor-design", "control-design", "validierung-emv", "ki-entwicklung"].map(slug => ({
-    key: `entwicklung.${slug.replace(/-/g, "")}`,
-    label: `Entwicklung: ${slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")}`,
-    path: `/entwicklung/${slug}`,
-    sections: [
-      {
-        key: "hero",
-        label: "Hero-Bereich",
-        fields: [
-          { key: "image", label: "Hero-Bild", type: "image" as const },
-          { key: "videoWebm", label: "Hero-Video (WebM)", type: "video" as const },
-          { key: "videoMp4", label: "Hero-Video (MP4)", type: "video" as const },
-        ],
-      },
-      {
-        key: "content",
-        label: "Seiteninhalt",
-        fields: [
-          { key: "title", label: "Titel", type: "text" as const },
-          { key: "subtitle", label: "Untertitel", type: "text" as const },
-          { key: "intro", label: "Einleitung", type: "richtext" as const },
-        ],
-      },
-    ],
-  })),
-];
+import { PAGES, type FieldDef, type PageDef, type SectionDef } from "@/lib/contentDefinitions";
 
 // ── Types ───────────────────────────────────────────────────────────
 
@@ -347,6 +47,36 @@ interface EditState {
     contentType: string;
     dirty: boolean;
   };
+}
+
+// ── Sidebar grouping helper ────────────────────────────────────────
+
+interface PageGroup {
+  label: string;
+  pages: PageDef[];
+}
+
+function groupPages(pages: PageDef[]): PageGroup[] {
+  const groups: PageGroup[] = [];
+  const topLevel: PageDef[] = [];
+  const subMap = new Map<string, PageDef[]>();
+
+  for (const page of pages) {
+    if (page.key.includes('.')) {
+      const parent = page.key.split('.')[0];
+      if (!subMap.has(parent)) subMap.set(parent, []);
+      subMap.get(parent)!.push(page);
+    } else {
+      topLevel.push(page);
+    }
+  }
+
+  for (const page of topLevel) {
+    const children = subMap.get(page.key) || [];
+    groups.push({ label: page.label, pages: [page, ...children] });
+  }
+
+  return groups;
 }
 
 // ── Media Library Modal ─────────────────────────────────────────────
@@ -561,14 +291,14 @@ function FieldEditor({
         <div className="flex items-center gap-2">
           {typeIcon}
           <span className="text-sm font-medium">{field.label}</span>
-          {isDirty && <span className="text-xs text-orange-500 font-medium">• geändert</span>}
+          {isDirty && <span className="text-xs text-orange-500 font-medium">geändert</span>}
         </div>
         <div className="flex items-center gap-3">
           {field.type === "image" && valueDe ? (
             <div className="relative w-24 h-24 rounded-lg overflow-hidden border bg-gray-100 flex-shrink-0">
               <img src={valueDe} alt="" className="w-full h-full object-cover" />
               <button
-                onClick={() => onUpdate(fullKey, "de", "")}
+                onClick={() => { onUpdate(fullKey, "de", ""); onUpdate(fullKey, "en", ""); }}
                 className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5 hover:bg-red-600"
               >
                 <X className="w-3 h-3" />
@@ -578,7 +308,7 @@ function FieldEditor({
             <div className="relative w-24 h-24 rounded-lg overflow-hidden border bg-gray-200 flex-shrink-0 flex items-center justify-center">
               <Video className="w-8 h-8 text-gray-500" />
               <button
-                onClick={() => onUpdate(fullKey, "de", "")}
+                onClick={() => { onUpdate(fullKey, "de", ""); onUpdate(fullKey, "en", ""); }}
                 className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5 hover:bg-red-600"
               >
                 <X className="w-3 h-3" />
@@ -612,7 +342,7 @@ function FieldEditor({
       <div className="flex items-center gap-2">
         {typeIcon}
         <span className="text-sm font-medium">{field.label}</span>
-        {isDirty && <span className="text-xs text-orange-500 font-medium">• geändert</span>}
+        {isDirty && <span className="text-xs text-orange-500 font-medium">geändert</span>}
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -679,12 +409,14 @@ export default function ContentManager() {
   });
   const [saving, setSaving] = useState(false);
 
+  // Group pages for sidebar navigation
+  const pageGroups = useMemo(() => groupPages(PAGES), []);
+
   // Load all content from DB
   const { data: allContent, isLoading: contentLoading, refetch } = trpc.cms.getAll.useQuery(
     undefined,
     { staleTime: 30_000 }
   );
-  const updateMutation = trpc.cms.update.useMutation();
   const bulkUpdateMutation = trpc.cms.bulkUpdate.useMutation();
 
   // Build content map from DB
@@ -778,7 +510,6 @@ export default function ContentManager() {
 
     setSaving(true);
     try {
-      // Determine which language was primarily edited (heuristic: check if DE values changed)
       const entries = dirtyEntries.map(([key, state]) => ({
         contentKey: key,
         contentType: state.contentType as "text" | "richtext" | "image" | "video",
@@ -786,7 +517,6 @@ export default function ContentManager() {
         valueEn: state.valueEn || null,
       }));
 
-      // Check if text fields were edited to trigger auto-translation
       const hasTextChanges = entries.some(
         (e) => e.contentType === "text" || e.contentType === "richtext"
       );
@@ -877,7 +607,7 @@ export default function ContentManager() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 flex gap-6">
-        {/* Sidebar – Page List */}
+        {/* Sidebar – Page List grouped */}
         <div className="w-64 flex-shrink-0">
           <Card>
             <CardHeader className="py-3 px-4">
@@ -885,23 +615,29 @@ export default function ContentManager() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
-                {PAGES.map((page) => {
-                  const isSelected = page.key === selectedPageKey;
-                  const indent = page.key.includes(".") ? "pl-8" : "pl-4";
-                  return (
-                    <button
-                      key={page.key}
-                      onClick={() => setSelectedPageKey(page.key)}
-                      className={`w-full text-left py-2.5 pr-4 text-sm transition-colors ${indent} ${
-                        isSelected
-                          ? "bg-cme-blue/10 text-cme-blue font-medium border-r-2 border-cme-blue"
-                          : "hover:bg-gray-50 text-gray-700"
-                      }`}
-                    >
-                      {page.label}
-                    </button>
-                  );
-                })}
+                {pageGroups.map((group) => (
+                  <div key={group.label}>
+                    {group.pages.map((page) => {
+                      const isSelected = page.key === selectedPageKey;
+                      const isChild = page.key.includes(".");
+                      return (
+                        <button
+                          key={page.key}
+                          onClick={() => setSelectedPageKey(page.key)}
+                          className={`w-full text-left py-2 pr-4 text-sm transition-colors ${
+                            isChild ? "pl-8 text-xs" : "pl-4 font-medium"
+                          } ${
+                            isSelected
+                              ? "bg-cme-blue/10 text-cme-blue border-r-2 border-cme-blue"
+                              : "hover:bg-gray-50 text-gray-700"
+                          }`}
+                        >
+                          {isChild ? page.label.replace(/^[^:]+:\s*/, "") : page.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
