@@ -216,3 +216,9 @@
 - [x] Trust-Sektion: 9 Kundenlogos auf CDN hochladen
 - [x] Trust-Sektion: React-Komponente TrustSection erstellen (monochrom, dezent, proportional)
 - [x] Trust-Sektion: Zwischen MarketsSection und ContactSection auf Startseite einbinden
+- [ ] HeroSection: Video-Diamant-Raute auch auf Smartphone darstellen (optimierte Mobile-Variante)
+- [x] Trust-Sektion: Originallogos mit CSS grayscale-Filter verwenden statt vorgebackenem Grayscale (Logos unsichtbar)
+- [x] Entwicklung.tsx: Blaue Punkte durch Lucide Icons ersetzen (wie auf anderen Seiten)
+- [x] Entwicklung.tsx: Technologien erweitern (nicht nur SiC/GaN, auch thermisches Management, Simulation, Umrichter für Automotive/Ladetechnik/PV)
+- [x] Entwicklung.tsx: Fakten von control-motion.de und online-engineering.de recherchieren und ergänzen
+- [x] Trust-Sektion: Graufilter von Insight Instruments und W&H Logos entfernen (transparente Bereiche werden eingegraut)

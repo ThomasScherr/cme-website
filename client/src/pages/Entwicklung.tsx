@@ -1,7 +1,11 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'wouter';
-import { ArrowRight, Cpu, Cog, SlidersHorizontal, Waves, ShieldCheck, FlaskConical } from 'lucide-react';
+import {
+  ArrowRight, Cpu, Cog, SlidersHorizontal, Waves, ShieldCheck, FlaskConical,
+  Zap, Thermometer, BatteryCharging, Gauge, Radio, Microchip, RefreshCw,
+  MonitorSmartphone, CircuitBoard, Wrench, Search, Users, CheckCircle2
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -69,6 +73,26 @@ const competencies = [
     descEN: 'Test automation and automatic data analysis.',
     href: '/entwicklung/test-verifikation',
   },
+];
+
+/* ── Expanded Core Competencies with Lucide Icons ── */
+const coreCompetencies = [
+  { icon: Zap, de: 'Leistungselektronik (SiC, GaN, IGBT, MOSFET)', en: 'Power Electronics (SiC, GaN, IGBT, MOSFET)' },
+  { icon: Cog, de: 'Antriebselektronik & Motor Control (FOC, BLDC/PMSM)', en: 'Drive Electronics & Motor Control (FOC, BLDC/PMSM)' },
+  { icon: CircuitBoard, de: 'E-Motor-Design & -Auslegung (FEA, Motor-CAD)', en: 'E-Motor Design & Engineering (FEA, Motor-CAD)' },
+  { icon: Gauge, de: 'Umrichter: Automotive, Ladetechnik, Photovoltaik', en: 'Inverters: Automotive, Charging, Photovoltaics' },
+  { icon: BatteryCharging, de: 'Stromversorgungen: DC/DC, AC/DC, BMS', en: 'Power Supplies: DC/DC, AC/DC, BMS' },
+  { icon: Thermometer, de: 'Thermisches Management & Verlustleistungssimulation', en: 'Thermal Management & Power Loss Simulation' },
+  { icon: Waves, de: 'System-, Antriebs-, Schaltungs- & Thermosimulation', en: 'System, Drive, Circuit & Thermal Simulation' },
+  { icon: Radio, de: 'EMV-Design, Filterauslegung & Qualifikation', en: 'EMC Design, Filter Layout & Qualification' },
+  { icon: ShieldCheck, de: 'Funktionale Sicherheit (ISO 26262, FuSi)', en: 'Functional Safety (ISO 26262, FuSi)' },
+  { icon: SlidersHorizontal, de: 'Automotive SPICE (ASPICE)', en: 'Automotive SPICE (ASPICE)' },
+  { icon: Microchip, de: 'Embedded Systems: Firmware, RTOS (C/C++)', en: 'Embedded Systems: Firmware, RTOS (C/C++)' },
+  { icon: Radio, de: 'Kommunikationsprotokolle: CAN, LIN, SPI, EtherCAT', en: 'Communication Protocols: CAN, LIN, SPI, EtherCAT' },
+  { icon: Search, de: 'Sensorik & Signalverarbeitung', en: 'Sensor Technology & Signal Processing' },
+  { icon: Thermometer, de: 'Robuste Elektronik für hohe Temperaturen & raue Umgebungen', en: 'Robust Electronics for High Temperatures & Harsh Environments' },
+  { icon: RefreshCw, de: 'Redesign & Produktoptimierung', en: 'Redesign & Product Optimization' },
+  { icon: MonitorSmartphone, de: 'UX & Interface Engineering', en: 'UX & Interface Engineering' },
 ];
 
 export default function Entwicklung() {
@@ -178,37 +202,26 @@ export default function Entwicklung() {
         </div>
       </section>
 
-      {/* Key Capabilities */}
+      {/* Key Capabilities – with Lucide Icons instead of blue dots */}
       <section className="section-pad bg-gray-50">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">
             {isDE ? 'Kernkompetenzen' : 'Core Competencies'}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
-            {[
-              { de: 'Leistungselektronik (SiC, GaN)', en: 'Power Electronics (SiC, GaN)' },
-              { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control' },
-              { de: 'E-Motor-Design & -Auslegung', en: 'E-Motor Design & Engineering' },
-              { de: 'Umrichter mit hohem Wirkungsgrad', en: 'High-Efficiency Inverters' },
-              { de: 'Robuste Elektronik für raue Umgebungen', en: 'Robust Electronics for Harsh Environments' },
-              { de: 'Thermisches Management', en: 'Thermal Management' },
-              { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)' },
-              { de: 'Automotive SPICE (ASPICE)', en: 'Automotive SPICE (ASPICE)' },
-              { de: 'EMV-Design & Qualifikation', en: 'EMC Design & Qualification' },
-              { de: 'Embedded Software (C/C++)', en: 'Embedded Software (C/C++)' },
-              { de: 'Redesign & Produktoptimierung', en: 'Redesign & Product Optimization' },
-              { de: 'UX & Interface Engineering', en: 'UX & Interface Engineering' },
-            ].map((item, i) => (
+            {coreCompetencies.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.04 }}
                 className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
               >
-                <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
-                <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
+                <div className="flex items-start" style={{ gap: 'var(--space-gap-xs)' }}>
+                  <item.icon className="text-cme-blue shrink-0 mt-0.5" size={18} />
+                  <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -235,11 +248,11 @@ export default function Entwicklung() {
               </p>
               <ul className="space-y-2">
                 {(isDE
-                  ? ['Verbesserung des Wirkungsgrades', 'Leistungserhöhung', 'Reduktion von Energieverbrauch', 'Anpassung an verringerten Bauraum', 'Erhöhung der Lebensdauer', 'Reduzierung von Stück- oder Produktionskosten']
-                  : ['Efficiency improvement', 'Power increase', 'Energy consumption reduction', 'Adaptation to reduced installation space', 'Lifetime extension', 'Reduction of unit or production costs']
+                  ? ['Verbesserung des Wirkungsgrades', 'Leistungserhöhung', 'Reduktion von Energieverbrauch', 'Anpassung an verringerten Bauraum', 'Erhöhung der Lebensdauer', 'Verbesserung von Fertigungsprozessen', 'Reduzierung von Stück- oder Produktionskosten']
+                  : ['Efficiency improvement', 'Power increase', 'Energy consumption reduction', 'Adaptation to reduced installation space', 'Lifetime extension', 'Manufacturing process improvement', 'Reduction of unit or production costs']
                 ).map((item, i) => (
                   <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                    <CheckCircle2 className="text-cme-blue shrink-0 mt-0.5" size={14} />
                     {item}
                   </li>
                 ))}
@@ -265,7 +278,7 @@ export default function Entwicklung() {
                   : ['Product development & ideation', 'Troubleshooting: finding & fixing root causes', 'Second-source management: alternative components', 'Project planning & execution', 'Independent assessment of developments']
                 ).map((item, i) => (
                   <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cme-blue mt-2 flex-shrink-0" />
+                    <Users className="text-cme-blue shrink-0 mt-0.5" size={14} />
                     {item}
                   </li>
                 ))}

@@ -3,55 +3,67 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
 /**
- * Logo data with proportional height values.
- * Heights are relative to keep logos visually balanced –
- * text-heavy logos (Toshiba, ROHM) are shorter, icon logos (Kii, W&H) taller.
+ * Logo data with original color PNGs (200px height source for retina).
+ * CSS filter: grayscale(100%) + reduced contrast for consistent muted appearance.
+ * On hover, filters are removed to show original colors.
+ * Heights are visually balanced relative to each other.
+ *
+ * Logos with transparent backgrounds (Insight Instruments, W&H) skip the
+ * grayscale filter because it grays out the transparent area, making them
+ * unrecognizable. They are shown at reduced opacity instead.
  */
-const logos = [
+const logos: {
+  name: string;
+  src: string;
+  height: number;
+  skipGrayscale?: boolean;
+}[] = [
   {
     name: 'Toshiba',
-    src: `${CDN}/TOSHIBA_Logo_7b7cfaa4.png`,
-    height: 22,   // wide text logo – keep compact
-  },
-  {
-    name: 'Busch Vacuum Solutions',
-    src: `${CDN}/Lgo-Bush_400x400px_1fa2a3f0.webp`,
-    height: 40,
-  },
-  {
-    name: 'elmos Semiconductor',
-    src: `${CDN}/elmos_400x400px-Kopie_8ea849d1.webp`,
+    src: `${CDN}/toshiba-color_76aafdeb.png`,
     height: 38,
   },
   {
+    name: 'Busch Vacuum Solutions',
+    src: `${CDN}/busch-color_19258d80.png`,
+    height: 56,
+  },
+  {
+    name: 'elmos Semiconductor',
+    src: `${CDN}/elmos-color_c2cc8407.png`,
+    height: 52,
+  },
+  {
     name: 'Kii Audio',
-    src: `${CDN}/Logo-Kii-Audio_400x400px_09ae557a.webp`,
-    height: 44,
+    src: `${CDN}/kii-audio-color_4e611d4e.png`,
+    height: 60,
   },
   {
     name: 'Toshiba Railway Europe',
-    src: `${CDN}/Toschiba_400x400px_7c897a3f.webp`,
-    height: 36,
+    src: `${CDN}/toshiba-railway-color_375231eb.png`,
+    height: 52,
   },
   {
     name: 'GridServ',
-    src: `${CDN}/Logo-GridServ-400x400px_3a0f0ad1.webp`,
-    height: 36,
+    src: `${CDN}/gridserv-color_535bce46.png`,
+    height: 48,
   },
   {
     name: 'Insight Instruments',
-    src: `${CDN}/Insight-Instruments-Biofeedback_400x400px_0c59d829.webp`,
-    height: 44,
+    src: `${CDN}/insight-instruments-color_07e8f248.png`,
+    height: 60,
+    skipGrayscale: true,
   },
   {
     name: 'W&H',
-    src: `${CDN}/Logo_WH-3D_400x400px-Kopie_1f623249.webp`,
-    height: 44,
+    src: `${CDN}/wh-color_1102e8e5.png`,
+    height: 60,
+    skipGrayscale: true,
   },
   {
     name: 'ROHM Semiconductor',
-    src: `${CDN}/rohm_owler_20160227_011420_original_b893df1b.webp`,
-    height: 28,   // wide text logo – keep compact
+    src: `${CDN}/rohm-color_3738c32a.png`,
+    height: 40,
   },
 ];
 
@@ -60,30 +72,52 @@ export default function TrustSection() {
   const isDE = lang === 'de';
 
   return (
-    <section className="py-10 md:py-14 bg-white border-t border-gray-100">
+    <section className="py-12 md:py-16 bg-white border-t border-gray-100">
       <div className="container">
         {/* Subtle label */}
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-gray-400 mb-8 font-medium">
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-gray-400 mb-10 font-medium">
           {isDE ? 'Vertrauen führender Unternehmen' : 'Trusted by leading companies'}
         </p>
 
-        {/* Logo grid */}
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:gap-x-14 lg:gap-x-16">
-          {logos.map((logo) => (
-            <div
-              key={logo.name}
-              className="flex items-center justify-center"
-              title={logo.name}
-            >
-              <img
-                src={logo.src}
-                alt={logo.name}
-                style={{ height: `${logo.height}px` }}
-                className="w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                loading="lazy"
-              />
-            </div>
-          ))}
+        {/* Logo grid – eager loading to ensure visibility */}
+        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-16 lg:gap-x-20">
+          {logos.map((logo) => {
+            const defaultFilter = logo.skipGrayscale
+              ? 'none'
+              : 'grayscale(100%) contrast(0.4)';
+            const defaultOpacity = logo.skipGrayscale ? '0.55' : '0.7';
+
+            return (
+              <div
+                key={logo.name}
+                className="flex items-center justify-center group cursor-default"
+                title={logo.name}
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  width={Math.round(logo.height * 2.5)}
+                  height={logo.height}
+                  style={{
+                    height: `${logo.height}px`,
+                    width: 'auto',
+                    filter: defaultFilter,
+                    opacity: parseFloat(defaultOpacity),
+                    transition: 'filter 0.3s ease, opacity 0.3s ease',
+                  }}
+                  className="object-contain"
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLImageElement).style.filter = 'none';
+                    (e.target as HTMLImageElement).style.opacity = '1';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLImageElement).style.filter = defaultFilter;
+                    (e.target as HTMLImageElement).style.opacity = defaultOpacity;
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

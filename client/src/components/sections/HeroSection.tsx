@@ -55,6 +55,27 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
   return { displayedLines, showCursor, isDone: phase === 'done', currentLineIndex };
 }
 
+// ─── Diamond Video Component (shared between mobile & desktop) ───
+function DiamondVideo({ className = '', style = {} }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <div
+      className={`diamond shadow-xl shadow-cme-blue/15 ${className}`}
+      style={style}
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={HERO_VIDEO_POSTER}
+      >
+        <source src={HERO_VIDEO_WEBM} type="video/webm" />
+        <source src={HERO_VIDEO_MP4} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
+
 // ─── Main Hero Component ───
 export default function HeroSection() {
   const { t, lang } = useLanguage();
@@ -190,7 +211,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right: Two offset diamonds – only visible on lg+ screens */}
+          {/* Right: Two offset diamonds – DESKTOP (lg+) */}
           <div className="hidden lg:flex relative items-center justify-end">
             <div
               className="relative"
@@ -222,25 +243,38 @@ export default function HeroSection() {
                 className="absolute bottom-0 right-0"
                 style={{ zIndex: 2 }}
               >
-                <div
-                  className="diamond shadow-xl shadow-cme-blue/15"
-                  style={{ width: 'var(--hero-image-diamond)' }}
-                >
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster={HERO_VIDEO_POSTER}
-                  >
-                    <source src={HERO_VIDEO_WEBM} type="video/webm" />
-                    <source src={HERO_VIDEO_MP4} type="video/mp4" />
-                  </video>
-                </div>
+                <DiamondVideo style={{ width: 'var(--hero-image-diamond)' }} />
               </motion.div>
             </div>
           </div>
         </div>
+
+        {/* ── Mobile Diamond (below text, centered) ── visible on < lg */}
+        <motion.div
+          className="flex lg:hidden justify-center relative"
+          style={{ marginTop: 'clamp(1rem, 3vw, 2rem)', marginBottom: 'clamp(0.5rem, 2vw, 1.5rem)' }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          {/* Accent diamond – subtle background offset */}
+          <div
+            className="absolute diamond bg-cme-blue/[0.06]"
+            style={{
+              width: 'min(48vw, 200px)',
+              top: '-6%',
+              left: '50%',
+              transform: 'translateX(-62%) rotate(45deg)',
+              zIndex: 1,
+            }}
+          />
+          {/* Main video diamond */}
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <DiamondVideo
+              style={{ width: 'min(65vw, 280px)' }}
+            />
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
