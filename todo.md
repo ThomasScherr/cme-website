@@ -263,3 +263,8 @@
 - [x] Passwortschutz: Server-seitige Middleware für Passwort-Validierung
 - [x] Passwortschutz: Frontend-Gate mit Passwort-Eingabeformular
 - [x] Passwortschutz: Cookie-basierte Speicherung nach erfolgreicher Eingabe
+- [ ] SECURITY: Admin-Seiten (/admin/styles, /admin/insights) nur für eingeloggte Admins zugänglich machen
+- [ ] SECURITY: Frontend AdminGuard-Komponente erstellen (Login-Redirect für nicht-authentifizierte Nutzer)
+- [ ] SECURITY: Backend-Prozeduren bereits mit adminProcedure geschützt – Frontend-Schutz nachrüsten
+- [x] FIX: Mobile Hero – Video-Diamond überlagert "Machbarkeit prüfen lassen" und "Leistungen im Überblick" Buttons
+- [x] FIX: Mobile Hero – Inhalt klebt an Navigation, "THE ELECTRONIC COMPANY" direkt unter Logo, mehr Abstand nötig

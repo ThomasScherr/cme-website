@@ -190,7 +190,7 @@ export default function HeroSection() {
               {t.hero.sub}
             </motion.p>
             <motion.div
-              className="flex flex-wrap"
+              className="flex flex-wrap relative z-20"
               style={{ gap: 'var(--space-gap-xs)' }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: isDone ? 1 : 0, y: isDone ? 0 : 10 }}
@@ -251,8 +251,8 @@ export default function HeroSection() {
 
         {/* ── Mobile Diamond (below text, centered) ── visible on < lg */}
         <motion.div
-          className="flex lg:hidden justify-center relative"
-          style={{ marginTop: 'clamp(1rem, 3vw, 2rem)', marginBottom: 'clamp(0.5rem, 2vw, 1.5rem)' }}
+          className="flex lg:hidden justify-center relative overflow-visible"
+          style={{ marginTop: 'clamp(2rem, 5vw, 3rem)', marginBottom: 'clamp(1rem, 3vw, 2rem)' }}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3 }}
@@ -261,17 +261,17 @@ export default function HeroSection() {
           <div
             className="absolute diamond bg-cme-blue/[0.06]"
             style={{
-              width: 'min(48vw, 200px)',
-              top: '-6%',
+              width: 'min(40vw, 170px)',
+              top: '-8%',
               left: '50%',
-              transform: 'translateX(-62%) rotate(45deg)',
+              transform: 'translateX(-65%) rotate(45deg)',
               zIndex: 1,
             }}
           />
           {/* Main video diamond */}
           <div style={{ position: 'relative', zIndex: 2 }}>
             <DiamondVideo
-              style={{ width: 'min(65vw, 280px)' }}
+              style={{ width: 'min(55vw, 240px)' }}
             />
           </div>
         </motion.div>

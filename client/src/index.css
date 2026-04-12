@@ -185,8 +185,8 @@
   --hero-accent-diamond: clamp(15rem, 6rem + 22.8vw, 31.5rem);
   /* Hero image diamond: 264px → 540px (+20%) */
   --hero-image-diamond: clamp(16.5rem, 7.2rem + 24vw, 33.75rem);
-  /* Hero content padding */
-  --hero-content-pad-top: clamp(4rem, 2rem + 5.2vw, 8.75rem);
+  /* Hero content padding – must exceed nav-height so text doesn't touch nav */
+  --hero-content-pad-top: clamp(6rem, 3.5rem + 6.5vw, 11rem);
   --hero-content-pad-bottom: clamp(3rem, 0.8rem + 5.7vw, 10rem);
   /* Hero diamond positioning */
   --hero-diamond-mt: clamp(-1.5rem, -0.8125rem + 0vw, 0rem);
