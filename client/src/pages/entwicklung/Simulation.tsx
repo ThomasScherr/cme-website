@@ -268,8 +268,8 @@ export default function Simulation() {
                 className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg transition-all fluid-card"
               >
                 {/* Tool logo */}
-                <div className="flex justify-center" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-                  <div className="w-36 h-36 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-4 overflow-visible">
+                <div style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                  <div className="w-full h-24 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center px-6 py-4">
                     <img
                       src={tool.logo}
                       alt={isDE ? tool.toolDE : tool.toolEN}
