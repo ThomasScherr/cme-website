@@ -315,3 +315,5 @@
 - [x] ADD: Lifecycle-Seite Redesign-Service um Optimierungsziele im Lifecycle-Kontext erweitert
 - [x] FIX: Kontakt-Seite "Fachleuten" → "Experten" geändert
 - [x] ADD: Kontakt-Seite Telefon und E-Mail zusätzlich im Hero-Bereich (sales@control-motion.de, +49 231 28 66 76 96-0)
+- [x] FIX: Kontakt-Seite in admin/content CMS-Definitionen erweitert – Hero (inkl. Telefon/E-Mail), Kontaktdaten, Kontaktformular
+- [x] FIX: Alle Seiten in contentDefinitions.ts geprüft – Kontakt war die einzige mit fehlenden Sektionen
