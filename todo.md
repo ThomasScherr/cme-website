@@ -302,3 +302,4 @@
 - [ ] CMS: Frontend – useContent Hook für alle Seiten (DB-Werte mit Fallback)
 - [ ] CMS: Frontend – Alle Seiten auf DB-Content umstellen
 - [x] ADD: UL Wiring Harness Kachel auf /fertigung/qualitaet ergänzen (CME ist UL-gelistet)
+- [x] FIX: Reihenfolge der Märkte-Karten ändern (Motion & Drive, Automotive, Med Tech, Industrial, Smart Infra, Energy)
