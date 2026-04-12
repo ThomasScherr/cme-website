@@ -17,6 +17,13 @@ import {
   Thermometer,
   Gauge,
   Activity,
+  FileCode,
+  Bug,
+  TestTube,
+  ClipboardCheck,
+  Cpu,
+  Target,
+  type LucideIcon,
 } from 'lucide-react';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
@@ -32,6 +39,25 @@ const features = [
   { de: 'Embedded C/C++ Firmware', en: 'Embedded C/C++ Firmware', icon: Code },
   { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },
   { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)', icon: ShieldCheck },
+];
+
+/* ── Embedded Software ── */
+const embeddedLeistungen: { de: string; en: string; icon: LucideIcon }[] = [
+  { de: 'ISO 15504 / SPICE-konforme Entwicklung', en: 'ISO 15504 / SPICE-compliant development', icon: ClipboardCheck },
+  { de: 'Anforderungsanalyse & SW-Pflichtenheft', en: 'Requirements analysis & SW specification', icon: FileCode },
+  { de: 'Codierung in C, C++ und Assembler', en: 'Coding in C, C++ and assembler', icon: Code },
+  { de: 'MISRA-Compliance, statische Code-Analyse & Laufzeitbetrachtung', en: 'MISRA compliance, static code analysis & runtime analysis', icon: Bug },
+  { de: 'SW-Modul-, Funktions- & Integrationstest', en: 'SW module, function & integration testing', icon: TestTube },
+  { de: 'Sicherheitsrelevante SW-Entwicklung (IEC 61508 / ISO 26262)', en: 'Safety-relevant SW development (IEC 61508 / ISO 26262)', icon: ShieldCheck },
+];
+
+const embeddedSchwerpunkte: { de: string; en: string; icon: LucideIcon }[] = [
+  { de: 'Ansteuer- & Regelverfahren für BLDC-, PSM-, SR- & DC-Motoren', en: 'Drive & control methods for BLDC, PSM, SR & DC motors', icon: Cog },
+  { de: 'Antriebsregelungen (Drehmoment, Drehzahl, Position)', en: 'Drive controls (torque, speed, position)', icon: Gauge },
+  { de: 'Sensorlose & sensorbehaftete Regelungskonzepte', en: 'Sensorless & sensor-based control concepts', icon: Target },
+  { de: 'Kommunikationsmodule (CAN, LIN, PWM, SENT, SPI, I²C)', en: 'Communication modules (CAN, LIN, PWM, SENT, SPI, I²C)', icon: Wifi },
+  { de: 'Hochgradige Ausnutzung der MCU-Ressourcen zur kostenoptimalen Systemlösung', en: 'Maximum utilization of MCU resources for cost-optimal system solutions', icon: Cpu },
+  { de: 'Optimierung von Low-cost-Antriebssystemen', en: 'Optimization of low-cost drive systems', icon: Zap },
 ];
 
 const expertiseItems = [
@@ -213,6 +239,94 @@ export default function HardwareSoftware() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Embedded Software */}
+      <section className="section-pad">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+            style={{ marginBottom: 'var(--space-section-header)' }}
+          >
+            <p className="text-cme-blue font-semibold fluid-small tracking-wider uppercase" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+              {isDE ? 'Embedded Software' : 'Embedded Software'}
+            </p>
+            <h2 className="fluid-h2 text-cme-dark">
+              {isDE ? 'Software, die auf dem Zielsystem performt.' : 'Software that performs on the target system.'}
+            </h2>
+            <p className="fluid-body-lg text-gray-600 max-w-3xl mx-auto" style={{ marginTop: 'var(--space-gap-xs)' }}>
+              {isDE
+                ? 'Wir entwickeln Embedded-Software, die optimal auf die Hardware und die Kundenanforderungen zugeschnitten ist – von einfachen Steuerungen bis hin zu hochkomplexen, sicherheitsrelevanten Applikationen mit anspruchsvollsten Dokumentations- und Qualitätskriterien.'
+                : 'We develop embedded software optimally tailored to the hardware and customer requirements – from simple controls to highly complex, safety-relevant applications with the most demanding documentation and quality criteria.'}
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-lg)' }}>
+            {/* Leistungen */}
+            <div>
+              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE ? 'Leistungen' : 'Services'}
+              </h3>
+              <div className="flex flex-col" style={{ gap: 'var(--space-gap-xs)' }}>
+                {embeddedLeistungen.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-start gap-3 bg-white rounded-lg border border-gray-100 hover:border-cme-blue/20 transition-all"
+                      style={{ padding: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem)' }}
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-cme-blue/10 flex items-center justify-center shrink-0">
+                        <Icon size={20} className="text-cme-blue" strokeWidth={1.5} />
+                      </div>
+                      <p className="font-medium text-cme-dark fluid-small" style={{ paddingTop: '0.4rem' }}>
+                        {isDE ? item.de : item.en}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Entwicklungsschwerpunkte */}
+            <div>
+              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+                {isDE ? 'Entwicklungsschwerpunkte' : 'Development Focus Areas'}
+              </h3>
+              <div className="flex flex-col" style={{ gap: 'var(--space-gap-xs)' }}>
+                {embeddedSchwerpunkte.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-start gap-3 bg-white rounded-lg border border-gray-100 hover:border-cme-blue/20 transition-all"
+                      style={{ padding: 'clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem)' }}
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-cme-blue/10 flex items-center justify-center shrink-0">
+                        <Icon size={20} className="text-cme-blue" strokeWidth={1.5} />
+                      </div>
+                      <p className="font-medium text-cme-dark fluid-small" style={{ paddingTop: '0.4rem' }}>
+                        {isDE ? item.de : item.en}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>

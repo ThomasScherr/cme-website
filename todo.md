@@ -308,3 +308,4 @@
 - [x] FIX: /admin/content Route gibt 404 zurück (ContentManager.tsx + contentDefinitions.ts + useContent.ts wiederhergestellt, Route in App.tsx ergänzt)
 - [x] ADD: Expertenwissen-Sektion auf Hardware & Software Seite (>150°C, >300A, >20g)
 - [x] FIX: Letzte FPGA-Referenzen aus contentDefinitions.ts und HardwareSoftware.tsx entfernt
+- [x] ADD: Eigene Embedded-Software-Sektion auf Hardware & Software Seite (ISO 15504, MISRA, SW-Tests, MCU-Optimierung, Low-cost-Antriebe)
