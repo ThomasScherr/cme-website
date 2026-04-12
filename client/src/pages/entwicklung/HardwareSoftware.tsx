@@ -71,7 +71,7 @@ const expertiseItems = [
   },
   {
     icon: Zap,
-    value: '>300 A',
+    value: '>500 A',
     de: 'Schaltungsauslegung',
     descDE: 'Hochstrom-Designs für Antriebsumrichter, Ladetechnik und Schweißstromquellen – mit optimierter Aufbau- und Verbindungstechnik.',
     en: 'Circuit Design',
