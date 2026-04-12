@@ -76,10 +76,16 @@ const simDomains = [
   },
 ];
 
+/**
+ * Toolchain: each tool now includes its logo image for inline display.
+ * The separate "Tool Logos" section at the bottom has been removed –
+ * logos are shown directly within each toolchain card.
+ */
 const toolchain = [
   {
     toolDE: 'MATLAB & Simulink',
     toolEN: 'MATLAB & Simulink',
+    logo: `${CDN}/mathworks_c08e88a4.png`,
     areaDE: 'System- & Antriebssimulation',
     areaEN: 'System & Drive Simulation',
     descDE: 'Modellbasierte Funktionsentwicklung, Regelungsdesign, MIL/SIL/HIL',
@@ -88,6 +94,7 @@ const toolchain = [
   {
     toolDE: 'Simscape Electrical',
     toolEN: 'Simscape Electrical',
+    logo: `${CDN}/mathworks_c08e88a4.png`,
     areaDE: 'Elektro- & Antriebssimulation',
     areaEN: 'Electrical & Drive Simulation',
     descDE: 'Detaillierte Modellierung elektrischer Antriebe und Leistungselektronik',
@@ -96,6 +103,7 @@ const toolchain = [
   {
     toolDE: 'SPICE (LTspice, Micro-Cap)',
     toolEN: 'SPICE (LTspice, Micro-Cap)',
+    logo: `${CDN}/ltspice_310026fe.png`,
     areaDE: 'Schaltungs- & Verlustsimulation',
     areaEN: 'Circuit & Loss Simulation',
     descDE: 'Verlustleistungssimulation, Bauteilstress, Filterdimensionierung, SPICE-Modelle',
@@ -104,6 +112,7 @@ const toolchain = [
   {
     toolDE: 'COMSOL Multiphysics',
     toolEN: 'COMSOL Multiphysics',
+    logo: `${CDN}/comsol_8324696c.png`,
     areaDE: 'Thermosimulation & FEA',
     areaEN: 'Thermal Simulation & FEA',
     descDE: '3D-FEM, Multiphysik-Kopplung (thermisch, elektrisch, mechanisch)',
@@ -112,6 +121,7 @@ const toolchain = [
   {
     toolDE: 'Motor-CAD (ANSYS)',
     toolEN: 'Motor-CAD (ANSYS)',
+    logo: `${CDN}/motorcad_1b971003.png`,
     areaDE: 'E-Motor-Auslegung & FEA',
     areaEN: 'E-Motor Design & FEA',
     descDE: 'Elektromagnetische FEA, Motordesign, Magnetkreis-Optimierung',
@@ -120,20 +130,12 @@ const toolchain = [
   {
     toolDE: 'PLECS',
     toolEN: 'PLECS',
+    logo: `${CDN}/plecs_16b1d600.png`,
     areaDE: 'Leistungselektronik-Simulation',
     areaEN: 'Power Electronics Simulation',
     descDE: 'Schnelle Simulation von Schaltwandlern und Antriebsumrichtern',
     descEN: 'Fast simulation of switching converters and drive inverters',
   },
-];
-
-const toolLogos = [
-  { name: 'MathWorks', img: `${CDN}/mathworks_c08e88a4.png` },
-  { name: 'PLECS', img: `${CDN}/plecs_16b1d600.png` },
-  { name: 'COMSOL', img: `${CDN}/comsol_8324696c.png` },
-  { name: 'Micro-Cap', img: `${CDN}/microcap_a5f61512.png` },
-  { name: 'LTspice', img: `${CDN}/ltspice_310026fe.png` },
-  { name: 'Motor-CAD / ANSYS', img: `${CDN}/motorcad_1b971003.png` },
 ];
 
 export default function Simulation() {
@@ -193,8 +195,8 @@ export default function Simulation() {
           <div className="max-w-3xl">
             <p className="fluid-body-lg text-gray-700 leading-relaxed">
               {isDE
-                ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil der Entwicklung. Mit modernsten Simulationswerkzeugen decken wir die Bereiche Systemsimulation, Antriebssimulation, Reglerentwicklung, Schaltungs- und Verlustsimulation, Thermosimulation sowie E-Motor-Auslegung ab. So identifizieren wir Schwachstellen frühzeitig und optimieren das Design iterativ – bevor der erste Prototyp gefertigt wird.'
-                : 'Simulation at CME is not a downstream verification step, but an integral part of development. With state-of-the-art simulation tools, we cover system simulation, drive simulation, controller development, circuit and loss simulation, thermal simulation and e-motor design. This allows us to identify weaknesses early and optimize the design iteratively – before the first prototype is manufactured.'}
+                ? 'Simulation ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil des Entwicklungsprozesses. Bereits in der Konzeptphase setzen wir auf modellbasierte Simulation, um Designentscheidungen abzusichern, Risiken frühzeitig zu erkennen und die Anzahl physischer Prototypen zu minimieren.'
+                : 'At CME, simulation is not a downstream verification step but an integral part of the development process. Already in the concept phase, we rely on model-based simulation to validate design decisions, identify risks early and minimize the number of physical prototypes.'}
             </p>
           </div>
         </div>
@@ -262,7 +264,7 @@ export default function Simulation() {
         </div>
       </section>
 
-      {/* Toolchain Section */}
+      {/* Toolchain Section – logos integrated directly into each card */}
       <section className="section-pad">
         <div className="container">
           <h2 className="fluid-h2 text-cme-dark text-center">
@@ -284,8 +286,15 @@ export default function Simulation() {
                 transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg transition-all fluid-card"
               >
+                {/* Tool logo + name */}
                 <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
-                  <div className="w-1.5 h-6 bg-cme-blue rounded-full flex-shrink-0" />
+                  <div className="w-12 h-12 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 p-1.5">
+                    <img
+                      src={tool.logo}
+                      alt={isDE ? tool.toolDE : tool.toolEN}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
                   <h3 className="font-semibold text-cme-dark fluid-body">
                     {isDE ? tool.toolDE : tool.toolEN}
                   </h3>
@@ -301,34 +310,6 @@ export default function Simulation() {
           </div>
         </div>
       </section>
-
-      {/* Tool Logos */}
-      <section className="section-pad bg-gray-50">
-        <div className="container">
-          <h3 className="fluid-h4 text-cme-dark text-center" style={{ marginBottom: 'var(--space-gap-md)' }}>
-            {isDE ? 'Tools & Plattformen' : 'Tools & Platforms'}
-          </h3>
-          <div className="flex flex-wrap items-center justify-center" style={{ gap: 'var(--space-gap-md)' }}>
-            {toolLogos.map((logo) => (
-              <motion.div
-                key={logo.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl border border-gray-100 p-4 flex items-center justify-center hover:shadow-md transition-all"
-                style={{ width: 'clamp(8rem, 5rem + 6vw, 12rem)', height: 'clamp(4rem, 3rem + 3vw, 6rem)' }}
-              >
-                <img
-                  src={logo.img}
-                  alt={logo.name}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       {/* CTA */}
       <section className="section-pad bg-gray-50">

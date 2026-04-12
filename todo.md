@@ -222,3 +222,4 @@
 - [x] Entwicklung.tsx: Technologien erweitern (nicht nur SiC/GaN, auch thermisches Management, Simulation, Umrichter für Automotive/Ladetechnik/PV)
 - [x] Entwicklung.tsx: Fakten von control-motion.de und online-engineering.de recherchieren und ergänzen
 - [x] Trust-Sektion: Graufilter von Insight Instruments und W&H Logos entfernen (transparente Bereiche werden eingegraut)
+- [x] Simulation-Seite: Tool-Logos in Hauptsektion bei passenden Inhalten integrieren, separate Logo-Sektion am Ende entfernen (redundant)
