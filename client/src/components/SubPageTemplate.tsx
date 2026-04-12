@@ -11,6 +11,12 @@ interface Feature {
   icon?: LucideIcon;
 }
 
+interface HeroVideo {
+  webm?: string;
+  mp4?: string;
+  poster?: string;
+}
+
 interface SubPageProps {
   parentHref: string;
   parentLabelDE: string;
@@ -19,7 +25,8 @@ interface SubPageProps {
   titleEN: string;
   subtitleDE: string;
   subtitleEN: string;
-  heroImg: string;
+  heroImg?: string;
+  heroVideo?: HeroVideo;
   introDE: string;
   introEN: string;
   features: Feature[];
@@ -36,6 +43,7 @@ export default function SubPageTemplate({
   subtitleDE,
   subtitleEN,
   heroImg,
+  heroVideo,
   introDE,
   introEN,
   features,
@@ -61,6 +69,7 @@ export default function SubPageTemplate({
         description={isDE ? subtitleDE : subtitleEN}
         heroImage={heroImg}
         heroImageAlt={isDE ? titleDE : titleEN}
+        heroVideo={heroVideo}
       />
 
       {/* Content */}

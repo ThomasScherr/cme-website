@@ -288,3 +288,5 @@
 - [x] I18N: Frontend – Sprachabhängige Anzeige der Artikel (DE/EN) in Übersicht und Detailseite
 - [x] I18N: Vorschau-Seite ebenfalls sprachabhängig machen
 - [x] SubPageHero: Standard-Bild durch CME-Foto (K5A0004_retouch) von control-motion.de ersetzen
+- [x] Leiterplatten bestücken: Hero-Bild durch neues Video (0412(2).mp4) ersetzen
+- [x] Fertigung (/fertigung): Hero-Bild durch neues Video (0412(2).mp4) ersetzen

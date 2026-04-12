@@ -23,7 +23,11 @@ export default function Leiterplatten() {
       titleEN="PCB Assembly"
       subtitleDE="SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie."
       subtitleEN="SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series."
-      heroImg={`${CDN}/pick-and-place_4f13096b.png`}
+      heroVideo={{
+        webm: `${CDN}/leiterplatten-hero_9526f6fb.webm`,
+        mp4: `${CDN}/leiterplatten-hero_f10b49bd.mp4`,
+        poster: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`,
+      }}
       introDE="Die Leiterplattenbestückung ist das Herzstück unserer EMS-Fertigung. Mit modernsten SMD-Bestückungsautomaten und THT-Lötanlagen fertigen wir Ihre Elektronik in höchster Qualität. Ob einzelne Prototypen für die Entwicklungsvalidierung oder Serienproduktion mit mehreren tausend Stück pro Monat – unsere Fertigungslinien sind flexibel konfigurierbar und auf schnelle Rüstwechsel optimiert."
       introEN="PCB assembly is the heart of our EMS manufacturing. With state-of-the-art SMD placement machines and THT soldering systems, we manufacture your electronics in the highest quality. Whether individual prototypes for development validation or series production with several thousand units per month – our production lines are flexibly configurable and optimized for quick changeovers."
       ctaDE="Angebot anfragen"

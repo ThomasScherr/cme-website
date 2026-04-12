@@ -18,7 +18,12 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const HERO_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0425__1920px_178fc1eb.jpg';
+const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+const HERO_VIDEO = {
+  webm: `${CDN}/leiterplatten-hero_9526f6fb.webm`,
+  mp4: `${CDN}/leiterplatten-hero_f10b49bd.mp4`,
+  poster: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`,
+};
 
 const subpages = [
   {
@@ -74,7 +79,7 @@ export default function Fertigung() {
           ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
           : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.'}
         cta={{ label: isDE ? 'Angebot anfragen' : 'Request Quote', href: '/kontakt' }}
-        heroImage={HERO_IMG}
+        heroVideo={HERO_VIDEO}
         heroImageAlt="Elektronikfertigung"
       />
 
