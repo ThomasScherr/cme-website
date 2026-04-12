@@ -291,13 +291,13 @@
 - [x] Leiterplatten bestücken: Hero-Bild durch neues Video (0412(2).mp4) ersetzen
 - [x] Fertigung (/fertigung): Hero-Bild durch neues Video (0412(2).mp4) ersetzen
 - [x] Baugruppen (/fertigung/baugruppen): Hero-Bild durch _JK_5455_v1.webp ersetzen
-- [ ] CMS: Architektur – Content-Schlüssel für alle Seiten/Sektionen definieren
-- [ ] CMS: DB-Schema – siteContent Tabelle (pageKey, sectionKey, fieldKey, type, valueDE, valueEN)
-- [ ] CMS: DB-Schema – mediaLibrary Tabelle (url, filename, mimeType, size, tags)
-- [ ] CMS: Server – tRPC-Prozeduren für Content CRUD + Medien-Upload
-- [ ] CMS: Server – Auto-Übersetzung bei Textänderung (OpenAI, DE↔EN)
-- [ ] CMS: Server – Content-Abruf-API mit Fallback auf Standard-Werte
-- [ ] CMS: Admin-UI – Inhalte-Manager mit Seitenübersicht und Sektions-Editor
-- [ ] CMS: Admin-UI – Asset-Bibliothek mit Upload, Suche und Wiederverwendung
-- [ ] CMS: Frontend – useContent Hook für alle Seiten (DB-Werte mit Fallback)
-- [ ] CMS: Frontend – Alle Seiten auf DB-Content umstellen
+- [x] CMS: Architektur – Content-Schlüssel für alle Seiten/Sektionen definieren
+- [x] CMS: DB-Schema – siteContent Tabelle (pageKey, sectionKey, fieldKey, type, valueDE, valueEN)
+- [x] CMS: DB-Schema – mediaLibrary Tabelle (url, filename, mimeType, size, tags)
+- [x] CMS: Server – tRPC-Prozeduren für Content CRUD + Medien-Upload
+- [x] CMS: Server – Auto-Übersetzung bei Textänderung (OpenAI, DE↔EN)
+- [x] CMS: Server – Content-Abruf-API mit Fallback auf Standard-Werte
+- [x] CMS: Admin-UI – Inhalte-Manager mit Seitenübersicht und Sektions-Editor
+- [x] CMS: Admin-UI – Asset-Bibliothek mit Upload, Suche und Wiederverwendung
+- [x] CMS: Frontend – useContent Hook für alle Seiten (DB-Werte mit Fallback)
+- [x] CMS: Frontend – Alle Seiten auf DB-Content umstellen
