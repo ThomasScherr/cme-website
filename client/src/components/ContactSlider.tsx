@@ -1,11 +1,10 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { X, ArrowRight, CheckCircle, Loader2 } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 
-const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
-const GF_IMAGE = `${CDN}/K5A0004_retouch_b2db17ab.jpg`;
+const GF_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/cms/media/1776035923976-ac815377bcb7b679.jpg';
 
 interface ContactSliderProps {
   isOpen: boolean;
@@ -36,7 +35,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
     if (isOpen && topic) {
       setForm(prev => ({
         ...prev,
-        subject: isDE ? `Anfrage zu: ${topic}` : `Inquiry about: ${topic}`,
+        subject: isDE ? `Anfrage: ${topic}` : `Inquiry: ${topic}`,
       }));
       setSubmitted(false);
     }
@@ -49,7 +48,6 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
     };
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
-      // Prevent body scroll
       document.body.style.overflow = 'hidden';
     }
     return () => {
@@ -78,9 +76,6 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm(prev => ({ ...prev, [field]: e.target.value }));
 
-  const inputClass = 'w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-cme-blue focus:ring-1 focus:ring-cme-blue/30 outline-none transition-colors';
-  const labelClass = 'block text-xs font-medium text-gray-600 mb-1';
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -101,210 +96,211 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed top-0 right-0 h-full w-full sm:w-[28rem] md:w-[32rem] bg-white shadow-2xl z-50 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full sm:w-[30rem] md:w-[34rem] bg-white shadow-2xl z-50 flex flex-col"
           >
-            {/* Header with close button */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-semibold text-cme-dark">
-                {isDE ? 'Anfrage senden' : 'Send Inquiry'}
-              </h3>
-              <button
-                onClick={onClose}
-                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors text-gray-500"
-                aria-label="Close"
-              >
-                <X size={18} />
-              </button>
-            </div>
+            {/* Close button – floating top right */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-white/80 hover:bg-gray-100 transition-colors text-gray-500 shadow-sm"
+              aria-label="Close"
+            >
+              <X size={18} strokeWidth={2} />
+            </button>
 
             {/* Scrollable content */}
-            <div className="flex-1 overflow-y-auto px-6 py-5">
+            <div className="flex-1 overflow-y-auto">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center text-center py-12"
+                  className="flex flex-col items-center justify-center text-center px-8 py-20"
                 >
-                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-5">
                     <CheckCircle className="text-green-500" size={32} />
                   </div>
-                  <h4 className="text-xl font-semibold text-cme-dark mb-2">
-                    {isDE ? 'Vielen Dank!' : 'Thank you!'}
+                  <h4 className="text-2xl font-semibold text-cme-dark mb-3">
+                    {isDE ? 'Vielen Dank für Ihre Anfrage!' : 'Thank you for your inquiry!'}
                   </h4>
-                  <p className="text-gray-600 text-sm max-w-xs">
+                  <p className="text-base text-gray-600 max-w-sm leading-relaxed">
                     {isDE
-                      ? 'Ihre Anfrage ist bei uns eingegangen. Wir melden uns zeitnah bei Ihnen.'
-                      : 'Your inquiry has been received. We will get back to you shortly.'}
+                      ? 'Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.'
+                      : 'We have received your message and will get back to you within 24 hours.'}
                   </p>
                   <button
                     onClick={onClose}
-                    className="mt-6 px-6 py-2 rounded-lg bg-cme-blue text-white text-sm font-medium hover:bg-cme-blue/90 transition-colors"
+                    className="mt-8 px-8 py-3 rounded-lg bg-cme-blue text-white font-semibold hover:bg-cme-blue/90 transition-colors"
                   >
                     {isDE ? 'Schließen' : 'Close'}
                   </button>
                 </motion.div>
               ) : (
                 <>
-                  {/* GF Image + personalized text */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
+                  {/* Hero area with GF image */}
+                  <div className="relative bg-gradient-to-b from-gray-50 to-white px-8 pt-8 pb-6">
+                    {/* GF Photo – prominent */}
+                    <div className="w-full aspect-[16/9] rounded-xl overflow-hidden shadow-md mb-6">
                       <img
                         src={GF_IMAGE}
                         alt={isDE ? 'Geschäftsführung CME' : 'CME Management'}
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        {isDE
-                          ? <>Ihre Fragen zu <strong className="text-cme-dark">{topic}</strong> beantworten wir Ihnen gerne persönlich.</>
-                          : <>We are happy to answer your questions about <strong className="text-cme-dark">{topic}</strong> personally.</>
-                        }
-                      </p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        {isDE
-                          ? 'Geschäftsführung – CME Control Motion Electronics GmbH'
-                          : 'Management – CME Control Motion Electronics GmbH'}
-                      </p>
-                    </div>
+
+                    {/* Customer-centric headline */}
+                    <h3 className="text-xl font-bold text-cme-dark leading-snug mb-2">
+                      {isDE
+                        ? <>Lassen Sie uns über <span className="text-cme-blue">{topic}</span> sprechen.</>
+                        : <>Let's talk about <span className="text-cme-blue">{topic}</span>.</>
+                      }
+                    </h3>
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      {isDE
+                        ? 'Beschreiben Sie uns kurz Ihr Projekt – wir prüfen die Machbarkeit und melden uns persönlich bei Ihnen.'
+                        : 'Briefly describe your project – we will evaluate feasibility and get back to you personally.'}
+                    </p>
                   </div>
 
-                  {/* Form */}
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    {/* Name row */}
-                    <div className="grid grid-cols-2 gap-3">
+                  {/* Form area */}
+                  <div className="px-8 pb-8 pt-2">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      {/* Name row */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            {isDE ? 'Vorname' : 'First name'} <span className="text-red-400">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={form.firstName}
+                            onChange={updateField('firstName')}
+                            placeholder={isDE ? 'Max' : 'John'}
+                            className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            {isDE ? 'Nachname' : 'Last name'} <span className="text-red-400">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={form.lastName}
+                            onChange={updateField('lastName')}
+                            placeholder={isDE ? 'Mustermann' : 'Doe'}
+                            className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email */}
                       <div>
-                        <label className={labelClass}>
-                          {isDE ? 'Vorname' : 'First Name'} *
+                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                          {isDE ? 'Geschäftliche E-Mail' : 'Work email'} <span className="text-red-400">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={form.email}
+                          onChange={updateField('email')}
+                          placeholder={isDE ? 'max@firma.de' : 'john@company.com'}
+                          className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
+                        />
+                      </div>
+
+                      {/* Company + Phone row */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            {isDE ? 'Unternehmen' : 'Company'} <span className="text-red-400">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={form.company}
+                            onChange={updateField('company')}
+                            placeholder={isDE ? 'Firma GmbH' : 'Company Inc.'}
+                            className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            {isDE ? 'Telefon' : 'Phone'} <span className="text-gray-400 font-normal text-xs">({isDE ? 'optional' : 'optional'})</span>
+                          </label>
+                          <input
+                            type="tel"
+                            value={form.phone}
+                            onChange={updateField('phone')}
+                            placeholder="+49 ..."
+                            className="w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Subject (pre-filled, read-only look) */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                          {isDE ? 'Betreff' : 'Subject'}
                         </label>
                         <input
                           type="text"
-                          required
-                          value={form.firstName}
-                          onChange={updateField('firstName')}
-                          placeholder={isDE ? 'Max' : 'John'}
-                          className={inputClass}
+                          value={form.subject}
+                          onChange={updateField('subject')}
+                          className="w-full h-11 rounded-lg border border-gray-300 bg-gray-50 px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all"
                         />
                       </div>
+
+                      {/* Message */}
                       <div>
-                        <label className={labelClass}>
-                          {isDE ? 'Nachname' : 'Last Name'} *
+                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                          {isDE ? 'Projektbeschreibung' : 'Project description'} <span className="text-gray-400 font-normal text-xs">({isDE ? 'optional' : 'optional'})</span>
                         </label>
-                        <input
-                          type="text"
-                          required
-                          value={form.lastName}
-                          onChange={updateField('lastName')}
-                          placeholder={isDE ? 'Mustermann' : 'Doe'}
-                          className={inputClass}
+                        <textarea
+                          value={form.message}
+                          onChange={updateField('message')}
+                          rows={3}
+                          placeholder={isDE
+                            ? 'z.B. Stückzahlen, Anforderungen, Zeitrahmen...'
+                            : 'e.g. quantities, requirements, timeline...'}
+                          className="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-3 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all resize-none"
                         />
                       </div>
-                    </div>
 
-                    {/* Email */}
-                    <div>
-                      <label className={labelClass}>
-                        {isDE ? 'E-Mail-Adresse' : 'Email Address'} *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={updateField('email')}
-                        placeholder={isDE ? 'max@firma.de' : 'john@company.com'}
-                        className={inputClass}
-                      />
-                    </div>
+                      {/* Submit button – prominent */}
+                      <button
+                        type="submit"
+                        disabled={submitMutation.isPending}
+                        className="w-full flex items-center justify-center gap-2.5 bg-cme-blue text-white rounded-lg h-12 font-semibold text-base hover:bg-cme-blue/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+                      >
+                        {submitMutation.isPending ? (
+                          <>
+                            <Loader2 size={18} className="animate-spin" />
+                            {isDE ? 'Wird gesendet...' : 'Sending...'}
+                          </>
+                        ) : (
+                          <>
+                            {isDE ? 'Anfrage absenden' : 'Submit inquiry'}
+                            <ArrowRight size={18} />
+                          </>
+                        )}
+                      </button>
 
-                    {/* Company + Phone row */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className={labelClass}>
-                          {isDE ? 'Firma' : 'Company'} *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={form.company}
-                          onChange={updateField('company')}
-                          placeholder={isDE ? 'Firma GmbH' : 'Company Inc.'}
-                          className={inputClass}
-                        />
-                      </div>
-                      <div>
-                        <label className={labelClass}>
-                          {isDE ? 'Telefon' : 'Phone'} <span className="text-gray-400 font-normal">({isDE ? 'optional' : 'optional'})</span>
-                        </label>
-                        <input
-                          type="tel"
-                          value={form.phone}
-                          onChange={updateField('phone')}
-                          placeholder="+49 ..."
-                          className={inputClass}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Subject (pre-filled) */}
-                    <div>
-                      <label className={labelClass}>
-                        {isDE ? 'Betreff' : 'Subject'}
-                      </label>
-                      <input
-                        type="text"
-                        value={form.subject}
-                        onChange={updateField('subject')}
-                        className={inputClass}
-                      />
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className={labelClass}>
-                        {isDE ? 'Nachricht / Notizen' : 'Message / Notes'} <span className="text-gray-400 font-normal">({isDE ? 'optional' : 'optional'})</span>
-                      </label>
-                      <textarea
-                        value={form.message}
-                        onChange={updateField('message')}
-                        rows={3}
-                        placeholder={isDE ? 'Beschreiben Sie kurz Ihr Anliegen...' : 'Briefly describe your request...'}
-                        className={`${inputClass} resize-none`}
-                      />
-                    </div>
-
-                    {/* Submit button */}
-                    <button
-                      type="submit"
-                      disabled={submitMutation.isPending}
-                      className="w-full flex items-center justify-center gap-2 bg-cme-blue text-white rounded-lg py-3 font-semibold text-sm hover:bg-cme-blue/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {submitMutation.isPending ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          {isDE ? 'Wird gesendet...' : 'Sending...'}
-                        </>
-                      ) : (
-                        <>
-                          <Send size={16} />
-                          {isDE ? 'Anfrage senden' : 'Send Inquiry'}
-                        </>
+                      {submitMutation.isError && (
+                        <p className="text-red-500 text-sm text-center">
+                          {isDE
+                            ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'
+                            : 'Error sending. Please try again.'}
+                        </p>
                       )}
-                    </button>
 
-                    {submitMutation.isError && (
-                      <p className="text-red-500 text-xs text-center">
+                      <p className="text-xs text-gray-400 text-center leading-relaxed">
                         {isDE
-                          ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'
-                          : 'Error sending. Please try again.'}
+                          ? <>Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">Datenschutzerklärung</a> zu.</>
+                          : <>By submitting, you agree to our <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">privacy policy</a>.</>
+                        }
                       </p>
-                    )}
-
-                    <p className="text-xs text-gray-400 text-center">
-                      {isDE
-                        ? 'Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.'
-                        : 'By submitting, you agree to our privacy policy.'}
-                    </p>
-                  </form>
+                    </form>
+                  </div>
                 </>
               )}
             </div>

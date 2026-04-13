@@ -335,3 +335,13 @@
 - [x] Feature: Kontakt-Slider Komponente – von rechts einsliden beim Klick auf Kachel, mit GF-Bild, personalisiertem Text, Anfrageformular (Vorname, Name, E-Mail, Firma, Telefon optional, Betreff vorausgefüllt, Nachricht)
 - [x] Feature: Kontakt-Slider in SubPageTemplate und HardwareSoftware integrieren
 - [ ] Redesign: /entwicklung/ux-interface-engineering optisch an das einheitliche Seitendesign anpassen (Bilder/Grafiken beibehalten)
+- [x] FIX: Qualität-Seite Textkorrektur "automatisierte" → "eine automatisierte" (bereits korrekt im Code)
+- [x] FIX: Qualität-Seite – doppeltes Element untersucht: kein Duplikat in SubPageTemplate.tsx gefunden
+- [x] FIX: Lifecycle.tsx Redesign-Text "nutzen wir die Gelegenheit" → "bietet sich diese Gelegenheit als Chance an, Ihr Produkt gezielt und nachhaltig zu verbessern"
+- [x] Redesign: ContactSlider – GF-Bild auf korrekte URL geändert (beide Geschäftsführer)
+- [x] Redesign: ContactSlider – Text deutlich größer machen (zu klein)
+- [x] Redesign: ContactSlider – Kundenzentrierter Vertriebstext statt generischer GF-Titel
+- [x] Redesign: ContactSlider – Formular im Tailwind/Untitled UI-Stil gestalten
+- [x] Redesign: ContactSlider – Gesamtes Layout professionell überarbeiten
+- [x] FIX: Märkte-Seite Automotive-Kachel – ADAS entfernen, durch reale CME-Anwendungen ersetzen (Pumpen, Kompressoren, HVAC Blower, Steller, Wischermotoren, Windabweiser, Adaptive Fahrwerksteuerung, Fuel-Cell-Steuerung)
+- [x] FIX: MarketsSection Startseite – Automotive-Tags ebenfalls anpassen (ADAS entfernt, durch Pumpen, HVAC, Steller, Wischermotoren ersetzt)

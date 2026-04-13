@@ -22,7 +22,7 @@ const services = [
     icon: ShieldAlert,
     titleDE: 'Redesign & Re-Engineering',
     titleEN: 'Redesign & Re-Engineering',
-    descDE: 'Wenn ein Redesign unvermeidbar ist, machen wir aus der Pflicht eine Chance: Wir überarbeiten Ihre Elektronik unter Berücksichtigung der bestehenden Zulassungen und minimieren den Requalifizierungsaufwand. Gleichzeitig nutzen wir die Gelegenheit, Ihr Produkt gezielt zu verbessern.',
+    descDE: 'Wenn ein Redesign unvermeidbar ist, machen wir aus der Pflicht eine Chance: Wir überarbeiten Ihre Elektronik unter Berücksichtigung der bestehenden Zulassungen und minimieren den Requalifizierungsaufwand. Gleichzeitig bietet sich diese Gelegenheit als Chance an, Ihr Produkt gezielt und nachhaltig zu verbessern.',
     descEN: 'When redesign is unavoidable, we turn necessity into opportunity: We rework your electronics considering existing certifications and minimize requalification effort. At the same time, we use the opportunity to specifically improve your product.',
     bulletsDe: ['Verbesserung des Wirkungsgrades', 'Leistungserhöhung', 'Reduktion von Energieverbrauch', 'Anpassung an verringerten Bauraum', 'Erhöhung der Lebensdauer', 'Implementierung neuer Funktionen', 'Verbesserung von Fertigungsprozessen', 'Reduzierung von Stück- oder Produktionskosten'],
     bulletsEn: ['Efficiency improvement', 'Power increase', 'Energy consumption reduction', 'Adaptation to reduced installation space', 'Lifetime extension', 'Implementation of new functions', 'Manufacturing process improvement', 'Reduction of unit or production costs'],

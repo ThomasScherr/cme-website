@@ -97,7 +97,7 @@ export const translations = {
       items: [
         { title: 'Energy & Power Systems', desc: 'PV-Wechselrichter, Wallbox, BMS, DC/DC – Thermik, EMV, SiC/GaN' },
         { title: 'Motion & Drive Systems', desc: 'BLDC/PMSM, FOC-Inverter, E-Mobility, Robotik – Regelung, Kompaktheit' },
-        { title: 'Automotive & Functional Safety', desc: 'ECU, Sensorik, OBC, ADAS – ISO 26262, ASPICE, AEC-Q' },
+        { title: 'Automotive & Functional Safety', desc: 'Pumpen, Steller, HVAC, Fuel Cell, OBC – ISO 26262, ASPICE, AEC-Q' },
         { title: 'Industrial Automation & Robotics', desc: 'Maschinensteuerung, Bedienpanels, Fahrerlose Transportsysteme, Safety – Echtzeit, Robustheit' },
         { title: 'MedTech & Precision Devices', desc: 'Embedded-Systeme, Präzision, Sensorik – MDR, Zuverlässigkeit, Lifecycle' },
         { title: 'Smart Infrastructure & Building', desc: 'Zutrittskontrolle, Gebäudeautomation, Lichtsteuerung, Smart Metering – Langlebigkeit, Safety' },
@@ -221,7 +221,7 @@ export const translations = {
       items: [
         { title: 'Energy & Power Systems', desc: 'PV inverters, wallbox, BMS, DC/DC – thermal, EMC, SiC/GaN' },
         { title: 'Motion & Drive Systems', desc: 'BLDC/PMSM, FOC inverters, e-mobility, robotics – control, compactness' },
-        { title: 'Automotive & Functional Safety', desc: 'ECU, sensors, OBC, ADAS – ISO 26262, ASPICE, AEC-Q' },
+        { title: 'Automotive & Functional Safety', desc: 'Pumps, actuators, HVAC, fuel cell, OBC – ISO 26262, ASPICE, AEC-Q' },
         { title: 'Industrial Automation & Robotics', desc: 'Machine control, operator panels, automated guided vehicles, safety – real-time, robustness' },
         { title: 'MedTech & Precision Devices', desc: 'Embedded systems, precision, sensors – MDR, reliability, lifecycle' },
         { title: 'Smart Infrastructure & Building', desc: 'Access control, building automation, lighting control, smart metering – longevity, safety' },
