@@ -76,6 +76,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'the electronic company', defaultEn: 'the electronic company' },
           { key: 'headline1', label: 'Überschrift Zeile 1', type: 'text', defaultDe: 'Elektronikentwicklung.', defaultEn: 'Electronics Development.' },
           { key: 'headline2', label: 'Überschrift Zeile 2', type: 'text', defaultDe: 'Elektronikfertigung.', defaultEn: 'Electronics Manufacturing.' },
@@ -133,6 +134,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Elektronikentwicklung', defaultEn: 'Electronics Development' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Von der Idee zur serienreifen Elektronik.', defaultEn: 'From idea to series-ready electronics.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.', defaultEn: 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.' },
@@ -200,6 +202,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -241,6 +244,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -283,6 +287,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -325,6 +330,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -352,6 +358,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -394,6 +401,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -436,6 +444,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -474,7 +483,8 @@ export const PAGES: PageDef[] = [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/operating-concepts_3d4b7f77.png`, defaultEn: `${CDN}/operating-concepts_3d4b7f77.png` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
-          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' }] },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'UX & Interface Engineering', defaultEn: 'UX & Interface Engineering' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Benutzeroberflächen für Embedded-Systeme und industrielle Anwendungen', defaultEn: 'User interfaces for embedded systems and industrial applications' },
@@ -490,7 +500,8 @@ export const PAGES: PageDef[] = [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/web-apps_26e3e533.png`, defaultEn: `${CDN}/web-apps_26e3e533.png` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
-          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' }] },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Software & Digitale Systeme', defaultEn: 'Software & Digital Systems' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Embedded Software und digitale Systemarchitekturen', defaultEn: 'Embedded software and digital system architectures' },
@@ -513,6 +524,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Elektronikfertigung (EMS)', defaultEn: 'Electronics Manufacturing (EMS)' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Vom Prototyp zur Serie. Made in Dortmund.', defaultEn: 'From prototype to series. Made in Dortmund.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.', defaultEn: 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.' },
@@ -568,6 +580,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_9526f6fb.webm`, defaultEn: `${CDN}/leiterplatten-hero_9526f6fb.webm` },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/leiterplatten-hero_f10b49bd.mp4`, defaultEn: `${CDN}/leiterplatten-hero_f10b49bd.mp4` },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -610,6 +623,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -652,6 +666,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
         ],
       },
       {
@@ -696,6 +711,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Lifecycle Services', defaultEn: 'Lifecycle Services' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Wir begleiten Ihr Produkt. Über den gesamten Lebenszyklus.', defaultEn: 'We support your product. Throughout the entire lifecycle.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Elektronik lebt länger als die Bauteile, aus denen sie besteht. CME sichert die Verfügbarkeit Ihrer Produkte durch proaktives Obsolescence Management, Redesign-Services und langfristige Ersatzteilversorgung.', defaultEn: 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.' },
@@ -729,6 +745,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video', defaultDe: `${CDN}/Loop-Sample_d94dc755.webm`, defaultEn: `${CDN}/Loop-Sample_d94dc755.webm` },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video', defaultDe: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4`, defaultEn: `${CDN}/Loop-Sample-compressed_8b0d5332.mp4` },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image', defaultDe: `${CDN}/hero-video-poster_8c5a9e34.jpg`, defaultEn: `${CDN}/hero-video-poster_8c5a9e34.jpg` },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Branchen & Anwendungsfelder', defaultEn: 'Industries & Applications' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Branchenspezifische Elektroniklösungen.', defaultEn: 'Industry-specific electronics solutions.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.', defaultEn: 'We don\'t think in technologies – we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.' },
@@ -753,6 +770,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Über CME', defaultEn: 'About CME' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'The Electronic Company.', defaultEn: 'The Electronic Company.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.', defaultEn: 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.' },
@@ -810,6 +828,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Kontakt', defaultEn: 'Contact' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Direkter Draht zu unseren Experten.', defaultEn: 'Direct line to our experts.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.', defaultEn: 'Project inquiry, technical question or visit in Dortmund – we respond personally.' },
@@ -863,6 +882,7 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
+          { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Karriere', defaultEn: 'Careers' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Gestalten Sie die Elektronik von morgen.', defaultEn: 'Shape the electronics of tomorrow.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.', defaultEn: 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.' },

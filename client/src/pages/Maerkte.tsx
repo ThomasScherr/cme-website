@@ -381,7 +381,16 @@ function MarketCard({ vertical, index, isDE, onCardClick }: { vertical: MarketSe
 export default function Maerkte() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms } = useContent('maerkte');
+  const { t: cms, img, vid } = useContent('maerkte');
+
+  // Hero video: CMS overrides hardcoded default
+  const cmsVideoWebm = vid('hero.heroVideoWebm');
+  const cmsVideoMp4 = vid('hero.heroVideoMp4');
+  const cmsVideoPoster = img('hero.heroVideoPoster');
+  const cmsVideoPlayback = cms('hero.heroVideoPlayback') as 'loop' | 'once' | '';
+  const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined, playback: (cmsVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
+    : { webm: HERO_VIDEO_WEBM, mp4: HERO_VIDEO_MP4, poster: HERO_VIDEO_POSTER };
 
   const [sliderOpen, setSliderOpen] = useState(false);
   const [sliderTopic, setSliderTopic] = useState('');
@@ -396,11 +405,7 @@ export default function Maerkte() {
           ? 'Wir denken nicht in Technologien – wir denken in Ihren Systemherausforderungen. CME entwickelt und fertigt Elektronik für sechs Branchen, in denen Leistungsdichte, Zuverlässigkeit und Serienfähigkeit entscheidend sind.'
           : 'We don\'t think in technologies \u2013 we think in your system challenges. CME develops and manufactures electronics for six industries where power density, reliability and series readiness are decisive.')}
         cta={{ label: isDE ? 'Branche & Anforderung schildern' : 'Describe your industry & requirements', href: '/kontakt' }}
-        heroVideo={{
-          webm: HERO_VIDEO_WEBM,
-          mp4: HERO_VIDEO_MP4,
-          poster: HERO_VIDEO_POSTER,
-        }}
+        heroVideo={effectiveHeroVideo}
       />
 
       {/* Market Cards – 2-column grid like Fertigung subpages */}

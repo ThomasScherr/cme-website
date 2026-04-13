@@ -108,8 +108,9 @@ export default function Entwicklung() {
   const heroVideoWebm = vid('hero.heroVideoWebm');
   const heroVideoMp4 = vid('hero.heroVideoMp4');
   const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideoPlayback = cms('hero.heroVideoPlayback') as 'loop' | 'once' | '';
   const heroVideo = (heroVideoWebm || heroVideoMp4)
-    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined, playback: (heroVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
     : undefined;
 
   // ContactSlider state

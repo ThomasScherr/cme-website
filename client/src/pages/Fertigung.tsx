@@ -78,8 +78,9 @@ export default function Fertigung() {
   const cmsVideoWebm = vid('hero.heroVideoWebm');
   const cmsVideoMp4 = vid('hero.heroVideoMp4');
   const cmsVideoPoster = img('hero.heroVideoPoster');
+  const cmsVideoPlayback = cms('hero.heroVideoPlayback') as 'loop' | 'once' | '';
   const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
-    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined, playback: (cmsVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
     : HERO_VIDEO;
 
   const [sliderOpen, setSliderOpen] = useState(false);

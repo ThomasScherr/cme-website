@@ -398,3 +398,10 @@
 - [x] BUG: Videos in Medienbibliothek doppelt angezeigt – Duplikat-Erkennung (filename+fileSize) + DB bereinigt
 - [x] BUG: Fehlende Thumbnails/Vorschaubilder für Videos in Medienbibliothek – Video-Element mit Seek-to-1s als Thumbnail
 - [x] BUG: CMS-Änderungen bei KI-Entwicklung werden nicht übernommen – Fix: ?? statt || in handleSave, empty strings in Backend durchreichen, editState-Init unterscheidet DB-leer vs. kein DB-Eintrag
+- [x] FEATURE: CMS-Feld heroVideoPlayback (loop / once) in contentDefinitions für alle Seiten hinzufügen
+- [x] FEATURE: SubPageHero-Komponente um Playback-Modus erweitern (loop vs. play-once)
+- [x] FEATURE: SubPageTemplate liest heroVideoPlayback aus CMS und gibt es an SubPageHero weiter
+- [x] FEATURE: Standalone-Seiten (Entwicklung, Fertigung, Lifecycle, Maerkte, etc.) um Playback-Modus erweitern
+- [x] FEATURE: Vitest-Tests für Video-Playback-Modus (103 Tests bestanden)
+- [x] CONTENT: KI-Entwicklung Kacheln 1-8 mit kundenorientierten Texten aktualisieren (Bullet Points)
+- [x] CONTENT: KI-Entwicklung Kachel 9 umbenennen in "Regulatorik & Dokumentation für KI-Systeme" und befüllen

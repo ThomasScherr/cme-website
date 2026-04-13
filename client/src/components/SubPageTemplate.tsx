@@ -20,6 +20,7 @@ interface HeroVideo {
   webm?: string;
   mp4?: string;
   poster?: string;
+  playback?: 'loop' | 'once';
 }
 
 interface SubPageProps {
@@ -79,8 +80,9 @@ export default function SubPageTemplate({
   const cmsVideoWebm = pageKey ? vid('hero.heroVideoWebm') : '';
   const cmsVideoMp4 = pageKey ? vid('hero.heroVideoMp4') : '';
   const cmsVideoPoster = pageKey ? img('hero.heroVideoPoster') : '';
+  const cmsVideoPlayback = pageKey ? (t('hero.heroVideoPlayback') as 'loop' | 'once' | '') : '';
   const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
-    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined, playback: (cmsVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
     : heroVideo;
 
   const handleCardClick = (featureTitle: string) => {

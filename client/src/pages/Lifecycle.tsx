@@ -54,8 +54,9 @@ export default function Lifecycle() {
   const cmsVideoWebm = vid('hero.heroVideoWebm');
   const cmsVideoMp4 = vid('hero.heroVideoMp4');
   const cmsVideoPoster = img('hero.heroVideoPoster');
+  const cmsVideoPlayback = cms('hero.heroVideoPlayback') as 'loop' | 'once' | '';
   const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
-    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined, playback: (cmsVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
     : { webm: HERO_VIDEO_WEBM, mp4: HERO_VIDEO_MP4, poster: HERO_VIDEO_POSTER };
 
   const [sliderOpen, setSliderOpen] = useState(false);

@@ -40,6 +40,8 @@ interface HeroVideo {
   webm?: string;
   mp4?: string;
   poster?: string;
+  /** Playback mode: 'loop' (default) = endlos, 'once' = einmal abspielen beim Laden */
+  playback?: 'loop' | 'once';
 }
 
 interface SubPageHeroProps {
@@ -85,6 +87,8 @@ function DiamondMedia({ image, imageAlt, video }: {
   imageAlt?: string;
   video?: HeroVideo;
 }) {
+  const isLoop = !video?.playback || video.playback === 'loop';
+
   if (video) {
     return (
       <div
@@ -93,7 +97,7 @@ function DiamondMedia({ image, imageAlt, video }: {
       >
         <video
           autoPlay
-          loop
+          loop={isLoop}
           muted
           playsInline
           poster={video.poster}
@@ -130,10 +134,11 @@ function RectangularMedia({ image, imageAlt, video }: {
   imageAlt?: string;
   video?: HeroVideo;
 }) {
+  const isLoop = !video?.playback || video.playback === 'loop';
   const mediaContent = video ? (
     <video
       autoPlay
-      loop
+      loop={isLoop}
       muted
       playsInline
       poster={video.poster}
@@ -191,10 +196,11 @@ function FloatingMedia({ image, imageAlt, video }: {
   imageAlt?: string;
   video?: HeroVideo;
 }) {
+  const isLoop = !video?.playback || video.playback === 'loop';
   const mediaContent = video ? (
     <video
       autoPlay
-      loop
+      loop={isLoop}
       muted
       playsInline
       poster={video.poster}
