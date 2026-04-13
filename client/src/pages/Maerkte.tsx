@@ -303,7 +303,8 @@ const slugToAnchor: Record<string, string> = {
   infrastructure: 'smart-infra',
 };
 
-function MarketCard({ vertical, index, isDE }: { vertical: MarketSegment; index: number; isDE: boolean }) {
+function MarketCard({ vertical, index, isDE, onCardClick }: { vertical: MarketSegment; index: number; isDE: boolean; onCardClick?: (topic: string) => void }) {
+  const title = isDE ? vertical.titleDE : vertical.titleEN;
   return (
     <motion.div
       id={slugToAnchor[vertical.slug]}
@@ -311,7 +312,11 @@ function MarketCard({ vertical, index, isDE }: { vertical: MarketSegment; index:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
-      className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 scroll-mt-24"
+      className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 scroll-mt-24 cursor-pointer"
+      onClick={() => onCardClick?.(title)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onCardClick?.(title); } }}
     >
       {/* Header with icon */}
       <div className="fluid-card border-b border-gray-50">
@@ -412,7 +417,7 @@ export default function Maerkte() {
 
           <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-md)', marginTop: 'var(--space-section-header)' }}>
             {marketSegments.map((vertical, i) => (
-              <MarketCard key={vertical.slug} vertical={vertical} index={i} isDE={isDE} />
+              <MarketCard key={vertical.slug} vertical={vertical} index={i} isDE={isDE} onCardClick={openSlider} />
             ))}
           </div>
         </div>
