@@ -405,3 +405,13 @@
 - [x] FEATURE: Vitest-Tests für Video-Playback-Modus (103 Tests bestanden)
 - [x] CONTENT: KI-Entwicklung Kacheln 1-8 mit kundenorientierten Texten aktualisieren (Bullet Points)
 - [x] CONTENT: KI-Entwicklung Kachel 9 umbenennen in "Regulatorik & Dokumentation für KI-Systeme" und befüllen
+- [ ] CONTENT: KI-Entwicklung Kacheln neu sortieren (neue Kachel 1: KI-gestützte Motorparametrisierung, doppelte Integration-Kachel entfernen)
+- [ ] FEATURE: KI-Entwicklung FAQ-Sektion mit Akkordeon-Stil und JSON-LD Schema-Markup einfügen
+- [ ] SEO Stufe 1: Meta-Tags (title, description, og:*, twitter:*) für alle Seiten
+- [ ] SEO Stufe 1: JSON-LD Schema-Markup (Organization, WebSite, BreadcrumbList) für alle Seiten
+- [ ] SEO Stufe 2: Pre-Rendering für Crawler (statische HTML-Snapshots, automatisch bei Build/Deployment)
+- [ ] SEO Stufe 3: Server-Side Rendering (SSR) vollständig umsetzen
+- [x] SKILL: Anrede-Regel als Skill hinterlegen (Sie-Anrede auf gesamter Website, Ausnahme: Karriere)
+- [x] CONTENT: KI-Entwicklung FAQ-Texte von duzen auf siezen korrigieren
+- [x] CONTENT: Gesamte Website auf duzen-Stellen prüfen und auf Sie-Anrede korrigieren – keine weiteren Stellen gefunden
+- [x] BUG: FAQ-Sektion auf KI-Entwicklung hat zu enge Spaltenbreite – auf min(80%, 72rem) verbreitert

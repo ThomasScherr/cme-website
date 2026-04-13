@@ -40,6 +40,8 @@ interface SubPageProps {
   features: Feature[];
   ctaDE?: string;
   ctaEN?: string;
+  /** Optional content to render after the features grid (e.g. FAQ section) */
+  afterFeatures?: React.ReactNode;
 }
 
 export default function SubPageTemplate({
@@ -58,6 +60,7 @@ export default function SubPageTemplate({
   features,
   ctaDE = 'Anforderungen senden',
   ctaEN = 'Send requirements',
+  afterFeatures,
 }: SubPageProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -198,6 +201,9 @@ export default function SubPageTemplate({
       </section>
 
       {/* CTA */}
+      {/* Optional additional content after features */}
+      {afterFeatures}
+
       <section className="section-pad">
         <div className="container text-center">
           <h2 className="fluid-h2 text-cme-dark">
