@@ -380,3 +380,7 @@
 - [x] SECURITY: Serverseitige Validierung der Datenschutz-Checkbox in nda.submit Endpoint
 - [x] SECURITY: Frontend-Formulare senden privacyConsent-Feld an Backend
 - [x] SECURITY: Vitest-Tests für serverseitige Datenschutz-Validierung
+- [x] SECURITY: Rate-Limiter-Modul erstellen (In-Memory, IP-basiert, konfigurierbar)
+- [x] SECURITY: Rate-Limiting in contact.submit Endpoint einbauen
+- [x] SECURITY: Rate-Limiting in nda.submit Endpoint einbauen
+- [x] SECURITY: Vitest-Tests für Rate-Limiting

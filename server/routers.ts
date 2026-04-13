@@ -31,6 +31,7 @@ import {
 } from "./db";
 import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
+import { contactRateLimiter, ndaRateLimiter, getClientIp } from "./rateLimiter";
 import { notifyOwner } from "./_core/notification";
 import { sendContactEmail, sendNdaEmail } from "./email";
 import { generateSeoContent } from "./seoGenerator";
@@ -343,7 +344,18 @@ export const appRouter = router({
           message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
         }),
       }))
-      .mutation(async ({ input }) => {
+      .mutation(async ({ input, ctx }) => {
+        // Rate limiting: max 5 submissions per 15 minutes per IP
+        const clientIp = getClientIp(ctx.req);
+        const rateCheck = contactRateLimiter.check(clientIp);
+        if (!rateCheck.allowed) {
+          const retryMinutes = Math.ceil(rateCheck.retryAfterMs / 60000);
+          throw new TRPCError({
+            code: 'TOO_MANY_REQUESTS',
+            message: `Zu viele Anfragen. Bitte versuchen Sie es in ${retryMinutes} Minute${retryMinutes > 1 ? 'n' : ''} erneut.`,
+          });
+        }
+
         const result = await createContactSubmission(input);
 
         // Send email notification via SMTP
@@ -403,7 +415,18 @@ export const appRouter = router({
           message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
         }),
       }))
-      .mutation(async ({ input }) => {
+      .mutation(async ({ input, ctx }) => {
+        // Rate limiting: max 3 submissions per 15 minutes per IP
+        const clientIp = getClientIp(ctx.req);
+        const rateCheck = ndaRateLimiter.check(clientIp);
+        if (!rateCheck.allowed) {
+          const retryMinutes = Math.ceil(rateCheck.retryAfterMs / 60000);
+          throw new TRPCError({
+            code: 'TOO_MANY_REQUESTS',
+            message: `Zu viele Anfragen. Bitte versuchen Sie es in ${retryMinutes} Minute${retryMinutes > 1 ? 'n' : ''} erneut.`,
+          });
+        }
+
         const result = await createNdaRequest(input);
 
         // Send NDA notification email via SMTP
