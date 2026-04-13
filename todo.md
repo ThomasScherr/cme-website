@@ -428,3 +428,4 @@
 - [x] CONTENT: Lifecycle-Seite – 3 bestehende Kacheln (Obsolescence, Ersatzteil, Reparatur) mit Bullet Points erweitern
 - [x] CONTENT: Lifecycle-Seite – neue 5. Kachel "Langzeit-Support & Produktpflege" hinzufügen
 - [x] CONTENT: Märkte-Seite – "Robotik & Cobots" → "Robotik & Cobots Antriebe" umbenannt
+- [x] CONTENT: Lifecycle-Seite – Neuer Abschnitt "Diese Elektronik lohnt sich zu reparieren" mit 3x3 Kachelraster (9 Kacheln: Frequenzumrichter, Servo-Umrichter, SPS, CNC, IGBT, Robotersteuerungen, HMI, Schweißsteuerungen, Netzteile)

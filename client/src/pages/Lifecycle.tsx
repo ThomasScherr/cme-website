@@ -5,7 +5,7 @@ import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
-import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2, HeartHandshake } from 'lucide-react';
+import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2, HeartHandshake, Gauge, Cpu, Server, MonitorCog, Zap, Bot, Monitor, Flame, BatteryCharging } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -127,6 +127,144 @@ const services = [
   },
 ];
 
+const repairItems = [
+  {
+    icon: Gauge,
+    titleDE: 'Frequenzumrichter & Antriebsregler',
+    titleEN: 'Frequency Inverters & Drive Controllers',
+    bulletsDE: [
+      'Marktf\u00fchrer wie Siemens SINAMICS, ABB ACS, Danfoss, Lenze und SEW mit Neuwert von 2.000 bis \u00fcber 50.000 \u20ac',
+      'Lieferzeiten f\u00fcr Neuger\u00e4te aktuell 12\u201324 Monate \u2013 Produktionsstillstand oft nicht tolerierbar',
+      'CME repariert auf Bauteilebene: IGBT-Treiber, Steuerplatinen, Netzteile und Regelkarten',
+    ],
+    bulletsEN: [
+      'Market leaders like Siemens SINAMICS, ABB ACS, Danfoss, Lenze and SEW with replacement cost from \u20ac2,000 to over \u20ac50,000',
+      'Lead times for new devices currently 12\u201324 months \u2013 production downtime often not tolerable',
+      'CME repairs at component level: IGBT drivers, control boards, power supplies and control cards',
+    ],
+  },
+  {
+    icon: Cpu,
+    titleDE: 'Servo-Umrichter & Servoverst\u00e4rker',
+    titleEN: 'Servo Inverters & Servo Amplifiers',
+    bulletsDE: [
+      'Siemens SIMODRIVE/SINAMICS S, Bosch Rexroth, Fanuc, Mitsubishi \u2013 Neuwert oft 5.000 bis 30.000 \u20ac pro Achse',
+      'Ausfall eines Servoverst\u00e4rkers legt oft die gesamte Fertigungslinie still',
+      'Reparatur inkl. Parametersicherung und Funktionstest unter Last',
+    ],
+    bulletsEN: [
+      'Siemens SIMODRIVE/SINAMICS S, Bosch Rexroth, Fanuc, Mitsubishi \u2013 replacement cost often \u20ac5,000 to \u20ac30,000 per axis',
+      'Failure of a servo amplifier often shuts down the entire production line',
+      'Repair including parameter backup and functional test under load',
+    ],
+  },
+  {
+    icon: Server,
+    titleDE: 'SPS & Industrie-PC Baugruppen',
+    titleEN: 'PLC & Industrial PC Modules',
+    bulletsDE: [
+      'Siemens S5 und S7-300 offiziell abgek\u00fcndigt \u2013 trotzdem noch millionenfach im Einsatz',
+      'Ersatz bedeutet h\u00e4ufig komplette Neuprogrammierung und Zulassungsaufwand',
+      'CME repariert CPU-Karten, Digital-/Analogbaugruppen und Kommunikationsbaugruppen auf Komponentenebene',
+    ],
+    bulletsEN: [
+      'Siemens S5 and S7-300 officially discontinued \u2013 yet still in use millions of times',
+      'Replacement often means complete reprogramming and certification effort',
+      'CME repairs CPU cards, digital/analog modules and communication modules at component level',
+    ],
+  },
+  {
+    icon: MonitorCog,
+    titleDE: 'CNC-Steuerungen & Achskarten',
+    titleEN: 'CNC Controllers & Axis Cards',
+    bulletsDE: [
+      'Siemens SINUMERIK, Fanuc, Heidenhain, Mitsubishi \u2013 Steuerungen mit Neuwert von 10.000 bis 80.000 \u20ac',
+      'Ausfallbedingte Maschinenstillst\u00e4nde kosten in der Zerspanung schnell 5-stellige Betr\u00e4ge pro Tag',
+      'Reparatur von Hauptrechnern, Achskarten, Messsystemplatinen und Bedieneinheiten',
+    ],
+    bulletsEN: [
+      'Siemens SINUMERIK, Fanuc, Heidenhain, Mitsubishi \u2013 controllers with replacement cost from \u20ac10,000 to \u20ac80,000',
+      'Downtime-related machine stoppages in machining quickly cost five-figure amounts per day',
+      'Repair of main computers, axis cards, measurement system boards and operator panels',
+    ],
+  },
+  {
+    icon: Zap,
+    titleDE: 'IGBT-Module & Leistungselektronik',
+    titleEN: 'IGBT Modules & Power Electronics',
+    bulletsDE: [
+      'Hochleistungsmodule von Infineon, Semikron, Mitsubishi \u2013 Einzelpreise von 500 bis \u00fcber 5.000 \u20ac',
+      'Fehlerhafte IGBT-Module sind h\u00e4ufigste Ausfallursache bei Frequenzumrichtern und Schwei\u00dfger\u00e4ten',
+      'CME tauscht auf Modulebene und pr\u00fcft die gesamte Treiberschaltung und Schutzlogik mit',
+    ],
+    bulletsEN: [
+      'High-performance modules from Infineon, Semikron, Mitsubishi \u2013 unit prices from \u20ac500 to over \u20ac5,000',
+      'Faulty IGBT modules are the most common cause of failure in frequency inverters and welding equipment',
+      'CME replaces at module level and tests the entire driver circuit and protection logic',
+    ],
+  },
+  {
+    icon: Bot,
+    titleDE: 'Robotersteuerungen',
+    titleEN: 'Robot Controllers',
+    bulletsDE: [
+      'ABB IRC, KUKA KRC, Fanuc R-30 \u2013 Steuerungen mit Neuwert von 15.000 bis 60.000 \u20ac',
+      'Roboterausfall in der Automobilproduktion oder Logistik bedeutet sofortigen Linien-Stopp',
+      'Reparatur von Leistungsplatinen, Achsrechnern, Sicherheitsbaugruppen und I/O-Karten',
+    ],
+    bulletsEN: [
+      'ABB IRC, KUKA KRC, Fanuc R-30 \u2013 controllers with replacement cost from \u20ac15,000 to \u20ac60,000',
+      'Robot failure in automotive production or logistics means immediate line stop',
+      'Repair of power boards, axis computers, safety modules and I/O cards',
+    ],
+  },
+  {
+    icon: Monitor,
+    titleDE: 'HMI & Industrie-Bedienerpanels',
+    titleEN: 'HMI & Industrial Operator Panels',
+    bulletsDE: [
+      'Siemens TP/MP-Serie, Weintek, Pro-face, B&R \u2013 viele Modelle abgek\u00fcndigt und nicht mehr lieferbar',
+      'Displayausfall oder Touchscreen-Fehler macht die gesamte Maschine unbedienbar',
+      'CME repariert Displays, Touchscreens, Netzteile und Steuerplatinen \u2013 inklusive Datensicherung',
+    ],
+    bulletsEN: [
+      'Siemens TP/MP series, Weintek, Pro-face, B&R \u2013 many models discontinued and no longer available',
+      'Display failure or touchscreen error makes the entire machine inoperable',
+      'CME repairs displays, touchscreens, power supplies and control boards \u2013 including data backup',
+    ],
+  },
+  {
+    icon: Flame,
+    titleDE: 'Schwei\u00dfsteuerungen & Prozesselektronik',
+    titleEN: 'Welding Controllers & Process Electronics',
+    bulletsDE: [
+      'Schwei\u00dfsteuerungen von Fronius, Lincoln Electric, EWM, Kemppi \u2013 kritisch in Automotive und Metallverarbeitung',
+      'Ausfall trifft oft mehrere Arbeitspl\u00e4tze gleichzeitig, wenn eine zentrale Steuerung ausf\u00e4llt',
+      'Reparatur von Inverterplatinen, Steuerungselektronik und Kommunikationsmodulen',
+    ],
+    bulletsEN: [
+      'Welding controllers from Fronius, Lincoln Electric, EWM, Kemppi \u2013 critical in automotive and metal processing',
+      'Failure often affects multiple workstations simultaneously when a central controller fails',
+      'Repair of inverter boards, control electronics and communication modules',
+    ],
+  },
+  {
+    icon: BatteryCharging,
+    titleDE: 'Industrielle Netzteile & USV-Elektronik',
+    titleEN: 'Industrial Power Supplies & UPS Electronics',
+    bulletsDE: [
+      'Prim\u00e4r- und Sekund\u00e4rnetzteile in Schaltschr\u00e4nken, Maschinen und sicherheitsrelevanten Anlagen',
+      'Netzteilausfall legt oft die gesamte Steuerungsebene einer Anlage lahm \u2013 Folgesch\u00e4den inklusive',
+      'CME analysiert Ausfallursache und repariert auf Bauteilebene statt pauschalem Komplettaustausch',
+    ],
+    bulletsEN: [
+      'Primary and secondary power supplies in control cabinets, machines and safety-relevant systems',
+      'Power supply failure often paralyzes the entire control level of a system \u2013 including consequential damage',
+      'CME analyzes the cause of failure and repairs at component level instead of blanket complete replacement',
+    ],
+  },
+];
+
 export default function Lifecycle() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -204,6 +342,56 @@ export default function Lifecycle() {
                     ))}
                   </ul>
                 )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Repair Section: Diese Elektronik lohnt sich zu reparieren */}
+      <section className="section-pad bg-gray-50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center" style={{ marginBottom: 'var(--space-gap-lg)' }}>
+            <h2 className="fluid-h2 text-cme-dark">
+              {isDE ? 'Diese Elektronik lohnt sich zu reparieren' : 'This Electronics Is Worth Repairing'}
+            </h2>
+            <p className="text-gray-600 fluid-body-lg" style={{ marginTop: 'var(--space-gap-xs)' }}>
+              {isDE
+                ? 'Hohe Ersatzteilkosten, lange Lieferzeiten, kritische Funktion \u2013 hier rechnet sich professionelle Instandsetzung fast immer.'
+                : 'High spare part costs, long delivery times, critical function \u2013 professional repair almost always pays off here.'}
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-md)' }}>
+            {repairItems.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg hover:border-cme-blue/20 transition-all fluid-card cursor-pointer"
+                onClick={() => openSlider(isDE ? item.titleDE : item.titleEN)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? item.titleDE : item.titleEN); } }}
+              >
+                <div
+                  className="rounded-xl bg-cme-blue-light flex items-center justify-center"
+                  style={{ width: 'var(--icon-box)', height: 'var(--icon-box)', marginBottom: 'var(--space-gap-xs)' }}
+                >
+                  <item.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+                </div>
+                <h3 className="fluid-h4 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
+                  {isDE ? item.titleDE : item.titleEN}
+                </h3>
+                <ul className="space-y-1.5">
+                  {(isDE ? item.bulletsDE : item.bulletsEN).map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2 fluid-small text-gray-600">
+                      <CheckCircle2 className="text-cme-blue shrink-0 mt-0.5" size={14} />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
