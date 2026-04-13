@@ -105,7 +105,7 @@ export const translations = {
     },
     contact: {
       headline: 'Ihr Projekt. Unsere Expertise. Direkt im Dialog.',
-      sub: 'Beschreiben Sie Ihr Vorhaben – unsere Fachleute geben Ihnen eine erste technische Einschätzung, ehrlich und unverbindlich.',
+      sub: 'Beschreiben Sie uns Ihr Vorhaben in groben Zügen. Wir nehmen kurzfristig Kontakt zur Terminvereinbarung mit Ihnen auf.',
       name: 'Name',
       company: 'Unternehmen',
       email: 'E-Mail',
@@ -229,7 +229,7 @@ export const translations = {
     },
     contact: {
       headline: 'Your project. Our expertise. Direct dialogue.',
-      sub: 'Describe your project – our specialists will give you an initial technical assessment, honest and non-binding.',
+      sub: 'Describe your project in broad terms. We will contact you shortly to schedule a meeting.',
       name: 'Name',
       company: 'Company',
       email: 'Email',

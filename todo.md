@@ -346,3 +346,4 @@
 - [x] FIX: Märkte-Seite Automotive-Kachel – ADAS entfernen, durch reale CME-Anwendungen ersetzen (Pumpen, Kompressoren, HVAC Blower, Steller, Wischermotoren, Windabweiser, Adaptive Fahrwerksteuerung, Fuel-Cell-Steuerung)
 - [x] FIX: MarketsSection Startseite – Automotive-Tags ebenfalls anpassen (ADAS entfernt, durch Pumpen, HVAC, Steller, Wischermotoren ersetzt)
 - [x] FIX: ContactSlider Text geändert: "Beschreiben Sie uns Ihr Vorhaben in groben Zügen. Wir nehmen kurzfristig Kontakt zur Terminvereinbarung mit Ihnen auf."
+- [x] FIX: Kontaktformular Hauptseite (ContactSection) – Text an neuen Slider-Wortlaut angepasst (DE + EN)
