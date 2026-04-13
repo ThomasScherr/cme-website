@@ -13,23 +13,42 @@ import MarketsSection from '@/components/sections/MarketsSection';
 import TrustSection from '@/components/sections/TrustSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
+import ContactSlider from '@/components/ContactSlider';
+import { useState } from 'react';
 
 export default function Home() {
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const [sliderSource, setSliderSource] = useState('homepage');
+
+  const openSlider = (topic: string, source?: string) => {
+    setSliderTopic(topic);
+    setSliderSource(source || 'homepage');
+    setSliderOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
       <main>
         <HeroSection />
         <StatsSection />
-        <ServicesSection />
-        <BenefitsSection />
-        <UspSection />
-        <ProcessSection />
-        <MarketsSection />
+        <ServicesSection onCardClick={(topic) => openSlider(topic, 'homepage-services')} />
+        <BenefitsSection onCardClick={(topic) => openSlider(topic, 'homepage-benefits')} />
+        <UspSection onCardClick={(topic) => openSlider(topic, 'homepage-usp')} />
+        <ProcessSection onCardClick={(topic) => openSlider(topic, 'homepage-process')} />
+        <MarketsSection onCardClick={(topic) => openSlider(topic, 'homepage-markets')} />
         <TrustSection />
         <ContactSection />
       </main>
       <Footer />
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={sliderSource}
+      />
     </div>
   );
 }

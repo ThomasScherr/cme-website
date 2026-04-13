@@ -72,7 +72,11 @@ const benefits = [
   },
 ];
 
-export default function BenefitsSection() {
+interface BenefitsSectionProps {
+  onCardClick?: (topic: string) => void;
+}
+
+export default function BenefitsSection({ onCardClick }: BenefitsSectionProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
@@ -107,6 +111,7 @@ export default function BenefitsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
+            const title = isDE ? benefit.de : benefit.en;
             return (
               <motion.div
                 key={i}
@@ -114,7 +119,16 @@ export default function BenefitsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={vp}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 fluid-card flex flex-col items-center text-center"
+                className={`bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 fluid-card flex flex-col items-center text-center ${onCardClick ? 'cursor-pointer' : ''}`}
+                onClick={onCardClick ? () => onCardClick(title) : undefined}
+                role={onCardClick ? 'button' : undefined}
+                tabIndex={onCardClick ? 0 : undefined}
+                onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onCardClick(title);
+                  }
+                } : undefined}
               >
                 {/* Icon box */}
                 <div
@@ -133,7 +147,7 @@ export default function BenefitsSection() {
 
                 {/* Benefit title */}
                 <p className="fluid-small text-cme-dark leading-snug" style={{ fontWeight: 700, marginBottom: '0.5rem' }}>
-                  {isDE ? benefit.de : benefit.en}
+                  {title}
                 </p>
 
                 {/* Benefit description */}

@@ -6,7 +6,11 @@ const CME_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wCh
 
 const icons = [Combine, Radio, Thermometer, ShieldCheck, Award, Scaling];
 
-export default function UspSection() {
+interface UspSectionProps {
+  onCardClick?: (topic: string) => void;
+}
+
+export default function UspSection({ onCardClick }: UspSectionProps) {
   const { t, lang } = useLanguage();
   const isDE = lang === 'de';
 
@@ -59,7 +63,16 @@ export default function UspSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group relative bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 fluid-card"
+                className={`group relative bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 fluid-card ${onCardClick ? 'cursor-pointer' : ''}`}
+                onClick={onCardClick ? () => onCardClick(item.title) : undefined}
+                role={onCardClick ? 'button' : undefined}
+                tabIndex={onCardClick ? 0 : undefined}
+                onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onCardClick(item.title);
+                  }
+                } : undefined}
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-cme-blue rounded-t-xl scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 <div
@@ -88,7 +101,12 @@ export default function UspSection() {
           style={{ marginTop: 'var(--space-section-header)' }}
         >
           {/* Independent commissioning */}
-          <div className="relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8">
+          <div
+            className={`relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8 hover:border-cme-blue/20 hover:shadow-lg transition-all duration-300 ${onCardClick ? 'cursor-pointer' : ''}`}
+            onClick={onCardClick ? () => onCardClick(isDE ? 'Unabhängig beauftragbar' : 'Independently Commissionable') : undefined}
+            role={onCardClick ? 'button' : undefined}
+            tabIndex={onCardClick ? 0 : undefined}
+          >
             <div className="flex items-start gap-4">
               <div className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue flex-shrink-0"
                 style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
@@ -96,19 +114,24 @@ export default function UspSection() {
               </div>
               <div>
                 <h4 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'clamp(0.25rem, 0.1rem + 0.3vw, 0.5rem)' }}>
-                  {isDE ? 'Unabh\u00e4ngig beauftragbar' : 'Independently Commissionable'}
+                  {isDE ? 'Unabhängig beauftragbar' : 'Independently Commissionable'}
                 </h4>
                 <p className="fluid-small text-cme-gray leading-relaxed">
                   {isDE
-                    ? 'Entwicklung und Produktion k\u00f6nnen unabh\u00e4ngig voneinander beauftragt werden. Viele unserer Kunden haben eigene EMS-Partner \u2013 wir arbeiten sehr gerne und eng mit den Fertigungspartnern unserer Kunden zusammen.'
-                    : 'Development and production can be commissioned independently. Many of our customers have their own EMS partners \u2013 we work closely and effectively with our customers\u2019 manufacturing partners.'}
+                    ? 'Entwicklung und Produktion können unabhängig voneinander beauftragt werden. Viele unserer Kunden haben eigene EMS-Partner – wir arbeiten sehr gerne und eng mit den Fertigungspartnern unserer Kunden zusammen.'
+                    : 'Development and production can be commissioned independently. Many of our customers have their own EMS partners – we work closely and effectively with our customers\u2019 manufacturing partners.'}
                 </p>
               </div>
             </div>
           </div>
 
           {/* Strong partner network */}
-          <div className="relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8">
+          <div
+            className={`relative bg-white rounded-xl border border-gray-100 p-6 sm:p-8 hover:border-cme-blue/20 hover:shadow-lg transition-all duration-300 ${onCardClick ? 'cursor-pointer' : ''}`}
+            onClick={onCardClick ? () => onCardClick(isDE ? 'Starkes Partnernetzwerk' : 'Strong Partner Network') : undefined}
+            role={onCardClick ? 'button' : undefined}
+            tabIndex={onCardClick ? 0 : undefined}
+          >
             <div className="flex items-start gap-4">
               <div className="flex items-center justify-center rounded-lg bg-cme-blue/10 text-cme-blue flex-shrink-0"
                 style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}>
@@ -120,7 +143,7 @@ export default function UspSection() {
                 </h4>
                 <p className="fluid-small text-cme-gray leading-relaxed">
                   {isDE
-                    ? 'Wir verf\u00fcgen \u00fcber ein bew\u00e4hrtes Netzwerk aus spezialisierten Partnern f\u00fcr Leiterplattendesign, Geh\u00e4useentwicklung, EMV-Pr\u00fcfung und Zulassung. So k\u00f6nnen wir auch komplexe, interdisziplin\u00e4re Projekte effizient abwickeln.'
+                    ? 'Wir verfügen über ein bewährtes Netzwerk aus spezialisierten Partnern für Leiterplattendesign, Gehäuseentwicklung, EMV-Prüfung und Zulassung. So können wir auch komplexe, interdisziplinäre Projekte effizient abwickeln.'
                     : 'We maintain a proven network of specialized partners for PCB design, enclosure development, EMC testing and certification. This enables us to efficiently handle complex, interdisciplinary projects.'}
                 </p>
               </div>

@@ -62,7 +62,11 @@ const markets = [
   },
 ];
 
-export default function MarketsSection() {
+interface MarketsSectionProps {
+  onCardClick?: (topic: string) => void;
+}
+
+export default function MarketsSection({ onCardClick }: MarketsSectionProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
@@ -92,46 +96,58 @@ export default function MarketsSection() {
 
         {/* Market Cards Grid – 3x2 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
-          {markets.map((v, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 cursor-default group overflow-hidden"
-            >
-              <div className="fluid-card flex flex-col h-full">
-                {/* Icon + Title */}
-                <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
-                  <div
-                    className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
-                    style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
-                  >
-                    <v.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+          {markets.map((v, i) => {
+            const title = isDE ? v.titleDE : v.titleEN;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className={`bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 group overflow-hidden ${onCardClick ? 'cursor-pointer' : 'cursor-default'}`}
+                onClick={onCardClick ? () => onCardClick(title) : undefined}
+                role={onCardClick ? 'button' : undefined}
+                tabIndex={onCardClick ? 0 : undefined}
+                onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onCardClick(title);
+                  }
+                } : undefined}
+              >
+                <div className="fluid-card flex flex-col h-full">
+                  {/* Icon + Title */}
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
+                    <div
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                      style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
+                    >
+                      <v.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
+                    </div>
+                    <h4 className="fluid-small font-bold text-cme-dark leading-tight">
+                      {title}
+                    </h4>
                   </div>
-                  <h4 className="fluid-small font-bold text-cme-dark leading-tight">
-                    {isDE ? v.titleDE : v.titleEN}
-                  </h4>
-                </div>
 
-                {/* Application tags */}
-                <div className="flex flex-wrap gap-1.5" style={{ marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
-                  {(isDE ? v.tagsDE : v.tagsEN).map((tag, j) => (
-                    <span key={j} className="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium border" style={{ backgroundColor: '#ffffff', color: '#4f4f4f', borderWidth: '1px', borderColor: '#bdbdbd' }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                  {/* Application tags */}
+                  <div className="flex flex-wrap gap-1.5" style={{ marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
+                    {(isDE ? v.tagsDE : v.tagsEN).map((tag, j) => (
+                      <span key={j} className="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-medium border" style={{ backgroundColor: '#ffffff', color: '#4f4f4f', borderWidth: '1px', borderColor: '#bdbdbd' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* Challenge line */}
-                <p className="fluid-xs text-gray-500 leading-relaxed flex-1">
-                  <span className="font-semibold text-cme-dark">{isDE ? 'Herausforderungen:' : 'Challenges:'}</span>{' '}
-                  {isDE ? v.challengeDE : v.challengeEN}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                  {/* Challenge line */}
+                  <p className="fluid-xs text-gray-500 leading-relaxed flex-1">
+                    <span className="font-semibold text-cme-dark">{isDE ? 'Herausforderungen:' : 'Challenges:'}</span>{' '}
+                    {isDE ? v.challengeDE : v.challengeEN}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Link to full page */}

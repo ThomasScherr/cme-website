@@ -334,7 +334,7 @@
 - [x] Feature: 9 Icon-Kacheln auf /fertigung/leiterplatten mit je 4 Bullet Points ergänzen
 - [x] Feature: Kontakt-Slider Komponente – von rechts einsliden beim Klick auf Kachel, mit GF-Bild, personalisiertem Text, Anfrageformular (Vorname, Name, E-Mail, Firma, Telefon optional, Betreff vorausgefüllt, Nachricht)
 - [x] Feature: Kontakt-Slider in SubPageTemplate und HardwareSoftware integrieren
-- [ ] Redesign: /entwicklung/ux-interface-engineering optisch an das einheitliche Seitendesign anpassen (Bilder/Grafiken beibehalten)
+- [x] Redesign: /entwicklung/ux-interface-engineering auf SubPageTemplate umgestellt (Bilder/Grafiken beibehalten)
 - [x] FIX: Qualität-Seite Textkorrektur "automatisierte" → "eine automatisierte" (bereits korrekt im Code)
 - [x] FIX: Qualität-Seite – doppeltes Element untersucht: kein Duplikat in SubPageTemplate.tsx gefunden
 - [x] FIX: Lifecycle.tsx Redesign-Text "nutzen wir die Gelegenheit" → "bietet sich diese Gelegenheit als Chance an, Ihr Produkt gezielt und nachhaltig zu verbessern"
@@ -356,3 +356,9 @@
 - [x] Feature: ContactSection Hauptseite – Anrede (Pflicht) + Titel (optional) ergänzt
 - [x] Feature: Anrede-Optionen: Herr, Frau, Keine Angabe (inklusiv, B2B-gerecht)
 - [x] Feature: Alle Kacheln auf Unterseiten mit Hover-Effekt und ContactSlider verknüpft (Entwicklung, Fertigung, Lifecycle, Märkte, Unternehmen, Karriere + SubPageTemplate)
+- [x] Feature: NDA-Toggle-Button in ContactSection (Startseite) eingebaut
+- [x] Feature: NDA-Toggle-Button + Anrede/Titel in Kontakt-Seite (/kontakt) eingebaut
+- [x] Feature: Homepage Hover-Kacheln mit ContactSlider verknüpft (ServicesSection, BenefitsSection, MarketsSection, UspSection, ProcessSection)
+- [x] Feature: Märkte-Seite Hover-Kacheln mit ContactSlider verknüpft (bereits vorhanden)
+- [x] Redesign: /entwicklung/ux-interface-engineering auf SubPageTemplate umgestellt (einheitliches Design)
+- [x] Redesign: /entwicklung/software-digitale-systeme auf SubPageTemplate umgestellt (einheitliches Design)

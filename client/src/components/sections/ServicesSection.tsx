@@ -19,9 +19,10 @@ interface ServiceBlockProps {
   index: number;
   bgClass?: string;
   darkText?: boolean;
+  onCardClick?: (topic: string) => void;
 }
 
-function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass = 'bg-white', darkText = false }: ServiceBlockProps) {
+function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass = 'bg-white', darkText = false, onCardClick }: ServiceBlockProps) {
   const textColor = darkText ? 'text-white' : 'text-cme-dark';
   const descColor = darkText ? 'text-white/80' : 'text-cme-gray';
   const itemColor = darkText ? 'text-white/90' : 'text-cme-dark/80';
@@ -63,7 +64,11 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`${reverse ? 'lg:order-1' : ''}`}
+            className={`${reverse ? 'lg:order-1' : ''} ${onCardClick ? 'cursor-pointer' : ''}`}
+            onClick={onCardClick ? () => onCardClick(title) : undefined}
+            role={onCardClick ? 'button' : undefined}
+            tabIndex={onCardClick ? 0 : undefined}
+            onKeyDown={onCardClick ? (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onCardClick(title); } } : undefined}
           >
             <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'var(--space-gap-xs)' }}>
               <div
@@ -93,7 +98,11 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
   );
 }
 
-export default function ServicesSection() {
+interface ServicesSectionProps {
+  onCardClick?: (topic: string) => void;
+}
+
+export default function ServicesSection({ onCardClick }: ServicesSectionProps) {
   const { t } = useLanguage();
   const { t: cms, img } = useContent('home');
 
@@ -155,6 +164,7 @@ export default function ServicesSection() {
           {...service}
           reverse={i % 2 === 1}
           index={i}
+          onCardClick={onCardClick}
         />
       ))}
     </section>

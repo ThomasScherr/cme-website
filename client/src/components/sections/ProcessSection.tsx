@@ -21,7 +21,11 @@ const STEP_ICONS: LucideIcon[] = [
   LifeBuoy,
 ];
 
-export default function ProcessSection() {
+interface ProcessSectionProps {
+  onCardClick?: (topic: string) => void;
+}
+
+export default function ProcessSection({ onCardClick }: ProcessSectionProps) {
   const { t, lang } = useLanguage();
   const isDE = lang === 'de';
   const containerRef = useRef<HTMLDivElement>(null);
@@ -129,7 +133,13 @@ export default function ProcessSection() {
 
                 {/* Card */}
                 <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:pr-14 md:text-right' : 'md:pl-14'}`}>
-                  <div className="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 hover:border-cme-blue/30 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 group">
+                  <div
+                    className={`bg-white border border-gray-200 rounded-xl p-5 sm:p-6 hover:border-cme-blue/30 hover:shadow-lg hover:shadow-cme-blue/5 transition-all duration-300 group ${onCardClick ? 'cursor-pointer' : ''}`}
+                    onClick={onCardClick ? () => onCardClick(step.title) : undefined}
+                    role={onCardClick ? 'button' : undefined}
+                    tabIndex={onCardClick ? 0 : undefined}
+                    onKeyDown={onCardClick ? (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onCardClick(step.title); } } : undefined}
+                  >
                     {/* Step label */}
                     <span className="inline-block fluid-xs font-bold text-cme-blue/50 uppercase tracking-widest mb-1">
                       Schritt {step.num}
