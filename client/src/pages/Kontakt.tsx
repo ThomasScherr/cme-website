@@ -78,6 +78,7 @@ export default function Kontakt() {
       phone: form.phone || undefined,
       message: form.subject ? `[${form.subject}] ${form.message}` : form.message,
       source: 'kontakt',
+      privacyConsent: true as const,
     });
   };
 
@@ -98,6 +99,7 @@ export default function Kontakt() {
       company: ndaForm.company,
       email: ndaForm.email,
       source: 'kontakt',
+      privacyConsent: true as const,
     });
   };
 

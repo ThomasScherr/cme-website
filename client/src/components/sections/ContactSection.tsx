@@ -87,6 +87,7 @@ export default function ContactSection() {
       phone: formData.phone || undefined,
       message: formData.message,
       source: 'homepage',
+      privacyConsent: true as const,
     });
   };
 
@@ -107,6 +108,7 @@ export default function ContactSection() {
       company: ndaForm.company,
       email: ndaForm.email,
       source: 'homepage',
+      privacyConsent: true as const,
     });
   };
 

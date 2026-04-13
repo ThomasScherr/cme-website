@@ -339,6 +339,9 @@ export const appRouter = router({
         phone: z.string().max(50).optional(),
         message: z.string().min(1),
         source: z.string().max(100).optional(),
+        privacyConsent: z.literal(true, {
+          message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
+        }),
       }))
       .mutation(async ({ input }) => {
         const result = await createContactSubmission(input);
@@ -396,6 +399,9 @@ export const appRouter = router({
         email: z.string().email().max(320),
         topic: z.string().max(500).optional(),
         source: z.string().max(100).optional(),
+        privacyConsent: z.literal(true, {
+          message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
+        }),
       }))
       .mutation(async ({ input }) => {
         const result = await createNdaRequest(input);

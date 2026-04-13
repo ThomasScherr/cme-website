@@ -376,3 +376,7 @@
 - [x] Feature: Datenschutz-Checkbox in ContactSlider einbauen (Pflichtfeld)
 - [x] Feature: Datenschutz-Checkbox in ContactSection (Startseite) einbauen (Pflichtfeld)
 - [x] Feature: Datenschutz-Checkbox in Kontakt-Seite (/kontakt) einbauen (Pflichtfeld)
+- [x] SECURITY: Serverseitige Validierung der Datenschutz-Checkbox in contact.submit Endpoint
+- [x] SECURITY: Serverseitige Validierung der Datenschutz-Checkbox in nda.submit Endpoint
+- [x] SECURITY: Frontend-Formulare senden privacyConsent-Feld an Backend
+- [x] SECURITY: Vitest-Tests für serverseitige Datenschutz-Validierung

@@ -100,6 +100,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
       phone: form.phone || undefined,
       message: form.subject ? `[${form.subject}]\n\n${form.message}` : form.message,
       source: pageSource || 'contact-slider',
+      privacyConsent: true as const,
     });
   }, [form, contactMutation, pageSource]);
 
@@ -113,6 +114,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
       email: ndaForm.email,
       topic: topic || undefined,
       source: pageSource || 'contact-slider-nda',
+      privacyConsent: true as const,
     });
   }, [ndaForm, ndaMutation, topic, pageSource]);
 

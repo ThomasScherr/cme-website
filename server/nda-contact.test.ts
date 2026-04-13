@@ -79,6 +79,7 @@ describe("contact.submit", () => {
       phone: "+49 123 456",
       message: "Testanfrage",
       source: "homepage",
+      privacyConsent: true,
     });
 
     expect(result).toEqual({ success: true, id: 1 });
@@ -92,6 +93,7 @@ describe("contact.submit", () => {
       name: "Jane Doe",
       email: "jane@test.com",
       message: "Test inquiry",
+      privacyConsent: true,
     });
 
     expect(result).toEqual({ success: true, id: 1 });
@@ -106,7 +108,35 @@ describe("contact.submit", () => {
         name: "Test",
         email: "not-an-email",
         message: "Test",
+        privacyConsent: true,
       })
+    ).rejects.toThrow();
+  });
+
+  it("rejects submission without privacyConsent", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.contact.submit({
+        name: "Test",
+        email: "test@test.de",
+        message: "Test",
+      } as any)
+    ).rejects.toThrow();
+  });
+
+  it("rejects submission with privacyConsent set to false", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.contact.submit({
+        name: "Test",
+        email: "test@test.de",
+        message: "Test",
+        privacyConsent: false,
+      } as any)
     ).rejects.toThrow();
   });
 });
@@ -124,6 +154,7 @@ describe("nda.submit", () => {
       email: "anna@schmidt.de",
       topic: "Leistungselektronik",
       source: "contact-slider-nda",
+      privacyConsent: true,
     });
 
     expect(result).toEqual({ success: true, id: 1 });
@@ -139,6 +170,7 @@ describe("nda.submit", () => {
       lastName: "Müller",
       company: "Müller GmbH",
       email: "alex@mueller.de",
+      privacyConsent: true,
     });
 
     expect(result).toEqual({ success: true, id: 1 });
@@ -155,6 +187,7 @@ describe("nda.submit", () => {
         lastName: "User",
         company: "Test Co",
         email: "test@test.com",
+        privacyConsent: true,
       })
     ).rejects.toThrow();
   });
@@ -170,6 +203,7 @@ describe("nda.submit", () => {
         lastName: "User",
         company: "",
         email: "test@test.com",
+        privacyConsent: true,
       })
     ).rejects.toThrow();
   });
@@ -185,7 +219,39 @@ describe("nda.submit", () => {
         lastName: "User",
         company: "Test Co",
         email: "invalid",
+        privacyConsent: true,
       })
+    ).rejects.toThrow();
+  });
+
+  it("rejects NDA request without privacyConsent", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.nda.submit({
+        salutation: "Herr",
+        firstName: "Test",
+        lastName: "User",
+        company: "Test Co",
+        email: "test@test.com",
+      } as any)
+    ).rejects.toThrow();
+  });
+
+  it("rejects NDA request with privacyConsent set to false", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.nda.submit({
+        salutation: "Herr",
+        firstName: "Test",
+        lastName: "User",
+        company: "Test Co",
+        email: "test@test.com",
+        privacyConsent: false,
+      } as any)
     ).rejects.toThrow();
   });
 });
