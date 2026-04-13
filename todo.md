@@ -373,3 +373,6 @@
 - [x] Feature: E-Mail-Versand in contact.submit Endpoint eingebaut
 - [x] Feature: E-Mail-Versand in nda.submit Endpoint eingebaut
 - [x] Feature: Owner-Benachrichtigung (notifyOwner) bei Formular-Einreichungen aktiviert (als Fallback)
+- [x] Feature: Datenschutz-Checkbox in ContactSlider einbauen (Pflichtfeld)
+- [x] Feature: Datenschutz-Checkbox in ContactSection (Startseite) einbauen (Pflichtfeld)
+- [x] Feature: Datenschutz-Checkbox in Kontakt-Seite (/kontakt) einbauen (Pflichtfeld)

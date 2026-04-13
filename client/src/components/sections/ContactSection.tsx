@@ -45,6 +45,8 @@ export default function ContactSection() {
     email: '',
   });
 
+  const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
+
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
       toast.success(isDE
@@ -92,6 +94,10 @@ export default function ContactSection() {
     e.preventDefault();
     if (!ndaForm.salutation) {
       toast.error(isDE ? 'Bitte wählen Sie eine Anrede.' : 'Please select a salutation.');
+      return;
+    }
+    if (!ndaPrivacyConsent) {
+      toast.error(isDE ? 'Bitte akzeptieren Sie die Datenschutzerklärung.' : 'Please accept the privacy policy.');
       return;
     }
     ndaMutation.mutate({
@@ -244,19 +250,21 @@ export default function ContactSection() {
                     required
                     className="resize-none fluid-small"
                   />
-                  <div className="flex items-start gap-3">
+                  <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
-                      id="privacy"
                       checked={formData.privacy}
                       onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
-                      className="mt-1 accent-cme-blue"
+                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
                       required
                     />
-                    <label htmlFor="privacy" className="fluid-xs text-gray-500 cursor-pointer leading-relaxed">
-                      {t.contact.privacy}
-                    </label>
-                  </div>
+                    <span className="text-sm text-gray-600 leading-relaxed">
+                      {isDE
+                        ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                        : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                      }
+                    </span>
+                  </label>
                   <Button
                     type="submit"
                     disabled={submitMutation.isPending}
@@ -360,9 +368,26 @@ export default function ContactSection() {
                         className="fluid-small"
                       />
 
+                      {/* Privacy consent checkbox */}
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          required
+                          checked={ndaPrivacyConsent}
+                          onChange={(e) => setNdaPrivacyConsent(e.target.checked)}
+                          className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
+                        />
+                        <span className="text-sm text-gray-600 leading-relaxed">
+                          {isDE
+                            ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                            : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                          }
+                        </span>
+                      </label>
+
                       <Button
                         type="submit"
-                        disabled={ndaMutation.isPending}
+                        disabled={ndaMutation.isPending || !ndaPrivacyConsent}
                         className="bg-cme-dark hover:bg-cme-dark/90 text-white shadow-md self-start fluid-btn"
                       >
                         {ndaMutation.isPending ? (

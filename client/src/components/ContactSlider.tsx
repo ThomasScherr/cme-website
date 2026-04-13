@@ -48,6 +48,10 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
     email: '',
   });
 
+  // Privacy consent state
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
+
   // Pre-fill subject with topic when slider opens
   useEffect(() => {
     if (isOpen && topic) {
@@ -57,6 +61,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
       }));
       setSubmitted(false);
       setMode('contact');
+      setPrivacyConsent(false);
+      setNdaPrivacyConsent(false);
     }
   }, [isOpen, topic, isDE]);
 
@@ -343,10 +349,27 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                           </div>
 
+                          {/* Privacy consent checkbox */}
+                          <label className="flex items-start gap-3 cursor-pointer group">
+                            <input
+                              type="checkbox"
+                              required
+                              checked={ndaPrivacyConsent}
+                              onChange={(e) => setNdaPrivacyConsent(e.target.checked)}
+                              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
+                            />
+                            <span className="text-sm text-gray-600 leading-relaxed">
+                              {isDE
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                              }
+                            </span>
+                          </label>
+
                           {/* NDA Submit button */}
                           <button
                             type="submit"
-                            disabled={isPending}
+                            disabled={isPending || !ndaPrivacyConsent}
                             className="w-full flex items-center justify-center gap-2.5 bg-cme-dark text-white rounded-lg h-12 font-semibold text-base hover:bg-cme-dark/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                           >
                             {isPending ? (
@@ -369,13 +392,6 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                                 : 'Error sending. Please try again.'}
                             </p>
                           )}
-
-                          <p className="text-xs text-gray-400 text-center leading-relaxed">
-                            {isDE
-                              ? <>Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">Datenschutzerklärung</a> zu.</>
-                              : <>By submitting, you agree to our <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">privacy policy</a>.</>
-                            }
-                          </p>
                         </motion.form>
                       ) : (
                         /* ── Standard Contact Form ────────────────── */
@@ -530,10 +546,27 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                           </div>
 
+                          {/* Privacy consent checkbox */}
+                          <label className="flex items-start gap-3 cursor-pointer group">
+                            <input
+                              type="checkbox"
+                              required
+                              checked={privacyConsent}
+                              onChange={(e) => setPrivacyConsent(e.target.checked)}
+                              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
+                            />
+                            <span className="text-sm text-gray-600 leading-relaxed">
+                              {isDE
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                              }
+                            </span>
+                          </label>
+
                           {/* Submit button */}
                           <button
                             type="submit"
-                            disabled={isPending}
+                            disabled={isPending || !privacyConsent}
                             className="w-full flex items-center justify-center gap-2.5 bg-cme-blue text-white rounded-lg h-12 font-semibold text-base hover:bg-cme-blue/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                           >
                             {isPending ? (
@@ -556,13 +589,6 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                                 : 'Error sending. Please try again.'}
                             </p>
                           )}
-
-                          <p className="text-xs text-gray-400 text-center leading-relaxed">
-                            {isDE
-                              ? <>Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">Datenschutzerklärung</a> zu.</>
-                              : <>By submitting, you agree to our <a href="/datenschutz" className="underline hover:text-gray-600 transition-colors">privacy policy</a>.</>
-                            }
-                          </p>
                         </motion.form>
                       )}
                     </AnimatePresence>

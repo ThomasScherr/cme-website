@@ -43,6 +43,9 @@ export default function Kontakt() {
     email: '',
   });
 
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
+
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => setSubmitted(true),
     onError: (err) => toast.error(err.message || (isDE ? 'Fehler beim Senden.' : 'Error sending.')),
@@ -62,6 +65,10 @@ export default function Kontakt() {
       toast.error(isDE ? 'Bitte wählen Sie eine Anrede.' : 'Please select a salutation.');
       return;
     }
+    if (!privacyConsent) {
+      toast.error(isDE ? 'Bitte akzeptieren Sie die Datenschutzerklärung.' : 'Please accept the privacy policy.');
+      return;
+    }
     submitMutation.mutate({
       salutation: form.salutation,
       title: form.title || undefined,
@@ -78,6 +85,10 @@ export default function Kontakt() {
     e.preventDefault();
     if (!ndaForm.salutation) {
       toast.error(isDE ? 'Bitte wählen Sie eine Anrede.' : 'Please select a salutation.');
+      return;
+    }
+    if (!ndaPrivacyConsent) {
+      toast.error(isDE ? 'Bitte akzeptieren Sie die Datenschutzerklärung.' : 'Please accept the privacy policy.');
       return;
     }
     ndaMutation.mutate({
@@ -374,9 +385,26 @@ export default function Kontakt() {
                         />
                       </div>
 
+                      {/* Privacy consent checkbox */}
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          required
+                          checked={privacyConsent}
+                          onChange={(e) => setPrivacyConsent(e.target.checked)}
+                          className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
+                        />
+                        <span className="text-sm text-gray-600 leading-relaxed">
+                          {isDE
+                            ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                            : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                          }
+                        </span>
+                      </label>
+
                       <button
                         type="submit"
-                        disabled={submitMutation.isPending}
+                        disabled={submitMutation.isPending || !privacyConsent}
                         className="bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors flex items-center gap-2 disabled:opacity-50 self-start fluid-btn"
                       >
                         {submitMutation.isPending ? (
@@ -515,9 +543,26 @@ export default function Kontakt() {
                           />
                         </div>
 
+                        {/* Privacy consent checkbox */}
+                        <label className="flex items-start gap-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            required
+                            checked={ndaPrivacyConsent}
+                            onChange={(e) => setNdaPrivacyConsent(e.target.checked)}
+                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
+                          />
+                          <span className="text-sm text-gray-600 leading-relaxed">
+                            {isDE
+                              ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                              : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                            }
+                          </span>
+                        </label>
+
                         <button
                           type="submit"
-                          disabled={ndaMutation.isPending}
+                          disabled={ndaMutation.isPending || !ndaPrivacyConsent}
                           className="bg-cme-dark text-white rounded-lg font-semibold hover:bg-cme-dark/90 transition-colors flex items-center gap-2 disabled:opacity-50 self-start fluid-btn"
                         >
                           {ndaMutation.isPending ? (
