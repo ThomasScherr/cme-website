@@ -52,6 +52,10 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
 
+  // Honeypot fields (invisible to users, bots auto-fill them)
+  const [honeypot, setHoneypot] = useState('');
+  const [ndaHoneypot, setNdaHoneypot] = useState('');
+
   // Pre-fill subject with topic when slider opens
   useEffect(() => {
     if (isOpen && topic) {
@@ -101,8 +105,9 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
       message: form.subject ? `[${form.subject}]\n\n${form.message}` : form.message,
       source: pageSource || 'contact-slider',
       privacyConsent: true as const,
+      website: honeypot || undefined,
     });
-  }, [form, contactMutation, pageSource]);
+  }, [form, contactMutation, pageSource, honeypot]);
 
   const handleNdaSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -115,8 +120,9 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
       topic: topic || undefined,
       source: pageSource || 'contact-slider-nda',
       privacyConsent: true as const,
+      website: ndaHoneypot || undefined,
     });
-  }, [ndaForm, ndaMutation, topic, pageSource]);
+  }, [ndaForm, ndaMutation, topic, pageSource, ndaHoneypot]);
 
   const updateField = (field: keyof typeof form) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -352,6 +358,19 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           </div>
 
                           {/* Privacy consent checkbox */}
+                          {/* Honeypot field – invisible to users, bots auto-fill it */}
+                          <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                            <label htmlFor="slider-nda-website">Website</label>
+                            <input
+                              type="text"
+                              id="slider-nda-website"
+                              name="website"
+                              autoComplete="off"
+                              tabIndex={-1}
+                              value={ndaHoneypot}
+                              onChange={(e) => setNdaHoneypot(e.target.value)}
+                            />
+                          </div>
                           <label className="flex items-start gap-3 cursor-pointer group">
                             <input
                               type="checkbox"
@@ -548,6 +567,19 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                           </div>
 
+                          {/* Honeypot field – invisible to users, bots auto-fill it */}
+                          <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                            <label htmlFor="slider-contact-website">Website</label>
+                            <input
+                              type="text"
+                              id="slider-contact-website"
+                              name="website"
+                              autoComplete="off"
+                              tabIndex={-1}
+                              value={honeypot}
+                              onChange={(e) => setHoneypot(e.target.value)}
+                            />
+                          </div>
                           {/* Privacy consent checkbox */}
                           <label className="flex items-start gap-3 cursor-pointer group">
                             <input

@@ -46,6 +46,10 @@ export default function Kontakt() {
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
 
+  // Honeypot fields (invisible to users, bots auto-fill them)
+  const [honeypot, setHoneypot] = useState('');
+  const [ndaHoneypot, setNdaHoneypot] = useState('');
+
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => setSubmitted(true),
     onError: (err) => toast.error(err.message || (isDE ? 'Fehler beim Senden.' : 'Error sending.')),
@@ -79,6 +83,7 @@ export default function Kontakt() {
       message: form.subject ? `[${form.subject}] ${form.message}` : form.message,
       source: 'kontakt',
       privacyConsent: true as const,
+      website: honeypot || undefined,
     });
   };
 
@@ -100,6 +105,7 @@ export default function Kontakt() {
       email: ndaForm.email,
       source: 'kontakt',
       privacyConsent: true as const,
+      website: ndaHoneypot || undefined,
     });
   };
 
@@ -387,6 +393,19 @@ export default function Kontakt() {
                         />
                       </div>
 
+                      {/* Honeypot field – invisible to users, bots auto-fill it */}
+                      <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                        <label htmlFor="kontakt-contact-website">Website</label>
+                        <input
+                          type="text"
+                          id="kontakt-contact-website"
+                          name="website"
+                          autoComplete="off"
+                          tabIndex={-1}
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
+                        />
+                      </div>
                       {/* Privacy consent checkbox */}
                       <label className="flex items-start gap-3 cursor-pointer">
                         <input
@@ -545,6 +564,19 @@ export default function Kontakt() {
                           />
                         </div>
 
+                        {/* Honeypot field – invisible to users, bots auto-fill it */}
+                        <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                          <label htmlFor="kontakt-nda-website">Website</label>
+                          <input
+                            type="text"
+                            id="kontakt-nda-website"
+                            name="website"
+                            autoComplete="off"
+                            tabIndex={-1}
+                            value={ndaHoneypot}
+                            onChange={(e) => setNdaHoneypot(e.target.value)}
+                          />
+                        </div>
                         {/* Privacy consent checkbox */}
                         <label className="flex items-start gap-3 cursor-pointer">
                           <input

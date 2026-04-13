@@ -139,6 +139,52 @@ describe("contact.submit", () => {
       } as any)
     ).rejects.toThrow();
   });
+
+  it("silently rejects bot submission when honeypot is filled", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.contact.submit({
+      name: "Bot User",
+      email: "bot@spam.com",
+      message: "Buy cheap stuff",
+      privacyConsent: true,
+      website: "http://spam-site.com", // Honeypot filled = bot
+    });
+
+    // Returns fake success to fool the bot
+    expect(result).toEqual({ success: true, id: 0 });
+  });
+
+  it("accepts legitimate submission with empty honeypot", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.contact.submit({
+      name: "Real User",
+      email: "real@user.de",
+      message: "Echte Anfrage",
+      privacyConsent: true,
+      website: "", // Empty honeypot = legitimate user
+    });
+
+    expect(result).toEqual({ success: true, id: 1 });
+  });
+
+  it("accepts legitimate submission without honeypot field", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.contact.submit({
+      name: "Real User",
+      email: "real@user.de",
+      message: "Echte Anfrage",
+      privacyConsent: true,
+      // No website field at all
+    });
+
+    expect(result).toEqual({ success: true, id: 1 });
+  });
 });
 
 describe("nda.submit", () => {
@@ -253,5 +299,40 @@ describe("nda.submit", () => {
         privacyConsent: false,
       } as any)
     ).rejects.toThrow();
+  });
+
+  it("silently rejects bot NDA request when honeypot is filled", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.nda.submit({
+      salutation: "Herr",
+      firstName: "Bot",
+      lastName: "Spammer",
+      company: "Spam Inc",
+      email: "bot@spam.com",
+      privacyConsent: true,
+      website: "http://spam-site.com", // Honeypot filled = bot
+    });
+
+    // Returns fake success to fool the bot
+    expect(result).toEqual({ success: true, id: 0 });
+  });
+
+  it("accepts legitimate NDA request with empty honeypot", async () => {
+    const ctx = createPublicContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.nda.submit({
+      salutation: "Frau",
+      firstName: "Anna",
+      lastName: "Schmidt",
+      company: "Schmidt AG",
+      email: "anna@schmidt.de",
+      privacyConsent: true,
+      website: "", // Empty honeypot = legitimate user
+    });
+
+    expect(result).toEqual({ success: true, id: 1 });
   });
 });

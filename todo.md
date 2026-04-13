@@ -384,3 +384,9 @@
 - [x] SECURITY: Rate-Limiting in contact.submit Endpoint einbauen
 - [x] SECURITY: Rate-Limiting in nda.submit Endpoint einbauen
 - [x] SECURITY: Vitest-Tests für Rate-Limiting
+- [x] SECURITY: Honeypot-Feld in contact.submit Backend-Schema + Bot-Erkennung
+- [x] SECURITY: Honeypot-Feld in nda.submit Backend-Schema + Bot-Erkennung
+- [x] SECURITY: Unsichtbares Honeypot-Feld in ContactSection (Startseite) einbauen
+- [x] SECURITY: Unsichtbares Honeypot-Feld in ContactSlider einbauen
+- [x] SECURITY: Unsichtbares Honeypot-Feld in Kontakt-Seite (/kontakt) einbauen
+- [x] SECURITY: Vitest-Tests für Honeypot-Erkennung

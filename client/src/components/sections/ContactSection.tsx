@@ -47,6 +47,10 @@ export default function ContactSection() {
 
   const [ndaPrivacyConsent, setNdaPrivacyConsent] = useState(false);
 
+  // Honeypot fields (invisible to users, bots auto-fill them)
+  const [honeypot, setHoneypot] = useState('');
+  const [ndaHoneypot, setNdaHoneypot] = useState('');
+
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
       toast.success(isDE
@@ -88,6 +92,7 @@ export default function ContactSection() {
       message: formData.message,
       source: 'homepage',
       privacyConsent: true as const,
+      website: honeypot || undefined,
     });
   };
 
@@ -109,6 +114,7 @@ export default function ContactSection() {
       email: ndaForm.email,
       source: 'homepage',
       privacyConsent: true as const,
+      website: ndaHoneypot || undefined,
     });
   };
 
@@ -252,6 +258,19 @@ export default function ContactSection() {
                     required
                     className="resize-none fluid-small"
                   />
+                  {/* Honeypot field – invisible to users, bots auto-fill it */}
+                  <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="contact-website">Website</label>
+                    <input
+                      type="text"
+                      id="contact-website"
+                      name="website"
+                      autoComplete="off"
+                      tabIndex={-1}
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -370,6 +389,19 @@ export default function ContactSection() {
                         className="fluid-small"
                       />
 
+                      {/* Honeypot field – invisible to users, bots auto-fill it */}
+                      <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
+                        <label htmlFor="nda-website">Website</label>
+                        <input
+                          type="text"
+                          id="nda-website"
+                          name="website"
+                          autoComplete="off"
+                          tabIndex={-1}
+                          value={ndaHoneypot}
+                          onChange={(e) => setNdaHoneypot(e.target.value)}
+                        />
+                      </div>
                       {/* Privacy consent checkbox */}
                       <label className="flex items-start gap-3 cursor-pointer">
                         <input

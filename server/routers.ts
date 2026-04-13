@@ -343,8 +343,16 @@ export const appRouter = router({
         privacyConsent: z.literal(true, {
           message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
         }),
+        // Honeypot field – must remain empty; bots auto-fill it
+        website: z.string().max(500).optional(),
       }))
       .mutation(async ({ input, ctx }) => {
+        // Honeypot check: if filled, silently reject (looks like success to the bot)
+        if (input.website) {
+          console.log(`[Honeypot] Bot detected on contact.submit from IP ${getClientIp(ctx.req)}`);
+          return { success: true, id: 0 };
+        }
+
         // Rate limiting: max 5 submissions per 15 minutes per IP
         const clientIp = getClientIp(ctx.req);
         const rateCheck = contactRateLimiter.check(clientIp);
@@ -414,8 +422,16 @@ export const appRouter = router({
         privacyConsent: z.literal(true, {
           message: 'Die Zustimmung zur Datenschutzerklärung ist erforderlich.',
         }),
+        // Honeypot field – must remain empty; bots auto-fill it
+        website: z.string().max(500).optional(),
       }))
       .mutation(async ({ input, ctx }) => {
+        // Honeypot check: if filled, silently reject (looks like success to the bot)
+        if (input.website) {
+          console.log(`[Honeypot] Bot detected on nda.submit from IP ${getClientIp(ctx.req)}`);
+          return { success: true, id: 0 };
+        }
+
         // Rate limiting: max 3 submissions per 15 minutes per IP
         const clientIp = getClientIp(ctx.req);
         const rateCheck = ndaRateLimiter.check(clientIp);
