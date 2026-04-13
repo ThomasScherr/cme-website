@@ -1,10 +1,12 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { ArrowRight, type LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 interface Feature {
   de: string;
@@ -59,6 +61,10 @@ export default function SubPageTemplate({
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
+  // Contact Slider state
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+
   // CMS integration: load CMS content with fallback to hardcoded props
   const { t, img } = useContent(pageKey || '__none__');
 
@@ -68,6 +74,11 @@ export default function SubPageTemplate({
   const intro = pageKey ? (t('content.intro') || (isDE ? introDE : introEN)) : (isDE ? introDE : introEN);
   const heroImage = pageKey ? img('hero.heroImage', heroImg || '') : heroImg;
   const contentImage = pageKey ? img('content.contentImage', heroImg || '') : heroImg;
+
+  const handleCardClick = (featureTitle: string) => {
+    setSliderTopic(featureTitle);
+    setSliderOpen(true);
+  };
 
   return (
     <Layout>
@@ -134,6 +145,7 @@ export default function SubPageTemplate({
           <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)', marginTop: 'var(--space-section-header)' }}>
             {features.map((feature, i) => {
               const Icon = feature.icon;
+              const featureTitle = pageKey ? (t(`features.feature.${i}`) || (isDE ? feature.de : feature.en)) : (isDE ? feature.de : feature.en);
               return (
                 <motion.div
                   key={i}
@@ -141,11 +153,15 @@ export default function SubPageTemplate({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer group"
+                  onClick={() => handleCardClick(featureTitle)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(featureTitle); } }}
                 >
                   {Icon ? (
                     <div
-                      className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center"
+                      className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center group-hover:bg-cme-blue/15 transition-colors"
                       style={{ marginBottom: 'var(--space-gap-xs)' }}
                     >
                       <Icon size={28} className="text-cme-blue" strokeWidth={1.5} />
@@ -153,7 +169,7 @@ export default function SubPageTemplate({
                   ) : (
                     <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
                   )}
-                  <p className="font-semibold text-cme-dark fluid-body" style={{ marginBottom: feature.bulletsDE?.length ? '0.5rem' : undefined }}>{pageKey ? (t(`features.feature.${i}`) || (isDE ? feature.de : feature.en)) : (isDE ? feature.de : feature.en)}</p>
+                  <p className="font-semibold text-cme-dark fluid-body" style={{ marginBottom: feature.bulletsDE?.length ? '0.5rem' : undefined }}>{featureTitle}</p>
                   {(isDE ? feature.bulletsDE : feature.bulletsEN)?.length ? (
                     <ul className="space-y-1">
                       {(isDE ? feature.bulletsDE : feature.bulletsEN)!.map((bullet, j) => (
@@ -191,6 +207,14 @@ export default function SubPageTemplate({
           </Link>
         </div>
       </section>
+
+      {/* Contact Slider */}
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`${pageKey || 'subpage'} – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

@@ -1,11 +1,13 @@
 import SubPageTemplate from '@/components/SubPageTemplate';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import {
   Network,
   CircuitBoard,
@@ -217,11 +219,11 @@ const expertiseItems = [
   },
   {
     icon: Zap,
-    value: '>500 A',
+    value: '>300 A',
     de: 'Schaltungsauslegung',
-    descDE: 'Hochstrom-Designs für Antriebsumrichter, Ladetechnik und industrielle Stromversorgungen – optimierte Stromschienen, Kupfer-Inlays und AVT für Dauerströme jenseits von 500 A.',
+    descDE: 'Hochstrom-Designs für Antriebsumrichter, Ladetechnik und industrielle Stromversorgungen – optimierte Stromschienen, Kupfer-Inlays und AVT für Dauerströme jenseits von 300 A.',
     en: 'Circuit Design',
-    descEN: 'High-current designs for drive inverters, charging technology and industrial power supplies – optimized busbars, copper inlays and assembly technology for continuous currents beyond 500 A.',
+    descEN: 'High-current designs for drive inverters, charging technology and industrial power supplies – optimized busbars, copper inlays and assembly technology for continuous currents beyond 300 A.',
   },
   {
     icon: Activity,
@@ -237,6 +239,15 @@ export default function HardwareSoftware() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
   const { t: cms, img } = useContent('entwicklung.hardwaresoftware');
+
+  // Contact Slider state
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+
+  const handleCardClick = (title: string) => {
+    setSliderTopic(title);
+    setSliderOpen(true);
+  };
 
   return (
     <Layout>
@@ -310,10 +321,14 @@ export default function HardwareSoftware() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer group"
+                  onClick={() => handleCardClick(isDE ? feature.de : feature.en)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(isDE ? feature.de : feature.en); } }}
                 >
                   <div
-                    className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center"
+                    className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center group-hover:bg-cme-blue/15 transition-colors"
                     style={{ marginBottom: 'var(--space-gap-xs)' }}
                   >
                     <Icon size={28} className="text-cme-blue" strokeWidth={1.5} />
@@ -506,6 +521,14 @@ export default function HardwareSoftware() {
           </Link>
         </div>
       </section>
+
+      {/* Contact Slider */}
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`entwicklung.hardwaresoftware – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

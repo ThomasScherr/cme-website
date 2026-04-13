@@ -331,3 +331,7 @@
 - [x] Feature: 9 Icon-Kacheln auf /hardware-softwaredesign mit je 4 Bullet Points ergänzen
 - [x] Feature: 9 Icon-Kacheln auf /entwicklung/e-motor-design mit je 4 Bullet Points ergänzen
 - [x] Feature: 9 Icon-Kacheln auf /entwicklung/validierung-emv mit je 4 Bullet Points ergänzen
+- [x] Feature: 9 Icon-Kacheln auf /fertigung/leiterplatten mit je 4 Bullet Points ergänzen
+- [x] Feature: Kontakt-Slider Komponente – von rechts einsliden beim Klick auf Kachel, mit GF-Bild, personalisiertem Text, Anfrageformular (Vorname, Name, E-Mail, Firma, Telefon optional, Betreff vorausgefüllt, Nachricht)
+- [x] Feature: Kontakt-Slider in SubPageTemplate und HardwareSoftware integrieren
+- [ ] Redesign: /entwicklung/ux-interface-engineering optisch an das einheitliche Seitendesign anpassen (Bilder/Grafiken beibehalten)
