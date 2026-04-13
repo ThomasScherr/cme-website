@@ -1,9 +1,11 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import {
   ArrowRight,
   Zap,
@@ -376,6 +378,10 @@ export default function Maerkte() {
   const isDE = lang === 'de';
   const { t: cms } = useContent('maerkte');
 
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
+
   return (
     <Layout>
       <SubPageHero
@@ -433,7 +439,11 @@ export default function Maerkte() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer"
+                  onClick={() => openSlider(isDE ? cap.de : cap.en)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? cap.de : cap.en); } }}
                 >
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
                     <div
@@ -471,6 +481,13 @@ export default function Maerkte() {
           </Link>
         </div>
       </section>
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`maerkte – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

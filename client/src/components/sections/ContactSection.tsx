@@ -10,28 +10,55 @@ import { MapPin, Phone, Mail, Send, Loader2 } from 'lucide-react';
 
 const vp = { once: true, margin: '-80px' as const };
 
+const SALUTATION_OPTIONS = [
+  { value: 'Herr', labelDe: 'Herr', labelEn: 'Mr.' },
+  { value: 'Frau', labelDe: 'Frau', labelEn: 'Ms.' },
+  { value: 'Keine Angabe', labelDe: 'Keine Angabe', labelEn: 'Prefer not to say' },
+];
+
 export default function ContactSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isDE = lang === 'de';
+
   const [formData, setFormData] = useState({
-    name: '', company: '', email: '', phone: '', message: '', privacy: false,
+    salutation: '',
+    title: '',
+    firstName: '',
+    lastName: '',
+    company: '',
+    email: '',
+    phone: '',
+    message: '',
+    privacy: false,
   });
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
-      toast.success('Ihre Anfrage wurde gesendet. Wir melden uns in Kürze bei Ihnen.');
-      setFormData({ name: '', company: '', email: '', phone: '', message: '', privacy: false });
+      toast.success(isDE
+        ? 'Vielen Dank! Wir nehmen kurzfristig Kontakt mit Ihnen auf.'
+        : 'Thank you! We will contact you shortly.');
+      setFormData({
+        salutation: '', title: '', firstName: '', lastName: '',
+        company: '', email: '', phone: '', message: '', privacy: false,
+      });
     },
-    onError: (err) => toast.error(err.message || 'Fehler beim Senden. Bitte versuchen Sie es erneut.'),
+    onError: (err) => toast.error(err.message || (isDE ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.' : 'Error sending. Please try again.')),
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.salutation) {
+      toast.error(isDE ? 'Bitte wählen Sie eine Anrede.' : 'Please select a salutation.');
+      return;
+    }
     if (!formData.privacy) {
-      toast.error('Bitte akzeptieren Sie die Datenschutzerklärung.');
+      toast.error(isDE ? 'Bitte akzeptieren Sie die Datenschutzerklärung.' : 'Please accept the privacy policy.');
       return;
     }
     submitMutation.mutate({
-      name: formData.name,
+      salutation: formData.salutation,
+      title: formData.title || undefined,
+      name: `${formData.firstName} ${formData.lastName}`.trim(),
       company: formData.company || undefined,
       email: formData.email,
       phone: formData.phone || undefined,
@@ -39,6 +66,8 @@ export default function ContactSection() {
       source: 'homepage',
     });
   };
+
+  const selectClass = "w-full h-10 rounded-md border border-input bg-background px-3 text-base text-foreground shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all appearance-none cursor-pointer fluid-small";
 
   return (
     <section id="contact" className="section-pad bg-gray-50">
@@ -72,21 +101,62 @@ export default function ContactSection() {
             onSubmit={handleSubmit}
             style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-gap-xs)' }}
           >
+            {/* Salutation + Title row */}
+            <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-xs)' }}>
+              <div className="relative">
+                <select
+                  required
+                  value={formData.salutation}
+                  onChange={(e) => setFormData({ ...formData, salutation: e.target.value })}
+                  className={selectClass}
+                  aria-label={isDE ? 'Anrede' : 'Salutation'}
+                >
+                  <option value="" disabled>{isDE ? 'Anrede *' : 'Salutation *'}</option>
+                  {SALUTATION_OPTIONS.map(opt => (
+                    <option key={opt.value} value={opt.value}>
+                      {isDE ? opt.labelDe : opt.labelEn}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </div>
+              </div>
+              <Input
+                placeholder={isDE ? 'Titel (optional, z.B. Dr.)' : 'Title (optional, e.g. Dr.)'}
+                value={formData.title}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                className="fluid-small"
+              />
+            </div>
+
+            {/* Name row */}
             <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-xs)' }}>
               <Input
-                placeholder={t.contact.name + ' *'}
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder={(isDE ? 'Vorname' : 'First name') + ' *'}
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 required
                 className="fluid-small"
               />
               <Input
-                placeholder={t.contact.company}
-                value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                placeholder={(isDE ? 'Nachname' : 'Last name') + ' *'}
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                required
                 className="fluid-small"
               />
             </div>
+
+            {/* Company */}
+            <Input
+              placeholder={t.contact.company}
+              value={formData.company}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              className="fluid-small"
+            />
+
+            {/* Email + Phone row */}
             <div className="grid sm:grid-cols-2" style={{ gap: 'var(--space-gap-xs)' }}>
               <Input
                 type="email"
@@ -104,11 +174,12 @@ export default function ContactSection() {
                 className="fluid-small"
               />
             </div>
+
             <Textarea
               placeholder={t.contact.message + ' *'}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              rows={6}
+              rows={5}
               required
               className="resize-none fluid-small"
             />

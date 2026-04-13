@@ -1,10 +1,12 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_d94dc755.webm';
 const HERO_VIDEO_MP4 = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample-compressed_8b0d5332.mp4';
@@ -48,6 +50,10 @@ export default function Lifecycle() {
   const isDE = lang === 'de';
   const { t: cms } = useContent('lifecycle');
 
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
+
   return (
     <Layout>
       <SubPageHero
@@ -75,7 +81,11 @@ export default function Lifecycle() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all fluid-card"
+                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg hover:border-cme-blue/20 transition-all fluid-card cursor-pointer"
+                onClick={() => openSlider(isDE ? service.titleDE : service.titleEN)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? service.titleDE : service.titleEN); } }}
               >
                 <div
                   className="rounded-xl bg-cme-blue-light flex items-center justify-center"
@@ -141,6 +151,13 @@ export default function Lifecycle() {
           </Link>
         </div>
       </section>
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`lifecycle – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

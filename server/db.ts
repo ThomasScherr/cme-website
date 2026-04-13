@@ -1,7 +1,7 @@
 import { eq, desc, and, sql, like, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions, siteStyles, stylePresets, siteContent, mediaLibrary } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -235,6 +235,36 @@ export async function markContactAsRead(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   await db.update(contactSubmissions).set({ isRead: true }).where(eq(contactSubmissions.id, id));
+}
+
+// ── NDA Request Queries ───────────────────────────────────────────
+
+export async function createNdaRequest(data: InsertNdaRequest) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(ndaRequests).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+export async function getAllNdaRequests(limit = 50, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(ndaRequests)
+    .orderBy(desc(ndaRequests.createdAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+export async function markNdaWebhookSent(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(ndaRequests).set({ webhookSent: true }).where(eq(ndaRequests.id, id));
+}
+
+export async function markNdaProcessed(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(ndaRequests).set({ isProcessed: true }).where(eq(ndaRequests.id, id));
 }
 
 // ── Site Styles Queries (Singleton) ────────────────────────────

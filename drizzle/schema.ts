@@ -82,6 +82,10 @@ export type InsertArticle = typeof articles.$inferInsert;
  */
 export const contactSubmissions = mysqlTable("contact_submissions", {
   id: int("id").autoincrement().primaryKey(),
+  /** Salutation: Herr, Frau, Keine Angabe */
+  salutation: varchar("salutation", { length: 50 }),
+  /** Academic title (Dr., Prof., etc.) – optional */
+  title: varchar("title", { length: 100 }),
   name: varchar("name", { length: 255 }).notNull(),
   company: varchar("company", { length: 255 }),
   email: varchar("email", { length: 320 }).notNull(),
@@ -96,6 +100,32 @@ export const contactSubmissions = mysqlTable("contact_submissions", {
 
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 export type InsertContactSubmission = typeof contactSubmissions.$inferInsert;
+
+/**
+ * NDA requests – separate from general contact submissions
+ * Stores minimal data needed to trigger NDA template dispatch via webhook
+ */
+export const ndaRequests = mysqlTable("nda_requests", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Salutation: Herr, Frau, Keine Angabe */
+  salutation: varchar("salutation", { length: 50 }).notNull(),
+  firstName: varchar("firstName", { length: 255 }).notNull(),
+  lastName: varchar("lastName", { length: 255 }).notNull(),
+  company: varchar("company", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  /** Topic context from the slider */
+  topic: varchar("topic", { length: 500 }),
+  /** Source page */
+  source: varchar("source", { length: 100 }),
+  /** Whether webhook was successfully triggered */
+  webhookSent: boolean("webhookSent").default(false).notNull(),
+  /** Whether the request has been processed */
+  isProcessed: boolean("isProcessed").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type NdaRequest = typeof ndaRequests.$inferSelect;
+export type InsertNdaRequest = typeof ndaRequests.$inferInsert;
 
 /**
  * Site stylesheet settings – singleton row (id=1)

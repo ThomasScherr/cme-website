@@ -1,9 +1,11 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { MapPin, Users, Calendar, Award } from 'lucide-react';
 
 const TEAM_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg';
@@ -13,6 +15,10 @@ export default function Unternehmen() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
   const { t: cms, img } = useContent('unternehmen');
+
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
 
   const stats = [
     { icon: Calendar, value: '2008', labelDE: 'Gegründet', labelEN: 'Founded' },
@@ -129,7 +135,11 @@ export default function Unternehmen() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-100 fluid-card"
+                className="bg-white rounded-2xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-lg transition-all fluid-card cursor-pointer"
+                onClick={() => openSlider(isDE ? value.titleDE : value.titleEN)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? value.titleDE : value.titleEN); } }}
               >
                 <div className="w-2 rounded-full bg-cme-blue" style={{ height: 'var(--space-gap-md)', marginBottom: 'var(--space-gap-sm)' }} />
                 <h3 className="fluid-h4 text-cme-dark" style={{ marginBottom: 'var(--space-gap-xs)' }}>
@@ -171,6 +181,13 @@ export default function Unternehmen() {
           </div>
         </div>
       </section>
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`unternehmen – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

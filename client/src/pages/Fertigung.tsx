@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
@@ -18,6 +19,7 @@ import {
   PenTool,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 const HERO_VIDEO = {
@@ -71,6 +73,10 @@ export default function Fertigung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
   const { t: cms, img } = useContent('fertigung');
+
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
 
   return (
     <Layout>
@@ -159,7 +165,11 @@ export default function Fertigung() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card"
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer"
+                  onClick={() => openSlider(isDE ? item.de : item.en)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? item.de : item.en); } }}
                 >
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
                     <div
@@ -197,6 +207,13 @@ export default function Fertigung() {
           </Link>
         </div>
       </section>
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`fertigung – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

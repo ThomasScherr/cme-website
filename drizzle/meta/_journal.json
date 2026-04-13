@@ -43,6 +43,13 @@
       "when": 1776005068195,
       "tag": "0005_lively_black_crow",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1776091100061,
+      "tag": "0006_premium_omega_red",
+      "breakpoints": true
     }
   ]
 }

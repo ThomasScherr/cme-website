@@ -19,6 +19,10 @@ import {
   createContactSubmission,
   getAllContactSubmissions,
   markContactAsRead,
+  createNdaRequest,
+  getAllNdaRequests,
+  markNdaWebhookSent,
+  markNdaProcessed,
   getSiteStyles,
   upsertSiteStyles,
   getAllStylePresets,
@@ -321,11 +325,13 @@ export const appRouter = router({
       }),
   }),
 
-  // ── Contact Form ──────────────────────────────────────────────
+   // ── Contact Form ────────────────────────────────────────────
   contact: router({
     /** Public: submit contact form */
     submit: publicProcedure
       .input(z.object({
+        salutation: z.string().max(50).optional(),
+        title: z.string().max(100).optional(),
         name: z.string().min(1).max(255),
         company: z.string().max(255).optional(),
         email: z.string().email().max(320),
@@ -339,7 +345,7 @@ export const appRouter = router({
         // Notify the owner about the new contact submission
         await notifyOwner({
           title: `Neue Kontaktanfrage von ${input.name}`,
-          content: `Name: ${input.name}\nFirma: ${input.company || "-"}\nE-Mail: ${input.email}\nTelefon: ${input.phone || "-"}\nNachricht: ${input.message}`,
+          content: `Anrede: ${input.salutation || "-"}\nTitel: ${input.title || "-"}\nName: ${input.name}\nFirma: ${input.company || "-"}\nE-Mail: ${input.email}\nTelefon: ${input.phone || "-"}\nNachricht: ${input.message}`,
         }).catch(err => console.error("[Notification] Failed:", err));
 
         return { success: true, id: result.id };
@@ -361,6 +367,83 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await markContactAsRead(input.id);
+        return { success: true };
+      }),
+  }),
+
+  // ── NDA Requests ───────────────────────────────────────────
+  nda: router({
+    /** Public: submit NDA request */
+    submit: publicProcedure
+      .input(z.object({
+        salutation: z.string().min(1).max(50),
+        firstName: z.string().min(1).max(255),
+        lastName: z.string().min(1).max(255),
+        company: z.string().min(1).max(255),
+        email: z.string().email().max(320),
+        topic: z.string().max(500).optional(),
+        source: z.string().max(100).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const result = await createNdaRequest(input);
+
+        // Notify the owner about the NDA request
+        await notifyOwner({
+          title: `NDA-Anfrage von ${input.firstName} ${input.lastName}`,
+          content: `Anrede: ${input.salutation}\nName: ${input.firstName} ${input.lastName}\nFirma: ${input.company}\nE-Mail: ${input.email}\nThema: ${input.topic || "-"}`,
+        }).catch(err => console.error("[Notification] Failed:", err));
+
+        // Trigger webhook if configured
+        if (ENV.ndaWebhookUrl) {
+          try {
+            const webhookPayload = {
+              type: 'nda_request',
+              id: result.id,
+              salutation: input.salutation,
+              firstName: input.firstName,
+              lastName: input.lastName,
+              company: input.company,
+              email: input.email,
+              topic: input.topic || '',
+              timestamp: new Date().toISOString(),
+            };
+            const resp = await fetch(ENV.ndaWebhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(webhookPayload),
+            });
+            if (resp.ok) {
+              await markNdaWebhookSent(result.id);
+              console.log(`[NDA Webhook] Sent for request ${result.id}`);
+            } else {
+              console.error(`[NDA Webhook] Failed with status ${resp.status}`);
+            }
+          } catch (err) {
+            console.error('[NDA Webhook] Error:', err);
+          }
+        } else {
+          console.log('[NDA] No webhook URL configured, skipping webhook dispatch');
+        }
+
+        return { success: true, id: result.id };
+      }),
+
+    /** Admin: list all NDA requests */
+    list: adminProcedure
+      .input(z.object({
+        limit: z.number().min(1).max(100).default(50),
+        offset: z.number().min(0).default(0),
+      }).optional())
+      .query(async ({ input }) => {
+        const { limit = 50, offset = 0 } = input ?? {};
+        return getAllNdaRequests(limit, offset);
+      }),
+
+    /** Admin: mark NDA as processed */
+    markProcessed: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await markNdaProcessed(input.id);
         return { success: true };
       }),
   }),

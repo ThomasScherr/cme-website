@@ -347,3 +347,12 @@
 - [x] FIX: MarketsSection Startseite – Automotive-Tags ebenfalls anpassen (ADAS entfernt, durch Pumpen, HVAC, Steller, Wischermotoren ersetzt)
 - [x] FIX: ContactSlider Text geändert: "Beschreiben Sie uns Ihr Vorhaben in groben Zügen. Wir nehmen kurzfristig Kontakt zur Terminvereinbarung mit Ihnen auf."
 - [x] FIX: Kontaktformular Hauptseite (ContactSection) – Text an neuen Slider-Wortlaut angepasst (DE + EN)
+- [x] Feature: ContactSlider – NDA-Toggle-Button zwischen Beschreibungstext und Formular
+- [x] Feature: ContactSlider – NDA-Formular (Anrede, Vorname, Nachname, Firma, geschäftliche E-Mail) + "NDA Vorlage anfordern"-Button
+- [x] Feature: ContactSlider – Standard-Formular um Anrede (Pflicht) + Titel (optional) erweitern
+- [x] Feature: DB-Schema – nda_requests Tabelle für NDA-Anfragen
+- [x] Feature: DB-Schema – contact_submissions um salutation + title erweitern
+- [x] Feature: Backend – NDA-Submit-Endpoint mit Webhook-URL-Anbindung
+- [x] Feature: ContactSection Hauptseite – Anrede (Pflicht) + Titel (optional) ergänzt
+- [x] Feature: Anrede-Optionen: Herr, Frau, Keine Angabe (inklusiv, B2B-gerecht)
+- [x] Feature: Alle Kacheln auf Unterseiten mit Hover-Effekt und ContactSlider verknüpft (Entwicklung, Fertigung, Lifecycle, Märkte, Unternehmen, Karriere + SubPageTemplate)

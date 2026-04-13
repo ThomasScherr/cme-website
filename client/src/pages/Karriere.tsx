@@ -1,8 +1,10 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
 
 const benefits = [
@@ -18,6 +20,10 @@ export default function Karriere() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
   const { t: cms } = useContent('karriere');
+
+  const [sliderOpen, setSliderOpen] = useState(false);
+  const [sliderTopic, setSliderTopic] = useState('');
+  const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
 
   return (
     <Layout>
@@ -44,7 +50,11 @@ export default function Karriere() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg transition-all fluid-card"
+                className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg hover:border-cme-blue/20 transition-all fluid-card cursor-pointer"
+                onClick={() => openSlider(isDE ? benefit.titleDE : benefit.titleEN)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? benefit.titleDE : benefit.titleEN); } }}
               >
                 <div
                   className="rounded-xl bg-cme-blue-light flex items-center justify-center"
@@ -82,6 +92,13 @@ export default function Karriere() {
           </a>
         </div>
       </section>
+
+      <ContactSlider
+        isOpen={sliderOpen}
+        onClose={() => setSliderOpen(false)}
+        topic={sliderTopic}
+        pageSource={`karriere – ${sliderTopic}`}
+      />
     </Layout>
   );
 }

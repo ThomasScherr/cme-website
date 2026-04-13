@@ -8,4 +8,5 @@ export const ENV = {
   siteAccessPassword: process.env.SITE_ACCESS_PASSWORD ?? "",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+  ndaWebhookUrl: process.env.NDA_WEBHOOK_URL ?? "",
 };
