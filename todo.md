@@ -415,3 +415,4 @@
 - [x] CONTENT: KI-Entwicklung FAQ-Texte von duzen auf siezen korrigieren
 - [x] CONTENT: Gesamte Website auf duzen-Stellen prüfen und auf Sie-Anrede korrigieren – keine weiteren Stellen gefunden
 - [x] BUG: FAQ-Sektion auf KI-Entwicklung hat zu enge Spaltenbreite – auf min(80%, 72rem) verbreitert
+- [x] CONTENT: Control Design Seite – 9 Kacheln mit Bullet Points aktualisieren (Modellbasierte Funktionsentwicklung, MIL/SIL/HIL, Rapid-Control-Prototyping, Sensorlose Regelung, FOC, Transiente Analysen, Kundenspezifische Reglermodelle, Worst-Case-Simulationen, Integration Motor/Elektronik/Regelung)
