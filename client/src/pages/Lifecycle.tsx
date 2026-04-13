@@ -5,8 +5,8 @@ import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
-import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2, HeartHandshake, Gauge, Cpu, Server, MonitorCog, Zap, Bot, Monitor, Flame, BatteryCharging } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2, HeartHandshake, Gauge, Cpu, Server, MonitorCog, Zap, Bot, Monitor, Flame, BatteryCharging, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_d94dc755.webm';
@@ -150,12 +150,12 @@ const repairItems = [
     bulletsDE: [
       'Siemens SIMODRIVE/SINAMICS S, Bosch Rexroth, Fanuc, Mitsubishi \u2013 Neuwert oft 5.000 bis 30.000 \u20ac pro Achse',
       'Ausfall eines Servoverst\u00e4rkers legt oft die gesamte Fertigungslinie still',
-      'Reparatur inkl. Parametersicherung und Funktionstest unter Last',
+      'Reparatur inkl. Funktionstest unter Last und vollständiger Dokumentation',
     ],
     bulletsEN: [
       'Siemens SIMODRIVE/SINAMICS S, Bosch Rexroth, Fanuc, Mitsubishi \u2013 replacement cost often \u20ac5,000 to \u20ac30,000 per axis',
       'Failure of a servo amplifier often shuts down the entire production line',
-      'Repair including parameter backup and functional test under load',
+      'Repair including functional test under load and full documentation',
     ],
   },
   {
@@ -193,12 +193,12 @@ const repairItems = [
     titleDE: 'IGBT-Module & Leistungselektronik',
     titleEN: 'IGBT Modules & Power Electronics',
     bulletsDE: [
-      'Hochleistungsmodule von Infineon, Semikron, Mitsubishi \u2013 Einzelpreise von 500 bis \u00fcber 5.000 \u20ac',
+      'Hochleistungsmodule von Infineon, Semikron, Mitsubishi \u2013 Einzelpreise von 500 bis weit \u00fcber 5.000 \u20ac',
       'Fehlerhafte IGBT-Module sind h\u00e4ufigste Ausfallursache bei Frequenzumrichtern und Schwei\u00dfger\u00e4ten',
       'CME tauscht auf Modulebene und pr\u00fcft die gesamte Treiberschaltung und Schutzlogik mit',
     ],
     bulletsEN: [
-      'High-performance modules from Infineon, Semikron, Mitsubishi \u2013 unit prices from \u20ac500 to over \u20ac5,000',
+      'High-performance modules from Infineon, Semikron, Mitsubishi \u2013 unit prices from \u20ac500 to well over \u20ac5,000',
       'Faulty IGBT modules are the most common cause of failure in frequency inverters and welding equipment',
       'CME replaces at module level and tests the entire driver circuit and protection logic',
     ],
@@ -225,12 +225,12 @@ const repairItems = [
     bulletsDE: [
       'Siemens TP/MP-Serie, Weintek, Pro-face, B&R \u2013 viele Modelle abgek\u00fcndigt und nicht mehr lieferbar',
       'Displayausfall oder Touchscreen-Fehler macht die gesamte Maschine unbedienbar',
-      'CME repariert Displays, Touchscreens, Netzteile und Steuerplatinen \u2013 inklusive Datensicherung',
+      'CME repariert Displays, Touchscreens, Netzteile und Steuerplatinen auf Komponentenebene',
     ],
     bulletsEN: [
       'Siemens TP/MP series, Weintek, Pro-face, B&R \u2013 many models discontinued and no longer available',
       'Display failure or touchscreen error makes the entire machine inoperable',
-      'CME repairs displays, touchscreens, power supplies and control boards \u2013 including data backup',
+      'CME repairs displays, touchscreens, power supplies and control boards at component level',
     ],
   },
   {
@@ -265,6 +265,102 @@ const repairItems = [
   },
 ];
 
+/* ── FAQ Data ─────────────────────────────────────────────────── */
+const faqItems = [
+  {
+    questionDE: 'Was kostet die Reparatur eines Frequenzumrichters oder einer Industriesteuerung?',
+    questionEN: 'What does it cost to repair a frequency inverter or industrial controller?',
+    answerDE: 'Einen Festpreis ohne Diagnose zu nennen wäre unseriös – der Aufwand hängt vom Fehlerbild, der Baugruppe und der Bauteilsituation ab. Die entscheidendere Frage lautet: Was kostet Sie der Ausfall? CME repariert ausschließlich hochwertige Industrieelektronik mit Neuwerten von mehreren Tausend bis über 50.000 Euro – Frequenzumrichter, Servo-Umrichter, CNC-Steuerungen, SPS-Baugruppen, Robotersteuerungen und Leistungsmodule. In diesem Segment ist professionelle Reparatur fast immer günstiger als Neuanschaffung – und vor allem schneller: Neugeräte haben heute Lieferzeiten von 12 bis 36 Monaten. Eine CME-Reparatur dauert Tage bis Wochen.',
+    answerEN: 'Quoting a fixed price without diagnosis would be unprofessional – the effort depends on the fault pattern, the assembly and the component situation. The more decisive question is: What does the downtime cost you? CME exclusively repairs high-value industrial electronics with replacement costs from several thousand to over 50,000 euros – frequency inverters, servo inverters, CNC controllers, PLC modules, robot controllers and power modules. In this segment, professional repair is almost always cheaper than new procurement – and above all faster: new devices currently have lead times of 12 to 36 months. A CME repair takes days to weeks.',
+  },
+  {
+    questionDE: 'Lohnt sich die Reparatur einer Industriesteuerung – oder ist ein Neukauf günstiger?',
+    questionEN: 'Is it worth repairing an industrial controller – or is buying new cheaper?',
+    answerDE: 'Bei günstiger Massenware lohnt Reparatur nicht – die reparieren wir auch nicht. CME spezialisiert sich auf Industrieelektronik deren Ausfall unmittelbar zu Produktionsstillstand führt: Frequenzumrichter, Servoverstärker, CNC-Steuerungen, Robotersteuerungen und IGBT-Leistungsmodule. Ein ungeplanter Produktionsausfall kostet je nach Branche zwischen 5.000 und 50.000 Euro pro Stunde. Vor diesem Hintergrund stellt sich nicht die Frage ob sich Reparatur lohnt – sondern wie schnell sie verfügbar ist.',
+    answerEN: 'For cheap mass-produced goods, repair is not worthwhile – and we don\'t repair those either. CME specializes in industrial electronics whose failure immediately leads to production standstill: frequency inverters, servo amplifiers, CNC controllers, robot controllers and IGBT power modules. An unplanned production outage costs between 5,000 and 50,000 euros per hour depending on the industry. Against this background, the question is not whether repair is worthwhile – but how quickly it is available.',
+  },
+  {
+    questionDE: 'Frequenzumrichter defekt – wie schnell kann CME helfen?',
+    questionEN: 'Frequency inverter defective – how quickly can CME help?',
+    answerDE: 'Bei akutem Produktionsstillstand greifen wir mit Express-Priorisierung ein. Fehleranalyse beginnt in der Regel innerhalb von 48 Stunden nach Eingang. Wie lange die Instandsetzung dauert hängt vom Fehlerbild und der Bauteilsituation ab – bei verfügbaren Komponenten oft 2 bis 5 Werktage. Wir informieren Sie transparent über jeden Schritt damit Sie Ihren Betrieb planen können. Kein Warten auf Herstellerhotlines, kein Ticketsystem – direkter Ansprechpartner von Anfang an.',
+    answerEN: 'In case of acute production standstill, we intervene with express prioritization. Fault analysis typically begins within 48 hours of receipt. How long the repair takes depends on the fault pattern and component situation – with available components often 2 to 5 working days. We inform you transparently about every step so you can plan your operations. No waiting for manufacturer hotlines, no ticket system – direct contact person from the start.',
+  },
+  {
+    questionDE: 'Repariert CME auch Siemens-, ABB-, Fanuc- oder KUKA-Geräte?',
+    questionEN: 'Does CME also repair Siemens, ABB, Fanuc or KUKA devices?',
+    answerDE: 'Ja – CME ist herstellerunabhängig und repariert Geräte aller gängigen Industriemarken: Siemens SINAMICS, SIMODRIVE und SINUMERIK, ABB ACS-Serie, Danfoss, Lenze, SEW-Eurodrive, Bosch Rexroth, Fanuc, Mitsubishi Electric, KUKA, ABB Robotics, Heidenhain und weitere. Wir arbeiten auf Bauteilebene – das bedeutet echte Reparatur, kein pauschaler Austausch ganzer Baugruppen auf Ihre Kosten.',
+    answerEN: 'Yes – CME is manufacturer-independent and repairs devices from all common industrial brands: Siemens SINAMICS, SIMODRIVE and SINUMERIK, ABB ACS series, Danfoss, Lenze, SEW-Eurodrive, Bosch Rexroth, Fanuc, Mitsubishi Electric, KUKA, ABB Robotics, Heidenhain and more. We work at component level – that means real repair, not blanket replacement of entire assemblies at your expense.',
+  },
+  {
+    questionDE: 'Siemens S5 / S7-300 abgekündigt – kann CME diese Steuerungen noch reparieren?',
+    questionEN: 'Siemens S5 / S7-300 discontinued – can CME still repair these controllers?',
+    answerDE: 'Ja, und genau das ist oft unser stärkstes Argument. Abgekündigte Systeme wie Siemens S5, ältere SINUMERIK- oder SIMODRIVE-Generationen sind nicht mehr neu lieferbar – aber noch millionenfach im Einsatz. Ein Komplettaustausch bedeutet Neuprogrammierung, Umbau und Zulassungsaufwand – oft zehnmal teurer als die Reparatur. CME hält diese Systeme am Laufen solange es technisch möglich ist, und beschafft Originalbauteile über spezialisierte Marktkanäle und Broker-Netzwerke.',
+    answerEN: 'Yes, and that is often our strongest argument. Discontinued systems like Siemens S5, older SINUMERIK or SIMODRIVE generations are no longer available new – but still in use millions of times. A complete replacement means reprogramming, conversion and certification effort – often ten times more expensive than repair. CME keeps these systems running as long as technically possible, and procures original components through specialized market channels and broker networks.',
+  },
+  {
+    questionDE: 'Keine Schaltpläne mehr vorhanden – geht die Reparatur trotzdem?',
+    questionEN: 'No schematics available anymore – is repair still possible?',
+    answerDE: 'In den meisten Fällen ja. CME arbeitet regelmäßig ohne Dokumentation – durch systematische Messung, Reverse Engineering und jahrelange Erfahrung mit Schaltungstopologien aus Antriebstechnik und Leistungselektronik. Wo es sinnvoll ist, erstellen wir eine Basisdokumentation als Grundlage für künftige Reparaturen – unabhängig davon ob der ursprüngliche Hersteller noch existiert oder Unterlagen liefert.',
+    answerEN: 'In most cases, yes. CME regularly works without documentation – through systematic measurement, reverse engineering and years of experience with circuit topologies from drive technology and power electronics. Where it makes sense, we create basic documentation as a foundation for future repairs – regardless of whether the original manufacturer still exists or provides documents.',
+  },
+  {
+    questionDE: 'Das defekte Bauteil ist nicht mehr erhältlich – was macht CME dann?',
+    questionEN: 'The defective component is no longer available – what does CME do then?',
+    answerDE: 'Genau das ist eine CME-Kernkompetenz. Über unser Netzwerk aus Distributoren, Broker-Kontakten und Restbeständen finden wir oft noch Originalkomponenten die am freien Markt nicht mehr verfügbar scheinen – IGBT-Module, spezialisierte Treiber-ICs, Steuer-ASICs und ähnliches. Wo das nicht möglich ist, qualifizieren wir geeignete Ersatzbauteile elektrisch, thermisch und mechanisch. Echtheitsprüfung zum Schutz vor gefälschten Industriebauteilen ist dabei Standard.',
+    answerEN: 'That is precisely a CME core competency. Through our network of distributors, broker contacts and remaining stocks, we often still find original components that appear no longer available on the open market – IGBT modules, specialized driver ICs, control ASICs and similar. Where that is not possible, we qualify suitable replacement components electrically, thermally and mechanically. Authenticity testing to protect against counterfeit industrial components is standard.',
+  },
+  {
+    questionDE: 'Welche Garantie gibt es auf eine Reparatur bei CME?',
+    questionEN: 'What guarantee is there on a repair at CME?',
+    answerDE: 'Jede Reparatur wird vor der Auslieferung elektrisch geprüft und mit Prüfprotokoll dokumentiert. Garantiebedingungen besprechen wir individuell – je nach Gerät, Fehlerbild und Einsatzbedingung. Bei sicherheitsrelevanten Anwendungen erhalten Sie auf Wunsch vollständige Rückverfolgbarkeit aller getauschten Bauteile inklusive Chargendokumentation.',
+    answerEN: 'Every repair is electrically tested before delivery and documented with a test protocol. Warranty conditions are discussed individually – depending on the device, fault pattern and operating conditions. For safety-relevant applications, you receive full traceability of all replaced components including batch documentation on request.',
+  },
+  {
+    questionDE: 'Für welche Branchen und Anlagen repariert CME Elektronik?',
+    questionEN: 'For which industries and systems does CME repair electronics?',
+    answerDE: 'Überall dort wo Elektronik teuer, kritisch oder schwer ersetzbar ist: Maschinenbau und Sondermaschinenbau, Automotive-Produktion, Druckindustrie, Lebensmittelproduktion, Chemie und Verfahrenstechnik, Energieversorgung, Windkraft und erneuerbare Energien, Bahntechnik sowie medizinische Gerätetechnik. Wenn der Ausfall Ihrer Elektronik eine Produktionslinie stoppt – ist CME der richtige Ansprechpartner.',
+    answerEN: 'Wherever electronics are expensive, critical or hard to replace: mechanical engineering and special machine construction, automotive production, printing industry, food production, chemistry and process engineering, energy supply, wind power and renewable energies, railway technology and medical device technology. If the failure of your electronics stops a production line – CME is the right partner.',
+  },
+  {
+    questionDE: 'Kann CME auch langfristige Wartungsverträge für Industrieelektronik übernehmen?',
+    questionEN: 'Can CME also take on long-term maintenance contracts for industrial electronics?',
+    answerDE: 'Ja. Für Unternehmen mit regelmäßigem Reparaturbedarf oder strategisch wichtigen Geräteklassen bieten wir Rahmenvereinbarungen mit garantierten Kapazitäten, definierten Reaktionszeiten und planbaren Konditionen. Das gibt Ihnen Versorgungssicherheit – und verhindert die Situation, im Notfall ohne verfügbaren Spezialisten dazustehen.',
+    answerEN: 'Yes. For companies with regular repair needs or strategically important device classes, we offer framework agreements with guaranteed capacities, defined response times and predictable conditions. This gives you supply security – and prevents the situation of being without an available specialist in an emergency.',
+  },
+];
+
+/* ── FAQ Accordion Item ───────────────────────────────────────── */
+function FaqItem({ question, answer, isOpen, onToggle }: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="border-b border-gray-200 last:border-b-0">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-start justify-between py-5 px-1 text-left group hover:text-[#0080C8] transition-colors"
+        aria-expanded={isOpen}
+      >
+        <span className="fluid-body font-semibold text-cme-dark group-hover:text-[#0080C8] transition-colors pr-4">
+          {question}
+        </span>
+        <ChevronDown
+          className={`shrink-0 mt-1 text-[#0080C8] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          size={20}
+        />
+      </button>
+      {/* Content always in DOM for SEO (visibility toggled) */}
+      <div className={isOpen ? '' : 'sr-only'} aria-hidden={!isOpen}>
+        <p className="fluid-body text-gray-600 leading-relaxed pb-5 px-1">
+          {answer}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Lifecycle() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -283,6 +379,23 @@ export default function Lifecycle() {
   const [sliderTopic, setSliderTopic] = useState('');
   const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
 
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const toggleFaq = (index: number) => setOpenFaq(openFaq === index ? null : index);
+
+  /* JSON-LD FAQ Schema */
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: isDE ? item.questionDE : item.questionEN,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: isDE ? item.answerDE : item.answerEN,
+      },
+    })),
+  };
+
   return (
     <Layout>
       <SEO
@@ -292,6 +405,7 @@ export default function Lifecycle() {
         descriptionEN='Product lifecycle management for electronic systems – from development through manufacturing to obsolescence management.'
         path='/lifecycle'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Lifecycle Management',url:'/lifecycle'}]}
+        additionalSchemas={[faqSchema]}
       />
       <SubPageHero
         tagline={cms('hero.tagline') || 'Lifecycle Services'}
@@ -370,10 +484,10 @@ export default function Lifecycle() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
                 className="bg-white rounded-2xl border border-gray-100 hover:shadow-lg hover:border-cme-blue/20 transition-all fluid-card cursor-pointer"
-                onClick={() => openSlider(isDE ? item.titleDE : item.titleEN)}
+                onClick={() => openSlider(isDE ? `Reparatur von ${item.titleDE}` : `Repair of ${item.titleEN}`)}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? item.titleDE : item.titleEN); } }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? `Reparatur von ${item.titleDE}` : `Repair of ${item.titleEN}`); } }}
               >
                 <div
                   className="rounded-xl bg-cme-blue-light flex items-center justify-center"
@@ -393,6 +507,33 @@ export default function Lifecycle() {
                   ))}
                 </ul>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-pad">
+        <div className="container" style={{ maxWidth: 'min(80%, 72rem)' }}>
+          <div className="text-center" style={{ marginBottom: 'var(--space-section-header)' }}>
+            <h2 className="fluid-h2 text-cme-dark">
+              {isDE ? 'H\u00e4ufige Fragen zur Reparatur von Industrieelektronik' : 'Frequently Asked Questions About Industrial Electronics Repair'}
+            </h2>
+            <p className="text-gray-600 fluid-body-lg" style={{ marginTop: 'var(--space-gap-xs)' }}>
+              {isDE
+                ? 'Antworten auf die wichtigsten Fragen rund um Reparatur, Kosten, Lieferzeit und Obsoleszenz'
+                : 'Answers to the most important questions about repair, costs, delivery time and obsolescence'}
+            </p>
+          </div>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden" style={{ padding: 'var(--space-gap-sm) var(--space-gap-md)' }}>
+            {faqItems.map((item, index) => (
+              <FaqItem
+                key={index}
+                question={isDE ? item.questionDE : item.questionEN}
+                answer={isDE ? item.answerDE : item.answerEN}
+                isOpen={openFaq === index}
+                onToggle={() => toggleFaq(index)}
+              />
             ))}
           </div>
         </div>

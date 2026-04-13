@@ -429,3 +429,9 @@
 - [x] CONTENT: Lifecycle-Seite – neue 5. Kachel "Langzeit-Support & Produktpflege" hinzufügen
 - [x] CONTENT: Märkte-Seite – "Robotik & Cobots" → "Robotik & Cobots Antriebe" umbenannt
 - [x] CONTENT: Lifecycle-Seite – Neuer Abschnitt "Diese Elektronik lohnt sich zu reparieren" mit 3x3 Kachelraster (9 Kacheln: Frequenzumrichter, Servo-Umrichter, SPS, CNC, IGBT, Robotersteuerungen, HMI, Schweißsteuerungen, Netzteile)
+- [x] CONTENT: Lifecycle-Seite – Alle Erwähnungen von "Datensicherung" entfernen (wird nicht angeboten)
+- [x] CONTENT: Lifecycle-Seite – FAQ-Sektion mit 10 Fragen als Akkordeon nach Reparatur-Kachelraster einfügen
+- [x] SEO: Lifecycle-Seite – JSON-LD FAQPage Schema mit allen 10 Fragen im head
+- [x] FIX: Lifecycle-Seite – Slider-Text für Reparatur-Kacheln kontextbezogen: "Reparatur von X" statt nur Kacheltitel
+- [x] FIX: Lifecycle IGBT-Kachel – "über 5.000 €" → "weit über 5.000 €" (DE + EN)
+- [x] FIX: Lifecycle Reparatur-Kacheln – fehlendes Bulletzeichen prüfen und beheben (war CSS-Rendering, kein Code-Bug)
