@@ -51,6 +51,7 @@ import {
   createMediaItem,
   deleteMediaItem,
   searchMedia,
+  findMediaByFilenameAndSize,
 } from "./db";
 
 // Admin-only procedure
@@ -622,12 +623,12 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const { entries, editedLang } = input;
 
-        // Save all entries
+        // Save all entries – preserve empty strings to allow clearing values
         await bulkUpsertContent(entries.map(e => ({
           contentKey: e.contentKey,
           contentType: e.contentType,
-          valueDe: e.valueDe ?? undefined,
-          valueEn: e.valueEn ?? undefined,
+          valueDe: e.valueDe === null ? '' : (e.valueDe ?? ''),
+          valueEn: e.valueEn === null ? '' : (e.valueEn ?? ''),
         })));
 
         // Auto-translate text fields if a language was edited
@@ -718,8 +719,16 @@ export const appRouter = router({
         const buffer = Buffer.from(input.fileBase64, "base64");
         // Max 50 MB for videos
         if (buffer.length > 50 * 1024 * 1024) {
-          throw new TRPCError({ code: "BAD_REQUEST", message: "Datei zu groß (max. 50 MB)" });
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Datei zu gro\u00df (max. 50 MB)" });
         }
+
+        // Deduplication: check if a file with same name and size already exists
+        const existingDuplicate = await findMediaByFilenameAndSize(input.fileName, buffer.length);
+        if (existingDuplicate) {
+          console.log(`[Media] Duplicate detected: ${input.fileName} (${buffer.length} bytes) → returning existing id=${existingDuplicate.id}`);
+          return { id: existingDuplicate.id, url: existingDuplicate.url };
+        }
+
         const ext = input.fileName.split(".").pop() || "bin";
         const randomSuffix = crypto.randomBytes(8).toString("hex");
         const fileKey = `cms/media/${Date.now()}-${randomSuffix}.${ext}`;

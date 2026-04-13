@@ -218,8 +218,23 @@ function MediaLibraryModal({
                       className="w-full h-full object-cover"
                     />
                   ) : item.mimeType.startsWith("video/") ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                      <Video className="w-8 h-8 text-gray-500" />
+                    <div className="w-full h-full relative bg-gray-900">
+                      <video
+                        src={item.url}
+                        muted
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                        onLoadedData={(e) => {
+                          // Seek to 1 second to generate a thumbnail frame
+                          const video = e.currentTarget;
+                          if (video.duration > 1) video.currentTime = 1;
+                        }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="bg-black/50 rounded-full p-1.5">
+                          <Video className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gray-200">
@@ -468,9 +483,12 @@ export default function ContentManager() {
       for (const field of section.fields) {
         const fullKey = `${page.key}.${section.key}.${field.key}`;
         const dbEntry = contentMap.get(fullKey);
+        // If a DB entry exists, use its value (even empty string = intentionally cleared).
+        // Only fall back to defaults when NO DB entry exists at all.
+        const hasDbEntry = !!dbEntry;
         newState[fullKey] = {
-          valueDe: dbEntry?.valueDe || field.defaultDe || "",
-          valueEn: dbEntry?.valueEn || field.defaultEn || "",
+          valueDe: hasDbEntry ? (dbEntry.valueDe ?? "") : (field.defaultDe || ""),
+          valueEn: hasDbEntry ? (dbEntry.valueEn ?? "") : (field.defaultEn || ""),
           contentType: field.type,
           dirty: false,
         };
@@ -541,8 +559,8 @@ export default function ContentManager() {
       const entries = dirtyEntries.map(([key, state]) => ({
         contentKey: key,
         contentType: state.contentType as "text" | "richtext" | "image" | "video",
-        valueDe: state.valueDe || null,
-        valueEn: state.valueEn || null,
+        valueDe: state.valueDe ?? null,
+        valueEn: state.valueEn ?? null,
       }));
 
       const hasTextChanges = entries.some(

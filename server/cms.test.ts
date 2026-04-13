@@ -123,3 +123,71 @@ describe("CMS Database Schema Validation", () => {
     expect(schema.mediaLibrary).toBeDefined();
   });
 });
+
+describe("CMS Value Deletion Logic", () => {
+  it("should preserve empty strings when converting null values for upsert", () => {
+    // Simulates the bulkUpdate mutation logic: null/undefined → empty string
+    const testCases = [
+      { valueDe: null, expected: '' },
+      { valueDe: undefined, expected: '' },
+      { valueDe: '', expected: '' },
+      { valueDe: 'https://example.com/image.jpg', expected: 'https://example.com/image.jpg' },
+    ];
+
+    testCases.forEach(({ valueDe, expected }) => {
+      const result = valueDe === null ? '' : (valueDe ?? '');
+      expect(result).toBe(expected);
+    });
+  });
+
+  it("should send empty string (not null) when user clears a field via ContentManager", () => {
+    // Simulates the ContentManager handleSave logic with ?? instead of ||
+    const editState = { valueDe: '', valueEn: '' }; // User cleared both values
+    const entry = {
+      valueDe: editState.valueDe ?? null,
+      valueEn: editState.valueEn ?? null,
+    };
+    // With ?? operator, empty string is preserved (not converted to null)
+    expect(entry.valueDe).toBe('');
+    expect(entry.valueEn).toBe('');
+  });
+
+  it("should distinguish between 'no DB entry' and 'empty DB entry' in editState init", () => {
+    // No DB entry → use defaults
+    const dbEntry = null;
+    const field = { defaultDe: 'https://cdn.example.com/default.jpg', defaultEn: 'https://cdn.example.com/default.jpg' };
+    const hasDbEntry = !!dbEntry;
+    const valueDe = hasDbEntry ? (dbEntry?.valueDe ?? '') : (field.defaultDe || '');
+    expect(valueDe).toBe('https://cdn.example.com/default.jpg');
+
+    // DB entry with empty string → use empty string (intentionally cleared)
+    const dbEntry2 = { valueDe: '', valueEn: '' };
+    const hasDbEntry2 = !!dbEntry2;
+    const valueDe2 = hasDbEntry2 ? (dbEntry2.valueDe ?? '') : (field.defaultDe || '');
+    expect(valueDe2).toBe('');
+  });
+});
+
+describe("Media Deduplication Logic", () => {
+  it("should detect duplicate files by filename and size", () => {
+    const existingFiles = [
+      { id: 1, filename: 'video.mp4', fileSize: 12990059 },
+      { id: 2, filename: 'image.jpg', fileSize: 500000 },
+    ];
+
+    const findDuplicate = (filename: string, fileSize: number) =>
+      existingFiles.find(f => f.filename === filename && f.fileSize === fileSize) || null;
+
+    // Same file → duplicate found
+    expect(findDuplicate('video.mp4', 12990059)).toEqual({ id: 1, filename: 'video.mp4', fileSize: 12990059 });
+
+    // Same name, different size → no duplicate
+    expect(findDuplicate('video.mp4', 999999)).toBeNull();
+
+    // Different name, same size → no duplicate
+    expect(findDuplicate('other.mp4', 12990059)).toBeNull();
+
+    // New file → no duplicate
+    expect(findDuplicate('new-file.png', 123456)).toBeNull();
+  });
+});

@@ -395,3 +395,6 @@
 - [x] FEATURE: Admin-UI: Video-Upload im Hero-Editor der SubPages ermöglichen (ContentManager unterstützt video-Felder)
 - [x] FEATURE: Vitest-Tests für Hero-Video-Funktionalität (99 Tests bestanden)
 - [x] BUG: Video-Upload (.mp4) im Content Manager für SubPage Hero-Felder funktioniert nicht – accept-Attribut erweitert + direkte URL-Eingabe für Video-Felder
+- [x] BUG: Videos in Medienbibliothek doppelt angezeigt – Duplikat-Erkennung (filename+fileSize) + DB bereinigt
+- [x] BUG: Fehlende Thumbnails/Vorschaubilder für Videos in Medienbibliothek – Video-Element mit Seek-to-1s als Thumbnail
+- [x] BUG: CMS-Änderungen bei KI-Entwicklung werden nicht übernommen – Fix: ?? statt || in handleSave, empty strings in Backend durchreichen, editState-Init unterscheidet DB-leer vs. kein DB-Eintrag

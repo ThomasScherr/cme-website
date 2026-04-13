@@ -350,9 +350,10 @@ export async function upsertContent(data: InsertSiteContent) {
   if (!db) throw new Error('Database not available');
   const existing = await getContentByKey(data.contentKey);
   if (existing) {
+    // Always explicitly set valueDe/valueEn (even empty string) so deletions are persisted
     await db.update(siteContent).set({
-      valueDe: data.valueDe,
-      valueEn: data.valueEn,
+      valueDe: data.valueDe !== undefined ? data.valueDe : existing.valueDe,
+      valueEn: data.valueEn !== undefined ? data.valueEn : existing.valueEn,
       contentType: data.contentType,
     }).where(eq(siteContent.contentKey, data.contentKey));
     return { id: existing.id };
@@ -411,6 +412,16 @@ export async function deleteMediaItem(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   await db.delete(mediaLibrary).where(eq(mediaLibrary.id, id));
+}
+
+/** Find a media item by filename and file size (for deduplication) */
+export async function findMediaByFilenameAndSize(filename: string, fileSize: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const results = await db.select().from(mediaLibrary)
+    .where(and(eq(mediaLibrary.filename, filename), eq(mediaLibrary.fileSize, fileSize)))
+    .limit(1);
+  return results[0] || null;
 }
 
 /** Search media by filename or tags */
