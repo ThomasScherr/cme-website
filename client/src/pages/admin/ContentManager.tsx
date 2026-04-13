@@ -170,7 +170,7 @@ function MediaLibraryModal({
           <input
             ref={fileInputRef}
             type="file"
-            accept={filterType === "image/" ? "image/*" : filterType === "video/" ? "video/*" : "*"}
+            accept={filterType === "image/" ? "image/*,.jpg,.jpeg,.png,.gif,.webp,.svg" : filterType === "video/" ? "video/*,video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov,.avi,.m4v" : "*"}
             className="hidden"
             onChange={handleFileUpload}
           />
@@ -236,10 +236,12 @@ function MediaLibraryModal({
         </div>
 
         {/* URL Input */}
-        <div className="p-4 border-t">
+        <div className="p-4 border-t bg-gray-50">
+          <p className="text-xs text-muted-foreground mb-2">Alternativ: URL direkt eingeben</p>
           <div className="flex items-center gap-2">
             <Input
-              placeholder="Oder URL direkt eingeben..."
+              id="media-url-input"
+              placeholder={filterType === "video/" ? "https://example.com/video.mp4" : "https://example.com/image.jpg"}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   const val = (e.target as HTMLInputElement).value.trim();
@@ -249,8 +251,22 @@ function MediaLibraryModal({
                   }
                 }
               }}
+              className="flex-1"
             />
-            <span className="text-xs text-muted-foreground whitespace-nowrap">Enter drücken</span>
+            <Button
+              size="sm"
+              variant="default"
+              onClick={() => {
+                const input = document.getElementById("media-url-input") as HTMLInputElement;
+                const val = input?.value?.trim();
+                if (val) {
+                  onSelect(val);
+                  onClose();
+                }
+              }}
+            >
+              Übernehmen
+            </Button>
           </div>
         </div>
       </div>
@@ -315,7 +331,7 @@ function FieldEditor({
               </button>
             </div>
           ) : null}
-          <div className="flex-1 space-y-1">
+          <div className="flex-1 space-y-2">
             <Button
               variant="outline"
               size="sm"
@@ -323,9 +339,20 @@ function FieldEditor({
               className="w-full"
             >
               <Upload className="w-3 h-3 mr-1" />
-              {valueDe ? "Ersetzen" : "Auswählen / Hochladen"}
+              {valueDe ? "Ersetzen" : "Medienbibliothek"}
             </Button>
-            {valueDe && (
+            {field.type === "video" && (
+              <Input
+                placeholder="Video-URL eingeben (z.B. https://...video.mp4)"
+                value={valueDe}
+                onChange={(e) => {
+                  onUpdate(fullKey, "de", e.target.value);
+                  onUpdate(fullKey, "en", e.target.value);
+                }}
+                className="text-xs h-8"
+              />
+            )}
+            {valueDe && field.type !== "video" && (
               <p className="text-xs text-muted-foreground truncate max-w-xs" title={valueDe}>
                 {valueDe}
               </p>

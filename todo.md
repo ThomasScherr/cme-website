@@ -394,3 +394,4 @@
 - [x] FEATURE: SubPageHero-Komponente um Video-Hintergrund erweitern (Bild oder Video)
 - [x] FEATURE: Admin-UI: Video-Upload im Hero-Editor der SubPages ermöglichen (ContentManager unterstützt video-Felder)
 - [x] FEATURE: Vitest-Tests für Hero-Video-Funktionalität (99 Tests bestanden)
+- [x] BUG: Video-Upload (.mp4) im Content Manager für SubPage Hero-Felder funktioniert nicht – accept-Attribut erweitert + direkte URL-Eingabe für Video-Felder
