@@ -362,3 +362,4 @@
 - [x] Feature: Märkte-Seite Hover-Kacheln mit ContactSlider verknüpft (bereits vorhanden)
 - [x] Redesign: /entwicklung/ux-interface-engineering auf SubPageTemplate umgestellt (einheitliches Design)
 - [x] Redesign: /entwicklung/software-digitale-systeme auf SubPageTemplate umgestellt (einheitliches Design)
+- [x] FIX: ContactSlider dynamische Headline-Inhalte in deutsche Anführungszeichen „“ gesetzt (DE: „“, EN: “”)

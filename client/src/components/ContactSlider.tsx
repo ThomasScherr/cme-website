@@ -208,8 +208,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
 
                     <h3 className="text-xl font-bold text-cme-dark leading-snug mb-2">
                       {isDE
-                        ? <>Lassen Sie uns über <span className="text-cme-blue">{topic}</span> sprechen.</>
-                        : <>Let's talk about <span className="text-cme-blue">{topic}</span>.</>
+                        ? <>Lassen Sie uns über <span className="text-cme-blue">„{topic}“</span> sprechen.</>
+                        : <>Let's talk about <span className="text-cme-blue">“{topic}”</span>.</>
                       }
                     </h3>
                     <p className="text-base text-gray-600 leading-relaxed">
