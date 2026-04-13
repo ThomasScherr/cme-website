@@ -14,7 +14,15 @@ const BUILDING_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9
 export default function Unternehmen() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('unternehmen');
+  const { t: cms, img, vid } = useContent('unternehmen');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   const [sliderOpen, setSliderOpen] = useState(false);
   const [sliderTopic, setSliderTopic] = useState('');
@@ -37,6 +45,7 @@ export default function Unternehmen() {
           : 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.')}
         heroImage={img('hero.heroImage', BUILDING_IMG)}
         heroImageAlt="CME Gebäude"
+        heroVideo={heroVideo}
       />
 
       {/* Stats */}

@@ -390,3 +390,7 @@
 - [x] SECURITY: Unsichtbares Honeypot-Feld in ContactSlider einbauen
 - [x] SECURITY: Unsichtbares Honeypot-Feld in Kontakt-Seite (/kontakt) einbauen
 - [x] SECURITY: Vitest-Tests für Honeypot-Erkennung
+- [x] FEATURE: CMS-Felder für Hero-Video in SubPages erweitern (heroVideoWebm, heroVideoMp4, heroVideoPoster)
+- [x] FEATURE: SubPageHero-Komponente um Video-Hintergrund erweitern (Bild oder Video)
+- [x] FEATURE: Admin-UI: Video-Upload im Hero-Editor der SubPages ermöglichen (ContentManager unterstützt video-Felder)
+- [x] FEATURE: Vitest-Tests für Hero-Video-Funktionalität (99 Tests bestanden)

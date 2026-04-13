@@ -238,7 +238,15 @@ const expertiseItems = [
 export default function HardwareSoftware() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('entwicklung.hardwaresoftware');
+  const { t: cms, img, vid } = useContent('entwicklung.hardwaresoftware');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   // Contact Slider state
   const [sliderOpen, setSliderOpen] = useState(false);
@@ -267,6 +275,7 @@ export default function HardwareSoftware() {
           : 'From system architecture through circuit design and PCB layout to embedded firmware.')}
         heroImage={img('hero.heroImage', heroImg)}
         heroImageAlt="Hard & Software Design"
+        heroVideo={heroVideo}
       />
 
       {/* Content */}

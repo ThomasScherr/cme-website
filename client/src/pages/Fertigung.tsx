@@ -72,7 +72,15 @@ const capabilities = [
 export default function Fertigung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('fertigung');
+  const { t: cms, img, vid } = useContent('fertigung');
+
+  // Hero video: CMS overrides hardcoded default
+  const cmsVideoWebm = vid('hero.heroVideoWebm');
+  const cmsVideoMp4 = vid('hero.heroVideoMp4');
+  const cmsVideoPoster = img('hero.heroVideoPoster');
+  const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    : HERO_VIDEO;
 
   const [sliderOpen, setSliderOpen] = useState(false);
   const [sliderTopic, setSliderTopic] = useState('');
@@ -87,7 +95,7 @@ export default function Fertigung() {
           ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
           : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.')}
         cta={{ label: isDE ? 'Angebot anfragen' : 'Request Quote', href: '/kontakt' }}
-        heroVideo={HERO_VIDEO}
+        heroVideo={effectiveHeroVideo}
         heroImageAlt="Elektronikfertigung"
       />
 

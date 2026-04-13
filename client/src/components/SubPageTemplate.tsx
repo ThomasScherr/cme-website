@@ -66,7 +66,7 @@ export default function SubPageTemplate({
   const [sliderTopic, setSliderTopic] = useState('');
 
   // CMS integration: load CMS content with fallback to hardcoded props
-  const { t, img } = useContent(pageKey || '__none__');
+  const { t, img, vid } = useContent(pageKey || '__none__');
 
   // Resolve values: CMS overrides props when pageKey is set
   const title = pageKey ? (t('content.title') || (isDE ? titleDE : titleEN)) : (isDE ? titleDE : titleEN);
@@ -74,6 +74,14 @@ export default function SubPageTemplate({
   const intro = pageKey ? (t('content.intro') || (isDE ? introDE : introEN)) : (isDE ? introDE : introEN);
   const heroImage = pageKey ? img('hero.heroImage', heroImg || '') : heroImg;
   const contentImage = pageKey ? img('content.contentImage', heroImg || '') : heroImg;
+
+  // Hero video: CMS overrides prop when pageKey is set
+  const cmsVideoWebm = pageKey ? vid('hero.heroVideoWebm') : '';
+  const cmsVideoMp4 = pageKey ? vid('hero.heroVideoMp4') : '';
+  const cmsVideoPoster = pageKey ? img('hero.heroVideoPoster') : '';
+  const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    : heroVideo;
 
   const handleCardClick = (featureTitle: string) => {
     setSliderTopic(featureTitle);
@@ -96,7 +104,7 @@ export default function SubPageTemplate({
         description={subtitle}
         heroImage={heroImage}
         heroImageAlt={title}
-        heroVideo={heroVideo}
+        heroVideo={effectiveHeroVideo}
       />
 
       {/* Content */}

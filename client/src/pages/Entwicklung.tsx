@@ -102,7 +102,15 @@ const coreCompetencies = [
 export default function Entwicklung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('entwicklung');
+  const { t: cms, img, vid } = useContent('entwicklung');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   // ContactSlider state
   const [sliderOpen, setSliderOpen] = useState(false);
@@ -120,6 +128,7 @@ export default function Entwicklung() {
         cta={{ label: isDE ? 'Projekt besprechen' : 'Discuss your project', href: '/kontakt' }}
         heroImage={img('hero.heroImage', HERO_IMG)}
         heroImageAlt="Elektronikentwicklung"
+        heroVideo={heroVideo}
       />
 
       {/* ── 2×3 Competency Grid (ENT-1) ── */}

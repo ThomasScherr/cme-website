@@ -130,6 +130,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Elektronikentwicklung', defaultEn: 'Electronics Development' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Von der Idee zur serienreifen Elektronik.', defaultEn: 'From idea to series-ready electronics.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.', defaultEn: 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.' },
@@ -194,6 +197,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -232,6 +238,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_1736__1920px_e713f7ca.jpg`, defaultEn: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -271,6 +280,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -310,6 +322,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg`, defaultEn: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -334,6 +349,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -373,6 +391,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -412,6 +433,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -447,7 +471,10 @@ export const PAGES: PageDef[] = [
     path: '/entwicklung/ux-interface-engineering',
     sections: [
       { key: 'hero', label: 'Hero-Bereich', fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/operating-concepts_3d4b7f77.png`, defaultEn: `${CDN}/operating-concepts_3d4b7f77.png` }] },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/operating-concepts_3d4b7f77.png`, defaultEn: `${CDN}/operating-concepts_3d4b7f77.png` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'UX & Interface Engineering', defaultEn: 'UX & Interface Engineering' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Benutzeroberflächen für Embedded-Systeme und industrielle Anwendungen', defaultEn: 'User interfaces for embedded systems and industrial applications' },
@@ -460,7 +487,10 @@ export const PAGES: PageDef[] = [
     path: '/entwicklung/software-digitale-systeme',
     sections: [
       { key: 'hero', label: 'Hero-Bereich', fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/web-apps_26e3e533.png`, defaultEn: `${CDN}/web-apps_26e3e533.png` }] },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/web-apps_26e3e533.png`, defaultEn: `${CDN}/web-apps_26e3e533.png` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Software & Digitale Systeme', defaultEn: 'Software & Digital Systems' },
         { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Embedded Software und digitale Systemarchitekturen', defaultEn: 'Embedded software and digital system architectures' },
@@ -577,6 +607,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/baugruppen-hero_b99b1505.webp`, defaultEn: `${CDN}/baugruppen-hero_b99b1505.webp` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -616,6 +649,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/microscope-inspection_a3967815.png`, defaultEn: `${CDN}/microscope-inspection_a3967815.png` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
         ],
       },
       {
@@ -714,6 +750,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_0425__1920px_178fc1eb.jpg`, defaultEn: `${CDN}/JK_0425__1920px_178fc1eb.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Über CME', defaultEn: 'About CME' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'The Electronic Company.', defaultEn: 'The Electronic Company.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME Control Motion Electronics ist ein inhabergeführter Entwicklungsdienstleister und EMS-Partner mit Sitz in Dortmund. Seit 2008 entwickeln und fertigen wir elektronische Baugruppen und Systeme für anspruchsvolle Branchen.', defaultEn: 'CME Control Motion Electronics is an owner-managed development service provider and EMS partner based in Dortmund. Since 2008, we have been developing and manufacturing electronic assemblies and systems for demanding industries.' },
@@ -768,6 +807,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/K5A0004_retouch_b2db17ab.jpg`, defaultEn: `${CDN}/K5A0004_retouch_b2db17ab.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Kontakt', defaultEn: 'Contact' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Direkter Draht zu unseren Experten.', defaultEn: 'Direct line to our experts.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Projektanfrage, technische Rückfrage oder Besuch in Dortmund – wir antworten persönlich.', defaultEn: 'Project inquiry, technical question or visit in Dortmund – we respond personally.' },
@@ -818,6 +860,9 @@ export const PAGES: PageDef[] = [
         label: 'Hero-Bereich',
         fields: [
           { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/K5A0004_retouch_b2db17ab.jpg`, defaultEn: `${CDN}/K5A0004_retouch_b2db17ab.jpg` },
+          { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
+          { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
+          { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Karriere', defaultEn: 'Careers' },
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Gestalten Sie die Elektronik von morgen.', defaultEn: 'Shape the electronics of tomorrow.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.', defaultEn: 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.' },

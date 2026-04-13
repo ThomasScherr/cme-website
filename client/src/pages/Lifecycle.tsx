@@ -48,7 +48,15 @@ const services = [
 export default function Lifecycle() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms } = useContent('lifecycle');
+  const { t: cms, img, vid } = useContent('lifecycle');
+
+  // Hero video: CMS overrides hardcoded default
+  const cmsVideoWebm = vid('hero.heroVideoWebm');
+  const cmsVideoMp4 = vid('hero.heroVideoMp4');
+  const cmsVideoPoster = img('hero.heroVideoPoster');
+  const effectiveHeroVideo = (cmsVideoWebm || cmsVideoMp4)
+    ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined }
+    : { webm: HERO_VIDEO_WEBM, mp4: HERO_VIDEO_MP4, poster: HERO_VIDEO_POSTER };
 
   const [sliderOpen, setSliderOpen] = useState(false);
   const [sliderTopic, setSliderTopic] = useState('');
@@ -63,11 +71,7 @@ export default function Lifecycle() {
           ? 'Elektronik lebt länger als die Bauteile, aus denen sie besteht. CME sichert die Verfügbarkeit Ihrer Produkte durch proaktives Obsolescence Management, Redesign-Services und langfristige Ersatzteilversorgung.'
           : 'Electronics outlive the components they are made of. CME ensures the availability of your products through proactive obsolescence management, redesign services and long-term spare parts supply.')}
         cta={{ label: isDE ? 'Beratung anfragen' : 'Request Consultation', href: '/kontakt' }}
-        heroVideo={{
-          webm: HERO_VIDEO_WEBM,
-          mp4: HERO_VIDEO_MP4,
-          poster: HERO_VIDEO_POSTER,
-        }}
+        heroVideo={effectiveHeroVideo}
       />
 
       {/* Services */}

@@ -143,7 +143,15 @@ const toolchain = [
 export default function Simulation() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('entwicklung.simulation');
+  const { t: cms, img, vid } = useContent('entwicklung.simulation');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   return (
     <Layout>
@@ -154,6 +162,7 @@ export default function Simulation() {
           : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.')}
         heroImage={img('hero.heroImage', 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/thermosimulation-1500x1000-1_77e2afd4.jpg')}
         heroImageAlt="Thermosimulation"
+        heroVideo={heroVideo}
         imageVariant="rectangular"
         breadcrumb={[
           { label: 'Home', href: '/' },

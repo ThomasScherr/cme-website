@@ -19,7 +19,15 @@ const benefits = [
 export default function Karriere() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms } = useContent('karriere');
+  const { t: cms, img, vid } = useContent('karriere');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   const [sliderOpen, setSliderOpen] = useState(false);
   const [sliderTopic, setSliderTopic] = useState('');
@@ -34,6 +42,8 @@ export default function Karriere() {
           ? 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.'
           : 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.')}
         cta={{ label: isDE ? 'Initiativbewerbung senden' : 'Send Speculative Application', href: 'mailto:karriere@control-motion.de' }}
+        heroImage={img('hero.heroImage')}
+        heroVideo={heroVideo}
       />
 
       {/* Benefits */}

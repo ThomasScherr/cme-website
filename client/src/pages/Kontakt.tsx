@@ -17,7 +17,15 @@ const SALUTATION_OPTIONS = [
 export default function Kontakt() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const { t: cms, img } = useContent('kontakt');
+  const { t: cms, img, vid } = useContent('kontakt');
+
+  // Hero video from CMS
+  const heroVideoWebm = vid('hero.heroVideoWebm');
+  const heroVideoMp4 = vid('hero.heroVideoMp4');
+  const heroVideoPoster = img('hero.heroVideoPoster');
+  const heroVideo = (heroVideoWebm || heroVideoMp4)
+    ? { webm: heroVideoWebm || undefined, mp4: heroVideoMp4 || undefined, poster: heroVideoPoster || undefined }
+    : undefined;
 
   const [mode, setMode] = useState<'contact' | 'nda'>('contact');
   const [submitted, setSubmitted] = useState(false);
@@ -119,6 +127,7 @@ export default function Kontakt() {
         headline={cms('hero.headline')}
         description={cms('hero.description')}
         heroImage={img('hero.heroImage')}
+        heroVideo={heroVideo}
       >
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
           <a href={`tel:${cms('hero.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-cme-dark/80 hover:text-cme-blue transition-colors fluid-small">
