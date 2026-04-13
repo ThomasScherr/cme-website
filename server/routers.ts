@@ -32,6 +32,7 @@ import {
 import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
+import { sendContactEmail, sendNdaEmail } from "./email";
 import { generateSeoContent } from "./seoGenerator";
 import { translateArticle } from "./articleTranslator";
 import { batchTranslateFields } from "./contentTranslator";
@@ -342,8 +343,20 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const result = await createContactSubmission(input);
 
-        // Notify the owner about the new contact submission
-        await notifyOwner({
+        // Send email notification via SMTP
+        sendContactEmail({
+          salutation: input.salutation,
+          title: input.title,
+          name: input.name,
+          email: input.email,
+          company: input.company,
+          phone: input.phone,
+          message: input.message,
+          source: input.source,
+        }).catch(err => console.error("[SMTP] Contact email failed:", err));
+
+        // Notify the owner as fallback
+        notifyOwner({
           title: `Neue Kontaktanfrage von ${input.name}`,
           content: `Anrede: ${input.salutation || "-"}\nTitel: ${input.title || "-"}\nName: ${input.name}\nFirma: ${input.company || "-"}\nE-Mail: ${input.email}\nTelefon: ${input.phone || "-"}\nNachricht: ${input.message}`,
         }).catch(err => console.error("[Notification] Failed:", err));
@@ -387,8 +400,18 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const result = await createNdaRequest(input);
 
-        // Notify the owner about the NDA request
-        await notifyOwner({
+        // Send NDA notification email via SMTP
+        sendNdaEmail({
+          salutation: input.salutation,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          company: input.company,
+          email: input.email,
+          topic: input.topic,
+        }).catch(err => console.error("[SMTP] NDA email failed:", err));
+
+        // Notify the owner as fallback
+        notifyOwner({
           title: `NDA-Anfrage von ${input.firstName} ${input.lastName}`,
           content: `Anrede: ${input.salutation}\nName: ${input.firstName} ${input.lastName}\nFirma: ${input.company}\nE-Mail: ${input.email}\nThema: ${input.topic || "-"}`,
         }).catch(err => console.error("[Notification] Failed:", err));

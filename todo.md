@@ -367,3 +367,9 @@
 - [x] Feature: Qualitätsseite alle 10 Kacheln mit je 4 Bullet Points befüllt (ISO 9001, ISO 14001, UL, AOI, SPI, ICT, Traceability, Wareneingangskontrolle, IPC-Standards, EMPB)
 - [x] BUG: Märkte-Seite Kacheln öffnen jetzt den ContactSlider (onCardClick an MarketCard übergeben)
 - [x] FIX: Qualitätsseite – Kachel 8 (Wareneingangskontrolle) entfernt, Kachel 9 (IPC-Standards) mit neuem Inhalt aktualisiert, jetzt 9 Kacheln
+- [x] Feature: SMTP-Secrets angelegt (Host, Port, User, Password, Absender, Empfänger)
+- [x] Feature: SMTP-E-Mail-Service mit nodemailer implementiert
+- [x] Feature: HTML-E-Mail-Templates für Kontaktanfragen und NDA-Anforderungen erstellt
+- [x] Feature: E-Mail-Versand in contact.submit Endpoint eingebaut
+- [x] Feature: E-Mail-Versand in nda.submit Endpoint eingebaut
+- [x] Feature: Owner-Benachrichtigung (notifyOwner) bei Formular-Einreichungen aktiviert (als Fallback)
