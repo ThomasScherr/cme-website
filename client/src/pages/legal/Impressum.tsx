@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import SEO from '@/components/SEO';
 
 export default function Impressum() {
   const { lang } = useLanguage();
@@ -7,6 +8,17 @@ export default function Impressum() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Impressum"
+        titleEN="Legal Notice"
+        descriptionDE="Impressum der CME Control Motion Electronics GmbH, Dortmund."
+        descriptionEN="Legal notice of CME Control Motion Electronics GmbH, Dortmund."
+        path="/impressum"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: isDE ? 'Impressum' : 'Legal Notice', url: '/impressum' },
+        ]}
+      />
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="container">
           <div className="max-w-3xl mx-auto prose prose-gray">

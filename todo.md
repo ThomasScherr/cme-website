@@ -416,3 +416,15 @@
 - [x] CONTENT: Gesamte Website auf duzen-Stellen prüfen und auf Sie-Anrede korrigieren – keine weiteren Stellen gefunden
 - [x] BUG: FAQ-Sektion auf KI-Entwicklung hat zu enge Spaltenbreite – auf min(80%, 72rem) verbreitert
 - [x] CONTENT: Control Design Seite – 9 Kacheln mit Bullet Points aktualisieren (Modellbasierte Funktionsentwicklung, MIL/SIL/HIL, Rapid-Control-Prototyping, Sensorlose Regelung, FOC, Transiente Analysen, Kundenspezifische Reglermodelle, Worst-Case-Simulationen, Integration Motor/Elektronik/Regelung)
+- [x] SEO: Wiederverwendbare SEO-Komponente mit Helmet erstellt (title, description, og:*, twitter:*, canonical, JSON-LD)
+- [x] SEO: JSON-LD Organization + WebSite Schema global eingebunden (in SEO-Komponente)
+- [x] SEO: BreadcrumbList JSON-LD pro Seite (in SEO-Komponente via breadcrumbs prop)
+- [x] SEO: Meta-Tags für alle 25+ Seiten implementieren (SEO-Komponente in alle Seiten integriert)
+- [ ] CONTENT: Software-Seite erweitern – Modellbasierte Entwicklung (MATLAB/Simulink → Code-Generierung)
+- [ ] CONTENT: Software-Seite erweitern – Funktionale Sicherheit (IEC 61508, ISO 26262)
+- [ ] CONTENT: Software-Seite erweitern – OTA-Updates & Lifecycle-Management
+- [ ] CONTENT: Software-Seite erweitern – Cybersecurity für Embedded (EU Cyber Resilience Act)
+- [ ] CONTENT: Software-Seite erweitern – Software-Testing & Verifikation (Unit Tests, HIL, SIL)
+- [x] CONTENT: Lifecycle-Seite – 3 bestehende Kacheln (Obsolescence, Ersatzteil, Reparatur) mit Bullet Points erweitern
+- [x] CONTENT: Lifecycle-Seite – neue 5. Kachel "Langzeit-Support & Produktpflege" hinzufügen
+- [x] CONTENT: Märkte-Seite – "Robotik & Cobots" → "Robotik & Cobots Antriebe" umbenannt

@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
+import SEO from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
 import { Link } from 'wouter';
@@ -42,6 +43,12 @@ interface SubPageProps {
   ctaEN?: string;
   /** Optional content to render after the features grid (e.g. FAQ section) */
   afterFeatures?: React.ReactNode;
+  /** SEO: meta description (DE) – falls abweichend von subtitleDE */
+  metaDescriptionDE?: string;
+  /** SEO: meta description (EN) */
+  metaDescriptionEN?: string;
+  /** SEO: additional JSON-LD schemas (e.g. FAQPage) */
+  additionalSchemas?: Record<string, unknown>[];
 }
 
 export default function SubPageTemplate({
@@ -61,6 +68,9 @@ export default function SubPageTemplate({
   ctaDE = 'Anforderungen senden',
   ctaEN = 'Send requirements',
   afterFeatures,
+  metaDescriptionDE,
+  metaDescriptionEN,
+  additionalSchemas,
 }: SubPageProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -88,6 +98,12 @@ export default function SubPageTemplate({
     ? { webm: cmsVideoWebm || undefined, mp4: cmsVideoMp4 || undefined, poster: cmsVideoPoster || undefined, playback: (cmsVideoPlayback === 'once' ? 'once' : 'loop') as 'loop' | 'once' }
     : heroVideo;
 
+  // SEO: derive path from pageKey (e.g. 'entwicklung.controldesign' -> '/entwicklung/control-design')
+  const pagePath = pageKey
+    ? '/' + pageKey.replace(/\./g, '/').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+    : '/';
+  const parentLabel = isDE ? parentLabelDE : parentLabelEN;
+
   const handleCardClick = (featureTitle: string) => {
     setSliderTopic(featureTitle);
     setSliderOpen(true);
@@ -95,6 +111,19 @@ export default function SubPageTemplate({
 
   return (
     <Layout>
+      <SEO
+        titleDE={titleDE}
+        titleEN={titleEN}
+        descriptionDE={metaDescriptionDE || subtitleDE}
+        descriptionEN={metaDescriptionEN || subtitleEN}
+        path={pagePath}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: isDE ? parentLabelDE : parentLabelEN, url: parentHref },
+          { name: isDE ? titleDE : titleEN, url: pagePath },
+        ]}
+        additionalSchemas={additionalSchemas}
+      />
       <SubPageHero
         breadcrumb={[
           { label: 'Home', href: '/' },

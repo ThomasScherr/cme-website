@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
@@ -89,6 +90,14 @@ export default function Fertigung() {
 
   return (
     <Layout>
+      <SEO
+        titleDE='Elektronikfertigung & EMS'
+        titleEN='Electronics Manufacturing & EMS'
+        descriptionDE='EMS-Dienstleister für Leiterplattenbestückung, Baugruppenfertigung und Qualitätssicherung – von Prototypen bis Serienproduktion.'
+        descriptionEN='EMS provider for PCB assembly, module manufacturing and quality assurance – from prototypes to series production.'
+        path='/fertigung'
+        breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikfertigung',url:'/fertigung'}]}
+      />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)')}
         headline={cms('hero.headline') || (isDE ? 'Vom Prototyp zur Serie. Made in Dortmund.' : 'From prototype to series. Made in Dortmund.')}

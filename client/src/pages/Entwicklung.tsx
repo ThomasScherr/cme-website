@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
@@ -120,6 +121,14 @@ export default function Entwicklung() {
 
   return (
     <Layout>
+      <SEO
+        titleDE='Elektronikentwicklung'
+        titleEN='Electronics Development'
+        descriptionDE='Ganzheitliche Elektronikentwicklung von der Idee bis zur Serie – Hardware, Software, Simulation, Test und Zulassung aus einer Hand.'
+        descriptionEN='End-to-end electronics development from concept to series production – hardware, software, simulation, testing and certification from a single source.'
+        path='/entwicklung'
+        breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikentwicklung',url:'/entwicklung'}]}
+      />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Elektronikentwicklung' : 'Electronics Development')}
         headline={cms('hero.headline') || (isDE ? 'Von der Idee zur serienreifen Elektronik.' : 'From idea to series-ready electronics.')}

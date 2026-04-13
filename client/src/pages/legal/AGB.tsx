@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import SEO from '@/components/SEO';
 
 export default function AGB() {
   const { lang } = useLanguage();
@@ -7,6 +8,17 @@ export default function AGB() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Allgemeine Geschäftsbedingungen"
+        titleEN="Terms and Conditions"
+        descriptionDE="Allgemeine Geschäftsbedingungen der CME Control Motion Electronics GmbH."
+        descriptionEN="Terms and conditions of CME Control Motion Electronics GmbH."
+        path="/agb"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'AGB', url: '/agb' },
+        ]}
+      />
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="container">
           <div className="max-w-3xl mx-auto prose prose-gray">

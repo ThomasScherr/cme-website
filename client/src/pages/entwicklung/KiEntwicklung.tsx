@@ -15,7 +15,7 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+// FAQ JSON-LD is passed via additionalSchemas prop to SubPageTemplate
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 
@@ -138,11 +138,8 @@ export default function KiEntwicklung() {
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      </Helmet>
-
       <SubPageTemplate
+        additionalSchemas={[faqSchema]}
         pageKey="entwicklung.kientwicklung"
         parentHref="/entwicklung"
         parentLabelDE="Elektronikentwicklung"

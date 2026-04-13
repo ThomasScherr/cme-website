@@ -6,6 +6,7 @@ import { useContent } from '@/hooks/useContent';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Zap, Users, GraduationCap, Heart, MapPin, Clock } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const benefits = [
   { icon: Zap, titleDE: 'Spannende Projekte', titleEN: 'Exciting Projects', descDE: 'Arbeiten Sie an Elektronik für Automotive, Medizintechnik und Industrie.', descEN: 'Work on electronics for automotive, medical technology and industry.' },
@@ -36,6 +37,14 @@ export default function Karriere() {
 
   return (
     <Layout>
+      <SEO
+        titleDE='Karriere bei CME'
+        titleEN='Careers at CME'
+        descriptionDE='Karrieremöglichkeiten bei CME Control Motion Electronics – Elektronikentwicklung, Fertigung und Innovation in Schwäbisch Gmünd.'
+        descriptionEN='Career opportunities at CME Control Motion Electronics – electronics development, manufacturing and innovation in Schwäbisch Gmünd.'
+        path='/karriere'
+        breadcrumbs={[{name:'Home',url:'/'},{name:'Karriere',url:'/karriere'}]}
+      />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Karriere' : 'Careers')}
         headline={cms('hero.headline') || (isDE ? 'Gestalten Sie die Elektronik von morgen.' : 'Shape the electronics of tomorrow.')}

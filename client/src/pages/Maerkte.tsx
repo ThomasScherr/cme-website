@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
+import SEO from '@/components/SEO';
 import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
@@ -59,7 +60,7 @@ const marketSegments: MarketSegment[] = [
       'BLDC- & PMSM-Motorsteuerungen',
       'FOC-Inverter & Umrichter',
       'E-Mobility (E-Bike, LEV, Scooter)',
-      'Robotik & Cobots',
+      'Robotik & Cobots Antriebe',
       'Power Tools & Handgeräte',
       'AGV/AMR & Fördertechnik',
     ],
@@ -67,7 +68,7 @@ const marketSegments: MarketSegment[] = [
       'BLDC & PMSM motor controllers',
       'FOC inverters & converters',
       'E-mobility (e-bike, LEV, scooter)',
-      'Robotics & cobots',
+      'Robotics & cobot drives',
       'Power tools & handheld devices',
       'AGV/AMR & conveyor systems',
     ],
@@ -398,6 +399,17 @@ export default function Maerkte() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Branchen & Märkte"
+        titleEN="Industries & Markets"
+        descriptionDE="Branchenexpertise in Automotive, Industrieautomation, Medizintechnik, Energietechnik und Antriebstechnik."
+        descriptionEN="Industry expertise in automotive, industrial automation, medical technology, energy technology and drive technology."
+        path="/maerkte"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: isDE ? 'Branchen & Märkte' : 'Industries & Markets', url: '/maerkte' },
+        ]}
+      />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Branchen & Anwendungsfelder' : 'Industries & Applications')}
         headline={cms('hero.headline') || (isDE ? 'Branchenspezifische Elektroniklösungen.' : 'Industry-specific electronics solutions.')}

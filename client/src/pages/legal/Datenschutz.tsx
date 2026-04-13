@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import SEO from '@/components/SEO';
 
 export default function Datenschutz() {
   const { lang } = useLanguage();
@@ -7,6 +8,17 @@ export default function Datenschutz() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Datenschutzerklärung"
+        titleEN="Privacy Policy"
+        descriptionDE="Datenschutzerklärung der CME Control Motion Electronics GmbH."
+        descriptionEN="Privacy policy of CME Control Motion Electronics GmbH."
+        path="/datenschutz"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: isDE ? 'Datenschutz' : 'Privacy Policy', url: '/datenschutz' },
+        ]}
+      />
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="container">
           <div className="max-w-3xl mx-auto prose prose-gray">

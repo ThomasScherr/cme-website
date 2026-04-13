@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
@@ -38,6 +39,14 @@ export default function Unternehmen() {
 
   return (
     <Layout>
+      <SEO
+        titleDE='Über CME'
+        titleEN='About CME'
+        descriptionDE='CME Control Motion Electronics GmbH – Ihr Partner für Elektronikentwicklung und EMS in Schwäbisch Gmünd. Erfahrung, Innovation und Qualität.'
+        descriptionEN='CME Control Motion Electronics GmbH – Your partner for electronics development and EMS in Schwäbisch Gmünd. Experience, innovation and quality.'
+        path='/unternehmen'
+        breadcrumbs={[{name:'Home',url:'/'},{name:'Über CME',url:'/unternehmen'}]}
+      />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Über CME' : 'About CME')}
         headline={cms('hero.headline') || (isDE ? 'The Electronic Company.' : 'The Electronic Company.')}

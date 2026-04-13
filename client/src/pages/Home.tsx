@@ -15,6 +15,7 @@ import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 import ContactSlider from '@/components/ContactSlider';
 import { useState } from 'react';
+import SEO, { organizationSchema, websiteSchema } from '@/components/SEO';
 
 export default function Home() {
   const [sliderOpen, setSliderOpen] = useState(false);
@@ -29,6 +30,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <SEO
+        titleDE='CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS'
+        titleEN='CME Control Motion Electronics GmbH – Electronics Development & EMS'
+        descriptionDE='Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.'
+        descriptionEN='Development partner and EMS provider for power electronics, drive electronics, mechatronics and thermally demanding electronics projects.'
+        path='/'
+        additionalSchemas={[organizationSchema, websiteSchema]}
+        rawTitle
+      />
       <Navigation />
       <main>
         <HeroSection />
