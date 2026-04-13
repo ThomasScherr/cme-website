@@ -329,3 +329,4 @@
 - [x] BUG: Baugruppen-Seite CMS – Bild-Feld in der Seiteninhalt-Sektion fehlt (und ggf. bei anderen SubPageTemplate-Seiten auch)
 - [x] BUG: SubPageHero Diamant-Bild füllt die Raute nicht vollständig – Ecken sind abgeschnitten/leer
 - [x] Feature: 9 Icon-Kacheln auf /hardware-softwaredesign mit je 4 Bullet Points ergänzen
+- [x] Feature: 9 Icon-Kacheln auf /entwicklung/e-motor-design mit je 4 Bullet Points ergänzen

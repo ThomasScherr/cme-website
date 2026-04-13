@@ -10,6 +10,8 @@ interface Feature {
   de: string;
   en: string;
   icon?: LucideIcon;
+  bulletsDE?: string[];
+  bulletsEN?: string[];
 }
 
 interface HeroVideo {
@@ -151,7 +153,17 @@ export default function SubPageTemplate({
                   ) : (
                     <div className="w-2 h-2 rounded-full bg-cme-blue" style={{ marginBottom: 'var(--space-gap-xs)' }} />
                   )}
-                  <p className="font-medium text-cme-dark fluid-body">{pageKey ? (t(`features.feature.${i}`) || (isDE ? feature.de : feature.en)) : (isDE ? feature.de : feature.en)}</p>
+                  <p className="font-semibold text-cme-dark fluid-body" style={{ marginBottom: feature.bulletsDE?.length ? '0.5rem' : undefined }}>{pageKey ? (t(`features.feature.${i}`) || (isDE ? feature.de : feature.en)) : (isDE ? feature.de : feature.en)}</p>
+                  {(isDE ? feature.bulletsDE : feature.bulletsEN)?.length ? (
+                    <ul className="space-y-1">
+                      {(isDE ? feature.bulletsDE : feature.bulletsEN)!.map((bullet, j) => (
+                        <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.75rem, 0.65rem + 0.25vw, 0.875rem)', lineHeight: '1.4' }}>
+                          <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.45em] flex-shrink-0" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </motion.div>
               );
             })}
