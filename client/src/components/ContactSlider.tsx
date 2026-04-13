@@ -155,8 +155,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                     </h3>
                     <p className="text-base text-gray-600 leading-relaxed">
                       {isDE
-                        ? 'Beschreiben Sie uns kurz Ihr Projekt – wir prüfen die Machbarkeit und melden uns persönlich bei Ihnen.'
-                        : 'Briefly describe your project – we will evaluate feasibility and get back to you personally.'}
+                        ? 'Beschreiben Sie uns Ihr Vorhaben in groben Zügen. Wir nehmen kurzfristig Kontakt zur Terminvereinbarung mit Ihnen auf.'
+                        : 'Describe your project in broad terms. We will contact you shortly to schedule a meeting.'}
                     </p>
                   </div>
 
