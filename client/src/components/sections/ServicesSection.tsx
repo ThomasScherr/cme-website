@@ -52,7 +52,7 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
               />
               {/* Main image diamond */}
               <div className="relative diamond w-full shadow-xl shadow-cme-blue/10">
-                <img src={image} alt={title} style={{marginTop: '-53px', marginLeft: '7px', paddingTop: '74px', paddingBottom: '8px', paddingLeft: '1px'}} />
+                <img src={image} alt={title} />
               </div>
             </div>
           </motion.div>

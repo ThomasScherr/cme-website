@@ -32,15 +32,159 @@ const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQ
 const heroImg = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
 
 const features = [
-  { de: 'Systemarchitektur & Anforderungsmanagement', en: 'System Architecture & Requirements Management', icon: Network },
-  { de: 'Analoge & digitale Schaltungsentwicklung', en: 'Analog & Digital Circuit Design', icon: CircuitBoard },
-  { de: 'Leistungselektronik (SiC, GaN, IGBT)', en: 'Power Electronics (SiC, GaN, IGBT)', icon: Zap },
-  { de: 'Antriebselektronik & Motor Control', en: 'Drive Electronics & Motor Control', icon: Cog },
-  { de: 'Multi-Layer PCB-Layout', en: 'Multi-Layer PCB Layout', icon: Layers },
-  { de: 'Embedded C/C++ Firmware', en: 'Embedded C/C++ Firmware', icon: Code },
-  { de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)', en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)', icon: Wifi },
-  { de: 'Funktionale Sicherheit (ISO 26262)', en: 'Functional Safety (ISO 26262)', icon: ShieldCheck },
-  { de: 'Aufbau- & Verbindungstechnik (Keramik, IMS, Stanzgitter, Bare-Die)', en: 'Assembly & Interconnection Technology (Ceramic, IMS, Leadframe, Bare-Die)', icon: CircuitBoard },
+  {
+    de: 'Systemarchitektur & Anforderungsmanagement',
+    en: 'System Architecture & Requirements Management',
+    icon: Network,
+    bulletsDE: [
+      'Analyse und Strukturierung technischer Anforderungen (Lasten- & Pflichtenheft)',
+      'Definition von Systemarchitekturen für eingebettete Steuerungssysteme',
+      'Schnittstellenmanagement zwischen HW, SW und Mechanik',
+      'Risikoanalyse und Machbarkeitsbewertung in der Frühphase',
+    ],
+    bulletsEN: [
+      'Analysis and structuring of technical requirements (specifications)',
+      'Definition of system architectures for embedded control systems',
+      'Interface management between HW, SW and mechanics',
+      'Risk analysis and feasibility assessment in early phases',
+    ],
+  },
+  {
+    de: 'Analoge & digitale Schaltungsentwicklung',
+    en: 'Analog & Digital Circuit Design',
+    icon: CircuitBoard,
+    bulletsDE: [
+      'Schaltungsdesign für Sensor-, Signal- und Regelkreise',
+      'Mixed-Signal-Designs mit Mikrocontrollern, FPGAs und DSPs',
+      'EMV-gerechte Schaltungsauslegung nach IEC-Normen',
+      'Simulation und Verifikation vor dem ersten Prototypen',
+    ],
+    bulletsEN: [
+      'Circuit design for sensor, signal and control loops',
+      'Mixed-signal designs with microcontrollers, FPGAs and DSPs',
+      'EMC-compliant circuit design per IEC standards',
+      'Simulation and verification before the first prototype',
+    ],
+  },
+  {
+    de: 'Leistungselektronik (SiC, GaN, IGBT)',
+    en: 'Power Electronics (SiC, GaN, IGBT)',
+    icon: Zap,
+    bulletsDE: [
+      'Entwicklung von DC/DC-Wandlern, Invertern und Gleichrichtern',
+      'Einsatz von Wide-Bandgap-Halbleitern (SiC, GaN) für höchste Effizienz',
+      'Thermisches Management und Kühlkonzeption',
+      'Qualifizierung für Hochstrom- und Hochspannungsapplikationen',
+    ],
+    bulletsEN: [
+      'Development of DC/DC converters, inverters and rectifiers',
+      'Use of wide-bandgap semiconductors (SiC, GaN) for maximum efficiency',
+      'Thermal management and cooling concepts',
+      'Qualification for high-current and high-voltage applications',
+    ],
+  },
+  {
+    de: 'Antriebselektronik & Motor Control',
+    en: 'Drive Electronics & Motor Control',
+    icon: Cog,
+    bulletsDE: [
+      'BLDC-, PMSM- und Schrittmotor-Ansteuerung',
+      'FOC (Field Oriented Control) und sensorlose Regelverfahren',
+      'Entwicklung kundenspezifischer Inverter und Motorcontroller',
+      'Integration in Automatisierungs- und Mobilitätsanwendungen',
+    ],
+    bulletsEN: [
+      'BLDC, PMSM and stepper motor control',
+      'FOC (Field Oriented Control) and sensorless control methods',
+      'Development of custom inverters and motor controllers',
+      'Integration into automation and mobility applications',
+    ],
+  },
+  {
+    de: 'Multi-Layer PCB-Layout',
+    en: 'Multi-Layer PCB Layout',
+    icon: Layers,
+    bulletsDE: [
+      '2- bis 16-lagige Leiterplatten inkl. HDI und Blind/Buried Vias',
+      'DFM-gerechtes Layout mit direktem Bezug zur hauseigenen Fertigung',
+      'Impedanz-kontrolliertes Routing und Signal-Integritätsanalyse',
+      'Designregelcheck (DRC) und thermische Simulation',
+    ],
+    bulletsEN: [
+      '2 to 16-layer PCBs incl. HDI and blind/buried vias',
+      'DFM-compliant layout with direct link to in-house manufacturing',
+      'Impedance-controlled routing and signal integrity analysis',
+      'Design rule check (DRC) and thermal simulation',
+    ],
+  },
+  {
+    de: 'Embedded C/C++ Firmware',
+    en: 'Embedded C/C++ Firmware',
+    icon: Code,
+    bulletsDE: [
+      'Bare-Metal- und RTOS-basierte Firmware für ARM-Cortex, PIC, AVR',
+      'Treiber- und BSP-Entwicklung für kundenspezifische Hardware',
+      'Bootloader, OTA-Updates und sichere Firmware-Architekturen',
+      'Debugging, Profiling und Hardware-in-the-Loop-Tests',
+    ],
+    bulletsEN: [
+      'Bare-metal and RTOS-based firmware for ARM Cortex, PIC, AVR',
+      'Driver and BSP development for custom hardware',
+      'Bootloader, OTA updates and secure firmware architectures',
+      'Debugging, profiling and hardware-in-the-loop testing',
+    ],
+  },
+  {
+    de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)',
+    en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)',
+    icon: Wifi,
+    bulletsDE: [
+      'Implementierung von CAN, CAN-FD, LIN, Modbus, Profibus',
+      'Ethernet-basierte Protokolle: EtherCAT, Profinet, TCP/IP',
+      'Wireless-Anbindung: Bluetooth, WLAN, Mobilfunk (IoT-fähig)',
+      'Protokoll-Stack-Integration und Systemtests unter Realbedingungen',
+    ],
+    bulletsEN: [
+      'Implementation of CAN, CAN-FD, LIN, Modbus, Profibus',
+      'Ethernet-based protocols: EtherCAT, Profinet, TCP/IP',
+      'Wireless connectivity: Bluetooth, WLAN, cellular (IoT-ready)',
+      'Protocol stack integration and system tests under real conditions',
+    ],
+  },
+  {
+    de: 'Funktionale Sicherheit (ISO 26262)',
+    en: 'Functional Safety (ISO 26262)',
+    icon: ShieldCheck,
+    bulletsDE: [
+      'Entwicklung nach ISO 26262 (Automotive) und IEC 62061 (Industrie)',
+      'FMEA, FMEDA, FTA – systematische Sicherheitsanalysen',
+      'Auslegung und Verifikation sicherheitsrelevanter Schaltkreise (ASIL B–D)',
+      'Dokumentation und Nachweisführung für Zulassungsprozesse',
+    ],
+    bulletsEN: [
+      'Development per ISO 26262 (automotive) and IEC 62061 (industrial)',
+      'FMEA, FMEDA, FTA – systematic safety analyses',
+      'Design and verification of safety-relevant circuits (ASIL B–D)',
+      'Documentation and evidence management for approval processes',
+    ],
+  },
+  {
+    de: 'Aufbau- & Verbindungstechnik (Keramik, IMS, Stanzgitter, Bare-Die)',
+    en: 'Assembly & Interconnection Technology (Ceramic, IMS, Leadframe, Bare-Die)',
+    icon: CircuitBoard,
+    bulletsDE: [
+      'Bestückung auf IMS-Substraten und Keramikträgern für hohe Wärmelast',
+      'Bare-Die-Montage und Wire-Bonding für kompakte Hochleistungsmodule',
+      'Stanzgitter-Designs für industrielle und automotive Gehäusekonzepte',
+      'Enge Abstimmung zwischen Entwicklung und hauseigener Fertigung (DFM)',
+    ],
+    bulletsEN: [
+      'Assembly on IMS substrates and ceramic carriers for high thermal loads',
+      'Bare-die mounting and wire bonding for compact high-performance modules',
+      'Leadframe designs for industrial and automotive package concepts',
+      'Close coordination between development and in-house manufacturing (DFM)',
+    ],
+  },
 ];
 
 /* ── Embedded Software ── */
@@ -174,7 +318,15 @@ export default function HardwareSoftware() {
                   >
                     <Icon size={28} className="text-cme-blue" strokeWidth={1.5} />
                   </div>
-                  <p className="font-medium text-cme-dark fluid-body">{isDE ? feature.de : feature.en}</p>
+                  <p className="font-semibold text-cme-dark fluid-body" style={{ marginBottom: '0.5rem' }}>{isDE ? feature.de : feature.en}</p>
+                  <ul className="space-y-1">
+                    {(isDE ? feature.bulletsDE : feature.bulletsEN).map((bullet, j) => (
+                      <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.75rem, 0.65rem + 0.25vw, 0.875rem)', lineHeight: '1.4' }}>
+                        <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.45em] flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               );
             })}
