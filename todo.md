@@ -363,3 +363,5 @@
 - [x] Redesign: /entwicklung/ux-interface-engineering auf SubPageTemplate umgestellt (einheitliches Design)
 - [x] Redesign: /entwicklung/software-digitale-systeme auf SubPageTemplate umgestellt (einheitliches Design)
 - [x] FIX: ContactSlider dynamische Headline-Inhalte in deutsche Anführungszeichen „“ gesetzt (DE: „“, EN: “”)
+- [x] FIX: Qualitätsseite Kachel 9 umbenannt in "Erstmusterprüfung & Serienfreigabe (EMPB)" + neue Kachel 10 hinzugefügt
+- [x] Feature: Qualitätsseite alle 10 Kacheln mit je 4 Bullet Points befüllt (ISO 9001, ISO 14001, UL, AOI, SPI, ICT, Traceability, Wareneingangskontrolle, IPC-Standards, EMPB)
