@@ -65,6 +65,7 @@ export default function SubPageTemplate({
   const subtitle = pageKey ? (t('content.subtitle') || (isDE ? subtitleDE : subtitleEN)) : (isDE ? subtitleDE : subtitleEN);
   const intro = pageKey ? (t('content.intro') || (isDE ? introDE : introEN)) : (isDE ? introDE : introEN);
   const heroImage = pageKey ? img('hero.heroImage', heroImg || '') : heroImg;
+  const contentImage = pageKey ? img('content.contentImage', heroImg || '') : heroImg;
 
   return (
     <Layout>
@@ -90,7 +91,7 @@ export default function SubPageTemplate({
         <div className="container">
           {/* Intro: Diamond image left + Text right */}
           <div className="grid lg:grid-cols-[auto_1fr] items-center" style={{ gap: 'var(--space-gap-lg)' }}>
-            {/* Small diamond with hero image */}
+            {/* Small diamond with content image */}
             <div className="relative flex items-center justify-center" style={{ marginLeft: '35px', marginRight: '20px' }}>
               <div
                 className="relative overflow-hidden shadow-lg"
@@ -102,7 +103,7 @@ export default function SubPageTemplate({
                 }}
               >
                 <img
-                  src={heroImage}
+                  src={contentImage}
                   alt={title}
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ transform: 'rotate(-45deg) scale(1.42)' }}

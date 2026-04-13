@@ -325,3 +325,5 @@
 - [x] BUG: Kontakt-Seite CMS-Key-Mismatch – Kontaktdaten (Telefon, E-Mail, Adresse) werden nicht korrekt angezeigt
 - [x] BUG: CMS-Bildänderungen werden nicht auf /entwicklung und /hardware-software übernommen – gelöschte/geänderte Bilder bleiben nach Seitenaktualisierung bestehen
 - [x] BUG: Hero-Bild wird im CMS-Editor doppelt angezeigt
+- [x] BUG: Baugruppen-Fertigen Seite CMS-Integration prüfen und korrigieren
+- [x] BUG: Baugruppen-Seite CMS – Bild-Feld in der Seiteninhalt-Sektion fehlt (und ggf. bei anderen SubPageTemplate-Seiten auch)

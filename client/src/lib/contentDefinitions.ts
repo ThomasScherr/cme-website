@@ -203,6 +203,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Hard & Software Design', defaultEn: 'Hard & Software Design' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Systemarchitektur, Schaltungsentwicklung, Embedded Software – von der Spezifikation bis zur serienreifen Lösung.', defaultEn: 'System architecture, circuit design, embedded software – from specification to series-ready solution.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'CME entwickelt Hardware und Software als integrierte Einheit. Unsere Ingenieure beherrschen den gesamten Entwicklungsprozess – von der Systemarchitektur und Anforderungsanalyse über analoge und digitale Schaltungsentwicklung bis zur Embedded-Firmware. Durch die enge Verzahnung von Hardware- und Softwareentwicklung fließen Fertigungsanforderungen frühzeitig in die Entwicklungsphase ein – das spart Zeit und Kosten beim Serienübergang.', defaultEn: 'CME develops hardware and software as an integrated unit. Our engineers master the entire development process – from system architecture and requirements analysis through analog and digital circuit design to embedded firmware. Through the close integration of hardware and software development, manufacturing requirements flow into the development phase early – saving time and costs in series transition.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
         ],
       },
       {
@@ -240,6 +241,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'E-Motor Design', defaultEn: 'E-Motor Design' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Auslegung, Berechnung und Optimierung elektrischer Motoren – vom Konzept bis zur serienreifen Lösung.', defaultEn: 'Design, calculation and optimization of electric motors – from concept to series-ready solution.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'CME wählt den richtigen Elektromotor für Ihre Anwendung und optimiert das Design nach Ihren Vorgaben. Unsere Experten berechnen und simulieren Magnetkreise, Blechschnitte und thermische Belastungen – für Motoren mit besonders hohem Wirkungsgrad, auch unter rauen Umgebungsbedingungen und bei hohen Temperaturen. Durch die enge Integration von E-Motor-Design, Leistungselektronik und Regelungstechnik entstehen optimal aufeinander abgestimmte Antriebssysteme.', defaultEn: 'CME selects the right electric motor for your application and optimizes the design according to your specifications. Our experts calculate and simulate magnetic circuits, lamination cuts and thermal loads – for motors with particularly high efficiency, even under harsh environmental conditions and at high temperatures. Through the close integration of e-motor design, power electronics and control engineering, optimally coordinated drive systems are created.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_1736__1920px_e713f7ca.jpg`, defaultEn: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
         ],
       },
       {
@@ -278,6 +280,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Control Design', defaultEn: 'Control Design' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Modellbasiertes Reglerdesign – Entwicklung und Verifikation von Regelalgorithmen entlang des V-Modells.', defaultEn: 'Model-based controller design – development and verification of control algorithms along the V-model.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'CME entwickelt Regelungskonzepte für anspruchsvolle Antriebssysteme und Leistungselektronik. Von der modellbasierten Funktionsentwicklung über MIL/SIL/HIL-Simulation bis zum Rapid-Control-Prototyping – wir verifizieren Regelalgorithmen systematisch entlang des V-Modells, bevor sie in die Serienapplikation überführt werden. Unsere Erfahrung umfasst sensorlose Regelungsverfahren, FOC-Algorithmen und applikationsspezifische Regleranpassungen.', defaultEn: 'CME develops control concepts for demanding drive systems and power electronics. From model-based function development through MIL/SIL/HIL simulation to rapid control prototyping – we systematically verify control algorithms along the V-model before transferring them to series applications. Our experience includes sensorless control methods, FOC algorithms and application-specific controller adaptations.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
       {
@@ -316,6 +319,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Simulation', defaultEn: 'Simulation' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Elektrische, System- und thermische Simulation', defaultEn: 'Electrical, System and Thermal Simulation' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Risikominimierung vor dem Prototypenbau durch MATLAB, COMSOL und SPICE.', defaultEn: 'Risk minimization before prototype construction using MATLAB, COMSOL and SPICE.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg`, defaultEn: `${CDN}/thermosimulation-1500x1000-1_77e2afd4.jpg` },
         ],
       },
     ],
@@ -339,6 +343,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Test & Verification', defaultEn: 'Test & Verification' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'EMV-Tests, Umwelttests und funktionale Verifikation – in unserer eigenen Testinfrastruktur am Standort Dortmund.', defaultEn: 'EMC tests, environmental tests and functional verification – in our own test infrastructure in Dortmund.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Qualität beginnt bei der Verifikation. CME verfügt über eine eigene Testinfrastruktur am Standort Dortmund – von der EMV-Vorkammer über Klimaschränke bis zum automatisierten Funktionstest. Wir testen Ihre Elektronik nach den relevanten Normen und Standards, bevor sie in die Serie geht. So stellen wir sicher, dass Ihr Produkt nicht nur funktioniert, sondern auch die Zulassungsanforderungen erfüllt.', defaultEn: 'Quality starts with verification. CME has its own test infrastructure at the Dortmund site – from EMC pre-compliance chambers through climate chambers to automated functional testing. We test your electronics according to relevant norms and standards before series production. This ensures your product not only works, but also meets certification requirements.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
       {
@@ -377,6 +382,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Validierung & EMV', defaultEn: 'Validation & EMC' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Absicherung unter realen Einsatzbedingungen – leitungsgebundene EMV-Prüfung in eigener Schirmkabine, Umwelt- und Lebensdauertests.', defaultEn: 'Validation under real operating conditions – conducted EMC testing in our own shielded chamber, environmental and lifetime tests.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'CME validiert Ihre Elektronik unter realen Einsatzbedingungen – in unserem eigenen EMV-Messbereich mit Schirmkabine für leitungsgebundene Prüfungen. Wir identifizieren EMV-Schwachstellen frühzeitig im Entwicklungsprozess und beheben sie, bevor sie in der Serienfertigung zum Problem werden. Ergänzt wird die EMV-Qualifikation durch Umweltsimulationen, Klimatests und Lebensdauerprüfungen auf individuell konzipierten Prüfständen.', defaultEn: 'CME validates your electronics under real operating conditions – in our own EMC measurement facility with shielded chamber for conducted tests. We identify EMC weaknesses early in the development process and fix them before they become problems in series production. EMC qualification is complemented by environmental simulations, climate tests and lifetime tests on individually designed test benches.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg`, defaultEn: `${CDN}/JK_2885__1920px_ecd3ed1e.jpg` },
         ],
       },
       {
@@ -415,6 +421,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'KI-gestützte Entwicklung', defaultEn: 'AI-Powered Development' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Datengetriebene Methoden für Leistungselektronik, Antriebssysteme und Embedded-Anwendungen – vom Algorithmus bis zur Inferenz auf dem Zielsystem.', defaultEn: 'Data-driven methods for power electronics, drive systems and embedded applications – from algorithm to inference on the target system.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'KI ist kein Selbstzweck – sie löst konkrete Probleme in der Elektronikentwicklung. CME setzt Machine-Learning-Methoden dort ein, wo klassische Regelungs- oder Analyseansätze an ihre Grenzen stoßen: bei der Erkennung von Mustern in Sensordaten, bei der Optimierung nichtlinearer Regelstrecken und bei der vorausschauenden Wartung komplexer Systeme. Entscheidend ist dabei nicht die Modellkomplexität, sondern die Fähigkeit, trainierte Modelle auf ressourcenbeschränkter Embedded-Hardware zuverlässig auszuführen – in Echtzeit, bei begrenztem Speicher und unter industriellen Umgebungsbedingungen.', defaultEn: 'AI is not an end in itself – it solves concrete problems in electronics development. CME applies machine learning methods where classical control or analysis approaches reach their limits: detecting patterns in sensor data, optimizing nonlinear control systems, and enabling predictive maintenance of complex systems. What matters is not model complexity, but the ability to reliably run trained models on resource-constrained embedded hardware – in real time, with limited memory, and under industrial environmental conditions.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
         ],
       },
       {
@@ -540,6 +547,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Leiterplatten bestücken', defaultEn: 'PCB Assembly' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie.', defaultEn: 'SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Die Leiterplattenbestückung ist das Herzstück unserer EMS-Fertigung. Mit modernsten SMD-Bestückungsautomaten und THT-Lötanlagen fertigen wir Ihre Elektronik in höchster Qualität. Ob einzelne Prototypen für die Entwicklungsvalidierung oder Serienproduktion mit mehreren tausend Stück pro Monat – unsere Fertigungslinien sind flexibel konfigurierbar und auf schnelle Rüstwechsel optimiert.', defaultEn: 'PCB assembly is the heart of our EMS manufacturing. With state-of-the-art SMD placement machines and THT soldering systems, we manufacture your electronics in the highest quality. Whether individual prototypes for development validation or series production with several thousand units per month – our production lines are flexibly configurable and optimized for quick changeovers.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/leiterplatten-hero-poster_168ab542.jpg`, defaultEn: `${CDN}/leiterplatten-hero-poster_168ab542.jpg` },
         ],
       },
       {
@@ -578,6 +586,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Baugruppen fertigen', defaultEn: 'Module Assembly' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Komplette Baugruppenmontage inkl. Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage.', defaultEn: 'Complete module assembly including potting, conformal coating, cable assembly and final assembly.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Elektronik ist mehr als eine bestückte Leiterplatte. CME bietet die komplette Baugruppenfertigung aus einer Hand – von der bestückten PCB über Verguss und Schutzlackierung bis zur Endmontage im Gehäuse. Unsere Mitarbeiter sind in der Verarbeitung anspruchsvoller Materialien und Prozesse geschult, insbesondere für Leistungselektronik und thermisch belastete Baugruppen.', defaultEn: 'Electronics is more than a populated PCB. CME offers complete module assembly from a single source – from populated PCB through potting and conformal coating to final assembly in the housing. Our staff is trained in processing demanding materials and processes, especially for power electronics and thermally stressed assemblies.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/baugruppen-hero_b99b1505.webp`, defaultEn: `${CDN}/baugruppen-hero_b99b1505.webp` },
         ],
       },
       {
@@ -616,6 +625,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Qualitätsmanagement', defaultEn: 'Quality Management' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'ISO 9001 & 14001 zertifiziert. AOI, lückenlose Rückverfolgbarkeit und datenbankgestützte Traceability.', defaultEn: 'ISO 9001 & 14001 certified. AOI, complete traceability and database-driven tracking systems.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Qualität ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil jedes Fertigungsprozesses. Unser Qualitätsmanagementsystem ist nach ISO 9001 und ISO 14001 zertifiziert. Jede Baugruppe durchläuft automatisierte optische Inspektion (AOI). Unsere datenbankgestützte Traceability mit vernetzten Fertigungsgeräten gewährleistet maximale Rückverfolgbarkeit – vom Wareneingang über jeden Fertigungsschritt bis zum Versand.', defaultEn: 'Quality at CME is not a downstream inspection step, but an integral part of every manufacturing process. Our quality management system is ISO 9001 and ISO 14001 certified. Every assembly undergoes automated optical inspection (AOI). Our database-driven traceability with connected manufacturing equipment ensures maximum traceability – from incoming goods through every production step to shipping.' },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/microscope-inspection_a3967815.png`, defaultEn: `${CDN}/microscope-inspection_a3967815.png` },
         ],
       },
       {
