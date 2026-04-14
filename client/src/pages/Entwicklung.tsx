@@ -272,7 +272,7 @@ export default function Entwicklung() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
-                {isDE ? 'Beratung' : 'Consulting'}
+                {isDE ? 'Beratung & Consulting' : 'Consulting & Advisory'}
               </h2>
               <p className="fluid-body text-gray-600 leading-relaxed" style={{ marginBottom: 'var(--space-gap-sm)' }}>
                 {isDE

@@ -440,3 +440,8 @@
 - [x] CONTENT: Baugruppenfertigung-Seite – 9 Kacheln mit je 4 Bullet Points ergänzen (Verguss, Schutzlackierung, Kabelkonfektionierung, Gehäusemontage, Pressfit, Wärmeleitpaste, Laserbeschriftung, Verpackung, Montageanleitungen)
 - [x] CONTENT: Fertigungs-Seite – 8 Kacheln mit je 3 Bullet Points ergänzen (SMD, THT, AOI, Verguss, Kabelkonfektionierung, Funktionstest, Traceability, DFM)
 - [x] FIX: CMS-Editor – Fehlendes content.contentImage-Feld + intro + subtitle in contentDefinitions für UX Interface Engineering und Software Digitale Systeme ergänzt
+- [x] FIX: CONTACT_EMAIL auf t.scherr@control-motion.de gesetzt
+- [x] CONTENT: Entwicklung.tsx – "Beratung" → "Beratung & Consulting" (h2 Überschrift)
+- [x] CONTENT: HardwareSoftware.tsx – Firmware-Bullet: Infineon, STM, Renesas ergänzt
+- [x] CONTENT: HardwareSoftware.tsx – Aufbau- & Verbindungstechnik Bullets überarbeitet (Kupfer-Inlays, Abstimmung mit Fertiger)
+- [x] LEGAL: Simulation.tsx – Trademark-Hinweise (®/™) für alle genannten Marken recherchiert und eingefügt + Disclaimer-Text

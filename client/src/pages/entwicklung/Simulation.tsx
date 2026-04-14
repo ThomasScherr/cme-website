@@ -72,8 +72,8 @@ const simDomains = [
     descDE: 'Elektromagnetische FEA für Elektromotoren (EC, DC, Synchronmaschinen). Geometrie-Design des Magnetkreises, Blechschnitt-Konstruktion und Auslegung für Hochtemperaturanwendungen.',
     descEN: 'Electromagnetic FEA for electric motors (EC, DC, synchronous machines). Geometry design of the magnetic circuit, lamination construction and design for high-temperature applications.',
     items: {
-      de: ['Elektromagnetische FEA (Motor-CAD / ANSYS)', 'Geometrie-Design Magnetkreis (Rotor & Stator)', 'Blechschnitt-Konstruktion', 'Auslegung für Hochtemperaturen', 'Analytische Berechnung & FEM-Optimierung'],
-      en: ['Electromagnetic FEA (Motor-CAD / ANSYS)', 'Magnetic circuit geometry design (rotor & stator)', 'Lamination construction', 'Design for high temperatures', 'Analytical calculation & FEM optimization'],
+      de: ['Elektromagnetische FEA (Motor-CAD / ANSYS\u00ae)', 'Geometrie-Design Magnetkreis (Rotor & Stator)', 'Blechschnitt-Konstruktion', 'Auslegung für Hochtemperaturen', 'Analytische Berechnung & FEM-Optimierung'],
+      en: ['Electromagnetic FEA (Motor-CAD / ANSYS\u00ae)', 'Magnetic circuit geometry design (rotor & stator)', 'Lamination construction', 'Design for high temperatures', 'Analytical calculation & FEM optimization'],
     },
   },
 ];
@@ -85,8 +85,8 @@ const simDomains = [
  */
 const toolchain = [
   {
-    toolDE: 'MATLAB & Simulink',
-    toolEN: 'MATLAB & Simulink',
+    toolDE: 'MATLAB\u00ae & Simulink\u00ae',
+    toolEN: 'MATLAB\u00ae & Simulink\u00ae',
     logo: `${CDN}/mathworks_c08e88a4.png`,
     areaDE: 'System- & Antriebssimulation',
     areaEN: 'System & Drive Simulation',
@@ -94,8 +94,8 @@ const toolchain = [
     descEN: 'Model-based function development, control design, MIL/SIL/HIL',
   },
   {
-    toolDE: 'Simscape Electrical',
-    toolEN: 'Simscape Electrical',
+    toolDE: 'Simscape\u2122 Electrical\u2122',
+    toolEN: 'Simscape\u2122 Electrical\u2122',
     logo: `${CDN}/simscape-logo-clean_717d5027.png`,
     areaDE: 'Elektro- & Antriebssimulation',
     areaEN: 'Electrical & Drive Simulation',
@@ -103,8 +103,8 @@ const toolchain = [
     descEN: 'Detailed modeling of electric drives and power electronics',
   },
   {
-    toolDE: 'SPICE (LTspice, Micro-Cap)',
-    toolEN: 'SPICE (LTspice, Micro-Cap)',
+    toolDE: 'SPICE (LTspice\u00ae, Micro-Cap)',
+    toolEN: 'SPICE (LTspice\u00ae, Micro-Cap)',
     logo: `${CDN}/ltspice_310026fe.png`,
     areaDE: 'Schaltungs- & Verlustsimulation',
     areaEN: 'Circuit & Loss Simulation',
@@ -112,8 +112,8 @@ const toolchain = [
     descEN: 'Power loss simulation, component stress, filter dimensioning, SPICE models',
   },
   {
-    toolDE: 'COMSOL Multiphysics',
-    toolEN: 'COMSOL Multiphysics',
+    toolDE: 'COMSOL Multiphysics\u00ae',
+    toolEN: 'COMSOL Multiphysics\u00ae',
     logo: `${CDN}/comsol_8324696c.png`,
     areaDE: 'Thermosimulation & FEA',
     areaEN: 'Thermal Simulation & FEA',
@@ -121,8 +121,8 @@ const toolchain = [
     descEN: '3D FEM, multiphysics coupling (thermal, electrical, mechanical)',
   },
   {
-    toolDE: 'Motor-CAD (ANSYS)',
-    toolEN: 'Motor-CAD (ANSYS)',
+    toolDE: 'Motor-CAD (ANSYS\u00ae)',
+    toolEN: 'Motor-CAD (ANSYS\u00ae)',
     logo: `${CDN}/ansys-logo_db7a517c.jpg`,
     areaDE: 'E-Motor-Auslegung & FEA',
     areaEN: 'E-Motor Design & FEA',
@@ -130,8 +130,8 @@ const toolchain = [
     descEN: 'Electromagnetic FEA, motor design, magnetic circuit optimization',
   },
   {
-    toolDE: 'PLECS',
-    toolEN: 'PLECS',
+    toolDE: 'PLECS\u00ae',
+    toolEN: 'PLECS\u00ae',
     logo: `${CDN}/plecs_16b1d600.png`,
     areaDE: 'Leistungselektronik-Simulation',
     areaEN: 'Power Electronics Simulation',
@@ -306,6 +306,15 @@ export default function Simulation() {
           </div>
         </div>
       </section>
+
+      {/* Trademark Disclaimer */}
+      <div className="container">
+        <p className="text-[10px] text-gray-400 leading-relaxed mt-4">
+          {isDE
+            ? 'MATLAB\u00ae und Simulink\u00ae sind eingetragene Marken von The MathWorks, Inc. Simscape\u2122 und Simscape\u2122 Electrical\u2122 sind Marken von The MathWorks, Inc. LTspice\u00ae ist eine eingetragene Marke von Analog Devices, Inc. COMSOL\u00ae und COMSOL Multiphysics\u00ae sind eingetragene Marken der COMSOL AB. ANSYS\u00ae und Motor-CAD sind Marken von Ansys, Inc. PLECS\u00ae ist eine eingetragene Marke der Plexim GmbH. Alle anderen Marken sind Eigentum ihrer jeweiligen Inhaber.'
+            : 'MATLAB\u00ae and Simulink\u00ae are registered trademarks of The MathWorks, Inc. Simscape\u2122 and Simscape\u2122 Electrical\u2122 are trademarks of The MathWorks, Inc. LTspice\u00ae is a registered trademark of Analog Devices, Inc. COMSOL\u00ae and COMSOL Multiphysics\u00ae are registered trademarks of COMSOL AB. ANSYS\u00ae and Motor-CAD are trademarks of Ansys, Inc. PLECS\u00ae is a registered trademark of Plexim GmbH. All other trademarks are the property of their respective owners.'}
+        </p>
+      </div>
 
       {/* CTA */}
       <section className="section-pad bg-gray-50">

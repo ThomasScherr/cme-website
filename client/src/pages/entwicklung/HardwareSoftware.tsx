@@ -124,13 +124,13 @@ const features = [
     en: 'Embedded C/C++ Firmware',
     icon: Code,
     bulletsDE: [
-      'Bare-Metal- und RTOS-basierte Firmware für ARM-Cortex, PIC, AVR',
+      'Bare-Metal- und RTOS-basierte Firmware für ARM-Cortex, PIC, AVR, Infineon, STM, Renesas, …',
       'Treiber- und BSP-Entwicklung für kundenspezifische Hardware',
       'Bootloader, OTA-Updates und sichere Firmware-Architekturen',
       'Debugging, Profiling und Hardware-in-the-Loop-Tests',
     ],
     bulletsEN: [
-      'Bare-metal and RTOS-based firmware for ARM Cortex, PIC, AVR',
+      'Bare-metal and RTOS-based firmware for ARM Cortex, PIC, AVR, Infineon, STM, Renesas, …',
       'Driver and BSP development for custom hardware',
       'Bootloader, OTA updates and secure firmware architectures',
       'Debugging, profiling and hardware-in-the-loop testing',
@@ -175,16 +175,16 @@ const features = [
     en: 'Assembly & Interconnection Technology (Ceramic, IMS, Leadframe, Bare-Die)',
     icon: CircuitBoard,
     bulletsDE: [
-      'Bestückung auf IMS-Substraten und Keramikträgern für hohe Wärmelast',
-      'Bare-Die-Montage und Wire-Bonding für kompakte Hochleistungsmodule',
+      'Entwicklung von Baugruppen auf Basis von Kupfer-Inlays, IMS-Substraten und Keramikträgern für hohe Wärmelast',
+      'Entwicklung von Bare-Die-Montage und Wire-Bonding für kompakte Hochleistungsmodule in enger Abstimmung mit dem Fertiger',
       'Stanzgitter-Designs für industrielle und automotive Gehäusekonzepte',
-      'Enge Abstimmung zwischen Entwicklung und hauseigener Fertigung (DFM)',
+      'Enge Abstimmung zwischen Entwicklung und Fertigung (DFM)',
     ],
     bulletsEN: [
-      'Assembly on IMS substrates and ceramic carriers for high thermal loads',
-      'Bare-die mounting and wire bonding for compact high-performance modules',
+      'Development of assemblies based on copper inlays, IMS substrates and ceramic carriers for high thermal loads',
+      'Development of bare-die mounting and wire bonding for compact high-performance modules in close coordination with the manufacturer',
       'Leadframe designs for industrial and automotive package concepts',
-      'Close coordination between development and in-house manufacturing (DFM)',
+      'Close coordination between development and manufacturing (DFM)',
     ],
   },
 ];
