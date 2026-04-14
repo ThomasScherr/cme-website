@@ -31,17 +31,17 @@ export default function Baugruppen() {
       ctaEN="Request Quote"
       features={[
         {
-          de: 'Verguss (PU, Epoxid, Silikon)', en: 'Potting (PU, Epoxy, Silicone)', icon: Droplets,
+          de: 'Verguss (PU, Epoxid, 2K-Werkstoffe)', en: 'Potting (PU, Epoxy, 2K Materials)', icon: Droplets,
           bulletsDE: [
             'Schutz sensibler Baugruppen vor Feuchtigkeit, Vibration, chemischen Einflüssen und mechanischer Belastung',
             'Auswahl des Vergussmaterials nach thermischen, dielektrischen und applikationsspezifischen Anforderungen',
-            'PU für flexible Anwendungen, Epoxid für maximale Härte und Chemikalienresistenz, Silikon für Hochtemperaturbereiche',
+            'PU für flexible Anwendungen, Epoxid für maximale Härte und Chemikalienresistenz',
             'Prozesssichere Verarbeitung mit definierten Aushärteparametern und Sichtprüfung nach IPC-Standards',
           ],
           bulletsEN: [
             'Protection of sensitive assemblies against moisture, vibration, chemical influences and mechanical stress',
             'Potting material selection based on thermal, dielectric and application-specific requirements',
-            'PU for flexible applications, epoxy for maximum hardness and chemical resistance, silicone for high-temperature ranges',
+            'PU for flexible applications, epoxy for maximum hardness and chemical resistance',
             'Process-safe processing with defined curing parameters and visual inspection per IPC standards',
           ],
         },
@@ -49,14 +49,14 @@ export default function Baugruppen() {
           de: 'Schutzlackierung (Conformal Coating)', en: 'Conformal Coating', icon: Shield,
           bulletsDE: [
             'Selektive oder vollflächige Beschichtung zum Schutz vor Korrosion, Feuchtigkeit, Staub und kriechenden Strömen',
-            'Materialauswahl nach Anforderung: Acryl, Polyurethan, Epoxid, Silikon oder UV-härtende Lacke',
-            'Applikation per Sprühen, Fluten, Tauchen oder selektivem Auftrag – je nach Baugruppe und Schutzklasse',
+            'Materialauswahl nach Anforderung: Acryl, Polyurethan, Epoxid oder UV-härtende Lacke',
+            'Applikation per Sprühen, Tauchen oder selektivem Auftrag – je nach Baugruppe und Schutzklasse',
             'UV-Fluoreszenzprüfung zur 100\u00a0%-Kontrolle der Beschichtung auf Vollständigkeit und Gleichmäßigkeit',
           ],
           bulletsEN: [
             'Selective or full-area coating for protection against corrosion, moisture, dust and creepage currents',
-            'Material selection by requirement: acrylic, polyurethane, epoxy, silicone or UV-curing coatings',
-            'Application by spraying, flooding, dipping or selective dispensing – depending on assembly and protection class',
+            'Material selection by requirement: acrylic, polyurethane, epoxy or UV-curing coatings',
+            'Application by spraying, dipping or selective dispensing – depending on assembly and protection class',
             'UV fluorescence inspection for 100\u00a0% coating coverage and uniformity verification',
           ],
         },
@@ -95,13 +95,13 @@ export default function Baugruppen() {
           bulletsDE: [
             'Lötfreie, gasdichte Einpresskontakte für höchste Zuverlässigkeit in Vibrationsumgebungen und bei Temperaturschwankungen',
             'Geeignet für Steckverbinder, Leistungsklemmen und Busverbindungen mit hohen Stromtragfähigkeiten',
-            'Kontrollierter Einpressprozess mit definierter Einpresskraft und 100\u00a0%-Überprüfung auf korrekte Einpresstiefe',
+            'Kontrollierter Einpressprozess mit definierter Überprüfung auf korrekte Einpresstiefe',
             'Besonders geeignet für Automotive- und Industrieanwendungen mit Anforderungen an langzeitstabile elektrische Verbindungen',
           ],
           bulletsEN: [
             'Solder-free, gas-tight press-fit contacts for highest reliability in vibration environments and temperature fluctuations',
             'Suitable for connectors, power terminals and bus connections with high current-carrying capacities',
-            'Controlled press-in process with defined press-in force and 100\u00a0% verification of correct press-in depth',
+            'Controlled press-in process with defined verification of correct press-in depth',
             'Particularly suitable for automotive and industrial applications requiring long-term stable electrical connections',
           ],
         },

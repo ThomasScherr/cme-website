@@ -453,3 +453,9 @@
 - [x] FIX: SoftwareDigitaleSysteme – Abgrenzungsblock-Sektion gelöscht (redundant)
 - [x] CONTENT: SoftwareDigitaleSysteme – Intro-Text ersetzt (inkl. Abgrenzungssatz + Link zu Hardware/Software) + Diamond-Bild paddingTop 30px
 - [x] CONTENT: KI-Entwicklung – Kachel-Überschriften 1,2,3,5,6 umbenannt (Kachel 4 bleibt), Inhalt nicht verschoben
+- [x] FIX: Baugruppen.tsx – 5 Textänderungen: Verguss Silikon→ 2K-Werkstoffe, Schutzlackierung Silikon/Fluten entfernt, Pressfit Einpresskraft entfernt (DE+EN)
+- [x] CONTENT: Express-Bestückung – Text noch nicht gefunden (möglicherweise CMS-gespeichert, Klärung ausstehend)
+- [x] FIX: Qualitätsseite – Kachel-Überschriften/Icons ab Kachel 3 um eine Position gegenüber Bullets verschoben (CMS contentDefinitions korrigiert: UL bei Index 2 eingefügt, Wareneingangskontrolle entfernt, EMPB bei Index 8 hinzugefügt)
+- [x] FIX: Qualitätsseite – Flying-Probe aus ICT-Kachel entfernt, ersetzt durch "Nadelbett-Adapter" (DE+EN)
+- [x] FIX: FaqSection-Import-Fehler in SoftwareDigitaleSysteme.tsx – Import war bereits entfernt, Fehler war nur im Vite-Cache (Server-Neustart behebt es)
+- [x] FIX: Einpressprozess-Bug in Baugruppen.tsx – bereits korrigiert (Text ist jetzt korrekt: "Kontrollierter Einpressprozess mit definierter Überprüfung auf korrekte Einpresstiefe")

@@ -121,13 +121,13 @@ export default function Qualitaet() {
           icon: CircuitBoard,
           bulletsDE: [
             'Elektrische Prüfung bestückter Leiterplatten auf Kurzschlüsse, Unterbrechungen und Bauteilwerte',
-            'Nadelbett- oder Flying-Probe-Systeme je nach Losgröße und PCB-Layout',
+            'Nadelbett-Adapter je nach Losgröße und PCB-Layout',
             'Testabdeckung >95 % durch Design-for-Test-konforme Layoutplanung',
             'Prüfprotokoll und Testergebnis für lückenlose Qualitätsdokumentation',
           ],
           bulletsEN: [
             'Electrical testing of assembled PCBs for shorts, opens and component values',
-            'Bed-of-nails or flying probe systems depending on batch size and PCB layout',
+            'Bed-of-nails adapter depending on batch size and PCB layout',
             'Test coverage >95% through design-for-test compliant layout planning',
             'Test protocol and results for complete quality documentation',
           ],
