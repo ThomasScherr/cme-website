@@ -129,12 +129,12 @@ const capabilities = [
     de: 'Funktionstest & ICT', en: 'Functional Test & ICT', icon: FlaskConical,
     bulletsDE: [
       'End-of-Line-Funktionstest für 100\u00a0%-Prüfung aller Serieneinheiten vor Versand',
-      'In-Circuit-Test (ICT) per Nadelbett oder Flying-Probe ab Losgröße 1',
+      'Manuelle Prüfung oder Nadelbett-Adapter je nach Anforderung, Stückzahl und Layoutkomplexität',
       'Prüfprotokolle und Testergebnisse für lückenlose Qualitätsdokumentation',
     ],
     bulletsEN: [
       'End-of-line functional test for 100\u00a0% inspection of all series units before shipping',
-      'In-Circuit Test (ICT) via bed-of-nails or flying probe from lot size 1',
+      'Manual testing or bed-of-nails adapter depending on requirements, volume and layout complexity',
       'Test protocols and results for complete quality documentation',
     ],
   },
