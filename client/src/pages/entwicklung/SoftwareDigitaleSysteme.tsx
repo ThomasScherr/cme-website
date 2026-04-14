@@ -29,9 +29,8 @@ interface Feature {
   icon: LucideIcon;
   bulletsDE: string[];
   bulletsEN: string[];
-  /** Optional extended description below bullets (only UX card) */
-  descriptionDE?: string;
-  descriptionEN?: string;
+  /** If true, render as teaser card with link instead of full card */
+  isTeaser?: boolean;
 }
 
 const features: Feature[] = [
@@ -68,27 +67,6 @@ const features: Feature[] = [
       'Offline capability and local data storage for use without network coverage',
       'Technologies: React Native, Swift, Kotlin, Flutter – depending on platform requirements',
     ],
-  },
-  {
-    de: 'UX & Interface Design',
-    en: 'UX & Interface Design',
-    icon: Palette,
-    bulletsDE: [
-      'UX-Research mit echten Nutzern: Inbetriebnahme-Ingenieure, Servicetechniker, Anlagenführer – nicht mit Personas aus dem Lehrbuch',
-      'Interaktionsdesign für komplexe technische Daten: Parametermasken, Fehlercodes, Zustandsdiagramme verständlich machen',
-      'Prototyping und Nutzertests vor der ersten Zeile Code – teure Fehlentwicklungen werden im Entwurf erkannt',
-      'Design-Systeme für industrielle Interfaces: konsistent, wartbar, skalierbar über Produktgenerationen',
-    ],
-    bulletsEN: [
-      'UX research with real users: commissioning engineers, service technicians, plant operators – not textbook personas',
-      'Interaction design for complex technical data: making parameter masks, error codes, state diagrams understandable',
-      'Prototyping and user testing before the first line of code – costly misdevelopments are caught in the design phase',
-      'Design systems for industrial interfaces: consistent, maintainable, scalable across product generations',
-    ],
-    descriptionDE:
-      'Schlechte UX kostet in der Industrie nicht Conversions – sie kostet Inbetriebnahmezeit, Servicekosten und Kundenzufriedenheit. Ein Servicetechniker im Feld will nicht durch 300 Parameter scrollen. Er will sofort sehen, was falsch läuft und wie er es behebt. CME versteht beide Seiten: das Gerät und den Mensch davor. Ein reines UX-Studio kennt die Hardware nicht. Ein reines Elektronikhaus denkt nicht in Nutzerflüssen. Wir tun beides.',
-    descriptionEN:
-      'Poor UX in industry doesn\'t cost conversions – it costs commissioning time, service costs and customer satisfaction. A service technician in the field doesn\'t want to scroll through 300 parameters. He wants to see immediately what\'s wrong and how to fix it. CME understands both sides: the device and the person in front of it. A pure UX studio doesn\'t know the hardware. A pure electronics company doesn\'t think in user flows. We do both.',
   },
   {
     de: 'Backend & Systemarchitektur',
@@ -141,6 +119,22 @@ const features: Feature[] = [
       'Modular architecture: digital infrastructure grows with product requirements and volumes',
     ],
   },
+  {
+    de: 'UX & Interface Design',
+    en: 'UX & Interface Design',
+    icon: Palette,
+    isTeaser: true,
+    bulletsDE: [
+      'Nutzerforschung, Interaktionsdesign und technische Umsetzung aus einer Hand – kein UX-Studio ohne Hardwareverständnis',
+      'Von der Nutzeranalyse bis zur serienreifen Implementierung auf der Zielplattform',
+      'Prototyping und Nutzertests vor der ersten Zeile Code',
+    ],
+    bulletsEN: [
+      'User research, interaction design and technical implementation from a single source – no UX studio without hardware understanding',
+      'From user analysis to production-ready implementation on the target platform',
+      'Prototyping and user testing before the first line of code',
+    ],
+  },
 ];
 
 /* ── Technology tags ── */
@@ -152,15 +146,16 @@ const techCategories = [
   { labelDE: 'Cloud & IoT', labelEN: 'Cloud & IoT', tags: ['AWS IoT', 'Azure IoT Hub', 'MQTT', 'OPC UA'] },
   { labelDE: 'Protokolle', labelEN: 'Protocols', tags: ['CAN', 'Modbus TCP', 'REST', 'GraphQL', 'WebSocket'] },
   { labelDE: 'DevOps', labelEN: 'DevOps', tags: ['Docker', 'GitHub Actions', 'CI/CD-Pipelines'] },
-  { labelDE: 'Design & UX', labelEN: 'Design & UX', tags: ['Figma', 'Maze (Nutzertests)', 'Design-Systeme'] },
+  { labelDE: 'Design & UX', labelEN: 'Design & UX', tags: ['Figma', 'Maze', 'Design-Systeme'] },
 ];
 
 /* ── FAQ Accordion Item ───────────────────────────────────────── */
-function FaqItem({ question, answer, isOpen, onToggle }: {
+function FaqItem({ question, answer, isOpen, onToggle, hasLink }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
+  hasLink?: boolean;
 }) {
   return (
     <div className="border-b border-gray-200 last:border-b-0">
@@ -186,9 +181,20 @@ function FaqItem({ question, answer, isOpen, onToggle }: {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <p className="fluid-body text-gray-600 leading-relaxed pb-5 px-1">
-              {answer}
-            </p>
+            <div className="pb-5 px-1">
+              <p className="fluid-body text-gray-600 leading-relaxed">
+                {answer}
+              </p>
+              {hasLink && (
+                <Link
+                  href="/entwicklung/ux-interface-engineering"
+                  className="inline-flex items-center gap-1.5 text-cme-blue font-semibold hover:underline fluid-body mt-3"
+                >
+                  Mehr zu UX & Interface Engineering
+                  <ArrowRight size={16} />
+                </Link>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -201,38 +207,39 @@ const faqItems = [
   {
     questionDE: 'Entwickelt CME auch Software ohne eigene Hardware?',
     questionEN: 'Does CME also develop software without proprietary hardware?',
-    answerDE: 'Ja. Wir entwickeln Web-Apps, Mobile Apps und Backend-Systeme auch für bestehende Hardware anderer Hersteller – vorausgesetzt, die Schnittstellen sind dokumentiert oder analysierbar.',
-    answerEN: 'Yes. We develop web apps, mobile apps and backend systems also for existing hardware from other manufacturers – provided the interfaces are documented or analyzable.',
+    answerDE: 'Ja. Wenn Schaltung und Firmware bereits existieren, entwickeln wir die Applikationsschicht darüber – Konfigurationstools, Cloud-Anbindung, mobile Apps – ohne das bestehende System anzutasten. Voraussetzung: eine definierte Schnittstelle (API, Protokoll) zum Gerät.',
+    answerEN: 'Yes. If the circuit and firmware already exist, we develop the application layer on top – configuration tools, cloud connectivity, mobile apps – without touching the existing system. Prerequisite: a defined interface (API, protocol) to the device.',
   },
   {
     questionDE: 'Welche Technologien setzt CME für Web-Applikationen ein?',
     questionEN: 'What technologies does CME use for web applications?',
-    answerDE: 'Unsere Standard-Stacks umfassen React und TypeScript im Frontend, Node.js oder Python (FastAPI) im Backend, sowie PostgreSQL, InfluxDB oder MongoDB als Datenbanken. Die Auswahl richtet sich nach der Projektanforderung.',
-    answerEN: 'Our standard stacks include React and TypeScript for the frontend, Node.js or Python (FastAPI) for the backend, and PostgreSQL, InfluxDB or MongoDB as databases. The selection depends on the project requirements.',
+    answerDE: 'Primär React mit TypeScript für das Frontend, kombiniert mit modernen Backend-Technologien wie Node.js, FastAPI oder .NET – je nach Anforderung. Wir sind nicht auf einen Stack festgelegt.',
+    answerEN: 'Primarily React with TypeScript for the frontend, combined with modern backend technologies like Node.js, FastAPI or .NET – depending on requirements. We are not locked into a single stack.',
   },
   {
     questionDE: 'Kann CME bestehende Systeme in Cloud-Plattformen integrieren?',
     questionEN: 'Can CME integrate existing systems into cloud platforms?',
-    answerDE: 'Ja. Wir integrieren bestehende Maschinen und Steuerungen über IoT-Gateways und Industrieprotokolle (OPC UA, MQTT, Modbus TCP) in Cloud-Plattformen wie AWS IoT Core oder Azure IoT Hub – ohne die vorhandene Infrastruktur abzulösen.',
-    answerEN: 'Yes. We integrate existing machines and controllers via IoT gateways and industrial protocols (OPC UA, MQTT, Modbus TCP) into cloud platforms like AWS IoT Core or Azure IoT Hub – without replacing existing infrastructure.',
+    answerDE: 'Ja. Wir verbinden bestehende Steuerungen und Geräte über IoT-Gateways mit AWS IoT Core oder Azure IoT Hub – ohne Ablösung der vorhandenen Infrastruktur. Gängige Industrieprotokolle wie OPC UA, MQTT und Modbus TCP werden direkt unterstützt.',
+    answerEN: 'Yes. We connect existing controllers and devices via IoT gateways to AWS IoT Core or Azure IoT Hub – without replacing existing infrastructure. Common industrial protocols like OPC UA, MQTT and Modbus TCP are directly supported.',
   },
   {
     questionDE: 'Wie unterscheidet sich CME von einer reinen Software-Agentur?',
     questionEN: 'How does CME differ from a pure software agency?',
-    answerDE: 'Unsere Software-Ingenieure arbeiten im selben Haus wie die Hardware- und Embedded-Teams. Die Schnittstelle zwischen Gerät und Applikation wird nicht zwischen zwei Unternehmen ausgehandelt, sondern entsteht von Anfang an gemeinsam. Das spart Iterationen und verhindert die teuersten Fehler.',
-    answerEN: 'Our software engineers work in the same building as the hardware and embedded teams. The interface between device and application is not negotiated between two companies, but is created together from the start. This saves iterations and prevents the most expensive errors.',
+    answerDE: 'Eine Software-Agentur kennt das Gerät nicht. CME entwickelt Hardware, Embedded-Software und Applikation im selben Haus. Die Schnittstelle zwischen Gerät und App wird nicht zwischen zwei Unternehmen ausgehandelt – sie entsteht gemeinsam. Das verhindert die häufigsten und teuersten Integrationsfehler.',
+    answerEN: 'A software agency doesn\'t know the device. CME develops hardware, embedded software and application in the same building. The interface between device and app is not negotiated between two companies – it is created together. This prevents the most common and expensive integration errors.',
   },
   {
     questionDE: 'Bietet CME auch UX-Design für industrielle Interfaces an?',
     questionEN: 'Does CME also offer UX design for industrial interfaces?',
-    answerDE: 'Ja. Wir führen UX-Research mit echten Nutzern durch – Inbetriebnahme-Ingenieuren, Servicetechnikern, Anlagenführern – und entwickeln Design-Systeme, die über Produktgenerationen hinweg konsistent und wartbar bleiben.',
-    answerEN: 'Yes. We conduct UX research with real users – commissioning engineers, service technicians, plant operators – and develop design systems that remain consistent and maintainable across product generations.',
+    answerDE: 'Ja – als eigene Disziplin. Nutzerforschung, Interaktionsdesign und seriennahe Umsetzung sind bei CME kein Anhang des Software-Prozesses, sondern ein eigenständiger Entwicklungsbereich.',
+    answerEN: 'Yes – as a dedicated discipline. User research, interaction design and production-ready implementation are not an appendix to the software process at CME, but an independent development area.',
+    hasLink: true,
   },
   {
     questionDE: 'Übernimmt CME auch den Betrieb und die Wartung der Software?',
     questionEN: 'Does CME also handle operation and maintenance of the software?',
-    answerDE: 'Ja. Wir bieten CI/CD-Pipelines, Monitoring, Alerting und strukturierte Wartungskonzepte mit definierten SLAs – auch für sicherheitsrelevante Umgebungen. Die modulare Architektur stellt sicher, dass die digitale Infrastruktur mit den Produktanforderungen wächst.',
-    answerEN: 'Yes. We offer CI/CD pipelines, monitoring, alerting and structured maintenance concepts with defined SLAs – also for safety-critical environments. The modular architecture ensures that the digital infrastructure grows with product requirements.',
+    answerDE: 'Ja. Wir definieren bereits in der Entwicklungsphase Wartungskonzepte, Deployment-Strategien und SLAs – damit Systeme nach dem Launch nicht auf sich gestellt sind.',
+    answerEN: 'Yes. We define maintenance concepts, deployment strategies and SLAs already in the development phase – so that systems are not left on their own after launch.',
   },
 ];
 
@@ -337,8 +344,8 @@ export default function SoftwareDigitaleSysteme() {
             <div>
               <p className="fluid-body-lg text-gray-700 leading-relaxed">
                 {isDE
-                  ? 'Elektronische Produkte brauchen heute mehr als Firmware. Sie brauchen Konfigurationstools, Diagnose-Dashboards, Cloud-Anbindung und mobile Companion-Apps. Bei CME entsteht diese digitale Schicht nicht als nachträgliches Add-on, sondern als integraler Bestandteil der Systemarchitektur – entwickelt von Software-Ingenieuren, die täglich mit den Embedded- und Hardware-Teams zusammenarbeiten.'
-                  : 'Electronic products today need more than firmware. They need configuration tools, diagnostic dashboards, cloud connectivity and mobile companion apps. At CME, this digital layer is not created as an afterthought, but as an integral part of the system architecture – developed by software engineers who work daily with the embedded and hardware teams.'}
+                  ? 'Elektronische Produkte brauchen heute mehr als Firmware. Sie brauchen Konfigurationstools, Diagnose-Dashboards, Cloud-Anbindung und mobile Companion-Apps. Bei CME entsteht diese digitale Schicht nicht als nachträgliches Add-on, sondern als integraler Bestandteil der Systemarchitektur – entwickelt von Software-Ingenieuren, die täglich mit den Hardware- und Embedded-Teams zusammenarbeiten.'
+                  : 'Electronic products today need more than firmware. They need configuration tools, diagnostic dashboards, cloud connectivity and mobile companion apps. At CME, this digital layer is not created as an afterthought, but as an integral part of the system architecture – developed by software engineers who work daily with the hardware and embedded teams.'}
               </p>
             </div>
           </div>
@@ -354,18 +361,18 @@ export default function SoftwareDigitaleSysteme() {
           <div className="space-y-4 text-gray-700 fluid-body-lg leading-relaxed">
             <p>
               {isDE
-                ? 'Ein Frequenzumrichter, der FOC-geregelt läuft und über CAN kommuniziert, braucht irgendwann auch ein Inbetriebnahme-Tool, ein Diagnose-Dashboard oder eine Felddaten-Anbindung. Genau da beginnt diese Seite.'
-                : 'A frequency converter running FOC control and communicating via CAN eventually also needs a commissioning tool, a diagnostic dashboard or field data connectivity. That\'s exactly where this page begins.'}
+                ? 'Irgendwann braucht jedes elektronische Produkt eine Schicht nach außen: ein Inbetriebnahme-Tool, ein Diagnose-Dashboard, eine mobile Service-App, eine Cloud-Anbindung. Ob Motorsteuerung, Leistungselektronik, Prüfsystem oder vernetztes Industriegerät – die Frage ist dieselbe: Wer entwickelt diese digitale Schicht so, dass sie zur Hardware passt?'
+                : 'At some point, every electronic product needs an outward-facing layer: a commissioning tool, a diagnostic dashboard, a mobile service app, a cloud connection. Whether motor controller, power electronics, test system or networked industrial device – the question is the same: Who develops this digital layer so that it fits the hardware?'}
             </p>
             <p>
               {isDE
-                ? 'Die Firmware auf dem Controller entwickeln unsere Embedded-Ingenieure. Die Software, die darüber sitzt – das Konfigurations-Frontend, die Service-App, die Cloud-Schnittstelle – entwickeln wir hier, im selben Haus.'
-                : 'The firmware on the controller is developed by our embedded engineers. The software that sits on top – the configuration frontend, the service app, the cloud interface – is developed here, in the same building.'}
+                ? 'Ein Software-Studio kennt das Gerät nicht. Ein Elektronikhaus denkt nicht in Nutzerflüssen und API-Architekturen. CME tut beides – im selben Haus, in denselben Projekten.'
+                : 'A software studio doesn\'t know the device. An electronics company doesn\'t think in user flows and API architectures. CME does both – in the same building, in the same projects.'}
             </p>
             <p>
               {isDE
-                ? 'Was das bedeutet: Die Schnittstelle zwischen Gerät und Applikation wird nicht zwischen zwei Unternehmen ausgehandelt. Sie entsteht von Anfang an gemeinsam. Das spart Iterationen – und verhindert die teuersten Fehler.'
-                : 'What this means: The interface between device and application is not negotiated between two companies. It is created together from the start. This saves iterations – and prevents the most expensive errors.'}
+                ? 'Die Schnittstelle zwischen Gerät und Applikation wird nicht zwischen zwei Unternehmen ausgehandelt. Sie entsteht von Anfang an gemeinsam. Das spart Iterationen – und verhindert die teuersten Fehler.'
+                : 'The interface between device and application is not negotiated between two companies. It is created together from the start. This saves iterations – and prevents the most expensive errors.'}
             </p>
           </div>
           <Link
@@ -373,7 +380,7 @@ export default function SoftwareDigitaleSysteme() {
             className="inline-flex items-center gap-2 text-cme-blue font-semibold hover:underline fluid-body"
             style={{ marginTop: 'var(--space-gap-md)' }}
           >
-            {isDE ? 'Zur Embedded-Software-Entwicklung' : 'To embedded software development'}
+            {isDE ? 'Zur Hard- & Software-Entwicklung' : 'To hardware & software development'}
             <ArrowRight size={18} />
           </Link>
         </div>
@@ -386,23 +393,25 @@ export default function SoftwareDigitaleSysteme() {
             {features.map((feature, i) => {
               const Icon = feature.icon;
               const featureTitle = isDE ? feature.de : feature.en;
-              const isUxCard = i === 2; // UX & Interface Design is the 3rd card
+              const isTeaser = feature.isTeaser;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className={`bg-white rounded-xl border hover:shadow-md transition-all fluid-card cursor-pointer group ${
-                    isUxCard
-                      ? 'border-cme-blue/30 ring-1 ring-cme-blue/10 sm:col-span-2 lg:col-span-3'
-                      : 'border-gray-100 hover:border-cme-blue/20'
+                  className={`bg-white rounded-xl border hover:shadow-md transition-all fluid-card ${
+                    isTeaser
+                      ? 'border-cme-blue/30 ring-1 ring-cme-blue/10'
+                      : 'border-gray-100 hover:border-cme-blue/20 cursor-pointer group'
                   }`}
-                  onClick={() => handleCardClick(featureTitle)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(featureTitle); } }}
+                  {...(!isTeaser && {
+                    onClick: () => handleCardClick(featureTitle),
+                    role: 'button',
+                    tabIndex: 0,
+                    onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(featureTitle); } },
+                  })}
                 >
                   <div
                     className="w-14 h-14 rounded-xl bg-cme-blue/10 flex items-center justify-center group-hover:bg-cme-blue/15 transition-colors"
@@ -413,29 +422,24 @@ export default function SoftwareDigitaleSysteme() {
                   <p className="font-semibold text-cme-dark fluid-body" style={{ marginBottom: '0.5rem' }}>
                     {featureTitle}
                   </p>
-                  {isUxCard ? (
-                    <div className={`grid ${isUxCard ? 'lg:grid-cols-[1fr_1fr]' : ''}`} style={{ gap: 'var(--space-gap-md)' }}>
-                      <ul className="space-y-1">
-                        {(isDE ? feature.bulletsDE : feature.bulletsEN).map((bullet, j) => (
-                          <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.75rem, 0.65rem + 0.25vw, 0.875rem)', lineHeight: '1.4' }}>
-                            <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.45em] flex-shrink-0" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-gray-600 leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 0.7rem + 0.25vw, 0.9rem)' }}>
-                        {isDE ? feature.descriptionDE : feature.descriptionEN}
-                      </p>
-                    </div>
-                  ) : (
-                    <ul className="space-y-1">
-                      {(isDE ? feature.bulletsDE : feature.bulletsEN).map((bullet, j) => (
-                        <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.75rem, 0.65rem + 0.25vw, 0.875rem)', lineHeight: '1.4' }}>
-                          <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.45em] flex-shrink-0" />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <ul className="space-y-1">
+                    {(isDE ? feature.bulletsDE : feature.bulletsEN).map((bullet, j) => (
+                      <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.75rem, 0.65rem + 0.25vw, 0.875rem)', lineHeight: '1.4' }}>
+                        <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.45em] flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {isTeaser && (
+                    <Link
+                      href="/entwicklung/ux-interface-engineering"
+                      className="inline-flex items-center gap-1.5 text-cme-blue font-semibold hover:underline fluid-body"
+                      style={{ marginTop: 'var(--space-gap-sm)' }}
+                      onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                    >
+                      {isDE ? 'Zum vollständigen UX-Engineering-Ansatz' : 'To the full UX engineering approach'}
+                      <ArrowRight size={16} />
+                    </Link>
                   )}
                 </motion.div>
               );
@@ -452,8 +456,8 @@ export default function SoftwareDigitaleSysteme() {
           </h2>
           <p className="text-gray-500 fluid-body" style={{ marginBottom: 'var(--space-gap-md)' }}>
             {isDE
-              ? 'Kein abschließender Charakter – Technologieauswahl richtet sich nach Projektanforderung, nicht nach internem Standard-Stack.'
-              : 'Not exhaustive – technology selection is based on project requirements, not an internal standard stack.'}
+              ? 'Technologieauswahl richtet sich nach Projektanforderung, nicht nach internem Standard-Stack.'
+              : 'Technology selection is based on project requirements, not an internal standard stack.'}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
             {techCategories.map((cat, i) => (
@@ -499,6 +503,7 @@ export default function SoftwareDigitaleSysteme() {
                 answer={isDE ? item.answerDE : item.answerEN}
                 isOpen={openFaq === index}
                 onToggle={() => toggleFaq(index)}
+                hasLink={'hasLink' in item && item.hasLink}
               />
             ))}
           </div>

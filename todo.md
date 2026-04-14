@@ -449,3 +449,4 @@
 - [x] FIX: Datenschutzerklärung – DSGVO-konform komplett neu aufgesetzt (6 Abschnitte, DE+EN, basierend auf control-motion.de)
 - [x] CONTENT: Validierung & EMV Seite – Kacheln 3-9 mit korrekten Bullet Points ersetzt + Kacheltitel korrigiert (DE+EN)
 - [x] CONTENT: Software & Digitale Systeme – Kompletter Seiteninhalt neu (Untertitel, Intro, Abgrenzungsblock, 6 Kacheln inkl. UX-Erläuterungstext, Technologie-Block, CTA-Block)
+- [x] CONTENT: Software & Digitale Systeme v2 – Abgrenzungsblock-Text aktualisiert, UX-Kachel als 3-Bullet-Teaser mit Link, FAQ-Antworten gemäß Briefing überarbeitet, Stilregeln angewandt
