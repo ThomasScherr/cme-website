@@ -22,6 +22,7 @@ export default function ContactSection() {
 
   const [mode, setMode] = useState<'contact' | 'nda'>('contact');
   const [submitted, setSubmitted] = useState(false);
+  const [contactSubmitted, setContactSubmitted] = useState(false);
 
   // Standard contact form
   const [formData, setFormData] = useState({
@@ -53,9 +54,7 @@ export default function ContactSection() {
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
-      toast.success(isDE
-        ? 'Vielen Dank! Wir nehmen kurzfristig Kontakt mit Ihnen auf.'
-        : 'Thank you! We will contact you shortly.');
+      setContactSubmitted(true);
       setFormData({
         salutation: '', title: '', firstName: '', lastName: '',
         company: '', email: '', phone: '', message: '', privacy: false,
@@ -153,7 +152,7 @@ export default function ContactSection() {
             {/* NDA Toggle Button */}
             <button
               type="button"
-              onClick={() => { setMode(mode === 'nda' ? 'contact' : 'nda'); setSubmitted(false); }}
+              onClick={() => { setMode(mode === 'nda' ? 'contact' : 'nda'); setSubmitted(false); setContactSubmitted(false); }}
               className="group flex items-center gap-2 mb-6 px-4 py-2.5 rounded-lg border border-gray-200 bg-white hover:border-cme-blue/30 hover:bg-cme-blue/5 transition-all duration-200 fluid-small text-cme-dark"
             >
               <ShieldCheck className="w-4 h-4 text-cme-blue" />
@@ -166,6 +165,36 @@ export default function ContactSection() {
 
             <AnimatePresence mode="wait">
               {mode === 'contact' ? (
+                contactSubmitted ? (
+                  /* ── Contact Success Confirmation ── */
+                  <motion.div
+                    key="contact-success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-5">
+                      <CheckCircle className="text-green-500" size={32} />
+                    </div>
+                    <h3 className="fluid-h3 text-cme-dark mb-3">
+                      {isDE ? 'Vielen Dank für Ihre Anfrage!' : 'Thank you for your inquiry!'}
+                    </h3>
+                    <p className="fluid-body text-gray-500 max-w-sm leading-relaxed">
+                      {isDE
+                        ? 'Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.'
+                        : 'We have received your message and will get back to you within 24 hours.'}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setContactSubmitted(false)}
+                      className="mt-8 px-8 py-3 rounded-lg bg-cme-blue text-white font-semibold hover:bg-cme-blue/90 transition-colors fluid-small"
+                    >
+                      {isDE ? 'Neue Nachricht senden' : 'Send another message'}
+                    </button>
+                  </motion.div>
+                ) : (
                 /* ── Standard Contact Form ── */
                 <motion.form
                   key="contact-form"
@@ -299,6 +328,7 @@ export default function ContactSection() {
                     {t.contact.submit}
                   </Button>
                 </motion.form>
+                )
               ) : (
                 /* ── NDA Form ── */
                 <motion.div

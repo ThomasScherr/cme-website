@@ -469,3 +469,5 @@
 - [x] FEATURE: Leadinfo B2B-Tracking eingebunden (LI-60460A1962032, nur nach Consent)
 - [x] FEATURE: Google Ads Conversion Tracking eingebunden (AW-358454053, nur nach Consent)
 - [x] REMOVE: Passwortschutz von der Website entfernen (PasswordGate, siteAccess-Router, siteAccess.test.ts entfernt)
+- [x] FIX: Kontaktformular Footer – Versandbestätigung jetzt als deutliche Erfolgsansicht (Icon, Überschrift, Text, Button) wie bei NDA
+- [x] BUG: E-Mails gingen nicht an t.scherr@control-motion.de – Ursache: SMTP Port 25 blockiert, auf Port 587 (STARTTLS) umgestellt
