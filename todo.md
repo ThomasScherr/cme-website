@@ -473,3 +473,4 @@
 - [x] BUG: E-Mails gingen nicht an t.scherr@control-motion.de – Ursache: SMTP Port 25 blockiert, auf Port 587 (STARTTLS) umgestellt
 - [x] CHANGE: notifyOwner()-Aufrufe aus Kontakt- und NDA-Formular entfernt (kein Manus-Branding mehr)
 - [x] CHANGE: CONTACT_EMAIL auf zwei Empfänger gesetzt: t.scherr@control-motion.de, sales@control-motion.de
+- [x] FIX: Datenschutzerklärung – Plausible Analytics (Manus-Hosting) als Webanalyse-Dienst ergänzt (DE+EN)

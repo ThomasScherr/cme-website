@@ -310,6 +310,17 @@ function DatenschutzDE() {
         </a>.
       </p>
 
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Plausible Analytics</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Diese Website nutzt Plausible Analytics, einen datenschutzfreundlichen Webanalysedienst der Plausible Insights OÜ (Västriku tn 2, 50403 Tartu, Estland). Plausible erhebt anonymisierte Nutzungsstatistiken (Seitenaufrufe, Verweisquellen, Gerätetyp, Land) ohne den Einsatz von Cookies oder vergleichbaren Tracking-Technologien. Es werden keine personenbezogenen Daten gespeichert und kein Fingerprinting durchgeführt. IP-Adressen werden ausschließlich zur Geolokalisierung verwendet und nicht gespeichert.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der statistischen Auswertung der Websitenutzung zur Optimierung unseres Internetangebots. Weitere Informationen finden Sie in der Datenschutzerklärung von Plausible:{' '}
+        <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://plausible.io/data-policy
+        </a>.
+      </p>
+
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Cookie-Consent-Management</h3>
       <p className="text-gray-600 leading-relaxed text-sm">
         Wir setzen auf unserer Website ein eigenes Cookie-Consent-Tool ein, um Ihre Einwilligung zur Speicherung von Cookies und vergleichbaren Technologien einzuholen und zu verwalten. Beim Aufruf der Website wird ein Cookie-Banner angezeigt, über den Sie der Nutzung bestimmter Cookie-Kategorien zustimmen oder diese ablehnen können. Ihre Einwilligung wird im Local Storage Ihres Browsers gespeichert und kann jederzeit über den Link „Cookie-Einstellungen" im Footer der Website widerrufen werden.
@@ -568,6 +579,17 @@ function DatenschutzEN() {
         Further information can be found in Leadinfo's privacy policy:{' '}
         <a href="https://www.leadinfo.com/en/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
           https://www.leadinfo.com/en/privacy/
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Plausible Analytics</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        This website uses Plausible Analytics, a privacy-friendly web analytics service provided by Plausible Insights OÜ (Västriku tn 2, 50403 Tartu, Estonia). Plausible collects anonymized usage statistics (page views, referral sources, device type, country) without using cookies or comparable tracking technologies. No personal data is stored and no fingerprinting is performed. IP addresses are used solely for geolocation and are not stored.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Processing is based on Art. 6(1)(f) GDPR. Our legitimate interest lies in the statistical evaluation of website usage to optimize our online offering. Further information can be found in Plausible's data policy:{' '}
+        <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://plausible.io/data-policy
         </a>.
       </p>
 
