@@ -155,8 +155,8 @@ export default function KiEntwicklung() {
         ctaEN="Discuss AI use case"
         features={[
           {
-            de: 'KI-gestützte Motorparametrisierung & Simulation',
-            en: 'AI-Powered Motor Parameterization & Simulation',
+de: 'KI-gestützte Simulation & Virtuelle Inbetriebnahme – Motorparametrisierung und Regelverhalten digital abgesichert',
+             en: 'AI-Powered Simulation & Virtual Commissioning – Motor parameterization and control behavior digitally validated',
             icon: Cog,
             bulletsDE: [
               'Automatisierte Bestimmung von Motorparametern durch KI-gestützte Simulation statt zeitaufwändiger manueller Messkampagnen',
@@ -172,8 +172,8 @@ export default function KiEntwicklung() {
             ],
           },
           {
-            de: 'Prädiktive Regelung – Modellprädiktive Ansätze (MPC) für nichtlineare Antriebssysteme und Leistungswandler',
-            en: 'Predictive Control – Model Predictive Control (MPC) for nonlinear drive systems and power converters',
+de: 'Prädiktive Regelung – Modellprädiktive Ansätze (MPC) für nichtlineare Antriebssysteme',
+             en: 'Predictive Control – Model Predictive Approaches (MPC) for Nonlinear Drive Systems',
             icon: BrainCircuit,
             bulletsDE: [
               'Klassische Regler stoßen bei nichtlinearen Antrieben an ihre Grenzen – MPC denkt mehrere Schritte voraus und reagiert präziser',
@@ -189,8 +189,8 @@ export default function KiEntwicklung() {
             ],
           },
           {
-            de: 'Anomalieerkennung & Predictive Maintenance',
-            en: 'Anomaly Detection & Predictive Maintenance',
+de: 'Anomalieerkennung & Predictive Maintenance – Degradation bei Antrieben und Leistungsmodulen frühzeitig erkennen',
+             en: 'Anomaly Detection & Predictive Maintenance – Early detection of degradation in drives and power modules',
             icon: BarChart3,
             bulletsDE: [
               'Erkennt frühzeitig, wenn sich ein Antrieb, ein Netzteil oder ein Leistungsmodul abnormal verhält – bevor es ausfällt',
@@ -223,8 +223,8 @@ export default function KiEntwicklung() {
             ],
           },
           {
-            de: 'Visuelle Qualitätskontrolle – KI-gestützte Bildverarbeitung',
-            en: 'Visual Quality Control – AI-powered Image Processing',
+de: 'Visuelle Qualitätskontrolle – Bildverarbeitung für Lötstellen, Bestückung und Oberflächeninspektion',
+             en: 'Visual Quality Control – Image Processing for Solder Joints, Assembly and Surface Inspection',
             icon: Eye,
             bulletsDE: [
               'Erkennt Lötstellen-, Bestückungs- und Oberflächenfehler zuverlässiger und schneller als das menschliche Auge',
@@ -240,8 +240,8 @@ export default function KiEntwicklung() {
             ],
           },
           {
-            de: 'Datenaufbereitung & Feature Engineering',
-            en: 'Data Preparation & Feature Engineering',
+de: 'Datenaufbereitung & Feature Engineering – Rohdaten aus Prüfständen und Serienfertigung für reproduzierbare Trainingspipelines',
+             en: 'Data Preparation & Feature Engineering – Raw data from test benches and series production for reproducible training pipelines',
             icon: Database,
             bulletsDE: [
               'Rohdaten aus Prüfständen und Feldtests sind selten direkt nutzbar – CME bereitet sie systematisch auf',

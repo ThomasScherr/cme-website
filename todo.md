@@ -452,3 +452,4 @@
 - [x] CONTENT: Software & Digitale Systeme v2 – Abgrenzungsblock-Text aktualisiert, UX-Kachel als 3-Bullet-Teaser mit Link, FAQ-Antworten gemäß Briefing überarbeitet, Stilregeln angewandt
 - [x] FIX: SoftwareDigitaleSysteme – Abgrenzungsblock-Sektion gelöscht (redundant)
 - [x] CONTENT: SoftwareDigitaleSysteme – Intro-Text ersetzt (inkl. Abgrenzungssatz + Link zu Hardware/Software) + Diamond-Bild paddingTop 30px
+- [x] CONTENT: KI-Entwicklung – Kachel-Überschriften 1,2,3,5,6 umbenannt (Kachel 4 bleibt), Inhalt nicht verschoben
