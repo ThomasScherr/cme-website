@@ -468,3 +468,4 @@
 - [x] FEATURE: Datenschutzerklärung um GA4/GTM/Leadinfo/Ads Abschnitte ergänzt (DE+EN)
 - [x] FEATURE: Leadinfo B2B-Tracking eingebunden (LI-60460A1962032, nur nach Consent)
 - [x] FEATURE: Google Ads Conversion Tracking eingebunden (AW-358454053, nur nach Consent)
+- [x] REMOVE: Passwortschutz von der Website entfernen (PasswordGate, siteAccess-Router, siteAccess.test.ts entfernt)

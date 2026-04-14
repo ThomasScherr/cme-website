@@ -4,7 +4,6 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
-import PasswordGate from "./components/PasswordGate";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ConsentProvider } from "./contexts/ConsentContext";
 import CookieConsent from "./components/CookieConsent";
@@ -111,7 +110,6 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <PasswordGate>
         <ThemeProvider defaultTheme="light">
           <LanguageProvider>
             <StyleProvider>
@@ -126,7 +124,6 @@ function App() {
             </StyleProvider>
           </LanguageProvider>
         </ThemeProvider>
-      </PasswordGate>
     </ErrorBoundary>
   );
 }
