@@ -134,7 +134,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
 
   const inputClass = "w-full h-11 rounded-lg border border-gray-300 bg-white px-3.5 text-base text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all";
   const selectClass = "w-full h-11 rounded-lg border border-gray-300 bg-white px-3 text-base text-gray-900 shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all appearance-none cursor-pointer";
-  const labelClass = "block text-sm font-medium text-gray-700 mb-1.5";
+  const labelClass = "block fluid-small font-medium text-gray-700 mb-1.5";
 
   const isPending = mode === 'nda' ? ndaMutation.isPending : contactMutation.isPending;
   const isError = mode === 'nda' ? ndaMutation.isError : contactMutation.isError;
@@ -236,7 +236,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                     <button
                       type="button"
                       onClick={() => setMode(mode === 'nda' ? 'contact' : 'nda')}
-                      className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border text-sm font-medium transition-all ${
+                      className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border fluid-small font-medium transition-all ${
                         mode === 'nda'
                           ? 'border-cme-blue bg-cme-blue/5 text-cme-blue'
                           : 'border-gray-300 bg-white text-gray-600 hover:border-cme-blue hover:text-cme-blue'
@@ -265,7 +265,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           className="space-y-5"
                         >
                           <div className="bg-blue-50/60 border border-blue-100 rounded-lg p-4 mb-1">
-                            <p className="text-sm text-blue-800 leading-relaxed">
+                            <p className="fluid-small text-blue-800 leading-relaxed">
                               {isDE
                                 ? 'Wir senden Ihnen unsere NDA-Vorlage per E-Mail zu. Bitte geben Sie Ihre geschäftlichen Kontaktdaten an.'
                                 : 'We will send you our NDA template via email. Please provide your business contact details.'}
@@ -379,7 +379,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                               onChange={(e) => setNdaPrivacyConsent(e.target.checked)}
                               className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
                             />
-                            <span className="text-sm text-gray-600 leading-relaxed">
+                            <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
                                 ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
                                 : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
@@ -407,7 +407,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           </button>
 
                           {isError && (
-                            <p className="text-red-500 text-sm text-center">
+                            <p className="text-red-500 fluid-small text-center">
                               {isDE
                                 ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'
                                 : 'Error sending. Please try again.'}
@@ -452,7 +452,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             </div>
                             <div>
                               <label className={labelClass}>
-                                {isDE ? 'Titel' : 'Title'} <span className="text-gray-400 font-normal text-xs">({isDE ? 'optional' : 'optional'})</span>
+                                {isDE ? 'Titel' : 'Title'} <span className="text-gray-400 font-normal fluid-xs">({isDE ? 'optional' : 'optional'})</span>
                               </label>
                               <input
                                 type="text"
@@ -526,7 +526,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             </div>
                             <div>
                               <label className={labelClass}>
-                                {isDE ? 'Telefon' : 'Phone'} <span className="text-gray-400 font-normal text-xs">({isDE ? 'optional' : 'optional'})</span>
+                                {isDE ? 'Telefon' : 'Phone'} <span className="text-gray-400 font-normal fluid-xs">({isDE ? 'optional' : 'optional'})</span>
                               </label>
                               <input
                                 type="tel"
@@ -554,7 +554,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           {/* Message */}
                           <div>
                             <label className={labelClass}>
-                              {isDE ? 'Projektbeschreibung' : 'Project description'} <span className="text-gray-400 font-normal text-xs">({isDE ? 'optional' : 'optional'})</span>
+                              {isDE ? 'Projektbeschreibung' : 'Project description'} <span className="text-gray-400 font-normal fluid-xs">({isDE ? 'optional' : 'optional'})</span>
                             </label>
                             <textarea
                               value={form.message}
@@ -589,7 +589,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                               onChange={(e) => setPrivacyConsent(e.target.checked)}
                               className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
                             />
-                            <span className="text-sm text-gray-600 leading-relaxed">
+                            <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
                                 ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
                                 : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
@@ -617,7 +617,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           </button>
 
                           {isError && (
-                            <p className="text-red-500 text-sm text-center">
+                            <p className="text-red-500 fluid-small text-center">
                               {isDE
                                 ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'
                                 : 'Error sending. Please try again.'}

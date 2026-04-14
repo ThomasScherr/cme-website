@@ -308,7 +308,7 @@ export default function ContactSection() {
                       className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
                       required
                     />
-                    <span className="text-sm text-gray-600 leading-relaxed">
+                    <span className="fluid-small text-gray-600 leading-relaxed">
                       {isDE
                         ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
                         : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
@@ -441,7 +441,7 @@ export default function ContactSection() {
                           onChange={(e) => setNdaPrivacyConsent(e.target.checked)}
                           className="mt-0.5 h-4 w-4 rounded border-gray-300 text-cme-blue focus:ring-cme-blue/20 cursor-pointer shrink-0"
                         />
-                        <span className="text-sm text-gray-600 leading-relaxed">
+                        <span className="fluid-small text-gray-600 leading-relaxed">
                           {isDE
                             ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
                             : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>

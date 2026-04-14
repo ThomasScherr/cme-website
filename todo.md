@@ -475,3 +475,4 @@
 - [x] CHANGE: CONTACT_EMAIL auf zwei Empfänger gesetzt: t.scherr@control-motion.de, sales@control-motion.de
 - [x] FIX: Datenschutzerklärung – Plausible Analytics (Manus-Hosting) als Webanalyse-Dienst ergänzt (DE+EN)
 - [x] REMOVE: Manus/Meta-Referenzen aus eigenem Code entfernt (ManusDialog.tsx gelöscht, Umami-Script aus index.html entfernt, Kommentare in articleTranslator/contentTranslator/seoGenerator/storage bereinigt). _core-Dateien sind Framework-intern und nicht im Browser sichtbar.
+- [x] FIX: Schriftgrößen auf 4K-Monitoren – clamp()-Werte auf 3840px erweitert, Container max-width auf 2400px erhöht, feste text-sm/text-xs in allen Seiten/Komponenten durch fluid-Klassen ersetzt

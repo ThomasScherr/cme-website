@@ -450,7 +450,7 @@ export default function SoftwareDigitaleSysteme() {
                 transition={{ delay: i * 0.04 }}
                 className="bg-white rounded-lg p-4 border border-gray-100"
               >
-                <p className="font-semibold text-cme-dark text-sm" style={{ marginBottom: '0.5rem' }}>
+                <p className="font-semibold text-cme-dark fluid-small" style={{ marginBottom: '0.5rem' }}>
                   {isDE ? cat.labelDE : cat.labelEN}
                 </p>
                 <div className="flex flex-wrap gap-1.5">

@@ -97,7 +97,7 @@ function SettingsModal() {
         <div className="flex items-center justify-between p-5 border-b border-gray-100">
           <div className="flex items-center gap-2">
             <Settings className="w-5 h-5 text-cme-blue" />
-            <h2 className="text-lg font-semibold text-gray-900">{labels.settingsTitle}</h2>
+            <h2 className="fluid-body-lg font-semibold text-gray-900">{labels.settingsTitle}</h2>
           </div>
           <button
             onClick={closeSettings}
@@ -110,17 +110,17 @@ function SettingsModal() {
 
         {/* Body */}
         <div className="p-5 space-y-4">
-          <p className="text-sm text-gray-600 leading-relaxed">{labels.settingsText}</p>
+          <p className="fluid-small text-gray-600 leading-relaxed">{labels.settingsText}</p>
 
           {/* Necessary */}
           <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
             <div className="flex items-center justify-between mb-1">
               <h3 className="font-medium text-gray-900">{labels.necessary}</h3>
-              <span className="text-xs font-medium text-cme-blue bg-cme-blue/10 px-2 py-0.5 rounded-full">
+              <span className="fluid-xs font-medium text-cme-blue bg-cme-blue/10 px-2 py-0.5 rounded-full">
                 {labels.alwaysActive}
               </span>
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed">{labels.necessaryDesc}</p>
+            <p className="fluid-small text-gray-500 leading-relaxed">{labels.necessaryDesc}</p>
           </div>
 
           {/* Analytics */}
@@ -129,7 +129,7 @@ function SettingsModal() {
               <h3 className="font-medium text-gray-900">{labels.analytics}</h3>
               <Toggle checked={analytics} onChange={setAnalytics} />
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed">{labels.analyticsDesc}</p>
+            <p className="fluid-small text-gray-500 leading-relaxed">{labels.analyticsDesc}</p>
           </div>
 
           {/* Marketing */}
@@ -138,7 +138,7 @@ function SettingsModal() {
               <h3 className="font-medium text-gray-900">{labels.marketing}</h3>
               <Toggle checked={marketing} onChange={setMarketing} />
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed">{labels.marketingDesc}</p>
+            <p className="fluid-small text-gray-500 leading-relaxed">{labels.marketingDesc}</p>
           </div>
         </div>
 
@@ -146,7 +146,7 @@ function SettingsModal() {
         <div className="p-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
           <button
             onClick={handleSave}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-cme-blue text-white font-medium rounded-lg hover:bg-cme-blue/90 transition-colors text-sm"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-cme-blue text-white font-medium rounded-lg hover:bg-cme-blue/90 transition-colors fluid-small"
           >
             <Check className="w-4 h-4" />
             {labels.save}
@@ -173,13 +173,13 @@ function ConsentBanner() {
               <Shield className="w-5 h-5 text-cme-blue" />
             </div>
             <div>
-              <h2 className="text-base font-semibold text-gray-900 mb-1">{labels.bannerTitle}</h2>
-              <p className="text-sm text-gray-600 leading-relaxed">{labels.bannerText}</p>
+              <h2 className="fluid-body font-semibold text-gray-900 mb-1">{labels.bannerTitle}</h2>
+              <p className="fluid-small text-gray-600 leading-relaxed">{labels.bannerText}</p>
             </div>
           </div>
 
           {/* Links */}
-          <div className="flex gap-4 mb-4 text-xs text-gray-500">
+          <div className="flex gap-4 mb-4 fluid-xs text-gray-500">
             <Link href="/datenschutz" className="underline hover:text-cme-blue transition-colors">
               {labels.privacyLink}
             </Link>
@@ -192,19 +192,19 @@ function ConsentBanner() {
           <div className="flex flex-col sm:flex-row gap-2">
             <button
               onClick={acceptAll}
-              className="flex-1 px-5 py-2.5 bg-cme-blue text-white font-medium rounded-lg hover:bg-cme-blue/90 transition-colors text-sm"
+              className="flex-1 px-5 py-2.5 bg-cme-blue text-white font-medium rounded-lg hover:bg-cme-blue/90 transition-colors fluid-small"
             >
               {labels.acceptAll}
             </button>
             <button
               onClick={acceptNecessaryOnly}
-              className="flex-1 px-5 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors text-sm"
+              className="flex-1 px-5 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors fluid-small"
             >
               {labels.necessaryOnly}
             </button>
             <button
               onClick={openSettings}
-              className="flex-1 px-5 py-2.5 border border-gray-200 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm inline-flex items-center justify-center gap-1.5"
+              className="flex-1 px-5 py-2.5 border border-gray-200 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transition-colors fluid-small inline-flex items-center justify-center gap-1.5"
             >
               <Settings className="w-4 h-4" />
               {labels.customize}
