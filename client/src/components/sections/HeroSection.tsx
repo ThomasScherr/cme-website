@@ -7,13 +7,25 @@ const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/31051966337316959
 const HERO_VIDEO_MP4 = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample-compressed_8b0d5332.mp4';
 const HERO_VIDEO_POSTER = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero-video-poster_8c5a9e34.jpg';
 
-// ─── Typewriter Hook ───
-function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+// ─── Typewriter Hook (with language-aware reset) ───
+function useTypewriter(lines: string[], lang: string, typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
+  const [displayedLines, setDisplayedLines] = useState<string[]>(['']);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
   const [phase, setPhase] = useState<'typing' | 'pause' | 'done'>('typing');
+  const prevLangRef = useRef(lang);
+
+  // Reset everything when language changes
+  useEffect(() => {
+    if (prevLangRef.current !== lang) {
+      prevLangRef.current = lang;
+      setDisplayedLines(['']);
+      setCurrentLineIndex(0);
+      setCurrentCharIndex(0);
+      setPhase('typing');
+    }
+  }, [lang]);
 
   useEffect(() => {
     const interval = setInterval(() => setShowCursor(prev => !prev), 530);
@@ -50,8 +62,6 @@ function useTypewriter(lines: string[], typingSpeed = 60, pauseBetweenLines = 40
     const timer = setTimeout(tick, typingSpeed);
     return () => clearTimeout(timer);
   }, [tick, phase, typingSpeed, currentCharIndex]);
-
-  useEffect(() => { setDisplayedLines(['']); }, []);
 
   return { displayedLines, showCursor, isDone: phase === 'done', currentLineIndex };
 }
@@ -94,11 +104,17 @@ export default function HeroSection() {
   const h2 = cms('hero.headline2') || t.hero.headline2;
   const h3 = cms('hero.headline3') || t.hero.headline3;
   const lines = useMemo(() => [h1, h2, h3], [h1, h2, h3]);
-  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, 55, 400, 400);
+  const { displayedLines, showCursor, isDone, currentLineIndex } = useTypewriter(lines, lang, 55, 400, 400);
 
   // Simple flag: false = show first text, true = show second text
   const [showSecondText, setShowSecondText] = useState(false);
   const transitionScheduled = useRef(false);
+
+  // Reset second text state when language changes
+  useEffect(() => {
+    setShowSecondText(false);
+    transitionScheduled.current = false;
+  }, [lang]);
 
   // Schedule the one-time transition 3.5s after typewriter finishes
   useEffect(() => {
@@ -146,7 +162,7 @@ export default function HeroSection() {
                 {!showSecondText ? (
                   /* ── First headline: typed in by cursor ── */
                   <motion.div
-                    key="first-headline"
+                    key={`first-headline-${lang}`}
                     exit={{
                       opacity: 0,
                       y: -16,
@@ -173,7 +189,7 @@ export default function HeroSection() {
                 ) : (
                   /* ── Second headline: fades in once and stays ── */
                   <motion.div
-                    key="second-headline"
+                    key={`second-headline-${lang}`}
                     initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
