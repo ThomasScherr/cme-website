@@ -60,14 +60,110 @@ const subpages = [
 ];
 
 const capabilities = [
-  { de: 'SMD-Bestückung', en: 'SMD Assembly', icon: Cpu },
-  { de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering', icon: Wrench },
-  { de: 'AOI & MOI', en: 'AOI & MOI', icon: Eye },
-  { de: 'Verguss & Schutzlackierung', en: 'Potting & Conformal Coating', icon: Paintbrush },
-  { de: 'Kabelkonfektionierung', en: 'Cable Assembly', icon: Cable },
-  { de: 'Funktionstest & ICT', en: 'Functional Test & ICT', icon: FlaskConical },
-  { de: 'Traceability & MES', en: 'Traceability & MES', icon: Database },
-  { de: 'Design for Manufacturing', en: 'Design for Manufacturing', icon: PenTool },
+  {
+    de: 'SMD-Bestückung', en: 'SMD Assembly', icon: Cpu,
+    bulletsDE: [
+      'Hochpräzise Bestückung bis 01005 und 0,4\u00a0mm Pitch – BGA, QFN, LGA und Fine-Pitch-Bauformen',
+      'Flexible Linien für Prototypen, Kleinserien und mehrere tausend Stück pro Monat',
+      '100\u00a0%-AOI nach der Bestückung als Standard – kein Bauteil verlässt die Linie ungeprüft',
+    ],
+    bulletsEN: [
+      'High-precision placement down to 01005 and 0.4\u00a0mm pitch – BGA, QFN, LGA and fine-pitch packages',
+      'Flexible lines for prototypes, small series and several thousand units per month',
+      '100\u00a0% AOI after placement as standard – no component leaves the line unchecked',
+    ],
+  },
+  {
+    de: 'THT-Bestückung & Selektivlöten', en: 'THT Assembly & Selective Soldering', icon: Wrench,
+    bulletsDE: [
+      'Manuelle und automatisierte Bestückung bedrahteter Bauelemente aller Bauformen',
+      'Selektivlöten schützt SMD-Bauteile vor Wellenlöt-Wärme bei Mischbestückung',
+      'Reproduzierbare Lötergebnisse durch programmierte Einzelpunktlötung',
+    ],
+    bulletsEN: [
+      'Manual and automated assembly of through-hole components in all package types',
+      'Selective soldering protects SMD components from wave solder heat in mixed assemblies',
+      'Reproducible solder results through programmed single-point soldering',
+    ],
+  },
+  {
+    de: 'AOI & MOI', en: 'AOI & MOI', icon: Eye,
+    bulletsDE: [
+      'Automatische Optische Inspektion (AOI) nach jedem Lötprozess – 3D-fähig für verdeckte Lötstellen',
+      'Manuelle Optische Inspektion (MOI) durch zertifizierte IPC-Prüfer für komplexe Baugruppen',
+      'Lückenlose Fehlerdokumentation mit Rückverfolgbarkeit bis zur Seriennummer',
+    ],
+    bulletsEN: [
+      'Automated Optical Inspection (AOI) after every soldering process – 3D-capable for hidden solder joints',
+      'Manual Optical Inspection (MOI) by certified IPC inspectors for complex assemblies',
+      'Complete defect documentation with traceability down to serial number',
+    ],
+  },
+  {
+    de: 'Verguss & Schutzlackierung', en: 'Potting & Conformal Coating', icon: Paintbrush,
+    bulletsDE: [
+      'Verguss mit PU, Epoxid oder Silikon – Materialwahl nach thermischen und mechanischen Anforderungen',
+      'Selektive Schutzlackierung (Conformal Coating) per Sprühen oder Fluten mit UV-Prüfung',
+      'Schutz vor Feuchtigkeit, Vibration, Chemikalien und kriechenden Strömen',
+    ],
+    bulletsEN: [
+      'Potting with PU, epoxy or silicone – material selection based on thermal and mechanical requirements',
+      'Selective conformal coating by spraying or flooding with UV inspection',
+      'Protection against moisture, vibration, chemicals and creepage currents',
+    ],
+  },
+  {
+    de: 'Kabelkonfektionierung', en: 'Cable Assembly', icon: Cable,
+    bulletsDE: [
+      'Kundenspezifische Kabel und Kabelbäume nach Schaltplan – Einzel- bis Serienproduktion',
+      'Alle gängigen Steckersysteme: TE, Molex, JST, Deutsch und weitere',
+      '100\u00a0%-elektrische Prüfung auf Durchgang, Isolation und korrekte Pinbelegung',
+    ],
+    bulletsEN: [
+      'Custom cables and wire harnesses per schematic – single unit to series production',
+      'All common connector systems: TE, Molex, JST, Deutsch and more',
+      '100\u00a0% electrical testing for continuity, insulation and correct pin assignment',
+    ],
+  },
+  {
+    de: 'Funktionstest & ICT', en: 'Functional Test & ICT', icon: FlaskConical,
+    bulletsDE: [
+      'End-of-Line-Funktionstest für 100\u00a0%-Prüfung aller Serieneinheiten vor Versand',
+      'In-Circuit-Test (ICT) per Nadelbett oder Flying-Probe ab Losgröße 1',
+      'Prüfprotokolle und Testergebnisse für lückenlose Qualitätsdokumentation',
+    ],
+    bulletsEN: [
+      'End-of-line functional test for 100\u00a0% inspection of all series units before shipping',
+      'In-Circuit Test (ICT) via bed-of-nails or flying probe from lot size 1',
+      'Test protocols and results for complete quality documentation',
+    ],
+  },
+  {
+    de: 'Traceability & MES', en: 'Traceability & MES', icon: Database,
+    bulletsDE: [
+      'Vollständige Rückverfolgbarkeit jeder Baugruppe vom Wareneingang bis zum Versand',
+      'Vernetzung aller Fertigungsgeräte in einer zentralen Fertigungsdatenbank (MES)',
+      'Chargen-, Serien- und Bauteil-Tracing – exportfähig für Kunden und Zulassungsbehörden',
+    ],
+    bulletsEN: [
+      'Complete traceability of every assembly from incoming goods to shipping',
+      'All production equipment networked in a central manufacturing database (MES)',
+      'Batch, serial and component tracing – exportable for customers and regulatory authorities',
+    ],
+  },
+  {
+    de: 'Design for Manufacturing', en: 'Design for Manufacturing', icon: PenTool,
+    bulletsDE: [
+      'DFM-Review bereits in der Entwicklungsphase – Fertigbarkeit wird vor dem ersten Prototypen geprüft',
+      'Direkte Rückkopplung zwischen Entwicklung und Fertigung am gleichen Standort',
+      'Reduziert Iterationsschleifen, Kosten und Time-to-Market in der Serienüberführung',
+    ],
+    bulletsEN: [
+      'DFM review already in the development phase – manufacturability is checked before the first prototype',
+      'Direct feedback between development and manufacturing at the same location',
+      'Reduces iteration loops, costs and time-to-market in series transfer',
+    ],
+  },
 ];
 
 export default function Fertigung() {
@@ -183,21 +279,31 @@ export default function Fertigung() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer"
+                  className="bg-white rounded-xl border border-gray-100 hover:border-cme-blue/20 hover:shadow-md transition-all fluid-card cursor-pointer group"
                   onClick={() => openSlider(isDE ? item.de : item.en)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSlider(isDE ? item.de : item.en); } }}
                 >
-                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)' }}>
+                  <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: item.bulletsDE?.length ? '0.5rem' : undefined }}>
                     <div
-                      className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                      className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0 group-hover:bg-cme-blue/15 transition-colors"
                       style={{ width: 'var(--icon-box)', height: 'var(--icon-box)' }}
                     >
                       <Icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                     </div>
                     <p className="font-medium text-cme-dark fluid-small">{isDE ? item.de : item.en}</p>
                   </div>
+                  {(isDE ? item.bulletsDE : item.bulletsEN)?.length ? (
+                    <ul className="space-y-1">
+                      {(isDE ? item.bulletsDE : item.bulletsEN)!.map((bullet, j) => (
+                        <li key={j} className="flex items-start gap-2 text-gray-600" style={{ fontSize: 'clamp(0.7rem, 0.6rem + 0.2vw, 0.8125rem)', lineHeight: '1.4' }}>
+                          <span className="w-1 h-1 rounded-full bg-cme-blue/60 mt-[0.4em] flex-shrink-0" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </motion.div>
               );
             })}

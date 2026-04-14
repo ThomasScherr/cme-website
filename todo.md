@@ -435,3 +435,7 @@
 - [x] FIX: Lifecycle-Seite – Slider-Text für Reparatur-Kacheln kontextbezogen: "Reparatur von X" statt nur Kacheltitel
 - [x] FIX: Lifecycle IGBT-Kachel – "über 5.000 €" → "weit über 5.000 €" (DE + EN)
 - [x] FIX: Lifecycle Reparatur-Kacheln – fehlendes Bulletzeichen prüfen und beheben (war CSS-Rendering, kein Code-Bug)
+- [x] FIX: Kontakt-Seite – Datenschutz-Checkbox fehlender Erklärtext (privacyConsent Default in contentDefinitions ergänzt)
+- [x] FIX: Kontakt-Seite – "Nachricht senden"-Button: btn btn-primary (undefiniert) durch Tailwind-Styling ersetzt
+- [x] CONTENT: Baugruppenfertigung-Seite – 9 Kacheln mit je 4 Bullet Points ergänzen (Verguss, Schutzlackierung, Kabelkonfektionierung, Gehäusemontage, Pressfit, Wärmeleitpaste, Laserbeschriftung, Verpackung, Montageanleitungen)
+- [x] CONTENT: Fertigungs-Seite – 8 Kacheln mit je 3 Bullet Points ergänzen (SMD, THT, AOI, Verguss, Kabelkonfektionierung, Funktionstest, Traceability, DFM)

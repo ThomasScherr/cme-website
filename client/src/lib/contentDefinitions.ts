@@ -861,6 +861,17 @@ export const PAGES: PageDef[] = [
           { key: 'successTitle', label: 'Erfolg-Titel', type: 'text', defaultDe: 'Vielen Dank!', defaultEn: 'Thank you!' },
           { key: 'successMessage', label: 'Erfolg-Nachricht', type: 'text', defaultDe: 'Ihre Nachricht ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden bei Ihnen.', defaultEn: 'Your message has been received. We will get back to you within 24 hours.' },
           { key: 'submitLabel', label: 'Senden-Button', type: 'text', defaultDe: 'Nachricht senden', defaultEn: 'Send Message' },
+          { key: 'privacyConsent', label: 'Datenschutz-Einwilligung', type: 'richtext', defaultDe: 'Ich stimme der Verarbeitung meiner Daten gem\u00e4\u00df der <a href="/datenschutz" target="_blank" class="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerkl\u00e4rung</a> zu. <span class="text-red-400">*</span>', defaultEn: 'I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" class="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span class="text-red-400">*</span>' },
+        ],
+      },
+      {
+        key: 'ndaForm',
+        label: 'NDA-Formular',
+        fields: [
+          { key: 'description', label: 'NDA-Beschreibung', type: 'text', defaultDe: 'Wir senden Ihnen unsere NDA-Vorlage per E-Mail zu. Bitte geben Sie Ihre gesch\u00e4ftlichen Kontaktdaten an.', defaultEn: 'We will send you our NDA template via email. Please provide your business contact details.' },
+          { key: 'successTitle', label: 'NDA Erfolg-Titel', type: 'text', defaultDe: 'NDA-Anfrage erhalten!', defaultEn: 'NDA request received!' },
+          { key: 'successMessage', label: 'NDA Erfolg-Nachricht', type: 'text', defaultDe: 'Wir senden Ihnen unsere NDA-Vorlage schnellstm\u00f6glich per E-Mail zu.', defaultEn: 'We will send you our NDA template via email as soon as possible.' },
+          { key: 'privacyConsent', label: 'NDA Datenschutz-Einwilligung', type: 'richtext', defaultDe: 'Ich stimme der Verarbeitung meiner Daten gem\u00e4\u00df der <a href="/datenschutz" target="_blank" class="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerkl\u00e4rung</a> zu. <span class="text-red-400">*</span>', defaultEn: 'I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" class="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span class="text-red-400">*</span>' },
         ],
       },
     ],

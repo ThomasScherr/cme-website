@@ -397,7 +397,7 @@ export default function Kontakt() {
                         <button
                           type="submit"
                           disabled={submitMutation.isPending}
-                          className="btn btn-primary w-full flex items-center justify-center gap-2"
+                          className="w-full flex items-center justify-center gap-2.5 bg-cme-blue text-white rounded-lg h-12 font-semibold text-base hover:bg-cme-blue/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                         >
                           {submitMutation.isPending ? (
                             <><Loader2 className="w-5 h-5 animate-spin" /> {isDE ? 'Wird gesendet...' : 'Sending...'}</>
@@ -534,7 +534,7 @@ export default function Kontakt() {
                         <button
                           type="submit"
                           disabled={ndaMutation.isPending}
-                          className="btn btn-primary w-full flex items-center justify-center gap-2"
+                          className="w-full flex items-center justify-center gap-2.5 bg-cme-blue text-white rounded-lg h-12 font-semibold text-base hover:bg-cme-blue/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                         >
                           {ndaMutation.isPending ? (
                             <><Loader2 className="w-5 h-5 animate-spin" /> {isDE ? 'NDA anfordern...' : 'Requesting NDA...'}</>
