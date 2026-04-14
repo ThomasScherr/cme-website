@@ -448,3 +448,4 @@
 - [x] FIX: Impressum – korrektes Impressum von control-motion.de übernommen (Alter Hellweg 48, Katzer/Markmann, DE293293479)
 - [x] FIX: Datenschutzerklärung – DSGVO-konform komplett neu aufgesetzt (6 Abschnitte, DE+EN, basierend auf control-motion.de)
 - [x] CONTENT: Validierung & EMV Seite – Kacheln 3-9 mit korrekten Bullet Points ersetzt + Kacheltitel korrigiert (DE+EN)
+- [x] CONTENT: Software & Digitale Systeme – Kompletter Seiteninhalt neu (Untertitel, Intro, Abgrenzungsblock, 6 Kacheln inkl. UX-Erläuterungstext, Technologie-Block, CTA-Block)
