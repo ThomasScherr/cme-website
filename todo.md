@@ -474,3 +474,4 @@
 - [x] CHANGE: notifyOwner()-Aufrufe aus Kontakt- und NDA-Formular entfernt (kein Manus-Branding mehr)
 - [x] CHANGE: CONTACT_EMAIL auf zwei Empfänger gesetzt: t.scherr@control-motion.de, sales@control-motion.de
 - [x] FIX: Datenschutzerklärung – Plausible Analytics (Manus-Hosting) als Webanalyse-Dienst ergänzt (DE+EN)
+- [x] REMOVE: Manus/Meta-Referenzen aus eigenem Code entfernt (ManusDialog.tsx gelöscht, Umami-Script aus index.html entfernt, Kommentare in articleTranslator/contentTranslator/seoGenerator/storage bereinigt). _core-Dateien sind Framework-intern und nicht im Browser sichtbar.

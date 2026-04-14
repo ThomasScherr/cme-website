@@ -1,7 +1,7 @@
 /**
  * CMS Content Translator using OpenAI API
  * Translates individual text fields between DE and EN for the CMS.
- * Uses the user's own OpenAI token – no Manus costs.
+ * Uses the user's own OpenAI token.
  */
 
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";

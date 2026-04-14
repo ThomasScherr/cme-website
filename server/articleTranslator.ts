@@ -1,5 +1,5 @@
 /**
- * Article Translator using OpenAI API (direct, not via Manus Forge)
+ * Article Translator using OpenAI API
  * Translates German article content to English for the bilingual CME website.
  * All costs go through the user's own OpenAI token.
  */

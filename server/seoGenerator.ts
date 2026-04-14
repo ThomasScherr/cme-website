@@ -1,5 +1,5 @@
 /**
- * SEO Content Generator using OpenAI API (direct, not via Manus Forge)
+ * SEO Content Generator using OpenAI API
  * Generates: excerpt (summary), tags, metaTitle, metaDescription
  * Optimized for Google, Bing, and AI search systems (ChatGPT, Perplexity, Google AI Overview)
  */
