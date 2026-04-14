@@ -487,7 +487,9 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
         { key: 'title', label: 'Titel', type: 'text', defaultDe: 'UX & Interface Engineering', defaultEn: 'UX & Interface Engineering' },
-        { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Benutzeroberflächen für Embedded-Systeme und industrielle Anwendungen', defaultEn: 'User interfaces for embedded systems and industrial applications' },
+        { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Bediensoftware und UI/UX für technische Systeme – von der Nutzeranalyse bis zur serienreifen Umsetzung.', defaultEn: 'Operating software and UI/UX for technical systems – from user analysis to production-ready implementation.' },
+        { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Technische Systeme werden immer komplexer – aber die Menschen, die sie bedienen, werden nicht komplexer. Deshalb entwickeln wir bei CME Bediensoftware und Interfaces, die Komplexität beherrschbar machen. Unser UX-Engineering-Ansatz verbindet Nutzerforschung, Interaktionsdesign und technische Umsetzung zu einer durchgängigen Kette – von der ersten Analyse bis zur serienreifen Implementierung auf der Zielplattform.', defaultEn: 'Technical systems are becoming increasingly complex – but the people who operate them are not. That\u2019s why at CME we develop operating software and interfaces that make complexity manageable. Our UX engineering approach combines user research, interaction design and technical implementation into a seamless chain – from initial analysis to production-ready implementation on the target platform.' },
+        { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/operating-concepts_3d4b7f77.png`, defaultEn: `${CDN}/operating-concepts_3d4b7f77.png` },
       ] },
     ],
   },
@@ -503,8 +505,10 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' }] },
       { key: 'content', label: 'Seiteninhalt', fields: [
-        { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Software & Digitale Systeme', defaultEn: 'Software & Digital Systems' },
-        { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Embedded Software und digitale Systemarchitekturen', defaultEn: 'Embedded software and digital system architectures' },
+        { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Software Engineering & Digitale Systeme', defaultEn: 'Software Engineering & Digital Systems' },
+        { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur – die digitale Ebene Ihrer Elektronikprodukte.', defaultEn: 'Web apps, mobile apps, cloud integration and backend architecture – the digital layer of your electronic products.' },
+        { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'Elektronische Produkte brauchen heute mehr als Firmware. Sie brauchen Konfigurationstools, Diagnose-Dashboards, Cloud-Anbindung und mobile Companion-Apps. Bei CME entwickeln wir diese digitale Schicht als integralen Bestandteil des Produkts – nicht als nachträgliches Add-on. Unsere Software-Ingenieure arbeiten eng mit den Hardware- und Embedded-Teams zusammen, sodass die digitale Architektur von Anfang an zur Systemarchitektur passt.', defaultEn: 'Electronic products today need more than firmware. They need configuration tools, diagnostic dashboards, cloud connectivity and mobile companion apps. At CME, we develop this digital layer as an integral part of the product – not as an afterthought. Our software engineers work closely with the hardware and embedded teams, ensuring the digital architecture fits the system architecture from the start.' },
+        { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/web-apps_26e3e533.png`, defaultEn: `${CDN}/web-apps_26e3e533.png` },
       ] },
     ],
   },

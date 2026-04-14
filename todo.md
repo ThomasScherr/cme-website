@@ -439,3 +439,4 @@
 - [x] FIX: Kontakt-Seite – "Nachricht senden"-Button: btn btn-primary (undefiniert) durch Tailwind-Styling ersetzt
 - [x] CONTENT: Baugruppenfertigung-Seite – 9 Kacheln mit je 4 Bullet Points ergänzen (Verguss, Schutzlackierung, Kabelkonfektionierung, Gehäusemontage, Pressfit, Wärmeleitpaste, Laserbeschriftung, Verpackung, Montageanleitungen)
 - [x] CONTENT: Fertigungs-Seite – 8 Kacheln mit je 3 Bullet Points ergänzen (SMD, THT, AOI, Verguss, Kabelkonfektionierung, Funktionstest, Traceability, DFM)
+- [x] FIX: CMS-Editor – Fehlendes content.contentImage-Feld + intro + subtitle in contentDefinitions für UX Interface Engineering und Software Digitale Systeme ergänzt
