@@ -445,3 +445,6 @@
 - [x] CONTENT: HardwareSoftware.tsx – Firmware-Bullet: Infineon, STM, Renesas ergänzt
 - [x] CONTENT: HardwareSoftware.tsx – Aufbau- & Verbindungstechnik Bullets überarbeitet (Kupfer-Inlays, Abstimmung mit Fertiger)
 - [x] LEGAL: Simulation.tsx – Trademark-Hinweise (®/™) für alle genannten Marken recherchiert und eingefügt + Disclaimer-Text
+- [x] FIX: Impressum – korrektes Impressum von control-motion.de übernommen (Alter Hellweg 48, Katzer/Markmann, DE293293479)
+- [x] FIX: Datenschutzerklärung – DSGVO-konform komplett neu aufgesetzt (6 Abschnitte, DE+EN, basierend auf control-motion.de)
+- [x] CONTENT: Validierung & EMV Seite – Kacheln 3-9 mit korrekten Bullet Points ersetzt + Kacheltitel korrigiert (DE+EN)
