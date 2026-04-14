@@ -471,3 +471,5 @@
 - [x] REMOVE: Passwortschutz von der Website entfernen (PasswordGate, siteAccess-Router, siteAccess.test.ts entfernt)
 - [x] FIX: Kontaktformular Footer – Versandbestätigung jetzt als deutliche Erfolgsansicht (Icon, Überschrift, Text, Button) wie bei NDA
 - [x] BUG: E-Mails gingen nicht an t.scherr@control-motion.de – Ursache: SMTP Port 25 blockiert, auf Port 587 (STARTTLS) umgestellt
+- [x] CHANGE: notifyOwner()-Aufrufe aus Kontakt- und NDA-Formular entfernt (kein Manus-Branding mehr)
+- [x] CHANGE: CONTACT_EMAIL auf zwei Empfänger gesetzt: t.scherr@control-motion.de, sales@control-motion.de

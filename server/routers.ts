@@ -32,7 +32,6 @@ import {
 import { TRPCError } from "@trpc/server";
 import { ENV } from "./_core/env";
 import { contactRateLimiter, ndaRateLimiter, getClientIp } from "./rateLimiter";
-import { notifyOwner } from "./_core/notification";
 import { sendContactEmail, sendNdaEmail } from "./email";
 import { generateSeoContent } from "./seoGenerator";
 import { translateArticle } from "./articleTranslator";
@@ -345,12 +344,6 @@ export const appRouter = router({
           source: input.source,
         }).catch(err => console.error("[SMTP] Contact email failed:", err));
 
-        // Notify the owner as fallback
-        notifyOwner({
-          title: `Neue Kontaktanfrage von ${input.name}`,
-          content: `Anrede: ${input.salutation || "-"}\nTitel: ${input.title || "-"}\nName: ${input.name}\nFirma: ${input.company || "-"}\nE-Mail: ${input.email}\nTelefon: ${input.phone || "-"}\nNachricht: ${input.message}`,
-        }).catch(err => console.error("[Notification] Failed:", err));
-
         return { success: true, id: result.id };
       }),
 
@@ -421,12 +414,6 @@ export const appRouter = router({
           email: input.email,
           topic: input.topic,
         }).catch(err => console.error("[SMTP] NDA email failed:", err));
-
-        // Notify the owner as fallback
-        notifyOwner({
-          title: `NDA-Anfrage von ${input.firstName} ${input.lastName}`,
-          content: `Anrede: ${input.salutation}\nName: ${input.firstName} ${input.lastName}\nFirma: ${input.company}\nE-Mail: ${input.email}\nThema: ${input.topic || "-"}`,
-        }).catch(err => console.error("[Notification] Failed:", err));
 
         // Trigger webhook if configured
         if (ENV.ndaWebhookUrl) {
