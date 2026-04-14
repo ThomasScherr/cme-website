@@ -328,7 +328,7 @@ export default function SoftwareDigitaleSysteme() {
                   src={contentImage}
                   alt={title}
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{ transform: 'rotate(-45deg) scale(1.42)' }}
+                  style={{ transform: 'rotate(-45deg) scale(1.42)', paddingTop: '30px' }}
                 />
               </div>
               <div
@@ -347,44 +347,25 @@ export default function SoftwareDigitaleSysteme() {
                   ? 'Elektronische Produkte brauchen heute mehr als Firmware. Sie brauchen Konfigurationstools, Diagnose-Dashboards, Cloud-Anbindung und mobile Companion-Apps. Bei CME entsteht diese digitale Schicht nicht als nachträgliches Add-on, sondern als integraler Bestandteil der Systemarchitektur – entwickelt von Software-Ingenieuren, die täglich mit den Hardware- und Embedded-Teams zusammenarbeiten.'
                   : 'Electronic products today need more than firmware. They need configuration tools, diagnostic dashboards, cloud connectivity and mobile companion apps. At CME, this digital layer is not created as an afterthought, but as an integral part of the system architecture – developed by software engineers who work daily with the hardware and embedded teams.'}
               </p>
+              <p className="fluid-body-lg text-gray-700 leading-relaxed" style={{ marginTop: '1rem' }}>
+                {isDE
+                  ? 'Ein Software-Studio kennt das Gerät nicht. Ein Elektronikhaus denkt nicht in Nutzerflüssen und API-Architekturen. CME tut beides.'
+                  : 'A software studio doesn\'t know the device. An electronics company doesn\'t think in user flows and API architectures. CME does both.'}
+              </p>
+              <Link
+                href="/entwicklung/hardware-software"
+                className="inline-flex items-center gap-2 text-cme-blue font-semibold hover:underline fluid-body"
+                style={{ marginTop: '1rem' }}
+              >
+                {isDE ? 'Zur Hard- & Software-Entwicklung' : 'To hardware & software development'}
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Abgrenzungsblock: "Das verbindet beide Welten" */}
-      <section className="section-pad bg-gradient-to-br from-slate-50 to-blue-50/30">
-        <div className="container max-w-4xl">
-          <h2 className="fluid-h2 text-cme-dark" style={{ marginBottom: 'var(--space-gap-md)' }}>
-            {isDE ? 'Das verbindet beide Welten' : 'Connecting both worlds'}
-          </h2>
-          <div className="space-y-4 text-gray-700 fluid-body-lg leading-relaxed">
-            <p>
-              {isDE
-                ? 'Irgendwann braucht jedes elektronische Produkt eine Schicht nach außen: ein Inbetriebnahme-Tool, ein Diagnose-Dashboard, eine mobile Service-App, eine Cloud-Anbindung. Ob Motorsteuerung, Leistungselektronik, Prüfsystem oder vernetztes Industriegerät – die Frage ist dieselbe: Wer entwickelt diese digitale Schicht so, dass sie zur Hardware passt?'
-                : 'At some point, every electronic product needs an outward-facing layer: a commissioning tool, a diagnostic dashboard, a mobile service app, a cloud connection. Whether motor controller, power electronics, test system or networked industrial device – the question is the same: Who develops this digital layer so that it fits the hardware?'}
-            </p>
-            <p>
-              {isDE
-                ? 'Ein Software-Studio kennt das Gerät nicht. Ein Elektronikhaus denkt nicht in Nutzerflüssen und API-Architekturen. CME tut beides – im selben Haus, in denselben Projekten.'
-                : 'A software studio doesn\'t know the device. An electronics company doesn\'t think in user flows and API architectures. CME does both – in the same building, in the same projects.'}
-            </p>
-            <p>
-              {isDE
-                ? 'Die Schnittstelle zwischen Gerät und Applikation wird nicht zwischen zwei Unternehmen ausgehandelt. Sie entsteht von Anfang an gemeinsam. Das spart Iterationen – und verhindert die teuersten Fehler.'
-                : 'The interface between device and application is not negotiated between two companies. It is created together from the start. This saves iterations – and prevents the most expensive errors.'}
-            </p>
-          </div>
-          <Link
-            href="/entwicklung/hardware-software"
-            className="inline-flex items-center gap-2 text-cme-blue font-semibold hover:underline fluid-body"
-            style={{ marginTop: 'var(--space-gap-md)' }}
-          >
-            {isDE ? 'Zur Hard- & Software-Entwicklung' : 'To hardware & software development'}
-            <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
+
 
       {/* Features Grid – 6 Kacheln */}
       <section className="section-pad">
