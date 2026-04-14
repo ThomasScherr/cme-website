@@ -357,7 +357,7 @@ export default function SoftwareDigitaleSysteme() {
                 className="inline-flex items-center gap-2 text-cme-blue font-semibold hover:underline fluid-body"
                 style={{ marginTop: '1rem' }}
               >
-                {isDE ? 'Zur Hard- & Software-Entwicklung' : 'To hardware & software development'}
+                {isDE ? 'Zur Hard- & Embedded-Software-Entwicklung' : 'To hardware & embedded software development'}
                 <ArrowRight size={18} />
               </Link>
             </div>
