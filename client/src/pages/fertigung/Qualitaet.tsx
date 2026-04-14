@@ -3,7 +3,6 @@ import {
   ShieldCheck,
   Leaf,
   ScanEye,
-  Printer,
   CircuitBoard,
   Database,
   Award,
@@ -99,23 +98,6 @@ export default function Qualitaet() {
           ],
         },
         {
-          de: 'Solder Paste Inspection (SPI)',
-          en: 'Solder Paste Inspection (SPI)',
-          icon: Printer,
-          bulletsDE: [
-            '3D-Vermessung des Lotpastenauftrags nach jedem Druckvorgang (100%-Kontrolle)',
-            'Prüfung von Volumen, Fläche, Höhe und Versatz des Pastendrucks',
-            'Frühzeitige Erkennung von Druckprozessabweichungen vor der Bestückung',
-            'Automatische Rückkopplung zur Druckmaschine für kontinuierliche Prozessoptimierung',
-          ],
-          bulletsEN: [
-            '3D measurement of solder paste application after every print cycle (100% control)',
-            'Inspection of volume, area, height and offset of paste printing',
-            'Early detection of print process deviations before component placement',
-            'Automatic feedback to printing machine for continuous process optimization',
-          ],
-        },
-        {
           de: 'In-Circuit-Test (ICT)',
           en: 'In-Circuit Test (ICT)',
           icon: CircuitBoard,
@@ -156,13 +138,11 @@ export default function Qualitaet() {
           bulletsDE: [
             'Visuelle und messtechnische Bewertung von Lötstellen nach IPC-A-610 (Class 2 & 3)',
             'Leiterplattenprüfung nach IPC-A-600 auf Laminate, Oberflächen und Bohrungen',
-            'Zertifizierung des Prüfpersonals als IPC-Certified Inspection Technician (CIS)',
             'Anpassung der Akzeptanzkriterien an kundenspezifische Anforderungen und Zielklassen',
           ],
           bulletsEN: [
             'Visual and metrological assessment of solder joints per IPC-A-610 (Class 2 & 3)',
             'PCB inspection per IPC-A-600 for laminates, surfaces and drilling',
-            'Certification of inspection personnel as IPC Certified Inspection Technician (CIS)',
             'Adaptation of acceptance criteria to customer-specific requirements and target classes',
           ],
         },

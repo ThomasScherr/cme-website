@@ -459,3 +459,6 @@
 - [x] FIX: Qualitätsseite – Flying-Probe aus ICT-Kachel entfernt, ersetzt durch "Nadelbett-Adapter" (DE+EN)
 - [x] FIX: FaqSection-Import-Fehler in SoftwareDigitaleSysteme.tsx – Import war bereits entfernt, Fehler war nur im Vite-Cache (Server-Neustart behebt es)
 - [x] FIX: Einpressprozess-Bug in Baugruppen.tsx – bereits korrigiert (Text ist jetzt korrekt: "Kontrollierter Einpressprozess mit definierter Überprüfung auf korrekte Einpresstiefe")
+- [x] FIX: Qualitätsseite – SPI-Kachel komplett entfernt (Code + CMS contentDefinitions)
+- [x] FIX: Qualitätsseite – IPC-Kachel: Bullet "Zertifizierung des Prüfpersonals als IPC-CIS" entfernt (DE+EN)
+- [x] FIX: Lifecycle-Seite – FAQ 10 "Wartungsverträge" komplett entfernt (zu weit aus dem Fenster gelehnt)

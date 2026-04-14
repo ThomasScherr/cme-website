@@ -691,7 +691,6 @@ export const PAGES: PageDef[] = [
           { de: 'ISO 14001:2015 zertifiziert', en: 'ISO 14001:2015 Certified' },
           { de: 'UL-gelistet – Wiring Harness', en: 'UL Listed – Wiring Harness' },
           { de: 'Automatische Optische Inspektion (AOI)', en: 'Automated Optical Inspection (AOI)' },
-          { de: 'Solder Paste Inspection (SPI)', en: 'Solder Paste Inspection (SPI)' },
           { de: 'In-Circuit-Test (ICT)', en: 'In-Circuit Test (ICT)' },
           { de: 'Datenbankgestützte Traceability mit vernetzten Geräten', en: 'Database-Driven Traceability with Connected Equipment' },
           { de: 'Qualitätsprüfung nach IPC-Standards', en: 'Quality Inspection per IPC Standards' },

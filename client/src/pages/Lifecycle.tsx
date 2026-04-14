@@ -321,12 +321,6 @@ const faqItems = [
     answerDE: 'Überall dort wo Elektronik teuer, kritisch oder schwer ersetzbar ist: Maschinenbau und Sondermaschinenbau, Automotive-Produktion, Druckindustrie, Lebensmittelproduktion, Chemie und Verfahrenstechnik, Energieversorgung, Windkraft und erneuerbare Energien, Bahntechnik sowie medizinische Gerätetechnik. Wenn der Ausfall Ihrer Elektronik eine Produktionslinie stoppt – ist CME der richtige Ansprechpartner.',
     answerEN: 'Wherever electronics are expensive, critical or hard to replace: mechanical engineering and special machine construction, automotive production, printing industry, food production, chemistry and process engineering, energy supply, wind power and renewable energies, railway technology and medical device technology. If the failure of your electronics stops a production line – CME is the right partner.',
   },
-  {
-    questionDE: 'Kann CME auch langfristige Wartungsverträge für Industrieelektronik übernehmen?',
-    questionEN: 'Can CME also take on long-term maintenance contracts for industrial electronics?',
-    answerDE: 'Ja. Für Unternehmen mit regelmäßigem Reparaturbedarf oder strategisch wichtigen Geräteklassen bieten wir Rahmenvereinbarungen mit garantierten Kapazitäten, definierten Reaktionszeiten und planbaren Konditionen. Das gibt Ihnen Versorgungssicherheit – und verhindert die Situation, im Notfall ohne verfügbaren Spezialisten dazustehen.',
-    answerEN: 'Yes. For companies with regular repair needs or strategically important device classes, we offer framework agreements with guaranteed capacities, defined response times and predictable conditions. This gives you supply security – and prevents the situation of being without an available specialist in an emergency.',
-  },
 ];
 
 /* ── FAQ Accordion Item ───────────────────────────────────────── */
