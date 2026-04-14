@@ -1,10 +1,12 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useConsent } from '@/contexts/ConsentContext';
 import { Link } from 'wouter';
 
 const LOGO_WHITE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_CMYK_ws_bc8112c1.png';
 
 export default function Footer() {
   const { t, lang } = useLanguage();
+  const { openSettings } = useConsent();
   const isDE = lang === 'de';
 
   return (
@@ -126,6 +128,12 @@ export default function Footer() {
             <Link href="/agb" className="text-white/80 hover:text-cme-blue transition-colors">
               {t.footer.agb}
             </Link>
+            <button
+              onClick={openSettings}
+              className="text-white/80 hover:text-cme-blue transition-colors cursor-pointer"
+            >
+              {isDE ? 'Cookie-Einstellungen' : 'Cookie Settings'}
+            </button>
           </div>
         </div>
       </div>

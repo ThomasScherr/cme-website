@@ -6,6 +6,9 @@ import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import PasswordGate from "./components/PasswordGate";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { ConsentProvider } from "./contexts/ConsentContext";
+import CookieConsent from "./components/CookieConsent";
+import TrackingProvider from "./components/TrackingProvider";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { StyleProvider } from "./contexts/StyleContext";
 import Home from "./pages/Home";
@@ -112,10 +115,14 @@ function App() {
         <ThemeProvider defaultTheme="light">
           <LanguageProvider>
             <StyleProvider>
+              <ConsentProvider>
               <TooltipProvider>
                 <Toaster />
+                <TrackingProvider />
+                <CookieConsent />
                 <Router />
               </TooltipProvider>
+            </ConsentProvider>
             </StyleProvider>
           </LanguageProvider>
         </ThemeProvider>

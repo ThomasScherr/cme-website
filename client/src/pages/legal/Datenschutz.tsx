@@ -247,8 +247,75 @@ function DatenschutzDE() {
 
       {/* 5. Analyse-Tools */}
       <h2 className="text-xl font-bold text-cme-dark mt-10">5. Analyse-Tools und Werbung</h2>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Tag Manager</h3>
       <p className="text-gray-600 leading-relaxed text-sm">
-        Auf dieser Website werden derzeit keine Analyse-Tools von Drittanbietern eingesetzt. Sollte dies in Zukunft der Fall sein, werden wir diese Datenschutzerklärung entsprechend aktualisieren und Sie darüber informieren.
+        Diese Website nutzt den Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Der Google Tag Manager ist eine Lösung, mit der wir sog. Website-Tags über eine Oberfläche verwalten können. Der Tag Manager selbst setzt keine Cookies und erfasst keine personenbezogenen Daten. Der Tag Manager löst andere Tags aus, die ihrerseits unter Umständen Daten erfassen. Der Google Tag Manager greift nicht auf diese Daten zu. Wenn auf Domain- oder Cookie-Ebene eine Deaktivierung vorgenommen wurde, bleibt diese für alle Tracking-Tags bestehen, die mit dem Google Tag Manager implementiert werden.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Nutzung des Google Tag Managers erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an einer schnellen und unkomplizierten Einbindung und Verwaltung verschiedener Tools auf seiner Website.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Analytics</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Diese Website nutzt Funktionen des Webanalysedienstes Google Analytics (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Google Analytics ermöglicht es dem Websitebetreiber, das Verhalten der Websitebesucher zu analysieren. Hierbei erhält der Websitebetreiber verschiedene Nutzungsdaten, wie z.&nbsp;B. Seitenaufrufe, Verweildauer, verwendete Betriebssysteme und Herkunft des Nutzers.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Google Analytics verwendet Technologien, die die Wiedererkennung des Nutzers zum Zwecke der Analyse des Nutzerverhaltens ermöglichen (z.&nbsp;B. Cookies oder Device-Fingerprinting). Die von Google erfassten Informationen über die Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier:{' '}
+        <a href="https://privacy.google.com/businesses/controllerterms/mccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://privacy.google.com/businesses/controllerterms/mccs/
+        </a>.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        <strong>IP-Anonymisierung:</strong> Wir nutzen Google Analytics mit aktivierter IP-Anonymisierung. Dadurch wird Ihre IP-Adresse von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum vor der Übermittlung in die USA gekürzt.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google:{' '}
+        <a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://support.google.com/analytics/answer/6004245
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Ads Conversion-Tracking</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Diese Website nutzt Google Ads Conversion-Tracking (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Mithilfe von Google Ads Conversion-Tracking können wir erkennen, ob der Nutzer bestimmte Aktionen durchgeführt hat. Wir können so die Effektivität unserer Werbemaßnahmen auswerten.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Informationen zu Google Ads Conversion-Tracking finden Sie in der Datenschutzerklärung von Google:{' '}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://policies.google.com/privacy
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Leadinfo</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Diese Website nutzt den B2B-Analysedienst Leadinfo (Leadinfo B.V., Rivium Quadrant 151, 2909 LC Capelle aan den IJssel, Niederlande). Leadinfo identifiziert Unternehmen, die unsere Website besuchen, anhand der IP-Adresse. Es werden dabei keine personenbezogenen Daten einzelner Nutzer erhoben – die Identifikation erfolgt ausschließlich auf Unternehmensebene.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Weitere Informationen finden Sie in der Datenschutzerklärung von Leadinfo:{' '}
+        <a href="https://www.leadinfo.com/de/datenschutz/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.leadinfo.com/de/datenschutz/
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Cookie-Consent-Management</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Wir setzen auf unserer Website ein eigenes Cookie-Consent-Tool ein, um Ihre Einwilligung zur Speicherung von Cookies und vergleichbaren Technologien einzuholen und zu verwalten. Beim Aufruf der Website wird ein Cookie-Banner angezeigt, über den Sie der Nutzung bestimmter Cookie-Kategorien zustimmen oder diese ablehnen können. Ihre Einwilligung wird im Local Storage Ihres Browsers gespeichert und kann jederzeit über den Link „Cookie-Einstellungen" im Footer der Website widerrufen werden.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO und § 25 Abs. 1 TDDDG, da der Websitebetreiber gesetzlich verpflichtet ist, die Einwilligung der Nutzer in die Verarbeitung bestimmter Daten einzuholen.
       </p>
 
       {/* 6. Plugins und Tools */}
@@ -441,8 +508,75 @@ function DatenschutzEN() {
 
       {/* 5. Analytics */}
       <h2 className="text-xl font-bold text-cme-dark mt-10">5. Analytics and Advertising</h2>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Tag Manager</h3>
       <p className="text-gray-600 leading-relaxed text-sm">
-        This website currently does not use any third-party analytics tools. Should this change in the future, we will update this privacy policy accordingly and inform you.
+        This website uses Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). Google Tag Manager is a solution that allows us to manage so-called website tags through an interface. The Tag Manager itself does not set any cookies and does not collect any personal data. The Tag Manager triggers other tags, which in turn may collect data. Google Tag Manager does not access this data. If deactivation has been carried out at the domain or cookie level, this remains in effect for all tracking tags implemented with Google Tag Manager.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        The use of Google Tag Manager is based on Art. 6(1)(f) GDPR. The website operator has a legitimate interest in the quick and uncomplicated integration and management of various tools on its website.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Analytics</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        This website uses functions of the web analytics service Google Analytics (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). Google Analytics enables the website operator to analyze the behavior of website visitors. The website operator receives various usage data, such as page views, duration of visit, operating systems used, and origin of the user.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Google Analytics uses technologies that enable the recognition of the user for the purpose of analyzing user behavior (e.g., cookies or device fingerprinting). The information collected by Google about the use of this website is usually transferred to a Google server in the USA and stored there.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        The use of this service is based on your consent pursuant to Art. 6(1)(a) GDPR and Section 25(1) TDDDG. Consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Data transfer to the USA is based on the EU Commission's Standard Contractual Clauses. Details can be found here:{' '}
+        <a href="https://privacy.google.com/businesses/controllerterms/mccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://privacy.google.com/businesses/controllerterms/mccs/
+        </a>.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        <strong>IP Anonymization:</strong> We use Google Analytics with IP anonymization enabled. This means your IP address is truncated by Google within member states of the European Union or in other contracting states of the Agreement on the European Economic Area before being transmitted to the USA.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        More information on how Google Analytics handles user data can be found in Google's privacy policy:{' '}
+        <a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://support.google.com/analytics/answer/6004245
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Ads Conversion Tracking</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        This website uses Google Ads Conversion Tracking (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). With Google Ads Conversion Tracking, we can determine whether a user has completed certain actions. This allows us to evaluate the effectiveness of our advertising measures.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        The use of this service is based on your consent pursuant to Art. 6(1)(a) GDPR and Section 25(1) TDDDG. Consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Information on Google Ads Conversion Tracking can be found in Google's privacy policy:{' '}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://policies.google.com/privacy
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Leadinfo</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        This website uses the B2B analytics service Leadinfo (Leadinfo B.V., Rivium Quadrant 151, 2909 LC Capelle aan den IJssel, Netherlands). Leadinfo identifies companies visiting our website based on their IP address. No personal data of individual users is collected – identification is exclusively at the company level.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        The use of this service is based on your consent pursuant to Art. 6(1)(a) GDPR and Section 25(1) TDDDG. Consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Further information can be found in Leadinfo's privacy policy:{' '}
+        <a href="https://www.leadinfo.com/en/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.leadinfo.com/en/privacy/
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Cookie Consent Management</h3>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        We use our own cookie consent tool on our website to obtain and manage your consent for the storage of cookies and comparable technologies. When you visit the website, a cookie banner is displayed through which you can consent to or reject certain cookie categories. Your consent is stored in your browser's local storage and can be revoked at any time via the \"Cookie Settings\" link in the website footer.
+      </p>
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Processing is based on Art. 6(1)(c) GDPR and Section 25(1) TDDDG, as the website operator is legally obligated to obtain user consent for the processing of certain data.
       </p>
 
       {/* 6. Plugins and Tools */}

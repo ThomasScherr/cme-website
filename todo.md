@@ -462,3 +462,9 @@
 - [x] FIX: Qualitätsseite – SPI-Kachel komplett entfernt (Code + CMS contentDefinitions)
 - [x] FIX: Qualitätsseite – IPC-Kachel: Bullet "Zertifizierung des Prüfpersonals als IPC-CIS" entfernt (DE+EN)
 - [x] FIX: Lifecycle-Seite – FAQ 10 "Wartungsverträge" komplett entfernt (zu weit aus dem Fenster gelehnt)
+- [x] FEATURE: DSGVO-konformer Cookie-Consent-Banner (Akzeptieren / Nur notwendige / Einstellungen)
+- [x] FEATURE: GTM + GA4 Einbindung mit Google Consent Mode v2 (nur nach Opt-in)
+- [x] FEATURE: Footer-Link "Cookie-Einstellungen" zum Widerrufen der Einwilligung
+- [x] FEATURE: Datenschutzerklärung um GA4/GTM/Leadinfo/Ads Abschnitte ergänzt (DE+EN)
+- [x] FEATURE: Leadinfo B2B-Tracking eingebunden (LI-60460A1962032, nur nach Consent)
+- [x] FEATURE: Google Ads Conversion Tracking eingebunden (AW-358454053, nur nach Consent)
