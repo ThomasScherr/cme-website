@@ -32,7 +32,7 @@ const competencies = [
     icon: Cog,
     titleDE: 'E-Motor Design',
     titleEN: 'E-Motor Design',
-    subtitleDE: 'PM-Motor-Design – Laminatkonstruktion und -layout',
+    subtitleDE: 'PM-Motor-Design – Laminatkonstruktion und ‑layout',
     subtitleEN: 'PM Motor Design – Lamination Construction and Layout',
     descDE: 'Auslegung permanentmagneterregter Motoren, FEA-basiertes Motordesign mit Motor-CAD/ANSYS.',
     descEN: 'Design of permanent magnet motors, FEA-based motor design with Motor-CAD/ANSYS.',
