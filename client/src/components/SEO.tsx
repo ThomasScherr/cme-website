@@ -22,6 +22,9 @@ interface SEOProps {
   additionalSchemas?: Record<string, unknown>[];
   /** Override: don't append site name to title */
   rawTitle?: boolean;
+  /** Meta keywords (comma-separated) */
+  keywordsDE?: string;
+  keywordsEN?: string;
 }
 
 /* ── Organization Schema (global, rendered once on homepage) ── */
@@ -84,12 +87,15 @@ export default function SEO({
   breadcrumbs,
   additionalSchemas,
   rawTitle,
+  keywordsDE,
+  keywordsEN,
 }: SEOProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
   const title = isDE ? titleDE : titleEN;
   const description = isDE ? descriptionDE : descriptionEN;
+  const keywords = isDE ? keywordsDE : keywordsEN;
   const fullTitle = rawTitle ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = `${BASE_URL}${path}`;
   const image = ogImage || DEFAULT_OG_IMAGE;
@@ -109,6 +115,7 @@ export default function SEO({
       {/* Basic */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={canonicalUrl} />
       <meta name="robots" content="index, follow" />
       <html lang={isDE ? 'de' : 'en'} />

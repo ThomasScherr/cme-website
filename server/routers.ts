@@ -51,6 +51,15 @@ import {
   deleteMediaItem,
   searchMedia,
   findMediaByFilenameAndSize,
+  log404,
+  getAll404Logs,
+  delete404Log,
+  clearAll404Logs,
+  getAllRedirects,
+  createRedirect,
+  updateRedirect,
+  deleteRedirect,
+  createRedirectFrom404,
 } from "./db";
 
 // Admin-only procedure
@@ -731,6 +740,114 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         await deleteStylePreset(input.id);
+        return { success: true };
+      }),
+  }),
+
+  // ── 404 Not Found Logs ──────────────────────────────────────────────
+  notFoundLogs: router({
+    /** Public: log a 404 hit (called from the 404 page) */
+    log: publicProcedure
+      .input(z.object({
+        path: z.string().min(1).max(2048),
+        referrer: z.string().max(2048).optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const userAgent = ctx.req.headers['user-agent'] || undefined;
+        const ip = getClientIp(ctx.req);
+        await log404({
+          path: input.path,
+          referrer: input.referrer,
+          userAgent,
+          ip,
+        });
+        return { success: true };
+      }),
+
+    /** Admin: list all 404 logs */
+    list: adminProcedure
+      .input(z.object({
+        limit: z.number().min(1).max(500).default(100),
+        offset: z.number().min(0).default(0),
+      }).optional())
+      .query(async ({ input }) => {
+        const { limit = 100, offset = 0 } = input ?? {};
+        return getAll404Logs(limit, offset);
+      }),
+
+    /** Admin: delete a single 404 log entry */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await delete404Log(input.id);
+        return { success: true };
+      }),
+
+    /** Admin: clear all 404 logs */
+    clearAll: adminProcedure
+      .mutation(async () => {
+        await clearAll404Logs();
+        return { success: true };
+      }),
+
+    /** Admin: create redirect from a 404 log entry */
+    createRedirect: adminProcedure
+      .input(z.object({
+        logId: z.number(),
+        targetUrl: z.string().min(1).max(2048),
+        statusCode: z.number().refine(v => v === 301 || v === 302).default(301),
+      }))
+      .mutation(async ({ input }) => {
+        return createRedirectFrom404(input.logId, input.targetUrl, input.statusCode);
+      }),
+  }),
+
+  // ── URL Redirects ──────────────────────────────────────────────────
+  redirects: router({
+    /** Admin: list all redirects */
+    list: adminProcedure
+      .input(z.object({
+        limit: z.number().min(1).max(500).default(100),
+        offset: z.number().min(0).default(0),
+      }).optional())
+      .query(async ({ input }) => {
+        const { limit = 100, offset = 0 } = input ?? {};
+        return getAllRedirects(limit, offset);
+      }),
+
+    /** Admin: create a new redirect */
+    create: adminProcedure
+      .input(z.object({
+        sourcePath: z.string().min(1).max(2048),
+        targetUrl: z.string().min(1).max(2048),
+        statusCode: z.number().refine(v => v === 301 || v === 302).default(301),
+        note: z.string().max(500).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return createRedirect(input);
+      }),
+
+    /** Admin: update a redirect */
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        sourcePath: z.string().min(1).max(2048).optional(),
+        targetUrl: z.string().min(1).max(2048).optional(),
+        statusCode: z.number().refine(v => v === 301 || v === 302).optional(),
+        isActive: z.boolean().optional(),
+        note: z.string().max(500).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateRedirect(id, data);
+        return { success: true };
+      }),
+
+    /** Admin: delete a redirect */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteRedirect(input.id);
         return { success: true };
       }),
   }),

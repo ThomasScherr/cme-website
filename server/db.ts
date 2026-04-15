@@ -1,7 +1,7 @@
 import { eq, desc, and, sql, like, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary, notFoundLogs, redirects } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem, InsertNotFoundLog, InsertRedirect } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -434,4 +434,150 @@ export async function searchMedia(query: string, limit = 50) {
     )
     .orderBy(desc(mediaLibrary.uploadedAt))
     .limit(limit);
+}
+
+// ── 404 Not Found Log Queries ──────────────────────────────────
+
+/** Log a 404 hit – upsert by path (increment hitCount if exists) */
+export async function log404(data: { path: string; referrer?: string; userAgent?: string; ip?: string }) {
+  const db = await getDb();
+  if (!db) return;
+
+  // Anonymize IP: zero last octet for IPv4, last group for IPv6
+  let anonIp = data.ip || null;
+  if (anonIp) {
+    if (anonIp.includes('.')) {
+      anonIp = anonIp.replace(/\.\d+$/, '.0');
+    } else if (anonIp.includes(':')) {
+      anonIp = anonIp.replace(/:[^:]+$/, ':0');
+    }
+  }
+
+  // Check if path already exists
+  const existing = await db.select().from(notFoundLogs)
+    .where(eq(notFoundLogs.path, data.path)).limit(1);
+
+  if (existing.length > 0) {
+    // Increment hit count and update metadata
+    await db.update(notFoundLogs).set({
+      hitCount: sql`${notFoundLogs.hitCount} + 1`,
+      referrer: data.referrer || existing[0].referrer,
+      userAgent: data.userAgent || existing[0].userAgent,
+      ip: anonIp || existing[0].ip,
+    }).where(eq(notFoundLogs.id, existing[0].id));
+  } else {
+    await db.insert(notFoundLogs).values({
+      path: data.path,
+      referrer: data.referrer || null,
+      userAgent: data.userAgent || null,
+      ip: anonIp,
+    });
+  }
+}
+
+/** Get all 404 logs sorted by hit count (most frequent first) */
+export async function getAll404Logs(limit = 100, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(notFoundLogs)
+    .orderBy(desc(notFoundLogs.hitCount))
+    .limit(limit)
+    .offset(offset);
+}
+
+/** Delete a 404 log entry */
+export async function delete404Log(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(notFoundLogs).where(eq(notFoundLogs.id, id));
+}
+
+/** Clear all 404 logs */
+export async function clearAll404Logs() {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(notFoundLogs);
+}
+
+// ── Redirect Queries ───────────────────────────────────────────
+
+/** Get all redirects (admin list) */
+export async function getAllRedirects(limit = 100, offset = 0) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(redirects)
+    .orderBy(desc(redirects.updatedAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+/** Get all active redirects (for middleware lookup) */
+export async function getActiveRedirects() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(redirects)
+    .where(eq(redirects.isActive, true));
+}
+
+/** Find a redirect by source path */
+export async function findRedirectByPath(sourcePath: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(redirects)
+    .where(and(eq(redirects.sourcePath, sourcePath), eq(redirects.isActive, true)))
+    .limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/** Create a new redirect */
+export async function createRedirect(data: InsertRedirect) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(redirects).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+/** Update a redirect */
+export async function updateRedirect(id: number, data: Partial<InsertRedirect>) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(redirects).set(data).where(eq(redirects.id, id));
+}
+
+/** Delete a redirect */
+export async function deleteRedirect(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(redirects).where(eq(redirects.id, id));
+}
+
+/** Increment redirect hit count */
+export async function incrementRedirectHitCount(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(redirects).set({
+    hitCount: sql`${redirects.hitCount} + 1`,
+  }).where(eq(redirects.id, id));
+}
+
+/** Create redirect from a 404 log (convenience: copies path, deletes log entry) */
+export async function createRedirectFrom404(logId: number, targetUrl: string, statusCode = 301) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+
+  const logEntry = await db.select().from(notFoundLogs)
+    .where(eq(notFoundLogs.id, logId)).limit(1);
+  if (logEntry.length === 0) throw new Error('404 log entry not found');
+
+  const result = await createRedirect({
+    sourcePath: logEntry[0].path,
+    targetUrl,
+    statusCode,
+    note: `Erstellt aus 404-Log (${logEntry[0].hitCount} Aufrufe)`,
+  });
+
+  // Delete the 404 log entry since it's now handled
+  await delete404Log(logId);
+
+  return result;
 }

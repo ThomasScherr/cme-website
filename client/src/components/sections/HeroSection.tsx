@@ -156,8 +156,8 @@ export default function HeroSection() {
               {cms('hero.tagline') || t.hero.tagline}
             </p>
 
-            {/* Headline area – fixed height container to prevent layout shifts */}
-            <div className="fluid-h1 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+            {/* Headline area – h1 for SEO, fixed height container to prevent layout shifts */}
+            <h1 className="fluid-h1 text-cme-dark font-bold" style={{ marginBottom: 'var(--space-gap-sm)' }}>
               <AnimatePresence mode="wait">
                 {!showSecondText ? (
                   /* ── First headline: typed in by cursor ── */
@@ -200,7 +200,7 @@ export default function HeroSection() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </h1>
 
             <motion.p
               className="fluid-body-lg text-cme-gray max-w-xl leading-relaxed"

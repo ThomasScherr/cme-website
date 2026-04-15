@@ -31,10 +31,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SEO
-        titleDE='CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS'
-        titleEN='CME Control Motion Electronics GmbH – Electronics Development & EMS'
+        titleDE='CME – Elektronikentwicklung & EMS-Fertigung'
+        titleEN='CME – Electronics Development & EMS Manufacturing'
         descriptionDE='Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.'
         descriptionEN='Development partner and EMS provider for power electronics, drive electronics, mechatronics and thermally demanding electronics projects.'
+        keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Mechatronik, Elektronikfertigung, SMD-Bestückung, Prototypen, Serienfertigung, CME'
+        keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, mechatronics, PCB assembly, SMT, prototyping, series production, CME'
         path='/'
         additionalSchemas={[organizationSchema, websiteSchema]}
         rawTitle

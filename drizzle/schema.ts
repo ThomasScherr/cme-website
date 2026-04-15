@@ -200,3 +200,53 @@ export const mediaLibrary = mysqlTable("media_library", {
 
 export type MediaItem = typeof mediaLibrary.$inferSelect;
 export type InsertMediaItem = typeof mediaLibrary.$inferInsert;
+
+/**
+ * 404 error logs – tracks which URLs visitors try to access that don't exist
+ * Aggregates by URL to show frequency
+ */
+export const notFoundLogs = mysqlTable("not_found_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  /** The requested URL path (e.g. /old-page) */
+  path: varchar("path", { length: 2048 }).notNull(),
+  /** HTTP Referer header – where the visitor came from */
+  referrer: text("referrer"),
+  /** User-Agent string */
+  userAgent: text("userAgent"),
+  /** Visitor IP (anonymized, last octet zeroed) */
+  ip: varchar("ip", { length: 45 }),
+  /** Number of times this exact path was requested */
+  hitCount: int("hitCount").default(1).notNull(),
+  /** First time this path was requested */
+  firstSeenAt: timestamp("firstSeenAt").defaultNow().notNull(),
+  /** Last time this path was requested */
+  lastSeenAt: timestamp("lastSeenAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type NotFoundLog = typeof notFoundLogs.$inferSelect;
+export type InsertNotFoundLog = typeof notFoundLogs.$inferInsert;
+
+/**
+ * URL redirects – admin-managed 301/302 redirects
+ * Server middleware checks this table before serving pages
+ */
+export const redirects = mysqlTable("redirects", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Source path (e.g. /alte-seite) – without domain */
+  sourcePath: varchar("sourcePath", { length: 2048 }).notNull(),
+  /** Target URL – can be relative path or absolute URL */
+  targetUrl: varchar("targetUrl", { length: 2048 }).notNull(),
+  /** Redirect type: 301 (permanent) or 302 (temporary) */
+  statusCode: int("statusCode").default(301).notNull(),
+  /** Whether this redirect is active */
+  isActive: boolean("isActive").default(true).notNull(),
+  /** Number of times this redirect was triggered */
+  hitCount: int("hitCount").default(0).notNull(),
+  /** Optional note for admin reference */
+  note: text("note"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Redirect = typeof redirects.$inferSelect;
+export type InsertRedirect = typeof redirects.$inferInsert;

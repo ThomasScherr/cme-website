@@ -488,3 +488,13 @@
 - [x] FIX: Kachel-Animationen flackern beim Scrollen – FadeIn-Komponente mit Mobile-Optimierung erstellt, Stats/Benefits/Markets/USP/Trust umgestellt
 - [x] TrustSection: Graufilter entfernt, Logos auf 96px vergrößert (+20%), nur Hover-Scale-Effekt
 - [x] FIX: V-Modell/V-Modells darf nie beim Bindestrich umgebrochen werden – non-breaking hyphen (U+2011) in allen 5 Dateien ersetzt
+- [ ] 404-Tracking: DB-Tabelle für 404-Logs (URL, Referrer, User-Agent, Timestamp, Häufigkeit)
+- [ ] 404-Tracking: GA4-Event bei 404-Seite senden
+- [ ] Redirects: DB-Tabelle für URL-Umleitungen (source, target, type 301/302, aktiv/inaktiv)
+- [ ] Redirects: Server-Middleware die Redirects vor dem Routing prüft
+- [ ] Redirects: Admin-UI zum Verwalten von Umleitungen (CRUD)
+- [ ] 404-Tracking: Admin-UI zum Anzeigen der 404-Logs mit Häufigkeit
+- [ ] Tests für 404-Tracking und Redirect-Logik
+- [x] SEO: Startseite (/) - Keine Keywords gefunden → Meta-Keywords in SEO-Komponente + index.html
+- [x] SEO: Startseite (/) - Keine H1-Überschrift → Hero-Headline von div auf h1 geändert
+- [x] SEO: Startseite (/) - Titel zu lang (65 Zeichen) → auf 45 Zeichen gekürzt
