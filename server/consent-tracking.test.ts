@@ -27,7 +27,7 @@ describe('Consent & Tracking Configuration', () => {
 
   // Verify consent storage key and version constants
   it('should define consent categories correctly', () => {
-    const categories = ['necessary', 'analytics', 'marketing'];
+    const categories = ['necessary', 'analytics', 'marketing', 'chat'];
     categories.forEach(cat => {
       expect(typeof cat).toBe('string');
       expect(cat.length).toBeGreaterThan(0);
@@ -40,11 +40,13 @@ describe('Consent & Tracking Configuration', () => {
       necessary: true,
       analytics: false,
       marketing: false,
+      chat: false,
     };
     
     expect(defaultConsent.necessary).toBe(true);
     expect(defaultConsent.analytics).toBe(false);
     expect(defaultConsent.marketing).toBe(false);
+    expect(defaultConsent.chat).toBe(false);
   });
 
   it('should have accept-all consent state', () => {
@@ -52,11 +54,27 @@ describe('Consent & Tracking Configuration', () => {
       necessary: true,
       analytics: true,
       marketing: true,
+      chat: true,
     };
     
     expect(acceptAll.necessary).toBe(true);
     expect(acceptAll.analytics).toBe(true);
     expect(acceptAll.marketing).toBe(true);
+    expect(acceptAll.chat).toBe(true);
+  });
+
+  it('should have chat-only consent state for support chat', () => {
+    const chatOnly = {
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      chat: true,
+    };
+    
+    expect(chatOnly.necessary).toBe(true);
+    expect(chatOnly.analytics).toBe(false);
+    expect(chatOnly.marketing).toBe(false);
+    expect(chatOnly.chat).toBe(true);
   });
 
   // Verify Google Consent Mode v2 mapping

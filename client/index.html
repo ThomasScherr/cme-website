@@ -4,14 +4,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <!-- DSGVO: Block non-essential third-party cookies before any other script runs -->
+    <script>
+      (function() {
+        var CONSENT_KEY = 'cme-cookie-consent';
+        var BLOCKED_PREFIXES = ['AMP_', 'crisp-client'];
+
+        function hasAnalyticsConsent() {
+          try {
+            var raw = localStorage.getItem(CONSENT_KEY);
+            if (!raw) return false;
+            var parsed = JSON.parse(raw);
+            return parsed && parsed.analytics === true;
+          } catch(e) { return false; }
+        }
+
+        function deleteBlockedCookies() {
+          var cookies = document.cookie.split(';');
+          var dominated = [window.location.hostname, '.' + window.location.hostname];
+          for (var i = 0; i < cookies.length; i++) {
+            var name = cookies[i].split('=')[0].trim();
+            for (var j = 0; j < BLOCKED_PREFIXES.length; j++) {
+              if (name.indexOf(BLOCKED_PREFIXES[j]) === 0) {
+                for (var d = 0; d < dominated.length; d++) {
+                  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + dominated[d];
+                }
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+              }
+            }
+          }
+        }
+
+        // Immediate cleanup on page load
+        if (!hasAnalyticsConsent()) {
+          deleteBlockedCookies();
+          // Re-check periodically for the first 5 seconds (cookies may be set async)
+          var checks = 0;
+          var interval = setInterval(function() {
+            if (hasAnalyticsConsent()) { clearInterval(interval); return; }
+            deleteBlockedCookies();
+            checks++;
+            if (checks >= 10) clearInterval(interval);
+          }, 500);
+        }
+
+        // Listen for consent changes
+        window.addEventListener('consent-updated', function(e) {
+          if (!e.detail || !e.detail.analytics) {
+            deleteBlockedCookies();
+          }
+        });
+      })();
+    </script>
     <title>CME Control Motion Electronics | Entwicklung & Fertigung von Leistungselektronik</title>
     <meta name="description" content="CME – Ihr Partner für Elektronikentwicklung und EMS-Fertigung. Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte aus Dortmund." />
     <link rel="icon" type="image/png" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_Favicon_ac3f40f8.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
-    <!-- Crisp.chat Live-Chat -->
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="86cfa046-63d8-486e-86d7-194e94ab1e7c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
   </head>
 
   <body>

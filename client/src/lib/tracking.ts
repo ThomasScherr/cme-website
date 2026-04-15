@@ -1,8 +1,10 @@
 /**
  * Tracking Manager – DSGVO-konform
  *
- * Loads GTM (with GA4), Leadinfo, and Google Ads Conversion
+ * Loads GTM (with GA4), Leadinfo, Google Ads Conversion, and Crisp Chat
  * ONLY after the user has given consent for the respective category.
+ *
+ * Crisp Chat has its own "chat" consent category, separate from marketing.
  *
  * Uses Google Consent Mode v2 to signal consent state to Google services.
  */
@@ -14,10 +16,12 @@ const GTM_ID = import.meta.env.VITE_GTM_ID || '';
 const GA4_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || '';
 const LEADINFO_ID = import.meta.env.VITE_LEADINFO_ID || '';
 const GOOGLE_ADS_ID = import.meta.env.VITE_GOOGLE_ADS_ID || '';
+const CRISP_WEBSITE_ID = '86cfa046-63d8-486e-86d7-194e94ab1e7c';
 
 /* ── State tracking ──────────────────────────────────────────────── */
 let gtmLoaded = false;
 let leadinfoLoaded = false;
+let crispLoaded = false;
 
 /* ── Helpers ─────────────────────────────────────────────────────── */
 function injectScript(src: string, id?: string): Promise<void> {
@@ -150,9 +154,58 @@ function loadLeadinfo() {
   injectInlineScript(code, 'leadinfo-script');
 }
 
+/* ── Load Crisp Chat (only after chat consent) ─────────────────── */
+function loadCrisp() {
+  if (crispLoaded || !CRISP_WEBSITE_ID) return;
+  crispLoaded = true;
+
+  (window as any).$crisp = [];
+  (window as any).CRISP_WEBSITE_ID = CRISP_WEBSITE_ID;
+
+  const script = document.createElement('script');
+  script.src = 'https://client.crisp.chat/l.js';
+  script.async = true;
+  script.id = 'crisp-script';
+  document.head.appendChild(script);
+}
+
+/* ── Remove Crisp when consent is revoked ────────────────────────── */
+function removeCrisp() {
+  // Remove Crisp script
+  const crispScript = document.getElementById('crisp-script');
+  if (crispScript) crispScript.remove();
+
+  // Remove Crisp widget from DOM
+  const crispWidget = document.getElementById('crisp-chatbox');
+  if (crispWidget) crispWidget.remove();
+  const crispClient = document.querySelector('[data-crisp-namespace]');
+  if (crispClient) crispClient.remove();
+
+  // Clean up Crisp cookies
+  const cookies = document.cookie.split(';');
+  for (const cookie of cookies) {
+    const name = cookie.split('=')[0].trim();
+    if (name.startsWith('crisp-client')) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${window.location.hostname}`;
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${window.location.hostname}`;
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+    }
+  }
+
+  // Clean up global Crisp objects
+  delete (window as any).$crisp;
+  delete (window as any).CRISP_WEBSITE_ID;
+
+  crispLoaded = false;
+}
+
 /* ── Main: Apply consent and load scripts accordingly ────────────── */
 export function applyTracking(consent: ConsentState | null) {
-  if (!consent) return;
+  if (!consent) {
+    // Consent revoked – remove non-essential scripts
+    removeCrisp();
+    return;
+  }
 
   // Always update consent mode first
   updateConsentMode(consent);
@@ -169,6 +222,13 @@ export function applyTracking(consent: ConsentState | null) {
     if (!gtmLoaded) {
       loadGTM();
     }
+  }
+
+  // Chat: load Crisp (separate consent category)
+  if (consent.chat) {
+    loadCrisp();
+  } else {
+    removeCrisp();
   }
 }
 

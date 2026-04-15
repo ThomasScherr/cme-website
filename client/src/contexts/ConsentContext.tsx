@@ -5,6 +5,7 @@ export interface ConsentState {
   necessary: true;        // always true, cannot be toggled
   analytics: boolean;     // GA4, GTM
   marketing: boolean;     // Google Ads, Leadinfo
+  chat: boolean;          // Crisp Live-Chat
 }
 
 export type ConsentCategory = keyof ConsentState;
@@ -14,7 +15,8 @@ interface ConsentContextValue {
   hasDecided: boolean;
   acceptAll: () => void;
   acceptNecessaryOnly: () => void;
-  acceptCustom: (analytics: boolean, marketing: boolean) => void;
+  acceptChatOnly: () => void;         // only necessary + chat
+  acceptCustom: (analytics: boolean, marketing: boolean, chat: boolean) => void;
   resetConsent: () => void;           // re-open banner
   showBanner: boolean;
   showSettings: boolean;
@@ -23,7 +25,7 @@ interface ConsentContextValue {
 }
 
 const STORAGE_KEY = 'cme-cookie-consent';
-const CONSENT_VERSION = '1';  // bump to re-ask on policy change
+const CONSENT_VERSION = '2';  // bumped: added chat category
 
 const ConsentContext = createContext<ConsentContextValue | null>(null);
 
@@ -38,6 +40,7 @@ function readStoredConsent(): ConsentState | null {
       necessary: true,
       analytics: !!parsed.analytics,
       marketing: !!parsed.marketing,
+      chat: !!parsed.chat,
     };
   } catch {
     return null;
@@ -49,6 +52,7 @@ function persistConsent(state: ConsentState) {
     version: CONSENT_VERSION,
     analytics: state.analytics,
     marketing: state.marketing,
+    chat: state.chat,
     timestamp: new Date().toISOString(),
   }));
 }
@@ -70,15 +74,19 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const acceptAll = useCallback(() => {
-    applyConsent({ necessary: true, analytics: true, marketing: true });
+    applyConsent({ necessary: true, analytics: true, marketing: true, chat: true });
   }, [applyConsent]);
 
   const acceptNecessaryOnly = useCallback(() => {
-    applyConsent({ necessary: true, analytics: false, marketing: false });
+    applyConsent({ necessary: true, analytics: false, marketing: false, chat: false });
   }, [applyConsent]);
 
-  const acceptCustom = useCallback((analytics: boolean, marketing: boolean) => {
-    applyConsent({ necessary: true, analytics, marketing });
+  const acceptChatOnly = useCallback(() => {
+    applyConsent({ necessary: true, analytics: false, marketing: false, chat: true });
+  }, [applyConsent]);
+
+  const acceptCustom = useCallback((analytics: boolean, marketing: boolean, chat: boolean) => {
+    applyConsent({ necessary: true, analytics, marketing, chat });
   }, [applyConsent]);
 
   const resetConsent = useCallback(() => {
@@ -97,6 +105,7 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       hasDecided,
       acceptAll,
       acceptNecessaryOnly,
+      acceptChatOnly,
       acceptCustom,
       resetConsent,
       showBanner,

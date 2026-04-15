@@ -119,8 +119,8 @@ export default function Kontakt() {
     });
   };
 
-  const inputClass = "w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small";
-  const selectClass = "w-full rounded-lg border border-gray-200 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small bg-white appearance-none cursor-pointer";
+  const inputClass = "w-full h-11 rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small";
+  const selectClass = "w-full h-11 rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all fluid-small appearance-none cursor-pointer";
 
   return (
     <Layout>

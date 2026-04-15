@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'wouter';
 import { useConsent } from '@/contexts/ConsentContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Shield, Settings, X, Check } from 'lucide-react';
+import { Shield, Settings, X, Check, MessageCircle } from 'lucide-react';
 
 /* ── Translations ────────────────────────────────────────────────── */
 const t = {
@@ -11,6 +11,7 @@ const t = {
     bannerText: 'Wir verwenden Cookies und ähnliche Technologien, um die Nutzung unserer Website zu analysieren und Ihnen ein optimales Erlebnis zu bieten. Einige sind technisch notwendig, andere helfen uns, unsere Website zu verbessern.',
     acceptAll: 'Alle akzeptieren',
     necessaryOnly: 'Nur notwendige',
+    acceptChat: 'Support-Chat erlauben',
     customize: 'Einstellungen',
     settingsTitle: 'Cookie-Einstellungen',
     settingsText: 'Hier können Sie auswählen, welche Kategorien von Cookies Sie zulassen möchten. Notwendige Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.',
@@ -21,6 +22,8 @@ const t = {
     analyticsDesc: 'Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen (Google Analytics). Die Daten werden anonymisiert erhoben.',
     marketing: 'Marketing',
     marketingDesc: 'Diese Cookies werden verwendet, um Besuchern relevante Werbung und Informationen bereitzustellen (Google Ads, Leadinfo B2B-Analyse).',
+    chat: 'Support-Chat',
+    chatDesc: 'Ermöglicht den Live-Chat mit unserem Support-Team (Crisp). Dabei werden Cookies von crisp.chat gesetzt.',
     privacyLink: 'Datenschutzerklärung',
     imprintLink: 'Impressum',
     alwaysActive: 'Immer aktiv',
@@ -30,6 +33,7 @@ const t = {
     bannerText: 'We use cookies and similar technologies to analyze the use of our website and provide you with an optimal experience. Some are technically necessary, others help us improve our website.',
     acceptAll: 'Accept all',
     necessaryOnly: 'Necessary only',
+    acceptChat: 'Allow support chat',
     customize: 'Settings',
     settingsTitle: 'Cookie Settings',
     settingsText: 'Here you can select which categories of cookies you would like to allow. Necessary cookies are required for the basic functions of the website and cannot be disabled.',
@@ -40,6 +44,8 @@ const t = {
     analyticsDesc: 'These cookies help us understand how visitors use our website (Google Analytics). Data is collected anonymously.',
     marketing: 'Marketing',
     marketingDesc: 'These cookies are used to provide visitors with relevant advertising and information (Google Ads, Leadinfo B2B analysis).',
+    chat: 'Support Chat',
+    chatDesc: 'Enables live chat with our support team (Crisp). Cookies from crisp.chat will be set.',
     privacyLink: 'Privacy Policy',
     imprintLink: 'Imprint',
     alwaysActive: 'Always active',
@@ -81,9 +87,10 @@ function SettingsModal() {
 
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const [chat, setChat] = useState(false);
 
   const handleSave = () => {
-    acceptCustom(analytics, marketing);
+    acceptCustom(analytics, marketing, chat);
   };
 
   return (
@@ -121,6 +128,18 @@ function SettingsModal() {
               </span>
             </div>
             <p className="fluid-small text-gray-500 leading-relaxed">{labels.necessaryDesc}</p>
+          </div>
+
+          {/* Support Chat */}
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-cme-blue" />
+                <h3 className="font-medium text-gray-900">{labels.chat}</h3>
+              </div>
+              <Toggle checked={chat} onChange={setChat} />
+            </div>
+            <p className="fluid-small text-gray-500 leading-relaxed">{labels.chatDesc}</p>
           </div>
 
           {/* Analytics */}
@@ -161,7 +180,7 @@ function SettingsModal() {
 function ConsentBanner() {
   const { lang } = useLanguage();
   const labels = t[lang] || t.de;
-  const { acceptAll, acceptNecessaryOnly, openSettings } = useConsent();
+  const { acceptAll, acceptNecessaryOnly, acceptChatOnly, openSettings } = useConsent();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[10000] p-4 sm:p-6">
@@ -195,6 +214,13 @@ function ConsentBanner() {
               className="flex-1 px-5 py-2.5 bg-cme-blue text-white font-medium rounded-lg hover:bg-cme-blue/90 transition-colors fluid-small"
             >
               {labels.acceptAll}
+            </button>
+            <button
+              onClick={acceptChatOnly}
+              className="flex-1 px-5 py-2.5 bg-emerald-50 text-emerald-700 font-medium rounded-lg hover:bg-emerald-100 transition-colors fluid-small inline-flex items-center justify-center gap-1.5 border border-emerald-200"
+            >
+              <MessageCircle className="w-4 h-4" />
+              {labels.acceptChat}
             </button>
             <button
               onClick={acceptNecessaryOnly}

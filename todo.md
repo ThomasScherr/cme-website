@@ -480,3 +480,8 @@
 - [x] FIX: SMTP_FROM von "Formular" auf "CME Kontaktformular" <noreply@controlmotion.de> korrigiert (E-Mails kamen mit "(Kein Absender)" an)
 - [x] FIX: Anrede-Logik in sendContactEmail und sendNdaEmail korrigiert – Frontend sendet 'Herr'/'Frau'/'Keine Angabe', nicht 'mr'/'ms'
 - [x] FIX: E-Mail-Tests auf korrekte Anrede-Werte aktualisiert (11 Tests, alle bestanden)
+- [x] FIX: Formular-Eingabefelder zu flach – mehr vertikales Padding, Schrift klebt am oberen/unteren Rahmen
+- [x] DSGVO: Crisp Chat Cookies (crisp-client/session, crisp-client/domain-detect) werden ohne Consent gesetzt – Crisp erst nach Cookie-Zustimmung laden
+- [x] DSGVO: files.manuscdn.com Cookies (AMP_remote_config, AMP_unsent) werden ohne Consent gesetzt – Cookie-Blocking-Script in index.html implementiert
+- [x] FIX: Formular-Eingabefelder zu flach – h-11 py-2.5 auf alle Formulare angewendet (ContactSection, Kontakt-Seite, ContactSlider)
+- [x] DSGVO: Crisp Chat als eigene Consent-Kategorie im Cookie-Banner mit separatem Button "Support-Chat erlauben"

@@ -117,7 +117,7 @@ export default function ContactSection() {
     });
   };
 
-  const selectClass = "w-full h-10 rounded-md border border-input bg-background px-3 text-base text-foreground shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all appearance-none cursor-pointer fluid-small";
+  const selectClass = "w-full h-11 rounded-md border border-input bg-background px-3.5 py-2.5 text-base text-foreground shadow-sm focus:border-cme-blue focus:ring-2 focus:ring-cme-blue/20 outline-none transition-all appearance-none cursor-pointer fluid-small";
 
   return (
     <section id="contact" className="section-pad bg-gray-50">
@@ -230,7 +230,7 @@ export default function ContactSection() {
                       placeholder={isDE ? 'Titel (optional, z.B. Dr.)' : 'Title (optional, e.g. Dr.)'}
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="fluid-small"
+                      className="fluid-small h-11 py-2.5"
                     />
                   </div>
 
@@ -241,14 +241,14 @@ export default function ContactSection() {
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       required
-                      className="fluid-small"
+                      className="fluid-small h-11 py-2.5"
                     />
                     <Input
                       placeholder={(isDE ? 'Nachname' : 'Last name') + ' *'}
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       required
-                      className="fluid-small"
+                      className="fluid-small h-11 py-2.5"
                     />
                   </div>
 
@@ -257,7 +257,7 @@ export default function ContactSection() {
                     placeholder={t.contact.company}
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="fluid-small"
+                    className="fluid-small h-11 py-2.5"
                   />
 
                   {/* Email + Phone row */}
@@ -268,14 +268,14 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      className="fluid-small"
+                      className="fluid-small h-11 py-2.5"
                     />
                     <Input
                       type="tel"
                       placeholder={t.contact.phone}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="fluid-small"
+                      className="fluid-small h-11 py-2.5"
                     />
                   </div>
 
@@ -389,14 +389,14 @@ export default function ContactSection() {
                           value={ndaForm.firstName}
                           onChange={(e) => setNdaForm({ ...ndaForm, firstName: e.target.value })}
                           required
-                          className="fluid-small"
+                          className="fluid-small h-11 py-2.5"
                         />
                         <Input
                           placeholder={(isDE ? 'Nachname' : 'Last name') + ' *'}
                           value={ndaForm.lastName}
                           onChange={(e) => setNdaForm({ ...ndaForm, lastName: e.target.value })}
                           required
-                          className="fluid-small"
+                          className="fluid-small h-11 py-2.5"
                         />
                       </div>
 
@@ -406,7 +406,7 @@ export default function ContactSection() {
                         value={ndaForm.company}
                         onChange={(e) => setNdaForm({ ...ndaForm, company: e.target.value })}
                         required
-                        className="fluid-small"
+                        className="fluid-small h-11 py-2.5"
                       />
 
                       {/* Business Email */}
@@ -416,7 +416,7 @@ export default function ContactSection() {
                         value={ndaForm.email}
                         onChange={(e) => setNdaForm({ ...ndaForm, email: e.target.value })}
                         required
-                        className="fluid-small"
+                        className="fluid-small h-11 py-2.5"
                       />
 
                       {/* Honeypot field – invisible to users, bots auto-fill it */}
