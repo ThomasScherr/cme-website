@@ -14,11 +14,11 @@ const simDomains = [
     icon: Cog,
     titleDE: 'Systemsimulation',
     titleEN: 'System Simulation',
-    descDE: 'Gesamtsystem-Simulationen, modellbasierte Funktionsentwicklung gemäß V-Modell, transiente Zeitbereichsanalysen und kundenspezifische Modellentwicklung. Wir simulieren das Verhalten komplexer, stark vernetzter Systeme und lösen regelungstechnische Aufgaben.',
-    descEN: 'Full system simulations, model-based function development according to V-model, transient time-domain analyses and custom model development. We simulate the behavior of complex, highly interconnected systems and solve control engineering tasks.',
+    descDE: 'Gesamtsystem-Simulationen, modellbasierte Funktionsentwicklung gemäß V‑Modell, transiente Zeitbereichsanalysen und kundenspezifische Modellentwicklung. Wir simulieren das Verhalten komplexer, stark vernetzter Systeme und lösen regelungstechnische Aufgaben.',
+    descEN: 'Full system simulations, model-based function development according to V‑model, transient time-domain analyses and custom model development. We simulate the behavior of complex, highly interconnected systems and solve control engineering tasks.',
     items: {
-      de: ['Gesamtsystem-Simulationen & -studien', 'Modellbasierte Funktionsentwicklung (V-Modell)', 'Transiente Zeitbereichsanalysen', 'Kundenspezifische Modelle & Erweiterungen', 'Regelungstechnische Aufgabenstellungen'],
-      en: ['Full system simulations & studies', 'Model-based function development (V-model)', 'Transient time-domain analyses', 'Custom models & extensions', 'Control engineering tasks'],
+      de: ['Gesamtsystem-Simulationen & -studien', 'Modellbasierte Funktionsentwicklung (V‑Modell)', 'Transiente Zeitbereichsanalysen', 'Kundenspezifische Modelle & Erweiterungen', 'Regelungstechnische Aufgabenstellungen'],
+      en: ['Full system simulations & studies', 'Model-based function development (V‑model)', 'Transient time-domain analyses', 'Custom models & extensions', 'Control engineering tasks'],
     },
   },
   {

@@ -22,24 +22,24 @@ export default function ControlDesign() {
       parentLabelEN="Electronics Development"
       titleDE="Control Design"
       titleEN="Control Design"
-      subtitleDE="Modellbasiertes Reglerdesign – Entwicklung und Verifikation von Regelalgorithmen entlang des V-Modells."
-      subtitleEN="Model-based controller design – development and verification of control algorithms along the V-model."
+      subtitleDE="Modellbasiertes Reglerdesign – Entwicklung und Verifikation von Regelalgorithmen entlang des V‑Modells."
+      subtitleEN="Model-based controller design – development and verification of control algorithms along the V‑model."
       heroImg={`${CDN}/JK_2885__1920px_ecd3ed1e.jpg`}
-      introDE="CME entwickelt Regelungskonzepte für anspruchsvolle Antriebssysteme und Leistungselektronik. Von der modellbasierten Funktionsentwicklung über MIL/SIL/HIL-Simulation bis zum Rapid-Control-Prototyping – wir verifizieren Regelalgorithmen systematisch entlang des V-Modells, bevor sie in die Serienapplikation überführt werden. Unsere Erfahrung umfasst sensorlose Regelungsverfahren, FOC-Algorithmen und applikationsspezifische Regleranpassungen."
-      introEN="CME develops control concepts for demanding drive systems and power electronics. From model-based function development through MIL/SIL/HIL simulation to rapid control prototyping – we systematically verify control algorithms along the V-model before transferring them to series applications. Our experience includes sensorless control methods, FOC algorithms and application-specific controller adaptations."
+      introDE="CME entwickelt Regelungskonzepte für anspruchsvolle Antriebssysteme und Leistungselektronik. Von der modellbasierten Funktionsentwicklung über MIL/SIL/HIL-Simulation bis zum Rapid-Control-Prototyping – wir verifizieren Regelalgorithmen systematisch entlang des V‑Modells, bevor sie in die Serienapplikation überführt werden. Unsere Erfahrung umfasst sensorlose Regelungsverfahren, FOC-Algorithmen und applikationsspezifische Regleranpassungen."
+      introEN="CME develops control concepts for demanding drive systems and power electronics. From model-based function development through MIL/SIL/HIL simulation to rapid control prototyping – we systematically verify control algorithms along the V‑model before transferring them to series applications. Our experience includes sensorless control methods, FOC algorithms and application-specific controller adaptations."
       features={[
         {
-          de: 'Modellbasierte Funktionsentwicklung nach V-Modell',
-          en: 'Model-Based Function Development According to V-Model',
+          de: 'Modellbasierte Funktionsentwicklung nach V‑Modell',
+          en: 'Model-Based Function Development According to V‑Model',
           icon: GitBranch,
           bulletsDE: [
-            'Systematische Entwicklung vom Systemkonzept bis zur verifizierten Serienanwendung entlang des V-Modells',
+            'Systematische Entwicklung vom Systemkonzept bis zur verifizierten Serienanwendung entlang des V‑Modells',
             'Anforderungen werden direkt in Matlab/Simulink-Modelle überführt – kein Medienbruch zwischen Spezifikation und Implementierung',
             'Automatische Code-Generierung aus validierten Modellen reduziert manuelle Fehler und beschleunigt die Serienüberführung',
             'Jede Entwicklungsstufe ist dokumentiert und nachvollziehbar – Voraussetzung für funktionale Sicherheit und Zulassungsprozesse',
           ],
           bulletsEN: [
-            'Systematic development from system concept to verified series application along the V-model',
+            'Systematic development from system concept to verified series application along the V‑model',
             'Requirements are directly transferred into Matlab/Simulink models – no media break between specification and implementation',
             'Automatic code generation from validated models reduces manual errors and accelerates series transfer',
             'Every development stage is documented and traceable – prerequisite for functional safety and approval processes',

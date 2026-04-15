@@ -44,8 +44,8 @@ const competencies = [
     titleEN: 'Control Design',
     subtitleDE: 'Modellbasiertes Reglerdesign · MIL, SIL, HIL',
     subtitleEN: 'Model-Based Controller Design · MIL, SIL, HIL',
-    descDE: 'Entwicklung und Verifikation von Regelalgorithmen entlang des V-Modells.',
-    descEN: 'Development and verification of control algorithms along the V-model.',
+    descDE: 'Entwicklung und Verifikation von Regelalgorithmen entlang des V‑Modells.',
+    descEN: 'Development and verification of control algorithms along the V‑model.',
     href: '/entwicklung/control-design',
   },
   {

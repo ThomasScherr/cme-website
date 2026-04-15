@@ -487,3 +487,4 @@
 - [x] DSGVO: Crisp Chat als eigene Consent-Kategorie im Cookie-Banner mit separatem Button "Support-Chat erlauben"
 - [x] FIX: Kachel-Animationen flackern beim Scrollen – FadeIn-Komponente mit Mobile-Optimierung erstellt, Stats/Benefits/Markets/USP/Trust umgestellt
 - [x] TrustSection: Graufilter entfernt, Logos auf 96px vergrößert (+20%), nur Hover-Scale-Effekt
+- [x] FIX: V-Modell/V-Modells darf nie beim Bindestrich umgebrochen werden – non-breaking hyphen (U+2011) in allen 5 Dateien ersetzt
