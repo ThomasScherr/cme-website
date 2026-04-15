@@ -450,7 +450,7 @@ export default function HardwareSoftware() {
           <div className="grid lg:grid-cols-2" style={{ gap: 'var(--space-gap-lg)' }}>
             {/* Leistungen */}
             <div>
-              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)', textAlign: 'center', border: '1px solid #98d5f0', padding: '4px', borderRadius: '5px' }}>
                 {isDE ? 'Leistungen' : 'Services'}
               </h3>
               <div className="flex flex-col" style={{ gap: 'var(--space-gap-xs)' }}>
@@ -480,7 +480,7 @@ export default function HardwareSoftware() {
 
             {/* Entwicklungsschwerpunkte */}
             <div>
-              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+              <h3 className="fluid-h3 text-cme-dark" style={{ marginBottom: 'var(--space-gap-sm)', textAlign: 'center', border: '1px solid #98d5f0', padding: '4px', borderRadius: '5px' }}>
                 {isDE ? 'Entwicklungsschwerpunkte' : 'Development Focus Areas'}
               </h3>
               <div className="flex flex-col" style={{ gap: 'var(--space-gap-xs)' }}>
