@@ -103,8 +103,9 @@ export async function sendContactEmail(data: ContactEmailData): Promise<boolean>
       return false;
     }
 
-    const salutationStr = data.salutation && data.salutation !== "none"
-      ? (data.salutation === "mr" ? "Herr" : data.salutation === "ms" ? "Frau" : "")
+    // Frontend sends 'Herr', 'Frau', 'Keine Angabe' – pass through directly
+    const salutationStr = (data.salutation && data.salutation !== "Keine Angabe")
+      ? data.salutation
       : "";
     const titleStr = data.title ? `${data.title} ` : "";
     const fullName = [salutationStr, titleStr, data.name].filter(Boolean).join(" ").trim();
@@ -173,8 +174,9 @@ export async function sendNdaEmail(data: NdaEmailData): Promise<boolean> {
       return false;
     }
 
-    const salutationStr = data.salutation === "mr" ? "Herr"
-      : data.salutation === "ms" ? "Frau"
+    // Frontend sends 'Herr', 'Frau', 'Keine Angabe' – pass through directly
+    const salutationStr = (data.salutation && data.salutation !== "Keine Angabe")
+      ? data.salutation
       : "";
     const fullName = [salutationStr, data.firstName, data.lastName].filter(Boolean).join(" ").trim();
 

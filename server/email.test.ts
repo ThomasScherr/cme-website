@@ -21,7 +21,7 @@ vi.mock("./_core/env", () => ({
     smtpPort: 587,
     smtpUser: "test@test.de",
     smtpPass: "testpass",
-    smtpFrom: "noreply@controlmotion.de",
+    smtpFrom: "\"CME Kontaktformular\" <noreply@controlmotion.de>",
     contactEmail: "vertrieb@controlmotion.de",
     isProduction: false,
   },
@@ -46,10 +46,10 @@ describe("Email Service", () => {
     expect(result).toBe(true);
   });
 
-  it("should send contact email with all fields", async () => {
+  it("should send contact email with salutation 'Herr' and title", async () => {
     const { sendContactEmail } = await import("./email");
     const result = await sendContactEmail({
-      salutation: "mr",
+      salutation: "Herr",
       title: "Dr.",
       name: "Max Mustermann",
       email: "max@example.com",
@@ -66,7 +66,7 @@ describe("Email Service", () => {
     expect(transport.sendMail).toHaveBeenCalledTimes(1);
 
     const callArgs = (transport.sendMail as any).mock.calls[0][0];
-    expect(callArgs.from).toBe("noreply@controlmotion.de");
+    expect(callArgs.from).toBe("\"CME Kontaktformular\" <noreply@controlmotion.de>");
     expect(callArgs.to).toBe("vertrieb@controlmotion.de");
     expect(callArgs.replyTo).toBe("max@example.com");
     expect(callArgs.subject).toContain("Kontaktanfrage");
@@ -78,7 +78,24 @@ describe("Email Service", () => {
     expect(callArgs.html).toContain("Leistungselektronik");
   });
 
-  it("should send contact email with minimal fields", async () => {
+  it("should send contact email with salutation 'Frau'", async () => {
+    const { sendContactEmail } = await import("./email");
+    const result = await sendContactEmail({
+      salutation: "Frau",
+      name: "Anna Schmidt",
+      email: "anna@example.com",
+      message: "Anfrage zur Simulation.",
+    });
+    expect(result).toBe(true);
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    expect(callArgs.subject).toContain("Frau");
+    expect(callArgs.subject).toContain("Anna Schmidt");
+  });
+
+  it("should send contact email with minimal fields (no salutation)", async () => {
     const { sendContactEmail } = await import("./email");
     const result = await sendContactEmail({
       name: "Erika Muster",
@@ -86,12 +103,38 @@ describe("Email Service", () => {
       message: "Kurze Anfrage.",
     });
     expect(result).toBe(true);
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    expect(callArgs.subject).toContain("Erika Muster");
+    // No salutation prefix when not provided
+    expect(callArgs.subject).not.toContain("Herr");
+    expect(callArgs.subject).not.toContain("Frau");
   });
 
-  it("should send NDA email with all fields", async () => {
+  it("should omit salutation when 'Keine Angabe' is selected", async () => {
+    const { sendContactEmail } = await import("./email");
+    const result = await sendContactEmail({
+      salutation: "Keine Angabe",
+      name: "Alex Neutral",
+      email: "alex@example.com",
+      message: "Test ohne Anrede.",
+    });
+    expect(result).toBe(true);
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    // 'Keine Angabe' should be omitted from the display name
+    expect(callArgs.subject).not.toContain("Keine Angabe");
+    expect(callArgs.subject).toContain("Alex Neutral");
+  });
+
+  it("should send NDA email with salutation 'Frau'", async () => {
     const { sendNdaEmail } = await import("./email");
     const result = await sendNdaEmail({
-      salutation: "ms",
+      salutation: "Frau",
       firstName: "Anna",
       lastName: "Schmidt",
       company: "TechCorp AG",
@@ -113,15 +156,40 @@ describe("Email Service", () => {
     expect(callArgs.html).toContain("Aktion erforderlich");
   });
 
-  it("should handle salutation 'none' gracefully", async () => {
-    const { sendContactEmail } = await import("./email");
-    const result = await sendContactEmail({
-      salutation: "none",
-      name: "Alex Neutral",
-      email: "alex@example.com",
-      message: "Test ohne Anrede.",
+  it("should send NDA email with salutation 'Herr'", async () => {
+    const { sendNdaEmail } = await import("./email");
+    const result = await sendNdaEmail({
+      salutation: "Herr",
+      firstName: "Max",
+      lastName: "Müller",
+      company: "Müller GmbH",
+      email: "max@mueller.de",
     });
     expect(result).toBe(true);
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    expect(callArgs.subject).toContain("Herr Max Müller");
+    expect(callArgs.subject).toContain("Müller GmbH");
+  });
+
+  it("should omit salutation in NDA email when 'Keine Angabe'", async () => {
+    const { sendNdaEmail } = await import("./email");
+    const result = await sendNdaEmail({
+      salutation: "Keine Angabe",
+      firstName: "Alex",
+      lastName: "Test",
+      company: "Test AG",
+      email: "alex@test.de",
+    });
+    expect(result).toBe(true);
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    expect(callArgs.subject).toContain("Alex Test");
+    expect(callArgs.subject).not.toContain("Keine Angabe");
   });
 
   it("should include topic badge in contact email when topic is provided", async () => {
@@ -137,5 +205,22 @@ describe("Email Service", () => {
     const transport = nodemailer.default.createTransport();
     const callArgs = (transport.sendMail as any).mock.calls[0][0];
     expect(callArgs.html).toContain("Mechatronik");
+  });
+
+  it("should include topic badge in NDA email when topic is provided", async () => {
+    const { sendNdaEmail } = await import("./email");
+    await sendNdaEmail({
+      salutation: "Herr",
+      firstName: "Test",
+      lastName: "User",
+      company: "Test GmbH",
+      email: "test@test.de",
+      topic: "Leistungselektronik",
+    });
+
+    const nodemailer = await import("nodemailer");
+    const transport = nodemailer.default.createTransport();
+    const callArgs = (transport.sendMail as any).mock.calls[0][0];
+    expect(callArgs.html).toContain("Leistungselektronik");
   });
 });

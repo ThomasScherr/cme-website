@@ -477,3 +477,6 @@
 - [x] REMOVE: Manus/Meta-Referenzen aus eigenem Code entfernt (ManusDialog.tsx gelöscht, Umami-Script aus index.html entfernt, Kommentare in articleTranslator/contentTranslator/seoGenerator/storage bereinigt). _core-Dateien sind Framework-intern und nicht im Browser sichtbar.
 - [x] FIX: Schriftgrößen auf 4K-Monitoren – clamp()-Werte auf 3840px erweitert, Container max-width auf 2400px erhöht, feste text-sm/text-xs in allen Seiten/Komponenten durch fluid-Klassen ersetzt
 - [x] BUG: Hero-Section Typewriter-Animation bei Sprachwechsel behoben – useTypewriter-Hook und showSecondText/transitionScheduled werden bei lang-Wechsel zurückgesetzt, AnimatePresence-Keys enthalten lang
+- [x] FIX: SMTP_FROM von "Formular" auf "CME Kontaktformular" <noreply@controlmotion.de> korrigiert (E-Mails kamen mit "(Kein Absender)" an)
+- [x] FIX: Anrede-Logik in sendContactEmail und sendNdaEmail korrigiert – Frontend sendet 'Herr'/'Frau'/'Keine Angabe', nicht 'mr'/'ms'
+- [x] FIX: E-Mail-Tests auf korrekte Anrede-Werte aktualisiert (11 Tests, alle bestanden)
