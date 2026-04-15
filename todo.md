@@ -508,6 +508,9 @@
 - [x] Pre-Rendering für Crawler (Sistrix, Google, Bing, KI-Bots) implementieren
 - [x] Pre-Rendering: 47 Vitest-Tests für Middleware geschrieben (Crawler-Erkennung, Pfad-Filterung, Content-Korrektheit, alle 24 Seiten)
 - [x] Adresse in Schema.org und Meta-Descriptions von Schwäbisch Gmünd auf Dortmund korrigiert (SEO.tsx, Karriere.tsx, Unternehmen.tsx)
+- [x] Noscript-Fallback in index.html: Vollständiger SEO-Content (H1, H2, Links, Adresse) für Crawler ohne JS (Sistrix, Screaming Frog)
+- [x] Schema.org JSON-LD (Organization + WebSite) statisch in index.html <head> eingebaut – für alle Crawler sichtbar
+- [x] Canonical-URL statisch in index.html <head> eingebaut
 - [ ] Admin-UI für 404-Tracking und URL-Redirects
 - [ ] 404-Tracking: GA4-Event bei 404-Seite senden
 - [ ] SEO-Keywords auf Unterseiten (seitenspezifische Meta-Keywords)
