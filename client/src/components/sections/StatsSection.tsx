@@ -94,9 +94,10 @@ export default function StatsSection() {
                       ${item.featured ? 'bg-cme-blue/15 text-cme-blue' : 'bg-cme-blue/8 text-cme-blue'}
                     `}
                     style={{
-                      width: item.featured ? 'clamp(3rem, 2.2rem + 1.8vw, 4rem)' : 'clamp(2.75rem, 2rem + 1.6vw, 3.5rem)',
-                      height: item.featured ? 'clamp(3rem, 2.2rem + 1.8vw, 4rem)' : 'clamp(2.75rem, 2rem + 1.6vw, 3.5rem)',
+                      width: '50px',
+                      height: '50px',
                       marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.875rem)',
+                      backgroundColor: '#e4eff6',
                     }}
                   >
                     <Icon
