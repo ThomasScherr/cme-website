@@ -22,7 +22,7 @@ vi.mock("./_core/env", () => ({
     smtpUser: "test@test.de",
     smtpPass: "testpass",
     smtpFrom: "\"CME Kontaktformular\" <noreply@controlmotion.de>",
-    contactEmail: "vertrieb@controlmotion.de",
+    contactEmail: "t.scherr@control-motion.de,sales@control-motion.de",
     isProduction: false,
   },
 }));
@@ -67,7 +67,7 @@ describe("Email Service", () => {
 
     const callArgs = (transport.sendMail as any).mock.calls[0][0];
     expect(callArgs.from).toBe("\"CME Kontaktformular\" <noreply@controlmotion.de>");
-    expect(callArgs.to).toBe("vertrieb@controlmotion.de");
+    expect(callArgs.to).toBe("t.scherr@control-motion.de,sales@control-motion.de");
     expect(callArgs.replyTo).toBe("max@example.com");
     expect(callArgs.subject).toContain("Kontaktanfrage");
     expect(callArgs.subject).toContain("Hardware & Software");

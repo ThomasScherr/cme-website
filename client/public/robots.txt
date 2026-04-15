@@ -1,5 +1,5 @@
 # CME Control Motion Electronics GmbH
-# https://controlmotion.de
+# https://www.control-motion.de
 
 User-agent: *
 Allow: /
@@ -60,4 +60,4 @@ User-agent: CCBot
 Allow: /
 
 # Sitemap
-Sitemap: https://controlmotion.de/sitemap.xml
+Sitemap: https://www.control-motion.de/sitemap.xml

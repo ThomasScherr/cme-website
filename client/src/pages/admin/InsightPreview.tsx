@@ -198,7 +198,7 @@ export default function InsightPreview() {
                   {metaTitle || title}
                 </p>
                 <p className="text-green-700 fluid-xs mt-1">
-                  controlmotion.de/insights/{article.slug}
+                  control-motion.de/insights/{article.slug}
                 </p>
                 {metaDescription && (
                   <p className="text-gray-600 fluid-small mt-1 line-clamp-2">

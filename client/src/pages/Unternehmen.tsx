@@ -42,8 +42,8 @@ export default function Unternehmen() {
       <SEO
         titleDE='Über CME'
         titleEN='About CME'
-        descriptionDE='CME Control Motion Electronics GmbH – Ihr Partner für Elektronikentwicklung und EMS in Schwäbisch Gmünd. Erfahrung, Innovation und Qualität.'
-        descriptionEN='CME Control Motion Electronics GmbH – Your partner for electronics development and EMS in Schwäbisch Gmünd. Experience, innovation and quality.'
+        descriptionDE='CME Control Motion Electronics GmbH – Ihr Partner für Elektronikentwicklung und EMS in Dortmund. Erfahrung, Innovation und Qualität.'
+        descriptionEN='CME Control Motion Electronics GmbH – Your partner for electronics development and EMS in Dortmund. Experience, innovation and quality.'
         path='/unternehmen'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Über CME',url:'/unternehmen'}]}
       />

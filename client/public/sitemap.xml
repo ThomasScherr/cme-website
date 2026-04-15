@@ -4,132 +4,132 @@
 
   <!-- Startseite -->
   <url>
-    <loc>https://controlmotion.de/</loc>
+    <loc>https://www.control-motion.de/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Entwicklung -->
   <url>
-    <loc>https://controlmotion.de/entwicklung</loc>
+    <loc>https://www.control-motion.de/entwicklung</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/hardware-software</loc>
+    <loc>https://www.control-motion.de/entwicklung/hardware-software</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/simulation</loc>
+    <loc>https://www.control-motion.de/entwicklung/simulation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/test-verifikation</loc>
+    <loc>https://www.control-motion.de/entwicklung/test-verifikation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/ux-interface-engineering</loc>
+    <loc>https://www.control-motion.de/entwicklung/ux-interface-engineering</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/software-digitale-systeme</loc>
+    <loc>https://www.control-motion.de/entwicklung/software-digitale-systeme</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/e-motor-design</loc>
+    <loc>https://www.control-motion.de/entwicklung/e-motor-design</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/control-design</loc>
+    <loc>https://www.control-motion.de/entwicklung/control-design</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/validierung-emv</loc>
+    <loc>https://www.control-motion.de/entwicklung/validierung-emv</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/entwicklung/ki-entwicklung</loc>
+    <loc>https://www.control-motion.de/entwicklung/ki-entwicklung</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Fertigung -->
   <url>
-    <loc>https://controlmotion.de/fertigung</loc>
+    <loc>https://www.control-motion.de/fertigung</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/fertigung/leiterplatten</loc>
+    <loc>https://www.control-motion.de/fertigung/leiterplatten</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/fertigung/baugruppen</loc>
+    <loc>https://www.control-motion.de/fertigung/baugruppen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/fertigung/qualitaet</loc>
+    <loc>https://www.control-motion.de/fertigung/qualitaet</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Weitere Hauptseiten -->
   <url>
-    <loc>https://controlmotion.de/lifecycle</loc>
+    <loc>https://www.control-motion.de/lifecycle</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/maerkte</loc>
+    <loc>https://www.control-motion.de/maerkte</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/unternehmen</loc>
+    <loc>https://www.control-motion.de/unternehmen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/kontakt</loc>
+    <loc>https://www.control-motion.de/kontakt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/karriere</loc>
+    <loc>https://www.control-motion.de/karriere</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Insights / Blog -->
   <url>
-    <loc>https://controlmotion.de/insights</loc>
+    <loc>https://www.control-motion.de/insights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Rechtliches -->
   <url>
-    <loc>https://controlmotion.de/impressum</loc>
+    <loc>https://www.control-motion.de/impressum</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/datenschutz</loc>
+    <loc>https://www.control-motion.de/datenschutz</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://controlmotion.de/agb</loc>
+    <loc>https://www.control-motion.de/agb</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

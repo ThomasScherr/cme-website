@@ -488,10 +488,10 @@
 - [x] FIX: Kachel-Animationen flackern beim Scrollen – FadeIn-Komponente mit Mobile-Optimierung erstellt, Stats/Benefits/Markets/USP/Trust umgestellt
 - [x] TrustSection: Graufilter entfernt, Logos auf 96px vergrößert (+20%), nur Hover-Scale-Effekt
 - [x] FIX: V-Modell/V-Modells darf nie beim Bindestrich umgebrochen werden – non-breaking hyphen (U+2011) in allen 5 Dateien ersetzt
-- [ ] 404-Tracking: DB-Tabelle für 404-Logs (URL, Referrer, User-Agent, Timestamp, Häufigkeit)
+- [x] 404-Tracking: DB-Tabelle für 404-Logs (URL, Referrer, User-Agent, Timestamp, Häufigkeit)
 - [ ] 404-Tracking: GA4-Event bei 404-Seite senden
-- [ ] Redirects: DB-Tabelle für URL-Umleitungen (source, target, type 301/302, aktiv/inaktiv)
-- [ ] Redirects: Server-Middleware die Redirects vor dem Routing prüft
+- [x] Redirects: DB-Tabelle für URL-Umleitungen (source, target, type 301/302, aktiv/inaktiv)
+- [x] Redirects: Server-Middleware die Redirects vor dem Routing prüft
 - [ ] Redirects: Admin-UI zum Verwalten von Umleitungen (CRUD)
 - [ ] 404-Tracking: Admin-UI zum Anzeigen der 404-Logs mit Häufigkeit
 - [ ] Tests für 404-Tracking und Redirect-Logik
@@ -502,3 +502,14 @@
 - [x] KI-SEO: robots.txt um KI-Bot-Erlaubnisse erweitern (GPTBot, PerplexityBot, ClaudeBot etc.)
 - [x] KI-SEO: Sitemap.xml mit 23 Seiten generiert (inkl. Prioritäten und Changefreq)
 - [x] KI-SEO: FAQ-Schema (JSON-LD) auf Startseite, Entwicklung und Fertigung + Service-Schema auf Startseite
+- [x] Domain-Umstellung: Alle URLs auf https://www.control-motion.de als Hauptdomain (Canonical, Schema.org, Sitemap, robots.txt, llms.txt, OG-Tags)
+- [x] CONTACT_EMAIL auf zwei Empfänger: t.scherr@control-motion.de und sales@control-motion.de
+- [x] Domain-Umstellung: Alle URLs auf https://www.control-motion.de
+- [x] Pre-Rendering für Crawler (Sistrix, Google, Bing, KI-Bots) implementieren
+- [x] Pre-Rendering: 47 Vitest-Tests für Middleware geschrieben (Crawler-Erkennung, Pfad-Filterung, Content-Korrektheit, alle 24 Seiten)
+- [x] Adresse in Schema.org und Meta-Descriptions von Schwäbisch Gmünd auf Dortmund korrigiert (SEO.tsx, Karriere.tsx, Unternehmen.tsx)
+- [ ] Admin-UI für 404-Tracking und URL-Redirects
+- [ ] 404-Tracking: GA4-Event bei 404-Seite senden
+- [ ] SEO-Keywords auf Unterseiten (seitenspezifische Meta-Keywords)
+- [ ] FAQ-Sektionen sichtbar auf Seiten einbauen (JSON-LD vorhanden, aber nicht sichtbar)
+- [ ] Hero-Video durch eigenes CME-Material ersetzen (aktuell Stock-Video)

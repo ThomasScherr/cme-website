@@ -7,7 +7,7 @@
 - Firmenname: CME Control Motion Electronics GmbH
 - Branche: Elektronikentwicklung und EMS-Fertigung (Electronic Manufacturing Services)
 - Standort: Dortmund, Nordrhein-Westfalen, Deutschland
-- Website: https://controlmotion.de
+- Website: https://www.control-motion.de
 - Gründung: 2001
 - Mitarbeiter: ca. 60
 - Zertifizierungen: ISO 9001, IATF 16949 (Automotive), IPC-A-610, IPC J-STD-001
@@ -64,8 +64,8 @@
 
 - Adresse: Brennaborstraße 32, 44149 Dortmund, Deutschland
 - Telefon: +49 231 97676-0
-- E-Mail: info@controlmotion.de
-- Website: https://controlmotion.de
+- E-Mail: info@control-motion.de
+- Website: https://www.control-motion.de
 
 ## Seitenstruktur
 

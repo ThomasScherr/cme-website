@@ -616,7 +616,7 @@ export default function InsightsAdmin() {
                         {metaTitle || title}
                       </div>
                       <div className="text-green-700 text-sm mt-0.5">
-                        controlmotion.de/insights/{slug || '…'}
+                        control-motion.de/insights/{slug || '…'}
                       </div>
                       <div className="text-gray-600 text-sm mt-1 line-clamp-2">
                         {metaDescription || excerpt || 'Keine Beschreibung vorhanden.'}

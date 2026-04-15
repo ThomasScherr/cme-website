@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { redirectMiddleware } from "../redirectMiddleware";
+import { prerenderMiddleware } from "../prerenderMiddleware";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -34,6 +35,8 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  // Pre-render middleware – serves static HTML to crawlers for SEO
+  app.use(prerenderMiddleware());
   // Redirect middleware – checks DB for active redirects before serving pages
   app.use(redirectMiddleware());
   // OAuth callback under /api/oauth/callback

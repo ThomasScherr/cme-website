@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const SITE_NAME = 'CME Control Motion Electronics GmbH';
-const BASE_URL = 'https://www.controlmotion.de';
+const BASE_URL = 'https://www.control-motion.de';
 const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg';
 
 interface BreadcrumbItem {
@@ -38,15 +38,15 @@ export const organizationSchema = {
     'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Auwiesenstraße 26',
-    addressLocality: 'Schwäbisch Gmünd',
-    postalCode: '73529',
+    streetAddress: 'Brennaborstraße 32',
+    addressLocality: 'Dortmund',
+    postalCode: '44149',
     addressCountry: 'DE',
   },
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    email: 'info@controlmotion.de',
+    email: 'info@control-motion.de',
     availableLanguage: ['German', 'English'],
   },
   sameAs: [
