@@ -285,7 +285,7 @@ export default function Entwicklung() {
                   : ['Product development & ideation', 'Troubleshooting: finding & fixing root causes', 'Second-source management: alternative components', 'Project planning & execution', 'Independent assessment of developments']
                 ).map((item, i) => (
                   <li key={i} className="flex items-start gap-2 fluid-small text-gray-600">
-                    <Users className="text-cme-blue shrink-0 mt-0.5" size={14} />
+                    <CheckCircle2 className="text-cme-blue shrink-0 mt-0.5" size={14} />
                     {item}
                   </li>
                 ))}
