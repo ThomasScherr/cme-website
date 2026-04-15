@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import FadeIn from '@/components/FadeIn';
 import {
   ShieldCheck,
   RotateCcw,
@@ -10,8 +10,6 @@ import {
   TrendingUp,
   Eye,
 } from 'lucide-react';
-
-const vp = { once: true, margin: '-60px' as const };
 
 const benefits = [
   {
@@ -84,11 +82,7 @@ export default function BenefitsSection({ onCardClick }: BenefitsSectionProps) {
     <section className="section-pad bg-white">
       <div className="container max-w-7xl">
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={vp}
-          transition={{ duration: 0.5 }}
+        <FadeIn
           className="text-center"
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
@@ -105,7 +99,7 @@ export default function BenefitsSection({ onCardClick }: BenefitsSectionProps) {
               ? 'Durch frühe Simulation, Design-for-Manufacturing, Tests und kurze Wege zwischen Entwicklung und Fertigung reduzieren Sie Risiken, Iterationen und Time-to-Market.'
               : 'Through early simulation, design-for-manufacturing, testing and short paths between development and production, you reduce risks, iterations and time-to-market.'}
           </p>
-        </motion.div>
+        </FadeIn>
 
         {/* Benefits Grid: 4+3 layout on large screens, 2 columns on medium */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 'var(--space-gap-sm)' }}>
@@ -113,48 +107,49 @@ export default function BenefitsSection({ onCardClick }: BenefitsSectionProps) {
             const Icon = benefit.icon;
             const title = isDE ? benefit.de : benefit.en;
             return (
-              <motion.div
+              <FadeIn
                 key={i}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                delay={i * 0.06}
                 className={`bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 fluid-card flex flex-col items-center text-center ${onCardClick ? 'cursor-pointer' : ''}`}
-                onClick={onCardClick ? () => onCardClick(title) : undefined}
-                role={onCardClick ? 'button' : undefined}
-                tabIndex={onCardClick ? 0 : undefined}
-                onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onCardClick(title);
-                  }
-                } : undefined}
               >
-                {/* Icon box */}
                 <div
-                  className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
-                  style={{
-                    width: 'var(--icon-box)',
-                    height: 'var(--icon-box)',
-                    marginBottom: 'var(--space-gap-xs)',
-                  }}
+                  onClick={onCardClick ? () => onCardClick(title) : undefined}
+                  role={onCardClick ? 'button' : undefined}
+                  tabIndex={onCardClick ? 0 : undefined}
+                  onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onCardClick(title);
+                    }
+                  } : undefined}
+                  className="flex flex-col items-center text-center w-full"
                 >
-                  <Icon
-                    style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }}
-                    className="text-cme-blue"
-                  />
+                  {/* Icon box */}
+                  <div
+                    className="rounded-lg bg-cme-blue-light flex items-center justify-center shrink-0"
+                    style={{
+                      width: 'var(--icon-box)',
+                      height: 'var(--icon-box)',
+                      marginBottom: 'var(--space-gap-xs)',
+                    }}
+                  >
+                    <Icon
+                      style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }}
+                      className="text-cme-blue"
+                    />
+                  </div>
+
+                  {/* Benefit title */}
+                  <p className="fluid-small text-cme-dark leading-snug" style={{ fontWeight: 700, marginBottom: '0.5rem' }}>
+                    {title}
+                  </p>
+
+                  {/* Benefit description */}
+                  <p className="text-gray-500 leading-relaxed" style={{ fontSize: 'clamp(0.72rem, 0.6rem + 0.3vw, 0.85rem)' }}>
+                    {isDE ? benefit.descDE : benefit.descEN}
+                  </p>
                 </div>
-
-                {/* Benefit title */}
-                <p className="fluid-small text-cme-dark leading-snug" style={{ fontWeight: 700, marginBottom: '0.5rem' }}>
-                  {title}
-                </p>
-
-                {/* Benefit description */}
-                <p className="text-gray-500 leading-relaxed" style={{ fontSize: 'clamp(0.72rem, 0.6rem + 0.3vw, 0.85rem)' }}>
-                  {isDE ? benefit.descDE : benefit.descEN}
-                </p>
-              </motion.div>
+              </FadeIn>
             );
           })}
         </div>

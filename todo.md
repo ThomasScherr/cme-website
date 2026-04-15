@@ -485,3 +485,5 @@
 - [x] DSGVO: files.manuscdn.com Cookies (AMP_remote_config, AMP_unsent) werden ohne Consent gesetzt – Cookie-Blocking-Script in index.html implementiert
 - [x] FIX: Formular-Eingabefelder zu flach – h-11 py-2.5 auf alle Formulare angewendet (ContactSection, Kontakt-Seite, ContactSlider)
 - [x] DSGVO: Crisp Chat als eigene Consent-Kategorie im Cookie-Banner mit separatem Button "Support-Chat erlauben"
+- [x] FIX: Kachel-Animationen flackern beim Scrollen – FadeIn-Komponente mit Mobile-Optimierung erstellt, Stats/Benefits/Markets/USP/Trust umgestellt
+- [x] TrustSection: Graufilter entfernt, Logos auf 96px vergrößert (+20%), nur Hover-Scale-Effekt

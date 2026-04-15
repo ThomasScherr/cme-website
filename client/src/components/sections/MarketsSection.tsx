@@ -1,9 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import FadeIn from '@/components/FadeIn';
 import { Link } from 'wouter';
 import { ArrowRight, Zap, Cog, Car, Factory, HeartPulse, Building2 } from 'lucide-react';
-
-const vp = { once: true, margin: '-80px' as const };
 
 const markets = [
   {
@@ -74,11 +72,7 @@ export default function MarketsSection({ onCardClick }: MarketsSectionProps) {
     <section id="markets" className="relative overflow-hidden bg-white section-pad">
       <div className="container max-w-7xl">
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={vp}
-          transition={{ duration: 0.5 }}
+        <FadeIn
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
           <p className="fluid-xs font-semibold text-cme-blue uppercase tracking-[0.18em]" style={{ marginBottom: 'var(--space-gap-xs)' }}>
@@ -92,31 +86,30 @@ export default function MarketsSection({ onCardClick }: MarketsSectionProps) {
               ? 'Wir denken in Ihren Systemherausforderungen – nicht in Technologien.'
               : 'We think in your system challenges – not in technologies.'}
           </p>
-        </motion.div>
+        </FadeIn>
 
         {/* Market Cards Grid – 3x2 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
           {markets.map((v, i) => {
             const title = isDE ? v.titleDE : v.titleEN;
             return (
-              <motion.div
+              <FadeIn
                 key={i}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={vp}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                delay={i * 0.06}
                 className={`bg-white border border-gray-100 rounded-xl hover:shadow-lg hover:-translate-y-1 hover:border-cme-blue/20 transition-all duration-300 group overflow-hidden ${onCardClick ? 'cursor-pointer' : 'cursor-default'}`}
-                onClick={onCardClick ? () => onCardClick(title) : undefined}
-                role={onCardClick ? 'button' : undefined}
-                tabIndex={onCardClick ? 0 : undefined}
-                onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onCardClick(title);
-                  }
-                } : undefined}
               >
-                <div className="fluid-card flex flex-col h-full">
+                <div
+                  className="fluid-card flex flex-col h-full"
+                  onClick={onCardClick ? () => onCardClick(title) : undefined}
+                  role={onCardClick ? 'button' : undefined}
+                  tabIndex={onCardClick ? 0 : undefined}
+                  onKeyDown={onCardClick ? (e: React.KeyboardEvent) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onCardClick(title);
+                    }
+                  } : undefined}
+                >
                   {/* Icon + Title */}
                   <div className="flex items-center" style={{ gap: 'var(--space-gap-xs)', marginBottom: 'clamp(0.5rem, 0.3rem + 0.4vw, 0.75rem)' }}>
                     <div
@@ -145,16 +138,13 @@ export default function MarketsSection({ onCardClick }: MarketsSectionProps) {
                     {isDE ? v.challengeDE : v.challengeEN}
                   </p>
                 </div>
-              </motion.div>
+              </FadeIn>
             );
           })}
         </div>
 
         {/* Link to full page */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={vp}
+        <FadeIn
           className="text-center"
           style={{ marginTop: 'var(--space-gap-md)' }}
         >
@@ -165,7 +155,7 @@ export default function MarketsSection({ onCardClick }: MarketsSectionProps) {
             {isDE ? 'Branchen & Anwendungsfelder im Detail' : 'Industries & applications in detail'}
             <ArrowRight size={16} />
           </Link>
-        </motion.div>
+        </FadeIn>
       </div>
     </section>
   );

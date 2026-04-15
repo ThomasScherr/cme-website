@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
-import { motion } from 'framer-motion';
+import FadeIn from '@/components/FadeIn';
 import { Cpu, Blocks, Factory, ShieldCheck } from 'lucide-react';
 
 interface TrustItem {
@@ -58,12 +58,9 @@ export default function StatsSection() {
             const isLast = i === trustItems.length - 1;
 
             return (
-              <motion.div
+              <FadeIn
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                delay={i * 0.08}
                 className={`
                   relative flex flex-col items-center text-center
                   ${!isLast ? 'lg:border-r lg:border-gray-200' : ''}
@@ -136,7 +133,7 @@ export default function StatsSection() {
                     {cms(`stats.${i}.sub`) || (isDE ? item.subDE : item.subEN)}
                   </p>
                 </div>
-              </motion.div>
+              </FadeIn>
             );
           })}
         </div>
