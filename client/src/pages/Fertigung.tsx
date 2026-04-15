@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEO, { buildFAQSchema } from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
@@ -21,6 +21,21 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+
+const fertigungFaqs = buildFAQSchema([
+  {
+    question: 'Welche EMS-Fertigungsleistungen bietet CME?',
+    answer: 'CME bietet SMD- und THT-Bestückung, Selektivlöten, Wellenlöten, Dampfphasenlöten, AOI und Röntgeninspektion, Verguss, Conformal Coating, Kabelkonfektionierung und komplette Baugruppenfertigung.',
+  },
+  {
+    question: 'Fertigt CME auch Prototypen?',
+    answer: 'Ja, CME bietet flexible Losgrößen vom Einzelprototyp bis zur Großserie. Durch die Kombination von Entwicklung und Fertigung unter einem Dach ist ein nahtloser Übergang vom Prototyp zur Serie möglich.',
+  },
+  {
+    question: 'Welche Qualitätsstandards erfüllt CME?',
+    answer: 'CME ist ISO 9001 und IATF 16949 (Automotive) zertifiziert und arbeitet nach IPC-A-610 und IPC J-STD-001 Standards. Qualitätssicherung erfolgt durch AOI, Röntgeninspektion und umfassende Prüfprotokolle.',
+  },
+]);
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 const HERO_VIDEO = {
@@ -191,8 +206,11 @@ export default function Fertigung() {
         titleEN='Electronics Manufacturing & EMS'
         descriptionDE='EMS-Dienstleister für Leiterplattenbestückung, Baugruppenfertigung und Qualitätssicherung – von Prototypen bis Serienproduktion.'
         descriptionEN='EMS provider for PCB assembly, module manufacturing and quality assurance – from prototypes to series production.'
+        keywordsDE='EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
+        keywordsEN='EMS manufacturing, electronics manufacturing, SMD assembly, THT assembly, PCB assembly, module manufacturing, prototyping, series production, AOI, IPC'
         path='/fertigung'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikfertigung',url:'/fertigung'}]}
+        additionalSchemas={[fertigungFaqs]}
       />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)')}

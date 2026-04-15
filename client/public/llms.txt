@@ -1,0 +1,92 @@
+# CME Control Motion Electronics GmbH
+
+> CME ist ein Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte mit Sitz in Dortmund, Deutschland. Das Unternehmen ist spezialisiert auf Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.
+
+## Unternehmensprofil
+
+- Firmenname: CME Control Motion Electronics GmbH
+- Branche: Elektronikentwicklung und EMS-Fertigung (Electronic Manufacturing Services)
+- Standort: Dortmund, Nordrhein-Westfalen, Deutschland
+- Website: https://controlmotion.de
+- Gründung: 2001
+- Mitarbeiter: ca. 60
+- Zertifizierungen: ISO 9001, IATF 16949 (Automotive), IPC-A-610, IPC J-STD-001
+
+## Kernkompetenzen
+
+### Entwicklung (Engineering Services)
+- Hardware- und Softwareentwicklung für elektronische Steuerungen
+- Leistungselektronik und Antriebselektronik (Motorsteuerungen, Inverter, DC/DC-Wandler)
+- E-Motor-Design und Regelungstechnik (Control Design)
+- Simulation und thermisches Management
+- EMV-gerechtes Design und Validierung
+- UX & Interface Engineering für Bediengeräte
+- Software für digitale Systeme und Embedded Systems
+- KI-Entwicklung für industrielle Anwendungen
+- Test und Verifikation nach V-Modell
+
+### Fertigung (EMS Manufacturing)
+- SMD-Bestückung (Surface Mount Technology)
+- THT-Bestückung (Through-Hole Technology)
+- Leiterplattenbestückung von Prototypen bis Serienfertigung
+- Baugruppenfertigung und Systemintegration
+- Selektivlöten, Wellenlöten, Dampfphasenlöten
+- AOI (Automatische Optische Inspektion), Röntgeninspektion
+- Verguss und Conformal Coating
+- Kabelkonfektionierung
+- Qualitätssicherung nach IPC-Standards
+
+### Lifecycle & Reparatur
+- Obsoleszenz-Management
+- Redesign und Produktpflege
+- Reparatur- und Instandsetzungsservice
+- Ersatzteilmanagement
+
+## Zielmärkte
+
+- Automotive und E-Mobilität
+- Industrieautomation und Maschinenbau
+- Medizintechnik
+- Energietechnik und erneuerbare Energien
+- Luft- und Raumfahrt
+- Sicherheitstechnik
+
+## Alleinstellungsmerkmale (USPs)
+
+1. Alles aus einer Hand: Entwicklung und Fertigung unter einem Dach
+2. V-Modell-basierter Entwicklungsprozess für nachvollziehbare Qualität
+3. Spezialisierung auf thermisch anspruchsvolle Elektronik
+4. Automotive-qualifiziert (IATF 16949)
+5. Vom Prototyp bis zur Serie – flexible Losgrößen
+6. Standort Deutschland – kurze Wege, deutsche Ingenieursqualität
+
+## Kontakt
+
+- Adresse: Brennaborstraße 32, 44149 Dortmund, Deutschland
+- Telefon: +49 231 97676-0
+- E-Mail: info@controlmotion.de
+- Website: https://controlmotion.de
+
+## Seitenstruktur
+
+- /: Startseite mit Überblick über Leistungen und Kompetenzen
+- /entwicklung: Übersicht Entwicklungsdienstleistungen
+- /entwicklung/hardware-software: Hardware- und Softwareentwicklung
+- /entwicklung/simulation: Simulation und thermisches Management
+- /entwicklung/test-verifikation: Test und Verifikation
+- /entwicklung/ux-interface-engineering: UX und Interface Engineering
+- /entwicklung/software-digitale-systeme: Software für digitale Systeme
+- /entwicklung/e-motor-design: E-Motor-Design
+- /entwicklung/control-design: Regelungstechnik und Control Design
+- /entwicklung/validierung-emv: EMV-Validierung
+- /entwicklung/ki-entwicklung: KI-Entwicklung
+- /fertigung: Übersicht EMS-Fertigung
+- /fertigung/leiterplatten: Leiterplattenbestückung
+- /fertigung/baugruppen: Baugruppenfertigung
+- /fertigung/qualitaet: Qualitätssicherung
+- /lifecycle: Lifecycle Management und Reparatur
+- /maerkte: Zielmärkte und Branchenkompetenz
+- /unternehmen: Über CME
+- /kontakt: Kontaktformular und Anfahrt
+- /karriere: Stellenangebote und Karriere
+- /insights: Fachartikel und Neuigkeiten

@@ -498,3 +498,7 @@
 - [x] SEO: Startseite (/) - Keine Keywords gefunden → Meta-Keywords in SEO-Komponente + index.html
 - [x] SEO: Startseite (/) - Keine H1-Überschrift → Hero-Headline von div auf h1 geändert
 - [x] SEO: Startseite (/) - Titel zu lang (65 Zeichen) → auf 45 Zeichen gekürzt
+- [x] KI-SEO: llms.txt erstellen (maschinenlesbare Zusammenfassung für KI-Crawler)
+- [x] KI-SEO: robots.txt um KI-Bot-Erlaubnisse erweitern (GPTBot, PerplexityBot, ClaudeBot etc.)
+- [x] KI-SEO: Sitemap.xml mit 23 Seiten generiert (inkl. Prioritäten und Changefreq)
+- [x] KI-SEO: FAQ-Schema (JSON-LD) auf Startseite, Entwicklung und Fertigung + Service-Schema auf Startseite

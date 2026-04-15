@@ -145,5 +145,42 @@ export default function SEO({
   );
 }
 
+/* ── FAQPage Schema helper ── */
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export function buildFAQSchema(faqs: FAQItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+/* ── Service Schema helper ── */
+export function buildServiceSchema(services: { name: string; description: string; url?: string }[]) {
+  return services.map((service) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: service.name,
+    description: service.description,
+    provider: {
+      '@type': 'Organization',
+      name: 'CME Control Motion Electronics GmbH',
+      url: BASE_URL,
+    },
+    ...(service.url ? { url: `${BASE_URL}${service.url}` } : {}),
+  }));
+}
+
 export { SITE_NAME, BASE_URL, DEFAULT_OG_IMAGE, buildBreadcrumbSchema };
 export type { SEOProps, BreadcrumbItem };

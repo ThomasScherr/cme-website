@@ -12,6 +12,22 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { buildFAQSchema } from '@/components/SEO';
+
+const entwicklungFaqs = buildFAQSchema([
+  {
+    question: 'Welche Entwicklungsleistungen bietet CME?',
+    answer: 'CME bietet Hardware- und Softwareentwicklung, Leistungselektronik, E-Motor-Design, Regelungstechnik, Simulation, EMV-Validierung, UX-Engineering, Embedded Software und KI-Entwicklung für industrielle Anwendungen.',
+  },
+  {
+    question: 'Nach welchem Entwicklungsprozess arbeitet CME?',
+    answer: 'CME arbeitet nach dem V-Modell – einem strukturierten Entwicklungsprozess mit definierten Meilensteinen von der Anforderungsanalyse über Design, Implementierung bis zur Verifikation und Validierung.',
+  },
+  {
+    question: 'Kann CME auch thermisch anspruchsvolle Elektronik entwickeln?',
+    answer: 'Ja, CME ist spezialisiert auf thermisch anspruchsvolle Elektronikprojekte. Durch Simulation und optimiertes thermisches Management werden auch Hochleistungsanwendungen zuverlässig realisiert.',
+  },
+]);
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 const HERO_IMG = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
@@ -126,8 +142,11 @@ export default function Entwicklung() {
         titleEN='Electronics Development'
         descriptionDE='Ganzheitliche Elektronikentwicklung von der Idee bis zur Serie – Hardware, Software, Simulation, Test und Zulassung aus einer Hand.'
         descriptionEN='End-to-end electronics development from concept to series production – hardware, software, simulation, testing and certification from a single source.'
+        keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, EMV, Simulation, V-Modell'
+        keywordsEN='electronics development, hardware design, software development, power electronics, drive electronics, motor design, EMC, simulation, V-model'
         path='/entwicklung'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikentwicklung',url:'/entwicklung'}]}
+        additionalSchemas={[entwicklungFaqs]}
       />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Elektronikentwicklung' : 'Electronics Development')}
