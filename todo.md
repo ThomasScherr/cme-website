@@ -524,3 +524,4 @@
 - [x] Sistrix-Fix: Doppelte H1-Überschriften behoben (Noscript-H1 in index.html auf <p> geändert)
 - [x] Sistrix-Fix: Doppelte Title-Tags behoben (statischer Title aus index.html entfernt)
 - [x] Sistrix-Fix: Doppelte Meta-Description + Keywords behoben (statische Tags aus index.html entfernt)
+- [x] Sistrix-Fix: Fehlende Title-Tags behoben – statische Fallback-Tags (Title, Description, Keywords) in index.html zurückgesetzt
