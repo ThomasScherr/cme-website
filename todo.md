@@ -532,3 +532,4 @@
 - [x] Sistrix-Fix: Keine identischen Titles mehr (alle seitenspezifisch)
 - [x] Sistrix-Fix: Keine identischen Descriptions mehr (alle seitenspezifisch)
 - [x] Sistrix-Fix: SEO-Komponente zu Simulation.tsx, HardwareSoftware.tsx, Insights.tsx, InsightArticle.tsx hinzugefügt
+- [x] Sistrix-Fix: Doppelte Canonical-Tags – www-Redirect-Middleware eingebaut (301 von control-motion.de → www.control-motion.de)

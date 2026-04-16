@@ -9,6 +9,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { redirectMiddleware } from "../redirectMiddleware";
 import { prerenderMiddleware } from "../prerenderMiddleware";
+import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,6 +36,8 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  // WWW redirect – enforce canonical host (MUST run before all other route middleware)
+  app.use(wwwRedirectMiddleware());
   // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)
   app.use(redirectMiddleware());
   // Pre-render middleware – serves static HTML to crawlers for SEO
