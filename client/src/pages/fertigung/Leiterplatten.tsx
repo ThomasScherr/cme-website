@@ -24,6 +24,8 @@ export default function Leiterplatten() {
       titleEN="PCB Assembly"
       subtitleDE="SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie."
       subtitleEN="SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series."
+      metaDescriptionDE="Leiterplatten bestücken: SMD- und THT-Bestückung vom Prototyp bis zur Großserie. Modernste Fertigungslinien, AOI und Röntgeninspektion."
+      metaDescriptionEN="PCB assembly: SMD and THT assembly from prototype to high-volume series. State-of-the-art production lines, AOI and X-ray inspection."
       heroVideo={{
         webm: `${CDN}/leiterplatten-hero_9526f6fb.webm`,
         mp4: `${CDN}/leiterplatten-hero_f10b49bd.mp4`,

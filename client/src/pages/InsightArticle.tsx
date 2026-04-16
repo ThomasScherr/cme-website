@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SEO from '@/components/SEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { useRoute, Link } from 'wouter';
@@ -58,6 +59,18 @@ export default function InsightArticle() {
 
   return (
     <Layout>
+      <SEO
+        titleDE={title}
+        titleEN={title}
+        descriptionDE={excerpt || `${title} – Engineering Insight von CME Control Motion Electronics.`}
+        descriptionEN={excerpt || `${title} – Engineering Insight by CME Control Motion Electronics.`}
+        path={`/insights/${slug}`}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Engineering Insights', url: '/insights' },
+          { name: title, url: `/insights/${slug}` },
+        ]}
+      />
       <article className="subpage-hero" style={{ paddingBottom: 'var(--space-section)' }}>
         <div className="container max-w-4xl mx-auto">
           {/* Back link */}

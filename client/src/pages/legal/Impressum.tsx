@@ -11,8 +11,8 @@ export default function Impressum() {
       <SEO
         titleDE="Impressum"
         titleEN="Legal Notice"
-        descriptionDE="Impressum der CME Control Motion Electronics GmbH, Dortmund."
-        descriptionEN="Legal notice of CME Control Motion Electronics GmbH, Dortmund."
+        descriptionDE="Impressum der CME Control Motion Electronics GmbH in Dortmund. Angaben gemäß § 5 TMG, Handelsregister und Kontaktdaten."
+        descriptionEN="Legal notice of CME Control Motion Electronics GmbH in Dortmund. Information per § 5 TMG, trade register and contact details."
         path="/impressum"
         breadcrumbs={[
           { name: 'Home', url: '/' },

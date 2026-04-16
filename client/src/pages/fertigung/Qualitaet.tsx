@@ -23,6 +23,8 @@ export default function Qualitaet() {
       titleEN="Quality Management"
       subtitleDE="ISO 9001 & 14001 zertifiziert. AOI, lückenlose Rückverfolgbarkeit und datenbankgestützte Traceability."
       subtitleEN="ISO 9001 & 14001 certified. AOI, complete traceability and database-driven tracking systems."
+      metaDescriptionDE="Qualitätsmanagement: ISO 9001 & 14001 zertifiziert. AOI, Röntgeninspektion, lückenlose Traceability und datenbankgestützte Rückverfolgbarkeit."
+      metaDescriptionEN="Quality management: ISO 9001 & 14001 certified. AOI, X-ray inspection, complete traceability and database-driven tracking."
       heroImg={`${CDN}/microscope-inspection_a3967815.png`}
       introDE="Qualität ist bei CME kein nachgelagerter Prüfschritt, sondern integraler Bestandteil jedes Fertigungsprozesses. Unser Qualitätsmanagementsystem ist nach ISO 9001 und ISO 14001 zertifiziert. Jede Baugruppe durchläuft eine automatisierte optische Inspektion (AOI). Unsere datenbankgestützte Traceability mit vernetzten Fertigungsgeräten gewährleistet maximale Rückverfolgbarkeit – vom Wareneingang über jeden Fertigungsschritt bis zum Versand."
       introEN="Quality at CME is not a downstream inspection step, but an integral part of every manufacturing process. Our quality management system is ISO 9001 and ISO 14001 certified. Every assembly undergoes automated optical inspection (AOI). Our database-driven traceability with connected manufacturing equipment ensures maximum traceability – from incoming goods through every production step to shipping."

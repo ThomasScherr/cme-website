@@ -17,7 +17,7 @@ export default function NotFound() {
   return (
     <>
       <Helmet>
-        <title>{isDE ? "Seite nicht gefunden – 404" : "Page Not Found – 404"} | CME Control Motion Electronics GmbH</title>
+        <title>{isDE ? "Seite nicht gefunden – 404" : "Page Not Found – 404"} | CME</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content={isDE ? "Die angeforderte Seite wurde nicht gefunden." : "The requested page was not found."} />
       </Helmet>

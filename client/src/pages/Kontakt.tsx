@@ -127,8 +127,8 @@ export default function Kontakt() {
       <SEO
         titleDE='Kontakt'
         titleEN='Contact'
-        descriptionDE='Kontaktieren Sie CME für Ihre Elektronikprojekte – Beratung, Angebot und technische Klärung.'
-        descriptionEN='Contact CME for your electronics projects – consultation, quotation and technical clarification.'
+        descriptionDE='Kontaktieren Sie CME in Dortmund für Elektronikentwicklung und EMS-Fertigung. Persönliche Beratung, Angebote und technische Klärung.'
+        descriptionEN='Contact CME in Dortmund for electronics development and EMS manufacturing. Personal consultation, quotations and technical clarification.'
         path='/kontakt'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Kontakt',url:'/kontakt'}]}
       />

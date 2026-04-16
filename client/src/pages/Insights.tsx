@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import SEO from '@/components/SEO';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
@@ -19,6 +20,17 @@ export default function Insights() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Engineering Insights"
+        titleEN="Engineering Insights"
+        descriptionDE="Fachartikel zu Leistungselektronik, EMV, thermischem Management und Antriebstechnik. Praxiswissen von CME-Ingenieuren aus Dortmund."
+        descriptionEN="Technical articles on power electronics, EMC, thermal management and drive technology. Practical knowledge from CME engineers in Dortmund."
+        path="/insights"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Engineering Insights', url: '/insights' },
+        ]}
+      />
       <SubPageHero
         tagline={isDE ? 'Engineering Insights' : 'Engineering Insights'}
         headline={isDE ? 'Fachwissen aus der Elektronikentwicklung' : 'Expert Knowledge from Electronics Development'}

@@ -1,5 +1,6 @@
 import SubPageTemplate from '@/components/SubPageTemplate';
 import Layout from '@/components/Layout';
+import SEO from '@/components/SEO';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -260,6 +261,18 @@ export default function HardwareSoftware() {
 
   return (
     <Layout>
+      <SEO
+        titleDE="Hard & Software Design"
+        titleEN="Hard & Software Design"
+        descriptionDE="Hardware- und Softwareentwicklung: Schaltungsdesign, PCB-Layout, Embedded-Firmware und FPGA. Leistungselektronik und thermisches Design."
+        descriptionEN="Hardware and software development: circuit design, PCB layout, embedded firmware and FPGA. Power electronics and thermal design."
+        path="/entwicklung/hardware-software"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: isDE ? 'Elektronikentwicklung' : 'Electronics Development', url: '/entwicklung' },
+          { name: 'Hard & Software Design', url: '/entwicklung/hardware-software' },
+        ]}
+      />
       <SubPageHero
         breadcrumb={[
           { label: 'Home', href: '/' },

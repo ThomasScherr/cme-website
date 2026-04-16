@@ -24,6 +24,8 @@ export default function ControlDesign() {
       titleEN="Control Design"
       subtitleDE="Modellbasiertes Reglerdesign – Entwicklung und Verifikation von Regelalgorithmen entlang des V‑Modells."
       subtitleEN="Model-based controller design – development and verification of control algorithms along the V‑model."
+      metaDescriptionDE="Modellbasiertes Reglerdesign für Antriebssysteme und Leistungselektronik. MIL/SIL/HIL-Simulation, FOC-Algorithmen und V‑Modell-Verifikation."
+      metaDescriptionEN="Model-based controller design for drive systems and power electronics. MIL/SIL/HIL simulation, FOC algorithms and V-model verification."
       heroImg={`${CDN}/JK_2885__1920px_ecd3ed1e.jpg`}
       introDE="CME entwickelt Regelungskonzepte für anspruchsvolle Antriebssysteme und Leistungselektronik. Von der modellbasierten Funktionsentwicklung über MIL/SIL/HIL-Simulation bis zum Rapid-Control-Prototyping – wir verifizieren Regelalgorithmen systematisch entlang des V‑Modells, bevor sie in die Serienapplikation überführt werden. Unsere Erfahrung umfasst sensorlose Regelungsverfahren, FOC-Algorithmen und applikationsspezifische Regleranpassungen."
       introEN="CME develops control concepts for demanding drive systems and power electronics. From model-based function development through MIL/SIL/HIL simulation to rapid control prototyping – we systematically verify control algorithms along the V‑model before transferring them to series applications. Our experience includes sensorless control methods, FOC algorithms and application-specific controller adaptations."

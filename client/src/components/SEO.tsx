@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const SITE_NAME = 'CME Control Motion Electronics GmbH';
+const SITE_NAME = 'CME';
 const BASE_URL = 'https://www.control-motion.de';
 const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg';
 
@@ -122,7 +122,7 @@ export default function SEO({
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:site_name" content="CME Control Motion Electronics GmbH" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />

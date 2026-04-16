@@ -11,8 +11,8 @@ export default function Datenschutz() {
       <SEO
         titleDE="Datenschutzerklärung"
         titleEN="Privacy Policy"
-        descriptionDE="Datenschutzerklärung der CME Control Motion Electronics GmbH gemäß DSGVO."
-        descriptionEN="Privacy policy of CME Control Motion Electronics GmbH in accordance with GDPR."
+        descriptionDE="Datenschutzerklärung der CME Control Motion Electronics GmbH gemäß DSGVO. Informationen zur Datenverarbeitung, Cookies und Ihren Rechten."
+        descriptionEN="Privacy policy of CME Control Motion Electronics GmbH in accordance with GDPR. Information on data processing, cookies and your rights."
         path="/datenschutz"
         breadcrumbs={[
           { name: 'Home', url: '/' },

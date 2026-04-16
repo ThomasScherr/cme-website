@@ -24,6 +24,8 @@ export default function ValidierungEmv() {
       titleEN="Validation & EMC"
       subtitleDE="Absicherung unter realen Einsatzbedingungen – leitungsgebundene EMV-Prüfung in eigener Schirmkabine, Umwelt- und Lebensdauertests."
       subtitleEN="Validation under real operating conditions – conducted EMC testing in our own shielded chamber, environmental and lifetime tests."
+      metaDescriptionDE="Validierung und EMV-Prüfung elektronischer Baugruppen. Eigene Schirmkabine, Klimatests, Lebensdauerprüfungen und Umweltsimulation in Dortmund."
+      metaDescriptionEN="Validation and EMC testing of electronic assemblies. Own shielded chamber, climate tests, lifetime tests and environmental simulation in Dortmund."
       heroImg={`${CDN}/JK_2885__1920px_ecd3ed1e.jpg`}
       introDE="CME validiert Ihre Elektronik unter realen Einsatzbedingungen – in unserem eigenen EMV-Messbereich mit Schirmkabine für leitungsgebundene Prüfungen. Wir identifizieren EMV-Schwachstellen frühzeitig im Entwicklungsprozess und beheben sie, bevor sie in der Serienfertigung zum Problem werden. Ergänzt wird die EMV-Qualifikation durch Umweltsimulationen, Klimatests und Lebensdauerprüfungen auf individuell konzipierten Prüfständen."
       introEN="CME validates your electronics under real operating conditions – in our own EMC measurement facility with shielded chamber for conducted tests. We identify EMC weaknesses early in the development process and fix them before they become problems in series production. EMC qualification is complemented by environmental simulations, climate tests and lifetime tests on individually designed test benches."

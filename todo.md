@@ -525,3 +525,10 @@
 - [x] Sistrix-Fix: Doppelte Title-Tags behoben (statischer Title aus index.html entfernt)
 - [x] Sistrix-Fix: Doppelte Meta-Description + Keywords behoben (statische Tags aus index.html entfernt)
 - [x] Sistrix-Fix: Fehlende Title-Tags behoben – statische Fallback-Tags (Title, Description, Keywords) in index.html zurückgesetzt
+- [x] Sistrix-Fix: Statische Fallback-Tags aus index.html entfernt (verursachten 20x doppelte Title/Description bei Manus-SSR)
+- [x] Sistrix-Fix: Meta-Descriptions optimiert – alle SubPageTemplate-Seiten mit metaDescriptionDE (120-155 Zeichen)
+- [x] Sistrix-Fix: Kurze Meta-Descriptions erweitert (Legal-Seiten, Kontakt, Karriere, Märkte, Software)
+- [x] Sistrix-Fix: Title-Suffix von ' | CME Control Motion Electronics GmbH' auf ' | CME' gekürzt – alle Titles unter 60 Zeichen
+- [x] Sistrix-Fix: Keine identischen Titles mehr (alle seitenspezifisch)
+- [x] Sistrix-Fix: Keine identischen Descriptions mehr (alle seitenspezifisch)
+- [x] Sistrix-Fix: SEO-Komponente zu Simulation.tsx, HardwareSoftware.tsx, Insights.tsx, InsightArticle.tsx hinzugefügt

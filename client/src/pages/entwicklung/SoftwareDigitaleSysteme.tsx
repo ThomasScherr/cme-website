@@ -283,8 +283,8 @@ export default function SoftwareDigitaleSysteme() {
       <SEO
         titleDE="Software Engineering & Digitale Systeme"
         titleEN="Software Engineering & Digital Systems"
-        descriptionDE="Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur – die digitale Schicht Ihrer Elektroniklösung."
-        descriptionEN="Web apps, mobile apps, cloud integration and backend architecture – the digital layer of your electronics solution."
+        descriptionDE="Software-Entwicklung für Elektronikprodukte: Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur. Digitale Systeme aus einer Hand."
+        descriptionEN="Software development for electronics products: web apps, mobile apps, cloud integration and backend architecture. Digital systems from a single source."
         path="/entwicklung/software-digitale-systeme"
         breadcrumbs={[
           { name: 'Home', url: '/' },

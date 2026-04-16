@@ -11,8 +11,8 @@ export default function AGB() {
       <SEO
         titleDE="Allgemeine Geschäftsbedingungen"
         titleEN="Terms and Conditions"
-        descriptionDE="Allgemeine Geschäftsbedingungen der CME Control Motion Electronics GmbH."
-        descriptionEN="Terms and conditions of CME Control Motion Electronics GmbH."
+        descriptionDE="Allgemeine Geschäftsbedingungen (AGB) der CME Control Motion Electronics GmbH für Elektronikentwicklung und EMS-Fertigungsleistungen."
+        descriptionEN="General terms and conditions of CME Control Motion Electronics GmbH for electronics development and EMS manufacturing services."
         path="/agb"
         breadcrumbs={[
           { name: 'Home', url: '/' },

@@ -24,6 +24,8 @@ export default function TestVerifikation() {
       titleEN="Test & Verification"
       subtitleDE="EMV-Tests, Umwelttests und funktionale Verifikation – in unserer eigenen Testinfrastruktur am Standort Dortmund."
       subtitleEN="EMC tests, environmental tests and functional verification – in our own test infrastructure in Dortmund."
+      metaDescriptionDE="EMV-Tests, Umwelttests und funktionale Verifikation elektronischer Baugruppen. Eigene Testinfrastruktur mit Schirmkabine in Dortmund."
+      metaDescriptionEN="EMC tests, environmental tests and functional verification of electronic assemblies. Own test infrastructure with shielded chamber in Dortmund."
       heroImg="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2885__1920px_ecd3ed1e.jpg"
       introDE="Qualität beginnt bei der Verifikation. CME verfügt über eine eigene Testinfrastruktur am Standort Dortmund – von der EMV-Vorkammer über Klimaschränke bis zum automatisierten Funktionstest. Wir testen Ihre Elektronik nach den relevanten Normen und Standards, bevor sie in die Serie geht. So stellen wir sicher, dass Ihr Produkt nicht nur funktioniert, sondern auch die Zulassungsanforderungen erfüllt."
       introEN="Quality starts with verification. CME has its own test infrastructure at the Dortmund site – from EMC pre-compliance chambers through climate chambers to automated functional testing. We test your electronics according to relevant norms and standards before series production. This ensures your product not only works, but also meets certification requirements."

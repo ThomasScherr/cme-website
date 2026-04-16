@@ -402,8 +402,8 @@ export default function Maerkte() {
       <SEO
         titleDE="Branchen & Märkte"
         titleEN="Industries & Markets"
-        descriptionDE="Branchenexpertise in Automotive, Industrieautomation, Medizintechnik, Energietechnik und Antriebstechnik."
-        descriptionEN="Industry expertise in automotive, industrial automation, medical technology, energy technology and drive technology."
+        descriptionDE="Branchenexpertise in Automotive, Industrieautomation, Medizintechnik, Energietechnik und Antriebstechnik. Elektroniklösungen für anspruchsvolle Märkte."
+        descriptionEN="Industry expertise in automotive, industrial automation, medical technology, energy technology and drive technology. Electronics solutions for demanding markets."
         path="/maerkte"
         breadcrumbs={[
           { name: 'Home', url: '/' },
