@@ -510,9 +510,14 @@
 - [x] Adresse in Schema.org und Meta-Descriptions von Schwäbisch Gmünd auf Dortmund korrigiert (SEO.tsx, Karriere.tsx, Unternehmen.tsx)
 - [x] Noscript-Fallback in index.html: Vollständiger SEO-Content (H1, H2, Links, Adresse) für Crawler ohne JS (Sistrix, Screaming Frog)
 - [x] Schema.org JSON-LD (Organization + WebSite) statisch in index.html <head> eingebaut – für alle Crawler sichtbar
-- [x] Canonical-URL statisch in index.html <head> eingebaut
+- [x] Canonical-URL statisch in index.html <head> eingebaut (später wieder entfernt wegen Duplikat-Problem)
 - [ ] Admin-UI für 404-Tracking und URL-Redirects
 - [ ] 404-Tracking: GA4-Event bei 404-Seite senden
 - [ ] SEO-Keywords auf Unterseiten (seitenspezifische Meta-Keywords)
 - [ ] FAQ-Sektionen sichtbar auf Seiten einbauen (JSON-LD vorhanden, aber nicht sichtbar)
 - [ ] Hero-Video durch eigenes CME-Material ersetzen (aktuell Stock-Video)
+- [x] Sistrix-Fix: Doppelte Canonical-Tags entfernen (statisches Canonical + Schema.org aus index.html entfernt, nur dynamische aus SEO.tsx)
+- [x] Sistrix-Fix: Soft-404 – NotFound-Seite mit noindex/nofollow Meta-Tag versehen (HTTP 200 ist SPA-bedingt, nicht änderbar)
+- [x] Sistrix-Fix: Externe Links korrigiert (Leadinfo → /de/rechtliches/datenschutz/, Google → business.safety.google/adscontrollerterms/sccs/)
+- [x] Sistrix-Fix: Crawling-Probleme – Noscript-Fallback in index.html, Sitemap.xml vorhanden, Redirects für alte URLs
+- [x] Sistrix-Fix: 9 Redirects für alte/alternative URLs in DB angelegt (301 → korrekte Pfade)

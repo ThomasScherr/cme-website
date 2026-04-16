@@ -35,10 +35,10 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)
+  app.use(redirectMiddleware());
   // Pre-render middleware – serves static HTML to crawlers for SEO
   app.use(prerenderMiddleware());
-  // Redirect middleware – checks DB for active redirects before serving pages
-  app.use(redirectMiddleware());
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API

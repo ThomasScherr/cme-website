@@ -268,8 +268,8 @@ function DatenschutzDE() {
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier:{' '}
-        <a href="https://privacy.google.com/businesses/controllerterms/mccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://privacy.google.com/businesses/controllerterms/mccs/
+        <a href="https://business.safety.google/adscontrollerterms/sccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://business.safety.google/adscontrollerterms/sccs/
         </a>.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
@@ -305,8 +305,8 @@ function DatenschutzDE() {
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Weitere Informationen finden Sie in der Datenschutzerklärung von Leadinfo:{' '}
-        <a href="https://www.leadinfo.com/de/datenschutz/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://www.leadinfo.com/de/datenschutz/
+        <a href="https://www.leadinfo.com/de/rechtliches/datenschutz/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.leadinfo.com/de/rechtliches/datenschutz/
         </a>.
       </p>
 
@@ -540,8 +540,8 @@ function DatenschutzEN() {
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Data transfer to the USA is based on the EU Commission's Standard Contractual Clauses. Details can be found here:{' '}
-        <a href="https://privacy.google.com/businesses/controllerterms/mccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://privacy.google.com/businesses/controllerterms/mccs/
+        <a href="https://business.safety.google/adscontrollerterms/sccs/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://business.safety.google/adscontrollerterms/sccs/
         </a>.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
@@ -577,8 +577,8 @@ function DatenschutzEN() {
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Further information can be found in Leadinfo's privacy policy:{' '}
-        <a href="https://www.leadinfo.com/en/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://www.leadinfo.com/en/privacy/
+        <a href="https://www.leadinfo.com/en/legal/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.leadinfo.com/en/legal/privacy/
         </a>.
       </p>
 
