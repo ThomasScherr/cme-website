@@ -193,7 +193,7 @@ describe("prerenderMiddleware", () => {
     const res = createMockRes();
     middleware(req, res, next);
 
-    expect(res._body).toContain('href="https://www.control-motion.de/"');
+    expect(res._body).toContain('href="https://control-motion.de/"');
   });
 
   it("includes correct canonical URL for subpages", () => {
@@ -201,7 +201,7 @@ describe("prerenderMiddleware", () => {
     const res = createMockRes();
     middleware(req, res, next);
 
-    expect(res._body).toContain('href="https://www.control-motion.de/entwicklung"');
+    expect(res._body).toContain('href="https://control-motion.de/entwicklung"');
   });
 
   it("includes Organization schema on homepage", () => {

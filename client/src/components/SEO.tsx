@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const SITE_NAME = 'CME';
-const BASE_URL = 'https://www.control-motion.de';
+const BASE_URL = 'https://control-motion.de';
 const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg';
 
 interface BreadcrumbItem {
