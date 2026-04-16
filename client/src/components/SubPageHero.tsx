@@ -120,11 +120,7 @@ function DiamondMedia({ image, imageAlt, video, imagePosition }: {
       width: 'var(--subpage-hero-diamond-size)',
     };
     if (imagePosition) {
-      const [xStr, yStr] = imagePosition.split(/\s+/);
-      const x = parseFloat(xStr);
-      const y = parseFloat(yStr);
-      if (!isNaN(x)) diamondStyle['--diamond-img-x'] = `-${x}%`;
-      if (!isNaN(y)) diamondStyle['--diamond-img-y'] = `-${y}%`;
+      diamondStyle['--diamond-obj-pos'] = imagePosition;
     }
     return (
       <div

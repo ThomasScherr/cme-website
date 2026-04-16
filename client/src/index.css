@@ -299,8 +299,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(var(--diamond-img-x, -50%), var(--diamond-img-y, -50%)) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
     object-fit: cover;
+    object-position: var(--diamond-obj-pos, 50% 50%);
   }
 
   /* ── Fluid Typography Utility Classes ── */

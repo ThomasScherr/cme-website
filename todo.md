@@ -537,3 +537,5 @@
 - [x] Kontaktseite: Hero-Bild nach links rücken, damit Matthias nicht abgeschnitten ist
 - [x] Kontaktseite: Diamond-Bild auch auf Tablet/Smartphone responsiv anzeigen (nicht nur Desktop)
 - [x] Kontaktseite: Bildposition in Diamond korrigieren (Matthias nicht abgeschnitten, Bild nicht nach unten verschoben)
+- [x] Kontaktseite: Hero-Bild durch neues Geschäftsführer-Portrait ersetzen (portrait_CME_GF.jpg)
+- [x] Kontaktseite: Diamond-Bild füllt den Rahmen nicht vollständig aus – object-position statt translate verwendet
