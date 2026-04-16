@@ -534,3 +534,6 @@
 - [x] Sistrix-Fix: SEO-Komponente zu Simulation.tsx, HardwareSoftware.tsx, Insights.tsx, InsightArticle.tsx hinzugefügt
 - [x] Sistrix-Fix: Doppelte Canonical-Tags – www-Redirect-Middleware eingebaut (301 von control-motion.de → www.control-motion.de)
 - [x] Sistrix-Fix: Canonical-URL von www.control-motion.de auf control-motion.de umgestellt (Cloudflare erzwingt non-www per 301)
+- [x] Kontaktseite: Hero-Bild nach links rücken, damit Matthias nicht abgeschnitten ist
+- [x] Kontaktseite: Diamond-Bild auch auf Tablet/Smartphone responsiv anzeigen (nicht nur Desktop)
+- [x] Kontaktseite: Bildposition in Diamond korrigieren (Matthias nicht abgeschnitten, Bild nicht nach unten verschoben)

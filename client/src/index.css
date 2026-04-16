@@ -199,10 +199,10 @@
   --subpage-hero-pad-top: clamp(7rem, 6.03rem + 4.16vw, 16rem);
   /* Subpage hero bottom padding (uses section spacing) */
   --subpage-hero-pad-bottom: var(--space-section);
-  /* Subpage hero diamond size: 256px → 640px */
-  --subpage-hero-diamond-size: clamp(16rem, 13.4rem + 11.1vw, 40rem);
-  /* Subpage hero accent diamond size: 288px → 720px */
-  --subpage-hero-accent-size: clamp(18rem, 15.1rem + 12.5vw, 45rem);
+  /* Subpage hero diamond size: responsive from 180px (mobile) → 640px (desktop) */
+  --subpage-hero-diamond-size: clamp(11.25rem, 8rem + 14vw, 40rem);
+  /* Subpage hero accent diamond size: responsive from 200px (mobile) → 720px (desktop) */
+  --subpage-hero-accent-size: clamp(12.5rem, 9rem + 15vw, 45rem);
 
   /* ── Container ── */
   /* Container padding: 16px → 96px */
@@ -299,7 +299,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
+    transform: translate(var(--diamond-img-x, -50%), var(--diamond-img-y, -50%)) rotate(-45deg);
     object-fit: cover;
   }
 

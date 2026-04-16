@@ -76,16 +76,19 @@ interface SubPageHeroProps {
     label: string;
     href: string;
   };
+  /** Custom object-position for the hero image inside the diamond/rectangle (e.g. '30% 50%' to shift left) */
+  heroImagePosition?: string;
   /** Additional content below the description (e.g. custom elements) */
   children?: ReactNode;
 }
 
 // ── Diamond Media Component ────────────────────────────────────
 
-function DiamondMedia({ image, imageAlt, video }: {
+function DiamondMedia({ image, imageAlt, video, imagePosition }: {
   image?: string;
   imageAlt?: string;
   video?: HeroVideo;
+  imagePosition?: string;
 }) {
   const isLoop = !video?.playback || video.playback === 'loop';
 
@@ -110,10 +113,23 @@ function DiamondMedia({ image, imageAlt, video }: {
   }
 
   if (image) {
+    // imagePosition shifts the image within the diamond via CSS custom properties.
+    // Format: "X% Y%" where 50% 50% is centered (default).
+    // Lower X% = shift image content to show more of the left side.
+    const diamondStyle: React.CSSProperties & Record<string, string> = {
+      width: 'var(--subpage-hero-diamond-size)',
+    };
+    if (imagePosition) {
+      const [xStr, yStr] = imagePosition.split(/\s+/);
+      const x = parseFloat(xStr);
+      const y = parseFloat(yStr);
+      if (!isNaN(x)) diamondStyle['--diamond-img-x'] = `-${x}%`;
+      if (!isNaN(y)) diamondStyle['--diamond-img-y'] = `-${y}%`;
+    }
     return (
       <div
         className="diamond shadow-xl shadow-cme-blue/15"
-        style={{ width: 'var(--subpage-hero-diamond-size)' }}
+        style={diamondStyle}
       >
         <img
           src={image}
@@ -265,6 +281,7 @@ export default function SubPageHero({
   imageVariant = 'diamond',
   breadcrumb,
   backLink,
+  heroImagePosition,
   children,
 }: SubPageHeroProps) {
   // Use fallback image when no heroImage and no heroVideo is provided
@@ -296,7 +313,7 @@ export default function SubPageHero({
         )}
 
         <div
-          className={`grid items-center ${hasMedia ? 'lg:grid-cols-2' : ''}`}
+          className={`grid items-center ${hasMedia ? 'grid-cols-1 lg:grid-cols-2' : ''}`}
           style={{ gap: 'var(--space-gap-lg)' }}
         >
           {/* Left: Text Content */}
@@ -372,9 +389,9 @@ export default function SubPageHero({
             {children}
           </motion.div>
 
-          {/* Right: Media – desktop only */}
+          {/* Right: Media – all viewports */}
           {hasMedia && (
-            <div className="hidden lg:flex relative items-center justify-center">
+            <div className="flex relative items-center justify-center">
               {imageVariant === 'rectangular' ? (
                 /* Rectangular variant: rounded rect image with accent diamond behind */
                 <motion.div
@@ -436,6 +453,7 @@ export default function SubPageHero({
                       image={effectiveImage}
                       imageAlt={heroImageAlt}
                       video={heroVideo}
+                      imagePosition={heroImagePosition}
                     />
                   </motion.div>
                 </>

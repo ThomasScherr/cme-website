@@ -138,6 +138,7 @@ export default function Kontakt() {
         description={cms('hero.description')}
         heroImage={img('hero.heroImage')}
         heroVideo={heroVideo}
+        heroImagePosition="40% 50%"
       >
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
           <a href={`tel:${cms('hero.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-cme-dark/80 hover:text-cme-blue transition-colors fluid-small">
