@@ -521,3 +521,6 @@
 - [x] Sistrix-Fix: Externe Links korrigiert (Leadinfo → /de/rechtliches/datenschutz/, Google → business.safety.google/adscontrollerterms/sccs/)
 - [x] Sistrix-Fix: Crawling-Probleme – Noscript-Fallback in index.html, Sitemap.xml vorhanden, Redirects für alte URLs
 - [x] Sistrix-Fix: 9 Redirects für alte/alternative URLs in DB angelegt (301 → korrekte Pfade)
+- [x] Sistrix-Fix: Doppelte H1-Überschriften behoben (Noscript-H1 in index.html auf <p> geändert)
+- [x] Sistrix-Fix: Doppelte Title-Tags behoben (statischer Title aus index.html entfernt)
+- [x] Sistrix-Fix: Doppelte Meta-Description + Keywords behoben (statische Tags aus index.html entfernt)
