@@ -140,6 +140,7 @@ export default function Kontakt() {
         heroImageAlt="Geschäftsführer CME Control Motion Electronics – Matthias Faust und Dirk Müller"
         heroVideo={heroVideo}
         heroImagePosition="47% 45%"
+        heroImageScale="143%"
       >
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4">
           <a href={`tel:${cms('hero.phone').replace(/\s/g, '')}`} className="flex items-center gap-2 text-cme-dark/80 hover:text-cme-blue transition-colors fluid-small">

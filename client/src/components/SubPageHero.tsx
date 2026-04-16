@@ -78,17 +78,20 @@ interface SubPageHeroProps {
   };
   /** Custom object-position for the hero image inside the diamond/rectangle (e.g. '30% 50%' to shift left) */
   heroImagePosition?: string;
+  /** Custom scale for the hero image inside the diamond (e.g. '147%' for 10% smaller than default 163%) */
+  heroImageScale?: string;
   /** Additional content below the description (e.g. custom elements) */
   children?: ReactNode;
 }
 
 // ── Diamond Media Component ────────────────────────────────────
 
-function DiamondMedia({ image, imageAlt, video, imagePosition }: {
+function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
   image?: string;
   imageAlt?: string;
   video?: HeroVideo;
   imagePosition?: string;
+  imageScale?: string;
 }) {
   const isLoop = !video?.playback || video.playback === 'loop';
 
@@ -121,6 +124,9 @@ function DiamondMedia({ image, imageAlt, video, imagePosition }: {
     };
     if (imagePosition) {
       diamondStyle['--diamond-obj-pos'] = imagePosition;
+    }
+    if (imageScale) {
+      diamondStyle['--diamond-img-scale'] = imageScale;
     }
     return (
       <div
@@ -278,6 +284,7 @@ export default function SubPageHero({
   breadcrumb,
   backLink,
   heroImagePosition,
+  heroImageScale,
   children,
 }: SubPageHeroProps) {
   // Use fallback image when no heroImage and no heroVideo is provided
@@ -450,6 +457,7 @@ export default function SubPageHero({
                       imageAlt={heroImageAlt}
                       video={heroVideo}
                       imagePosition={heroImagePosition}
+                      imageScale={heroImageScale}
                     />
                   </motion.div>
                 </>

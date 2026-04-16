@@ -293,8 +293,8 @@
 
   .diamond img,
   .diamond video {
-    width: 163%;
-    height: 163%;
+    width: var(--diamond-img-scale, 163%);
+    height: var(--diamond-img-scale, 163%);
     max-width: none;
     position: absolute;
     top: 50%;
