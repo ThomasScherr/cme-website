@@ -168,6 +168,9 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+  esbuild: {
+    legalComments: "none",
+  },
   server: {
     host: true,
     allowedHosts: [

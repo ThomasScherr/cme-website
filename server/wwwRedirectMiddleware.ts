@@ -35,13 +35,13 @@ export function wwwRedirectMiddleware() {
   return (req: Request, res: Response, next: NextFunction) => {
     const host = (req.headers.host || "").split(":")[0].toLowerCase();
 
-    // Skip in development (localhost, 127.0.0.1, manus.computer dev URLs)
+    // Skip in development and staging environments
     if (
       !host ||
       host === "localhost" ||
       host === "127.0.0.1" ||
-      host.includes("manus.computer") ||
-      host.includes("manus.space") ||
+      host.endsWith(".computer") ||
+      host.endsWith(".space") ||
       host === CANONICAL_HOST
     ) {
       return next();

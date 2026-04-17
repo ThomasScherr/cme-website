@@ -539,3 +539,5 @@
 - [x] Kontaktseite: Bildposition in Diamond korrigieren (Matthias nicht abgeschnitten, Bild nicht nach unten verschoben)
 - [x] Kontaktseite: Hero-Bild durch neues Geschäftsführer-Portrait ersetzen (portrait_CME_GF.jpg)
 - [x] Kontaktseite: Diamond-Bild füllt den Rahmen nicht vollständig aus – object-position statt translate verwendet
+- [x] Alle Vorkommen von 'Manus' und 'Meta Platforms' aus sichtbarem Quellcode entfernt, legalComments: none in Vite-Build
+- [x] SEO-Fix: 301-Redirects für alle alten URLs eingerichtet (alte englische und deutsche URL-Struktur → neue URLs)

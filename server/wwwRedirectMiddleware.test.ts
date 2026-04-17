@@ -125,16 +125,16 @@ describe("wwwRedirectMiddleware", () => {
     expect(next).toHaveBeenCalled();
   });
 
-  it("does not redirect manus.computer dev URLs", () => {
-    const req = createMockReq("3000-abc123.us2.manus.computer", "/");
+  it("does not redirect dev environment URLs", () => {
+    const req = createMockReq("3000-abc123.us2.dev.computer", "/");
     const res = createMockRes();
     middleware(req, res, next);
     expect(res.redirect).not.toHaveBeenCalled();
     expect(next).toHaveBeenCalled();
   });
 
-  it("does not redirect manus.space URLs", () => {
-    const req = createMockReq("cmecontrols-9wchlxyd.manus.space", "/");
+  it("does not redirect staging URLs", () => {
+    const req = createMockReq("cmecontrols-9wchlxyd.staging.space", "/");
     const res = createMockRes();
     middleware(req, res, next);
     expect(res.redirect).not.toHaveBeenCalled();

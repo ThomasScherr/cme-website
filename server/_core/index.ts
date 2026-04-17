@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { redirectMiddleware } from "../redirectMiddleware";
+import { legacyRedirectMiddleware } from "../legacyRedirects";
 import { prerenderMiddleware } from "../prerenderMiddleware";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 
@@ -38,6 +39,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // WWW redirect – enforce canonical host (MUST run before all other route middleware)
   app.use(wwwRedirectMiddleware());
+  // Legacy URL redirects – maps old website paths to new structure (301)
+  app.use(legacyRedirectMiddleware());
   // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)
   app.use(redirectMiddleware());
   // Pre-render middleware – serves static HTML to crawlers for SEO
