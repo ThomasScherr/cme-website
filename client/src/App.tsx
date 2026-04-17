@@ -10,6 +10,7 @@ import CookieConsent from "./components/CookieConsent";
 import TrackingProvider from "./components/TrackingProvider";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { StyleProvider } from "./contexts/StyleContext";
+import LegacyRedirects from "./components/LegacyRedirects";
 import Home from "./pages/Home";
 
 // Lazy-load pages for better performance
@@ -118,6 +119,7 @@ function App() {
                 <Toaster />
                 <TrackingProvider />
                 <CookieConsent />
+                <LegacyRedirects />
                 <Router />
               </TooltipProvider>
             </ConsentProvider>

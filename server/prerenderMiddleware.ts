@@ -390,6 +390,37 @@ export function prerenderMiddleware() {
 
     // Find page data
     const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '');
+
+    // ── Legacy URL redirects for crawlers ──
+    const LEGACY_REDIRECTS: Record<string, string> = {
+      '/elektronikentwicklung': '/entwicklung',
+      '/elektronikentwicklung/hardware-software': '/entwicklung/hardware-software',
+      '/elektronikentwicklung/simulation': '/entwicklung/simulation',
+      '/elektronikentwicklung/test-verifikation': '/entwicklung/test-verifikation',
+      '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten': '/fertigung/leiterplatten',
+      '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/leiterplatten-bestuecken-smd-und-tht': '/fertigung/leiterplatten',
+      '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/baugruppen': '/fertigung/baugruppen',
+      '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/qs-qm': '/fertigung/qualitaet',
+      '/smd-fragen-entwurf': '/fertigung',
+      '/datenschutzerklaerung': '/datenschutz',
+      '/jobs': '/karriere',
+      '/en/electronics-manufacturing': '/en/manufacturing',
+      '/en/electronics-manufacturing/assembling-printed-circuit-boards': '/en/manufacturing/printed-circuit-boards',
+      '/en/electronics-manufacturing/electronic-assemblies': '/en/manufacturing/assemblies',
+      '/en/electronics-manufacturing/qa-qm': '/en/manufacturing/quality',
+      '/en/electronics-development': '/en/development',
+      '/en/electronics-development/hardware-software': '/en/development/hardware-software',
+      '/en/electronics-development/simulation': '/en/development/simulation',
+      '/en/electronics-development/test-verification': '/en/development/test-verification',
+      '/en/jobs': '/en/careers',
+    };
+    const legacyTarget = LEGACY_REDIRECTS[normalizedPath];
+    if (legacyTarget) {
+      console.log(`[Prerender] 301 legacy redirect: ${normalizedPath} → ${legacyTarget} (crawler: ${userAgent.substring(0, 50)})`);
+      res.redirect(301, legacyTarget);
+      return;
+    }
+
     const page = PAGES[normalizedPath];
 
     if (!page) {
