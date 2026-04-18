@@ -78,7 +78,7 @@ const PAGES: Record<string, PageMeta> = {
     title: 'CME – Elektronikentwicklung & EMS-Fertigung',
     description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung und EMS-Fertigung. Leistungselektronik, Antriebstechnik, Mechatronik und thermisch anspruchsvolle Projekte.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
-    keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Mechatronik, Elektronikfertigung, SMD-Bestückung, Prototypen, Serienfertigung, CME',
+    keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte. 
     Wir sind spezialisiert auf Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.
     Über 60 Mitarbeiter, zertifiziert nach ISO 9001 und IATF 16949. Vom Prototyp bis zur Serie – alles aus einer Hand.

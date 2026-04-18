@@ -64,8 +64,8 @@ export default function Home() {
         titleEN='CME – Electronics Development & EMS Manufacturing Dortmund'
         descriptionDE='CME ist Ihr Entwicklungsdienstleister und EMS-Partner in Dortmund – Leistungselektronik, Antriebselektronik und Mechatronik vom Entwurf bis zur Serie.'
         descriptionEN='CME is your development partner and EMS provider in Dortmund – power electronics, drive electronics and mechatronics from concept to series production.'
-        keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Mechatronik, Elektronikfertigung, SMD-Bestückung, Prototypen, Serienfertigung, CME'
-        keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, mechatronics, PCB assembly, SMT, prototyping, series production, CME'
+        keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management'
+        keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, PCB assembly Dortmund, thermal management'
         path='/'
         additionalSchemas={[organizationSchema, websiteSchema, homeFaqsDE, ...homeServicesSchema]}
         rawTitle

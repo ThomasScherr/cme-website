@@ -548,3 +548,4 @@
 - [x] ON-PAGE SEO: H1 der Startseite keyword-optimieren (Elektronikentwicklung, EMS, Leistungselektronik, Dortmund)
 - [x] ON-PAGE SEO: Generische Ankertexte durch keyword-relevante Varianten ersetzen
 - [x] Doppelten Kontakt-Link aus Navigation entfernt (CTA-Button bleibt bestehen)
+- [x] SEO: Meta-Keywords der Startseite von 10 auf 3-8 fokussierte Keywords reduzieren
