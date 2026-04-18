@@ -202,10 +202,10 @@ export default function Fertigung() {
   return (
     <Layout>
       <SEO
-        titleDE='EMS-Fertigung & Elektronikfertigung Dortmund'
-        titleEN='EMS Manufacturing & Electronics Production Dortmund'
-        descriptionDE='EMS-Dienstleister in Dortmund: SMD- und THT-Bestückung, Baugruppenfertigung und Qualitätssicherung – vom Prototyp bis zur Großserie. ISO 9001 zertifiziert.'
-        descriptionEN='EMS provider in Dortmund: SMD and THT assembly, module manufacturing and quality assurance – from prototype to high-volume production. ISO 9001 certified.'
+        titleDE='EMS-Fertigung & Elektronikfertigung Dortmund | CME'
+        titleEN='EMS Manufacturing & Electronics Production Dortmund | CME'
+        descriptionDE='Professionelle Elektronikfertigung (EMS) in Dortmund: Leiterplatten bestücken, Baugruppen fertigen, Qualitätsmanagement nach IPC. Vom Prototyp bis zur Serie.'
+        descriptionEN='Professional electronics manufacturing (EMS) in Dortmund: PCB assembly, module production, quality management to IPC standards. From prototype to series.'
         keywordsDE='EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
         keywordsEN='EMS manufacturing, electronics manufacturing, SMD assembly, THT assembly, PCB assembly, module manufacturing, prototyping, series production, AOI, IPC'
         path='/fertigung'

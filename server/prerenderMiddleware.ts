@@ -75,12 +75,45 @@ const websiteSchema = {
   inLanguage: ['de', 'en'],
 };
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'CME Control Motion Electronics GmbH',
+  image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png',
+  url: BASE_URL,
+  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen
+  email: 'info@control-motion.de',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Alter Hellweg 48',
+    addressLocality: 'Dortmund',
+    postalCode: '44379',
+    addressRegion: 'NRW',
+    addressCountry: 'DE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.4918,
+    longitude: 7.3726,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+  priceRange: '$$$$',
+  sameAs: [
+    'https://www.linkedin.com/company/cme-control-motion-electronics/',
+  ],
+};
+
 // ── Page definitions for all public routes ──
 const PAGES: Record<string, PageMeta> = {
   '/': {
     enPath: '/en/',
-    title: 'CME – Elektronikentwicklung & EMS-Fertigung',
-    description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung und EMS-Fertigung. Leistungselektronik, Antriebstechnik, Mechatronik und thermisch anspruchsvolle Projekte.',
+    title: 'CME Control Motion Electronics GmbH',
+    description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte. 
@@ -88,12 +121,12 @@ const PAGES: Record<string, PageMeta> = {
     Über 60 Mitarbeiter, zertifiziert nach ISO 9001 und IATF 16949. Vom Prototyp bis zur Serie – alles aus einer Hand.
     Unsere Kernkompetenzen: Hardware- und Softwareentwicklung, E-Motor-Design, Simulation, EMV-Validierung, SMD-Bestückung, Baugruppenfertigung, Qualitätssicherung.
     Zielmärkte: Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Energietechnik, Luft- und Raumfahrt.`,
-    schemas: [organizationSchema, websiteSchema],
+    schemas: [organizationSchema, websiteSchema, localBusinessSchema],
   },
   '/entwicklung': {
     enPath: '/en/development',
-    title: 'Entwicklung – Elektronikentwicklung & Engineering | CME',
-    description: 'Elektronikentwicklung von CME: Hardware, Software, Simulation, EMV, E-Motor-Design, Regelungstechnik. V-Modell-basierter Entwicklungsprozess.',
+    title: 'Elektronikentwicklung Dortmund | CME',
+    description: 'Von der Idee zur serienreifen Elektronik: Hardware, Software, E-Motor-Design & Simulation aus einer Hand. CME Elektronikentwicklung Dortmund – Jetzt beraten lassen.',
     h1: 'Entwicklung – Engineering Services',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     content: `CME bietet umfassende Entwicklungsdienstleistungen für elektronische Systeme.
@@ -178,8 +211,8 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/fertigung': {
     enPath: '/en/manufacturing',
-    title: 'EMS-Fertigung – Elektronikfertigung & Bestückung | CME',
-    description: 'EMS-Fertigung von CME: SMD-Bestückung, THT, Baugruppenfertigung, Qualitätssicherung. Vom Prototyp bis zur Serie.',
+    title: 'EMS-Fertigung & Elektronikfertigung Dortmund | CME',
+    description: 'Professionelle Elektronikfertigung (EMS) in Dortmund: Leiterplatten bestücken, Baugruppen fertigen, Qualitätsmanagement nach IPC. Vom Prototyp bis zur Serie.',
     h1: 'EMS-Fertigung – Electronic Manufacturing Services',
     keywords: 'EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Baugruppenfertigung, Prototypen, Serienfertigung',
     content: `CME bietet umfassende EMS-Fertigungsdienstleistungen.
@@ -213,8 +246,8 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/lifecycle': {
     enPath: '/en/lifecycle',
-    title: 'Lifecycle Management & Reparatur | CME',
-    description: 'Lifecycle Management, Obsoleszenz-Management, Redesign und Reparaturservice für elektronische Systeme.',
+    title: 'Lifecycle & Obsolescence Management | CME',
+    description: 'Obsolescence Management & Elektronik-Lifecycle: CME sichert Ihre Produktion auch wenn Bauteile abgekündigt werden. Langzeitverfügbarkeit für Industrie & Automotive.',
     h1: 'Lifecycle Management & Reparatur',
     keywords: 'Lifecycle Management, Obsoleszenz-Management, Redesign, Reparatur, Instandsetzung, Ersatzteilmanagement',
     content: `Lifecycle Management für elektronische Systeme: Obsoleszenz-Management, Redesign, Reparatur und Instandsetzung.`,
@@ -237,8 +270,8 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/kontakt': {
     enPath: '/en/contact',
-    title: 'Kontakt | CME',
-    description: 'Kontaktieren Sie CME Control Motion Electronics. Beratungsgespräch, Projektanfrage oder NDA-Anforderung.',
+    title: 'Kontakt & Anfahrt | CME Dortmund',
+    description: 'Kontakt zu CME Control Motion Electronics in Dortmund. Elektronikentwicklung & EMS-Fertigung – Beratung, Projektanfrage oder Besuch vor Ort. Antwort innerhalb 24\u00a0h.',
     h1: 'Kontakt',
     keywords: 'Kontakt, Anfrage, Beratung, CME, Dortmund, Elektronikentwicklung',
     content: `Kontaktieren Sie CME Control Motion Electronics GmbH. Beratungsgespräch, Projektanfrage oder NDA-Anforderung. Alter Hellweg 48, 44379 Dortmund.`,

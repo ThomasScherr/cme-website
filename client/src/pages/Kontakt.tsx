@@ -125,10 +125,10 @@ export default function Kontakt() {
   return (
     <Layout>
       <SEO
-        titleDE='Kontakt – Beratung & Projektanfrage'
-        titleEN='Contact – Consultation & Project Inquiry'
-        descriptionDE='Kontaktieren Sie CME in Dortmund für Elektronikentwicklung und EMS-Fertigung. Persönliche Beratung, Projektanfrage oder NDA – wir antworten innerhalb 24 h.'
-        descriptionEN='Contact CME in Dortmund for electronics development and EMS manufacturing. Personal consultation, project inquiry or NDA – we respond within 24 hours.'
+        titleDE='Kontakt & Anfahrt | CME Dortmund'
+        titleEN='Contact & Directions | CME Dortmund'
+        descriptionDE='Kontakt zu CME Control Motion Electronics in Dortmund. Elektronikentwicklung & EMS-Fertigung – Beratung, Projektanfrage oder Besuch vor Ort. Antwort innerhalb 24 h.'
+        descriptionEN='Contact CME Control Motion Electronics in Dortmund. Electronics development & EMS manufacturing – consultation, project inquiry or on-site visit. Response within 24 h.'
         path='/kontakt'
         enPath='/en/contact'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Kontakt',url:'/kontakt'}]}

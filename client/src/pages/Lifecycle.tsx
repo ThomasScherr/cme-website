@@ -393,10 +393,10 @@ export default function Lifecycle() {
   return (
     <Layout>
       <SEO
-        titleDE='Lifecycle Management & Reparatur'
-        titleEN='Lifecycle Management & Repair Services'
-        descriptionDE='Lifecycle Management für Elektronik in Dortmund: Obsoleszenz-Management, Redesign, Reparaturservice und Ersatzteilversorgung für langlebige Produkte.'
-        descriptionEN='Electronics lifecycle management in Dortmund: obsolescence management, redesign, repair services and spare parts supply for long-lasting products.'
+        titleDE='Lifecycle & Obsolescence Management | CME'
+        titleEN='Lifecycle & Obsolescence Management | CME'
+        descriptionDE='Obsolescence Management & Elektronik-Lifecycle: CME sichert Ihre Produktion auch wenn Bauteile abgekündigt werden. Langzeitverfügbarkeit für Industrie & Automotive.'
+        descriptionEN='Obsolescence management & electronics lifecycle: CME secures your production even when components are discontinued. Long-term availability for industry & automotive.'
         path='/lifecycle'
         enPath='/en/lifecycle'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Lifecycle Management',url:'/lifecycle'}]}

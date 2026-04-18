@@ -138,10 +138,10 @@ export default function Entwicklung() {
   return (
     <Layout>
       <SEO
-        titleDE='Elektronikentwicklung Dortmund'
-        titleEN='Electronics Development Dortmund'
-        descriptionDE='Ganzheitliche Elektronikentwicklung in Dortmund: Hardware, Embedded Software, Simulation, EMV-Test und Zulassung – vom Konzept bis zur Serienreife.'
-        descriptionEN='End-to-end electronics development in Dortmund: hardware, embedded software, simulation, EMC testing and certification – from concept to series production.'
+        titleDE='Elektronikentwicklung Dortmund | CME'
+        titleEN='Electronics Development Dortmund | CME'
+        descriptionDE='Von der Idee zur serienreifen Elektronik: Hardware, Software, E-Motor-Design & Simulation aus einer Hand. CME Elektronikentwicklung Dortmund – Jetzt beraten lassen.'
+        descriptionEN='From idea to series-ready electronics: hardware, software, e-motor design & simulation from a single source. CME electronics development Dortmund.'
         keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, EMV, Simulation, V-Modell'
         keywordsEN='electronics development, hardware design, software development, power electronics, drive electronics, motor design, EMC, simulation, V-model'
         path='/entwicklung'

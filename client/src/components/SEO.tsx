@@ -58,6 +58,40 @@ export const organizationSchema = {
   ],
 };
 
+/* ── LocalBusiness Schema (homepage only) ── */
+export const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'CME Control Motion Electronics GmbH',
+  image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png',
+  url: BASE_URL,
+  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
+  email: 'info@control-motion.de',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Alter Hellweg 48',
+    addressLocality: 'Dortmund',
+    postalCode: '44379',
+    addressRegion: 'NRW',
+    addressCountry: 'DE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.4918,
+    longitude: 7.3726,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+  priceRange: '$$$$',
+  sameAs: [
+    'https://www.linkedin.com/company/cme-control-motion-electronics/',
+  ],
+};
+
 /* ── WebSite Schema (global, rendered once on homepage) ── */
 export const websiteSchema = {
   '@context': 'https://schema.org',

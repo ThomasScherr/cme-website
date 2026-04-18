@@ -15,7 +15,7 @@ import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 import ContactSlider from '@/components/ContactSlider';
 import { useState } from 'react';
-import SEO, { organizationSchema, websiteSchema, buildFAQSchema, buildServiceSchema } from '@/components/SEO';
+import SEO, { organizationSchema, websiteSchema, localBusinessSchema, buildFAQSchema, buildServiceSchema } from '@/components/SEO';
 
 const homeFaqsDE = buildFAQSchema([
   {
@@ -60,15 +60,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SEO
-        titleDE='CME – Elektronikentwicklung & EMS-Fertigung Dortmund'
-        titleEN='CME – Electronics Development & EMS Manufacturing Dortmund'
-        descriptionDE='CME ist Ihr Entwicklungsdienstleister und EMS-Partner in Dortmund – Leistungselektronik, Antriebselektronik und Mechatronik vom Entwurf bis zur Serie.'
-        descriptionEN='CME is your development partner and EMS provider in Dortmund – power electronics, drive electronics and mechatronics from concept to series production.'
+        titleDE='CME Control Motion Electronics GmbH'
+        titleEN='CME Control Motion Electronics GmbH'
+        descriptionDE='CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.'
+        descriptionEN='CME Control Motion Electronics – Your partner for electronics development & EMS manufacturing in Dortmund. ISO 9001 certified. Over 15 years of experience.'
         keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management'
         keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, PCB assembly Dortmund, thermal management'
         path='/'
         enPath='/en/'
-        additionalSchemas={[organizationSchema, websiteSchema, homeFaqsDE, ...homeServicesSchema]}
+        additionalSchemas={[organizationSchema, websiteSchema, localBusinessSchema, homeFaqsDE, ...homeServicesSchema]}
         rawTitle
       />
       <Navigation />

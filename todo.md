@@ -555,3 +555,7 @@
 - [x] Fix 4: Cache-Control Header für HTML und statische Assets setzen
 - [x] Fix 5: hreflang Tags für alle Seiten mit DE/EN-Entsprechung ergänzen
 - [x] Fix 6: 301-Redirect /ueber-uns → /unternehmen einrichten
+- [x] SEO Meta-Tags: Descriptions und OG-Tags für Startseite, Entwicklung, Fertigung, Lifecycle, Kontakt aktualisieren
+- [x] SEO: LocalBusiness Schema.org JSON-LD auf Startseite ergänzen
+- [x] SEO: og:site_name auf "CME Control Motion Electronics GmbH" setzen (global, war bereits gesetzt)
+- [x] SEO: Canonical-URLs auf control-motion.de gesetzt (www wird per 301 weitergeleitet)
