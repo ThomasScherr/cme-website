@@ -19,6 +19,12 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/baugruppen": "/fertigung/baugruppen",
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/qs-qm": "/fertigung/qualitaet",
   "/smd-fragen-entwurf": "/fertigung",
+  "/elektronikfertigung": "/fertigung",
+  "/elektronikfertigung/leiterplatten": "/fertigung/leiterplatten",
+  "/elektronikfertigung/leiterplatten-bestuecken": "/fertigung/leiterplatten",
+  "/elektronikfertigung/baugruppen": "/fertigung/baugruppen",
+  "/elektronikfertigung/qualitaetsmanagement": "/fertigung/qualitaet",
+  "/elektronikfertigung/qs-qm": "/fertigung/qualitaet",
   "/datenschutzerklaerung": "/datenschutz",
   "/jobs": "/karriere",
 

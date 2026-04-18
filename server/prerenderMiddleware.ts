@@ -51,9 +51,9 @@ const organizationSchema = {
   description: 'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Brennaborstraße 32',
+    streetAddress: 'Alter Hellweg 48',
     addressLocality: 'Dortmund',
-    postalCode: '44149',
+    postalCode: '44379',
     addressCountry: 'DE',
   },
   contactPoint: {
@@ -219,7 +219,7 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Kontaktieren Sie CME Control Motion Electronics. Beratungsgespräch, Projektanfrage oder NDA-Anforderung.',
     h1: 'Kontakt',
     keywords: 'Kontakt, Anfrage, Beratung, CME, Dortmund, Elektronikentwicklung',
-    content: `Kontaktieren Sie CME Control Motion Electronics GmbH. Beratungsgespräch, Projektanfrage oder NDA-Anforderung. Brennaborstraße 32, 44149 Dortmund.`,
+    content: `Kontaktieren Sie CME Control Motion Electronics GmbH. Beratungsgespräch, Projektanfrage oder NDA-Anforderung. Alter Hellweg 48, 44379 Dortmund.`,
   },
   '/karriere': {
     title: 'Karriere bei CME | CME',
@@ -240,7 +240,7 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Impressum der CME Control Motion Electronics GmbH.',
     h1: 'Impressum',
     keywords: 'Impressum, CME, Control Motion Electronics',
-    content: `Impressum der CME Control Motion Electronics GmbH. Brennaborstraße 32, 44149 Dortmund.`,
+    content: `Impressum der CME Control Motion Electronics GmbH. Alter Hellweg 48, 44379 Dortmund.`,
   },
   '/datenschutz': {
     title: 'Datenschutzerklärung | CME',
@@ -356,7 +356,7 @@ ${contentParagraphs}
         <a href="/agb">AGB</a>
       </nav>
       <address>
-        Brennaborstraße 32, 44149 Dortmund, Deutschland<br>
+        Alter Hellweg 48, 44379 Dortmund, Deutschland<br>
         Telefon: +49 231 97676-0<br>
         E-Mail: <a href="mailto:info@control-motion.de">info@control-motion.de</a>
       </address>
@@ -402,6 +402,12 @@ export function prerenderMiddleware() {
       '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/baugruppen': '/fertigung/baugruppen',
       '/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/qs-qm': '/fertigung/qualitaet',
       '/smd-fragen-entwurf': '/fertigung',
+      '/elektronikfertigung': '/fertigung',
+      '/elektronikfertigung/leiterplatten': '/fertigung/leiterplatten',
+      '/elektronikfertigung/leiterplatten-bestuecken': '/fertigung/leiterplatten',
+      '/elektronikfertigung/baugruppen': '/fertigung/baugruppen',
+      '/elektronikfertigung/qualitaetsmanagement': '/fertigung/qualitaet',
+      '/elektronikfertigung/qs-qm': '/fertigung/qualitaet',
       '/datenschutzerklaerung': '/datenschutz',
       '/jobs': '/karriere',
       '/en/electronics-manufacturing': '/en/manufacturing',

@@ -541,3 +541,6 @@
 - [x] Kontaktseite: Diamond-Bild füllt den Rahmen nicht vollständig aus – object-position statt translate verwendet
 - [x] Alle Vorkommen von 'Manus' und 'Meta Platforms' aus sichtbarem Quellcode entfernt, legalComments: none in Vite-Build
 - [x] SEO-Fix: 301-Redirects für alle alten URLs eingerichtet (alte englische und deutsche URL-Struktur → neue URLs)
+- [x] KRITISCH: NAP-Konflikt – Veraltete Adresse "Brennaborstraße 32" überall durch "Alter Hellweg 48, 44379 Dortmund" ersetzen
+- [x] KRITISCH: Copyright-Jahr – Alle "© 2025" auf "© 2026" vereinheitlichen
+- [x] KRITISCH: 301-Redirect-Map – Alle fehlenden alten URLs ergänzen + .htaccess/.nginx-Config exportieren

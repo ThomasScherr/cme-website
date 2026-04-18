@@ -252,8 +252,8 @@ describe("prerenderMiddleware", () => {
     middleware(req, res, next);
 
     expect(res._body).toContain("info@control-motion.de");
-    expect(res._body).toContain("Brennaborstraße 32");
-    expect(res._body).toContain("44149 Dortmund");
+    expect(res._body).toContain("Alter Hellweg 48");
+    expect(res._body).toContain("44379 Dortmund");
   });
 
   // ── All defined pages return content ──

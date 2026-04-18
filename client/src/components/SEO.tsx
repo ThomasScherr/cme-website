@@ -38,9 +38,9 @@ export const organizationSchema = {
     'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Brennaborstraße 32',
+    streetAddress: 'Alter Hellweg 48',
     addressLocality: 'Dortmund',
-    postalCode: '44149',
+    postalCode: '44379',
     addressCountry: 'DE',
   },
   contactPoint: {
