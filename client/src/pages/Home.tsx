@@ -60,10 +60,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SEO
-        titleDE='CME – Elektronikentwicklung & EMS-Fertigung'
-        titleEN='CME – Electronics Development & EMS Manufacturing'
-        descriptionDE='Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.'
-        descriptionEN='Development partner and EMS provider for power electronics, drive electronics, mechatronics and thermally demanding electronics projects.'
+        titleDE='CME – Elektronikentwicklung & EMS-Fertigung Dortmund'
+        titleEN='CME – Electronics Development & EMS Manufacturing Dortmund'
+        descriptionDE='CME ist Ihr Entwicklungsdienstleister und EMS-Partner in Dortmund – Leistungselektronik, Antriebselektronik und Mechatronik vom Entwurf bis zur Serie.'
+        descriptionEN='CME is your development partner and EMS provider in Dortmund – power electronics, drive electronics and mechatronics from concept to series production.'
         keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Mechatronik, Elektronikfertigung, SMD-Bestückung, Prototypen, Serienfertigung, CME'
         keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, mechatronics, PCB assembly, SMT, prototyping, series production, CME'
         path='/'

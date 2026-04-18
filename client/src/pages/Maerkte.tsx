@@ -400,10 +400,10 @@ export default function Maerkte() {
   return (
     <Layout>
       <SEO
-        titleDE="Branchen & Märkte"
-        titleEN="Industries & Markets"
-        descriptionDE="Branchenexpertise in Automotive, Industrieautomation, Medizintechnik, Energietechnik und Antriebstechnik. Elektroniklösungen für anspruchsvolle Märkte."
-        descriptionEN="Industry expertise in automotive, industrial automation, medical technology, energy technology and drive technology. Electronics solutions for demanding markets."
+        titleDE="Märkte & Branchen – Elektroniklösungen"
+        titleEN="Markets & Industries – Electronics Solutions"
+        descriptionDE="Branchenexpertise aus Dortmund: Elektroniklösungen für Automotive, Industrieautomation, Medizintechnik, Antriebstechnik und Smart Infrastructure."
+        descriptionEN="Industry expertise from Dortmund: electronics solutions for automotive, industrial automation, medical technology, drive technology and smart infrastructure."
         path="/maerkte"
         breadcrumbs={[
           { name: 'Home', url: '/' },

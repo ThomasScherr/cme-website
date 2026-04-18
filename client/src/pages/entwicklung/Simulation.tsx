@@ -158,10 +158,10 @@ export default function Simulation() {
   return (
     <Layout>
       <SEO
-        titleDE="Simulation & Toolchain"
-        titleEN="Simulation & Toolchain"
-        descriptionDE="Thermische, elektrische und mechanische Simulation. PLECS, LTspice, COMSOL, MATLAB/Simulink – CME kürzt Entwicklungszyklen durch virtuelle Absicherung."
-        descriptionEN="Thermal, electrical and mechanical simulation. PLECS, LTspice, COMSOL, MATLAB/Simulink – CME shortens development cycles through virtual validation."
+        titleDE="Simulation & virtuelle Absicherung"
+        titleEN="Simulation & Virtual Validation"
+        descriptionDE="Thermische, elektrische und mechanische Simulation in Dortmund. PLECS, LTspice, COMSOL, MATLAB/Simulink – virtuelle Absicherung vor dem Prototypenbau."
+        descriptionEN="Thermal, electrical and mechanical simulation in Dortmund. PLECS, LTspice, COMSOL, MATLAB/Simulink – virtual validation before prototype construction."
         path="/entwicklung/simulation"
         breadcrumbs={[
           { name: 'Home', url: '/' },

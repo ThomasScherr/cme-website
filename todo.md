@@ -544,3 +544,6 @@
 - [x] KRITISCH: NAP-Konflikt – Veraltete Adresse "Brennaborstraße 32" überall durch "Alter Hellweg 48, 44379 Dortmund" ersetzen
 - [x] KRITISCH: Copyright-Jahr – Alle "© 2025" auf "© 2026" vereinheitlichen
 - [x] KRITISCH: 301-Redirect-Map – Alle fehlenden alten URLs ergänzen + .htaccess/.nginx-Config exportieren
+- [x] ON-PAGE SEO: Title-Tags & Meta-Descriptions für alle Hauptseiten neu schreiben (unique, 50-60 Zeichen Title, 150-160 Zeichen Description)
+- [x] ON-PAGE SEO: H1 der Startseite keyword-optimieren (Elektronikentwicklung, EMS, Leistungselektronik, Dortmund)
+- [x] ON-PAGE SEO: Generische Ankertexte durch keyword-relevante Varianten ersetzen

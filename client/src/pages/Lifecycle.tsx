@@ -393,10 +393,10 @@ export default function Lifecycle() {
   return (
     <Layout>
       <SEO
-        titleDE='Lifecycle Management'
-        titleEN='Lifecycle Management'
-        descriptionDE='Produktlebenszyklusmanagement für elektronische Systeme – von der Entwicklung über Fertigung bis Obsoleszenz-Management.'
-        descriptionEN='Product lifecycle management for electronic systems – from development through manufacturing to obsolescence management.'
+        titleDE='Lifecycle Management & Reparatur'
+        titleEN='Lifecycle Management & Repair Services'
+        descriptionDE='Lifecycle Management für Elektronik in Dortmund: Obsoleszenz-Management, Redesign, Reparaturservice und Ersatzteilversorgung für langlebige Produkte.'
+        descriptionEN='Electronics lifecycle management in Dortmund: obsolescence management, redesign, repair services and spare parts supply for long-lasting products.'
         path='/lifecycle'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Lifecycle Management',url:'/lifecycle'}]}
         additionalSchemas={[faqSchema]}

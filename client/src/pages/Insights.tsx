@@ -21,8 +21,8 @@ export default function Insights() {
   return (
     <Layout>
       <SEO
-        titleDE="Engineering Insights"
-        titleEN="Engineering Insights"
+        titleDE="Engineering Insights – Fachwissen Elektronik"
+        titleEN="Engineering Insights – Electronics Expertise"
         descriptionDE="Fachartikel zu Leistungselektronik, EMV, thermischem Management und Antriebstechnik. Praxiswissen von CME-Ingenieuren aus Dortmund."
         descriptionEN="Technical articles on power electronics, EMC, thermal management and drive technology. Practical knowledge from CME engineers in Dortmund."
         path="/insights"

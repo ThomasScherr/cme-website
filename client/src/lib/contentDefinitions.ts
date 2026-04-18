@@ -83,7 +83,7 @@ export const PAGES: PageDef[] = [
           { key: 'headline3', label: 'Überschrift Zeile 3 (Akzent)', type: 'text', defaultDe: 'Aus einer Hand.', defaultEn: 'From a Single Source.' },
           { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Vom ersten Entwurf bis zur Serie – für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.', defaultEn: 'From first concept to series production – for power electronics, drive technology, and thermally demanding projects.' },
           { key: 'ctaLabel', label: 'CTA Button', type: 'text', defaultDe: 'Machbarkeit prüfen lassen', defaultEn: 'Get a feasibility check' },
-          { key: 'ctaSecondaryLabel', label: 'Sekundärer Button', type: 'text', defaultDe: 'Leistungen im Überblick', defaultEn: 'View our services' },
+          { key: 'ctaSecondaryLabel', label: 'Sekundärer Button', type: 'text', defaultDe: 'Entwicklung & Fertigung entdecken', defaultEn: 'Explore development & manufacturing' },
         ],
       },
       {

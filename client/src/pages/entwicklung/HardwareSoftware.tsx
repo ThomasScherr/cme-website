@@ -262,10 +262,10 @@ export default function HardwareSoftware() {
   return (
     <Layout>
       <SEO
-        titleDE="Hard & Software Design"
-        titleEN="Hard & Software Design"
-        descriptionDE="Hardware- und Softwareentwicklung: Schaltungsdesign, PCB-Layout, Embedded-Firmware und FPGA. Leistungselektronik und thermisches Design."
-        descriptionEN="Hardware and software development: circuit design, PCB layout, embedded firmware and FPGA. Power electronics and thermal design."
+        titleDE="Hardware- & Softwareentwicklung Dortmund"
+        titleEN="Hardware & Software Development Dortmund"
+        descriptionDE="Hardware- und Softwareentwicklung in Dortmund: Schaltungsdesign, PCB-Layout, Embedded-Firmware und FPGA für Leistungselektronik. CME – Ihr Entwicklungspartner."
+        descriptionEN="Hardware and software development in Dortmund: circuit design, PCB layout, embedded firmware and FPGA for power electronics. CME – your development partner."
         path="/entwicklung/hardware-software"
         breadcrumbs={[
           { name: 'Home', url: '/' },

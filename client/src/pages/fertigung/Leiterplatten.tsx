@@ -20,12 +20,12 @@ export default function Leiterplatten() {
       parentHref="/fertigung"
       parentLabelDE="Elektronikfertigung"
       parentLabelEN="Electronics Manufacturing"
-      titleDE="Leiterplatten bestücken"
-      titleEN="PCB Assembly"
+      titleDE="Leiterplattenbestückung SMD & THT"
+      titleEN="PCB Assembly SMD & THT Dortmund"
       subtitleDE="SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie."
       subtitleEN="SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series."
-      metaDescriptionDE="Leiterplatten bestücken: SMD- und THT-Bestückung vom Prototyp bis zur Großserie. Modernste Fertigungslinien, AOI und Röntgeninspektion."
-      metaDescriptionEN="PCB assembly: SMD and THT assembly from prototype to high-volume series. State-of-the-art production lines, AOI and X-ray inspection."
+      metaDescriptionDE="Leiterplattenbestückung in Dortmund: SMD- und THT-Bestückung vom Prototyp bis zur Großserie. Modernste Fertigungslinien, AOI und Röntgeninspektion bei CME."
+      metaDescriptionEN="PCB assembly in Dortmund: SMD and THT assembly from prototype to high-volume series. State-of-the-art production lines, AOI and X-ray inspection at CME."
       heroVideo={{
         webm: `${CDN}/leiterplatten-hero_9526f6fb.webm`,
         mp4: `${CDN}/leiterplatten-hero_f10b49bd.mp4`,
@@ -33,8 +33,8 @@ export default function Leiterplatten() {
       }}
       introDE="Die Leiterplattenbestückung ist das Herzstück unserer EMS-Fertigung. Mit modernsten SMD-Bestückungsautomaten und THT-Lötanlagen fertigen wir Ihre Elektronik in höchster Qualität. Ob einzelne Prototypen für die Entwicklungsvalidierung oder Serienproduktion mit mehreren tausend Stück pro Monat – unsere Fertigungslinien sind flexibel konfigurierbar und auf schnelle Rüstwechsel optimiert."
       introEN="PCB assembly is the heart of our EMS manufacturing. With state-of-the-art SMD placement machines and THT soldering systems, we manufacture your electronics in the highest quality. Whether individual prototypes for development validation or series production with several thousand units per month – our production lines are flexibly configurable and optimized for quick changeovers."
-      ctaDE="Angebot anfragen"
-      ctaEN="Request Quote"
+      ctaDE="Bestückungsangebot anfragen"
+      ctaEN="Request PCB Assembly Quote"
       features={[
         {
           de: 'SMD-Bestückung',

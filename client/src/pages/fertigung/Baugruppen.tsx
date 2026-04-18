@@ -20,17 +20,17 @@ export default function Baugruppen() {
       parentHref="/fertigung"
       parentLabelDE="Elektronikfertigung"
       parentLabelEN="Electronics Manufacturing"
-      titleDE="Baugruppen fertigen"
-      titleEN="Module Assembly"
+      titleDE="Baugruppenfertigung & Endmontage"
+      titleEN="Module Assembly & Final Assembly"
       subtitleDE="Komplette Baugruppenmontage inkl. Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage."
       subtitleEN="Complete module assembly including potting, conformal coating, cable assembly and final assembly."
-      metaDescriptionDE="Baugruppenfertigung: Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage. EMS-Dienstleister für Leistungselektronik in Dortmund."
-      metaDescriptionEN="Module assembly: potting, conformal coating, cable assembly and final assembly. EMS provider for power electronics in Dortmund."
+      metaDescriptionDE="Baugruppenfertigung in Dortmund: Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage. EMS-Dienstleister für Leistungselektronik bei CME."
+      metaDescriptionEN="Module assembly in Dortmund: potting, conformal coating, cable assembly and final assembly. EMS provider for power electronics at CME."
       heroImg={`${CDN}/baugruppen-hero_b99b1505.webp`}
       introDE="Elektronik ist mehr als eine bestückte Leiterplatte. CME bietet die komplette Baugruppenfertigung aus einer Hand – von der bestückten PCB über Verguss und Schutzlackierung bis zur Endmontage im Gehäuse. Unsere Mitarbeiter sind in der Verarbeitung anspruchsvoller Materialien und Prozesse geschult, insbesondere für Leistungselektronik und thermisch belastete Baugruppen."
       introEN="Electronics is more than a populated PCB. CME offers complete module assembly from a single source – from populated PCB through potting and conformal coating to final assembly in the housing. Our staff is trained in processing demanding materials and processes, especially for power electronics and thermally stressed assemblies."
-      ctaDE="Angebot anfragen"
-      ctaEN="Request Quote"
+      ctaDE="Baugruppen-Angebot anfragen"
+      ctaEN="Request Assembly Quote"
       features={[
         {
           de: 'Verguss (PU, Epoxid, 2K-Werkstoffe)', en: 'Potting (PU, Epoxy, 2K Materials)', icon: Droplets,

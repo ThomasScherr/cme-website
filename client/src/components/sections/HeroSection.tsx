@@ -94,9 +94,9 @@ export default function HeroSection() {
   const { t: cms, img } = useContent('home');
 
   const secondHeadline = useMemo(() => ({
-    line1: isDE ? 'Für Elektronikprodukte,' : 'For electronic products',
+    line1: isDE ? 'Leistungselektronik,' : 'Power Electronics,',
     line2: isDE ? 'die auch morgen noch' : 'that are still available',
-    accent: isDE ? 'lieferbar sind.' : 'tomorrow.',
+    accent: isDE ? 'lieferbar ist.' : 'tomorrow.',
   }), [isDE]);
 
   // CMS overrides for hero headlines, falling back to i18n

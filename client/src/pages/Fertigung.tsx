@@ -202,10 +202,10 @@ export default function Fertigung() {
   return (
     <Layout>
       <SEO
-        titleDE='Elektronikfertigung & EMS'
-        titleEN='Electronics Manufacturing & EMS'
-        descriptionDE='EMS-Dienstleister für Leiterplattenbestückung, Baugruppenfertigung und Qualitätssicherung – von Prototypen bis Serienproduktion.'
-        descriptionEN='EMS provider for PCB assembly, module manufacturing and quality assurance – from prototypes to series production.'
+        titleDE='EMS-Fertigung & Elektronikfertigung Dortmund'
+        titleEN='EMS Manufacturing & Electronics Production Dortmund'
+        descriptionDE='EMS-Dienstleister in Dortmund: SMD- und THT-Bestückung, Baugruppenfertigung und Qualitätssicherung – vom Prototyp bis zur Großserie. ISO 9001 zertifiziert.'
+        descriptionEN='EMS provider in Dortmund: SMD and THT assembly, module manufacturing and quality assurance – from prototype to high-volume production. ISO 9001 certified.'
         keywordsDE='EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
         keywordsEN='EMS manufacturing, electronics manufacturing, SMD assembly, THT assembly, PCB assembly, module manufacturing, prototyping, series production, AOI, IPC'
         path='/fertigung'
@@ -218,7 +218,7 @@ export default function Fertigung() {
         description={cms('hero.description') || (isDE
           ? 'ISO-zertifizierte Elektronikfertigung mit eigener SMD- und THT-Linie. Prototypen, Kleinserien und Serienproduktion – alles aus einer Hand.'
           : 'ISO-certified electronics manufacturing with own SMD and THT lines. Prototypes, small series and series production – all from a single source.')}
-        cta={{ label: isDE ? 'Angebot anfragen' : 'Request Quote', href: '/kontakt' }}
+        cta={{ label: isDE ? 'EMS-Angebot anfragen' : 'Request EMS Quote', href: '/kontakt' }}
         heroVideo={effectiveHeroVideo}
         heroImageAlt="Elektronikfertigung"
       />
@@ -269,7 +269,7 @@ export default function Fertigung() {
                         {isDE ? page.descDE : page.descEN}
                       </p>
                       <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-xs)' }}>
-                        {isDE ? 'Mehr erfahren' : 'Learn more'}
+                        {isDE ? `${page.titleDE} entdecken` : `Explore ${page.titleEN}`}
                         <ArrowRight size={16} />
                       </div>
                     </div>

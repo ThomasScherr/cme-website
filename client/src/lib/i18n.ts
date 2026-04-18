@@ -18,11 +18,11 @@ export const translations = {
     hero: {
       tagline: 'the electronic company',
       headline1: 'Elektronikentwicklung.',
-      headline2: 'Elektronikfertigung.',
-      headline3: 'Aus einer Hand.',
+      headline2: 'EMS-Fertigung.',
+      headline3: 'Aus Dortmund.',
       sub: 'Vom ersten Entwurf bis zur Serie – für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.',
       cta_primary: 'Machbarkeit prüfen lassen',
-      cta_secondary: 'Leistungen im Überblick',
+      cta_secondary: 'Entwicklung & Fertigung entdecken',
     },
     stats: {
       years: 'Jahre Erfahrung',
@@ -142,11 +142,11 @@ export const translations = {
     hero: {
       tagline: 'the electronic company',
       headline1: 'Electronics Development.',
-      headline2: 'Electronics Manufacturing.',
-      headline3: 'From a Single Source.',
+      headline2: 'EMS Manufacturing.',
+      headline3: 'From Dortmund.',
       sub: 'From first concept to series production – for power electronics, drive technology, and thermally demanding projects.',
       cta_primary: 'Get a feasibility check',
-      cta_secondary: 'View our services',
+      cta_secondary: 'Explore development & manufacturing',
     },
     stats: {
       years: 'Years of Experience',

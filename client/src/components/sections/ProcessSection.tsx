@@ -177,7 +177,7 @@ export default function ProcessSection({ onCardClick }: ProcessSectionProps) {
             className="inline-flex items-center gap-2 px-6 py-3 bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors duration-200"
             style={{ fontSize: 'var(--fs-body)' }}
           >
-            {isDE ? 'Projekt besprechen' : 'Discuss your project'}
+            {isDE ? 'Elektronikprojekt besprechen' : 'Discuss your electronics project'}
             <ArrowRight style={{ width: '1.1em', height: '1.1em' }} />
           </a>
         </motion.div>

@@ -38,10 +38,10 @@ export default function Karriere() {
   return (
     <Layout>
       <SEO
-        titleDE='Karriere bei CME'
-        titleEN='Careers at CME'
+        titleDE='Karriere in der Elektronikbranche Dortmund'
+        titleEN='Careers in Electronics Industry Dortmund'
         descriptionDE='Karriere bei CME in Dortmund: Offene Stellen in Elektronikentwicklung, Leistungselektronik, EMS-Fertigung und Qualitätsmanagement. Jetzt bewerben.'
-        descriptionEN='Careers at CME in Dortmund: Open positions in electronics development, power electronics, EMS manufacturing and quality management. Apply now.'
+        descriptionEN='Careers at CME in Dortmund: open positions in electronics development, power electronics, EMS manufacturing and quality management. Apply now.'
         path='/karriere'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Karriere',url:'/karriere'}]}
       />

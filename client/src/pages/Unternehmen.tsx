@@ -40,10 +40,10 @@ export default function Unternehmen() {
   return (
     <Layout>
       <SEO
-        titleDE='Über CME'
-        titleEN='About CME'
-        descriptionDE='CME Control Motion Electronics GmbH – Ihr Partner für Elektronikentwicklung und EMS in Dortmund. Erfahrung, Innovation und Qualität.'
-        descriptionEN='CME Control Motion Electronics GmbH – Your partner for electronics development and EMS in Dortmund. Experience, innovation and quality.'
+        titleDE='Über CME – Elektronikpartner aus Dortmund'
+        titleEN='About CME – Electronics Partner from Dortmund'
+        descriptionDE='CME Control Motion Electronics in Dortmund: Über 60 Ingenieure, ISO 9001 zertifiziert. Elektronikentwicklung und EMS-Fertigung unter einem Dach.'
+        descriptionEN='CME Control Motion Electronics in Dortmund: over 60 engineers, ISO 9001 certified. Electronics development and EMS manufacturing under one roof.'
         path='/unternehmen'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Über CME',url:'/unternehmen'}]}
       />

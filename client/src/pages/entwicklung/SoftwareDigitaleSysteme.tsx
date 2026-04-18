@@ -281,10 +281,10 @@ export default function SoftwareDigitaleSysteme() {
   return (
     <Layout>
       <SEO
-        titleDE="Software Engineering & Digitale Systeme"
-        titleEN="Software Engineering & Digital Systems"
-        descriptionDE="Software-Entwicklung für Elektronikprodukte: Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur. Digitale Systeme aus einer Hand."
-        descriptionEN="Software development for electronics products: web apps, mobile apps, cloud integration and backend architecture. Digital systems from a single source."
+        titleDE="Software & Digitale Systeme Dortmund"
+        titleEN="Software & Digital Systems Dortmund"
+        descriptionDE="Software-Entwicklung für Elektronikprodukte in Dortmund: Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur – digitale Systeme aus einer Hand."
+        descriptionEN="Software development for electronics products in Dortmund: web apps, mobile apps, cloud integration and backend architecture – digital systems from one source."
         path="/entwicklung/software-digitale-systeme"
         breadcrumbs={[
           { name: 'Home', url: '/' },

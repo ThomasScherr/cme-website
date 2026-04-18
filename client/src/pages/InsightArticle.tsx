@@ -123,7 +123,7 @@ export default function InsightArticle() {
           <div className="border-t border-gray-200" style={{ marginTop: 'var(--space-section-sm)', paddingTop: 'var(--space-gap-md)' }}>
             <Link href="/insights" className="inline-flex items-center gap-2 text-cme-blue font-semibold fluid-body hover:underline">
               <ArrowLeft size={16} />
-              {isDE ? 'Weitere Insights lesen' : 'Read more Insights'}
+              {isDE ? 'Weitere Engineering Insights lesen' : 'Read more Engineering Insights'}
             </Link>
           </div>
         </div>

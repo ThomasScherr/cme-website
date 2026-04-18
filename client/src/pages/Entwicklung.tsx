@@ -138,10 +138,10 @@ export default function Entwicklung() {
   return (
     <Layout>
       <SEO
-        titleDE='Elektronikentwicklung'
-        titleEN='Electronics Development'
-        descriptionDE='Ganzheitliche Elektronikentwicklung von der Idee bis zur Serie – Hardware, Software, Simulation, Test und Zulassung aus einer Hand.'
-        descriptionEN='End-to-end electronics development from concept to series production – hardware, software, simulation, testing and certification from a single source.'
+        titleDE='Elektronikentwicklung Dortmund'
+        titleEN='Electronics Development Dortmund'
+        descriptionDE='Ganzheitliche Elektronikentwicklung in Dortmund: Hardware, Embedded Software, Simulation, EMV-Test und Zulassung – vom Konzept bis zur Serienreife.'
+        descriptionEN='End-to-end electronics development in Dortmund: hardware, embedded software, simulation, EMC testing and certification – from concept to series production.'
         keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, EMV, Simulation, V-Modell'
         keywordsEN='electronics development, hardware design, software development, power electronics, drive electronics, motor design, EMC, simulation, V-model'
         path='/entwicklung'
@@ -154,7 +154,7 @@ export default function Entwicklung() {
         description={cms('hero.description') || (isDE
           ? 'Wir entwickeln Elektronik, die funktioniert – von der Systemarchitektur über Hardware, Software und Simulation bis zur Qualifikation. Mit Fokus auf Leistungselektronik, Antriebstechnik, E-Motor-Design und thermisch anspruchsvolle Projekte.'
           : 'We develop electronics that work – from system architecture through hardware, software and simulation to qualification. With focus on power electronics, drive technology, e-motor design and thermally demanding projects.')}
-        cta={{ label: isDE ? 'Projekt besprechen' : 'Discuss your project', href: '/kontakt' }}
+        cta={{ label: isDE ? 'Entwicklungsprojekt besprechen' : 'Discuss your development project', href: '/kontakt' }}
         heroImage={img('hero.heroImage', HERO_IMG)}
         heroImageAlt="Elektronikentwicklung"
         heroVideo={heroVideo}
@@ -198,9 +198,9 @@ export default function Entwicklung() {
                     <p className="text-gray-600 fluid-small leading-relaxed flex-1">
                       {isDE ? card.descDE : card.descEN}
                     </p>
-                    {/* Link arrow */}
+                    {/* Link arrow – keyword-rich anchor text */}
                     <div className="flex items-center text-cme-blue font-semibold fluid-small group-hover:gap-3 transition-all" style={{ gap: 'var(--space-gap-xs)', marginTop: 'var(--space-gap-sm)' }}>
-                      {isDE ? 'Mehr erfahren' : 'Learn more'}
+                      {isDE ? `${card.titleDE} entdecken` : `Explore ${card.titleEN}`}
                       <ArrowRight size={16} />
                     </div>
                   </div>
