@@ -405,6 +405,7 @@ export default function Maerkte() {
         descriptionDE="Branchenexpertise aus Dortmund: Elektroniklösungen für Automotive, Industrieautomation, Medizintechnik, Antriebstechnik und Smart Infrastructure."
         descriptionEN="Industry expertise from Dortmund: electronics solutions for automotive, industrial automation, medical technology, drive technology and smart infrastructure."
         path="/maerkte"
+        enPath="/en/markets"
         breadcrumbs={[
           { name: 'Home', url: '/' },
           { name: isDE ? 'Branchen & Märkte' : 'Industries & Markets', url: '/maerkte' },

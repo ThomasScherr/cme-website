@@ -166,6 +166,7 @@ export default function Qualitaet() {
           ],
         },
       ]}
+          enPath="/en/manufacturing/quality"
     />
   );
 }

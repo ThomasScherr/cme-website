@@ -57,9 +57,14 @@
         });
       })();
     </script>
-    <!-- Title, Description und Keywords werden dynamisch von React Helmet gesetzt (SEO.tsx) -->
-    <!-- KEINE statischen Tags hier – SSR fügt für Googlebot seitenspezifische Tags ein,
-         statische Fallbacks würden zu Duplikaten führen -->
+    <!-- OG Fallback-Tags: überschreiben Platform-Defaults, React Helmet aktualisiert zur Laufzeit -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CME – Elektronikentwicklung & EMS-Fertigung Dortmund" />
+    <meta property="og:description" content="CME ist Ihr Entwicklungsdienstleister und EMS-Partner in Dortmund – Leistungselektronik, Antriebselektronik und Mechatronik vom Entwurf bis zur Serie." />
+    <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg" />
+    <meta property="og:url" content="https://control-motion.de/" />
+    <meta property="og:site_name" content="CME Control Motion Electronics GmbH" />
+    <meta property="og:locale" content="de_DE" />
     <link rel="icon" type="image/png" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_Favicon_ac3f40f8.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

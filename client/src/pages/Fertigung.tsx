@@ -209,6 +209,7 @@ export default function Fertigung() {
         keywordsDE='EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
         keywordsEN='EMS manufacturing, electronics manufacturing, SMD assembly, THT assembly, PCB assembly, module manufacturing, prototyping, series production, AOI, IPC'
         path='/fertigung'
+        enPath='/en/manufacturing'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikfertigung',url:'/fertigung'}]}
         additionalSchemas={[fertigungFaqs]}
       />

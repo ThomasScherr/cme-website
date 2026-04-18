@@ -267,6 +267,7 @@ export default function HardwareSoftware() {
         descriptionDE="Hardware- und Softwareentwicklung in Dortmund: Schaltungsdesign, PCB-Layout, Embedded-Firmware und FPGA für Leistungselektronik. CME – Ihr Entwicklungspartner."
         descriptionEN="Hardware and software development in Dortmund: circuit design, PCB layout, embedded firmware and FPGA for power electronics. CME – your development partner."
         path="/entwicklung/hardware-software"
+        enPath="/en/development/hardware-software"
         breadcrumbs={[
           { name: 'Home', url: '/' },
           { name: isDE ? 'Elektronikentwicklung' : 'Electronics Development', url: '/entwicklung' },

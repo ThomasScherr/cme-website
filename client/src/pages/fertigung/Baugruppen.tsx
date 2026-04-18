@@ -168,6 +168,7 @@ export default function Baugruppen() {
           ],
         },
       ]}
+          enPath="/en/manufacturing/assemblies"
     />
   );
 }

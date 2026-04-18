@@ -40,6 +40,7 @@ interface PageMeta {
   content: string; // visible content snippet for crawlers
   breadcrumbs?: { name: string; url: string }[];
   schemas?: Record<string, unknown>[];
+  enPath?: string; // English path for hreflang
 }
 
 const organizationSchema = {
@@ -56,9 +57,11 @@ const organizationSchema = {
     postalCode: '44379',
     addressCountry: 'DE',
   },
+  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
+    telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
     email: 'info@control-motion.de',
     availableLanguage: ['German', 'English'],
   },
@@ -75,6 +78,7 @@ const websiteSchema = {
 // ── Page definitions for all public routes ──
 const PAGES: Record<string, PageMeta> = {
   '/': {
+    enPath: '/en/',
     title: 'CME – Elektronikentwicklung & EMS-Fertigung',
     description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung und EMS-Fertigung. Leistungselektronik, Antriebstechnik, Mechatronik und thermisch anspruchsvolle Projekte.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
@@ -87,6 +91,7 @@ const PAGES: Record<string, PageMeta> = {
     schemas: [organizationSchema, websiteSchema],
   },
   '/entwicklung': {
+    enPath: '/en/development',
     title: 'Entwicklung – Elektronikentwicklung & Engineering | CME',
     description: 'Elektronikentwicklung von CME: Hardware, Software, Simulation, EMV, E-Motor-Design, Regelungstechnik. V-Modell-basierter Entwicklungsprozess.',
     h1: 'Entwicklung – Engineering Services',
@@ -97,6 +102,7 @@ const PAGES: Record<string, PageMeta> = {
     UX & Interface Engineering, Software für digitale Systeme, KI-Entwicklung für industrielle Anwendungen.`,
   },
   '/entwicklung/hardware-software': {
+    enPath: '/en/development/hardware-software',
     title: 'Hardware- & Softwareentwicklung | CME',
     description: 'Hardware- und Softwareentwicklung für elektronische Steuerungen. Schaltungsentwicklung, Embedded Software, FPGA-Design.',
     h1: 'Hardware- & Softwareentwicklung',
@@ -105,6 +111,7 @@ const PAGES: Record<string, PageMeta> = {
     Schaltungsentwicklung, Leiterplattendesign, Embedded Software, FPGA-Design, Firmware-Entwicklung.`,
   },
   '/entwicklung/simulation': {
+    enPath: '/en/development/simulation',
     title: 'Simulation & Thermisches Management | CME',
     description: 'Simulation und thermisches Management für Elektronik. FEM, CFD, thermische Analyse, Leistungselektronik-Simulation.',
     h1: 'Simulation & Thermisches Management',
@@ -113,6 +120,7 @@ const PAGES: Record<string, PageMeta> = {
     FEM-Analyse, CFD-Simulation, thermische Analyse, Leistungselektronik-Simulation.`,
   },
   '/entwicklung/test-verifikation': {
+    enPath: '/en/development/test-verification',
     title: 'Test & Verifikation | CME',
     description: 'Test und Verifikation nach V-Modell. Testautomatisierung, HIL-Tests, Umweltsimulation, Zuverlässigkeitstests.',
     h1: 'Test & Verifikation',
@@ -121,6 +129,7 @@ const PAGES: Record<string, PageMeta> = {
     Testautomatisierung, Hardware-in-the-Loop (HIL), Umweltsimulation, Zuverlässigkeitstests.`,
   },
   '/entwicklung/ux-interface-engineering': {
+    enPath: '/en/development/ux-interface-engineering',
     title: 'UX & Interface Engineering | CME',
     description: 'UX-Design und Interface Engineering für Bediengeräte und industrielle HMI-Systeme.',
     h1: 'UX & Interface Engineering',
@@ -128,6 +137,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `UX-Design und Interface Engineering für Bediengeräte, HMI-Systeme und industrielle Anwendungen.`,
   },
   '/entwicklung/software-digitale-systeme': {
+    enPath: '/en/development/software-digital-systems',
     title: 'Software für Digitale Systeme | CME',
     description: 'Softwareentwicklung für digitale Systeme, Embedded Systems, IoT und Cloud-Anbindung.',
     h1: 'Software für Digitale Systeme',
@@ -135,6 +145,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Softwareentwicklung für digitale Systeme, Embedded Systems, IoT-Lösungen und Cloud-Anbindung.`,
   },
   '/entwicklung/e-motor-design': {
+    enPath: '/en/development/e-motor-design',
     title: 'E-Motor-Design | CME',
     description: 'E-Motor-Design und Antriebselektronik. Motorauslegung, Inverter-Design, Regelungstechnik für elektrische Antriebe.',
     h1: 'E-Motor-Design',
@@ -142,6 +153,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `E-Motor-Design und Antriebselektronik: Motorauslegung, Inverter-Design, Regelungstechnik für elektrische Antriebe.`,
   },
   '/entwicklung/control-design': {
+    enPath: '/en/development/control-design',
     title: 'Control Design – Regelungstechnik | CME',
     description: 'Regelungstechnik und Control Design für Antriebe und Leistungselektronik. Modellbasierte Entwicklung.',
     h1: 'Control Design – Regelungstechnik',
@@ -149,6 +161,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Regelungstechnik und Control Design für Antriebe und Leistungselektronik. Modellbasierte Entwicklung nach V-Modell.`,
   },
   '/entwicklung/validierung-emv': {
+    enPath: '/en/development/emc-validation',
     title: 'EMV-Validierung | CME',
     description: 'EMV-gerechtes Design und Validierung. EMV-Tests, CE-Konformität, Störfestigkeitsprüfung.',
     h1: 'EMV-Validierung',
@@ -156,6 +169,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `EMV-gerechtes Design und Validierung. EMV-Tests, CE-Konformität, Störfestigkeitsprüfung für elektronische Systeme.`,
   },
   '/entwicklung/ki-entwicklung': {
+    enPath: '/en/development/ai-development',
     title: 'KI-Entwicklung | CME',
     description: 'KI-Entwicklung für industrielle Anwendungen. Machine Learning, Computer Vision, Predictive Maintenance.',
     h1: 'KI-Entwicklung',
@@ -163,6 +177,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `KI-Entwicklung für industrielle Anwendungen: Machine Learning, Computer Vision, Predictive Maintenance.`,
   },
   '/fertigung': {
+    enPath: '/en/manufacturing',
     title: 'EMS-Fertigung – Elektronikfertigung & Bestückung | CME',
     description: 'EMS-Fertigung von CME: SMD-Bestückung, THT, Baugruppenfertigung, Qualitätssicherung. Vom Prototyp bis zur Serie.',
     h1: 'EMS-Fertigung – Electronic Manufacturing Services',
@@ -173,6 +188,7 @@ const PAGES: Record<string, PageMeta> = {
     Vom Prototyp bis zur Serienfertigung – zertifiziert nach IPC-Standards.`,
   },
   '/fertigung/leiterplatten': {
+    enPath: '/en/manufacturing/printed-circuit-boards',
     title: 'Leiterplattenbestückung | CME',
     description: 'Professionelle Leiterplattenbestückung: SMD, THT, Mischbestückung. Prototypen und Serienfertigung.',
     h1: 'Leiterplattenbestückung',
@@ -180,6 +196,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Professionelle Leiterplattenbestückung: SMD, THT und Mischbestückung. Prototypen und Serienfertigung.`,
   },
   '/fertigung/baugruppen': {
+    enPath: '/en/manufacturing/assemblies',
     title: 'Baugruppenfertigung | CME',
     description: 'Baugruppenfertigung und Systemintegration. Komplette elektronische Baugruppen aus einer Hand.',
     h1: 'Baugruppenfertigung',
@@ -187,6 +204,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Baugruppenfertigung und Systemintegration. Komplette elektronische Baugruppen aus einer Hand.`,
   },
   '/fertigung/qualitaet': {
+    enPath: '/en/manufacturing/quality',
     title: 'Qualitätssicherung | CME',
     description: 'Qualitätssicherung in der Elektronikfertigung. AOI, Röntgeninspektion, IPC-Standards, ISO 9001, IATF 16949.',
     h1: 'Qualitätssicherung',
@@ -194,6 +212,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Qualitätssicherung in der Elektronikfertigung: AOI, Röntgeninspektion, IPC-Standards. Zertifiziert nach ISO 9001 und IATF 16949.`,
   },
   '/lifecycle': {
+    enPath: '/en/lifecycle',
     title: 'Lifecycle Management & Reparatur | CME',
     description: 'Lifecycle Management, Obsoleszenz-Management, Redesign und Reparaturservice für elektronische Systeme.',
     h1: 'Lifecycle Management & Reparatur',
@@ -201,6 +220,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Lifecycle Management für elektronische Systeme: Obsoleszenz-Management, Redesign, Reparatur und Instandsetzung.`,
   },
   '/maerkte': {
+    enPath: '/en/markets',
     title: 'Zielmärkte & Branchen | CME',
     description: 'CME bedient Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Energietechnik und Luft- & Raumfahrt.',
     h1: 'Zielmärkte & Branchen',
@@ -208,6 +228,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `CME bedient vielfältige Branchen: Automotive und E-Mobilität, Industrieautomation und Maschinenbau, Medizintechnik, Energietechnik, Luft- und Raumfahrt, Sicherheitstechnik.`,
   },
   '/unternehmen': {
+    enPath: '/en/company',
     title: 'Über CME – Unternehmen | CME',
     description: 'CME Control Motion Electronics GmbH – Über 60 Mitarbeiter, Standort Dortmund, zertifiziert nach ISO 9001 und IATF 16949.',
     h1: 'Über CME Control Motion Electronics',
@@ -215,6 +236,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `CME Control Motion Electronics GmbH – Über 60 Mitarbeiter am Standort Dortmund. Zertifiziert nach ISO 9001 und IATF 16949. Entwicklung und Fertigung unter einem Dach.`,
   },
   '/kontakt': {
+    enPath: '/en/contact',
     title: 'Kontakt | CME',
     description: 'Kontaktieren Sie CME Control Motion Electronics. Beratungsgespräch, Projektanfrage oder NDA-Anforderung.',
     h1: 'Kontakt',
@@ -222,6 +244,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Kontaktieren Sie CME Control Motion Electronics GmbH. Beratungsgespräch, Projektanfrage oder NDA-Anforderung. Alter Hellweg 48, 44379 Dortmund.`,
   },
   '/karriere': {
+    enPath: '/en/careers',
     title: 'Karriere bei CME | CME',
     description: 'Karriere bei CME Control Motion Electronics. Stellenangebote in Elektronikentwicklung und EMS-Fertigung.',
     h1: 'Karriere bei CME',
@@ -229,6 +252,7 @@ const PAGES: Record<string, PageMeta> = {
     content: `Karriere bei CME Control Motion Electronics. Stellenangebote in Elektronikentwicklung und EMS-Fertigung am Standort Dortmund.`,
   },
   '/insights': {
+    enPath: '/en/insights',
     title: 'Insights – Fachartikel & Neuigkeiten | CME',
     description: 'Fachartikel, Neuigkeiten und Einblicke aus der Welt der Elektronikentwicklung und EMS-Fertigung.',
     h1: 'Insights – Fachartikel & Neuigkeiten',
@@ -324,6 +348,11 @@ function generateCrawlerHtml(path: string, page: PageMeta): string {
     <meta name="twitter:description" content="${escapeHtml(page.description)}">
     <meta name="twitter:image" content="${ogImage}">
     
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="de" href="${canonicalUrl}">
+    ${page.enPath ? `<link rel="alternate" hreflang="en" href="${BASE_URL}${page.enPath}">` : ''}
+    <link rel="alternate" hreflang="x-default" href="${canonicalUrl}">
+    
     <!-- Structured Data -->
     ${schemasHtml}
     ${breadcrumbSchema}
@@ -410,6 +439,7 @@ export function prerenderMiddleware() {
       '/elektronikfertigung/qs-qm': '/fertigung/qualitaet',
       '/datenschutzerklaerung': '/datenschutz',
       '/jobs': '/karriere',
+      '/ueber-uns': '/unternehmen',
       '/en/electronics-manufacturing': '/en/manufacturing',
       '/en/electronics-manufacturing/assembling-printed-circuit-boards': '/en/manufacturing/printed-circuit-boards',
       '/en/electronics-manufacturing/electronic-assemblies': '/en/manufacturing/assemblies',
@@ -438,6 +468,7 @@ export function prerenderMiddleware() {
     console.log(`[Prerender] Serving pre-rendered HTML for ${normalizedPath} to crawler: ${userAgent.substring(0, 80)}`);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('X-Prerendered', 'true');
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
     res.send(generateCrawlerHtml(normalizedPath, page));
   };
 }

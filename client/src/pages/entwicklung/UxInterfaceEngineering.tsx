@@ -98,6 +98,7 @@ export default function UxInterfaceEngineering() {
       ]}
       ctaDE="UX-Konzept besprechen"
       ctaEN="Discuss UX concept"
+          enPath="/en/development/ux-interface-engineering"
     />
   );
 }

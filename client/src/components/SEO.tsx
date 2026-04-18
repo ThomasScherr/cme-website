@@ -25,6 +25,8 @@ interface SEOProps {
   /** Meta keywords (comma-separated) */
   keywordsDE?: string;
   keywordsEN?: string;
+  /** English path equivalent for hreflang (e.g., '/en/development'). If omitted, only hreflang="de" + x-default are set. */
+  enPath?: string;
 }
 
 /* ── Organization Schema (global, rendered once on homepage) ── */
@@ -43,9 +45,11 @@ export const organizationSchema = {
     postalCode: '44379',
     addressCountry: 'DE',
   },
+  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
+    telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
     email: 'info@control-motion.de',
     availableLanguage: ['German', 'English'],
   },
@@ -89,6 +93,7 @@ export default function SEO({
   rawTitle,
   keywordsDE,
   keywordsEN,
+  enPath,
 }: SEOProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -119,6 +124,11 @@ export default function SEO({
       <link rel="canonical" href={canonicalUrl} />
       <meta name="robots" content="index, follow" />
       <html lang={isDE ? 'de' : 'en'} />
+
+      {/* hreflang */}
+      <link rel="alternate" hrefLang="de" href={canonicalUrl} />
+      {enPath && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${enPath}`} />}
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />

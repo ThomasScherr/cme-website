@@ -182,6 +182,7 @@ export default function EMotorDesign() {
           ],
         },
       ]}
+          enPath="/en/development/e-motor-design"
     />
   );
 }

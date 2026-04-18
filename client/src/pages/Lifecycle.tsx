@@ -398,6 +398,7 @@ export default function Lifecycle() {
         descriptionDE='Lifecycle Management für Elektronik in Dortmund: Obsoleszenz-Management, Redesign, Reparaturservice und Ersatzteilversorgung für langlebige Produkte.'
         descriptionEN='Electronics lifecycle management in Dortmund: obsolescence management, redesign, repair services and spare parts supply for long-lasting products.'
         path='/lifecycle'
+        enPath='/en/lifecycle'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Lifecycle Management',url:'/lifecycle'}]}
         additionalSchemas={[faqSchema]}
       />

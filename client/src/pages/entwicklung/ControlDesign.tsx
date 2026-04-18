@@ -184,6 +184,7 @@ export default function ControlDesign() {
           ],
         },
       ]}
+          enPath="/en/development/control-design"
     />
   );
 }

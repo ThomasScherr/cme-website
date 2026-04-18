@@ -163,6 +163,7 @@ export default function Simulation() {
         descriptionDE="Thermische, elektrische und mechanische Simulation in Dortmund. PLECS, LTspice, COMSOL, MATLAB/Simulink – virtuelle Absicherung vor dem Prototypenbau."
         descriptionEN="Thermal, electrical and mechanical simulation in Dortmund. PLECS, LTspice, COMSOL, MATLAB/Simulink – virtual validation before prototype construction."
         path="/entwicklung/simulation"
+        enPath="/en/development/simulation"
         breadcrumbs={[
           { name: 'Home', url: '/' },
           { name: isDE ? 'Elektronikentwicklung' : 'Electronics Development', url: '/entwicklung' },

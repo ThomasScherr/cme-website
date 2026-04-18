@@ -43,6 +43,7 @@ export default function Karriere() {
         descriptionDE='Karriere bei CME in Dortmund: Offene Stellen in Elektronikentwicklung, Leistungselektronik, EMS-Fertigung und Qualitätsmanagement. Jetzt bewerben.'
         descriptionEN='Careers at CME in Dortmund: open positions in electronics development, power electronics, EMS manufacturing and quality management. Apply now.'
         path='/karriere'
+        enPath='/en/careers'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Karriere',url:'/karriere'}]}
       />
       <SubPageHero

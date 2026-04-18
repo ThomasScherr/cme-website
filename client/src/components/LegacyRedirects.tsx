@@ -27,6 +27,7 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/elektronikfertigung/qs-qm": "/fertigung/qualitaet",
   "/datenschutzerklaerung": "/datenschutz",
   "/jobs": "/karriere",
+  "/ueber-uns": "/unternehmen",
 
   // ── Englische alte URLs → aktuelle englische Seiten ──
   "/en/electronics-manufacturing": "/en/manufacturing",

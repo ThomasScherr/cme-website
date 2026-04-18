@@ -45,6 +45,7 @@ export default function Unternehmen() {
         descriptionDE='CME Control Motion Electronics in Dortmund: Über 60 Ingenieure, ISO 9001 zertifiziert. Elektronikentwicklung und EMS-Fertigung unter einem Dach.'
         descriptionEN='CME Control Motion Electronics in Dortmund: over 60 engineers, ISO 9001 certified. Electronics development and EMS manufacturing under one roof.'
         path='/unternehmen'
+        enPath='/en/company'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Über CME',url:'/unternehmen'}]}
       />
       <SubPageHero

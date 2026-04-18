@@ -286,6 +286,7 @@ export default function SoftwareDigitaleSysteme() {
         descriptionDE="Software-Entwicklung für Elektronikprodukte in Dortmund: Web-Apps, Mobile Apps, Cloud-Integration und Backend-Architektur – digitale Systeme aus einer Hand."
         descriptionEN="Software development for electronics products in Dortmund: web apps, mobile apps, cloud integration and backend architecture – digital systems from one source."
         path="/entwicklung/software-digitale-systeme"
+        enPath="/en/development/software-digital-systems"
         breadcrumbs={[
           { name: 'Home', url: '/' },
           { name: isDE ? 'Elektronikentwicklung' : 'Electronics Development', url: '/entwicklung' },

@@ -49,6 +49,8 @@ interface SubPageProps {
   metaDescriptionEN?: string;
   /** SEO: additional JSON-LD schemas (e.g. FAQPage) */
   additionalSchemas?: Record<string, unknown>[];
+  /** SEO: English path for hreflang (e.g. '/en/development/control-design') */
+  enPath?: string;
 }
 
 export default function SubPageTemplate({
@@ -71,6 +73,7 @@ export default function SubPageTemplate({
   metaDescriptionDE,
   metaDescriptionEN,
   additionalSchemas,
+  enPath,
 }: SubPageProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -123,6 +126,7 @@ export default function SubPageTemplate({
           { name: isDE ? titleDE : titleEN, url: pagePath },
         ]}
         additionalSchemas={additionalSchemas}
+        enPath={enPath}
       />
       <SubPageHero
         breadcrumb={[

@@ -58,10 +58,29 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Static assets (JS, CSS, images) with content-hash in filename: immutable long-cache
+  app.use("/assets", express.static(path.resolve(distPath, "assets"), {
+    maxAge: '365d',
+    immutable: true,
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    },
+  }));
 
-  // fall through to index.html if the file doesn't exist
+  // Other static files (favicon, robots.txt, etc.)
+  app.use(express.static(distPath, {
+    maxAge: '1h',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
+      }
+    },
+  }));
+
+  // fall through to index.html if the file doesn't exist (SPA routing)
   app.use("*", (_req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
+    res.removeHeader('Pragma');
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

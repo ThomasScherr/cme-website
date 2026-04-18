@@ -40,6 +40,7 @@ export default function TestVerifikation() {
         { de: 'Lebensdauertests & HALT/HASS', en: 'Lifetime Tests & HALT/HASS', icon: Clock },
         { de: 'Testkonzeptentwicklung & Prüfmittelbau', en: 'Test Concept Development & Fixture Design', icon: Wrench },
       ]}
+          enPath="/en/development/test-verification"
     />
   );
 }

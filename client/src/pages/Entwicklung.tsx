@@ -145,6 +145,7 @@ export default function Entwicklung() {
         keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, EMV, Simulation, V-Modell'
         keywordsEN='electronics development, hardware design, software development, power electronics, drive electronics, motor design, EMC, simulation, V-model'
         path='/entwicklung'
+        enPath='/en/development'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikentwicklung',url:'/entwicklung'}]}
         additionalSchemas={[entwicklungFaqs]}
       />

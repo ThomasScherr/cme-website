@@ -190,6 +190,7 @@ export default function Leiterplatten() {
           ],
         },
       ]}
+          enPath="/en/manufacturing/printed-circuit-boards"
     />
   );
 }

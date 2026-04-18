@@ -140,6 +140,7 @@ export default function KiEntwicklung() {
     <>
       <SubPageTemplate
         additionalSchemas={[faqSchema]}
+        enPath="/en/development/ai-development"
         pageKey="entwicklung.kientwicklung"
         parentHref="/entwicklung"
         parentLabelDE="Elektronikentwicklung"

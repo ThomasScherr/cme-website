@@ -184,6 +184,7 @@ export default function ValidierungEmv() {
           ],
         },
       ]}
+          enPath="/en/development/emc-validation"
     />
   );
 }

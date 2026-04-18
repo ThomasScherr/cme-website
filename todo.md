@@ -549,3 +549,9 @@
 - [x] ON-PAGE SEO: Generische Ankertexte durch keyword-relevante Varianten ersetzen
 - [x] Doppelten Kontakt-Link aus Navigation entfernt (CTA-Button bleibt bestehen)
 - [x] SEO: Meta-Keywords der Startseite von 10 auf 3-8 fokussierte Keywords reduzieren
+- [x] Fix 1: OG Description Homepage ersetzen (Framer Motion Text entfernen)
+- [x] Fix 2: Zweites OG Image (manuscdn.com) entfernen
+- [x] Fix 3: Telefonnummer-Platzhalter in JSON-LD Organization-Schema ergänzen (TODO: Exakte Nr. bei Thomas erfragen)
+- [x] Fix 4: Cache-Control Header für HTML und statische Assets setzen
+- [x] Fix 5: hreflang Tags für alle Seiten mit DE/EN-Entsprechung ergänzen
+- [x] Fix 6: 301-Redirect /ueber-uns → /unternehmen einrichten

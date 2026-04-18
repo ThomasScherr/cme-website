@@ -130,6 +130,7 @@ export default function Kontakt() {
         descriptionDE='Kontaktieren Sie CME in Dortmund für Elektronikentwicklung und EMS-Fertigung. Persönliche Beratung, Projektanfrage oder NDA – wir antworten innerhalb 24 h.'
         descriptionEN='Contact CME in Dortmund for electronics development and EMS manufacturing. Personal consultation, project inquiry or NDA – we respond within 24 hours.'
         path='/kontakt'
+        enPath='/en/contact'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Kontakt',url:'/kontakt'}]}
       />
       <SubPageHero

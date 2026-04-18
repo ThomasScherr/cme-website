@@ -67,6 +67,7 @@ export default function Home() {
         keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management'
         keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, PCB assembly Dortmund, thermal management'
         path='/'
+        enPath='/en/'
         additionalSchemas={[organizationSchema, websiteSchema, homeFaqsDE, ...homeServicesSchema]}
         rawTitle
       />
