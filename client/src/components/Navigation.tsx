@@ -57,10 +57,6 @@ function useNavItems() {
       label: isDE ? 'Insights' : 'Insights',
       href: '/insights',
     },
-    {
-      label: isDE ? 'Kontakt' : 'Contact',
-      href: '/kontakt',
-    },
   ];
 
   return items;
