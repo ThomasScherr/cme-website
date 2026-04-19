@@ -565,3 +565,8 @@
 - [x] Sitemap: Alle englischen Seiten (/en/...) ergänzen
 - [x] Sitemap: urlset-Tag auf sitemaps.org + xhtml Namespaces beschränken
 - [x] Sitemap: hreflang-Pattern anpassen (nur de+en, kein x-default, keine hreflang bei Impressum/Datenschutz/AGB)
+- [x] 301-Redirect: /elektronikentwicklung/* → /entwicklung/* (Wildcard)
+- [x] 301-Redirect: /elektronikfertigung/* → /fertigung/* (Wildcard)
+- [x] 301-Redirect: /en/electronics-development/* → /en/development/* (Wildcard)
+- [x] 301-Redirect: /en/electronics-manufacturing/* → /en/manufacturing/* (Wildcard)
+- [x] 301-Redirect: www.control-motion.de/* → control-motion.de/* (bereits via wwwRedirectMiddleware.ts)

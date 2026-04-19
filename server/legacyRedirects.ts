@@ -8,43 +8,26 @@ import type { Request, Response, NextFunction } from "express";
  * and external links still reference. Without these redirects, the SPA serves
  * HTTP 200 with a client-side 404 page (soft-404), which is bad for SEO.
  * 
- * Note: www → non-www is handled by Cloudflare. Trailing slashes are normalized.
- * Only paths that do NOT exist as current routes are included here.
+ * Note: www → non-www is handled by wwwRedirectMiddleware.ts.
+ * Trailing slashes are normalized. Only paths that do NOT exist as current
+ * routes are included here.
+ * 
+ * Supports both exact matches and wildcard prefix rewrites.
  */
 
+// ── Exact path matches ──
 const LEGACY_REDIRECT_MAP: Record<string, string> = {
-  // ── Deutsche alte URLs → neue deutsche Routen ──
-  "/elektronikentwicklung": "/entwicklung",
-  "/elektronikentwicklung/hardware-software": "/entwicklung/hardware-software",
-  "/elektronikentwicklung/simulation": "/entwicklung/simulation",
-  "/elektronikentwicklung/test-verifikation": "/entwicklung/test-verifikation",
+  // Deutsche alte URLs → neue deutsche Routen
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten": "/fertigung/leiterplatten",
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/leiterplatten-bestuecken-smd-und-tht": "/fertigung/leiterplatten",
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/baugruppen": "/fertigung/baugruppen",
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/qs-qm": "/fertigung/qualitaet",
   "/smd-fragen-entwurf": "/fertigung",
-  "/elektronikfertigung": "/fertigung",
-  "/elektronikfertigung/leiterplatten": "/fertigung/leiterplatten",
-  "/elektronikfertigung/leiterplatten-bestuecken": "/fertigung/leiterplatten",
-  "/elektronikfertigung/baugruppen": "/fertigung/baugruppen",
-  "/elektronikfertigung/qualitaetsmanagement": "/fertigung/qualitaet",
-  "/elektronikfertigung/qs-qm": "/fertigung/qualitaet",
   "/datenschutzerklaerung": "/datenschutz",
   "/jobs": "/karriere",
   "/ueber-uns": "/unternehmen",
 
-  // ── Englische alte URLs → aktuelle englische Seiten ──
-  // Die englische Version verwendet denselben Router mit /en-Prefix und
-  // LanguageContext. Alle /en/* Pfade werden von der SPA gehandelt.
-  // Nur alte englische Pfade, die nicht mehr existieren, werden umgeleitet:
-  "/en/electronics-manufacturing": "/en/manufacturing",
-  "/en/electronics-manufacturing/assembling-printed-circuit-boards": "/en/manufacturing/printed-circuit-boards",
-  "/en/electronics-manufacturing/electronic-assemblies": "/en/manufacturing/assemblies",
-  "/en/electronics-manufacturing/qa-qm": "/en/manufacturing/quality",
-  "/en/electronics-development": "/en/development",
-  "/en/electronics-development/hardware-software": "/en/development/hardware-software",
-  "/en/electronics-development/simulation": "/en/development/simulation",
-  "/en/electronics-development/test-verification": "/en/development/test-verification",
+  // Englische alte URLs → aktuelle englische Seiten
   "/en/contact": "/en/contact",
   "/en/company": "/en/company",
   "/en/imprint": "/en/imprint",
@@ -52,6 +35,20 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/en/gtc": "/en/gtc",
   "/en/jobs": "/en/careers",
 };
+
+// ── Wildcard prefix rewrites ──
+// Order matters: longer prefixes first to avoid partial matches.
+// Each entry: [oldPrefix, newPrefix]
+// /elektronikentwicklung/foo → /entwicklung/foo
+// /elektronikfertigung/foo → /fertigung/foo
+// /en/electronics-development/foo → /en/development/foo
+// /en/electronics-manufacturing/foo → /en/manufacturing/foo
+const PREFIX_REWRITES: [string, string][] = [
+  ["/elektronikentwicklung", "/entwicklung"],
+  ["/elektronikfertigung", "/fertigung"],
+  ["/en/electronics-development", "/en/development"],
+  ["/en/electronics-manufacturing", "/en/manufacturing"],
+];
 
 export function legacyRedirectMiddleware() {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -76,11 +73,21 @@ export function legacyRedirectMiddleware() {
       ? path.slice(0, -1)
       : path;
 
-    const target = LEGACY_REDIRECT_MAP[normalizedPath];
-    if (target) {
-      // 301 permanent redirect to the new URL
-      res.redirect(301, target);
+    // 1. Check exact match first
+    const exactTarget = LEGACY_REDIRECT_MAP[normalizedPath];
+    if (exactTarget) {
+      res.redirect(301, exactTarget);
       return;
+    }
+
+    // 2. Check wildcard prefix rewrites
+    for (const [oldPrefix, newPrefix] of PREFIX_REWRITES) {
+      if (normalizedPath === oldPrefix || normalizedPath.startsWith(oldPrefix + "/")) {
+        const remainder = normalizedPath.slice(oldPrefix.length); // e.g. "/hardware-software" or ""
+        const target = newPrefix + remainder;
+        res.redirect(301, target);
+        return;
+      }
     }
 
     next();
