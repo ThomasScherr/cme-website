@@ -57,11 +57,11 @@ const organizationSchema = {
     postalCode: '44379',
     addressCountry: 'DE',
   },
-  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
+  telephone: '+49 231 28 66 76 96-0',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen und ersetzen
+    telephone: '+49 231 28 66 76 96-0',
     email: 'info@control-motion.de',
     availableLanguage: ['German', 'English'],
   },
@@ -81,7 +81,7 @@ const localBusinessSchema = {
   name: 'CME Control Motion Electronics GmbH',
   image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png',
   url: BASE_URL,
-  telephone: '+49 231 XXXXXXXX', // TODO: Exakte Telefonnummer bei Thomas erfragen
+  telephone: '+49 231 28 66 76 96-0',
   email: 'info@control-motion.de',
   address: {
     '@type': 'PostalAddress',
@@ -419,7 +419,7 @@ ${contentParagraphs}
       </nav>
       <address>
         Alter Hellweg 48, 44379 Dortmund, Deutschland<br>
-        Telefon: +49 231 97676-0<br>
+        Telefon: +49 231 28 66 76 96-0<br>
         E-Mail: <a href="mailto:info@control-motion.de">info@control-motion.de</a>
       </address>
     </footer>
