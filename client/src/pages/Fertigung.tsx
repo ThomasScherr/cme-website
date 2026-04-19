@@ -1,4 +1,4 @@
-import SEO, { buildFAQSchema } from '@/components/SEO';
+import SEO from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import ContactSlider from '@/components/ContactSlider';
@@ -18,24 +18,125 @@ import {
   FlaskConical,
   Database,
   PenTool,
+  ChevronDown,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-const fertigungFaqs = buildFAQSchema([
+/* ══════════════════════════════════════════════════════════════════
+   16 FAQs in 3 Clustern – bilingual (DE / EN)
+   Cluster 1: Prozess & Kapazität (FAQ 1–5)
+   Cluster 2: Technologie & Qualität (FAQ 6–11)
+   Cluster 3: Zusammenarbeit & Konditionen (FAQ 12–16)
+   ══════════════════════════════════════════════════════════════════ */
+
+const faqCluster1 = [
   {
-    question: 'Welche EMS-Fertigungsleistungen bietet CME?',
-    answer: 'CME bietet SMD- und THT-Bestückung, Selektivlöten, Wellenlöten, Dampfphasenlöten, AOI und Röntgeninspektion, Verguss, Conformal Coating, Kabelkonfektionierung und komplette Baugruppenfertigung.',
+    questionDE: 'Welche Losgrößen fertigt CME – vom Prototyp bis zur Serie?',
+    questionEN: 'What batch sizes does CME manufacture – from prototype to series?',
+    answerDE: 'CME fertigt flexibel vom Einzelprototyp über Kleinserien (10–500 Stück) bis hin zu Serienproduktionen mit mehreren tausend Einheiten pro Monat. Durch die Kombination von Entwicklung und Fertigung unter einem Dach ist ein nahtloser Übergang vom Prototyp zur Serie möglich – ohne Lieferantenwechsel und ohne Informationsverlust. Die gleichen Fertigungslinien, die Ihre Prototypen bestücken, übernehmen auch die Serienproduktion.',
+    answerEN: 'CME manufactures flexibly from single prototypes through small series (10–500 units) to series production of several thousand units per month. By combining development and manufacturing under one roof, a seamless transition from prototype to series is possible – without changing suppliers and without information loss. The same production lines that assemble your prototypes also handle series production.',
   },
   {
-    question: 'Fertigt CME auch Prototypen?',
-    answer: 'Ja, CME bietet flexible Losgrößen vom Einzelprototyp bis zur Großserie. Durch die Kombination von Entwicklung und Fertigung unter einem Dach ist ein nahtloser Übergang vom Prototyp zur Serie möglich.',
+    questionDE: 'Wie läuft eine EMS-Fertigungsanfrage bei CME ab?',
+    questionEN: 'How does an EMS manufacturing inquiry work at CME?',
+    answerDE: 'Sie senden uns Ihre Fertigungsunterlagen (Gerber-Daten, Stückliste/BOM, Bestückungsplan) und die gewünschte Stückzahl. Wir prüfen die Unterlagen auf Fertigbarkeit (DFM-Check), kalkulieren verbindlich und erstellen ein transparentes Angebot. Nach Auftragserteilung beschaffen wir die Bauteile, richten die Fertigung ein und liefern termingerecht. Bei Bedarf führen wir vorab ein DFM-Review durch und schlagen Optimierungen vor, die Kosten und Fertigungsrisiken reduzieren.',
+    answerEN: 'You send us your manufacturing documents (Gerber data, bill of materials/BOM, assembly drawing) and the desired quantity. We check the documents for manufacturability (DFM check), provide a binding quote, and create a transparent offer. After order placement, we procure components, set up production, and deliver on schedule. If needed, we conduct a DFM review upfront and suggest optimizations that reduce costs and manufacturing risks.',
   },
   {
-    question: 'Welche Qualitätsstandards erfüllt CME?',
-    answer: 'CME ist ISO 9001 und IATF 16949 (Automotive) zertifiziert und arbeitet nach IPC-A-610 und IPC J-STD-001 Standards. Qualitätssicherung erfolgt durch AOI, Röntgeninspektion und umfassende Prüfprotokolle.',
+    questionDE: 'Kann CME auch Fremdentwicklungen fertigen – oder nur eigene Designs?',
+    questionEN: 'Can CME also manufacture third-party designs – or only in-house designs?',
+    answerDE: 'CME fertigt sowohl eigene Entwicklungen als auch Fremddesigns. Sie können CME ausschließlich als EMS-Fertigungspartner beauftragen, ohne dass eine Entwicklung bei uns stattgefunden hat. Umgekehrt können Sie auch nur die Entwicklung bei CME beauftragen und die Fertigung bei einem anderen EMS-Partner durchführen lassen. Sie haben die volle Wahlfreiheit: nur Entwicklung, nur Fertigung oder beides aus einer Hand.',
+    answerEN: 'CME manufactures both in-house developments and third-party designs. You can commission CME exclusively as an EMS manufacturing partner without any development having taken place with us. Conversely, you can also commission only the development at CME and have manufacturing done by another EMS partner. You have complete freedom of choice: development only, manufacturing only, or both from a single source.',
   },
-]);
+  {
+    questionDE: 'Wie schnell kann CME Prototypen fertigen?',
+    questionEN: 'How quickly can CME manufacture prototypes?',
+    answerDE: 'Prototypen-Durchlaufzeiten hängen von der Bauteilbeschaffung ab. Sind alle Bauteile verfügbar, bestücken und löten wir Prototypen innerhalb weniger Arbeitstage. Bei Entwicklungsprojekten, die bei CME laufen, ist die Prototypenfertigung besonders schnell, weil Entwicklung und Fertigung am gleichen Standort sitzen und keine Übergabeverluste entstehen. Für eilige Projekte bieten wir Express-Fertigung nach Absprache.',
+    answerEN: 'Prototype lead times depend on component procurement. When all components are available, we assemble and solder prototypes within a few working days. For development projects running at CME, prototype manufacturing is particularly fast because development and manufacturing are at the same location with no handover losses. For urgent projects, we offer express manufacturing by arrangement.',
+  },
+  {
+    questionDE: 'Welche Fertigungsunterlagen benötigt CME für eine Kalkulation?',
+    questionEN: 'What manufacturing documents does CME need for a quotation?',
+    answerDE: 'Für eine belastbare Kalkulation benötigen wir: Gerber-Daten (oder ODB++), eine Stückliste (BOM) mit Herstellerteilenummern, den Bestückungsplan (Pick-and-Place-Daten) und die gewünschte Stückzahl. Zusätzlich hilfreich sind Angaben zu besonderen Anforderungen wie Verguss, Schutzlackierung, Funktionstest oder spezielle Verpackung. Falls einzelne Unterlagen noch fehlen, unterstützen wir Sie gerne bei der Aufbereitung.',
+    answerEN: 'For a reliable quotation, we need: Gerber data (or ODB++), a bill of materials (BOM) with manufacturer part numbers, the assembly drawing (pick-and-place data), and the desired quantity. Additionally helpful are details about special requirements such as potting, conformal coating, functional testing, or special packaging. If individual documents are still missing, we are happy to assist with preparation.',
+  },
+];
+
+const faqCluster2 = [
+  {
+    questionDE: 'Welche Bestückungstechnologien bietet CME an?',
+    questionEN: 'What assembly technologies does CME offer?',
+    answerDE: 'CME bietet die volle Bandbreite moderner Bestückungstechnologien: SMD-Bestückung bis 01005 und 0,4 mm Pitch (BGA, QFN, LGA, Fine-Pitch), THT-Bestückung (manuell und automatisiert), Selektivlöten für Mischbestückungen, Dampfphasenlöten für besonders gleichmäßige Lötverbindungen und Handbestückung für Sonderbauteile. Jeder Lötprozess wird durch 100 %-AOI (Automatische Optische Inspektion) abgesichert.',
+    answerEN: 'CME offers the full range of modern assembly technologies: SMD assembly down to 01005 and 0.4 mm pitch (BGA, QFN, LGA, fine-pitch), THT assembly (manual and automated), selective soldering for mixed assemblies, vapor phase soldering for particularly uniform solder joints, and manual assembly for special components. Every soldering process is secured by 100% AOI (Automated Optical Inspection).',
+  },
+  {
+    questionDE: 'Wie stellt CME die Qualität in der Elektronikfertigung sicher?',
+    questionEN: 'How does CME ensure quality in electronics manufacturing?',
+    answerDE: 'Qualitätssicherung ist in jeden Fertigungsschritt integriert: 100 %-AOI (Automatische Optische Inspektion) nach jedem Lötprozess, Manuelle Optische Inspektion (MOI) durch IPC-zertifizierte Prüfer bei komplexen Baugruppen, End-of-Line-Funktionstest und lückenlose Rückverfolgbarkeit über unser MES-System. CME ist nach ISO 9001 und ISO 14001 zertifiziert und arbeitet nach IPC-A-610 und IPC J-STD-001 Standards. Jede Baugruppe ist vom Wareneingang bis zum Versand rückverfolgbar.',
+    answerEN: 'Quality assurance is integrated into every manufacturing step: 100% AOI (Automated Optical Inspection) after every soldering process, Manual Optical Inspection (MOI) by IPC-certified inspectors for complex assemblies, end-of-line functional testing, and complete traceability via our MES system. CME is ISO 9001 and ISO 14001 certified and works to IPC-A-610 and IPC J-STD-001 standards. Every assembly is traceable from incoming goods to shipping.',
+  },
+  {
+    questionDE: 'Bietet CME auch Verguss und Schutzlackierung (Conformal Coating) an?',
+    questionEN: 'Does CME also offer potting and conformal coating?',
+    answerDE: 'Ja, CME bietet sowohl Verguss als auch selektive Schutzlackierung als Teil der Baugruppenfertigung an. Beim Verguss arbeiten wir mit PU, Epoxid oder Silikon – die Materialwahl richtet sich nach den thermischen und mechanischen Anforderungen Ihrer Anwendung. Die Schutzlackierung erfolgt per Sprühen oder Fluten mit anschließender UV-Prüfung. Beide Verfahren schützen Ihre Elektronik vor Feuchtigkeit, Vibration, Chemikalien und kriechenden Strömen.',
+    answerEN: 'Yes, CME offers both potting and selective conformal coating as part of module assembly. For potting, we work with PU, epoxy, or silicone – material selection is based on the thermal and mechanical requirements of your application. Conformal coating is applied by spraying or flooding with subsequent UV inspection. Both processes protect your electronics against moisture, vibration, chemicals, and creepage currents.',
+  },
+  {
+    questionDE: 'Was bedeutet Traceability bei CME – und warum ist das wichtig?',
+    questionEN: 'What does traceability mean at CME – and why is it important?',
+    answerDE: 'Traceability bedeutet die vollständige Rückverfolgbarkeit jeder Baugruppe vom Wareneingang bis zum Versand. Bei CME sind alle Fertigungsgeräte in einer zentralen Fertigungsdatenbank (MES) vernetzt. Jede Charge, Seriennummer und jedes verbaute Bauteil wird dokumentiert und ist exportfähig – für Ihre eigene Qualitätsdokumentation oder für Zulassungsbehörden. Das ist besonders wichtig für sicherheitskritische Branchen wie Automotive, Medizintechnik und Industrieautomation.',
+    answerEN: 'Traceability means complete tracking of every assembly from incoming goods to shipping. At CME, all production equipment is networked in a central manufacturing database (MES). Every batch, serial number, and installed component is documented and exportable – for your own quality documentation or for regulatory authorities. This is particularly important for safety-critical industries such as automotive, medical technology, and industrial automation.',
+  },
+  {
+    questionDE: 'Führt CME auch Funktionstests und elektrische Prüfungen durch?',
+    questionEN: 'Does CME also perform functional tests and electrical testing?',
+    answerDE: 'Ja, CME bietet End-of-Line-Funktionstests für die 100 %-Prüfung aller Serieneinheiten vor Versand. Je nach Anforderung, Stückzahl und Layoutkomplexität setzen wir manuelle Prüfung oder Nadelbett-Adapter (ICT) ein. Alle Prüfprotokolle und Testergebnisse werden für die lückenlose Qualitätsdokumentation archiviert. Bei Entwicklungsprojekten, die bei CME laufen, entwickeln unsere Ingenieure die Testspezifikation und Prüfadapter gleich mit.',
+    answerEN: 'Yes, CME offers end-of-line functional tests for 100% inspection of all series units before shipping. Depending on requirements, volume, and layout complexity, we use manual testing or bed-of-nails adapters (ICT). All test protocols and results are archived for complete quality documentation. For development projects running at CME, our engineers develop the test specification and test adapters alongside.',
+  },
+  {
+    questionDE: 'Was ist ein DFM-Review und warum bietet CME das an?',
+    questionEN: 'What is a DFM review and why does CME offer it?',
+    answerDE: 'DFM steht für Design for Manufacturing – die fertigungsgerechte Gestaltung einer Elektronik. CME prüft Ihr Layout bereits in der Entwicklungsphase auf Fertigbarkeit: Sind die Pads korrekt dimensioniert? Gibt es kritische Abstände? Sind die Bauteile maschinell bestückbar? Durch die direkte Rückkopplung zwischen Entwicklung und Fertigung am gleichen Standort reduzieren wir Iterationsschleifen, Kosten und Time-to-Market. Ein DFM-Review ist bei CME Standard – nicht Aufpreis.',
+    answerEN: 'DFM stands for Design for Manufacturing – designing electronics for manufacturability. CME checks your layout for manufacturability already in the development phase: Are pads correctly dimensioned? Are there critical clearances? Are components machine-placeable? Through direct feedback between development and manufacturing at the same location, we reduce iteration loops, costs, and time-to-market. A DFM review is standard at CME – not an extra charge.',
+  },
+];
+
+const faqCluster3 = [
+  {
+    questionDE: 'Übernimmt CME auch die Bauteilbeschaffung?',
+    questionEN: 'Does CME also handle component procurement?',
+    answerDE: 'Ja, CME übernimmt die komplette Bauteilbeschaffung auf Wunsch. Wir arbeiten mit bewährten Distributoren und haben langjährige Lieferantenbeziehungen, die auch in angespannten Marktlagen kurze Beschaffungszeiten ermöglichen. Alternativ können Sie Bauteile auch beigestellt liefern. Bei Bauteilabkündigungen (Obsoleszenz) unterstützen wir proaktiv bei der Suche nach Alternativtypen und bewerten deren Auswirkungen auf die Fertigung.',
+    answerEN: 'Yes, CME handles complete component procurement on request. We work with established distributors and have long-standing supplier relationships that enable short procurement times even in tight market conditions. Alternatively, you can also supply components yourself. In case of component obsolescence, we proactively support the search for alternative types and assess their impact on manufacturing.',
+  },
+  {
+    questionDE: 'Bietet CME auch Kabelkonfektionierung und Endmontage an?',
+    questionEN: 'Does CME also offer cable assembly and final assembly?',
+    answerDE: 'Ja, CME bietet neben der Leiterplattenbestückung auch kundenspezifische Kabelkonfektionierung und komplette Endmontage an. Wir fertigen Kabelbäume nach Schaltplan mit allen gängigen Steckersystemen (TE, Molex, JST, Deutsch u. a.) und führen 100 %-elektrische Prüfung auf Durchgang, Isolation und korrekte Pinbelegung durch. Die Endmontage umfasst Gehäusemontage, Verschraubung, Beschriftung und Verpackung – alles aus einer Hand.',
+    answerEN: 'Yes, in addition to PCB assembly, CME also offers custom cable assembly and complete final assembly. We manufacture wire harnesses per schematic with all common connector systems (TE, Molex, JST, Deutsch, etc.) and perform 100% electrical testing for continuity, insulation, and correct pin assignment. Final assembly includes housing assembly, fastening, labeling, and packaging – all from a single source.',
+  },
+  {
+    questionDE: 'Kann CME auch thermisch anspruchsvolle Baugruppen fertigen?',
+    questionEN: 'Can CME also manufacture thermally demanding assemblies?',
+    answerDE: 'Ja, thermisch anspruchsvolle Baugruppen sind eine Spezialität von CME. Durch die enge Verzahnung von Entwicklung und Fertigung verstehen wir die thermischen Herausforderungen von Leistungselektronik, Motorsteuerungen und Hochstromanwendungen. Wir beherrschen Dampfphasenlöten für besonders gleichmäßige und voidarme Lötverbindungen, Verguss mit thermisch leitfähigen Materialien und die Verarbeitung von Bauteilen mit hohen Verlustleistungen (SiC, GaN, IGBT).',
+    answerEN: 'Yes, thermally demanding assemblies are a specialty of CME. Through the close integration of development and manufacturing, we understand the thermal challenges of power electronics, motor controllers, and high-current applications. We master vapor phase soldering for particularly uniform and void-free solder joints, potting with thermally conductive materials, and processing of components with high power dissipation (SiC, GaN, IGBT).',
+  },
+  {
+    questionDE: 'Wie geht CME mit Bauteilabkündigungen (Obsoleszenz) um?',
+    questionEN: 'How does CME handle component obsolescence?',
+    answerDE: 'CME überwacht die Verfügbarkeit der in Ihren Baugruppen verbauten Bauteile proaktiv. Bei Abkündigungen informieren wir Sie frühzeitig und schlagen Alternativtypen vor. Da Entwicklung und Fertigung unter einem Dach arbeiten, können unsere Ingenieure die Auswirkungen eines Bauteilwechsels auf Schaltung, Layout und Fertigung sofort bewerten – inklusive Simulation und Validierung. So vermeiden Sie kostspielige Produktionsunterbrechungen.',
+    answerEN: 'CME proactively monitors the availability of components used in your assemblies. In case of obsolescence, we inform you early and suggest alternative types. Since development and manufacturing work under one roof, our engineers can immediately assess the impact of a component change on circuit, layout, and manufacturing – including simulation and validation. This helps you avoid costly production interruptions.',
+  },
+  {
+    questionDE: 'Wo befindet sich die CME-Fertigung und welche Vorteile hat der Standort Deutschland?',
+    questionEN: 'Where is CME manufacturing located and what are the advantages of the Germany location?',
+    answerDE: 'Die gesamte Fertigung befindet sich am CME-Standort in Dortmund, Deutschland. Ein deutscher Fertigungsstandort bietet entscheidende Vorteile: kurze Kommunikationswege ohne Sprachbarrieren, Schutz Ihres geistigen Eigentums nach deutschem und EU-Recht, keine Zollproblematik innerhalb der EU, schnelle Reaktionszeiten bei Änderungen und die Möglichkeit, Entwicklung und Fertigung an einem Standort zu bündeln. Made in Germany ist für viele Branchen ein Qualitätsmerkmal.',
+    answerEN: 'All manufacturing is located at the CME site in Dortmund, Germany. A German manufacturing location offers decisive advantages: short communication paths without language barriers, protection of your intellectual property under German and EU law, no customs issues within the EU, fast response times for changes, and the ability to combine development and manufacturing at one location. Made in Germany is a quality mark for many industries.',
+  },
+];
+
+/* All 16 FAQs combined for JSON-LD schema */
+const allFaqItems = [...faqCluster1, ...faqCluster2, ...faqCluster3];
 
 const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
 const HERO_VIDEO = {
@@ -181,6 +282,76 @@ const capabilities = [
   },
 ];
 
+/* ── FAQ Accordion Item (animated) ── */
+function FaqItem({ question, answer, isOpen, onToggle }: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="border-b border-gray-200 last:border-b-0">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-start justify-between py-5 px-1 text-left group hover:text-[#0080C8] transition-colors"
+        aria-expanded={isOpen}
+      >
+        <span className="fluid-body font-semibold text-cme-dark group-hover:text-[#0080C8] transition-colors pr-4">
+          {question}
+        </span>
+        <ChevronDown
+          className={`shrink-0 mt-1 text-[#0080C8] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          size={20}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <p className="fluid-body text-gray-600 leading-relaxed pb-5 px-1">
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/* ── FAQ Cluster Component ── */
+function FaqCluster({ title, items, isDE, openFaq, onToggle, indexOffset }: {
+  title: string;
+  items: typeof faqCluster1;
+  isDE: boolean;
+  openFaq: number | null;
+  onToggle: (index: number) => void;
+  indexOffset: number;
+}) {
+  return (
+    <div style={{ marginBottom: 'var(--space-gap-lg)' }}>
+      <h3 className="fluid-h4 text-cme-dark font-bold" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+        {title}
+      </h3>
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden" style={{ padding: 'var(--space-gap-sm) var(--space-gap-md)' }}>
+        {items.map((item, i) => (
+          <FaqItem
+            key={indexOffset + i}
+            question={isDE ? item.questionDE : item.questionEN}
+            answer={isDE ? item.answerDE : item.answerEN}
+            isOpen={openFaq === indexOffset + i}
+            onToggle={() => onToggle(indexOffset + i)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Fertigung() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
@@ -199,6 +370,26 @@ export default function Fertigung() {
   const [sliderTopic, setSliderTopic] = useState('');
   const openSlider = (topic: string) => { setSliderTopic(topic); setSliderOpen(true); };
 
+  // FAQ accordion state
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  /* JSON-LD FAQ Schema – all 16 FAQs */
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: allFaqItems.map((item) => ({
+      '@type': 'Question',
+      name: isDE ? item.questionDE : item.questionEN,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: isDE ? item.answerDE : item.answerEN,
+      },
+    })),
+  };
+
   return (
     <Layout>
       <SEO
@@ -211,7 +402,7 @@ export default function Fertigung() {
         path='/fertigung'
         enPath='/en/manufacturing'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Elektronikfertigung',url:'/fertigung'}]}
-        additionalSchemas={[fertigungFaqs]}
+        additionalSchemas={[faqSchema]}
       />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Elektronikfertigung (EMS)' : 'Electronics Manufacturing (EMS)')}
@@ -327,6 +518,47 @@ export default function Fertigung() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+         FAQ Section – 16 FAQs in 3 Clustern
+         ══════════════════════════════════════════════════════════════ */}
+      <section className="section-pad">
+        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style={{ maxWidth: 'min(80%, 72rem)' }}>
+          <h2 className="fluid-h2 text-cme-dark text-center" style={{ marginBottom: 'var(--space-section-header)' }}>
+            {isDE ? 'Häufige Fragen zur Elektronikfertigung' : 'Frequently Asked Questions About Electronics Manufacturing'}
+          </h2>
+
+          {/* Cluster 1: Prozess & Kapazität */}
+          <FaqCluster
+            title={isDE ? 'Prozess & Kapazität' : 'Process & Capacity'}
+            items={faqCluster1}
+            isDE={isDE}
+            openFaq={openFaq}
+            onToggle={toggleFaq}
+            indexOffset={0}
+          />
+
+          {/* Cluster 2: Technologie & Qualität */}
+          <FaqCluster
+            title={isDE ? 'Technologie & Qualität' : 'Technology & Quality'}
+            items={faqCluster2}
+            isDE={isDE}
+            openFaq={openFaq}
+            onToggle={toggleFaq}
+            indexOffset={faqCluster1.length}
+          />
+
+          {/* Cluster 3: Zusammenarbeit & Konditionen */}
+          <FaqCluster
+            title={isDE ? 'Zusammenarbeit & Konditionen' : 'Collaboration & Terms'}
+            items={faqCluster3}
+            isDE={isDE}
+            openFaq={openFaq}
+            onToggle={toggleFaq}
+            indexOffset={faqCluster1.length + faqCluster2.length}
+          />
         </div>
       </section>
 

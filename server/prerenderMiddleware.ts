@@ -238,9 +238,31 @@ const PAGES: Record<string, PageMeta> = {
     h1: 'EMS-Fertigung – Electronic Manufacturing Services',
     keywords: 'EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Baugruppenfertigung, Prototypen, Serienfertigung',
     content: `CME bietet umfassende EMS-Fertigungsdienstleistungen.
-    SMD-Bestückung, THT-Bestückung, Baugruppenfertigung, Selektivlöten, Wellenlöten, Dampfphasenlöten.
-    AOI, Röntgeninspektion, Verguss, Conformal Coating, Kabelkonfektionierung.
+    SMD-Bestückung, THT-Bestückung, Baugruppenfertigung, Selektivlöten, Dampfphasenlöten.
+    AOI, MOI, Verguss, Conformal Coating, Kabelkonfektionierung.
     Vom Prototyp bis zur Serienfertigung – zertifiziert nach IPC-Standards.`,
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Welche Losgrößen fertigt CME – vom Prototyp bis zur Serie?', acceptedAnswer: { '@type': 'Answer', text: 'CME fertigt flexibel vom Einzelprototyp über Kleinserien (10–500 Stück) bis hin zu Serienproduktionen mit mehreren tausend Einheiten pro Monat. Entwicklung und Fertigung unter einem Dach ermöglichen einen nahtlosen Übergang vom Prototyp zur Serie.' }},
+        { '@type': 'Question', name: 'Wie läuft eine EMS-Fertigungsanfrage bei CME ab?', acceptedAnswer: { '@type': 'Answer', text: 'Sie senden Gerber-Daten, Stückliste (BOM) und Bestückungsplan. CME prüft die Fertigbarkeit (DFM-Check), kalkuliert verbindlich und liefert termingerecht. Bei Bedarf führen wir vorab ein DFM-Review durch.' }},
+        { '@type': 'Question', name: 'Kann CME auch Fremdentwicklungen fertigen?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, CME fertigt sowohl eigene Entwicklungen als auch Fremddesigns. Sie haben die volle Wahlfreiheit: nur Entwicklung, nur Fertigung oder beides aus einer Hand.' }},
+        { '@type': 'Question', name: 'Wie schnell kann CME Prototypen fertigen?', acceptedAnswer: { '@type': 'Answer', text: 'Sind alle Bauteile verfügbar, bestücken und löten wir Prototypen innerhalb weniger Arbeitstage. Für eilige Projekte bieten wir Express-Fertigung nach Absprache.' }},
+        { '@type': 'Question', name: 'Welche Fertigungsunterlagen benötigt CME für eine Kalkulation?', acceptedAnswer: { '@type': 'Answer', text: 'Gerber-Daten (oder ODB++), Stückliste (BOM) mit Herstellerteilenummern, Bestückungsplan (Pick-and-Place-Daten) und gewünschte Stückzahl. Zusätzlich hilfreich: Angaben zu Verguss, Schutzlackierung oder Funktionstest.' }},
+        { '@type': 'Question', name: 'Welche Bestückungstechnologien bietet CME an?', acceptedAnswer: { '@type': 'Answer', text: 'SMD-Bestückung bis 01005 und 0,4 mm Pitch (BGA, QFN, LGA), THT-Bestückung, Selektivlöten, Dampfphasenlöten und Handbestückung. Jeder Lötprozess wird durch 100 %-AOI abgesichert.' }},
+        { '@type': 'Question', name: 'Wie stellt CME die Qualität in der Elektronikfertigung sicher?', acceptedAnswer: { '@type': 'Answer', text: '100 %-AOI nach jedem Lötprozess, MOI durch IPC-zertifizierte Prüfer, End-of-Line-Funktionstest und lückenlose Rückverfolgbarkeit über MES. Zertifiziert nach ISO 9001 und ISO 14001, Fertigung nach IPC-A-610 und IPC J-STD-001.' }},
+        { '@type': 'Question', name: 'Bietet CME auch Verguss und Schutzlackierung an?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, Verguss mit PU, Epoxid oder Silikon sowie selektive Schutzlackierung (Conformal Coating) per Sprühen oder Fluten mit UV-Prüfung. Schutz vor Feuchtigkeit, Vibration und Chemikalien.' }},
+        { '@type': 'Question', name: 'Was bedeutet Traceability bei CME?', acceptedAnswer: { '@type': 'Answer', text: 'Vollständige Rückverfolgbarkeit jeder Baugruppe vom Wareneingang bis zum Versand. Alle Fertigungsgeräte sind in einer zentralen MES-Datenbank vernetzt. Chargen-, Serien- und Bauteil-Tracing ist exportfähig.' }},
+        { '@type': 'Question', name: 'Führt CME auch Funktionstests durch?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, End-of-Line-Funktionstests für 100 %-Prüfung aller Serieneinheiten. Manuelle Prüfung oder Nadelbett-Adapter (ICT) je nach Anforderung.' }},
+        { '@type': 'Question', name: 'Was ist ein DFM-Review?', acceptedAnswer: { '@type': 'Answer', text: 'Design for Manufacturing – CME prüft Ihr Layout auf Fertigbarkeit bereits in der Entwicklungsphase. Direkte Rückkopplung zwischen Entwicklung und Fertigung am gleichen Standort reduziert Iterationsschleifen und Kosten.' }},
+        { '@type': 'Question', name: 'Übernimmt CME auch die Bauteilbeschaffung?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, CME übernimmt die komplette Bauteilbeschaffung mit bewährten Distributoren. Alternativ können Bauteile beigestellt werden. Bei Obsoleszenz unterstützen wir proaktiv bei der Suche nach Alternativtypen.' }},
+        { '@type': 'Question', name: 'Bietet CME auch Kabelkonfektionierung und Endmontage an?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, kundenspezifische Kabelkonfektionierung und komplette Endmontage inkl. Gehäusemontage, Verschraubung, Beschriftung und Verpackung – alles aus einer Hand.' }},
+        { '@type': 'Question', name: 'Kann CME auch thermisch anspruchsvolle Baugruppen fertigen?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, thermisch anspruchsvolle Baugruppen sind eine Spezialität. Dampfphasenlöten für voidarme Lötverbindungen, Verguss mit thermisch leitfähigen Materialien und Verarbeitung von SiC, GaN, IGBT.' }},
+        { '@type': 'Question', name: 'Wie geht CME mit Bauteilabkündigungen um?', acceptedAnswer: { '@type': 'Answer', text: 'CME überwacht die Bauteilbverfügbarkeit proaktiv. Bei Abkündigungen informieren wir frühzeitig und bewerten die Auswirkungen eines Bauteilwechsels auf Schaltung, Layout und Fertigung – inklusive Simulation und Validierung.' }},
+        { '@type': 'Question', name: 'Wo befindet sich die CME-Fertigung?', acceptedAnswer: { '@type': 'Answer', text: 'Die gesamte Fertigung befindet sich am CME-Standort in Dortmund, Deutschland. Vorteile: kurze Kommunikationswege, IP-Schutz nach EU-Recht, keine Zollproblematik innerhalb der EU, Entwicklung und Fertigung an einem Standort.' }},
+      ],
+    }],
   },
   '/fertigung/leiterplatten': {
     enPath: '/en/manufacturing/printed-circuit-boards',
@@ -261,10 +283,10 @@ const PAGES: Record<string, PageMeta> = {
   '/fertigung/qualitaet': {
     enPath: '/en/manufacturing/quality',
     title: 'Qualitätssicherung | CME',
-    description: 'Qualitätssicherung in der Elektronikfertigung. AOI, Röntgeninspektion, IPC-Standards, ISO 9001, IATF 16949.',
+    description: 'Qualitätssicherung in der Elektronikfertigung. AOI, MOI, IPC-Standards, ISO 9001, ISO 14001.',
     h1: 'Qualitätssicherung',
-    keywords: 'Qualitätssicherung, AOI, Röntgeninspektion, IPC, ISO 9001, IATF 16949, Qualitätsmanagement',
-    content: `Qualitätssicherung in der Elektronikfertigung: AOI, Röntgeninspektion, IPC-Standards. Zertifiziert nach ISO 9001 und IATF 16949.`,
+    keywords: 'Qualitätssicherung, AOI, MOI, IPC, ISO 9001, ISO 14001, Qualitätsmanagement',
+    content: `Qualitätssicherung in der Elektronikfertigung: AOI, MOI, IPC-Standards. Zertifiziert nach ISO 9001 und ISO 14001.`,
   },
   '/lifecycle': {
     enPath: '/en/lifecycle',
