@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <!-- Startseite -->
   <url>
     <loc>https://control-motion.de/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -23,17 +20,15 @@
   <!-- Entwicklung -->
   <url>
     <loc>https://control-motion.de/entwicklung/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -41,17 +36,15 @@
   <!-- Entwicklung: Hardware & Software -->
   <url>
     <loc>https://control-motion.de/entwicklung/hardware-software/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/hardware-software/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/hardware-software/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/hardware-software/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/hardware-software/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/hardware-software/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/hardware-software/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/hardware-software/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/hardware-software/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/hardware-software/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/hardware-software/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/hardware-software/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -59,17 +52,15 @@
   <!-- Entwicklung: Simulation -->
   <url>
     <loc>https://control-motion.de/entwicklung/simulation/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/simulation/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/simulation/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/simulation/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/simulation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/simulation/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/simulation/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/simulation/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/simulation/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/simulation/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/simulation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/simulation/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -77,17 +68,15 @@
   <!-- Entwicklung: Test & Verifikation -->
   <url>
     <loc>https://control-motion.de/entwicklung/test-verifikation/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/test-verifikation/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/test-verification/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/test-verifikation/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/test-verifikation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/test-verification/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/test-verification/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/test-verifikation/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/test-verification/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/test-verifikation/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/test-verifikation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/test-verification/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -95,17 +84,15 @@
   <!-- Entwicklung: UX & Interface Engineering -->
   <url>
     <loc>https://control-motion.de/entwicklung/ux-interface-engineering/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ux-interface-engineering/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ux-interface-engineering/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/ux-interface-engineering/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ux-interface-engineering/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ux-interface-engineering/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/ux-interface-engineering/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ux-interface-engineering/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ux-interface-engineering/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/ux-interface-engineering/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ux-interface-engineering/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ux-interface-engineering/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -113,17 +100,15 @@
   <!-- Entwicklung: Software & Digitale Systeme -->
   <url>
     <loc>https://control-motion.de/entwicklung/software-digitale-systeme/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/software-digitale-systeme/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/software-digital-systems/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/software-digitale-systeme/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/software-digitale-systeme/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/software-digital-systems/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/software-digital-systems/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/software-digitale-systeme/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/software-digital-systems/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/software-digitale-systeme/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/software-digitale-systeme/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/software-digital-systems/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -131,17 +116,15 @@
   <!-- Entwicklung: E-Motor-Design -->
   <url>
     <loc>https://control-motion.de/entwicklung/e-motor-design/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/e-motor-design/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/e-motor-design/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/e-motor-design/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/e-motor-design/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/e-motor-design/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/e-motor-design/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/e-motor-design/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/e-motor-design/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/e-motor-design/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/e-motor-design/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/e-motor-design/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -149,17 +132,15 @@
   <!-- Entwicklung: Control Design -->
   <url>
     <loc>https://control-motion.de/entwicklung/control-design/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/control-design/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/control-design/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/control-design/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/control-design/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/control-design/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/control-design/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/control-design/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/control-design/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/control-design/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/control-design/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/control-design/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -167,17 +148,15 @@
   <!-- Entwicklung: Validierung & EMV -->
   <url>
     <loc>https://control-motion.de/entwicklung/validierung-emv/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/validierung-emv/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/emc-validation/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/validierung-emv/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/validierung-emv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/emc-validation/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/emc-validation/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/validierung-emv/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/emc-validation/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/validierung-emv/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/validierung-emv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/emc-validation/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -185,17 +164,15 @@
   <!-- Entwicklung: KI-Entwicklung -->
   <url>
     <loc>https://control-motion.de/entwicklung/ki-entwicklung/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ki-entwicklung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ai-development/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/ki-entwicklung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ki-entwicklung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ai-development/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/development/ai-development/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ki-entwicklung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ai-development/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/entwicklung/ki-entwicklung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ki-entwicklung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/development/ai-development/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -203,17 +180,15 @@
   <!-- Fertigung -->
   <url>
     <loc>https://control-motion.de/fertigung/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/manufacturing/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -221,17 +196,15 @@
   <!-- Fertigung: Leiterplatten -->
   <url>
     <loc>https://control-motion.de/fertigung/leiterplatten/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/leiterplatten/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/printed-circuit-boards/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/leiterplatten/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/leiterplatten/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/printed-circuit-boards/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/manufacturing/printed-circuit-boards/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/leiterplatten/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/printed-circuit-boards/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/leiterplatten/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/leiterplatten/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/printed-circuit-boards/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -239,17 +212,15 @@
   <!-- Fertigung: Baugruppen -->
   <url>
     <loc>https://control-motion.de/fertigung/baugruppen/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/baugruppen/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/assemblies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/baugruppen/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/baugruppen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/assemblies/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/manufacturing/assemblies/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/baugruppen/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/assemblies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/baugruppen/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/baugruppen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/assemblies/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -257,17 +228,15 @@
   <!-- Fertigung: Qualität -->
   <url>
     <loc>https://control-motion.de/fertigung/qualitaet/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/qualitaet/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/quality/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/qualitaet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/qualitaet/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/quality/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/manufacturing/quality/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/qualitaet/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/quality/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/fertigung/qualitaet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/qualitaet/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/manufacturing/quality/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -275,17 +244,15 @@
   <!-- Lifecycle -->
   <url>
     <loc>https://control-motion.de/lifecycle/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/lifecycle/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/lifecycle/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/lifecycle/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/lifecycle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/lifecycle/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/lifecycle/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/lifecycle/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/lifecycle/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/lifecycle/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/lifecycle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/lifecycle/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -293,17 +260,15 @@
   <!-- Märkte -->
   <url>
     <loc>https://control-motion.de/maerkte/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/maerkte/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/markets/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/maerkte/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/maerkte/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/markets/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/markets/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/maerkte/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/markets/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/maerkte/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/maerkte/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/markets/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -311,17 +276,15 @@
   <!-- Unternehmen -->
   <url>
     <loc>https://control-motion.de/unternehmen/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/unternehmen/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/company/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/unternehmen/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/unternehmen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/company/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/company/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/unternehmen/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/company/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/unternehmen/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/unternehmen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/company/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -329,17 +292,15 @@
   <!-- Kontakt -->
   <url>
     <loc>https://control-motion.de/kontakt/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/kontakt/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/contact/"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/kontakt/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/contact/"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -347,17 +308,15 @@
   <!-- Karriere -->
   <url>
     <loc>https://control-motion.de/karriere/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/karriere/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/careers/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/karriere/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/karriere/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/careers/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/careers/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/karriere/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/careers/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/karriere/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/karriere/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/careers/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -365,40 +324,32 @@
   <!-- Insights -->
   <url>
     <loc>https://control-motion.de/insights/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/insights/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/insights/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/insights/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/insights/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/insights/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://control-motion.de/en/insights/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/insights/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/insights/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/insights/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/insights/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://control-motion.de/en/insights/"/>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Rechtliches (nur DE, kein EN-Pendant) -->
+  <!-- Rechtliches (rein deutsch, ohne hreflang) -->
   <url>
     <loc>https://control-motion.de/impressum/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/impressum/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/impressum/" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://control-motion.de/datenschutz/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/datenschutz/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/datenschutz/" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://control-motion.de/agb/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/agb/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://control-motion.de/agb/" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

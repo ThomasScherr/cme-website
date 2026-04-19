@@ -564,3 +564,4 @@
 - [x] Sitemap: Trailing Slashes bei allen URLs ergänzen
 - [x] Sitemap: Alle englischen Seiten (/en/...) ergänzen
 - [x] Sitemap: urlset-Tag auf sitemaps.org + xhtml Namespaces beschränken
+- [x] Sitemap: hreflang-Pattern anpassen (nur de+en, kein x-default, keine hreflang bei Impressum/Datenschutz/AGB)
