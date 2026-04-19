@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <!-- Startseite -->
   <url>
@@ -33,7 +34,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Entwicklung: Hardware & Software -->
+  <!-- Entwicklung Unterseiten -->
   <url>
     <loc>https://control-motion.de/entwicklung/hardware-software/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/hardware-software/"/>
@@ -49,7 +50,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: Simulation -->
   <url>
     <loc>https://control-motion.de/entwicklung/simulation/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/simulation/"/>
@@ -65,7 +65,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: Test & Verifikation -->
   <url>
     <loc>https://control-motion.de/entwicklung/test-verifikation/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/test-verifikation/"/>
@@ -81,7 +80,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: UX & Interface Engineering -->
   <url>
     <loc>https://control-motion.de/entwicklung/ux-interface-engineering/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ux-interface-engineering/"/>
@@ -97,7 +95,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: Software & Digitale Systeme -->
   <url>
     <loc>https://control-motion.de/entwicklung/software-digitale-systeme/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/software-digitale-systeme/"/>
@@ -113,7 +110,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: E-Motor-Design -->
   <url>
     <loc>https://control-motion.de/entwicklung/e-motor-design/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/e-motor-design/"/>
@@ -129,7 +125,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: Control Design -->
   <url>
     <loc>https://control-motion.de/entwicklung/control-design/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/control-design/"/>
@@ -145,7 +140,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: Validierung & EMV -->
   <url>
     <loc>https://control-motion.de/entwicklung/validierung-emv/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/validierung-emv/"/>
@@ -161,7 +155,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Entwicklung: KI-Entwicklung -->
   <url>
     <loc>https://control-motion.de/entwicklung/ki-entwicklung/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/entwicklung/ki-entwicklung/"/>
@@ -193,7 +186,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Fertigung: Leiterplatten -->
+  <!-- Fertigung Unterseiten -->
   <url>
     <loc>https://control-motion.de/fertigung/leiterplatten/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/leiterplatten/"/>
@@ -209,7 +202,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Fertigung: Baugruppen -->
   <url>
     <loc>https://control-motion.de/fertigung/baugruppen/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/baugruppen/"/>
@@ -225,7 +217,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Fertigung: Qualität -->
   <url>
     <loc>https://control-motion.de/fertigung/qualitaet/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://control-motion.de/fertigung/qualitaet/"/>
@@ -337,7 +328,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Rechtliches (rein deutsch, ohne hreflang) -->
+  <!-- Rechtliches (nur DE, kein hreflang) -->
   <url>
     <loc>https://control-motion.de/impressum/</loc>
     <changefreq>yearly</changefreq>
