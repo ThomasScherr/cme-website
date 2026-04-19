@@ -559,3 +559,8 @@
 - [x] SEO: LocalBusiness Schema.org JSON-LD auf Startseite ergänzen
 - [x] SEO: og:site_name auf "CME Control Motion Electronics GmbH" setzen (global, war bereits gesetzt)
 - [x] SEO: Canonical-URLs auf control-motion.de gesetzt (www wird per 301 weitergeleitet)
+- [x] Sitemap: XML-Fehler mit sketch-Namespace entfernen
+- [x] Sitemap: data-google-analytics-opt-out Attribut entfernen
+- [x] Sitemap: Trailing Slashes bei allen URLs ergänzen
+- [x] Sitemap: Alle englischen Seiten (/en/...) ergänzen
+- [x] Sitemap: urlset-Tag auf sitemaps.org + xhtml Namespaces beschränken
