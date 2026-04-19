@@ -571,3 +571,4 @@
 - [x] 301-Redirect: /en/electronics-manufacturing/* → /en/manufacturing/* (Wildcard)
 - [x] 301-Redirect: www.control-motion.de/* → control-motion.de/* (bereits via wwwRedirectMiddleware.ts)
 - [x] FAQ: 16 FAQs mit FAQ-Schema auf /entwicklung implementieren (3 Cluster: Prozess, Technologie, Branchen)
+- [x] FIX: FAQ Energiesysteme – Smart Charging, V2G, Netzintegration entfernen (kein System-Know-how, nur Teilkomponenten)
