@@ -573,3 +573,4 @@
 - [x] FAQ: 16 FAQs mit FAQ-Schema auf /entwicklung implementieren (3 Cluster: Prozess, Technologie, Branchen)
 - [x] FIX: FAQ Energiesysteme – Smart Charging, V2G, Netzintegration entfernen (kein System-Know-how, nur Teilkomponenten)
 - [x] FAQ: EMS-FAQs mit FAQ-Schema auf /fertigung implementieren (Cluster: Prozess & Kapazität, Technologie & Qualität, Zusammenarbeit & Konditionen)
+- [x] FIX: Sistrix Canonical-Fehler – 301-Redirects für 6 Duplikat-URLs ohne Bindestrich (testverifikation, uxinterfaceengineering, validierungemv, emotordesign, controldesign, kientwicklung)

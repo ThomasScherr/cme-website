@@ -18,6 +18,15 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/baugruppen": "/fertigung/baugruppen",
   "/smd-und-tht-bestueckung-von-leiterplatten-leiterkarten/qs-qm": "/fertigung/qualitaet",
   "/smd-fragen-entwurf": "/fertigung",
+
+  // Sistrix canonical fixes: non-hyphenated variants → canonical hyphenated URLs
+  "/entwicklung/testverifikation": "/entwicklung/test-verifikation",
+  "/entwicklung/uxinterfaceengineering": "/entwicklung/ux-interface-engineering",
+  "/entwicklung/validierungemv": "/entwicklung/validierung-emv",
+  "/entwicklung/emotordesign": "/entwicklung/e-motor-design",
+  "/entwicklung/controldesign": "/entwicklung/control-design",
+  "/entwicklung/kientwicklung": "/entwicklung/ki-entwicklung",
+
   "/datenschutzerklaerung": "/datenschutz",
   "/jobs": "/karriere",
   "/ueber-uns": "/unternehmen",
