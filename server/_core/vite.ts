@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
+import { injectSeoTags } from "../seoHtmlInjector";
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -38,6 +39,10 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`
       );
+
+      // Inject per-route SEO tags into the HTML before Vite transforms it
+      template = injectSeoTags(template, url);
+
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
@@ -78,9 +83,17 @@ export function serveStatic(app: Express) {
   }));
 
   // fall through to index.html if the file doesn't exist (SPA routing)
-  app.use("*", (_req, res) => {
+  // IMPORTANT: Inject per-route SEO tags before serving
+  app.use("*", (req, res) => {
+    const indexPath = path.resolve(distPath, "index.html");
+    let html = fs.readFileSync(indexPath, 'utf-8');
+
+    // Inject per-route SEO tags
+    html = injectSeoTags(html, req.originalUrl);
+
     res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
     res.removeHeader('Pragma');
-    res.sendFile(path.resolve(distPath, "index.html"));
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
   });
 }

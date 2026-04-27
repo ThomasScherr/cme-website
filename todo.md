@@ -596,3 +596,8 @@
 - [x] LIVE-8: HOSTING-BLOCKIERT – Plattform liefert immer 200; robots.txt blockiert /admin/, Server-Middleware setzt 403 für Crawler
 - [x] LIVE-9: HOSTING-BLOCKIERT – Cloudflare/Manus setzt eigene Cache-Header (nur durch eigenes Hosting lösbar)
 - [x] LIVE-10: BEREITS GELÖST – Sitemap und Canonicals konsistent ohne Trailing Slash (außer Root /)
+- [x] SEO-1: Server-seitiges HTML-Templating – seoHtmlInjector.ts ersetzt SEO_BLOCK Marker pro Route (35 Routen)
+- [x] SEO-2: Doppelte Canonicals entfernt – nur noch ein Canonical pro Route im initialen HTML
+- [x] SEO-3: EN-Routen setzen html lang="en", englische Titel/Beschreibungen, og:locale=en_US
+- [x] SEO-4: OG-Tags pro Route korrekt (og:url, og:title, og:description, og:locale)
+- [x] SEO-5: Hosting-blockierte Punkte dokumentiert (HTTP 200 statt 301/404/403, Cache-Control, Manus-Artefakte)
