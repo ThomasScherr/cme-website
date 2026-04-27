@@ -574,3 +574,7 @@
 - [x] FIX: FAQ Energiesysteme – Smart Charging, V2G, Netzintegration entfernen (kein System-Know-how, nur Teilkomponenten)
 - [x] FAQ: EMS-FAQs mit FAQ-Schema auf /fertigung implementieren (Cluster: Prozess & Kapazität, Technologie & Qualität, Zusammenarbeit & Konditionen)
 - [x] FIX: Sistrix Canonical-Fehler – 301-Redirects für 6 Duplikat-URLs ohne Bindestrich (testverifikation, uxinterfaceengineering, validierungemv, emotordesign, controldesign, kientwicklung)
+- [x] FIX: Sistrix identische H1-Tags – Trailing-Slash-Normalisierung per 301-Redirect (URL mit Slash → URL ohne Slash)
+- [x] FIX: Sistrix 21 EN-Seiten zeigen H1 "404" – englische Routen liefern 404-Seite statt Inhalt
+- [x] FIX: Sistrix identische Meta-Descriptions – gleiche Ursache wie H1-Duplikate (Trailing-Slash + EN-404)
+- [x] FIX: 404-Seite verbessern – Navigation, Footer, Title-Tag und Meta-Description fehlen

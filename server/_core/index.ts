@@ -11,6 +11,7 @@ import { redirectMiddleware } from "../redirectMiddleware";
 import { legacyRedirectMiddleware } from "../legacyRedirects";
 import { prerenderMiddleware } from "../prerenderMiddleware";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
+import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -39,6 +40,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // WWW redirect – enforce canonical host (MUST run before all other route middleware)
   app.use(wwwRedirectMiddleware());
+  // Trailing-slash normalization – 301 redirect /path/ → /path (prevents duplicate content)
+  app.use(trailingSlashMiddleware());
   // Legacy URL redirects – maps old website paths to new structure (301)
   app.use(legacyRedirectMiddleware());
   // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)

@@ -369,7 +369,36 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
-function generateCrawlerHtml(path: string, page: PageMeta): string {
+function generate404Html(path: string): string {
+  const isEN = path.startsWith('/en/');
+  const title = isEN ? 'Page Not Found | CME' : 'Seite nicht gefunden | CME';
+  const h1 = isEN ? 'Page Not Found' : 'Seite nicht gefunden';
+  const desc = isEN
+    ? 'The requested page was not found. Use the navigation or return to the homepage.'
+    : 'Die angeforderte Seite wurde nicht gefunden. Nutzen Sie die Navigation oder kehren Sie zur Startseite zur\u00fcck.';
+  return `<!DOCTYPE html>
+<html lang="${isEN ? 'en' : 'de'}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${desc}">
+    <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+    <header><nav>
+      <a href="/">Startseite</a>
+      <a href="/entwicklung">Entwicklung</a>
+      <a href="/fertigung">Fertigung</a>
+      <a href="/kontakt">Kontakt</a>
+    </nav></header>
+    <main><h1>${h1}</h1><p>${desc}</p></main>
+    <footer><p>&copy; ${new Date().getFullYear()} ${escapeHtml(SITE_NAME)}.</p></footer>
+</body>
+</html>`;
+}
+
+function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false): string {
   const canonicalUrl = `${BASE_URL}${path}`;
   const ogImage = DEFAULT_OG_IMAGE;
 
@@ -400,7 +429,7 @@ function generateCrawlerHtml(path: string, page: PageMeta): string {
     .join('\n');
 
   return `<!DOCTYPE html>
-<html lang="de">
+<html lang="${isEnglish ? 'en' : 'de'}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -417,7 +446,7 @@ function generateCrawlerHtml(path: string, page: PageMeta): string {
     <meta property="og:description" content="${escapeHtml(page.description)}">
     <meta property="og:url" content="${canonicalUrl}">
     <meta property="og:image" content="${ogImage}">
-    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale" content="${isEnglish ? 'en_US' : 'de_DE'}">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -545,18 +574,37 @@ export function prerenderMiddleware() {
       }
     }
 
-    const page = PAGES[normalizedPath];
+    let page = PAGES[normalizedPath];
+    let servePath = normalizedPath;
+
+    // If not found as a DE page, check if it's an EN path
+    if (!page && normalizedPath.startsWith('/en/')) {
+      // Build reverse lookup: enPath -> dePath
+      for (const [dePath, pageMeta] of Object.entries(PAGES)) {
+        if (pageMeta.enPath && pageMeta.enPath.replace(/\/$/, '') === normalizedPath) {
+          page = pageMeta;
+          servePath = dePath;
+          break;
+        }
+      }
+    }
 
     if (!page) {
-      // Unknown page – let the SPA handle it (404 page)
-      return next();
+      // Unknown page – serve a proper 404 response for crawlers
+      console.log(`[Prerender] 404 for crawler: ${normalizedPath} (${userAgent.substring(0, 50)})`);
+      res.status(404);
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('X-Prerendered', 'true');
+      res.send(generate404Html(normalizedPath));
+      return;
     }
 
     // Serve pre-rendered HTML
-    console.log(`[Prerender] Serving pre-rendered HTML for ${normalizedPath} to crawler: ${userAgent.substring(0, 80)}`);
+    const isEnglish = normalizedPath.startsWith('/en/');
+    console.log(`[Prerender] Serving pre-rendered HTML for ${normalizedPath}${isEnglish ? ' (EN)' : ''} to crawler: ${userAgent.substring(0, 80)}`);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('X-Prerendered', 'true');
     res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
-    res.send(generateCrawlerHtml(normalizedPath, page));
+    res.send(generateCrawlerHtml(isEnglish ? normalizedPath : servePath, page, isEnglish));
   };
 }

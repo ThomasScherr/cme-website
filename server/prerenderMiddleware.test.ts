@@ -19,11 +19,27 @@ function createMockRes() {
     _headers: {} as Record<string, string>,
     _body: "",
     _sent: false,
+    _statusCode: 200,
+    _redirectUrl: "",
     setHeader(key: string, value: string) {
       res._headers[key.toLowerCase()] = value;
     },
     send(body: string) {
       res._body = body;
+      res._sent = true;
+    },
+    status(code: number) {
+      res._statusCode = code;
+      return res;
+    },
+    redirect(statusOrUrl: number | string, url?: string) {
+      if (typeof statusOrUrl === 'number') {
+        res._statusCode = statusOrUrl;
+        res._redirectUrl = url || '';
+      } else {
+        res._statusCode = 302;
+        res._redirectUrl = statusOrUrl;
+      }
       res._sent = true;
     },
   };
@@ -177,13 +193,40 @@ describe("prerenderMiddleware", () => {
 
   // ── Unknown pages ──
 
-  it("passes through for unknown paths (lets SPA handle 404)", () => {
+  it("serves 404 HTML to crawlers for unknown paths", () => {
     const req = createMockReq("GET", "/nonexistent-page", "Googlebot/2.1");
     const res = createMockRes();
     middleware(req, res, next);
 
-    expect(res._sent).toBe(false);
-    expect(next).toHaveBeenCalledTimes(1);
+    expect(res._sent).toBe(true);
+    expect(res._statusCode).toBe(404);
+    expect(res._body).toContain('Seite nicht gefunden');
+    expect(res._body).toContain('noindex');
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it("serves EN 404 HTML to crawlers for unknown EN paths", () => {
+    const req = createMockReq("GET", "/en/nonexistent-page", "Googlebot/2.1");
+    const res = createMockRes();
+    middleware(req, res, next);
+
+    expect(res._sent).toBe(true);
+    expect(res._statusCode).toBe(404);
+    expect(res._body).toContain('Page Not Found');
+    expect(res._body).toContain('noindex');
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it("resolves EN paths to DE page data and serves prerendered HTML", () => {
+    const req = createMockReq("GET", "/en/development", "Googlebot/2.1");
+    const res = createMockRes();
+    middleware(req, res, next);
+
+    expect(res._sent).toBe(true);
+    expect(res._statusCode).toBe(200);
+    expect(res._body).toContain('lang="en"');
+    expect(res._body).toContain('en_US');
+    expect(next).not.toHaveBeenCalled();
   });
 
   // ── Content correctness ──
