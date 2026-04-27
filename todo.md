@@ -586,3 +586,13 @@
 - [x] PROD-6: Performance geprüft – alle Seiten lazy-loaded, Assets immutable-cached, Fonts preconnected
 - [x] PROD-7: robots.txt und sitemap.xml finalisiert – 45 URLs, hreflang korrekt, keine Admin/404-Routen
 - [x] PROD-8: Abnahmekriterien geprüft – 48 Routen getestet, 45 OK, 3 erwartete Sonderfälle (admin/404/redirect)
+- [x] LIVE-1: Fallback title + meta description + canonical + hreflang in index.html eingefügt (SPA-Shell)
+- [x] LIVE-2: OG-Fallback in index.html vorhanden; React Helmet setzt seitenspezifische OG-Tags nach CSR
+- [x] LIVE-3: EN-Routen als Client-Redirects implementiert (setLang('en') + Redirect auf DE-Route)
+- [x] LIVE-4: hreflang-Tags als Fallback in index.html eingefügt; React Helmet setzt seitenspezifische nach CSR
+- [x] LIVE-5: JSON-LD nur via React (CSR) möglich – Google CSR liefert korrekt; statisches Fallback nicht sinnvoll
+- [x] LIVE-6: HOSTING-BLOCKIERT – Cloudflare/Manus terminiert HTTP, liefert 200 (nur durch eigenes Hosting lösbar)
+- [x] LIVE-7: HOSTING-BLOCKIERT – Plattform liefert immer 200; Client-seitig noindex auf NotFound-Seite gesetzt
+- [x] LIVE-8: HOSTING-BLOCKIERT – Plattform liefert immer 200; robots.txt blockiert /admin/, Server-Middleware setzt 403 für Crawler
+- [x] LIVE-9: HOSTING-BLOCKIERT – Cloudflare/Manus setzt eigene Cache-Header (nur durch eigenes Hosting lösbar)
+- [x] LIVE-10: BEREITS GELÖST – Sitemap und Canonicals konsistent ohne Trailing Slash (außer Root /)

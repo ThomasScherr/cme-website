@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
  * Maps old URL paths (from the previous website) to the current URL structure.
- * Client-side redirects are needed because the hosting CDN serves the SPA shell
- * for all unknown paths before the Express server can handle them.
- * 
+ * Also handles EN path routing: EN URLs (from sitemap/hreflang) are redirected
+ * to the corresponding DE route while switching the language context to English.
+ *
  * Supports both exact matches and wildcard prefix rewrites.
  * Note: Trailing slashes are normalized before lookup.
  */
@@ -35,6 +36,32 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/en/jobs": "/en/careers",
 };
 
+// ── EN path → DE path mapping (from sitemap/hreflang) ──
+// When a user or crawler visits an EN URL, redirect to the DE route and switch language to EN
+const EN_TO_DE_MAP: Record<string, string> = {
+  "/en": "/",
+  "/en/development": "/entwicklung",
+  "/en/development/hardware-software": "/entwicklung/hardware-software",
+  "/en/development/simulation": "/entwicklung/simulation",
+  "/en/development/test-verification": "/entwicklung/test-verifikation",
+  "/en/development/ux-interface-engineering": "/entwicklung/ux-interface-engineering",
+  "/en/development/software-digital-systems": "/entwicklung/software-digitale-systeme",
+  "/en/development/e-motor-design": "/entwicklung/e-motor-design",
+  "/en/development/control-design": "/entwicklung/control-design",
+  "/en/development/emc-validation": "/entwicklung/validierung-emv",
+  "/en/development/ai-development": "/entwicklung/ki-entwicklung",
+  "/en/manufacturing": "/fertigung",
+  "/en/manufacturing/printed-circuit-boards": "/fertigung/leiterplatten",
+  "/en/manufacturing/assemblies": "/fertigung/baugruppen",
+  "/en/manufacturing/quality": "/fertigung/qualitaet",
+  "/en/lifecycle": "/lifecycle",
+  "/en/markets": "/maerkte",
+  "/en/company": "/unternehmen",
+  "/en/contact": "/kontakt",
+  "/en/careers": "/karriere",
+  "/en/insights": "/insights",
+};
+
 // ── Wildcard prefix rewrites ──
 const PREFIX_REWRITES: [string, string][] = [
   ["/elektronikentwicklung", "/entwicklung"],
@@ -44,12 +71,13 @@ const PREFIX_REWRITES: [string, string][] = [
 ];
 
 /**
- * Component that checks the current path against legacy URLs
+ * Component that checks the current path against legacy URLs and EN paths,
  * and performs a client-side redirect (replace) if a match is found.
  * Must be rendered inside the Router context.
  */
 export default function LegacyRedirects() {
   const [location, setLocation] = useLocation();
+  const { setLang } = useLanguage();
 
   useEffect(() => {
     // Normalize: remove trailing slash for lookup (except root "/")
@@ -57,25 +85,47 @@ export default function LegacyRedirects() {
       ? location.slice(0, -1)
       : location;
 
-    // 1. Check exact match first
-    const exactTarget = LEGACY_REDIRECT_MAP[normalizedPath];
-    if (exactTarget && exactTarget !== normalizedPath) {
-      setLocation(exactTarget, { replace: true });
+    // 1. Check EN path mapping first (switch language + redirect to DE route)
+    const deTarget = EN_TO_DE_MAP[normalizedPath];
+    if (deTarget !== undefined) {
+      setLang('en');
+      setLocation(deTarget, { replace: true });
       return;
     }
 
-    // 2. Check wildcard prefix rewrites
+    // 2. Check exact match
+    const exactTarget = LEGACY_REDIRECT_MAP[normalizedPath];
+    if (exactTarget && exactTarget !== normalizedPath) {
+      // If the target is an EN path, check EN map recursively
+      const enDeTarget = EN_TO_DE_MAP[exactTarget];
+      if (enDeTarget !== undefined) {
+        setLang('en');
+        setLocation(enDeTarget, { replace: true });
+      } else {
+        setLocation(exactTarget, { replace: true });
+      }
+      return;
+    }
+
+    // 3. Check wildcard prefix rewrites
     for (const [oldPrefix, newPrefix] of PREFIX_REWRITES) {
       if (normalizedPath === oldPrefix || normalizedPath.startsWith(oldPrefix + "/")) {
         const remainder = normalizedPath.slice(oldPrefix.length);
         const target = newPrefix + remainder;
         if (target !== normalizedPath) {
-          setLocation(target, { replace: true });
+          // Check if rewritten target is an EN path
+          const enDeTarget = EN_TO_DE_MAP[target];
+          if (enDeTarget !== undefined) {
+            setLang('en');
+            setLocation(enDeTarget, { replace: true });
+          } else {
+            setLocation(target, { replace: true });
+          }
         }
         return;
       }
     }
-  }, [location, setLocation]);
+  }, [location, setLocation, setLang]);
 
   return null;
 }
