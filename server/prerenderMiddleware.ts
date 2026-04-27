@@ -111,7 +111,7 @@ const localBusinessSchema = {
 // ── Page definitions for all public routes ──
 const PAGES: Record<string, PageMeta> = {
   '/': {
-    enPath: '/en/',
+    enPath: '/en',
     title: 'CME Control Motion Electronics GmbH',
     description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
@@ -398,9 +398,12 @@ function generate404Html(path: string): string {
 </html>`;
 }
 
-function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false): string {
+function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, dePath?: string): string {
   const canonicalUrl = `${BASE_URL}${path}`;
   const ogImage = DEFAULT_OG_IMAGE;
+  // For hreflang: always resolve both DE and EN URLs correctly
+  const deUrl = isEnglish && dePath ? `${BASE_URL}${dePath}` : canonicalUrl;
+  const enUrl = page.enPath ? `${BASE_URL}${page.enPath}` : '';
 
   const schemasHtml = (page.schemas || [])
     .map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`)
@@ -455,9 +458,9 @@ function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false): s
     <meta name="twitter:image" content="${ogImage}">
     
     <!-- hreflang -->
-    <link rel="alternate" hreflang="de" href="${canonicalUrl}">
-    ${page.enPath ? `<link rel="alternate" hreflang="en" href="${BASE_URL}${page.enPath}">` : ''}
-    <link rel="alternate" hreflang="x-default" href="${canonicalUrl}">
+    <link rel="alternate" hreflang="de" href="${deUrl}">
+    ${enUrl ? `<link rel="alternate" hreflang="en" href="${enUrl}">` : ''}
+    <link rel="alternate" hreflang="x-default" href="${deUrl}">
     
     <!-- Structured Data -->
     ${schemasHtml}
@@ -578,7 +581,7 @@ export function prerenderMiddleware() {
     let servePath = normalizedPath;
 
     // If not found as a DE page, check if it's an EN path
-    if (!page && normalizedPath.startsWith('/en/')) {
+    if (!page && (normalizedPath === '/en' || normalizedPath.startsWith('/en/'))) {
       // Build reverse lookup: enPath -> dePath
       for (const [dePath, pageMeta] of Object.entries(PAGES)) {
         if (pageMeta.enPath && pageMeta.enPath.replace(/\/$/, '') === normalizedPath) {
@@ -600,11 +603,11 @@ export function prerenderMiddleware() {
     }
 
     // Serve pre-rendered HTML
-    const isEnglish = normalizedPath.startsWith('/en/');
+    const isEnglish = normalizedPath === '/en' || normalizedPath.startsWith('/en/');
     console.log(`[Prerender] Serving pre-rendered HTML for ${normalizedPath}${isEnglish ? ' (EN)' : ''} to crawler: ${userAgent.substring(0, 80)}`);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('X-Prerendered', 'true');
     res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
-    res.send(generateCrawlerHtml(isEnglish ? normalizedPath : servePath, page, isEnglish));
+    res.send(generateCrawlerHtml(isEnglish ? normalizedPath : servePath, page, isEnglish, isEnglish ? servePath : undefined));
   };
 }

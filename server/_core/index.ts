@@ -12,6 +12,7 @@ import { legacyRedirectMiddleware } from "../legacyRedirects";
 import { prerenderMiddleware } from "../prerenderMiddleware";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
+import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -46,6 +47,8 @@ async function startServer() {
   app.use(legacyRedirectMiddleware());
   // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)
   app.use(redirectMiddleware());
+  // Admin route protection – blocks crawlers with 403/noindex, sets X-Robots-Tag for all /admin/* requests
+  app.use(adminProtectionMiddleware());
   // Pre-render middleware – serves static HTML to crawlers for SEO
   app.use(prerenderMiddleware());
   // OAuth callback under /api/oauth/callback

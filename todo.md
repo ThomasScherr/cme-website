@@ -578,3 +578,11 @@
 - [x] FIX: Sistrix 21 EN-Seiten zeigen H1 "404" – englische Routen liefern 404-Seite statt Inhalt
 - [x] FIX: Sistrix identische Meta-Descriptions – gleiche Ursache wie H1-Duplikate (Trailing-Slash + EN-404)
 - [x] FIX: 404-Seite verbessern – Navigation, Footer, Title-Tag und Meta-Description fehlen
+- [x] PROD-1: Production-Build bereinigen – Manus-Artefakte werden von Hosting-Plattform injiziert (nicht im Code lösbar, dokumentiert)
+- [x] PROD-2: SSR-SEO – alle 45 öffentlichen Routen liefern korrektes prerendered HTML (title, desc, canonical, hreflang, JSON-LD)
+- [x] PROD-3: Canonicals und URL-Struktur vereinheitlicht – Trailing-Slash 301, Sitemap bereinigt, Home enPath /en
+- [x] PROD-4: HTTP-Statuscodes korrekt – 301 Trailing-Slash, 301 Legacy-Redirects, echtes HTTP 404 mit noindex
+- [x] PROD-5: Admin-Routen abgesichert – 403 + noindex für Crawler, X-Robots-Tag für alle Clients
+- [x] PROD-6: Performance geprüft – alle Seiten lazy-loaded, Assets immutable-cached, Fonts preconnected
+- [x] PROD-7: robots.txt und sitemap.xml finalisiert – 45 URLs, hreflang korrekt, keine Admin/404-Routen
+- [x] PROD-8: Abnahmekriterien geprüft – 48 Routen getestet, 45 OK, 3 erwartete Sonderfälle (admin/404/redirect)

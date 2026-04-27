@@ -36,11 +36,7 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   "/ueber-uns": "/unternehmen",
 
   // Englische alte URLs → aktuelle englische Seiten
-  "/en/contact": "/en/contact",
-  "/en/company": "/en/company",
-  "/en/imprint": "/en/imprint",
-  "/en/privacy-policy": "/en/privacy-policy",
-  "/en/gtc": "/en/gtc",
+  // Self-referencing EN paths removed (were causing 301 loops)
   "/en/jobs": "/en/careers",
 };
 
