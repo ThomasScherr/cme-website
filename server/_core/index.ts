@@ -41,7 +41,7 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // WWW redirect – enforce canonical host (MUST run before all other route middleware)
   app.use(wwwRedirectMiddleware());
-  // Trailing-slash normalization – 301 redirect /path/ → /path (prevents duplicate content)
+  // Trailing-slash normalization – 301 redirect /path → /path/ (ensures trailing slash canonical)
   app.use(trailingSlashMiddleware());
   // Legacy URL redirects – maps old website paths to new structure (301)
   app.use(legacyRedirectMiddleware());

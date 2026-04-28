@@ -603,6 +603,12 @@
 - [x] SEO-5: Hosting-blockierte Punkte dokumentiert (HTTP 200 statt 301/404/403, Cache-Control, Manus-Artefakte)
 - [x] SEO-BUILD-1: Post-Build-Skript – pro Route eigene index.html mit gefülltem SEO_BLOCK im Build-Output (45 Dateien generiert)
 - [x] SEO-BUILD-2: Twitter-Tags und JSON-LD pro Route im Post-Build-Skript integriert
-- [x] SEO-BUILD-3: Canonicals OHNE Trailing Slash (konsistent mit Sitemap und seoHtmlInjector)
+- [x] SEO-BUILD-3: Canonicals MIT Trailing Slash (umgestellt auf /path/ Strategie)
 - [x] SEO-BUILD-4: EN-Routen mit html lang="en" im Build-Output (19 EN-Dateien)
 - [ ] SEO-BUILD-5: Abnahmekriterien per curl gegen Live-Seite prüfen (nach Deploy)
+- [x] SEO-FIX-1: SEO_BLOCK in client/index.html mit Homepage-Daten vorgefüllt, express.static mit redirect:false/index:false konfiguriert
+- [x] SEO-FIX-2: Trailing Slashes in allen Canonicals, Sitemap, hreflang, OG-URLs (seoPageData, seoHtmlInjector, prerenderMiddleware, generate-seo-pages, SEO.tsx, sitemap.xml)
+- [x] SEO-FIX-3: /entwicklung Title='Elektronikentwicklung für Leistungselektronik & Mechatronik | CME', /en Title='CME Control Motion Electronics GmbH'
+- [ ] SEO-FIX-4: JSON-LD BreadcrumbList + Service auf /entwicklung ergänzen (später)
+- [x] SEO-FIX-5: SEO.tsx Canonical auf Trailing Slash umgestellt, konsistent mit SEO_BLOCK
+- [x] SEO-FIX-6: /en hat html lang="en" im Raw-HTML (seoHtmlInjector + generate-seo-pages)

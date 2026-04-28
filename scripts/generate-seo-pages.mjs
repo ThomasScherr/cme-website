@@ -31,8 +31,8 @@ const SEO_PAGES = {
     description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. Leistungselektronik, Antriebselektronik, Mechatronik. ISO 9001 zertifiziert.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',
-    enTitle: 'CME Control Motion Electronics – Electronics Development & EMS Manufacturing',
-    enDescription: 'CME Control Motion Electronics – Your partner for electronics development & EMS manufacturing in Dortmund, Germany. Power electronics, drive electronics, mechatronics. ISO 9001 certified.',
+    enTitle: 'CME Control Motion Electronics GmbH',
+    enDescription: 'CME Control Motion Electronics is your partner for electronics development and EMS manufacturing in Dortmund: power electronics, drive electronics, mechatronics and thermally demanding electronics projects.',
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -57,8 +57,8 @@ const SEO_PAGES = {
     },
   },
   '/entwicklung': {
-    title: 'Elektronikentwicklung Dortmund | CME',
-    description: 'Von der Idee zur serienreifen Elektronik: Hardware, Software, E-Motor-Design & Simulation aus einer Hand. CME Elektronikentwicklung Dortmund – Jetzt beraten lassen.',
+    title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
+    description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     enPath: '/en/development',
     enTitle: 'Electronics Development Dortmund | CME',
@@ -262,12 +262,12 @@ function escapeHtml(str) {
 }
 
 /**
- * Build canonical URL: WITHOUT trailing slash (except root /)
- * Consistent with sitemap.xml, seoHtmlInjector.ts, trailingSlashMiddleware.ts
+ * Build canonical URL: WITH trailing slash for all routes
+ * Consistent with sitemap.xml, seoHtmlInjector.ts
  */
 function buildCanonicalUrl(path) {
   if (path === '/') return `${BASE_URL}/`;
-  return `${BASE_URL}${path}`;
+  return `${BASE_URL}${path}/`;
 }
 
 /**

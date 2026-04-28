@@ -125,8 +125,8 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/entwicklung': {
     enPath: '/en/development',
-    title: 'Elektronikentwicklung Dortmund | CME',
-    description: 'Von der Idee zur serienreifen Elektronik: Hardware, Software, E-Motor-Design & Simulation aus einer Hand. CME Elektronikentwicklung Dortmund – Jetzt beraten lassen.',
+    title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
+    description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
     h1: 'Entwicklung – Engineering Services',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     content: `CME bietet umfassende Entwicklungsdienstleistungen für elektronische Systeme.
@@ -399,11 +399,14 @@ function generate404Html(path: string): string {
 }
 
 function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, dePath?: string): string {
-  const canonicalUrl = `${BASE_URL}${path}`;
+  // Trailing slash for all URLs (except root which already has it)
+  const trailingPath = path === '/' ? '/' : path + '/';
+  const canonicalUrl = `${BASE_URL}${trailingPath}`;
   const ogImage = DEFAULT_OG_IMAGE;
   // For hreflang: always resolve both DE and EN URLs correctly
-  const deUrl = isEnglish && dePath ? `${BASE_URL}${dePath}` : canonicalUrl;
-  const enUrl = page.enPath ? `${BASE_URL}${page.enPath}` : '';
+  const deTrailing = isEnglish && dePath ? (dePath === '/' ? '/' : dePath + '/') : trailingPath;
+  const deUrl = `${BASE_URL}${deTrailing}`;
+  const enUrl = page.enPath ? `${BASE_URL}${page.enPath}/` : '';
 
   const schemasHtml = (page.schemas || [])
     .map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`)

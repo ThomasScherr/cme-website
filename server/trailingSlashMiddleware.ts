@@ -1,15 +1,18 @@
 import type { Request, Response, NextFunction } from "express";
-
 /**
  * Trailing-slash normalization middleware.
  * 
- * Redirects any URL with a trailing slash to the same URL without it via 301.
- * This prevents duplicate content issues (Sistrix: identical H1 / meta-description
- * on /path and /path/).
+ * Redirects any URL WITHOUT a trailing slash to the same URL WITH it via 301.
+ * This ensures all canonical URLs use trailing slashes, consistent with:
+ * - sitemap.xml
+ * - seoHtmlInjector.ts
+ * - prerenderMiddleware.ts
+ * - generate-seo-pages.mjs
+ * - SEO.tsx (React Helmet)
  * 
  * Exceptions:
- * - Root path "/" is never redirected
- * - API routes, static assets, and Vite internals are skipped
+ * - Root path "/" is never redirected (already has trailing slash)
+ * - API routes, static assets (files with extensions), and Vite internals are skipped
  * 
  * Must run AFTER wwwRedirectMiddleware (host normalization) but BEFORE
  * legacyRedirectMiddleware and prerenderMiddleware.
@@ -33,14 +36,18 @@ export function trailingSlashMiddleware() {
       return next();
     }
 
-    // If path ends with "/" → 301 redirect to path without trailing slash
-    if (path.length > 1 && path.endsWith("/")) {
-      const cleanPath = path.slice(0, -1);
+    // Skip files with extensions (e.g., .js, .css, .png, .xml, .json, .txt)
+    if (path.includes(".")) {
+      return next();
+    }
+
+    // If path does NOT end with "/" → 301 redirect to path WITH trailing slash
+    if (!path.endsWith("/")) {
       // Preserve query string if present
       const queryString = req.originalUrl.includes("?")
         ? req.originalUrl.substring(req.originalUrl.indexOf("?"))
         : "";
-      res.redirect(301, cleanPath + queryString);
+      res.redirect(301, path + "/" + queryString);
       return;
     }
 

@@ -73,8 +73,12 @@ export function serveStatic(app: Express) {
   }));
 
   // Other static files (favicon, robots.txt, etc.)
+  // redirect: false prevents express.static from 301-redirecting /path to /path/
+  // when a directory exists (which would conflict with trailingSlashMiddleware)
   app.use(express.static(distPath, {
     maxAge: '1h',
+    redirect: false,
+    index: false,
     setHeaders: (res, filePath) => {
       if (filePath.endsWith('.html')) {
         res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');

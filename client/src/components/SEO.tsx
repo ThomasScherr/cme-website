@@ -136,7 +136,7 @@ export default function SEO({
   const description = isDE ? descriptionDE : descriptionEN;
   const keywords = isDE ? keywordsDE : keywordsEN;
   const fullTitle = rawTitle ? title : `${title} | ${SITE_NAME}`;
-  const canonicalUrl = `${BASE_URL}${path}`;
+  const canonicalUrl = `${BASE_URL}${path === '/' ? '/' : path + '/'}`;
   const image = ogImage || DEFAULT_OG_IMAGE;
 
   const schemas: Record<string, unknown>[] = [];
@@ -161,7 +161,7 @@ export default function SEO({
 
       {/* hreflang */}
       <link rel="alternate" hrefLang="de" href={canonicalUrl} />
-      {enPath && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${enPath}`} />}
+      {enPath && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${enPath}/`} />}
       <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       {/* Open Graph */}

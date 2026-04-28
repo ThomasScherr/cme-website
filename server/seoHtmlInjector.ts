@@ -91,10 +91,10 @@ export function injectSeoTags(html: string, requestPath: string): string {
     const title = isEnglish && meta.enTitle ? meta.enTitle : meta.title;
     const description = isEnglish && meta.enDescription ? meta.enDescription : meta.description;
     const canonicalPath = isEnglish && meta.enPath ? meta.enPath : dePath;
-    const canonicalUrl = `${BASE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`;
+    const canonicalUrl = `${BASE_URL}${canonicalPath === '/' ? '/' : canonicalPath + '/'}`;
     const locale = isEnglish ? 'en_US' : 'de_DE';
-    const deUrl = `${BASE_URL}${dePath === '/' ? '/' : dePath}`;
-    const enUrl = meta.enPath ? `${BASE_URL}${meta.enPath}` : '';
+    const deUrl = `${BASE_URL}${dePath === '/' ? '/' : dePath + '/'}`;
+    const enUrl = meta.enPath ? `${BASE_URL}${meta.enPath}/` : '';
 
     seoBlock = buildSeoBlock(title, description, meta.keywords, canonicalUrl, deUrl, enUrl, locale);
   }
