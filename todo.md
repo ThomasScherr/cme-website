@@ -601,3 +601,8 @@
 - [x] SEO-3: EN-Routen setzen html lang="en", englische Titel/Beschreibungen, og:locale=en_US
 - [x] SEO-4: OG-Tags pro Route korrekt (og:url, og:title, og:description, og:locale)
 - [x] SEO-5: Hosting-blockierte Punkte dokumentiert (HTTP 200 statt 301/404/403, Cache-Control, Manus-Artefakte)
+- [x] SEO-BUILD-1: Post-Build-Skript – pro Route eigene index.html mit gefülltem SEO_BLOCK im Build-Output (45 Dateien generiert)
+- [x] SEO-BUILD-2: Twitter-Tags und JSON-LD pro Route im Post-Build-Skript integriert
+- [x] SEO-BUILD-3: Canonicals OHNE Trailing Slash (konsistent mit Sitemap und seoHtmlInjector)
+- [x] SEO-BUILD-4: EN-Routen mit html lang="en" im Build-Output (19 EN-Dateien)
+- [ ] SEO-BUILD-5: Abnahmekriterien per curl gegen Live-Seite prüfen (nach Deploy)
