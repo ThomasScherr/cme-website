@@ -288,6 +288,30 @@ const PAGES: Record<string, PageMeta> = {
     keywords: 'Qualitätssicherung, AOI, MOI, IPC, ISO 9001, ISO 14001, Qualitätsmanagement',
     content: `Qualitätssicherung in der Elektronikfertigung: AOI, MOI, IPC-Standards. Zertifiziert nach ISO 9001 und ISO 14001.`,
   },
+  '/fertigung/smd-bestueckung': {
+    enPath: '/en/manufacturing/smd-assembly',
+    title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
+    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
+    h1: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW',
+    keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung NRW, EMS-Dienstleister, Dampfphasenlöten, Leistungselektronik Bestückung',
+    content: `Hochpräzise SMD-Bestückung vom Prototyp bis zur Großserie. Ihr Elektronik Bestücker in Deutschland mit Standort Dortmund, NRW.
+    Bestückung aller SMD-Bauformen: 01005, 0201, QFN, BGA, LGA, SOP, MELF – bis 0,4 mm Pitch.
+    Leistungselektronik-Bestückung: SiC, GaN, IGBT-Module. Dampfphasenlöten für gleichmäßige Wärmeübertragung.
+    Flexible Losgrößen: Prototypen ab 1 Stück, Kleinserien, Großserie mit mehreren tausend Baugruppen pro Monat.
+    100%-Qualitätskontrolle: AOI, SPI, MOI durch IPC-zertifizierte Prüfer. ISO 9001 zertifiziert.`,
+  },
+  '/fertigung/prototypen': {
+    enPath: '/en/manufacturing/prototypes',
+    title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',
+    description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
+    h1: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund',
+    keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
+    content: `Express-Prototypenfertigung ab Einzelstück mit serienidentischem Prozess.
+    Turnaround in wenigen Arbeitstagen bei Bauteilbereitschaft.
+    DFM-Feedback vor Fertigung: Design-for-Manufacturing-Review Ihrer Fertigungsunterlagen.
+    Leistungselektronik-Prototypen: SiC, GaN, IGBT-Module mit Dampfphasenlöten.
+    Nahtloser Übergang vom Prototyp zur Serie ohne Lieferantenwechsel.`,
+  },
   '/lifecycle': {
     enPath: '/en/lifecycle',
     title: 'Lifecycle & Obsolescence Management | CME',

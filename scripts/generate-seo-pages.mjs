@@ -186,6 +186,22 @@ const SEO_PAGES = {
     enTitle: 'Quality Management & Testing | CME Dortmund',
     enDescription: 'AOI, ICT, functional testing and full traceability. CME quality assurance for electronic assemblies – ISO 9001 certified.',
   },
+  '/fertigung/smd-bestueckung': {
+    title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
+    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
+    keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung NRW, EMS-Dienstleister, Dampfphasenlöten, Leistungselektronik Bestückung',
+    enPath: '/en/manufacturing/smd-assembly',
+    enTitle: 'SMD Assembly Germany – Electronics Manufacturer from NRW | CME',
+    enDescription: 'SMD assembly in Germany: Your electronics manufacturer from NRW. High-precision PCB assembly from prototype to high-volume series – CME Control Motion Electronics Dortmund.',
+  },
+  '/fertigung/prototypen': {
+    title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',
+    description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
+    keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
+    enPath: '/en/manufacturing/prototypes',
+    enTitle: 'Electronics Prototype Manufacturing – Express from Dortmund | CME',
+    enDescription: 'Electronics prototype manufacturing: Express assembly from single units in Dortmund. Series-identical process, DFM feedback and seamless transition to series.',
+  },
   '/lifecycle': {
     title: 'Lifecycle Services & Reparatur | CME Dortmund',
     description: 'Obsoleszenzmanagement, Redesign, Ersatzteilstrategien und Reparaturservice. CME begleitet Ihre Elektronik über den gesamten Lebenszyklus.',

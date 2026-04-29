@@ -19,6 +19,7 @@ import {
   Database,
   PenTool,
   ChevronDown,
+  Timer,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
@@ -146,6 +147,24 @@ const HERO_VIDEO = {
 };
 
 const subpages = [
+  {
+    icon: Cpu,
+    titleDE: 'SMD-Bestückung',
+    titleEN: 'SMD Assembly',
+    descDE: 'Hochpräzise SMD-Bestückung aller Baugrößen – vom 01005 bis zum BGA. Ihr Elektronik Bestücker in Deutschland.',
+    descEN: 'High-precision SMD assembly of all package sizes – from 01005 to BGA. Your electronics manufacturer in Germany.',
+    href: '/fertigung/smd-bestueckung',
+    img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1148__1920px_1cc154ec.jpg',
+  },
+  {
+    icon: Timer,
+    titleDE: 'Prototypenfertigung',
+    titleEN: 'Prototype Manufacturing',
+    descDE: 'Express-Prototypen ab Einzelstück mit serienidentischem Prozess. Schnelle Turnarounds, valide Ergebnisse.',
+    descEN: 'Express prototypes from single units with series-identical process. Fast turnarounds, valid results.',
+    href: '/fertigung/prototypen',
+    img: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_1736__1920px_e713f7ca.jpg',
+  },
   {
     icon: CircuitBoard,
     titleDE: 'Leiterplatten bestücken',
@@ -393,11 +412,11 @@ export default function Fertigung() {
   return (
     <Layout>
       <SEO
-        titleDE='EMS-Fertigung & Elektronikfertigung Dortmund | CME'
-        titleEN='EMS Manufacturing & Electronics Production Dortmund | CME'
-        descriptionDE='Professionelle Elektronikfertigung (EMS) in Dortmund: Leiterplatten bestücken, Baugruppen fertigen, Qualitätsmanagement nach IPC. Vom Prototyp bis zur Serie.'
-        descriptionEN='Professional electronics manufacturing (EMS) in Dortmund: PCB assembly, module production, quality management to IPC standards. From prototype to series.'
-        keywordsDE='EMS-Fertigung, Elektronikfertigung, SMD-Bestückung, THT-Bestückung, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
+        titleDE='Elektronikfertigung & SMD-Bestückung Deutschland | EMS-Dienstleister CME'
+        titleEN='Electronics Manufacturing & SMD Assembly Germany | EMS Provider CME'
+        descriptionDE='Ihr Elektronik Bestücker in Deutschland: Professionelle EMS-Fertigung in Dortmund – SMD-Bestückung, Baugruppenfertigung und Qualitätsmanagement nach IPC. Vom Prototyp bis zur Großserie.'
+        descriptionEN='Your electronics manufacturer in Germany: Professional EMS manufacturing in Dortmund – SMD assembly, module production and quality management to IPC standards. From prototype to high-volume series.'
+        keywordsDE='Elektronik Bestücker Deutschland, EMS-Dienstleister, Elektronikfertigung, SMD-Bestückung NRW, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
         keywordsEN='EMS manufacturing, electronics manufacturing, SMD assembly, THT assembly, PCB assembly, module manufacturing, prototyping, series production, AOI, IPC'
         path='/fertigung'
         enPath='/en/manufacturing'

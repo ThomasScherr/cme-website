@@ -612,3 +612,9 @@
 - [ ] SEO-FIX-4: JSON-LD BreadcrumbList + Service auf /entwicklung ergänzen (später)
 - [x] SEO-FIX-5: SEO.tsx Canonical auf Trailing Slash umgestellt, konsistent mit SEO_BLOCK
 - [x] SEO-FIX-6: /en hat html lang="en" im Raw-HTML (seoHtmlInjector + generate-seo-pages)
+- [x] SEO-IMPL-1: Neue Seite /fertigung/smd-bestueckung/ erstellen (H1: SMD-Bestückung Deutschland)
+- [x] SEO-IMPL-2: Neue Seite /fertigung/prototypen/ erstellen (H1: Elektronik-Prototypen fertigen lassen)
+- [x] SEO-IMPL-3: On-Page-Optimierung /fertigung/ (H1, Meta-Description für "Elektronik Bestücker")
+- [x] SEO-IMPL-4: Schema.org Service + BreadcrumbList JSON-LD auf Fertigungs-Seiten
+- [x] SEO-IMPL-5: Interne Verlinkung von Homepage und anderen Seiten stärken
+- [x] SEO-IMPL-6: Sitemap, seoPageData, prerenderMiddleware um neue Routen erweitern

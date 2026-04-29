@@ -29,6 +29,8 @@ const Fertigung = lazy(() => import("./pages/Fertigung"));
 const Leiterplatten = lazy(() => import("./pages/fertigung/Leiterplatten"));
 const Baugruppen = lazy(() => import("./pages/fertigung/Baugruppen"));
 const Qualitaet = lazy(() => import("./pages/fertigung/Qualitaet"));
+const SmdBestueckung = lazy(() => import("./pages/fertigung/SmdBestueckung"));
+const Prototypen = lazy(() => import("./pages/fertigung/Prototypen"));
 
 const Lifecycle = lazy(() => import("./pages/Lifecycle"));
 const Maerkte = lazy(() => import("./pages/Maerkte"));
@@ -76,6 +78,8 @@ function Router() {
 
         {/* Fertigung */}
         <Route path="/fertigung" component={Fertigung} />
+        <Route path="/fertigung/smd-bestueckung" component={SmdBestueckung} />
+        <Route path="/fertigung/prototypen" component={Prototypen} />
         <Route path="/fertigung/leiterplatten" component={Leiterplatten} />
         <Route path="/fertigung/baugruppen" component={Baugruppen} />
         <Route path="/fertigung/qualitaet" component={Qualitaet} />

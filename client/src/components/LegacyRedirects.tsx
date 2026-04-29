@@ -54,6 +54,8 @@ const EN_TO_DE_MAP: Record<string, string> = {
   "/en/manufacturing/printed-circuit-boards": "/fertigung/leiterplatten",
   "/en/manufacturing/assemblies": "/fertigung/baugruppen",
   "/en/manufacturing/quality": "/fertigung/qualitaet",
+  "/en/manufacturing/smd-assembly": "/fertigung/smd-bestueckung",
+  "/en/manufacturing/prototypes": "/fertigung/prototypen",
   "/en/lifecycle": "/lifecycle",
   "/en/markets": "/maerkte",
   "/en/company": "/unternehmen",
