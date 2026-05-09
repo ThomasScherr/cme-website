@@ -629,3 +629,4 @@
 - [x] GEO-FIX-2: Meta-Description auf 154 Zeichen gekürzt (war 179, max 155 erlaubt)
 - [x] GEO-FIX-3: Organization + WebSite als JSON-LD Array im SEO_BLOCK (Backup falls body-Script auch entfernt wird)
 - [x] GEO-FIX-4: Keyword "Elektronik Bestücker" in Meta-Description integriert
+- [x] GEO-FIX-5: WebSite-Schema durch WebPage-Schema ersetzt (Audit fordert Organization + WebPage)

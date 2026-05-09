@@ -56,13 +56,19 @@ const SEO_PAGES = {
       "sameAs": ["https://www.linkedin.com/company/cme-control-motion-electronics/"]
     }, {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "CME Control Motion Electronics GmbH",
+      "@type": "WebPage",
+      "name": "CME Control Motion Electronics GmbH \u2013 Elektronikentwicklung & EMS-Fertigung aus Dortmund",
       "url": "https://control-motion.de/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://control-motion.de/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+      "description": "CME \u2013 EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Best\u00fccker f\u00fcr Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "CME Control Motion Electronics GmbH",
+        "url": "https://control-motion.de/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CME Control Motion Electronics GmbH",
+        "url": "https://control-motion.de"
       }
     }],
   },
