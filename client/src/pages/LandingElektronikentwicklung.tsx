@@ -36,7 +36,7 @@ const HERO_VIDEO_POSTER = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169
 const faqs = [
   {
     question: 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?',
-    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie eine qualifizierte Ersteinschätzung von unseren Ingenieuren – keine automatisierte Antwort, sondern ein echtes technisches Feedback zu Ihrem Projekt.',
+    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie eine erstes Feedback auf Ihre Anfrage.',
   },
   {
     question: 'Was kostet eine Elektronikentwicklung bei CME?',
