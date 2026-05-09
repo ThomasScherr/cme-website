@@ -618,3 +618,7 @@
 - [x] SEO-IMPL-4: Schema.org Service + BreadcrumbList JSON-LD auf Fertigungs-Seiten
 - [x] SEO-IMPL-5: Interne Verlinkung von Homepage und anderen Seiten stärken
 - [x] SEO-IMPL-6: Sitemap, seoPageData, prerenderMiddleware um neue Routen erweitern
+- [x] GEO-QW-1: JSON-LD (Service, FAQ, BreadcrumbList) in prerenderMiddleware Bot-HTML einfügen
+- [x] GEO-QW-2: datePublished/dateModified Metadaten auf allen Seiten (seoHtmlInjector + prerenderMiddleware)
+- [x] GEO-QW-3: Content-Tiefe in prerenderMiddleware auf 800+ Wörter pro Schlüsselseite erhöhen
+- [x] GEO-QW-4: FAQ-Schema und FAQ-Text direkt im prerenderMiddleware Raw-HTML

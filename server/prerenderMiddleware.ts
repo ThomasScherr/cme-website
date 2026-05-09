@@ -162,8 +162,18 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Hardware- und Softwareentwicklung für elektronische Steuerungen. Schaltungsentwicklung, Embedded Software, FPGA-Design.',
     h1: 'Hardware- & Softwareentwicklung',
     keywords: 'Hardware-Entwicklung, Softwareentwicklung, Schaltungsentwicklung, Embedded Software, FPGA, Steuerungsentwicklung, Leiterplattendesign',
-    content: `Professionelle Hardware- und Softwareentwicklung für elektronische Steuerungen und Systeme.
-    Schaltungsentwicklung, Leiterplattendesign, Embedded Software, FPGA-Design, Firmware-Entwicklung.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Entwicklung', url: '/entwicklung/' },
+      { name: 'Hardware & Software', url: '/entwicklung/hardware-software/' },
+    ],
+    content: `Professionelle Hardware- und Softwareentwicklung für elektronische Steuerungen und Systeme bei CME Control Motion Electronics in Dortmund.
+    Unser Leistungsspektrum umfasst die vollständige Schaltungsentwicklung von der Spezifikation bis zum serienreifen Layout. Wir entwickeln analoge und digitale Schaltungen, Mixed-Signal-Designs und Leistungselektronik-Topologien für Ihre Anwendung.
+    Leiterplattendesign (PCB-Layout): Mehrlagige Leiterplatten bis 16+ Layer, HDI-Technologie, impedanzkontrolliertes Routing, thermisch optimierte Kupferflächen für Leistungselektronik. EMV-gerechtes Layout mit definierten Massekonzepten.
+    Embedded Software und Firmware: Echtzeitfähige Firmware für ARM Cortex (STM32, NXP, Infineon), FPGA-Designs (Xilinx, Intel/Altera), Kommunikationsschnittstellen (CAN, EtherCAT, SPI, UART, I2C, Ethernet), Bootloader und OTA-Update-Mechanismen.
+    FPGA-Design: Digitale Signalverarbeitung, Echtzeit-Regelung, schnelle Kommunikationsschnittstellen. VHDL und Verilog, Simulation und Verifikation mit Testbenches.
+    Modellbasierte Entwicklung: MATLAB/Simulink für Reglerdesign und automatische Codegenerierung. Rapid Prototyping mit dSPACE und Hardware-in-the-Loop (HIL).
+    Warum CME für Hardware- und Softwareentwicklung? Hardware und Software werden bei CME immer als Einheit gedacht. Unsere Ingenieure arbeiten interdisziplinär – das vermeidet Schnittstellenprobleme und verkürzt die Entwicklungszeit. Über 15 Jahre Erfahrung in anspruchsvollen Projekten der Leistungselektronik, Antriebstechnik und Medizintechnik.`,
   },
   '/entwicklung/simulation': {
     enPath: '/en/development/simulation',
@@ -171,8 +181,18 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Simulation und thermisches Management für Elektronik. FEM, CFD, thermische Analyse, Leistungselektronik-Simulation.',
     h1: 'Simulation & Thermisches Management',
     keywords: 'Simulation, thermisches Management, FEM, CFD, thermische Analyse, Leistungselektronik-Simulation',
-    content: `Simulation und thermisches Management für anspruchsvolle Elektronikprojekte.
-    FEM-Analyse, CFD-Simulation, thermische Analyse, Leistungselektronik-Simulation.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Entwicklung', url: '/entwicklung/' },
+      { name: 'Simulation', url: '/entwicklung/simulation/' },
+    ],
+    content: `Simulation und thermisches Management für anspruchsvolle Elektronikprojekte bei CME Control Motion Electronics.
+    Leistungselektronik erzeugt systembedingt hohe Verlustleistungen. Das thermische Management entscheidet über Zuverlässigkeit, Lebensdauer und Baugröße. Bei CME ist die thermische Simulation fester Bestandteil jedes Leistungselektronik-Projekts – nicht erst ein nachgelagerter Prüfschritt.
+    Thermische Simulation (CFD und FEM): Strömungssimulation (CFD) für Kühlkonzepte mit erzwungener und natürlicher Konvektion. Finite-Elemente-Analyse (FEM) für Wärmeleitung in Leiterplatten, Kühlkörpern und Gehäusen. Transiente Analysen für Lastspiele und Worst-Case-Szenarien.
+    Schaltungssimulation: SPICE-basierte Schaltungssimulation für Leistungselektronik-Topologien. Verlustleistungsberechnung für MOSFETs, IGBTs, SiC- und GaN-Halbleiter. Parametervariation und Worst-Case-Analyse für robustes Design.
+    Multiphysik-Simulation: Kopplung von elektrischer, thermischer und mechanischer Simulation. Elektromagnetische Feldsimulation für EMV-Vorhersage. Vibrations- und Schockanalyse für Automotive- und Industrieanwendungen.
+    Werkzeuge: COMSOL Multiphysics, ANSYS (Icepak, Motor-CAD), PLECS, LTspice, Micro-Cap, MATLAB/Simulink, MathWorks Simscape.
+    Ergebnis: Optimierte Designs mit minimierten Iterationsschleifen. Die Simulation reduziert Hardware-Prototypen und verkürzt die Time-to-Market um typisch 30–40 Prozent.`,
   },
   '/entwicklung/test-verifikation': {
     enPath: '/en/development/test-verification',
@@ -180,8 +200,18 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Test und Verifikation nach V-Modell. Testautomatisierung, HIL-Tests, Umweltsimulation, Zuverlässigkeitstests.',
     h1: 'Test & Verifikation',
     keywords: 'Test, Verifikation, V-Modell, Testautomatisierung, HIL-Test, Umweltsimulation, Zuverlässigkeitstest',
-    content: `Test und Verifikation nach V-Modell für elektronische Systeme.
-    Testautomatisierung, Hardware-in-the-Loop (HIL), Umweltsimulation, Zuverlässigkeitstests.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Entwicklung', url: '/entwicklung/' },
+      { name: 'Test & Verifikation', url: '/entwicklung/test-verifikation/' },
+    ],
+    content: `Test und Verifikation nach V-Modell für elektronische Systeme bei CME Control Motion Electronics.
+    Systematische Validierung auf allen Ebenen: Komponententest, Integrations- und Systemtest bis hin zur Typprüfung und Zulassung. Wir stellen sicher, dass Ihre Elektronik die spezifizierten Anforderungen unter allen Betriebsbedingungen erfüllt.
+    Testautomatisierung: Automatisierte Prüfstände für Dauerlauf, Parametrierung und End-of-Line-Tests. Python- und LabVIEW-basierte Testframeworks mit reproduzierbaren Testabläufen und automatischer Protokollierung.
+    Hardware-in-the-Loop (HIL): Echtzeit-Simulation der Systemumgebung für Steuergeräte-Tests. Validierung von Regelungsalgorithmen und Sicherheitsfunktionen ohne physischen Prüfling. Fehlersimulation und Grenzwertanalyse.
+    Umweltsimulation: Temperaturwechseltests (-40 bis +150 Grad Celsius), Vibrations- und Schockprüfung, Feuchte-Wärme-Zyklen, Höhensimulation. Qualifikation nach Automotive (LV124), Industrie (IEC 60068) und Medizin (IEC 60601).
+    EMV-Validierung: Störaussendung und Störfestigkeit nach EN 55032, EN 61000-4, CISPR 25. Pre-Compliance-Messungen im eigenen Labor, Begleitung bei akkreditierten Prüfhäusern.
+    Zuverlässigkeitstests: HALT (Highly Accelerated Life Test), HASS, Burn-In, Lebensdauerprognose. Ausfallanalyse und Root-Cause-Investigation bei Feldausfällen.`,
   },
   '/entwicklung/ux-interface-engineering': {
     enPath: '/en/development/ux-interface-engineering',
@@ -270,7 +300,17 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Professionelle Leiterplattenbestückung: SMD, THT, Mischbestückung. Prototypen und Serienfertigung.',
     h1: 'Leiterplattenbestückung',
     keywords: 'Leiterplattenbestückung, SMD-Bestückung, THT-Bestückung, Mischbestückung, PCB-Assembly',
-    content: `Professionelle Leiterplattenbestückung: SMD, THT und Mischbestückung. Prototypen und Serienfertigung.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Fertigung', url: '/fertigung/' },
+      { name: 'Leiterplattenbestückung', url: '/fertigung/leiterplatten/' },
+    ],
+    content: `Professionelle Leiterplattenbestückung bei CME Control Motion Electronics in Dortmund: SMD, THT und Mischbestückung vom Prototyp bis zur Großserie.
+    SMD-Bestückung: Hochgeschwindigkeits-Bestückungsautomaten für alle gängigen Bauformen von 01005 bis BGA mit 0,4 mm Pitch. Lotpastendruck mit 100-Prozent-SPI-Kontrolle. Reflow-Löten und Dampfphasenlöten für bleifreie und bleihaltige Prozesse.
+    THT-Bestückung: Manuelle und maschinelle Bestückung bedrahteter Bauteile. Selektivlöten für gemischte Baugruppen. Wellenlöten für hohe Stückzahlen.
+    Mischbestückung: Kombination von SMD und THT auf einer Baugruppe. Optimierte Fertigungsreihenfolge für minimale thermische Belastung.
+    Qualitätssicherung: 100-Prozent-AOI (Automatische Optische Inspektion) nach jedem Lötprozess. MOI (Manuelle Optische Inspektion) durch IPC-A-610-zertifizierte Prüfer. Lückenlose Rückverfolgbarkeit über MES-System.
+    Flexible Losgrößen: Einzelstück-Prototypen, Kleinserien ab 10 Stück, Serienproduktion mit mehreren tausend Einheiten pro Monat. Express-Fertigung bei Bauteilbereitschaft innerhalb weniger Arbeitstage.`,
   },
   '/fertigung/baugruppen': {
     enPath: '/en/manufacturing/assemblies',
@@ -278,7 +318,17 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Baugruppenfertigung und Systemintegration. Komplette elektronische Baugruppen aus einer Hand.',
     h1: 'Baugruppenfertigung',
     keywords: 'Baugruppenfertigung, Systemintegration, elektronische Baugruppen, Gehäusemontage',
-    content: `Baugruppenfertigung und Systemintegration. Komplette elektronische Baugruppen aus einer Hand.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Fertigung', url: '/fertigung/' },
+      { name: 'Baugruppenfertigung', url: '/fertigung/baugruppen/' },
+    ],
+    content: `Baugruppenfertigung und Systemintegration bei CME Control Motion Electronics – komplette elektronische Baugruppen aus einer Hand.
+    Von der bestückten Leiterplatte zur fertigen Baugruppe: CME übernimmt alle Schritte nach der Leiterplattenbestückung. Gehäusemontage, Verkabelung, Verguss, Schutzlackierung und Endmontage.
+    Verguss und Schutzlackierung: Verguss mit PU, Epoxid oder Silikon für Schutz gegen Feuchtigkeit, Vibration und Chemikalien. Conformal Coating (Schutzlack) per Sprühen oder selektivem Auftrag mit UV-Inspektion.
+    Kabelkonfektionierung: Kundenspezifische Kabelbäume und Steckverbindungen. Crimpkontakte, Lötverbindungen und Ultraschallschweißen. Prüfung mit Durchgangstester und Hochspannungsprüfung.
+    Endmontage: Komplette Gerätemontage inklusive Gehäuse, Bedienelemente, Displays und Beschriftung. Funktionstest und Verpackung nach Kundenspezifikation.
+    Traceability: Jede Baugruppe ist lückenlos rückverfolgbar vom Wareneingang bis zum Versand. Alle Fertigungsgeräte sind in einer zentralen MES-Datenbank vernetzt.`,
   },
   '/fertigung/qualitaet': {
     enPath: '/en/manufacturing/quality',
@@ -286,7 +336,18 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Qualitätssicherung in der Elektronikfertigung. AOI, MOI, IPC-Standards, ISO 9001, ISO 14001.',
     h1: 'Qualitätssicherung',
     keywords: 'Qualitätssicherung, AOI, MOI, IPC, ISO 9001, ISO 14001, Qualitätsmanagement',
-    content: `Qualitätssicherung in der Elektronikfertigung: AOI, MOI, IPC-Standards. Zertifiziert nach ISO 9001 und ISO 14001.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Fertigung', url: '/fertigung/' },
+      { name: 'Qualitätssicherung', url: '/fertigung/qualitaet/' },
+    ],
+    content: `Qualitätssicherung in der Elektronikfertigung bei CME Control Motion Electronics – zertifiziert nach ISO 9001 und ISO 14001.
+    Automatische Optische Inspektion (AOI): 100-Prozent-Prüfung nach jedem Lötprozess. Erkennung von Lötfehlern, fehlenden oder verdrehten Bauteilen, Brücken und kalten Lötstellen. Statistische Auswertung für kontinuierliche Prozessverbesserung.
+    Manuelle Optische Inspektion (MOI): Prüfung durch IPC-A-610-zertifizierte Inspektoren. Bewertung nach IPC-A-610 Klasse 2 und Klasse 3. Dokumentation mit Mikroskop-Aufnahmen.
+    Lotpasteninspektion (SPI): 3D-Vermessung des Lotpastendrucks vor der Bestückung. Volumen-, Höhen- und Positionskontrolle jedes Pads.
+    Funktionstest: End-of-Line-Prüfung aller Serieneinheiten. Kundenspezifische Testadapter und Prüfprogramme. In-Circuit-Test (ICT) und Flying-Probe-Test.
+    Zertifizierungen: ISO 9001:2015 (Qualitätsmanagement), ISO 14001:2015 (Umweltmanagement). Fertigung nach IPC-A-610 und IPC J-STD-001. IATF 16949 für Automotive-Projekte.
+    Traceability: Lückenlose Rückverfolgbarkeit jeder Baugruppe. Chargen-Tracking, Serien-Tracking und Bauteil-Tracking. MES-gestützte Dokumentation aller Fertigungsschritte.`,
   },
   '/fertigung/smd-bestueckung': {
     enPath: '/en/manufacturing/smd-assembly',
@@ -294,11 +355,28 @@ const PAGES: Record<string, PageMeta> = {
     description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
     h1: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW',
     keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung NRW, EMS-Dienstleister, Dampfphasenlöten, Leistungselektronik Bestückung',
-    content: `Hochpräzise SMD-Bestückung vom Prototyp bis zur Großserie. Ihr Elektronik Bestücker in Deutschland mit Standort Dortmund, NRW.
-    Bestückung aller SMD-Bauformen: 01005, 0201, QFN, BGA, LGA, SOP, MELF – bis 0,4 mm Pitch.
-    Leistungselektronik-Bestückung: SiC, GaN, IGBT-Module. Dampfphasenlöten für gleichmäßige Wärmeübertragung.
-    Flexible Losgrößen: Prototypen ab 1 Stück, Kleinserien, Großserie mit mehreren tausend Baugruppen pro Monat.
-    100%-Qualitätskontrolle: AOI, SPI, MOI durch IPC-zertifizierte Prüfer. ISO 9001 zertifiziert.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Fertigung', url: '/fertigung/' },
+      { name: 'SMD-Bestückung', url: '/fertigung/smd-bestueckung/' },
+    ],
+    content: `Hochpräzise SMD-Bestückung vom Prototyp bis zur Großserie bei CME Control Motion Electronics – Ihr Elektronik Bestücker in Deutschland mit Standort Dortmund, Nordrhein-Westfalen.
+    CME ist ein EMS-Dienstleister (Electronic Manufacturing Services) mit eigener Elektronikentwicklung. Das bedeutet: Entwicklung und Fertigung unter einem Dach. Direkte Rückkopplung zwischen Layout-Ingenieur und Fertigungslinie – keine Schnittstellenverluste, keine Iterationsschleifen zwischen verschiedenen Unternehmen.
+    SMD-Bauformen und Technologien: Bestückung aller gängigen SMD-Packages von 01005 (0,4 x 0,2 mm) bis zu großen BGA mit über 1000 Balls. QFN, DFN, LGA, CSP, SOP, MELF – bis 0,4 mm Pitch. Hochstrom-Packages für Leistungselektronik: SiC-MOSFETs, GaN-HEMTs, IGBT-Module, Leistungsdioden.
+    Lötverfahren: Reflow-Löten (Konvektion) für Standard-SMD. Dampfphasenlöten (Vapor Phase) für Leistungselektronik – gleichmäßige Wärmeübertragung, minimale Voids unter Thermal Pads, kein Überhitzen empfindlicher Bauteile. Selektivlöten für gemischte SMD/THT-Baugruppen.
+    Qualitätssicherung: Lotpasteninspektion (SPI) vor der Bestückung – 3D-Volumenmessung jedes Pads. 100-Prozent-AOI nach jedem Lötprozess. Manuelle Optische Inspektion (MOI) durch IPC-A-610-zertifizierte Prüfer. Zertifiziert nach ISO 9001:2015.
+    Warum CME als Elektronik Bestücker wählen? Über 15 Jahre Erfahrung in der Bestückung thermisch anspruchsvoller Baugruppen. Spezialisierung auf Leistungselektronik, Antriebselektronik und Mechatronik. Standort Deutschland (NRW) – kurze Wege, IP-Schutz nach EU-Recht, keine Zollproblematik. EMS-neutral: Sie entscheiden, ob CME nur fertigt, nur entwickelt oder beides übernimmt.
+    Flexible Losgrößen: Prototypen ab 1 Stück mit Express-Option. Kleinserien von 10 bis 500 Stück. Serienproduktion mit mehreren tausend Baugruppen pro Monat. Skalierung ohne Lieferantenwechsel.`,
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Was kostet SMD-Bestückung bei CME?', acceptedAnswer: { '@type': 'Answer', text: 'Die Kosten hängen von Stückzahl, Bauteilanzahl und Komplexität ab. Für eine verbindliche Kalkulation benötigen wir Gerber-Daten, Stückliste (BOM) und gewünschte Stückzahl. Prototypen starten im niedrigen dreistelligen Bereich pro Baugruppe, Serienpreise sinken mit steigender Stückzahl deutlich.' }},
+        { '@type': 'Question', name: 'Wie schnell kann CME SMD-Baugruppen bestücken?', acceptedAnswer: { '@type': 'Answer', text: 'Bei Bauteilbereitschaft bestücken wir Prototypen innerhalb von 3–5 Arbeitstagen. Express-Fertigung nach Absprache möglich. Serienaufträge werden nach vereinbartem Lieferplan termingerecht abgewickelt.' }},
+        { '@type': 'Question', name: 'Welche minimale Baugröße kann CME bestücken?', acceptedAnswer: { '@type': 'Answer', text: 'Wir bestücken SMD-Bauteile ab Baugröße 01005 (0,4 x 0,2 mm) und BGA mit 0,4 mm Pitch. Für Leistungselektronik verarbeiten wir SiC- und GaN-Packages mit Dampfphasenlöten.' }},
+        { '@type': 'Question', name: 'Was ist der Vorteil von Dampfphasenlöten gegenüber Reflow?', acceptedAnswer: { '@type': 'Answer', text: 'Dampfphasenlöten (Vapor Phase) bietet eine gleichmäßigere Wärmeübertragung als konventionelles Reflow-Löten. Die maximale Temperatur ist physikalisch begrenzt (Siedepunkt des Mediums), was Überhitzung verhindert. Besonders vorteilhaft bei Leistungselektronik: minimale Voids unter Thermal Pads für optimale Wärmeableitung.' }},
+      ],
+    }],
   },
   '/fertigung/prototypen': {
     enPath: '/en/manufacturing/prototypes',
@@ -306,11 +384,27 @@ const PAGES: Record<string, PageMeta> = {
     description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
     h1: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund',
     keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
-    content: `Express-Prototypenfertigung ab Einzelstück mit serienidentischem Prozess.
-    Turnaround in wenigen Arbeitstagen bei Bauteilbereitschaft.
-    DFM-Feedback vor Fertigung: Design-for-Manufacturing-Review Ihrer Fertigungsunterlagen.
-    Leistungselektronik-Prototypen: SiC, GaN, IGBT-Module mit Dampfphasenlöten.
-    Nahtloser Übergang vom Prototyp zur Serie ohne Lieferantenwechsel.`,
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Fertigung', url: '/fertigung/' },
+      { name: 'Prototypen', url: '/fertigung/prototypen/' },
+    ],
+    content: `Express-Prototypenfertigung ab Einzelstück mit serienidentischem Prozess bei CME Control Motion Electronics in Dortmund.
+    Warum Prototypen bei CME fertigen lassen? Bei CME durchlaufen Prototypen denselben Fertigungsprozess wie die spätere Serie: gleiche Maschinen, gleiche Lötprofile, gleiche Qualitätsprüfung. Das bedeutet: Ihre Prototypen sind serienrepräsentativ – keine bösen Überraschungen beim Serienanlauf.
+    DFM-Feedback vor Fertigung: Bevor wir bestücken, prüfen unsere Fertigungsingenieure Ihre Unterlagen auf Fertigbarkeit (Design for Manufacturing). Typische Rückmeldungen: Pad-Geometrien, Lötstoppmaske, Bauteilabstände, Thermal-Relief-Gestaltung. Bei CME-eigenen Entwicklungen erfolgt dieses Feedback bereits während des Layouts – ein entscheidender Vorteil der integrierten Entwicklung und Fertigung.
+    Leistungselektronik-Prototypen: Besondere Expertise bei thermisch anspruchsvollen Prototypen. SiC-MOSFETs, GaN-HEMTs und IGBT-Module mit Dampfphasenlöten für minimale Voids. Thermische Vermessung und Validierung am Prototyp.
+    Turnaround: Bei Bauteilbereitschaft bestücken wir Prototypen innerhalb von 3–5 Arbeitstagen. Express-Option nach Absprache. Bauteilbeschaffung übernehmen wir bei Bedarf.
+    Vom Prototyp zur Serie: Nahtloser Übergang ohne Lieferantenwechsel. Keine erneute Einrichtung, keine neuen Freigabeschleifen. Skalierung von 1 Stück auf tausende pro Monat am gleichen Standort.
+    Fertigungsunterlagen: Gerber-Daten (oder ODB++), Stückliste (BOM) mit Herstellerteilenummern, Bestückungsplan (Pick-and-Place-Daten). Bei unvollständigen Unterlagen unterstützen wir bei der Aufbereitung.`,
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Wie schnell kann CME Elektronik-Prototypen fertigen?', acceptedAnswer: { '@type': 'Answer', text: 'Bei Bauteilbereitschaft bestücken und löten wir Prototypen innerhalb von 3–5 Arbeitstagen. Express-Fertigung nach Absprache möglich. Die Bauteilbeschaffung kann zusätzliche Zeit in Anspruch nehmen.' }},
+        { '@type': 'Question', name: 'Was kostet ein Elektronik-Prototyp bei CME?', acceptedAnswer: { '@type': 'Answer', text: 'Die Kosten hängen von Bauteilanzahl, Komplexität und Lötverfahren ab. Einfache Prototypen starten im niedrigen dreistelligen Bereich. Für eine verbindliche Kalkulation senden Sie uns Gerber-Daten und Stückliste.' }},
+        { '@type': 'Question', name: 'Sind CME-Prototypen serienidentisch?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, Prototypen durchlaufen bei CME denselben Fertigungsprozess wie die spätere Serie: gleiche Bestückungsautomaten, gleiche Lötprofile, gleiche AOI-Prüfung. Das stellt sicher, dass Ihre Prototypen die Serie repräsentieren.' }},
+      ],
+    }],
   },
   '/lifecycle': {
     enPath: '/en/lifecycle',
@@ -483,6 +577,10 @@ function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, de
     <meta name="twitter:title" content="${escapeHtml(page.title)}">
     <meta name="twitter:description" content="${escapeHtml(page.description)}">
     <meta name="twitter:image" content="${ogImage}">
+    
+    <!-- Date metadata for AI citation -->
+    <meta property="article:published_time" content="2024-03-01T00:00:00+01:00">
+    <meta property="article:modified_time" content="${new Date().toISOString().split('T')[0]}T00:00:00+02:00">
     
     <!-- hreflang -->
     <link rel="alternate" hreflang="de" href="${deUrl}">
