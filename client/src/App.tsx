@@ -42,6 +42,7 @@ const Impressum = lazy(() => import("./pages/legal/Impressum"));
 const Datenschutz = lazy(() => import("./pages/legal/Datenschutz"));
 const AGB = lazy(() => import("./pages/legal/AGB"));
 
+const LandingElektronikentwicklung = lazy(() => import("./pages/LandingElektronikentwicklung"));
 const Insights = lazy(() => import("./pages/Insights"));
 const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const InsightsAdmin = lazy(() => import("./pages/admin/InsightsAdmin"));
@@ -98,6 +99,9 @@ function Router() {
         <Route path="/admin/insights/preview/:id" component={InsightPreview} />
         <Route path="/admin/styles" component={StylesheetEditor} />
         <Route path="/admin/content" component={ContentManager} />
+
+        {/* Landing Pages (Google Ads) */}
+        <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />
 
         {/* Rechtliches */}
         <Route path="/impressum" component={Impressum} />

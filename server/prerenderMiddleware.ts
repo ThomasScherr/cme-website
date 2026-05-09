@@ -123,6 +123,33 @@ const PAGES: Record<string, PageMeta> = {
     Zielmärkte: Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Energietechnik, Luft- und Raumfahrt.`,
     schemas: [organizationSchema, websiteSchema, localBusinessSchema],
   },
+  '/elektronikentwicklung': {
+    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
+    h1: 'Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.',
+    keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
+    content: 'CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung. Leistungen: Hardware & Software Design, E-Motor Design, Control Design, Simulation, Validierung & EMV, Test & Verification. Kernkompetenzen: Leistungselektronik (SiC, GaN, IGBT, MOSFET), Antriebselektronik & Motor Control (FOC, BLDC/PMSM), E-Motor-Design (FEA, Motor-CAD), Stromversorgungen (DC/DC, AC/DC, BMS), Umrichter (Automotive, Ladetechnik, PV), Thermisches Management, EMV-Design & Qualifikation, Funktionale Sicherheit (ISO 26262), Automotive SPICE, Embedded Systems RTOS (C/C++). Prozess: 1. Briefing & Machbarkeit (24h Rückmeldung) 2. Konzept & Angebot 3. Entwicklung & Prototyp 4. Test, Qualifikation & Serie.',
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'Elektronikentwicklung',
+      'provider': { '@type': 'Organization', 'name': 'CME Control Motion Electronics GmbH', 'url': 'https://control-motion.de' },
+      'description': 'Entwicklung von Leistungselektronik, Antriebselektronik und Embedded Systemen. Eigenes EMV-Labor und direkte Serienfertigung.',
+      'areaServed': 'DE',
+      'serviceType': 'Electronics Development',
+    }, {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        { '@type': 'Question', 'name': 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Innerhalb von 24 Stunden erhalten Sie eine qualifizierte Ersteinschätzung von unseren Ingenieuren.' } },
+        { '@type': 'Question', 'name': 'Was kostet eine Elektronikentwicklung bei CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Die Kosten hängen von der Komplexität ab: Ein einfaches Sensorboard liegt im niedrigen fünfstelligen Bereich, komplexe Leistungselektronik im sechsstelligen Bereich.' } },
+        { '@type': 'Question', 'name': 'Können Sie bestehende Produkte redesignen?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Ja – Redesign und Weiterentwicklung gehören zu unseren Kernleistungen.' } },
+        { '@type': 'Question', 'name': 'Entwickelt CME auch für Automotive oder Medizintechnik?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Ja. Wir entwickeln nach ISO 26262 und kennen die Anforderungen der IEC 60601.' } },
+        { '@type': 'Question', 'name': 'Was passiert nach der Entwicklung – könnt ihr auch fertigen?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Ja. CME verfügt über eine eigene EMS-Fertigung am Standort Dortmund.' } },
+        { '@type': 'Question', 'name': 'Muss ein vollständiges Lastenheft vorliegen?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Nein. Oft starten wir mit einer Funktionsbeschreibung, einer Skizze oder einem bestehenden Produkt.' } },
+      ],
+    }],
+  },
   '/entwicklung': {
     enPath: '/en/development',
     title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
@@ -700,7 +727,6 @@ export function prerenderMiddleware() {
     };
     // Wildcard prefix rewrites
     const PREFIX_REWRITES: [string, string][] = [
-      ['/elektronikentwicklung', '/entwicklung'],
       ['/elektronikfertigung', '/fertigung'],
       ['/en/electronics-development', '/en/development'],
       ['/en/electronics-manufacturing', '/en/manufacturing'],

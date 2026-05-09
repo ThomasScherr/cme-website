@@ -72,6 +72,31 @@ const SEO_PAGES = {
       }
     }],
   },
+  '/elektronikentwicklung': {
+    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
+    keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
+    jsonLd: [{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Elektronikentwicklung",
+      "provider": { "@type": "Organization", "name": "CME Control Motion Electronics GmbH", "url": "https://control-motion.de" },
+      "description": "Entwicklung von Leistungselektronik, Antriebselektronik und Embedded Systemen. Eigenes EMV-Labor und direkte Serienfertigung.",
+      "areaServed": "DE",
+      "serviceType": "Electronics Development"
+    }, {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Wie schnell bekomme ich eine R\u00fcckmeldung auf meine Anfrage?", "acceptedAnswer": { "@type": "Answer", "text": "Innerhalb von 24 Stunden erhalten Sie eine qualifizierte Ersteinsch\u00e4tzung von unseren Ingenieuren." } },
+        { "@type": "Question", "name": "Was kostet eine Elektronikentwicklung bei CME?", "acceptedAnswer": { "@type": "Answer", "text": "Die Kosten h\u00e4ngen von der Komplexit\u00e4t ab: Ein einfaches Sensorboard liegt im niedrigen f\u00fcnfstelligen Bereich, komplexe Leistungselektronik im sechsstelligen Bereich." } },
+        { "@type": "Question", "name": "K\u00f6nnen Sie bestehende Produkte redesignen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja \u2013 Redesign und Weiterentwicklung geh\u00f6ren zu unseren Kernleistungen." } },
+        { "@type": "Question", "name": "Entwickelt CME auch f\u00fcr Automotive oder Medizintechnik?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wir entwickeln nach ISO 26262 und kennen die Anforderungen der IEC 60601." } },
+        { "@type": "Question", "name": "Was passiert nach der Entwicklung \u2013 k\u00f6nnt ihr auch fertigen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. CME verf\u00fcgt \u00fcber eine eigene EMS-Fertigung am Standort Dortmund." } },
+        { "@type": "Question", "name": "Muss ein vollst\u00e4ndiges Lastenheft vorliegen?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Oft starten wir mit einer Funktionsbeschreibung, einer Skizze oder einem bestehenden Produkt." } }
+      ]
+    }],
+  },
   '/entwicklung': {
     title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
     description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',

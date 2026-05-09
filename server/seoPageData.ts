@@ -38,6 +38,11 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     enTitle: 'CME Control Motion Electronics GmbH',
     enDescription: 'CME Control Motion Electronics is your partner for electronics development and EMS manufacturing in Dortmund: power electronics, drive electronics, mechatronics and thermally demanding electronics projects.',
   },
+  '/elektronikentwicklung': {
+    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
+    keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
+  },
   '/entwicklung': {
     title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
     description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',

@@ -631,3 +631,16 @@
 - [x] GEO-FIX-4: Keyword "Elektronik Bestücker" in Meta-Description integriert
 - [x] GEO-FIX-5: WebSite-Schema durch WebPage-Schema ersetzt (Audit fordert Organization + WebPage)
 - [x] GEO-FIX-6: Organization + WebPage als zwei separate JSON-LD Scripts im body (statt nur WebPage)
+- [x] LANDING: Google Ads Landingpage /elektronikentwicklung erstellen (Conversion-optimiert)
+- [x] LANDING: Hero-Sektion mit Trust-Bar (4 Icons)
+- [x] LANDING: Problem→Lösung Sektion (3 Pain-Point-Karten)
+- [x] LANDING: Leistungen-Grid (6 Karten)
+- [x] LANDING: Kernkompetenzen (2-spaltig)
+- [x] LANDING: Prozess (4 Schritte)
+- [x] LANDING: Warum CME (4 Differenziatoren)
+- [x] LANDING: Anfrageformular (ohne Datei-Upload, mit Privacy-Checkbox)
+- [x] LANDING: FAQ-Accordion (6 Fragen)
+- [x] LANDING: Reduzierter Footer
+- [x] LANDING: SEO (Title, Description, FAQPage-Schema, Service-Schema)
+- [x] LANDING: Route registrieren + Build-Pipeline
+- [x] LANDING: Client-seitige LegacyRedirects für /elektronikentwicklung entfernt

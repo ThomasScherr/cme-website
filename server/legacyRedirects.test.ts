@@ -23,26 +23,12 @@ describe("legacyRedirectMiddleware", () => {
 
   // ── Deutsche alte URLs ──
 
-  it("redirects /elektronikentwicklung → /entwicklung", () => {
-    const req = createMockReq("/elektronikentwicklung");
+  it("redirects /elektronikfertigung → /fertigung", () => {
+    const req = createMockReq("/elektronikfertigung");
     const res = createMockRes();
     middleware(req as Request, res, next);
-    expect(res.redirect).toHaveBeenCalledWith(301, "/entwicklung");
+    expect(res.redirect).toHaveBeenCalledWith(301, "/fertigung");
     expect(next).not.toHaveBeenCalled();
-  });
-
-  it("redirects /elektronikentwicklung/hardware-software → /entwicklung/hardware-software", () => {
-    const req = createMockReq("/elektronikentwicklung/hardware-software");
-    const res = createMockRes();
-    middleware(req as Request, res, next);
-    expect(res.redirect).toHaveBeenCalledWith(301, "/entwicklung/hardware-software");
-  });
-
-  it("redirects /elektronikentwicklung/simulation → /entwicklung/simulation", () => {
-    const req = createMockReq("/elektronikentwicklung/simulation");
-    const res = createMockRes();
-    middleware(req as Request, res, next);
-    expect(res.redirect).toHaveBeenCalledWith(301, "/entwicklung/simulation");
   });
 
   it("redirects /smd-und-tht-bestueckung-von-leiterplatten-leiterkarten → /fertigung/leiterplatten", () => {
@@ -98,11 +84,11 @@ describe("legacyRedirectMiddleware", () => {
 
   // ── Trailing slash handling ──
 
-  it("redirects paths with trailing slash", () => {
-    const req = createMockReq("/elektronikentwicklung/");
+  it("redirects /elektronikfertigung/ with trailing slash", () => {
+    const req = createMockReq("/elektronikfertigung/");
     const res = createMockRes();
     middleware(req as Request, res, next);
-    expect(res.redirect).toHaveBeenCalledWith(301, "/entwicklung");
+    expect(res.redirect).toHaveBeenCalledWith(301, "/fertigung");
   });
 
   it("redirects /en/electronics-manufacturing/ with trailing slash", () => {
@@ -113,6 +99,14 @@ describe("legacyRedirectMiddleware", () => {
   });
 
   // ── Passthrough (no redirect) ──
+
+  it("does not redirect /elektronikentwicklung (now a valid landing page)", () => {
+    const req = createMockReq("/elektronikentwicklung");
+    const res = createMockRes();
+    middleware(req as Request, res, next);
+    expect(res.redirect).not.toHaveBeenCalled();
+    expect(next).toHaveBeenCalled();
+  });
 
   it("does not redirect current routes like /entwicklung", () => {
     const req = createMockReq("/entwicklung");
@@ -147,7 +141,7 @@ describe("legacyRedirectMiddleware", () => {
   });
 
   it("skips non-GET requests", () => {
-    const req = createMockReq("/elektronikentwicklung", "POST");
+    const req = createMockReq("/elektronikfertigung", "POST");
     const res = createMockRes();
     middleware(req as Request, res, next);
     expect(res.redirect).not.toHaveBeenCalled();

@@ -66,7 +66,6 @@ const EN_TO_DE_MAP: Record<string, string> = {
 
 // ── Wildcard prefix rewrites ──
 const PREFIX_REWRITES: [string, string][] = [
-  ["/elektronikentwicklung", "/entwicklung"],
   ["/elektronikfertigung", "/fertigung"],
   ["/en/electronics-development", "/en/development"],
   ["/en/electronics-manufacturing", "/en/manufacturing"],

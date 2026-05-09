@@ -43,12 +43,10 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
 // ── Wildcard prefix rewrites ──
 // Order matters: longer prefixes first to avoid partial matches.
 // Each entry: [oldPrefix, newPrefix]
-// /elektronikentwicklung/foo → /entwicklung/foo
 // /elektronikfertigung/foo → /fertigung/foo
 // /en/electronics-development/foo → /en/development/foo
 // /en/electronics-manufacturing/foo → /en/manufacturing/foo
 const PREFIX_REWRITES: [string, string][] = [
-  ["/elektronikentwicklung", "/entwicklung"],
   ["/elektronikfertigung", "/fertigung"],
   ["/en/electronics-development", "/en/development"],
   ["/en/electronics-manufacturing", "/en/manufacturing"],
