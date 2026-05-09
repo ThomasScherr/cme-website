@@ -448,11 +448,33 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/insights': {
     enPath: '/en/insights',
-    title: 'Insights – Fachartikel & Neuigkeiten | CME',
-    description: 'Fachartikel, Neuigkeiten und Einblicke aus der Welt der Elektronikentwicklung und EMS-Fertigung.',
-    h1: 'Insights – Fachartikel & Neuigkeiten',
-    keywords: 'Fachartikel, Insights, Neuigkeiten, Elektronikentwicklung, EMS-Fertigung, Blog',
-    content: `Fachartikel, Neuigkeiten und Einblicke aus der Welt der Elektronikentwicklung und EMS-Fertigung bei CME.`,
+    title: 'Engineering Insights – Fachartikel von Matthias Markmann | CME',
+    description: 'Fachartikel und Engineering Insights von Matthias Markmann (Dipl.-Ing.) zu Leistungselektronik, Thermal Management, Simulation und Obsoleszenzmanagement.',
+    h1: 'Engineering Insights',
+    keywords: 'Fachartikel, Engineering Insights, Matthias Markmann, Leistungselektronik, Thermal Management, Simulation, Obsoleszenzmanagement',
+    breadcrumbs: [
+      { name: 'Startseite', url: '/' },
+      { name: 'Engineering Insights', url: '/insights/' },
+    ],
+    content: `Engineering Insights – Fachartikel und technische Einblicke von Matthias Markmann, Dipl.-Ing. (FH) und Geschäftsführer der CME Control Motion Electronics GmbH.
+    Matthias Markmann teilt hier sein Expertenwissen aus über 15 Jahren Praxis in der Entwicklung und Fertigung von Leistungselektronik, Antriebstechnik und thermisch anspruchsvollen Systemen.
+    Schwerpunktthemen: Thermal Management in der Leistungselektronik – Simulation, Auslegung und Validierung von Kühlkonzepten. Obsoleszenzmanagement – Strategien für Langzeitverfügbarkeit elektronischer Baugruppen. Entwicklungsmethodik – V-Modell, modellbasierte Entwicklung, Hardware-Software-Co-Design. Fertigungstechnologie – Dampfphasenlöten, SiC/GaN-Verarbeitung, Qualitätssicherung.
+    Über den Autor: Matthias Markmann ist Gesellschafter und Geschäftsführer der CME Control Motion Electronics GmbH in Dortmund. Als Diplom-Ingenieur (FH) der Elektrotechnik verantwortet er die technische Strategie und Projektleitung komplexer Elektronikprojekte für Automotive, Industrieautomation, Medizintechnik und Energietechnik.`,
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Matthias Markmann',
+      jobTitle: 'Geschäftsführer',
+      honorificPrefix: 'Dipl.-Ing. (FH)',
+      url: 'https://control-motion.de/unternehmen/',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'CME Control Motion Electronics GmbH',
+        url: 'https://control-motion.de/',
+      },
+      knowsAbout: ['Elektronikentwicklung', 'Leistungselektronik', 'Thermal Management', 'Simulation', 'Obsoleszenzmanagement', 'Antriebselektronik', 'EMS-Fertigung', 'Mechatronik'],
+      address: { '@type': 'PostalAddress', addressLocality: 'Dortmund', addressCountry: 'DE' },
+    }],
   },
   '/impressum': {
     title: 'Impressum | CME',

@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
+import AuthorCard from '@/components/AuthorCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { useRoute, Link } from 'wouter';
@@ -104,7 +105,8 @@ export default function InsightArticle() {
                 day: 'numeric',
               })}
             </div>
-            {article.author && <span>{isDE ? 'von' : 'by'} {article.author}</span>}
+            <span className="text-gray-300">|</span>
+            <AuthorCard variant="compact" />
           </div>
 
           {/* Cover Image */}
@@ -118,6 +120,9 @@ export default function InsightArticle() {
           <div className="prose prose-gray max-w-none fluid-body-lg" style={{ marginTop: 'var(--space-gap-lg)' }}>
             <Streamdown>{content}</Streamdown>
           </div>
+
+          {/* Author Profile */}
+          <AuthorCard variant="full" />
 
           {/* Back CTA */}
           <div className="border-t border-gray-200" style={{ marginTop: 'var(--space-section-sm)', paddingTop: 'var(--space-gap-md)' }}>

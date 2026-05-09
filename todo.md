@@ -622,3 +622,6 @@
 - [x] GEO-QW-2: datePublished/dateModified Metadaten auf allen Seiten (seoHtmlInjector + prerenderMiddleware)
 - [x] GEO-QW-3: Content-Tiefe in prerenderMiddleware auf 800+ Wörter pro Schlüsselseite erhöhen
 - [x] GEO-QW-4: FAQ-Schema und FAQ-Text direkt im prerenderMiddleware Raw-HTML
+- [x] AUTHOR-1: AuthorCard-Komponente erstellen (Matthias Markmann, Dipl.-Ing. (FH), GF, Experte Thermal Management/Simulation/Obsoleszenz)
+- [x] AUTHOR-2: AuthorCard in Insights-Artikelseite integrieren
+- [x] AUTHOR-3: Schema.org Person JSON-LD für Autoren-Profil (prerenderMiddleware)
