@@ -125,7 +125,7 @@ export default function LandingElektronikentwicklung() {
                   Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.
                 </h1>
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-                  CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung.
+                  CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive, Medizintechnik und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung.
                 </p>
                 <a href="#anfrage" className="inline-flex items-center gap-2 px-6 py-3.5 bg-cme-blue text-white font-bold rounded-lg hover:bg-cme-blue/90 transition-all shadow-lg shadow-cme-blue/20 text-base">
                   Projekt besprechen
