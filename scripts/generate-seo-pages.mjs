@@ -28,12 +28,12 @@ const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/3105196633731695
 const SEO_PAGES = {
   '/': {
     title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
-    description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. Leistungselektronik, Antriebselektronik, Mechatronik. ISO 9001 zertifiziert.',
+    description: 'CME – EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Bestücker für Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',
     enTitle: 'CME Control Motion Electronics GmbH',
     enDescription: 'CME Control Motion Electronics is your partner for electronics development and EMS manufacturing in Dortmund: power electronics, drive electronics, mechatronics and thermally demanding electronics projects.',
-    jsonLd: {
+    jsonLd: [{
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CME Control Motion Electronics GmbH",
@@ -54,7 +54,17 @@ const SEO_PAGES = {
         "availableLanguage": ["German", "English"]
       },
       "sameAs": ["https://www.linkedin.com/company/cme-control-motion-electronics/"]
-    },
+    }, {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CME Control Motion Electronics GmbH",
+      "url": "https://control-motion.de/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://control-motion.de/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }],
   },
   '/entwicklung': {
     title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
