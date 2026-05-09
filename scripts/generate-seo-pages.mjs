@@ -27,7 +27,7 @@ const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/3105196633731695
 
 const SEO_PAGES = {
   '/': {
-    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung',
+    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
     description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. Leistungselektronik, Antriebselektronik, Mechatronik. ISO 9001 zertifiziert.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',

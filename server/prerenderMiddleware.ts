@@ -112,8 +112,8 @@ const localBusinessSchema = {
 const PAGES: Record<string, PageMeta> = {
   '/': {
     enPath: '/en',
-    title: 'CME Control Motion Electronics GmbH',
-    description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.',
+    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
+    description: 'CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. Leistungselektronik, Antriebselektronik, Mechatronik. ISO 9001 zertifiziert.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte. 
