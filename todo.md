@@ -630,3 +630,4 @@
 - [x] GEO-FIX-3: Organization + WebSite als JSON-LD Array im SEO_BLOCK (Backup falls body-Script auch entfernt wird)
 - [x] GEO-FIX-4: Keyword "Elektronik Bestücker" in Meta-Description integriert
 - [x] GEO-FIX-5: WebSite-Schema durch WebPage-Schema ersetzt (Audit fordert Organization + WebPage)
+- [x] GEO-FIX-6: Organization + WebPage als zwei separate JSON-LD Scripts im body (statt nur WebPage)
