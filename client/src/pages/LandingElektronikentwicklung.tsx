@@ -27,13 +27,16 @@ import { Link } from 'wouter';
 
 const PHONE = '0231 286676960';
 const PHONE_HREF = 'tel:+492312866769600';
-const LOGO_URL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png';
+const LOGO_URL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png';
+const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_d94dc755.webm';
+const HERO_VIDEO_MP4 = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample-compressed_8b0d5332.mp4';
+const HERO_VIDEO_POSTER = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero-video-poster_8c5a9e34.jpg';
 
 // ── FAQ Data ──
 const faqs = [
   {
     question: 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?',
-    answer: 'Innerhalb von 24 Stunden erhalten Sie eine qualifizierte Ersteinschätzung von unseren Ingenieuren – keine automatisierte Antwort, sondern ein echtes technisches Feedback zu Ihrem Projekt.',
+    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie eine qualifizierte Ersteinschätzung von unseren Ingenieuren – keine automatisierte Antwort, sondern ein echtes technisches Feedback zu Ihrem Projekt.',
   },
   {
     question: 'Was kostet eine Elektronikentwicklung bei CME?',
@@ -88,11 +91,14 @@ export default function LandingElektronikentwicklung() {
 
       {/* ── HEADER (reduced) ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: 'var(--nav-height)' }}>
           <Link href="/">
-            <img src={LOGO_URL} alt="CME Control Motion Electronics" className="h-10 sm:h-12" />
+            <img src={LOGO_URL} alt="CME Control Motion Electronics" className="w-auto" style={{ height: 'var(--nav-logo)' }} />
           </Link>
           <div className="flex items-center gap-3 sm:gap-4">
+            <Link href="/unternehmen" className="hidden sm:inline-flex text-sm font-medium text-gray-600 hover:text-cme-blue transition-colors">
+              Über CME
+            </Link>
             <a href={PHONE_HREF} className="hidden sm:flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-cme-blue transition-colors">
               <Phone className="w-4 h-4" />
               {PHONE}
@@ -105,24 +111,63 @@ export default function LandingElektronikentwicklung() {
         </div>
       </header>
 
-      <main className="pt-16">
+      <main style={{ paddingTop: 'var(--nav-height)' }}>
         {/* ══════════ 1. HERO ══════════ */}
         <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-cme-blue-light py-16 sm:py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-xs sm:text-sm font-bold tracking-[0.2em] text-cme-blue uppercase mb-4">
-                Elektronikentwicklung · Dortmund
-              </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-                CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung.
-              </p>
-              <a href="#anfrage" className="inline-flex items-center gap-2 px-6 py-3.5 bg-cme-blue text-white font-bold rounded-lg hover:bg-cme-blue/90 transition-all shadow-lg shadow-cme-blue/20 text-base">
-                Projekt besprechen
-                <ChevronRight className="w-5 h-5" />
-              </a>
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
+              {/* Left: Text */}
+              <div>
+                <p className="text-xs sm:text-sm font-bold tracking-[0.2em] text-cme-blue uppercase mb-4">
+                  Elektronikentwicklung · Dortmund
+                </p>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                  Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.
+                </h1>
+                <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
+                  CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung.
+                </p>
+                <a href="#anfrage" className="inline-flex items-center gap-2 px-6 py-3.5 bg-cme-blue text-white font-bold rounded-lg hover:bg-cme-blue/90 transition-all shadow-lg shadow-cme-blue/20 text-base">
+                  Projekt besprechen
+                  <ChevronRight className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* Right: Diamond Video */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden lg:flex relative items-center justify-center"
+              >
+                {/* Accent diamond behind */}
+                <div
+                  className="absolute diamond bg-cme-blue/[0.07]"
+                  style={{
+                    width: 'clamp(420px, 33vw, 630px)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%) translate(8%, 8%)',
+                    zIndex: 1,
+                  }}
+                />
+                {/* Main diamond with video */}
+                <div
+                  className="diamond shadow-xl shadow-cme-blue/15 relative"
+                  style={{ width: 'clamp(360px, 30vw, 570px)', zIndex: 2 }}
+                >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster={HERO_VIDEO_POSTER}
+                  >
+                    <source src={HERO_VIDEO_WEBM} type="video/webm" />
+                    <source src={HERO_VIDEO_MP4} type="video/mp4" />
+                  </video>
+                </div>
+              </motion.div>
             </div>
           </div>
 
@@ -130,7 +175,7 @@ export default function LandingElektronikentwicklung() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
-                { icon: Clock, text: 'Erste Rückmeldung in 24h' },
+                { icon: Clock, text: 'Erste Rückmeldung in 1 Werktag' },
                 { icon: Radio, text: 'Eigenes EMV-Labor' },
                 { icon: MapPin, text: 'Dortmund, Deutschland' },
                 { icon: Layers, text: 'Entwicklung + EMS aus einer Hand' },
@@ -249,7 +294,7 @@ export default function LandingElektronikentwicklung() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { step: '1', title: 'Briefing & Machbarkeit', desc: '24h Rückmeldung, kostenlos. Wir bewerten Ihre Anforderungen und geben eine erste Einschätzung.' },
+                { step: '1', title: 'Briefing & Machbarkeit', desc: 'Rückmeldung innerhalb von 1 Werktag (Mo–Fr), kostenlos. Wir bewerten Ihre Anforderungen und geben eine erste Einschätzung.' },
                 { step: '2', title: 'Konzept & Angebot', desc: 'Technisches Konzept, Zeitplan und transparentes Angebot mit klaren Meilensteinen.' },
                 { step: '3', title: 'Entwicklung & Prototyp', desc: 'Hardware, Software und Simulation parallel. Prototypenfertigung in eigener Produktion.' },
                 { step: '4', title: 'Test, Qualifikation & Serie', desc: 'EMV, Umwelttests, Zulassung und Serienanlauf — alles aus einer Hand.' },
@@ -301,7 +346,7 @@ export default function LandingElektronikentwicklung() {
               Projekt besprechen — kostenlos und unverbindlich
             </h2>
             <p className="text-center text-gray-600 mb-10">
-              Beschreiben Sie Ihr Vorhaben. Wir melden uns innerhalb von 24 Stunden.
+              Beschreiben Sie Ihr Vorhaben. Wir melden uns innerhalb von 1 Werktag (Mo–Fr).
             </p>
 
             <ContactForm />
@@ -406,7 +451,7 @@ function ContactForm() {
       >
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Anfrage erhalten!</h3>
-        <p className="text-gray-600">Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+        <p className="text-gray-600">Wir melden uns innerhalb von 1 Werktag (Mo–Fr) bei Ihnen.</p>
       </motion.div>
     );
   }

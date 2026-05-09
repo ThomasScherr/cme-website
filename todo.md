@@ -644,3 +644,7 @@
 - [x] LANDING: SEO (Title, Description, FAQPage-Schema, Service-Schema)
 - [x] LANDING: Route registrieren + Build-Pipeline
 - [x] LANDING: Client-seitige LegacyRedirects für /elektronikentwicklung entfernt
+- [x] LANDING-FIX: Logo im Header der Landingpage reparieren (verwendet jetzt --nav-logo CSS-Variable)
+- [x] LANDING-FIX: Raute mit Video in Hero-Sektion eingefügt (50% größer als Standard)
+- [x] LANDING-FIX: 24h durch "1 Werktag (Mo-Fr)" ersetzt (Trust-Bar, Prozess, Formular, FAQ)
+- [x] LANDING: "Über CME" Text-Link in Navigationsleiste eingefügt (verlinkt auf /unternehmen)
