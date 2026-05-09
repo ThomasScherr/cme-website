@@ -36,7 +36,7 @@ const HERO_VIDEO_POSTER = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169
 const faqs = [
   {
     question: 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?',
-    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie eine erstes Feedback auf Ihre Anfrage.',
+    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie ein erstes Feedback auf Ihre Anfrage.',
   },
   {
     question: 'Was kostet eine Elektronikentwicklung bei CME?',
@@ -419,7 +419,19 @@ function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => setSubmitted(true),
+    onSuccess: () => {
+      setSubmitted(true);
+      // Google Ads Conversion Tracking
+      const gtag = (window as any).gtag;
+      const adsId = import.meta.env.VITE_GOOGLE_ADS_ID;
+      if (gtag && adsId) {
+        gtag('event', 'conversion', {
+          send_to: `${adsId}/lead_form_submit`,
+          value: 1.0,
+          currency: 'EUR',
+        });
+      }
+    },
     onError: (err) => toast.error(err.message || 'Fehler beim Senden. Bitte versuchen Sie es erneut.'),
   });
 

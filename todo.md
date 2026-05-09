@@ -648,3 +648,5 @@
 - [x] LANDING-FIX: Raute mit Video in Hero-Sektion eingefügt (50% größer als Standard)
 - [x] LANDING-FIX: 24h durch "1 Werktag (Mo-Fr)" ersetzt (Trust-Bar, Prozess, Formular, FAQ)
 - [x] LANDING: "Über CME" Text-Link in Navigationsleiste eingefügt (verlinkt auf /unternehmen)
+- [x] LANDING-FIX: Grammatikfehler "eine erstes" → "ein erstes" in FAQ korrigieren
+- [x] LANDING: Google Ads Conversion-Tag (gtag event) beim Formular-Submit implementieren
