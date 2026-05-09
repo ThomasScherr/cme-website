@@ -426,7 +426,7 @@ function ContactForm() {
       const adsId = import.meta.env.VITE_GOOGLE_ADS_ID;
       if (gtag && adsId) {
         gtag('event', 'conversion', {
-          send_to: `${adsId}/lead_form_submit`,
+          send_to: `${adsId}/JUxQCObtnaocEKWm9qoB`,
           value: 1.0,
           currency: 'EUR',
         });

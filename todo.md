@@ -650,3 +650,6 @@
 - [x] LANDING: "Über CME" Text-Link in Navigationsleiste eingefügt (verlinkt auf /unternehmen)
 - [x] LANDING-FIX: Grammatikfehler "eine erstes" → "ein erstes" in FAQ korrigieren
 - [x] LANDING: Google Ads Conversion-Tag (gtag event) beim Formular-Submit implementieren
+- [x] LANDING: VITE_GOOGLE_ADS_ID auf AW-358454053 gesetzt
+- [x] LANDING: Conversion-Label JUxQCObtnaocEKWm9qoB im Code konfiguriert (send_to: AW-358454053/JUxQCObtnaocEKWm9qoB)
+- [x] LANDING: Medizintechnik in Hero-Subheadline ergänzt
