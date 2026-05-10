@@ -655,3 +655,9 @@
 - [x] LANDING: Medizintechnik in Hero-Subheadline ergänzt
 - [x] FIX: SubPageHero Headline-Text verschwindet hinter Diamond-Raute bei langen Wörtern (z.B. /fertigung/qualitaet) – Umbruchlogik für DE und EN
 - [x] FIX: /fertigung Kachel-Headlines werden beim Skalieren abgeschnitten (overflow)
+- [x] RESPONSIVE: SubPageHero Grid von 50/50 auf 3fr/2fr (60/40) geändert – Text bekommt mehr Platz
+- [x] RESPONSIVE: Hyphens aus SubPageHero-Headline entfernt – natürliche Wortumbrüche statt hässlicher Silbentrennung
+- [x] RESPONSIVE: SubPageHero Container nutzt Bildschirmbreite besser (2400px max + fluid padding)
+- [x] RESPONSIVE: SubPageHero Headline-Schriftgröße: hyphens entfernt, 60% Textbreite verhindert Umbrüche
+- [x] RESPONSIVE: SubPageHero Grid-Verhältnis von 50/50 auf 3fr/2fr geändert
+- [x] RESPONSIVE: /insights Seite profitiert vom gleichen 3fr/2fr Grid-Fix

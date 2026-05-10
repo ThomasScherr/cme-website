@@ -318,7 +318,7 @@ export default function SubPageHero({
         )}
 
         <div
-          className={`grid items-center ${hasMedia ? 'grid-cols-1 lg:grid-cols-2' : ''}`}
+          className={`grid items-center ${hasMedia ? 'grid-cols-1 lg:grid-cols-[3fr_2fr]' : ''}`}
           style={{ gap: 'var(--space-gap-lg)' }}
         >
           {/* Left: Text Content */}

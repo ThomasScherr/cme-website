@@ -402,8 +402,8 @@
     font-weight: 700;
     color: var(--subpage-hero-headline-color, #1a1a2e);
     overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
+    word-break: normal;
+    hyphens: none;
     max-width: 100%;
   }
 
