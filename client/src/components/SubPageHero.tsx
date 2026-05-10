@@ -25,6 +25,7 @@ import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // ── Default fallback image ────────────────────────────────────
 const DEFAULT_HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/K5A0004_retouch_b2db17ab.jpg';
@@ -290,6 +291,7 @@ export default function SubPageHero({
   // Use fallback image when no heroImage and no heroVideo is provided
   const effectiveImage = heroImage || (!heroVideo ? DEFAULT_HERO_IMAGE : undefined);
   const hasMedia = !!(effectiveImage || heroVideo);
+  const { lang } = useLanguage();
 
   return (
     <section className="subpage-hero bg-gradient-to-br from-white to-cme-blue-light/30">
@@ -324,7 +326,7 @@ export default function SubPageHero({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className={hasMedia ? '' : 'max-w-3xl'}
+            className={hasMedia ? 'overflow-hidden' : 'max-w-3xl'}
           >
             {/* Back link */}
             {backLink && (
@@ -346,7 +348,7 @@ export default function SubPageHero({
             )}
 
             {/* Headline */}
-            <h1 className="subpage-hero-headline" style={{ marginTop: tagline ? 'var(--space-gap-xs)' : undefined }}>
+            <h1 className="subpage-hero-headline" lang={lang} style={{ marginTop: tagline ? 'var(--space-gap-xs)' : undefined }}>
               {headline}
             </h1>
 

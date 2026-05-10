@@ -472,7 +472,7 @@ export default function Fertigung() {
                         >
                           <page.icon style={{ width: 'var(--icon-size)', height: 'var(--icon-size)' }} className="text-cme-blue" />
                         </div>
-                        <h3 className="fluid-h4 text-cme-dark">
+                        <h3 className="fluid-h4 text-cme-dark" lang={isDE ? 'de' : 'en'}>
                           {isDE ? page.titleDE : page.titleEN}
                         </h3>
                       </div>

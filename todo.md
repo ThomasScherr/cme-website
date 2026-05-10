@@ -653,3 +653,5 @@
 - [x] LANDING: VITE_GOOGLE_ADS_ID auf AW-358454053 gesetzt
 - [x] LANDING: Conversion-Label JUxQCObtnaocEKWm9qoB im Code konfiguriert (send_to: AW-358454053/JUxQCObtnaocEKWm9qoB)
 - [x] LANDING: Medizintechnik in Hero-Subheadline ergänzt
+- [x] FIX: SubPageHero Headline-Text verschwindet hinter Diamond-Raute bei langen Wörtern (z.B. /fertigung/qualitaet) – Umbruchlogik für DE und EN
+- [x] FIX: /fertigung Kachel-Headlines werden beim Skalieren abgeschnitten (overflow)
