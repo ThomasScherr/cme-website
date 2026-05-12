@@ -285,6 +285,7 @@
      Apply to a wrapper div, put <img> inside.
   */
   .diamond {
+    position: relative;
     aspect-ratio: 1;
     transform: rotate(45deg);
     border-radius: 12%;

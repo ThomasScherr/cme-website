@@ -114,7 +114,6 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
           src={videoSrc}
           width={800}
           height={800}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
     );
@@ -141,10 +140,8 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
         <img
           src={image}
           alt={imageAlt || ''}
-          className="object-cover"
           width={800}
           height={800}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
     );
