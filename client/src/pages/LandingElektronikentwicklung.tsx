@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { trpc } from '@/lib/trpc';
+import { useVideoSource } from '@/hooks/useVideoSource';
 import SEO, { buildFAQSchema, buildServiceSchema } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -75,6 +76,7 @@ const faqSchema = buildFAQSchema(faqs);
 const serviceSchemas = buildServiceSchema(services.map(s => ({ ...s, url: '/elektronikentwicklung' })));
 
 export default function LandingElektronikentwicklung() {
+  const heroVideoSrc = useVideoSource(HERO_VIDEO_WEBM, HERO_VIDEO_MP4);
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <SEO
@@ -162,10 +164,8 @@ export default function LandingElektronikentwicklung() {
                     muted
                     playsInline
                     poster={HERO_VIDEO_POSTER}
-                  >
-                    <source src={HERO_VIDEO_WEBM} type="video/webm" />
-                    <source src={HERO_VIDEO_MP4} type="video/mp4" />
-                  </video>
+                    src={heroVideoSrc}
+                  />
                 </div>
               </motion.div>
             </div>

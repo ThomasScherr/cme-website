@@ -26,6 +26,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useVideoSource } from '@/hooks/useVideoSource';
 
 // ── Default fallback image ────────────────────────────────────
 const DEFAULT_HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/K5A0004_retouch_b2db17ab.jpg';
@@ -96,6 +97,8 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
 }) {
   const isLoop = !video?.playback || video.playback === 'loop';
 
+  const videoSrc = useVideoSource(video?.webm, video?.mp4);
+
   if (video) {
     return (
       <div
@@ -108,10 +111,8 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
           muted
           playsInline
           poster={video.poster}
-        >
-          {video.webm && <source src={video.webm} type="video/webm" />}
-          {video.mp4 && <source src={video.mp4} type="video/mp4" />}
-        </video>
+          src={videoSrc}
+        />
       </div>
     );
   }
@@ -154,6 +155,7 @@ function RectangularMedia({ image, imageAlt, video }: {
   video?: HeroVideo;
 }) {
   const isLoop = !video?.playback || video.playback === 'loop';
+  const videoSrc = useVideoSource(video?.webm, video?.mp4);
   const mediaContent = video ? (
     <video
       autoPlay
@@ -162,10 +164,8 @@ function RectangularMedia({ image, imageAlt, video }: {
       playsInline
       poster={video.poster}
       className="w-full aspect-[4/3] object-cover"
-    >
-      {video.webm && <source src={video.webm} type="video/webm" />}
-      {video.mp4 && <source src={video.mp4} type="video/mp4" />}
-    </video>
+      src={videoSrc}
+    />
   ) : image ? (
     <img
       src={image}
@@ -216,6 +216,7 @@ function FloatingMedia({ image, imageAlt, video }: {
   video?: HeroVideo;
 }) {
   const isLoop = !video?.playback || video.playback === 'loop';
+  const videoSrc = useVideoSource(video?.webm, video?.mp4);
   const mediaContent = video ? (
     <video
       autoPlay
@@ -224,10 +225,8 @@ function FloatingMedia({ image, imageAlt, video }: {
       playsInline
       poster={video.poster}
       className="w-full aspect-[4/3] object-contain"
-    >
-      {video.webm && <source src={video.webm} type="video/webm" />}
-      {video.mp4 && <source src={video.mp4} type="video/mp4" />}
-    </video>
+      src={videoSrc}
+    />
   ) : image ? (
     <img
       src={image}

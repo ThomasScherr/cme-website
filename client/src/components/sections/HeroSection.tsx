@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useContent } from '@/hooks/useContent';
+import { useVideoSource } from '@/hooks/useVideoSource';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
@@ -68,6 +69,7 @@ function useTypewriter(lines: string[], lang: string, typingSpeed = 60, pauseBet
 
 // ─── Diamond Video Component (shared between mobile & desktop) ───
 function DiamondVideo({ className = '', style = {} }: { className?: string; style?: React.CSSProperties }) {
+  const videoSrc = useVideoSource(HERO_VIDEO_WEBM, HERO_VIDEO_MP4);
   return (
     <div
       className={`diamond shadow-xl shadow-cme-blue/15 ${className}`}
@@ -80,10 +82,8 @@ function DiamondVideo({ className = '', style = {} }: { className?: string; styl
         playsInline
         preload="none"
         poster={HERO_VIDEO_POSTER}
-      >
-        <source src={HERO_VIDEO_WEBM} type="video/webm" />
-        <source src={HERO_VIDEO_MP4} type="video/mp4" />
-      </video>
+        src={videoSrc}
+      />
     </div>
   );
 }
