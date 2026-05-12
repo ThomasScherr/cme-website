@@ -217,6 +217,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                         src={GF_IMAGE}
                         alt={isDE ? 'Geschäftsführung CME' : 'CME Management'}
                         className="w-full h-full object-cover object-top"
+                        width={800}
+                        height={450}
                       />
                     </div>
 

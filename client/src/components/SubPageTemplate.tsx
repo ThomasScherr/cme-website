@@ -166,6 +166,8 @@ export default function SubPageTemplate({
                   alt={title}
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ transform: 'rotate(-45deg) scale(1.42)' }}
+                  width={600}
+                  height={600}
                 />
               </div>
               {/* Accent diamond behind */}

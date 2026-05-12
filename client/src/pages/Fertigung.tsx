@@ -462,6 +462,8 @@ export default function Fertigung() {
                         src={page.img}
                         alt={isDE ? page.titleDE : page.titleEN}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        width={800}
+                        height={500}
                       />
                     </div>
                     <div className="fluid-card">

@@ -28,6 +28,8 @@ export default function Footer() {
               loading="lazy"
               className="w-auto object-contain"
               style={{ height: 'var(--footer-logo)', marginBottom: 'var(--space-gap-xs)' }}
+              width={200}
+              height={40}
             />
             <p
               className="text-white/80 leading-relaxed"

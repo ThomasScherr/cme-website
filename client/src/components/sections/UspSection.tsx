@@ -44,6 +44,8 @@ export default function UspSection({ onCardClick }: UspSectionProps) {
             preload="none"
             className="w-full object-cover"
             style={{ height: 'clamp(12.5rem, 6rem + 14vw, 22.5rem)' }}
+            width={1920}
+            height={1080}
           />
         </FadeIn>
 

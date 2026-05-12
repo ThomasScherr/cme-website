@@ -79,6 +79,8 @@ export default function Insights() {
                               src={article.coverImage}
                               alt={title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              width={800}
+                              height={600}
                             />
                           </div>
                         ) : (

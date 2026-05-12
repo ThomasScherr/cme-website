@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="google-site-verification" content="5PtgKVOFhQ7TuB_Sygc29NhI2YVLQmrpXRAtGXlXRa8" />
     <!--SEO_BLOCK_START-->
-    <!-- title, description, og:title/description, twitter:title/description removed from static HTML -->
-    <!-- React Helmet (Layer 2) sets all page-specific tags after JS hydration -->
+    <!-- Fallback title/description for initial HTML; React Helmet replaces after JS hydration -->
     <!-- Manus platform injects canonical automatically per route -->
-    <link rel="alternate" hreflang="de" href="https://control-motion.de/" />
-    <link rel="alternate" hreflang="en" href="https://control-motion.de/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://control-motion.de/" />
+    <title>CME – Elektronikentwicklung & EMS-Fertigung | Dortmund</title>
+    <meta name="description" content="CME – Entwicklungsdienstleister & EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik. ISO 9001 zertifiziert in Dortmund NRW." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg" />
     <meta property="og:site_name" content="CME Control Motion Electronics GmbH" />
@@ -85,11 +83,15 @@
   <body>
     <div id="root">
       <!-- Critical Hero Content: renders immediately as LCP element before React hydrates -->
-      <div id="hero-ssr" style="min-height:100vh;display:flex;align-items:center;background:#fff;padding:2rem;font-family:Roboto,sans-serif;">
+      <div id="hero-ssr" style="min-height:100svh;min-height:100vh;display:flex;align-items:center;background:#fff;padding:clamp(6rem,5.46rem + 2.31vw,11rem) 2rem clamp(3rem,2.24rem + 3.23vw,10rem);font-family:Roboto,sans-serif;box-sizing:border-box;contain:layout style;">
         <div style="max-width:1400px;margin:0 auto;width:100%;">
-          <p style="color:#00a5c8;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;font-size:0.75rem;margin-bottom:1rem;">THE ELECTRONIC COMPANY</p>
-          <div style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:#1a1a2e;line-height:1.2;margin:0;">Elektronikentwicklung &amp;<br/>EMS-Fertigung aus einer Hand.</div>
-          <p style="color:#6b7280;font-size:1.125rem;max-width:36rem;margin-top:1.5rem;line-height:1.7;">Vom ersten Entwurf bis zur Serienfertigung – CME ist Ihr Partner für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.</p>
+          <p style="color:#00a5c8;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;font-size:clamp(0.625rem,0.57rem + 0.23vw,0.875rem);margin-bottom:clamp(0.5rem,0.39rem + 0.46vw,1rem);">THE ELECTRONIC COMPANY</p>
+          <div style="font-size:clamp(1.75rem,1.1rem + 2.77vw,3.5rem);font-weight:700;color:#1a1a2e;line-height:1.2;margin:0;">
+            <div style="min-height:1.2em;">Leistungselektronik,</div>
+            <div style="min-height:1.2em;">die auch morgen noch</div>
+            <div style="min-height:1.2em;color:#00a5c8;">lieferbar ist.</div>
+          </div>
+          <p style="color:#6b7280;font-size:clamp(0.875rem,0.82rem + 0.23vw,1.125rem);max-width:36rem;margin-top:clamp(1rem,0.78rem + 0.92vw,2rem);line-height:1.7;">Vom ersten Entwurf bis zur Serienfertigung – CME ist Ihr Partner für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.</p>
         </div>
       </div>
     </div>

@@ -95,7 +95,7 @@ export default function LandingElektronikentwicklung() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: 'var(--nav-height)' }}>
           <Link href="/">
-            <img src={LOGO_URL} alt="CME Control Motion Electronics" className="w-auto" style={{ height: 'var(--nav-logo)' }} />
+            <img src={LOGO_URL} alt="CME Control Motion Electronics" className="w-auto" style={{ height: 'var(--nav-logo)' }} width={200} height={40} />
           </Link>
           <div className="flex items-center gap-3 sm:gap-4">
             <Link href="/unternehmen" className="hidden sm:inline-flex text-sm font-medium text-gray-600 hover:text-cme-blue transition-colors">
@@ -165,6 +165,9 @@ export default function LandingElektronikentwicklung() {
                     playsInline
                     poster={HERO_VIDEO_POSTER}
                     src={heroVideoSrc}
+                    width={1920}
+                    height={1080}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               </motion.div>

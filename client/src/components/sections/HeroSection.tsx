@@ -83,6 +83,9 @@ function DiamondVideo({ className = '', style = {} }: { className?: string; styl
         preload="none"
         poster={HERO_VIDEO_POSTER}
         src={videoSrc}
+        width={1920}
+        height={1080}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
     </div>
   );

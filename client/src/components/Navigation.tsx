@@ -154,6 +154,8 @@ export default function Navigation() {
             alt="CME Control Motion Electronics"
             className="w-auto"
             style={{ height: 'var(--nav-logo)' }}
+            width={200}
+            height={40}
           />
         </Link>
 

@@ -112,6 +112,9 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
           playsInline
           poster={video.poster}
           src={videoSrc}
+          width={800}
+          height={800}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
     );
@@ -139,6 +142,9 @@ function DiamondMedia({ image, imageAlt, video, imagePosition, imageScale }: {
           src={image}
           alt={imageAlt || ''}
           className="object-cover"
+          width={800}
+          height={800}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
     );
@@ -165,12 +171,16 @@ function RectangularMedia({ image, imageAlt, video }: {
       poster={video.poster}
       className="w-full aspect-[4/3] object-cover"
       src={videoSrc}
+      width={800}
+      height={600}
     />
   ) : image ? (
     <img
       src={image}
       alt={imageAlt || ''}
       className="w-full aspect-[4/3] object-cover"
+      width={800}
+      height={600}
     />
   ) : null;
 
@@ -226,12 +236,16 @@ function FloatingMedia({ image, imageAlt, video }: {
       poster={video.poster}
       className="w-full aspect-[4/3] object-contain"
       src={videoSrc}
+      width={800}
+      height={600}
     />
   ) : image ? (
     <img
       src={image}
       alt={imageAlt || ''}
       className="w-full aspect-[4/3] object-contain"
+      width={800}
+      height={600}
     />
   ) : null;
 

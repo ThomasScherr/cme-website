@@ -116,6 +116,8 @@ export default function Unternehmen() {
                 src={TEAM_IMG}
                 alt={isDE ? 'CME Team' : 'CME Team'}
                 className="w-full aspect-[4/3] object-cover"
+                width={800}
+                height={600}
               />
             </div>
           </div>

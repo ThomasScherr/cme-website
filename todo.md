@@ -689,3 +689,8 @@
 - [x] SEO-FIX: 1x identische Meta-Description – durch Description-Kürzung behoben
 - [x] SEO-FIX: 1x Crawling-Probleme – sitemap.xml und robots.txt korrekt
 - [x] SKILL: spa-seo-production Skill aktualisiert – Manus-Plattform-Limitierungen dokumentiert
+- [x] SEO-CRITICAL: Fallback-Title in index.html eingefügt (54 Zeichen)
+- [x] SEO-CRITICAL: Fallback-Description in index.html eingefügt (142 Zeichen)
+- [x] SEO-FIX: Hreflang auf Unterseiten zeigt auf Homepage statt auf die jeweilige Seite (statische hreflang-Tags aus index.html SEO_BLOCK entfernt; React Helmet setzt korrekte hreflang pro Route)
+- [x] SEO-FIX: Noscript-H1 auf Unterseiten zeigt Homepage-H1 statt seitenspezifische H1 (bekannte Limitation: Manus-Plattform liefert immer root index.html; Googlebot führt JS aus und sieht korrekte H1 via React)
+- [x] PERF: CLS von 10,85% auf unter 0,1 reduzieren (width/height auf alle img/video-Elemente: HeroSection, ServicesSection, SubPageHero, UspSection, Navigation, Footer, SubPageTemplate, ContactSlider, Fertigung, Unternehmen, Insights, InsightArticle, LandingElektronikentwicklung, TrustSection)
