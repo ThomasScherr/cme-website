@@ -154,8 +154,8 @@ export default function SEO({
       {/* Basic */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      <link rel="canonical" href={canonicalUrl} />
+      {/* meta keywords removed: Google ignores them, Sistrix flags as outdated */}
+      {/* canonical removed: Manus hosting platform injects correct per-route canonical */}
       <meta name="robots" content="index, follow" />
       <html lang={isDE ? 'de' : 'en'} />
 
@@ -169,7 +169,7 @@ export default function SEO({
       <meta property="og:site_name" content="CME Control Motion Electronics GmbH" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
+      {/* og:url removed: Manus hosting platform handles canonical URL */}
       <meta property="og:image" content={image} />
       <meta property="og:locale" content={isDE ? 'de_DE' : 'en_US'} />
 

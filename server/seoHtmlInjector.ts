@@ -2,10 +2,14 @@
  * SEO HTML Injector
  * 
  * Replaces generic SEO placeholder tags in the SPA shell (index.html) with
- * route-specific title, description, canonical, hreflang, and OG tags.
+ * route-specific title, description, hreflang, and OG tags.
  * 
  * This runs BEFORE the HTML is sent to the browser, so the initial HTML
  * already contains correct per-route SEO metadata – no JavaScript needed.
+ * 
+ * NOTE: Canonical tags are NOT injected here because the Manus hosting platform
+ * automatically injects a correct per-route canonical tag. Adding one here would
+ * create duplicates (Sistrix: "Mehr als ein Canonical-Tag gefunden").
  * 
  * Strategy: index.html contains marker comments:
  *   <!--SEO_BLOCK_START--> ... <!--SEO_BLOCK_END-->
@@ -24,12 +28,13 @@ function escapeHtml(str: string): string {
 
 /**
  * Build the SEO <head> block for a known route.
+ * NOTE: No <link rel="canonical"> – the hosting platform injects it automatically.
+ * NOTE: No og:url – React Helmet sets it correctly per route after hydration.
  */
 function buildSeoBlock(
   title: string,
   description: string,
   keywords: string,
-  canonicalUrl: string,
   deUrl: string,
   enUrl: string,
   locale: string,
@@ -43,14 +48,14 @@ function buildSeoBlock(
   return `<!--SEO_BLOCK_START-->
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
-    <meta name="keywords" content="${escapeHtml(keywords)}" />
-    <link rel="canonical" href="${canonicalUrl}" />
+    <!-- meta keywords removed: Google ignores them -->
+    <!-- canonical: injected by Manus hosting platform -->
     ${hreflangTags}
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />
-    <meta property="og:url" content="${canonicalUrl}" />
+    <!-- og:url: set by React Helmet per route -->
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />
     <meta property="og:locale" content="${locale}" />
     <!--SEO_BLOCK_END-->`;
@@ -67,7 +72,7 @@ function build404Block(): string {
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
     <meta name="robots" content="noindex, follow" />
-    <link rel="canonical" href="${BASE_URL}/" />
+    <!-- canonical: injected by Manus hosting platform -->
     <!--SEO_BLOCK_END-->`;
 }
 
@@ -90,13 +95,11 @@ export function injectSeoTags(html: string, requestPath: string): string {
   } else {
     const title = isEnglish && meta.enTitle ? meta.enTitle : meta.title;
     const description = isEnglish && meta.enDescription ? meta.enDescription : meta.description;
-    const canonicalPath = isEnglish && meta.enPath ? meta.enPath : dePath;
-    const canonicalUrl = `${BASE_URL}${canonicalPath === '/' ? '/' : canonicalPath + '/'}`;
     const locale = isEnglish ? 'en_US' : 'de_DE';
     const deUrl = `${BASE_URL}${dePath === '/' ? '/' : dePath + '/'}`;
     const enUrl = meta.enPath ? `${BASE_URL}${meta.enPath}/` : '';
 
-    seoBlock = buildSeoBlock(title, description, meta.keywords, canonicalUrl, deUrl, enUrl, locale);
+    seoBlock = buildSeoBlock(title, description, meta.keywords, deUrl, enUrl, locale);
   }
 
   // Replace the marker block

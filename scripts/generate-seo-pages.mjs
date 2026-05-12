@@ -345,14 +345,14 @@ function buildSeoBlock({ title, description, keywords, canonicalUrl, deUrl, enUr
   return `<!--SEO_BLOCK_START-->
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
-    <meta name="keywords" content="${escapeHtml(keywords)}" />
-    <link rel="canonical" href="${canonicalUrl}" />
+    <!-- meta keywords removed: Google ignores them -->
+    <!-- canonical: injected by Manus hosting platform -->
     ${hreflangTags}
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />
-    <meta property="og:url" content="${canonicalUrl}" />
+    <!-- og:url: set by React Helmet per route -->
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />
     <meta property="og:locale" content="${locale}" />
     <meta name="twitter:card" content="summary_large_image" />

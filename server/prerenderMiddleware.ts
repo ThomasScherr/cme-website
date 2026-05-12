@@ -608,16 +608,16 @@ function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, de
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${escapeHtml(page.title)}</title>
     <meta name="description" content="${escapeHtml(page.description)}">
-    <meta name="keywords" content="${escapeHtml(page.keywords)}">
+    <!-- meta keywords removed: Google ignores them -->
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="${canonicalUrl}">
+    <!-- canonical: injected by Manus hosting platform -->
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
     <meta property="og:title" content="${escapeHtml(page.title)}">
     <meta property="og:description" content="${escapeHtml(page.description)}">
-    <meta property="og:url" content="${canonicalUrl}">
+    <!-- og:url: set by React Helmet per route -->
     <meta property="og:image" content="${ogImage}">
     <meta property="og:locale" content="${isEnglish ? 'en_US' : 'de_DE'}">
     

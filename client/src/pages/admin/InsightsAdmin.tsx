@@ -343,7 +343,7 @@ export default function InsightsAdmin() {
                   </label>
                   {coverImage ? (
                     <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
-                      <img
+                      <img loading="lazy"
                         src={coverImage}
                         alt="Cover-Vorschau"
                         className="w-full h-48 object-cover"

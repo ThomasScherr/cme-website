@@ -53,7 +53,7 @@ function ServiceBlock({ title, desc, items, image, icon, reverse, index, bgClass
               />
               {/* Main image diamond */}
               <div className="relative diamond w-full shadow-xl shadow-cme-blue/10">
-                <img src={image} alt={title} />
+                <img src={image} alt={title} loading="lazy" />
               </div>
             </div>
           </motion.div>

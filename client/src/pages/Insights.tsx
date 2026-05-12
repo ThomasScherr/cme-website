@@ -75,7 +75,7 @@ export default function Insights() {
                       <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
                         {article.coverImage ? (
                           <div className="aspect-[4/3] overflow-hidden">
-                            <img
+                            <img loading="lazy"
                               src={article.coverImage}
                               alt={title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

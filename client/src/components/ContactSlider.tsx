@@ -213,7 +213,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                   {/* Hero area with GF image */}
                   <div className="relative bg-gradient-to-b from-gray-50 to-white px-8 pt-8 pb-6">
                     <div className="w-full aspect-[16/9] rounded-xl overflow-hidden shadow-md mb-6">
-                      <img
+                      <img loading="lazy"
                         src={GF_IMAGE}
                         alt={isDE ? 'Geschäftsführung CME' : 'CME Management'}
                         className="w-full h-full object-cover object-top"

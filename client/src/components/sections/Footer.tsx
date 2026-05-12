@@ -25,6 +25,7 @@ export default function Footer() {
             <img
               src={LOGO_WHITE}
               alt="CME Control Motion Electronics"
+              loading="lazy"
               className="w-auto object-contain"
               style={{ height: 'var(--footer-logo)', marginBottom: 'var(--space-gap-xs)' }}
             />

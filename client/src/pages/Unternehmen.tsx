@@ -112,7 +112,7 @@ export default function Unternehmen() {
               </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img
+              <img loading="lazy"
                 src={TEAM_IMG}
                 alt={isDE ? 'CME Team' : 'CME Team'}
                 className="w-full aspect-[4/3] object-cover"

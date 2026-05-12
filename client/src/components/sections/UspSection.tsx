@@ -41,6 +41,7 @@ export default function UspSection({ onCardClick }: UspSectionProps) {
             loop
             muted
             playsInline
+            preload="none"
             className="w-full object-cover"
             style={{ height: 'clamp(12.5rem, 6rem + 14vw, 22.5rem)' }}
           />

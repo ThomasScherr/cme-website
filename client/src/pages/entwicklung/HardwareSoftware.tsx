@@ -308,7 +308,7 @@ export default function HardwareSoftware() {
                   borderRadius: 'clamp(0.5rem, 0.3rem + 0.4vw, 1rem)',
                 }}
               >
-                <img
+                <img loading="lazy"
                   src={heroImg}
                   alt="Hard & Software Design"
                   className="absolute inset-0 w-full h-full object-cover"

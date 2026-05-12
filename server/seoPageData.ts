@@ -45,7 +45,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
   },
   '/entwicklung': {
     title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
-    description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
+    description: 'CME entwickelt Hardware, Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermische Projekte.',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     enPath: '/en/development',
     enTitle: 'Electronics Development Dortmund | CME',
@@ -157,11 +157,11 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
   },
   '/fertigung/smd-bestueckung': {
     title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
-    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
+    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Dortmund.',
     keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung, EMS-Dienstleister NRW, Dampfphasenlöten, Leistungselektronik Bestückung',
     enPath: '/en/manufacturing/smd-assembly',
     enTitle: 'SMD Assembly Germany – Electronics Manufacturer from NRW | CME',
-    enDescription: 'SMD assembly in Germany: Your electronics manufacturer from NRW. High-precision PCB assembly from prototype to high-volume series – CME Control Motion Electronics Dortmund.',
+    enDescription: 'SMD assembly in Germany: Your electronics manufacturer from NRW. High-precision PCB assembly from prototype to high-volume series – CME Dortmund.',
   },
   '/fertigung/prototypen': {
     title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',

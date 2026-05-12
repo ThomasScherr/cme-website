@@ -458,7 +458,7 @@ export default function Fertigung() {
                 <Link href={page.href} className="group block">
                   <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className="aspect-[16/10] overflow-hidden">
-                      <img
+                      <img loading="lazy"
                         src={page.img}
                         alt={isDE ? page.titleDE : page.titleEN}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

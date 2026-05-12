@@ -161,7 +161,7 @@ export default function SubPageTemplate({
                   borderRadius: 'clamp(0.5rem, 0.3rem + 0.4vw, 1rem)',
                 }}
               >
-                <img
+                <img loading="lazy"
                   src={contentImage}
                   alt={title}
                   className="absolute inset-0 w-full h-full object-cover"

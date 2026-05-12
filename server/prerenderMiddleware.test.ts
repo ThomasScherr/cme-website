@@ -231,19 +231,23 @@ describe("prerenderMiddleware", () => {
 
   // ── Content correctness ──
 
-  it("includes correct canonical URL for homepage", () => {
+  it("does not include canonical tag (handled by Manus platform)", () => {
     const req = createMockReq("GET", "/", "Googlebot/2.1");
     const res = createMockRes();
     middleware(req, res, next);
 
+    expect(res._body).not.toContain('rel="canonical"');
+    // hreflang still includes the correct URLs
+    expect(res._body).toContain('hreflang="de"');
     expect(res._body).toContain('href="https://control-motion.de/"');
   });
 
-  it("includes correct canonical URL for subpages", () => {
+  it("includes correct hreflang URLs for subpages", () => {
     const req = createMockReq("GET", "/entwicklung", "Googlebot/2.1");
     const res = createMockRes();
     middleware(req, res, next);
 
+    expect(res._body).toContain('hreflang="de"');
     expect(res._body).toContain('href="https://control-motion.de/entwicklung/"');
   });
 
@@ -264,7 +268,8 @@ describe("prerenderMiddleware", () => {
     expect(res._body).toContain('property="og:type"');
     expect(res._body).toContain('property="og:title"');
     expect(res._body).toContain('property="og:description"');
-    expect(res._body).toContain('property="og:url"');
+    // og:url removed: Manus hosting platform handles canonical URL
+    expect(res._body).not.toContain('property="og:url"');
     expect(res._body).toContain('property="og:image"');
   });
 

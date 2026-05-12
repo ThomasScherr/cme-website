@@ -170,7 +170,7 @@ export default function InsightPreview() {
           {/* Cover Image */}
           {article.coverImage && (
             <div className="rounded-2xl overflow-hidden" style={{ marginTop: 'var(--space-gap-md)' }}>
-              <img src={article.coverImage} alt={title} className="w-full h-auto" />
+              <img loading="lazy" src={article.coverImage} alt={title} className="w-full h-auto" />
             </div>
           )}
 

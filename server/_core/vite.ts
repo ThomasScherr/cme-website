@@ -6,6 +6,7 @@ import path from "path";
 import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
 import { injectSeoTags } from "../seoHtmlInjector";
+import { lookupSeoMeta } from "../seoPageData";
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -94,6 +95,12 @@ export function serveStatic(app: Express) {
 
     // Inject per-route SEO tags
     html = injectSeoTags(html, req.originalUrl);
+
+    // Return proper 404 status for unknown routes
+    const { meta } = lookupSeoMeta(req.originalUrl);
+    if (!meta) {
+      res.status(404);
+    }
 
     res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
     res.removeHeader('Pragma');

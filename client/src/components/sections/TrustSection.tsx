@@ -86,6 +86,7 @@ export default function TrustSection() {
                 src={logo.src}
                 alt={logo.name}
                 title={logo.name}
+                loading="lazy"
                 style={{
                   width: '96px',
                   height: 'auto',

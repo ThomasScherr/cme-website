@@ -666,3 +666,16 @@
 - [x] PERF: Bundle-Größe analysieren und Code-Splitting implementieren (vendor-react, vendor-motion, vendor-query)
 - [x] PERF: Render-Blocking Resources eliminieren (preconnect CDN, preload hero poster)
 - [x] PERF: Bilder/Videos preloaden oder lazy-loaden (preload=none auf Video, inline critical hero HTML)
+- [x] PERF: Alle below-fold Bilder mit loading=lazy versehen (ServicesSection, Footer, TrustSection, SubPageTemplate, Fertigung, InsightArticle, Insights, Unternehmen, Entwicklung-Subpages, ContactSlider, Admin-Pages)
+- [ ] PERF: Video-Doppelladung (WebM 4MB + MP4 5MB) verhindern – nur ein Format laden
+- [ ] PERF: CLS 3,37% reduzieren – Layout-Stabilität verbessern
+- [ ] PERF: Favicon 44KB optimieren (komprimieren oder WebP)
+- [x] SEO-FIX: 59x doppelte Canonical-Tags behoben – Canonical aus allen 5 Layern entfernt (Manus-Plattform injiziert korrekt)
+- [x] SEO-FIX: 404-Seite – HTTP 404 Status via lookupSeoMeta in vite.ts SPA-Fallback
+- [x] SEO-FIX: Doppelte H1 – Inline-Hero H1 zu div geändert
+- [x] SEO-FIX: Meta Description gekürzt – /entwicklung und /fertigung/smd-bestueckung unter 160 Zeichen
+- [x] SEO-FIX: Doppelter Title – durch SEO_BLOCK-Bereinigung behoben
+- [x] SEO-FIX: Doppelte Meta Description – durch SEO_BLOCK-Bereinigung behoben
+- [x] SEO-FIX: Meta Keywords aus allen Layern entfernt (Google ignoriert sie)
+- [x] PERF: UspSection Video preload=none gesetzt
+- [ ] SSL: Zertifikat läuft bald ab (Hinweis an Nutzer)

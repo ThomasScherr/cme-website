@@ -212,7 +212,7 @@ function MediaLibraryModal({
                   className="group relative aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-cme-blue transition-colors bg-gray-100"
                 >
                   {item.mimeType.startsWith("image/") ? (
-                    <img
+                    <img loading="lazy"
                       src={item.url}
                       alt={item.filename}
                       className="w-full h-full object-cover"
@@ -327,7 +327,7 @@ function FieldEditor({
         <div className="flex items-center gap-3">
           {field.type === "image" && valueDe ? (
             <div className="relative w-24 h-24 rounded-lg overflow-hidden border bg-gray-100 flex-shrink-0">
-              <img src={valueDe} alt="" className="w-full h-full object-cover" />
+              <img loading="lazy" src={valueDe} alt="" className="w-full h-full object-cover" />
               <button
                 onClick={() => { onUpdate(fullKey, "de", ""); onUpdate(fullKey, "en", ""); }}
                 className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5 hover:bg-red-600"

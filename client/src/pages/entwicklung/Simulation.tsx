@@ -296,7 +296,7 @@ export default function Simulation() {
                 {/* Tool logo */}
                 <div style={{ marginBottom: 'var(--space-gap-sm)' }}>
                   <div className="w-full h-24 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center px-6 py-4">
-                    <img
+                    <img loading="lazy"
                       src={tool.logo}
                       alt={isDE ? tool.toolDE : tool.toolEN}
                       className="max-w-full max-h-full object-contain"
