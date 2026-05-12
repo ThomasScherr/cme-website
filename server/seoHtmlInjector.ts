@@ -2,18 +2,39 @@
  * SEO HTML Injector
  * 
  * Replaces generic SEO placeholder tags in the SPA shell (index.html) with
- * route-specific title, description, hreflang, and OG tags.
+ * route-specific hreflang, OG image, and locale tags.
  * 
- * This runs BEFORE the HTML is sent to the browser, so the initial HTML
- * already contains correct per-route SEO metadata – no JavaScript needed.
+ * IMPORTANT: On Manus hosting, the platform serves the root index.html for ALL
+ * SPA routes, bypassing the Express server for HTML delivery. Express only handles
+ * /api/ routes. This means:
  * 
- * NOTE: Canonical tags are NOT injected here because the Manus hosting platform
- * automatically injects a correct per-route canonical tag. Adding one here would
- * create duplicates (Sistrix: "Mehr als ein Canonical-Tag gefunden").
+ * - This injector works LOCALLY (dev server) but NOT in production for HTML pages
+ * - The generate-seo-pages.mjs creates per-route HTML files, but the platform ignores them
+ * - React Helmet (Layer 2) is the ONLY reliable way to set page-specific SEO tags
  * 
- * Strategy: index.html contains marker comments:
- *   <!--SEO_BLOCK_START--> ... <!--SEO_BLOCK_END-->
- * This injector replaces everything between those markers with per-route tags.
+ * Therefore, this injector only sets NON-TEXT tags (hreflang, og:image, locale, etc.)
+ * that are the same or similar across pages. All text-based tags (title, description,
+ * og:title, og:description, twitter:title, twitter:description) are set exclusively
+ * by React Helmet after JS hydration.
+ * 
+ * Tags handled here (static/structural):
+ * - hreflang (de, en, x-default)
+ * - og:type, og:image, og:site_name, og:locale
+ * - twitter:card, twitter:image
+ * - robots noindex for 404 pages
+ * - html lang attribute for EN routes
+ * 
+ * Tags handled by React Helmet (page-specific text):
+ * - <title>
+ * - <meta name="description">
+ * - <meta property="og:title">
+ * - <meta property="og:description">
+ * - <meta name="twitter:title">
+ * - <meta name="twitter:description">
+ * - <meta property="og:url">
+ * 
+ * Tags handled by Manus platform:
+ * - <link rel="canonical">
  */
 
 import { lookupSeoMeta, BASE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from './seoPageData';
@@ -28,13 +49,9 @@ function escapeHtml(str: string): string {
 
 /**
  * Build the SEO <head> block for a known route.
- * NOTE: No <link rel="canonical"> – the hosting platform injects it automatically.
- * NOTE: No og:url – React Helmet sets it correctly per route after hydration.
+ * Only structural/non-text tags – no title, description, or text-based OG/twitter tags.
  */
 function buildSeoBlock(
-  title: string,
-  description: string,
-  keywords: string,
   deUrl: string,
   enUrl: string,
   locale: string,
@@ -46,33 +63,25 @@ function buildSeoBlock(
   hreflangTags += `\n    <link rel="alternate" hreflang="x-default" href="${deUrl}" />`;
 
   return `<!--SEO_BLOCK_START-->
-    <title>${escapeHtml(title)}</title>
-    <meta name="description" content="${escapeHtml(description)}" />
-    <!-- meta keywords removed: Google ignores them -->
-    <!-- canonical: injected by Manus hosting platform -->
+    <!-- Text-based SEO tags set by React Helmet after JS hydration -->
+    <!-- Canonical injected by Manus hosting platform -->
     ${hreflangTags}
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="${escapeHtml(title)}" />
-    <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />
-    <!-- og:url: set by React Helmet per route -->
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />
     <meta property="og:locale" content="${locale}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="${DEFAULT_OG_IMAGE}" />
     <!--SEO_BLOCK_END-->`;
 }
 
 /**
  * Build the SEO <head> block for a 404 page.
+ * Only adds robots noindex – title/description set by React Helmet.
  */
 function build404Block(): string {
-  const title = 'Seite nicht gefunden | CME Control Motion Electronics';
-  const description = 'Die angeforderte Seite wurde nicht gefunden. Besuchen Sie unsere Startseite für Elektronikentwicklung und EMS-Fertigung.';
-
   return `<!--SEO_BLOCK_START-->
-    <title>${escapeHtml(title)}</title>
-    <meta name="description" content="${escapeHtml(description)}" />
     <meta name="robots" content="noindex, follow" />
-    <!-- canonical: injected by Manus hosting platform -->
     <!--SEO_BLOCK_END-->`;
 }
 
@@ -82,7 +91,7 @@ function build404Block(): string {
  * Expects index.html to contain:
  *   <!--SEO_BLOCK_START--> ... <!--SEO_BLOCK_END-->
  * 
- * Everything between those markers is replaced with per-route tags.
+ * Everything between those markers is replaced with per-route structural tags.
  */
 export function injectSeoTags(html: string, requestPath: string): string {
   const { meta, isEnglish, dePath } = lookupSeoMeta(requestPath);
@@ -93,13 +102,10 @@ export function injectSeoTags(html: string, requestPath: string): string {
     // Unknown route – 404 tags
     seoBlock = build404Block();
   } else {
-    const title = isEnglish && meta.enTitle ? meta.enTitle : meta.title;
-    const description = isEnglish && meta.enDescription ? meta.enDescription : meta.description;
     const locale = isEnglish ? 'en_US' : 'de_DE';
     const deUrl = `${BASE_URL}${dePath === '/' ? '/' : dePath + '/'}`;
     const enUrl = meta.enPath ? `${BASE_URL}${meta.enPath}/` : '';
-
-    seoBlock = buildSeoBlock(title, description, meta.keywords, deUrl, enUrl, locale);
+    seoBlock = buildSeoBlock(deUrl, enUrl, locale);
   }
 
   // Replace the marker block

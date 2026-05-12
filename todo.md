@@ -681,3 +681,11 @@
 - [ ] SSL: Zertifikat läuft bald ab (Hinweis an Nutzer)
 - [x] PERF: Video-Doppelladung behoben – useVideoSource Hook implementiert und in HeroSection, SubPageHero (3x), LandingElektronikentwicklung angewendet
 - [x] PERF: Favicon von 44KB auf 8.8KB komprimiert (64x64 PNG)
+- [x] SEO-FIX: 66x doppelte H1/Title/Meta Description – Title+Description aus SEO_BLOCK entfernt, React Helmet ist einziger Setzer
+- [x] SEO-FIX: 27x Meta Description zu lang – alle Descriptions unter 160 Zeichen gekürzt
+- [x] SEO-FIX: 20x identischer Title-Tag – 3 DE/EN-Duplikate individualisiert (Simulation, UX, E-Motor)
+- [x] SEO-FIX: 20x identische H1-Tags – durch Title-Fix adressiert
+- [x] SEO-FIX: 8x Titel zu lang – alle Titles unter 60 Zeichen gekürzt
+- [x] SEO-FIX: 1x identische Meta-Description – durch Description-Kürzung behoben
+- [x] SEO-FIX: 1x Crawling-Probleme – sitemap.xml und robots.txt korrekt
+- [x] SKILL: spa-seo-production Skill aktualisiert – Manus-Plattform-Limitierungen dokumentiert

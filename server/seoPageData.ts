@@ -31,20 +31,20 @@ export interface SeoPageMeta {
  */
 export const SEO_PAGES: Record<string, SeoPageMeta> = {
   '/': {
-    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
+    title: 'Elektronikentwicklung & EMS-Fertigung Dortmund | CME',
     description: 'CME – EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Bestücker für Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',
     enTitle: 'CME Control Motion Electronics GmbH',
-    enDescription: 'CME Control Motion Electronics is your partner for electronics development and EMS manufacturing in Dortmund: power electronics, drive electronics, mechatronics and thermally demanding electronics projects.',
+    enDescription: 'CME is your partner for electronics development and EMS manufacturing in Dortmund: power electronics, drive electronics and mechatronics.',
   },
   '/elektronikentwicklung': {
-    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    title: 'Elektronikentwicklung Dortmund | CME',
     description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
     keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
   },
   '/entwicklung': {
-    title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
+    title: 'Elektronikentwicklung Leistungselektronik | CME',
     description: 'CME entwickelt Hardware, Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermische Projekte.',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     enPath: '/en/development',
@@ -64,7 +64,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     description: 'Thermische, elektrische und EMV-Simulation mit COMSOL, PLECS, LTspice. CME simuliert Ihre Elektronik vor dem ersten Prototyp.',
     keywords: 'Simulation, thermische Simulation, EMV-Simulation, COMSOL, PLECS, LTspice, Motor-CAD, ANSYS',
     enPath: '/en/development/simulation',
-    enTitle: 'Simulation & Toolchain | CME Dortmund',
+    enTitle: 'Simulation & Toolchain Engineering | CME',
     enDescription: 'Thermal, electrical and EMC simulation with COMSOL, PLECS, LTspice. CME simulates your electronics before the first prototype.',
   },
   '/entwicklung/test-verifikation': {
@@ -80,7 +80,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     description: 'Benutzeroberflächen für technische Systeme: HMI-Design, Touchscreen-Interfaces, Embedded GUI. CME gestaltet intuitive Bedienkonzepte.',
     keywords: 'UX Design, Interface Engineering, HMI, Touchscreen, Embedded GUI, Bedienkonzept',
     enPath: '/en/development/ux-interface-engineering',
-    enTitle: 'UX & Interface Engineering | CME Dortmund',
+    enTitle: 'UX & Interface Design | CME Dortmund',
     enDescription: 'User interfaces for technical systems: HMI design, touchscreen interfaces, embedded GUI. CME designs intuitive operating concepts.',
   },
   '/entwicklung/software-digitale-systeme': {
@@ -96,7 +96,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     description: 'Elektromagnetische Auslegung, Motorsteuerung und Antriebselektronik. CME entwickelt E-Motor-Systeme für industrielle Anwendungen.',
     keywords: 'E-Motor Design, Antriebselektronik, Motorsteuerung, elektromagnetische Auslegung, BLDC, PMSM',
     enPath: '/en/development/e-motor-design',
-    enTitle: 'E-Motor Design | CME Dortmund',
+    enTitle: 'Electric Motor Design | CME Dortmund',
     enDescription: 'Electromagnetic design, motor control and drive electronics. CME develops e-motor systems for industrial applications.',
   },
   '/entwicklung/control-design': {
@@ -156,19 +156,19 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     enDescription: 'AOI, ICT, functional testing and full traceability. CME quality assurance for electronic assemblies – ISO 9001 certified.',
   },
   '/fertigung/smd-bestueckung': {
-    title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
+    title: 'SMD-Bestückung Deutschland | EMS NRW | CME',
     description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Dortmund.',
     keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung, EMS-Dienstleister NRW, Dampfphasenlöten, Leistungselektronik Bestückung',
     enPath: '/en/manufacturing/smd-assembly',
-    enTitle: 'SMD Assembly Germany – Electronics Manufacturer from NRW | CME',
+    enTitle: 'SMD Assembly Germany | EMS NRW | CME',
     enDescription: 'SMD assembly in Germany: Your electronics manufacturer from NRW. High-precision PCB assembly from prototype to high-volume series – CME Dortmund.',
   },
   '/fertigung/prototypen': {
-    title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',
+    title: 'Elektronik-Prototypen Express | CME Dortmund',
     description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
     keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
     enPath: '/en/manufacturing/prototypes',
-    enTitle: 'Electronics Prototype Manufacturing – Express from Dortmund | CME',
+    enTitle: 'Electronics Prototypes Express | CME Dortmund',
     enDescription: 'Electronics prototype manufacturing: Express assembly from single units in Dortmund. Series-identical process, DFM feedback and seamless transition to series.',
   },
   '/lifecycle': {
@@ -193,7 +193,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     keywords: 'CME, Unternehmen, Dortmund, Elektronikentwicklung, EMS-Fertigung, ISO 9001, Team',
     enPath: '/en/company',
     enTitle: 'About CME – Electronics Development & Manufacturing Dortmund',
-    enDescription: 'Since 2008, CME has been developing and manufacturing complex electronics in Dortmund. Over 60 employees, ISO 9001 certified. Development and manufacturing under one roof.',
+    enDescription: 'Since 2008, CME develops and manufactures complex electronics in Dortmund. 60+ employees, ISO 9001. Development and manufacturing under one roof.',
   },
   '/kontakt': {
     title: 'Kontakt | CME Control Motion Electronics',

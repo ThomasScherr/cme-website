@@ -27,7 +27,7 @@ const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/3105196633731695
 
 const SEO_PAGES = {
   '/': {
-    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
+    title: 'Elektronikentwicklung & EMS-Fertigung Dortmund | CME',
     description: 'CME – EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Bestücker für Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',
@@ -73,7 +73,7 @@ const SEO_PAGES = {
     }],
   },
   '/elektronikentwicklung': {
-    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    title: 'Elektronikentwicklung Dortmund | CME',
     description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
     keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
     jsonLd: [{
@@ -98,7 +98,7 @@ const SEO_PAGES = {
     }],
   },
   '/entwicklung': {
-    title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
+    title: 'Elektronikentwicklung Leistungselektronik | CME',
     description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
     enPath: '/en/development',
@@ -127,7 +127,7 @@ const SEO_PAGES = {
     description: 'Thermische, elektrische und EMV-Simulation mit COMSOL, PLECS, LTspice. CME simuliert Ihre Elektronik vor dem ersten Prototyp.',
     keywords: 'Simulation, thermische Simulation, EMV-Simulation, COMSOL, PLECS, LTspice, Motor-CAD, ANSYS',
     enPath: '/en/development/simulation',
-    enTitle: 'Simulation & Toolchain | CME Dortmund',
+    enTitle: 'Simulation & Toolchain Engineering | CME',
     enDescription: 'Thermal, electrical and EMC simulation with COMSOL, PLECS, LTspice. CME simulates your electronics before the first prototype.',
   },
   '/entwicklung/test-verifikation': {
@@ -143,7 +143,7 @@ const SEO_PAGES = {
     description: 'Benutzeroberflächen für technische Systeme: HMI-Design, Touchscreen-Interfaces, Embedded GUI. CME gestaltet intuitive Bedienkonzepte.',
     keywords: 'UX Design, Interface Engineering, HMI, Touchscreen, Embedded GUI, Bedienkonzept',
     enPath: '/en/development/ux-interface-engineering',
-    enTitle: 'UX & Interface Engineering | CME Dortmund',
+    enTitle: 'UX & Interface Design | CME Dortmund',
     enDescription: 'User interfaces for technical systems: HMI design, touchscreen interfaces, embedded GUI. CME designs intuitive operating concepts.',
   },
   '/entwicklung/software-digitale-systeme': {
@@ -159,7 +159,7 @@ const SEO_PAGES = {
     description: 'Elektromagnetische Auslegung, Motorsteuerung und Antriebselektronik. CME entwickelt E-Motor-Systeme für industrielle Anwendungen.',
     keywords: 'E-Motor Design, Antriebselektronik, Motorsteuerung, elektromagnetische Auslegung, BLDC, PMSM',
     enPath: '/en/development/e-motor-design',
-    enTitle: 'E-Motor Design | CME Dortmund',
+    enTitle: 'Electric Motor Design | CME Dortmund',
     enDescription: 'Electromagnetic design, motor control and drive electronics. CME develops e-motor systems for industrial applications.',
   },
   '/entwicklung/control-design': {
@@ -228,15 +228,15 @@ const SEO_PAGES = {
     enDescription: 'AOI, ICT, functional testing and full traceability. CME quality assurance for electronic assemblies – ISO 9001 certified.',
   },
   '/fertigung/smd-bestueckung': {
-    title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
-    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
+    title: 'SMD-Bestückung Deutschland | EMS NRW | CME',
+    description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Dortmund.',
     keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung NRW, EMS-Dienstleister, Dampfphasenlöten, Leistungselektronik Bestückung',
     enPath: '/en/manufacturing/smd-assembly',
     enTitle: 'SMD Assembly Germany – Electronics Manufacturer from NRW | CME',
     enDescription: 'SMD assembly in Germany: Your electronics manufacturer from NRW. High-precision PCB assembly from prototype to high-volume series – CME Control Motion Electronics Dortmund.',
   },
   '/fertigung/prototypen': {
-    title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',
+    title: 'Elektronik-Prototypen Express | CME Dortmund',
     description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
     keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
     enPath: '/en/manufacturing/prototypes',
@@ -343,21 +343,14 @@ function buildSeoBlock({ title, description, keywords, canonicalUrl, deUrl, enUr
   }
 
   return `<!--SEO_BLOCK_START-->
-    <title>${escapeHtml(title)}</title>
-    <meta name="description" content="${escapeHtml(description)}" />
-    <!-- meta keywords removed: Google ignores them -->
-    <!-- canonical: injected by Manus hosting platform -->
+    <!-- Text-based SEO tags set by React Helmet after JS hydration -->
+    <!-- Canonical injected by Manus hosting platform -->
     ${hreflangTags}
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="${escapeHtml(title)}" />
-    <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />
-    <!-- og:url: set by React Helmet per route -->
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />
     <meta property="og:locale" content="${locale}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeHtml(title)}" />
-    <meta name="twitter:description" content="${escapeHtml(description)}" />
     <meta name="twitter:image" content="${DEFAULT_OG_IMAGE}" />${jsonLdTag}
     <!--SEO_BLOCK_END-->`;
 }

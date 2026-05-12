@@ -112,7 +112,7 @@ const localBusinessSchema = {
 const PAGES: Record<string, PageMeta> = {
   '/': {
     enPath: '/en',
-    title: 'CME Control Motion Electronics GmbH – Elektronikentwicklung & EMS-Fertigung aus Dortmund',
+    title: 'Elektronikentwicklung & EMS-Fertigung Dortmund | CME',
     description: 'CME – EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Bestücker für Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.',
     h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
@@ -124,7 +124,7 @@ const PAGES: Record<string, PageMeta> = {
     schemas: [organizationSchema, websiteSchema, localBusinessSchema],
   },
   '/elektronikentwicklung': {
-    title: 'Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME',
+    title: 'Elektronikentwicklung Dortmund | CME',
     description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
     h1: 'Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.',
     keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
@@ -152,7 +152,7 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/entwicklung': {
     enPath: '/en/development',
-    title: 'Elektronikentwicklung für Leistungselektronik & Mechatronik | CME',
+    title: 'Elektronikentwicklung Leistungselektronik | CME',
     description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
     h1: 'Entwicklung – Engineering Services',
     keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
@@ -378,9 +378,9 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/fertigung/smd-bestueckung': {
     enPath: '/en/manufacturing/smd-assembly',
-    title: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW | CME',
+    title: 'SMD-Bestückung Deutschland | EMS NRW | CME',
     description: 'SMD-Bestückung in Deutschland: Ihr Elektronik Bestücker aus NRW. Hochpräzise Leiterplattenbestückung vom Prototyp bis zur Großserie – CME Control Motion Electronics Dortmund.',
-    h1: 'SMD-Bestückung Deutschland – Elektronik Bestücker aus NRW',
+    h1: 'SMD-Bestückung Deutschland – EMS NRW',
     keywords: 'SMD-Bestückung, Elektronik Bestücker Deutschland, Leiterplattenbestückung NRW, EMS-Dienstleister, Dampfphasenlöten, Leistungselektronik Bestückung',
     breadcrumbs: [
       { name: 'Startseite', url: '/' },
@@ -407,9 +407,9 @@ const PAGES: Record<string, PageMeta> = {
   },
   '/fertigung/prototypen': {
     enPath: '/en/manufacturing/prototypes',
-    title: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund | CME',
+    title: 'Elektronik-Prototypen Express | CME Dortmund',
     description: 'Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie.',
-    h1: 'Elektronik-Prototypen fertigen lassen – Express aus Dortmund',
+    h1: 'Elektronik-Prototypen Express – CME Dortmund',
     keywords: 'Elektronik Prototypen fertigen lassen, Express-Prototypenfertigung, Prototypenbestückung, DFM, Vorserie, Leistungselektronik Prototypen',
     breadcrumbs: [
       { name: 'Startseite', url: '/' },
@@ -617,7 +617,7 @@ function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, de
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
     <meta property="og:title" content="${escapeHtml(page.title)}">
     <meta property="og:description" content="${escapeHtml(page.description)}">
-    <!-- og:url: set by React Helmet per route -->
+
     <meta property="og:image" content="${ogImage}">
     <meta property="og:locale" content="${isEnglish ? 'en_US' : 'de_DE'}">
     
