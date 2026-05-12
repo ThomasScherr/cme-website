@@ -669,7 +669,7 @@
 - [x] PERF: Alle below-fold Bilder mit loading=lazy versehen (ServicesSection, Footer, TrustSection, SubPageTemplate, Fertigung, InsightArticle, Insights, Unternehmen, Entwicklung-Subpages, ContactSlider, Admin-Pages)
 - [x] PERF: Video-Doppelladung behoben – useVideoSource Hook wählt ein Format per canPlayType (WebM bevorzugt, MP4 Fallback)
 - [ ] PERF: CLS 3,37% reduzieren – Layout-Stabilität verbessern
-- [ ] PERF: Favicon 44KB optimieren (komprimieren oder WebP)
+- [x] PERF: Favicon von 44KB auf 8.8KB komprimiert (64x64 PNG, Lanczos-Resampling)
 - [x] SEO-FIX: 59x doppelte Canonical-Tags behoben – Canonical aus allen 5 Layern entfernt (Manus-Plattform injiziert korrekt)
 - [x] SEO-FIX: 404-Seite – HTTP 404 Status via lookupSeoMeta in vite.ts SPA-Fallback
 - [x] SEO-FIX: Doppelte H1 – Inline-Hero H1 zu div geändert
@@ -680,3 +680,4 @@
 - [x] PERF: UspSection Video preload=none gesetzt
 - [ ] SSL: Zertifikat läuft bald ab (Hinweis an Nutzer)
 - [x] PERF: Video-Doppelladung behoben – useVideoSource Hook implementiert und in HeroSection, SubPageHero (3x), LandingElektronikentwicklung angewendet
+- [x] PERF: Favicon von 44KB auf 8.8KB komprimiert (64x64 PNG)
