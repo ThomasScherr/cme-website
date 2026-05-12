@@ -81,13 +81,24 @@
     <link rel="icon" type="image/png" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_Favicon_ac3f40f8.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossorigin />
+    <link rel="preload" as="image" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero-video-poster_8c5a9e34.jpg" fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 
 
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Critical Hero Content: renders immediately as LCP element before React hydrates -->
+      <div id="hero-ssr" style="min-height:100vh;display:flex;align-items:center;background:#fff;padding:2rem;font-family:Roboto,sans-serif;">
+        <div style="max-width:1400px;margin:0 auto;width:100%;">
+          <p style="color:#00a5c8;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;font-size:0.75rem;margin-bottom:1rem;">THE ELECTRONIC COMPANY</p>
+          <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:#1a1a2e;line-height:1.2;margin:0;">Elektronikentwicklung &amp;<br/>EMS-Fertigung aus einer Hand.</h1>
+          <p style="color:#6b7280;font-size:1.125rem;max-width:36rem;margin-top:1.5rem;line-height:1.7;">Vom ersten Entwurf bis zur Serienfertigung – CME ist Ihr Partner für Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte.</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- SEO: Noscript-Fallback für Crawler die kein JavaScript ausführen (z.B. Sistrix, Screaming Frog) -->

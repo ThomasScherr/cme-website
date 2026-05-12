@@ -661,3 +661,8 @@
 - [x] RESPONSIVE: SubPageHero Headline-Schriftgröße: hyphens entfernt, 60% Textbreite verhindert Umbrüche
 - [x] RESPONSIVE: SubPageHero Grid-Verhältnis von 50/50 auf 3fr/2fr geändert
 - [x] RESPONSIVE: /insights Seite profitiert vom gleichen 3fr/2fr Grid-Fix
+- [x] PERF: LCP auf Startseite von 10.78s auf unter 2.5s optimieren
+- [x] PERF: LCP-Element identifizieren und optimieren
+- [x] PERF: Bundle-Größe analysieren und Code-Splitting implementieren (vendor-react, vendor-motion, vendor-query)
+- [x] PERF: Render-Blocking Resources eliminieren (preconnect CDN, preload hero poster)
+- [x] PERF: Bilder/Videos preloaden oder lazy-loaden (preload=none auf Video, inline critical hero HTML)

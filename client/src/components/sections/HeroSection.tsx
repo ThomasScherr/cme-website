@@ -78,6 +78,7 @@ function DiamondVideo({ className = '', style = {} }: { className?: string; styl
         loop
         muted
         playsInline
+        preload="none"
         poster={HERO_VIDEO_POSTER}
       >
         <source src={HERO_VIDEO_WEBM} type="video/webm" />
