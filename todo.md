@@ -695,3 +695,20 @@
 - [x] SEO-FIX: Noscript-H1 auf Unterseiten zeigt Homepage-H1 statt seitenspezifische H1 (bekannte Limitation: Manus-Plattform liefert immer root index.html; Googlebot führt JS aus und sieht korrekte H1 via React)
 - [x] PERF: CLS von 10,85% auf unter 0,1 reduzieren (width/height auf alle img/video-Elemente: HeroSection, ServicesSection, SubPageHero, UspSection, Navigation, Footer, SubPageTemplate, ContactSlider, Fertigung, Unternehmen, Insights, InsightArticle, LandingElektronikentwicklung, TrustSection)
 - [x] BUG-FIX: Video in Diamond-Rauten füllt nicht die gesamte Raute aus (inline styles entfernt die CSS .diamond img/video Regeln überschrieben; position:relative auf .diamond gesetzt)
+- [x] SEO-PROD-01: Title in index.html (Fallback) + React Helmet pro Route + prerenderMiddleware für Crawler
+- [x] SEO-PROD-02: Description in index.html (Fallback) + React Helmet pro Route + prerenderMiddleware für Crawler
+- [x] SEO-PROD-03: prerenderMiddleware liefert vollständiges HTML mit route-spezifischem Content für Crawler
+- [x] SEO-PROD-04: Noscript-Fallback nur in index.html; prerenderMiddleware liefert route-spezifischen Content
+- [x] SEO-PROD-05: 404 mit noindex für Crawler via prerenderMiddleware; HTTP 200 ist Hosting-Limitation
+- [x] SEO-PROD-06: Fehlende Assets: Hosting-Limitation (immer 200); React NotFound setzt noindex
+- [x] SEO-PROD-07: Slash-Kanonisierung: Express 301 lokal; Hosting liefert beide als 200 (Limitation)
+- [x] SEO-PROD-08: Canonical wird automatisch von Hosting-Plattform pro Route injiziert
+- [x] SEO-PROD-09: lang="de" default; seoHtmlInjector setzt lang="en" für EN-Routen
+- [x] SEO-PROD-10: hreflang pro Route korrekt (de, en, x-default) via seoHtmlInjector + React Helmet
+- [x] SEO-PROD-11: OG-Image auf manuscdn.com (HTTP 200, image/jpeg); alte 403-URL ersetzt
+- [x] SEO-PROD-12: aria-label auf Videos; alle img haben alt-Texte; Logo-URLs korrigiert
+- [x] SEO-PROD-13: HSTS + X-Content-Type-Options (Plattform); Referrer-Policy + X-Frame-Options (Meta-Tags); CSP/Permissions-Policy Hosting-blockiert
+- [x] SEO-PROD-14: maximum-scale=1 aus Viewport entfernt
+- [x] SEO-PROD-15: Globale focus-visible Styles in index.css; shadcn/ui focus-visible:ring-* erhalten
+- [x] SEO-PROD-16: Code-Splitting aktiv; Vendor-Bundles aufgeteilt; große Chunks (RichTextEditor) nur im Admin lazy-loaded
+- [x] SEO-PROD-17: prerenderMiddleware liefert sinnvollen Content ohne JS; Kontaktformular funktioniert; Datenschutz/Impressum/AGB erreichbar; Landing Page /elektronikentwicklung vorhanden

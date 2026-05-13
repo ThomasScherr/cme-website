@@ -76,6 +76,7 @@ function DiamondVideo({ className = '', style = {} }: { className?: string; styl
       style={style}
     >
       <video
+        aria-label="CME Elektronikfertigung – SMD-Bestückungsmaschine in Aktion"
         autoPlay
         loop
         muted

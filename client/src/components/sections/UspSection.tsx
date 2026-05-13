@@ -36,6 +36,7 @@ export default function UspSection({ onCardClick }: UspSectionProps) {
           style={{ marginBottom: 'var(--space-section-header)' }}
         >
           <video
+            aria-label="CME Fertigungshalle – Elektronikproduktion und Qualitätssicherung"
             src={CME_VIDEO}
             autoPlay
             loop

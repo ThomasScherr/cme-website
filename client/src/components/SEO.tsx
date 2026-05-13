@@ -3,7 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const SITE_NAME = 'CME';
 const BASE_URL = 'https://control-motion.de';
-const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg';
+const DEFAULT_OG_IMAGE = 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663373169592/oLXUMurRnSFSIHMQ.jpg';
 
 interface BreadcrumbItem {
   name: string;
@@ -35,7 +35,7 @@ export const organizationSchema = {
   '@type': 'Organization',
   name: 'CME Control Motion Electronics GmbH',
   url: BASE_URL,
-  logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png',
+  logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png',
   description:
     'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
@@ -63,7 +63,7 @@ export const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'CME Control Motion Electronics GmbH',
-  image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB.png',
+  image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png',
   url: BASE_URL,
   telephone: '+49 231 28 66 76 96-0',
   email: 'info@control-motion.de',
@@ -155,7 +155,7 @@ export default function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {/* meta keywords removed: Google ignores them, Sistrix flags as outdated */}
-      {/* canonical removed: Manus hosting platform injects correct per-route canonical */}
+      {/* canonical removed: Hosting platform injects correct per-route canonical */}
       <meta name="robots" content="index, follow" />
       <html lang={isDE ? 'de' : 'en'} />
 
@@ -169,7 +169,7 @@ export default function SEO({
       <meta property="og:site_name" content="CME Control Motion Electronics GmbH" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      {/* og:url removed: Manus hosting platform handles canonical URL */}
+      {/* og:url removed: Hosting platform handles canonical URL */}
       <meta property="og:image" content={image} />
       <meta property="og:locale" content={isDE ? 'de_DE' : 'en_US'} />
 

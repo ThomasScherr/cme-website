@@ -21,7 +21,7 @@ import { join, dirname } from 'path';
 const DIST_DIR = join(dirname(new URL(import.meta.url).pathname), '..', 'dist', 'public');
 const BASE_URL = 'https://control-motion.de';
 const SITE_NAME = 'CME Control Motion Electronics GmbH';
-const DEFAULT_OG_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_OG_Image.jpg';
+const DEFAULT_OG_IMAGE = 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663373169592/oLXUMurRnSFSIHMQ.jpg';
 
 // ─── SEO Page Data (duplicated from seoPageData.ts to avoid TS compilation) ───
 

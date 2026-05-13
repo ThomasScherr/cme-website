@@ -4,7 +4,7 @@
  * Replaces generic SEO placeholder tags in the SPA shell (index.html) with
  * route-specific hreflang, OG image, and locale tags.
  * 
- * IMPORTANT: On Manus hosting, the platform serves the root index.html for ALL
+ * IMPORTANT: On the hosting platform, it serves the root index.html for ALL
  * SPA routes, bypassing the Express server for HTML delivery. Express only handles
  * /api/ routes. This means:
  * 
@@ -33,7 +33,7 @@
  * - <meta name="twitter:description">
  * - <meta property="og:url">
  * 
- * Tags handled by Manus platform:
+ * Tags handled by hosting platform:
  * - <link rel="canonical">
  */
 
@@ -64,7 +64,7 @@ function buildSeoBlock(
 
   return `<!--SEO_BLOCK_START-->
     <!-- Text-based SEO tags set by React Helmet after JS hydration -->
-    <!-- Canonical injected by Manus hosting platform -->
+    <!-- Canonical injected by hosting platform -->
     ${hreflangTags}
     <meta property="og:type" content="website" />
     <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />

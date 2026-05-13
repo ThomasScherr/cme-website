@@ -231,7 +231,7 @@ describe("prerenderMiddleware", () => {
 
   // ── Content correctness ──
 
-  it("does not include canonical tag (handled by Manus platform)", () => {
+  it("does not include canonical tag (handled by hosting platform)", () => {
     const req = createMockReq("GET", "/", "Googlebot/2.1");
     const res = createMockRes();
     middleware(req, res, next);
@@ -268,7 +268,7 @@ describe("prerenderMiddleware", () => {
     expect(res._body).toContain('property="og:type"');
     expect(res._body).toContain('property="og:title"');
     expect(res._body).toContain('property="og:description"');
-    // og:url removed: Manus hosting platform handles canonical URL
+    // og:url removed: Hosting platform handles canonical URL
     expect(res._body).not.toContain('property="og:url"');
     expect(res._body).toContain('property="og:image"');
   });
