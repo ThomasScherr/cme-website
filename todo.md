@@ -712,3 +712,5 @@
 - [x] SEO-PROD-15: Globale focus-visible Styles in index.css; shadcn/ui focus-visible:ring-* erhalten
 - [x] SEO-PROD-16: Code-Splitting aktiv; Vendor-Bundles aufgeteilt; große Chunks (RichTextEditor) nur im Admin lazy-loaded
 - [x] SEO-PROD-17: prerenderMiddleware liefert sinnvollen Content ohne JS; Kontaktformular funktioniert; Datenschutz/Impressum/AGB erreichbar; Landing Page /elektronikentwicklung vorhanden
+- [x] CONTENT: Bare-Die-Design und Keramiksubstrate an passenden Stellen integrieren (HardwareSoftware AVT-Sektion erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)
+- [x] CONTENT: Funkschnittstellen LoRaWAN / Zigbee an passenden Stellen integrieren (HardwareSoftware Kommunikationsschnittstellen erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)

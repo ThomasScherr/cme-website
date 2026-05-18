@@ -138,19 +138,23 @@ const features = [
     ],
   },
   {
-    de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet)',
-    en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet)',
+    de: 'Kommunikationsschnittstellen (CAN, LIN, SPI, Ethernet, LoRaWAN, Zigbee)',
+    en: 'Communication Interfaces (CAN, LIN, SPI, Ethernet, LoRaWAN, Zigbee)',
     icon: Wifi,
     bulletsDE: [
       'Implementierung von CAN, CAN-FD, LIN, Modbus, Profibus',
       'Ethernet-basierte Protokolle: EtherCAT, Profinet, TCP/IP',
       'Wireless-Anbindung: Bluetooth, WLAN, Mobilfunk (IoT-fähig)',
+      'LPWAN-Funkschnittstellen: LoRaWAN für Langstrecken-IoT, Zigbee für Mesh-Netzwerke in Gebäude- und Industrieautomation',
+      'Antennendesign-Abstimmung, HF-Layout und Zertifizierungsbegleitung (RED, FCC)',
       'Protokoll-Stack-Integration und Systemtests unter Realbedingungen',
     ],
     bulletsEN: [
       'Implementation of CAN, CAN-FD, LIN, Modbus, Profibus',
       'Ethernet-based protocols: EtherCAT, Profinet, TCP/IP',
       'Wireless connectivity: Bluetooth, WLAN, cellular (IoT-ready)',
+      'LPWAN radio interfaces: LoRaWAN for long-range IoT, Zigbee for mesh networks in building and industrial automation',
+      'Antenna design coordination, RF layout and certification support (RED, FCC)',
       'Protocol stack integration and system tests under real conditions',
     ],
   },
@@ -176,16 +180,18 @@ const features = [
     en: 'Assembly & Interconnection Technology (Ceramic, IMS, Leadframe, Bare-Die)',
     icon: CircuitBoard,
     bulletsDE: [
-      'Entwicklung von Baugruppen auf Basis von Kupfer-Inlays, IMS-Substraten und Keramikträgern für hohe Wärmelast',
-      'Entwicklung von Bare-Die-Montage und Wire-Bonding für kompakte Hochleistungsmodule in enger Abstimmung mit dem Fertiger',
+      'Bare-Die-Design: Chip-on-Board (CoB), Flip-Chip und Wire-Bonding für kompakte Hochleistungsmodule – von der Halbleiterauswahl bis zur Prozessabstimmung mit dem Fertiger',
+      'Keramiksubstrate: Schaltungsentwicklung auf Al₂O₃-, AlN- und Si₃N₄-Keramik für höchste thermische Anforderungen und Isolationsfestigkeit',
+      'IMS- und Kupfer-Inlay-Designs für optimierte Wärmeabfuhr bei Leistungshalbleitern',
       'Stanzgitter-Designs für industrielle und automotive Gehäusekonzepte',
-      'Enge Abstimmung zwischen Entwicklung und Fertigung (DFM)',
+      'Langjährige Erfahrung in der Abstimmung zwischen Bare-Die-Layout, Bonding-Prozess und Substratauswahl – DFM-optimiert',
     ],
     bulletsEN: [
-      'Development of assemblies based on copper inlays, IMS substrates and ceramic carriers for high thermal loads',
-      'Development of bare-die mounting and wire bonding for compact high-performance modules in close coordination with the manufacturer',
+      'Bare-die design: chip-on-board (CoB), flip-chip and wire bonding for compact high-performance modules – from semiconductor selection to process coordination with the manufacturer',
+      'Ceramic substrates: circuit development on Al₂O₃, AlN and Si₃N₄ ceramics for highest thermal demands and insulation strength',
+      'IMS and copper inlay designs for optimized heat dissipation with power semiconductors',
       'Leadframe designs for industrial and automotive package concepts',
-      'Close coordination between development and manufacturing (DFM)',
+      'Extensive experience in coordinating bare-die layout, bonding process and substrate selection – DFM-optimized',
     ],
   },
 ];
@@ -264,8 +270,8 @@ export default function HardwareSoftware() {
       <SEO
         titleDE="Hardware- & Softwareentwicklung Dortmund"
         titleEN="Hardware & Software Development Dortmund"
-        descriptionDE="Hardware- und Softwareentwicklung in Dortmund: Schaltungsdesign, PCB-Layout, Embedded-Firmware und FPGA für Leistungselektronik. CME – Ihr Entwicklungspartner."
-        descriptionEN="Hardware and software development in Dortmund: circuit design, PCB layout, embedded firmware and FPGA for power electronics. CME – your development partner."
+        descriptionDE="Hardware- und Softwareentwicklung in Dortmund: Schaltungsdesign, PCB-Layout, Bare-Die-Design, Keramiksubstrate, Embedded-Firmware, LoRaWAN, Zigbee und FPGA. CME – Ihr Entwicklungspartner."
+        descriptionEN="Hardware and software development in Dortmund: circuit design, PCB layout, bare-die design, ceramic substrates, embedded firmware, LoRaWAN, Zigbee and FPGA. CME – your development partner."
         path="/entwicklung/hardware-software"
         enPath="/en/development/hardware-software"
         breadcrumbs={[

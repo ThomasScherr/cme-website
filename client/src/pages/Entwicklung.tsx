@@ -73,6 +73,18 @@ const faqCluster2 = [
     answerDE: 'EMV-gerechtes Design beginnt bei uns nicht erst im Test, sondern bereits im Schaltungsentwurf. Wir berücksichtigen Filterauslegung, Masseführung, Schirmung und Leiterbahnführung von Anfang an. Nach der Prototypenfertigung führen wir Pre-Compliance-Messungen durch und optimieren bei Bedarf iterativ. Für die finale Zertifizierung begleiten wir Sie zum akkreditierten Prüflabor und unterstützen bei der Erstellung der technischen Dokumentation für CE, UL, FCC oder branchenspezifische Normen wie IEC 60601 (Medizin) oder ISO 26262 (Automotive).',
     answerEN: 'EMC-compliant design at CME does not start during testing – it begins in the circuit design phase. We consider filter design, grounding, shielding, and trace routing from the very beginning. After prototype manufacturing, we perform pre-compliance measurements and optimize iteratively if needed. For final certification, we accompany you to accredited test laboratories and support the creation of technical documentation for CE, UL, FCC, or industry-specific standards such as IEC 60601 (medical) or ISO 26262 (automotive).',
   },
+  {
+    questionDE: 'Hat CME Erfahrung mit Bare-Die-Design und Keramiksubstraten?',
+    questionEN: 'Does CME have experience with bare-die design and ceramic substrates?',
+    answerDE: 'Ja, Bare-Die-Design und Keramiksubstrate gehören zu unseren Kernkompetenzen in der Leistungselektronik. Wir entwickeln Schaltungen auf Al₂O₃-, AlN- und Si₃N₄-Keramikträgern für Anwendungen mit höchsten thermischen Anforderungen und Isolationsfestigkeit. Im Bare-Die-Bereich beherrschen wir Chip-on-Board (CoB), Flip-Chip und Wire-Bonding – von der Halbleiterauswahl über das Bonding-Diagramm bis zur Prozessabstimmung mit dem Fertiger. Die Kombination aus Bare-Die-Montage und Keramiksubstraten ermöglicht besonders kompakte, thermisch optimierte Hochleistungsmodule – etwa für SiC- und GaN-basierte Leistungsstufen, bei denen konventionelle FR4-Leiterplatten an ihre Grenzen stoßen.',
+    answerEN: 'Yes, bare-die design and ceramic substrates are among our core competencies in power electronics. We develop circuits on Al₂O₃, AlN and Si₃N₄ ceramic carriers for applications with the highest thermal demands and insulation strength. In the bare-die domain, we master chip-on-board (CoB), flip-chip and wire bonding – from semiconductor selection through bonding diagrams to process coordination with the manufacturer. The combination of bare-die mounting and ceramic substrates enables particularly compact, thermally optimized high-performance modules – for example for SiC and GaN-based power stages where conventional FR4 PCBs reach their limits.',
+  },
+  {
+    questionDE: 'Entwickelt CME auch Funkschnittstellen wie LoRaWAN oder Zigbee?',
+    questionEN: 'Does CME also develop radio interfaces such as LoRaWAN or Zigbee?',
+    answerDE: 'Ja, wir entwickeln Embedded-Systeme mit integrierten Funkschnittstellen für IoT- und Industrieanwendungen. Unser Leistungsspektrum umfasst LoRaWAN für energieeffiziente Langstrecken-Kommunikation (z. B. Sensornetze, Smart Metering, Asset Tracking), Zigbee für zuverlässige Mesh-Netzwerke in Gebäude- und Industrieautomation sowie Bluetooth LE und WLAN für Nahbereichs-Konnektivität. Wir übernehmen die Schaltungsentwicklung inklusive HF-Layout und Antennenabstimmung, die Firmware-Integration des Protokoll-Stacks und die Begleitung der Funkzulassung nach RED (EU) und FCC (USA). So erhalten Sie ein funktionsfertiges, zertifizierungsfähiges System aus einer Hand.',
+    answerEN: 'Yes, we develop embedded systems with integrated radio interfaces for IoT and industrial applications. Our range includes LoRaWAN for energy-efficient long-range communication (e.g., sensor networks, smart metering, asset tracking), Zigbee for reliable mesh networks in building and industrial automation, and Bluetooth LE and WLAN for short-range connectivity. We handle circuit development including RF layout and antenna tuning, firmware integration of the protocol stack, and support for radio certification per RED (EU) and FCC (USA). This gives you a function-ready, certification-capable system from a single source.',
+  },
 ];
 
 const faqCluster3 = [
@@ -210,7 +222,9 @@ const coreCompetencies = [
   { icon: SlidersHorizontal, de: 'Automotive SPICE (ASPICE)', en: 'Automotive SPICE (ASPICE)' },
   { icon: Microchip, de: 'Embedded Systems: Firmware, RTOS (C/C++)', en: 'Embedded Systems: Firmware, RTOS (C/C++)' },
   { icon: Radio, de: 'Kommunikationsprotokolle: CAN, LIN, SPI, EtherCAT', en: 'Communication Protocols: CAN, LIN, SPI, EtherCAT' },
+  { icon: Radio, de: 'Funkschnittstellen: LoRaWAN, Zigbee, Bluetooth, WLAN', en: 'Radio Interfaces: LoRaWAN, Zigbee, Bluetooth, WLAN' },
   { icon: Search, de: 'Sensorik & Signalverarbeitung', en: 'Sensor Technology & Signal Processing' },
+  { icon: CircuitBoard, de: 'Bare-Die-Design & Keramiksubstrate (Al₂O₃, AlN)', en: 'Bare-Die Design & Ceramic Substrates (Al₂O₃, AlN)' },
   { icon: Thermometer, de: 'Robuste Elektronik für hohe Temperaturen & raue Umgebungen', en: 'Robust Electronics for High Temperatures & Harsh Environments' },
   { icon: RefreshCw, de: 'Redesign & Produktoptimierung', en: 'Redesign & Product Optimization' },
   { icon: MonitorSmartphone, de: 'UX & Interface Engineering', en: 'UX & Interface Engineering' },
@@ -332,7 +346,7 @@ export default function Entwicklung() {
         titleEN='Electronics Development Dortmund | CME'
         descriptionDE='Von der Idee zur serienreifen Elektronik: Hardware, Software, E-Motor-Design & Simulation aus einer Hand. CME Elektronikentwicklung Dortmund – Jetzt beraten lassen.'
         descriptionEN='From idea to series-ready electronics: hardware, software, e-motor design & simulation from a single source. CME electronics development Dortmund.'
-        keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, EMV, Simulation, V-Modell'
+        keywordsDE='Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Bare-Die-Design, Keramiksubstrate, LoRaWAN, Zigbee, EMV, Simulation, V-Modell'
         keywordsEN='electronics development, hardware design, software development, power electronics, drive electronics, motor design, EMC, simulation, V-model'
         path='/entwicklung'
         enPath='/en/development'

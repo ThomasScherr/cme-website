@@ -46,7 +46,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
   '/entwicklung': {
     title: 'Elektronikentwicklung Leistungselektronik | CME',
     description: 'CME entwickelt Hardware, Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermische Projekte.',
-    keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
+    keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Bare-Die-Design, Keramiksubstrate, LoRaWAN, Zigbee, Regelungstechnik, V-Modell',
     enPath: '/en/development',
     enTitle: 'Electronics Development Dortmund | CME',
     enDescription: 'From concept to series-ready electronics: hardware, software, e-motor design & simulation from a single source. CME Electronics Development Dortmund.',
@@ -54,7 +54,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
   '/entwicklung/hardware-software': {
     title: 'Hardware- & Softwareentwicklung | CME Dortmund',
     description: 'Schaltungsentwicklung, PCB-Layout, Embedded Firmware und FPGA-Design. CME entwickelt Ihre Elektronik von der Spezifikation bis zum serienreifen Prototyp.',
-    keywords: 'Hardware-Entwicklung, Softwareentwicklung, PCB-Layout, Embedded Firmware, FPGA, Schaltungsentwicklung, Prototyp',
+    keywords: 'Hardware-Entwicklung, Softwareentwicklung, PCB-Layout, Bare-Die-Design, Keramiksubstrate, LoRaWAN, Zigbee, Embedded Firmware, FPGA, Schaltungsentwicklung',
     enPath: '/en/development/hardware-software',
     enTitle: 'Hardware & Software Development | CME Dortmund',
     enDescription: 'Circuit design, PCB layout, embedded firmware and FPGA design. CME develops your electronics from specification to series-ready prototype.',

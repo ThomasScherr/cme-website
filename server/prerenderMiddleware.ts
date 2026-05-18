@@ -155,9 +155,11 @@ const PAGES: Record<string, PageMeta> = {
     title: 'Elektronikentwicklung Leistungselektronik | CME',
     description: 'CME entwickelt Hardware, Embedded Software und digitale Systeme für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
     h1: 'Entwicklung – Engineering Services',
-    keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, V-Modell',
+    keywords: 'Elektronikentwicklung, Hardware-Entwicklung, Software-Entwicklung, Simulation, EMV, E-Motor-Design, Regelungstechnik, Bare-Die-Design, Keramiksubstrate, LoRaWAN, Zigbee, V-Modell',
     content: `CME bietet umfassende Entwicklungsdienstleistungen für elektronische Systeme.
     Hardware- und Softwareentwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Simulation und thermisches Management.
+    Bare-Die-Design und Keramiksubstrate (Al₂O₃, AlN, Si₃N₄) für thermisch höchst anspruchsvolle Leistungsmodule. Chip-on-Board (CoB), Flip-Chip, Wire-Bonding.
+    Funkschnittstellen: LoRaWAN, Zigbee, Bluetooth LE, WLAN für IoT- und Industrieanwendungen. HF-Layout, Antennenabstimmung, Funkzulassung (RED, FCC).
     Regelungstechnik (Control Design), EMV-gerechtes Design, Test und Verifikation nach V-Modell.
     UX & Interface Engineering, Software für digitale Systeme, KI-Entwicklung für industrielle Anwendungen.`,
     schemas: [{
@@ -180,6 +182,8 @@ const PAGES: Record<string, PageMeta> = {
         { '@type': 'Question', name: 'Entwickelt CME Elektronik für Gebäudetechnik und Smart Infrastructure?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, wir entwickeln intelligente Elektronik für Gebäude, Infrastruktur und Sicherheit. Aufzugsteuerungen, HVAC-Steuerungen, Gebäudeautomation, Zutrittskontrolle, Energiemanagement und Smart Metering.' }},
         { '@type': 'Question', name: 'Für welche Branchen entwickelt CME Elektronik – und welche Normen werden abgedeckt?', acceptedAnswer: { '@type': 'Answer', text: 'CME entwickelt Elektronik für sechs Kernbranchen: Antriebstechnik, Automotive, Medizintechnik, Industrieautomation, Gebäudetechnik und Energiesysteme. Normen: ISO 26262, IEC 60601, IEC 61508, EN 61800 und Maschinenrichtlinie.' }},
         { '@type': 'Question', name: 'Warum Elektronikentwicklung in Deutschland statt Offshore – was sind die Vorteile eines deutschen Entwicklungspartners?', acceptedAnswer: { '@type': 'Answer', text: 'Ein deutscher Entwicklungspartner wie CME bietet entscheidende Vorteile: direkte Kommunikation ohne Sprachbarrieren, tiefes Verständnis europäischer Normen und Schutz Ihres geistigen Eigentums nach deutschem und EU-Recht. CME ist EMS-neutral: Sie entscheiden frei, ob wir nur entwickeln, nur fertigen oder beides übernehmen.' }},
+        { '@type': 'Question', name: 'Hat CME Erfahrung mit Bare-Die-Design und Keramiksubstraten?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, Bare-Die-Design und Keramiksubstrate gehören zu unseren Kernkompetenzen in der Leistungselektronik. Wir entwickeln Schaltungen auf Al₂O₃-, AlN- und Si₃N₄-Keramikträgern und beherrschen Chip-on-Board (CoB), Flip-Chip und Wire-Bonding für kompakte Hochleistungsmodule.' }},
+        { '@type': 'Question', name: 'Entwickelt CME auch Funkschnittstellen wie LoRaWAN oder Zigbee?', acceptedAnswer: { '@type': 'Answer', text: 'Ja, wir entwickeln Embedded-Systeme mit integrierten Funkschnittstellen: LoRaWAN für Langstrecken-IoT, Zigbee für Mesh-Netzwerke, Bluetooth LE und WLAN. Inklusive HF-Layout, Antennenabstimmung und Funkzulassung (RED, FCC).' }},
       ],
     }],
   },
@@ -188,7 +192,7 @@ const PAGES: Record<string, PageMeta> = {
     title: 'Hardware- & Softwareentwicklung | CME',
     description: 'Hardware- und Softwareentwicklung für elektronische Steuerungen. Schaltungsentwicklung, Embedded Software, FPGA-Design.',
     h1: 'Hardware- & Softwareentwicklung',
-    keywords: 'Hardware-Entwicklung, Softwareentwicklung, Schaltungsentwicklung, Embedded Software, FPGA, Steuerungsentwicklung, Leiterplattendesign',
+    keywords: 'Hardware-Entwicklung, Softwareentwicklung, Schaltungsentwicklung, Embedded Software, FPGA, Bare-Die-Design, Keramiksubstrate, LoRaWAN, Zigbee, Leiterplattendesign',
     breadcrumbs: [
       { name: 'Startseite', url: '/' },
       { name: 'Entwicklung', url: '/entwicklung/' },
@@ -197,7 +201,9 @@ const PAGES: Record<string, PageMeta> = {
     content: `Professionelle Hardware- und Softwareentwicklung für elektronische Steuerungen und Systeme bei CME Control Motion Electronics in Dortmund.
     Unser Leistungsspektrum umfasst die vollständige Schaltungsentwicklung von der Spezifikation bis zum serienreifen Layout. Wir entwickeln analoge und digitale Schaltungen, Mixed-Signal-Designs und Leistungselektronik-Topologien für Ihre Anwendung.
     Leiterplattendesign (PCB-Layout): Mehrlagige Leiterplatten bis 16+ Layer, HDI-Technologie, impedanzkontrolliertes Routing, thermisch optimierte Kupferflächen für Leistungselektronik. EMV-gerechtes Layout mit definierten Massekonzepten.
+    Aufbau- & Verbindungstechnik: Bare-Die-Design (Chip-on-Board, Flip-Chip, Wire-Bonding) für kompakte Hochleistungsmodule. Keramiksubstrate (Al₂O₃, AlN, Si₃N₄) für höchste thermische Anforderungen. IMS- und Kupfer-Inlay-Designs. Stanzgitter für Automotive-Gehäusekonzepte.
     Embedded Software und Firmware: Echtzeitfähige Firmware für ARM Cortex (STM32, NXP, Infineon), FPGA-Designs (Xilinx, Intel/Altera), Kommunikationsschnittstellen (CAN, EtherCAT, SPI, UART, I2C, Ethernet), Bootloader und OTA-Update-Mechanismen.
+    Funkschnittstellen: LoRaWAN für energieeffiziente Langstrecken-IoT-Kommunikation, Zigbee für Mesh-Netzwerke in Gebäude- und Industrieautomation, Bluetooth LE und WLAN. HF-Layout, Antennenabstimmung und Funkzulassung (RED, FCC).
     FPGA-Design: Digitale Signalverarbeitung, Echtzeit-Regelung, schnelle Kommunikationsschnittstellen. VHDL und Verilog, Simulation und Verifikation mit Testbenches.
     Modellbasierte Entwicklung: MATLAB/Simulink für Reglerdesign und automatische Codegenerierung. Rapid Prototyping mit dSPACE und Hardware-in-the-Loop (HIL).
     Warum CME für Hardware- und Softwareentwicklung? Hardware und Software werden bei CME immer als Einheit gedacht. Unsere Ingenieure arbeiten interdisziplinär – das vermeidet Schnittstellenprobleme und verkürzt die Entwicklungszeit. Über 15 Jahre Erfahrung in anspruchsvollen Projekten der Leistungselektronik, Antriebstechnik und Medizintechnik.`,
