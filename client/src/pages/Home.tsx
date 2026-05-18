@@ -60,8 +60,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SEO
-        titleDE='CME Control Motion Electronics GmbH'
-        titleEN='CME Control Motion Electronics GmbH'
+        titleDE='CME Control Motion Electronics – Elektronikentwicklung & EMS Dortmund'
+        titleEN='CME Control Motion Electronics – Electronics Development & EMS Dortmund'
         descriptionDE='CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.'
         descriptionEN='CME Control Motion Electronics – Your partner for electronics development & EMS manufacturing in Dortmund. ISO 9001 certified. Over 15 years of experience.'
         keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management'

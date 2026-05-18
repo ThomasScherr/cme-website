@@ -31,8 +31,8 @@ export interface SeoPageMeta {
  */
 export const SEO_PAGES: Record<string, SeoPageMeta> = {
   '/': {
-    title: 'Elektronikentwicklung & EMS-Fertigung Dortmund | CME',
-    description: 'CME – EMS-Fertigung & Elektronikentwicklung in Dortmund NRW. Elektronik Bestücker für Leistungselektronik, Antriebselektronik & Mechatronik. ISO 9001.',
+    title: 'Elektronikentwicklung & EMS-Fertigung in Dortmund NRW | CME GmbH',
+    description: 'CME ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für Leistungselektronik, Antriebselektronik und Mechatronik. ISO 9001 zertifiziert am Standort Dortmund NRW.',
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
     enPath: '/en',
     enTitle: 'CME Control Motion Electronics GmbH',
