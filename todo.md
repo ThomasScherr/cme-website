@@ -714,3 +714,4 @@
 - [x] SEO-PROD-17: prerenderMiddleware liefert sinnvollen Content ohne JS; Kontaktformular funktioniert; Datenschutz/Impressum/AGB erreichbar; Landing Page /elektronikentwicklung vorhanden
 - [x] CONTENT: Bare-Die-Design und Keramiksubstrate an passenden Stellen integrieren (HardwareSoftware AVT-Sektion erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)
 - [x] CONTENT: Funkschnittstellen LoRaWAN / Zigbee an passenden Stellen integrieren (HardwareSoftware Kommunikationsschnittstellen erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)
+- [x] CONTENT: /agb Seite mit den echten CME AGB aus PDF ersetzen (vollständiger Text aus CMEAGB.pdf, Stand 01.10.2016, §§1-12)
