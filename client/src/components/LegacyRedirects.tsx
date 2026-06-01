@@ -62,6 +62,9 @@ const EN_TO_DE_MAP: Record<string, string> = {
   "/en/contact": "/kontakt",
   "/en/careers": "/karriere",
   "/en/insights": "/insights",
+  "/en/terms-and-conditions": "/agb",
+  "/en/privacy-policy": "/datenschutz",
+  "/en/imprint": "/impressum",
 };
 
 // ── Wildcard prefix rewrites ──

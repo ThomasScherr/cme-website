@@ -295,16 +295,25 @@ const SEO_PAGES = {
     title: 'Impressum | CME Control Motion Electronics GmbH',
     description: 'Impressum der CME Control Motion Electronics GmbH, Alter Hellweg 48, 44379 Dortmund.',
     keywords: 'Impressum, CME, Dortmund',
+    enPath: '/en/imprint',
+    enTitle: 'Legal Notice | CME Control Motion Electronics GmbH',
+    enDescription: 'Legal notice of CME Control Motion Electronics GmbH, Alter Hellweg 48, 44379 Dortmund, Germany.',
   },
   '/datenschutz': {
     title: 'Datenschutzerklärung | CME Control Motion Electronics',
     description: 'Datenschutzerklärung der CME Control Motion Electronics GmbH. Informationen zum Umgang mit Ihren personenbezogenen Daten.',
     keywords: 'Datenschutz, DSGVO, personenbezogene Daten, CME',
+    enPath: '/en/privacy-policy',
+    enTitle: 'Privacy Policy | CME Control Motion Electronics GmbH',
+    enDescription: 'Privacy policy of CME Control Motion Electronics GmbH. Information about the handling of your personal data.',
   },
   '/agb': {
     title: 'AGB | CME Control Motion Electronics GmbH',
     description: 'Allgemeine Geschäftsbedingungen der CME Control Motion Electronics GmbH.',
     keywords: 'AGB, Geschäftsbedingungen, CME',
+    enPath: '/en/terms-and-conditions',
+    enTitle: 'Terms & Conditions | CME Control Motion Electronics GmbH',
+    enDescription: 'General terms and conditions of CME Control Motion Electronics GmbH.',
   },
 };
 
