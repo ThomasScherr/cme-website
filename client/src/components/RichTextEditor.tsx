@@ -26,6 +26,7 @@ import {
   Undo,
   Redo,
   Minus,
+  RemoveFormatting,
 } from 'lucide-react';
 
 interface RichTextEditorProps {
@@ -128,6 +129,12 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
     }
+  }, [editor]);
+
+  // Clear all formatting from selected text (removes bold, italic, underline, links, etc.)
+  const clearFormatting = useCallback(() => {
+    if (!editor) return;
+    editor.chain().focus().clearNodes().unsetAllMarks().run();
   }, [editor]);
 
   if (!editor) return null;
@@ -284,6 +291,16 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
         </ToolbarButton>
         <ToolbarButton onClick={addImage} title="Bild einfügen">
           <ImageIcon size={16} />
+        </ToolbarButton>
+
+        <ToolbarDivider />
+
+        {/* Clear Formatting */}
+        <ToolbarButton
+          onClick={clearFormatting}
+          title="Formatierung entfernen (entfernt alle Formatierungen vom markierten Text, z.B. nach Einfügen aus Word)"
+        >
+          <RemoveFormatting size={16} />
         </ToolbarButton>
       </div>
 

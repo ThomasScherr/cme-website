@@ -724,3 +724,4 @@
 - [x] FEATURE: Matthias Markmann als ersten Autor in DB seeden
 - [x] BUG-FIX: /insights Seite sendet ":slug" als Literal an API (Slug-Validierung + null statt undefined Rückgabe für React Query Kompatibilität)
 - [x] BUG-FIX: Insight-Artikel Textformatierung funktioniert nicht – Streamdown (Markdown-Renderer) durch dangerouslySetInnerHTML ersetzt, da TipTap HTML ausgibt
+- [x] FEATURE: RichTextEditor – "Formatierung entfernen" Button in Toolbar (zum Löschen von Word-Formatierungen beim Einfügen)
