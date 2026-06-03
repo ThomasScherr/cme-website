@@ -725,3 +725,5 @@
 - [x] BUG-FIX: /insights Seite sendet ":slug" als Literal an API (Slug-Validierung + null statt undefined Rückgabe für React Query Kompatibilität)
 - [x] BUG-FIX: Insight-Artikel Textformatierung funktioniert nicht – Streamdown (Markdown-Renderer) durch dangerouslySetInnerHTML ersetzt, da TipTap HTML ausgibt
 - [x] FEATURE: RichTextEditor – "Formatierung entfernen" Button in Toolbar (zum Löschen von Word-Formatierungen beim Einfügen)
+- [x] BUG-FIX: RichTextEditor – Zitatfunktion (Blockquote) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
+- [x] BUG-FIX: RichTextEditor – Aufzählung (Bullet/Ordered List) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
