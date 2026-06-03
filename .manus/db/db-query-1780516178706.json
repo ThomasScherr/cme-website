@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, title, author, authorId, status FROM articles ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT id, title, author, authorId, status FROM articles ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Warum thermische Probleme selten am einzelnen Bauteil entstehen",
+      "author": "Matthias Markmann",
+      "authorId": "1",
+      "status": "published"
+    },
+    {
+      "id": "30001",
+      "title": "SiC- und GaN-Technologien: Effizienzgewinne und neue Herausforderungen",
+      "author": "Matthias Markmann",
+      "authorId": "1",
+      "status": "published"
+    },
+    {
+      "id": "30002",
+      "title": "Thermische Simulation – warum frühe Analysen Kosten sparen",
+      "author": "Matthias Markmann",
+      "authorId": "1",
+      "status": "published"
+    },
+    {
+      "id": "60001",
+      "title": "Konzeptphase in der Leistungselektronik: Wo spätere EMV-, Thermal- und Regelungsprobleme wirklich entstehen",
+      "author": "Matthias Markmann",
+      "authorId": "1",
+      "status": "published"
+    },
+    {
+      "id": "60002",
+      "title": "Warum der Prototyp funktioniert – und die Serie trotzdem kritisch wird",
+      "author": "CME Redaktion",
+      "authorId": "1",
+      "status": "draft"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tauthor\tauthorId\tstatus\n1\tWarum thermische Probleme selten am einzelnen Bauteil entstehen\tMatthias Markmann\t1\tpublished\n30001\tSiC- und GaN-Technologien: Effizienzgewinne und neue Herausforderungen\tMatthias Markmann\t1\tpublished\n30002\tThermische Simulation – warum frühe Analysen Kosten sparen\tMatthias Markmann\t1\tpublished\n60001\tKonzeptphase in der Leistungselektronik: Wo spätere EMV-, Thermal- und Regelungsprobleme wirklich entstehen\tMatthias Markmann\t1\tpublished\n60002\tWarum der Prototyp funktioniert – und die Serie trotzdem kritisch wird\tCME Redaktion\t1\tdraft\n",
+  "stderr": "",
+  "execution_time_ms": 265
+}

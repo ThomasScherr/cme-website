@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, LEFT(content, 500) as content_preview FROM articles WHERE id >= 60001;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT id, LEFT(content, 500) as content_preview FROM articles WHERE id >= 60001;",
+  "rows": [
+    {
+      "id": "60001",
+      "content_preview": "<p>Viele Fehler in Elektronikprojekten werden erst am Prototyp sichtbar: unerwartete Hotspots, Überschwinger am Switch-Node, instabile Gate-Signale, EMV-Auffälligkeiten, thermisches Derating oder ein Reglerverhalten, das im Labor funktioniert, im realen Lastkollektiv aber nicht robust bleibt.</p><p></p><p>Die Ursache liegt häufig nicht im Detaildesign, sondern deutlich früher: in Annahmen aus der Konzeptphase.</p><p>Gerade bei Power-Applikationen reicht die Dimensionierung auf einen stationären "
+    },
+    {
+      "id": "60002",
+      "content_preview": "<p>Der Prototyp schaltet sauber.<br>Die Messwerte passen.<br>Die Funktion ist nachgewiesen.</p><p>Damit ist ein technisches Prinzip validiert – aber noch kein serienfähiger Prozess. Genau hier entsteht in vielen Elektronikprojekten der Bruch zwischen Entwicklungserfolg und Serienrealität. Ein Prototyp entsteht meist unter kontrollierten Bedingungen: ausgewählte Bauteile, manuell überwachte Fertigung, direkte Korrektur bei Auffälligkeiten, kurze Feedbackwege.</p><p>In der Serie wird daraus ein Pr"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcontent_preview\n60001\t<p>Viele Fehler in Elektronikprojekten werden erst am Prototyp sichtbar: unerwartete Hotspots, Überschwinger am Switch-Node, instabile Gate-Signale, EMV-Auffälligkeiten, thermisches Derating oder ein Reglerverhalten, das im Labor funktioniert, im realen Lastkollektiv aber nicht robust bleibt.</p><p></p><p>Die Ursache liegt häufig nicht im Detaildesign, sondern deutlich früher: in Annahmen aus der Konzeptphase.</p><p>Gerade bei Power-Applikationen reicht die Dimensionierung auf einen stationären \n60002\t<p>Der Prototyp schaltet sauber.<br>Die Messwerte passen.<br>Die Funktion ist nachgewiesen.</p><p>Damit ist ein technisches Prinzip validiert – aber noch kein serienfähiger Prozess. Genau hier entsteht in vielen Elektronikprojekten der Bruch zwischen Entwicklungserfolg und Serienrealität. Ein Prototyp entsteht meist unter kontrollierten Bedingungen: ausgewählte Bauteile, manuell überwachte Fertigung, direkte Korrektur bei Auffälligkeiten, kurze Feedbackwege.</p><p>In der Serie wird daraus ein Pr\n",
+  "stderr": "",
+  "execution_time_ms": 267
+}

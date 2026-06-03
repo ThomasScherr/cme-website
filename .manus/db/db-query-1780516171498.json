@@ -1,0 +1,16 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'articles' AND COLUMN_NAME LIKE '%author%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'articles' AND COLUMN_NAME LIKE '%author%';",
+  "rows": [
+    {
+      "COLUMN_NAME": "author"
+    },
+    {
+      "COLUMN_NAME": "authorId"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nauthor\nauthorId\n",
+  "stderr": "",
+  "execution_time_ms": 260
+}

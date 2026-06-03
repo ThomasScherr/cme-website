@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, LEFT(content, 500) as content_preview FROM articles WHERE id <= 30002;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT id, LEFT(content, 500) as content_preview FROM articles WHERE id <= 30002;",
+  "rows": [
+    {
+      "id": "1",
+      "content_preview": "<p><strong>Warum thermische Probleme selten am einzelnen Bauteil entstehen</strong></p><p><em>– und weshalb Systemverständnis entscheidend für zuverlässige Elektronik ist</em></p><p></p><p>Wenn in Power-Elektronikprojekten thermische Probleme auftreten, richtet sich der Blick häufig zuerst auf das einzelne Bauteil. Ist der Leistungshalbleiter richtig dimensioniert? Reicht der Kühlkörper aus? Muss ein anderes Package gewählt werden? </p><p></p><p>In der Praxis zeigt sich jedoch immer wieder: Ther"
+    },
+    {
+      "id": "30001",
+      "content_preview": "<p><strong>SiC- und GaN-Technologien: Effizienzgewinne und neue Herausforderungen</strong></p><p><em>– warum moderne Leistungshalbleiter ein systemisches Umdenken erfordern</em></p><p></p><p>SiC- und GaN-Technologien werden in vielen Power-Elektronikprojekten mit großen Erwartungen eingeführt. Höhere Wirkungsgrade, geringere Verluste und kompaktere Designs versprechen deutliche Effizienzgewinne gegenüber klassischen Siliziumlösungen. In ersten Berechnungen und Laboraufbauten bestätigen sich dies"
+    },
+    {
+      "id": "30002",
+      "content_preview": "<p><strong>Thermische Simulation – warum frühe Analysen Kosten sparen</strong></p><p><em>– und weshalb Thermik kein nachgelagerter Prüfschritt sein darf</em></p><p></p><p>In vielen Elektronikprojekten wird Thermik erst dann zum Thema, wenn erste Prototypen zu warm werden oder Messungen unerwartete Hotspots zeigen. Zu diesem Zeitpunkt sind Schaltung, Layout und Mechanik meist bereits weitgehend festgelegt. Thermische Simulation wird dann genutzt, um bestehende Probleme zu erklären – nicht, um sie"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tcontent_preview\n1\t<p><strong>Warum thermische Probleme selten am einzelnen Bauteil entstehen</strong></p><p><em>– und weshalb Systemverständnis entscheidend für zuverlässige Elektronik ist</em></p><p></p><p>Wenn in Power-Elektronikprojekten thermische Probleme auftreten, richtet sich der Blick häufig zuerst auf das einzelne Bauteil. Ist der Leistungshalbleiter richtig dimensioniert? Reicht der Kühlkörper aus? Muss ein anderes Package gewählt werden? </p><p></p><p>In der Praxis zeigt sich jedoch immer wieder: Ther\n30001\t<p><strong>SiC- und GaN-Technologien: Effizienzgewinne und neue Herausforderungen</strong></p><p><em>– warum moderne Leistungshalbleiter ein systemisches Umdenken erfordern</em></p><p></p><p>SiC- und GaN-Technologien werden in vielen Power-Elektronikprojekten mit großen Erwartungen eingeführt. Höhere Wirkungsgrade, geringere Verluste und kompaktere Designs versprechen deutliche Effizienzgewinne gegenüber klassischen Siliziumlösungen. In ersten Berechnungen und Laboraufbauten bestätigen sich dies\n30002\t<p><strong>Thermische Simulation – warum frühe Analysen Kosten sparen</strong></p><p><em>– und weshalb Thermik kein nachgelagerter Prüfschritt sein darf</em></p><p></p><p>In vielen Elektronikprojekten wird Thermik erst dann zum Thema, wenn erste Prototypen zu warm werden oder Messungen unerwartete Hotspots zeigen. Zu diesem Zeitpunkt sind Schaltung, Layout und Mechanik meist bereits weitgehend festgelegt. Thermische Simulation wird dann genutzt, um bestehende Probleme zu erklären – nicht, um sie\n",
+  "stderr": "",
+  "execution_time_ms": 268
+}

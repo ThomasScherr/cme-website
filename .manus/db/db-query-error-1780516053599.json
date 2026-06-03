@@ -1,0 +1,8 @@
+{
+  "query": "SELECT a.id, a.title, a.author_id, a.status, a.created_at, au.name as author_name FROM articles a LEFT JOIN authors au ON a.author_id = au.id ORDER BY a.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT a.id, a.title, a.author_id, a.status, a.created_at, au.name as author_name FROM articles a LEFT JOIN authors au ON a.author_id = au.id ORDER BY a.id;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'a.author_id' in 'on clause'"
+  ]
+}

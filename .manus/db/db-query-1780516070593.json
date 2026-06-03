@@ -1,0 +1,28 @@
+{
+  "query": "SELECT * FROM authors;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute SELECT * FROM authors;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Matthias Markmann",
+      "titleDe": "Dipl.-Ing. (FH) – Gesellschafter & Geschäftsführer",
+      "titleEn": "Dipl.-Ing. (FH) – Managing Director & Co-Owner",
+      "bioDe": "Matthias Markmann leitet als Geschäftsführer die CME Control Motion Electronics GmbH in Dortmund. Mit über 15 Jahren Erfahrung in der Entwicklung und Fertigung von Leistungselektronik, Antriebstechnik und thermisch anspruchsvollen Systemen verantwortet er die technische Strategie und Projektleitung komplexer Elektronikprojekte.",
+      "bioEn": "Matthias Markmann is Managing Director of CME Control Motion Electronics GmbH in Dortmund, Germany. With over 15 years of experience in the development and manufacturing of power electronics, drive technology, and thermally demanding systems, he leads the technical strategy and project management of complex electronics projects.",
+      "expertiseDe": "Elektronikentwicklung, Thermal Management, Simulation, Obsoleszenzmanagement, Leistungselektronik",
+      "expertiseEn": "Electronics Development, Thermal Management, Simulation, Obsolescence Management, Power Electronics",
+      "imageUrl": "NULL",
+      "url": "https://control-motion.de/unternehmen/",
+      "company": "CME Control Motion Electronics GmbH",
+      "companyUrl": "https://control-motion.de/",
+      "location": "Dortmund, Deutschland",
+      "knowsAbout": "Elektronikentwicklung, Leistungselektronik, Thermal Management, Simulation, Obsoleszenzmanagement, Antriebselektronik, EMS-Fertigung, Mechatronik",
+      "createdAt": "2026-06-03 18:00:34",
+      "updatedAt": "2026-06-03 18:00:34"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\ttitleDe\ttitleEn\tbioDe\tbioEn\texpertiseDe\texpertiseEn\timageUrl\turl\tcompany\tcompanyUrl\tlocation\tknowsAbout\tcreatedAt\tupdatedAt\n1\tMatthias Markmann\tDipl.-Ing. (FH) – Gesellschafter & Geschäftsführer\tDipl.-Ing. (FH) – Managing Director & Co-Owner\tMatthias Markmann leitet als Geschäftsführer die CME Control Motion Electronics GmbH in Dortmund. Mit über 15 Jahren Erfahrung in der Entwicklung und Fertigung von Leistungselektronik, Antriebstechnik und thermisch anspruchsvollen Systemen verantwortet er die technische Strategie und Projektleitung komplexer Elektronikprojekte.\tMatthias Markmann is Managing Director of CME Control Motion Electronics GmbH in Dortmund, Germany. With over 15 years of experience in the development and manufacturing of power electronics, drive technology, and thermally demanding systems, he leads the technical strategy and project management of complex electronics projects.\tElektronikentwicklung, Thermal Management, Simulation, Obsoleszenzmanagement, Leistungselektronik\tElectronics Development, Thermal Management, Simulation, Obsolescence Management, Power Electronics\tNULL\thttps://control-motion.de/unternehmen/\tCME Control Motion Electronics GmbH\thttps://control-motion.de/\tDortmund, Deutschland\tElektronikentwicklung, Leistungselektronik, Thermal Management, Simulation, Obsoleszenzmanagement, Antriebselektronik, EMS-Fertigung, Mechatronik\t2026-06-03 18:00:34\t2026-06-03 18:00:34\n",
+  "stderr": "",
+  "execution_time_ms": 339
+}

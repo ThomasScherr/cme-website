@@ -727,3 +727,4 @@
 - [x] FEATURE: RichTextEditor – "Formatierung entfernen" Button in Toolbar (zum Löschen von Word-Formatierungen beim Einfügen)
 - [x] BUG-FIX: RichTextEditor – Zitatfunktion (Blockquote) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
 - [x] BUG-FIX: RichTextEditor – Aufzählung (Bullet/Ordered List) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
+- [x] BUG-FIX: Artikel 60001 Aufzählung mit Textstrichen (–) in echte HTML-Bullet-Points (ul/li) umgewandelt (DE + EN)

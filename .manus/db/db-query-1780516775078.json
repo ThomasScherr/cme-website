@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE articles SET content = REPLACE(content, '<p>– System-, Schaltungs-, Verlustleistungs- und Thermosimulation<br>– Betrachtung transienter Betriebszustände und Worst Cases<br>– thermische 3D-FEM-Analysen und Rth/Zth-Bewertungen<br>– EMV-gerechte Schaltungs- und Layoutauslegung<br>– DfM-Abstimmung mit Blick auf die spätere EMS-Fertigung<br>– Teststrategie, Verifikation und Serienvalidierung</p>', '<ul><li>System-, Schaltungs-, Verlustleistungs- und Thermosimulation</li><li>Betrachtung transienter Betriebszustände und Worst Cases</li><li>thermische 3D-FEM-Analysen und Rth/Zth-Bewertungen</li><li>EMV-gerechte Schaltungs- und Layoutauslegung</li><li>DfM-Abstimmung mit Blick auf die spätere EMS-Fertigung</li><li>Teststrategie, Verifikation und Serienvalidierung</li></ul>') WHERE id = 60001;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4XSjeNPhtasZJLz.root --database 9wChLxyDrQGRm9T7Lg9U7Y --execute UPDATE articles SET content = REPLACE(content, '<p>– System-, Schaltungs-, Verlustleistungs- und Thermosimulation<br>– Betrachtung transienter Betriebszustände und Worst Cases<br>– thermische 3D-FEM-Analysen und Rth/Zth-Bewertungen<br>– EMV-gerechte Schaltungs- und Layoutauslegung<br>– DfM-Abstimmung mit Blick auf die spätere EMS-Fertigung<br>– Teststrategie, Verifikation und Serienvalidierung</p>', '<ul><li>System-, Schaltungs-, Verlustleistungs- und Thermosimulation</li><li>Betrachtung transienter Betriebszustände und Worst Cases</li><li>thermische 3D-FEM-Analysen und Rth/Zth-Bewertungen</li><li>EMV-gerechte Schaltungs- und Layoutauslegung</li><li>DfM-Abstimmung mit Blick auf die spätere EMS-Fertigung</li><li>Teststrategie, Verifikation und Serienvalidierung</li></ul>') WHERE id = 60001;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1025
+}
