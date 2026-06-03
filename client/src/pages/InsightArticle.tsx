@@ -5,7 +5,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
 import { useRoute, Link } from 'wouter';
 import { Calendar, ArrowLeft, Tag } from 'lucide-react';
-import { Streamdown } from 'streamdown';
 
 export default function InsightArticle() {
   const { lang } = useLanguage();
@@ -119,9 +118,11 @@ export default function InsightArticle() {
           )}
 
           {/* Content */}
-          <div className="prose prose-gray max-w-none fluid-body-lg" style={{ marginTop: 'var(--space-gap-lg)' }}>
-            <Streamdown>{content}</Streamdown>
-          </div>
+          <div
+            className="prose prose-gray max-w-none fluid-body-lg"
+            style={{ marginTop: 'var(--space-gap-lg)' }}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
 
           {/* Author Profile */}
           <AuthorCard variant="full" authorId={article.authorId} authorName={article.author} />

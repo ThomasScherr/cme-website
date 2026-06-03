@@ -4,7 +4,6 @@ import { useAuth } from '@/_core/hooks/useAuth';
 import { trpc } from '@/lib/trpc';
 import { Link, useRoute } from 'wouter';
 import { Calendar, ArrowLeft, Tag, Eye, AlertTriangle, Globe } from 'lucide-react';
-import { Streamdown } from 'streamdown';
 
 /**
  * InsightPreview – Shows a full article preview for admins.
@@ -182,9 +181,11 @@ export default function InsightPreview() {
           )}
 
           {/* Content */}
-          <div className="prose prose-gray max-w-none fluid-body-lg" style={{ marginTop: 'var(--space-gap-lg)' }}>
-            <Streamdown>{content}</Streamdown>
-          </div>
+          <div
+            className="prose prose-gray max-w-none fluid-body-lg"
+            style={{ marginTop: 'var(--space-gap-lg)' }}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
 
           {/* SEO Preview */}
           {(metaTitle || metaDescription) && (
