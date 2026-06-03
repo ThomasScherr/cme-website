@@ -1,74 +1,111 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { trpc } from '@/lib/trpc';
 
 interface AuthorCardProps {
   /** Display variant: 'compact' for article meta line, 'full' for article footer */
   variant?: 'compact' | 'full';
+  /** Author ID from the database. If not provided, falls back to legacy display name. */
+  authorId?: number | null;
+  /** Legacy fallback: display name (used when authorId is not set) */
+  authorName?: string;
 }
 
 /**
- * AuthorCard – displays the author profile for Matthias Markmann.
+ * AuthorCard – dynamically loads author profile from DB.
  * Includes Schema.org Person JSON-LD for E-E-A-T and GEO signals.
  */
-export default function AuthorCard({ variant = 'full' }: AuthorCardProps) {
+export default function AuthorCard({ variant = 'full', authorId, authorName }: AuthorCardProps) {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
 
+  const { data: dbAuthor } = trpc.authors.getById.useQuery(
+    { id: authorId! },
+    { enabled: !!authorId }
+  );
+
+  // If no authorId or author not loaded yet, show minimal fallback
+  if (!authorId || !dbAuthor) {
+    const displayName = authorName || 'CME Redaktion';
+    const initials = displayName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+    if (variant === 'compact') {
+      return (
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-cme-blue/10 flex items-center justify-center text-cme-blue font-bold text-sm">
+            {initials}
+          </div>
+          <span className="font-semibold text-cme-dark text-sm">{displayName}</span>
+        </div>
+      );
+    }
+    return null; // Don't render full card without author data
+  }
+
+  // Build author object from DB data
   const author = {
-    name: 'Matthias Markmann',
-    title: isDE
-      ? 'Dipl.-Ing. (FH) – Gesellschafter & Geschäftsführer'
-      : 'Dipl.-Ing. (FH) – Managing Director & Co-Owner',
-    expertise: isDE
-      ? ['Elektronikentwicklung', 'Thermal Management', 'Simulation', 'Obsoleszenzmanagement']
-      : ['Electronics Development', 'Thermal Management', 'Simulation', 'Obsolescence Management'],
-    bio: isDE
-      ? 'Matthias Markmann leitet als Geschäftsführer die CME Control Motion Electronics GmbH in Dortmund. Mit über 15 Jahren Erfahrung in der Entwicklung und Fertigung von Leistungselektronik, Antriebstechnik und thermisch anspruchsvollen Systemen verantwortet er die technische Strategie und Projektleitung komplexer Elektronikprojekte.'
-      : 'Matthias Markmann is Managing Director of CME Control Motion Electronics GmbH in Dortmund, Germany. With over 15 years of experience in the development and manufacturing of power electronics, drive technology, and thermally demanding systems, he leads the technical strategy and project management of complex electronics projects.',
-    url: 'https://control-motion.de/unternehmen/',
-    company: 'CME Control Motion Electronics GmbH',
-    companyUrl: 'https://control-motion.de/',
-    location: isDE ? 'Dortmund, Deutschland' : 'Dortmund, Germany',
+    name: dbAuthor.name,
+    title: isDE ? (dbAuthor.titleDe || '') : (dbAuthor.titleEn || dbAuthor.titleDe || ''),
+    expertise: (isDE ? dbAuthor.expertiseDe : (dbAuthor.expertiseEn || dbAuthor.expertiseDe))
+      ?.split(',').map(s => s.trim()).filter(Boolean) || [],
+    bio: isDE ? (dbAuthor.bioDe || '') : (dbAuthor.bioEn || dbAuthor.bioDe || ''),
+    url: dbAuthor.url || '',
+    company: dbAuthor.company || '',
+    companyUrl: dbAuthor.companyUrl || '',
+    location: dbAuthor.location || '',
+    imageUrl: dbAuthor.imageUrl || '',
+    knowsAbout: dbAuthor.knowsAbout?.split(',').map(s => s.trim()).filter(Boolean) || [],
   };
+
+  const initials = author.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
   // Schema.org Person JSON-LD
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: author.name,
-    jobTitle: 'Geschäftsführer',
-    honorificPrefix: 'Dipl.-Ing. (FH)',
-    url: author.url,
-    worksFor: {
-      '@type': 'Organization',
-      name: author.company,
-      url: author.companyUrl,
-    },
-    knowsAbout: [
-      'Elektronikentwicklung',
-      'Leistungselektronik',
-      'Thermal Management',
-      'Simulation',
-      'Obsoleszenzmanagement',
-      'Antriebselektronik',
-      'EMS-Fertigung',
-      'Mechatronik',
-    ],
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Dortmund',
-      addressCountry: 'DE',
-    },
+    ...(author.title && { jobTitle: author.title }),
+    ...(author.url && { url: author.url }),
+    ...(author.company && {
+      worksFor: {
+        '@type': 'Organization',
+        name: author.company,
+        ...(author.companyUrl && { url: author.companyUrl }),
+      },
+    }),
+    ...(author.knowsAbout.length > 0 && { knowsAbout: author.knowsAbout }),
+    ...(author.imageUrl && { image: author.imageUrl }),
+    ...(author.location && {
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: author.location.split(',')[0]?.trim(),
+        addressCountry: 'DE',
+      },
+    }),
   };
 
   if (variant === 'compact') {
     return (
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-cme-blue/10 flex items-center justify-center text-cme-blue font-bold text-sm">
-          MM
-        </div>
+        {author.imageUrl ? (
+          <img
+            src={author.imageUrl}
+            alt={author.name}
+            className="w-8 h-8 rounded-full object-cover"
+            width={32}
+            height={32}
+          />
+        ) : (
+          <div className="w-8 h-8 rounded-full bg-cme-blue/10 flex items-center justify-center text-cme-blue font-bold text-sm">
+            {initials}
+          </div>
+        )}
         <div className="flex flex-col">
           <span className="font-semibold text-cme-dark text-sm leading-tight">{author.name}</span>
-          <span className="text-gray-500 text-xs leading-tight">{author.title.split(' – ')[0]}</span>
+          {author.title && (
+            <span className="text-gray-500 text-xs leading-tight">
+              {author.title.split(' – ')[0]}
+            </span>
+          )}
         </div>
       </div>
     );
@@ -83,34 +120,48 @@ export default function AuthorCard({ variant = 'full' }: AuthorCardProps) {
       />
 
       <div className="flex items-start gap-4">
-        {/* Avatar placeholder */}
-        <div className="w-16 h-16 rounded-full bg-cme-blue/10 flex items-center justify-center text-cme-blue font-bold text-xl shrink-0">
-          MM
-        </div>
+        {/* Avatar */}
+        {author.imageUrl ? (
+          <img
+            src={author.imageUrl}
+            alt={author.name}
+            className="w-16 h-16 rounded-full object-cover shrink-0"
+            width={64}
+            height={64}
+          />
+        ) : (
+          <div className="w-16 h-16 rounded-full bg-cme-blue/10 flex items-center justify-center text-cme-blue font-bold text-xl shrink-0">
+            {initials}
+          </div>
+        )}
 
         <div className="flex flex-col gap-2">
           {/* Name & Title */}
           <div>
             <p className="font-bold text-cme-dark fluid-body">{author.name}</p>
-            <p className="text-gray-600 text-sm">{author.title}</p>
+            {author.title && <p className="text-gray-600 text-sm">{author.title}</p>}
           </div>
 
           {/* Bio */}
-          <p className="text-gray-600 text-sm leading-relaxed">
-            {author.bio}
-          </p>
+          {author.bio && (
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {author.bio}
+            </p>
+          )}
 
           {/* Expertise Tags */}
-          <div className="flex flex-wrap gap-2" style={{ marginTop: '0.25rem' }}>
-            {author.expertise.map((skill) => (
-              <span
-                key={skill}
-                className="inline-block text-xs font-medium text-cme-blue bg-cme-blue/8 px-2.5 py-1 rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+          {author.expertise.length > 0 && (
+            <div className="flex flex-wrap gap-2" style={{ marginTop: '0.25rem' }}>
+              {author.expertise.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-block text-xs font-medium text-cme-blue bg-cme-blue/8 px-2.5 py-1 rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </aside>

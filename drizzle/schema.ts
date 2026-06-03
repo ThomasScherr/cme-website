@@ -47,8 +47,10 @@ export const articles = mysqlTable("articles", {
   content: text("content").notNull(),
   /** Cover image URL */
   coverImage: text("coverImage"),
-  /** Author name */
+  /** Author name (legacy, kept for backward compat) */
   author: varchar("author", { length: 255 }).default("CME Redaktion").notNull(),
+  /** Author profile ID (FK to authors table) */
+  authorId: int("authorId"),
   /** Publication status */
   status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
   /** Category ID */
@@ -76,6 +78,45 @@ export const articles = mysqlTable("articles", {
 
 export type Article = typeof articles.$inferSelect;
 export type InsertArticle = typeof articles.$inferInsert;
+
+/**
+ * Authors – reusable author profiles for Insights articles
+ * Includes bilingual bio, expertise tags, and Schema.org-relevant fields
+ */
+export const authors = mysqlTable("authors", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Full name */
+  name: varchar("name", { length: 255 }).notNull(),
+  /** Job title / role (German) */
+  titleDe: varchar("titleDe", { length: 500 }),
+  /** Job title / role (English) */
+  titleEn: varchar("titleEn", { length: 500 }),
+  /** Short bio (German) */
+  bioDe: text("bioDe"),
+  /** Short bio (English) */
+  bioEn: text("bioEn"),
+  /** Comma-separated expertise tags (German) */
+  expertiseDe: text("expertiseDe"),
+  /** Comma-separated expertise tags (English) */
+  expertiseEn: text("expertiseEn"),
+  /** Profile image URL */
+  imageUrl: text("imageUrl"),
+  /** Profile/company page URL */
+  url: varchar("url", { length: 500 }),
+  /** Company name */
+  company: varchar("company", { length: 255 }),
+  /** Company URL */
+  companyUrl: varchar("companyUrl", { length: 500 }),
+  /** Location (e.g. "Dortmund, Deutschland") */
+  location: varchar("location", { length: 255 }),
+  /** Schema.org knowsAbout – comma-separated (for structured data) */
+  knowsAbout: text("knowsAbout"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Author = typeof authors.$inferSelect;
+export type InsertAuthor = typeof authors.$inferInsert;
 
 /**
  * Contact form submissions

@@ -37,6 +37,7 @@ export default function InsightsAdmin() {
   const [content, setContent] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [author, setAuthor] = useState('CME Redaktion');
+  const [authorId, setAuthorId] = useState<number | null>(null);
   const [status, setStatus] = useState<'draft' | 'published'>('draft');
   const [tags, setTags] = useState('');
   const [metaTitle, setMetaTitle] = useState('');
@@ -52,6 +53,7 @@ export default function InsightsAdmin() {
 
   const utils = trpc.useUtils();
   const { data: articles, isLoading } = trpc.articles.listAll.useQuery();
+  const { data: authorsList } = trpc.authors.list.useQuery();
 
   const uploadCoverMutation = trpc.articles.uploadCover.useMutation({
     onSuccess: (data) => {
@@ -157,6 +159,7 @@ export default function InsightsAdmin() {
     setContent(article.content);
     setCoverImage(article.coverImage || '');
     setAuthor(article.author);
+    setAuthorId(article.authorId || null);
     setStatus(article.status);
     setTags(article.tags || '');
     setMetaTitle(article.metaTitle || '');
@@ -208,6 +211,7 @@ export default function InsightsAdmin() {
       content: strippedContent ? content : '',
       coverImage: coverImage || undefined,
       author,
+      authorId: authorId || undefined,
       status,
       tags: tags || undefined,
       metaTitle: metaTitle || undefined,
@@ -431,12 +435,31 @@ export default function InsightsAdmin() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Autor
                     </label>
-                    <input
-                      type="text"
-                      value={author}
-                      onChange={(e) => setAuthor(e.target.value)}
+                    <select
+                      value={authorId ? String(authorId) : ''}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (val) {
+                          const selectedAuthor = authorsList?.find(a => a.id === Number(val));
+                          setAuthorId(Number(val));
+                          if (selectedAuthor) setAuthor(selectedAuthor.name);
+                        } else {
+                          setAuthorId(null);
+                          setAuthor('CME Redaktion');
+                        }
+                      }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cme-blue focus:border-transparent"
-                    />
+                    >
+                      <option value="">– Autor wählen –</option>
+                      {authorsList?.map((a) => (
+                        <option key={a.id} value={String(a.id)}>
+                          {a.name}{a.titleDe ? ` (${a.titleDe})` : ''}
+                        </option>
+                      ))}
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      <a href="/admin/authors" className="text-cme-blue hover:underline">Autoren verwalten →</a>
+                    </p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">

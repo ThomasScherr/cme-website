@@ -12,7 +12,9 @@ export default function InsightArticle() {
   const isDE = lang === 'de';
   const [, params] = useRoute('/insights/:slug');
   const slug = params?.slug || '';
-  const { data: article, isLoading } = trpc.articles.getBySlug.useQuery({ slug }, { enabled: !!slug });
+  // Validate slug: must not be empty, must not look like a URL parameter, must be a valid slug format
+  const isValidSlug = !!slug && !slug.startsWith(':') && /^[a-z0-9][a-z0-9-]*[a-z0-9]$/.test(slug);
+  const { data: article, isLoading } = trpc.articles.getBySlug.useQuery({ slug }, { enabled: isValidSlug });
 
   // Helper: pick the correct language field, falling back to German
   function localized<T>(de: T | null | undefined, en: T | null | undefined): T | undefined {
@@ -106,7 +108,7 @@ export default function InsightArticle() {
               })}
             </div>
             <span className="text-gray-300">|</span>
-            <AuthorCard variant="compact" />
+            <AuthorCard variant="compact" authorId={article.authorId} authorName={article.author} />
           </div>
 
           {/* Cover Image */}
@@ -122,7 +124,7 @@ export default function InsightArticle() {
           </div>
 
           {/* Author Profile */}
-          <AuthorCard variant="full" />
+          <AuthorCard variant="full" authorId={article.authorId} authorName={article.author} />
 
           {/* Back CTA */}
           <div className="border-t border-gray-200" style={{ marginTop: 'var(--space-section-sm)', paddingTop: 'var(--space-gap-md)' }}>

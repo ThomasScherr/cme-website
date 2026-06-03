@@ -60,6 +60,11 @@ import {
   updateRedirect,
   deleteRedirect,
   createRedirectFrom404,
+  getAllAuthors,
+  getAuthorById,
+  createAuthor,
+  updateAuthor,
+  deleteAuthor,
 } from "./db";
 
 // Admin-only procedure
@@ -126,6 +131,74 @@ export const appRouter = router({
       }),
   }),
 
+  // ── Authors ────────────────────────────────────────────────────────────
+  authors: router({
+    /** Public: list all authors */
+    list: publicProcedure.query(async () => {
+      return getAllAuthors();
+    }),
+
+    /** Public: get author by ID */
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return getAuthorById(input.id);
+      }),
+
+    /** Admin: create author */
+    create: adminProcedure
+      .input(z.object({
+        name: z.string().min(1).max(255),
+        titleDe: z.string().max(500).optional(),
+        titleEn: z.string().max(500).optional(),
+        bioDe: z.string().optional(),
+        bioEn: z.string().optional(),
+        expertiseDe: z.string().optional(),
+        expertiseEn: z.string().optional(),
+        imageUrl: z.string().optional(),
+        url: z.string().max(500).optional(),
+        company: z.string().max(255).optional(),
+        companyUrl: z.string().max(500).optional(),
+        location: z.string().max(255).optional(),
+        knowsAbout: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return createAuthor(input);
+      }),
+
+    /** Admin: update author */
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().min(1).max(255).optional(),
+        titleDe: z.string().max(500).nullable().optional(),
+        titleEn: z.string().max(500).nullable().optional(),
+        bioDe: z.string().nullable().optional(),
+        bioEn: z.string().nullable().optional(),
+        expertiseDe: z.string().nullable().optional(),
+        expertiseEn: z.string().nullable().optional(),
+        imageUrl: z.string().nullable().optional(),
+        url: z.string().max(500).nullable().optional(),
+        company: z.string().max(255).nullable().optional(),
+        companyUrl: z.string().max(500).nullable().optional(),
+        location: z.string().max(255).nullable().optional(),
+        knowsAbout: z.string().nullable().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateAuthor(id, data);
+        return { success: true };
+      }),
+
+    /** Admin: delete author */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteAuthor(input.id);
+        return { success: true };
+      }),
+  }),
+
   // ── Articles (Blog / Insights) ────────────────────────────────
   articles: router({
     /** Public: list published articles */
@@ -174,6 +247,7 @@ export const appRouter = router({
         content: z.string().min(1),
         coverImage: z.string().optional(),
         author: z.string().default("CME Redaktion"),
+        authorId: z.number().nullable().optional(),
         status: z.enum(["draft", "published"]).default("draft"),
         categoryId: z.number().optional(),
         tags: z.string().optional(),
@@ -213,6 +287,7 @@ export const appRouter = router({
         content: z.string().optional(),
         coverImage: z.string().optional(),
         author: z.string().optional(),
+        authorId: z.number().nullable().optional(),
         status: z.enum(["draft", "published"]).optional(),
         categoryId: z.number().nullable().optional(),
         tags: z.string().optional(),

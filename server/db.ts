@@ -1,7 +1,7 @@
 import { eq, desc, and, sql, like, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary, notFoundLogs, redirects } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem, InsertNotFoundLog, InsertRedirect } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary, notFoundLogs, redirects, authors } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem, InsertNotFoundLog, InsertRedirect, InsertAuthor } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -100,9 +100,9 @@ export async function getAllCategories() {
 
 export async function getCategoryBySlug(slug: string) {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(categories).where(eq(categories.slug, slug)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? result[0] : null;
 }
 
 export async function createCategory(data: InsertCategory) {
@@ -156,16 +156,16 @@ export async function getAllArticles(limit = 50, offset = 0) {
 
 export async function getArticleBySlug(slug: string) {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(articles).where(eq(articles.slug, slug)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? result[0] : null;
 }
 
 export async function getArticleById(id: number) {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(articles).where(eq(articles.id, id)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? result[0] : null;
 }
 
 export async function createArticle(data: InsertArticle) {
@@ -580,4 +580,40 @@ export async function createRedirectFrom404(logId: number, targetUrl: string, st
   await delete404Log(logId);
 
   return result;
+}
+
+// ── Author Queries ─────────────────────────────────────────────
+
+export async function getAllAuthors() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(authors).orderBy(authors.name);
+}
+
+export async function getAuthorById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(authors).where(eq(authors.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createAuthor(data: InsertAuthor) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(authors).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+export async function updateAuthor(id: number, data: Partial<InsertAuthor>) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(authors).set(data).where(eq(authors.id, id));
+}
+
+export async function deleteAuthor(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  // Clear authorId on articles that reference this author
+  await db.update(articles).set({ authorId: null }).where(eq(articles.authorId, id));
+  await db.delete(authors).where(eq(authors.id, id));
 }

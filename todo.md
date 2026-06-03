@@ -715,3 +715,11 @@
 - [x] CONTENT: Bare-Die-Design und Keramiksubstrate an passenden Stellen integrieren (HardwareSoftware AVT-Sektion erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)
 - [x] CONTENT: Funkschnittstellen LoRaWAN / Zigbee an passenden Stellen integrieren (HardwareSoftware Kommunikationsschnittstellen erweitert, Entwicklung Kompetenz-Chip + FAQ, prerenderMiddleware + seoPageData Keywords)
 - [x] CONTENT: /agb Seite mit den echten CME AGB aus PDF ersetzen (vollständiger Text aus CMEAGB.pdf, Stand 01.10.2016, §§1-12)
+- [x] FEATURE: Authors-Tabelle in DB erstellen (name, title_de, title_en, bio_de, bio_en, expertise, image_url, url, company)
+- [x] FEATURE: Relation articles → authors (authorId FK)
+- [x] FEATURE: tRPC CRUD-Procedures für Autoren (list, getById, create, update, delete)
+- [x] FEATURE: Admin-UI für Autoren-Verwaltung (/admin/authors)
+- [x] FEATURE: Artikel-Admin: Autor-Dropdown statt Freitext
+- [x] FEATURE: AuthorCard dynamisch aus DB laden statt hardcoded
+- [x] FEATURE: Matthias Markmann als ersten Autor in DB seeden
+- [x] BUG-FIX: /insights Seite sendet ":slug" als Literal an API (Slug-Validierung + null statt undefined Rückgabe für React Query Kompatibilität)

@@ -49,6 +49,7 @@ const InsightsAdmin = lazy(() => import("./pages/admin/InsightsAdmin"));
 const StylesheetEditor = lazy(() => import("./pages/admin/StylesheetEditor"));
 const InsightPreview = lazy(() => import("./pages/admin/InsightPreview"));
 const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
+const AuthorsAdmin = lazy(() => import("./pages/admin/AuthorsAdmin"));
 
 function PageLoader() {
   return (
@@ -99,6 +100,7 @@ function Router() {
         <Route path="/admin/insights/preview/:id" component={InsightPreview} />
         <Route path="/admin/styles" component={StylesheetEditor} />
         <Route path="/admin/content" component={ContentManager} />
+        <Route path="/admin/authors" component={AuthorsAdmin} />
 
         {/* Landing Pages (Google Ads) */}
         <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />
