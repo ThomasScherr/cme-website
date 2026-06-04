@@ -11,6 +11,7 @@ import UspSection from '@/components/sections/UspSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import MarketsSection from '@/components/sections/MarketsSection';
 import TrustSection from '@/components/sections/TrustSection';
+import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 import ContactSlider from '@/components/ContactSlider';
@@ -81,6 +82,7 @@ export default function Home() {
         <ProcessSection onCardClick={(topic) => openSlider(topic, 'homepage-process')} />
         <MarketsSection onCardClick={(topic) => openSlider(topic, 'homepage-markets')} />
         <TrustSection />
+        <FaqSection />
         <ContactSection />
       </main>
       <Footer />

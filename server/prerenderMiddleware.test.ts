@@ -268,8 +268,8 @@ describe("prerenderMiddleware", () => {
     expect(res._body).toContain('property="og:type"');
     expect(res._body).toContain('property="og:title"');
     expect(res._body).toContain('property="og:description"');
-    // og:url removed: Hosting platform handles canonical URL
-    expect(res._body).not.toContain('property="og:url"');
+    // og:url added for GEO audit compliance
+    expect(res._body).toContain('property="og:url"');
     expect(res._body).toContain('property="og:image"');
   });
 

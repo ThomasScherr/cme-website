@@ -16,7 +16,7 @@ const CRAWLER_USER_AGENTS = [
   // Search engines
   'googlebot', 'bingbot', 'yandexbot', 'duckduckbot', 'baiduspider', 'slurp',
   // SEO tools
-  'sistrix', 'semrush', 'ahrefs', 'mj12bot', 'dotbot', 'rogerbot', 'screaming frog',
+  'sistrix', 'semrush', 'ahrefs', 'mj12bot', 'dotbot', 'rogerbot', 'screaming frog', 'geoptie',
   // AI / LLM crawlers
   'gptbot', 'chatgpt-user', 'claudebot', 'claude-web', 'perplexitybot',
   'google-extended', 'facebookbot', 'applebot', 'applebot-extended', 'cohere-ai', 'ccbot',
@@ -112,16 +112,32 @@ const localBusinessSchema = {
 const PAGES: Record<string, PageMeta> = {
   '/': {
     enPath: '/en',
-    title: 'Elektronikentwicklung & EMS-Fertigung in Dortmund NRW | CME GmbH',
-    description: 'CME ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für Leistungselektronik, Antriebselektronik und Mechatronik. ISO 9001 zertifiziert am Standort Dortmund NRW.',
-    h1: 'Elektronikentwicklung & EMS-Fertigung aus einer Hand',
-    keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management',
-    content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte. 
+    title: 'CME Control Motion Electronics – Elektronikentwicklung & EMS-Fertigung in Dortmund NRW',
+    description: 'CME Control Motion Electronics GmbH – Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für Leistungselektronik, Antriebselektronik und Mechatronik. ISO 9001 zertifiziert am Standort Dortmund NRW.',
+    h1: 'CME Control Motion Electronics – Elektronikentwicklung & EMS-Fertigung aus einer Hand',
+    keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management, CME Control Motion Electronics',
+    content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte.
     Wir sind spezialisiert auf Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.
-    Über 60 Mitarbeiter, zertifiziert nach ISO 9001 und IATF 16949. Vom Prototyp bis zur Serie – alles aus einer Hand.
-    Unsere Kernkompetenzen: Hardware- und Softwareentwicklung, E-Motor-Design, Simulation, EMV-Validierung, SMD-Bestückung, Baugruppenfertigung, Qualitätssicherung.
-    Zielmärkte: Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Energietechnik, Luft- und Raumfahrt.`,
-    schemas: [organizationSchema, websiteSchema, localBusinessSchema],
+    Mit über 60 Mitarbeitern und Zertifizierungen nach ISO 9001 sowie IATF 16949 realisiert CME anspruchsvolle Elektronikprojekte für Automotive, Industrieautomation, Medizintechnik und Gebäudetechnik.
+    Unser integrierter Ansatz verbindet Hardwareentwicklung, Embedded-Software, thermische Simulation und EMV-Qualifikation mit eigener SMD-/THT-Fertigung. So entstehen serienreife Produkte mit kürzeren Entwicklungszyklen und höchster Qualität.
+    Kernkompetenzen: Hardware- und Softwareentwicklung, E-Motor-Design, Simulation (COMSOL, PLECS, LTspice, Motor-CAD), EMV-Validierung, SMD-Bestückung, Baugruppenfertigung, Qualitätssicherung.
+    Zielmärkte: Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik und Smart Devices.
+    Häufig gestellte Fragen:
+    Was bietet CME als Entwicklungsdienstleister? CME bietet ganzheitliche Elektronikentwicklung von der Konzeptphase bis zur Serienreife: Hardware- und Softwareentwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Simulation, EMV-Validierung und Test nach V-Modell.
+    Welche EMS-Fertigungsleistungen bietet CME? CME fertigt elektronische Baugruppen vom Prototyp bis zur Serie: SMD- und THT-Bestückung, Selektivlöten, Dampfphasenlöten, AOI-Inspektion, Verguss, Conformal Coating und Kabelkonfektionierung – alles nach IPC-Standards.
+    Für welche Branchen arbeitet CME? CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen ist IATF 16949 zertifiziert für Automotive-Projekte.
+    Was unterscheidet CME von anderen EMS-Dienstleistern? CME vereint Entwicklung und Fertigung unter einem Dach. Das bedeutet: kürzere Iterationszyklen, nahtlose Übergabe vom Prototyp zur Serie und ein Ansprechpartner für das gesamte Projekt.`,
+    schemas: [organizationSchema, websiteSchema, localBusinessSchema, {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        { '@type': 'Question', 'name': 'Was bietet CME als Entwicklungsdienstleister?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME bietet ganzheitliche Elektronikentwicklung von der Konzeptphase bis zur Serienreife: Hardware- und Softwareentwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Simulation, EMV-Validierung und Test nach V-Modell.' } },
+        { '@type': 'Question', 'name': 'Welche EMS-Fertigungsleistungen bietet CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME fertigt elektronische Baugruppen vom Prototyp bis zur Serie: SMD- und THT-Bestückung, Selektivlöten, Dampfphasenlöten, AOI-Inspektion, Verguss, Conformal Coating und Kabelkonfektionierung – alles nach IPC-Standards.' } },
+        { '@type': 'Question', 'name': 'Für welche Branchen arbeitet CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen ist IATF 16949 zertifiziert für Automotive-Projekte.' } },
+        { '@type': 'Question', 'name': 'Wo befindet sich CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME Control Motion Electronics GmbH hat seinen Sitz am Alter Hellweg 48 in 44379 Dortmund, Deutschland. Von dort werden Kunden in ganz Europa betreut.' } },
+        { '@type': 'Question', 'name': 'Was unterscheidet CME von anderen EMS-Dienstleistern?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME vereint Entwicklung und Fertigung unter einem Dach. Das bedeutet: kürzere Iterationszyklen, nahtlose Übergabe vom Prototyp zur Serie und ein Ansprechpartner für das gesamte Projekt – von der Schaltungsentwicklung bis zur Serienlieferung.' } },
+      ],
+    }],
   },
   '/elektronikentwicklung': {
     title: 'Elektronikentwicklung Dortmund | CME',
@@ -618,12 +634,15 @@ function generateCrawlerHtml(path: string, page: PageMeta, isEnglish = false, de
     <meta name="robots" content="index, follow">
     <!-- canonical: injected by hosting platform -->
     
+    <!-- Author -->
+    <meta name="author" content="${escapeHtml(SITE_NAME)}">
+    
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">
     <meta property="og:title" content="${escapeHtml(page.title)}">
     <meta property="og:description" content="${escapeHtml(page.description)}">
-
+    <meta property="og:url" content="${deUrl}">
     <meta property="og:image" content="${ogImage}">
     <meta property="og:locale" content="${isEnglish ? 'en_US' : 'de_DE'}">
     

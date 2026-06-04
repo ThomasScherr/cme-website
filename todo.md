@@ -728,3 +728,9 @@
 - [x] BUG-FIX: RichTextEditor – Zitatfunktion (Blockquote) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
 - [x] BUG-FIX: RichTextEditor – Aufzählung (Bullet/Ordered List) funktioniert nicht (fehlende @plugin für @tailwindcss/typography)
 - [x] BUG-FIX: Artikel 60001 Aufzählung mit Textstrichen (–) in echte HTML-Bullet-Points (ul/li) umgewandelt (DE + EN)
+- [x] GEO-AUDIT: og:title, og:description, og:url im statischen HTML (index.html) ergänzen
+- [x] GEO-AUDIT: "geoptie" zur Crawler-Liste in prerenderMiddleware hinzufügen
+- [x] GEO-AUDIT: Noscript-Content auf >300 Wörter erweitern (jetzt 547 Wörter)
+- [x] GEO-AUDIT: Author-Markup im statischen HTML hinzufügen
+- [x] GEO-AUDIT: Brand-Name vereinheitlichen (Title, OG, Schema konsistent)
+- [x] GEO-AUDIT: Sichtbare FAQ-Sektion auf der Startseite hinzufügen
