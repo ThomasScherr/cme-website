@@ -121,8 +121,8 @@ const PUBLICATIONS = [
     title: 'Mitgliedsprofil CME – Brancheninitiative Gesundheitswirtschaft Südwestfalen e.V.',
     date: '2026',
     downloads: [
-      { format: 'PDF', url: '/manus-download/CME_Mitgliedsprofil_Brancheninitiative_f392958f.pdf?filename=CME_Mitgliedsprofil_Brancheninitiative.pdf' },
-      { format: 'Word', url: '/manus-download/CME_Mitgliedsprofil_Brancheninitiative_6c8fce2d.docx?filename=CME_Mitgliedsprofil_Brancheninitiative.docx' },
+      { format: 'PDF', url: '/manus-storage/CME_Mitgliedsprofil_Brancheninitiative_f392958f.pdf' },
+      { format: 'Word', url: '/manus-storage/CME_Mitgliedsprofil_Brancheninitiative_6c8fce2d.docx' },
     ],
   },
 ];
