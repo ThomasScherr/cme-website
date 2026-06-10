@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Layout from '@/components/Layout';
 import SEO from '@/components/SEO';
 import {
@@ -128,6 +128,21 @@ const PUBLICATIONS = [
 ];
 
 /* ─────────────────────────────────────────────
+   SUB-NAVIGATION DATA
+   ───────────────────────────────────────────── */
+
+const NAV_ITEMS = [
+  { id: 'kontakt', label: 'Presse-Kontakt' },
+  { id: 'profil', label: 'Unternehmensprofil' },
+  { id: 'eckdaten', label: 'Eckdaten' },
+  { id: 'logos', label: 'Logos' },
+  { id: 'bilder', label: 'Bilddatenbank' },
+  { id: 'design', label: 'Design' },
+  { id: 'downloads', label: 'Downloads' },
+  { id: 'nutzung', label: 'Nutzung' },
+];
+
+/* ─────────────────────────────────────────────
    HELPER: Copy-to-Clipboard Button
    ───────────────────────────────────────────── */
 
@@ -172,23 +187,91 @@ function CopyButton({ text }: { text: string }) {
 }
 
 /* ─────────────────────────────────────────────
-   HELPER: Section wrapper with anchor offset
+   HELPER: Sticky Sub-Navigation with Scroll-Spy
    ───────────────────────────────────────────── */
 
-function Section({
-  id,
-  children,
-  className = '',
-}: {
-  id: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+function SubNavigation({ activeId }: { activeId: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    const activeBtn = scrollRef.current.querySelector(`[data-nav-id="${activeId}"]`) as HTMLElement | null;
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeId]);
+
   return (
-    <section id={id} className={`scroll-mt-28 ${className}`}>
-      {children}
-    </section>
+    <div className="sticky z-40 bg-white/95 backdrop-blur-md border-b border-[#DDE6F0] shadow-sm" style={{ top: 'var(--nav-height)' }}>
+      <div
+        ref={scrollRef}
+        className="max-w-[75rem] mx-auto px-4 flex items-center gap-1 overflow-x-auto py-2.5"
+        style={{ scrollbarWidth: 'none' }}
+      >
+        {NAV_ITEMS.map((item) => (
+          <button
+            key={item.id}
+            data-nav-id={item.id}
+            onClick={() => handleClick(item.id)}
+            className={`whitespace-nowrap px-3 py-1.5 text-sm font-medium rounded-md transition-colors shrink-0 ${
+              activeId === item.id
+                ? 'bg-[#0080C8] text-white'
+                : 'text-[#3A3A4A] hover:bg-[#F3F7FB] hover:text-[#0080C8]'
+            }`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
+}
+
+/* ─────────────────────────────────────────────
+   HOOK: Scroll-Spy
+   ───────────────────────────────────────────── */
+
+function useScrollSpy(ids: string[]) {
+  const [activeId, setActiveId] = useState(ids[0]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    const visibleSections = new Map<string, boolean>();
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            visibleSections.set(id, entry.isIntersecting);
+          });
+          for (const sectionId of ids) {
+            if (visibleSections.get(sectionId)) {
+              setActiveId(sectionId);
+              break;
+            }
+          }
+        },
+        { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => { observers.forEach((obs) => obs.disconnect()); };
+  }, [ids]);
+
+  return activeId;
 }
 
 /* ─────────────────────────────────────────────
@@ -196,6 +279,12 @@ function Section({
    ───────────────────────────────────────────── */
 
 export default function MediaCenter() {
+  const sectionIds = NAV_ITEMS.map((item) => item.id);
+  const activeId = useScrollSpy(sectionIds);
+
+  // scroll-margin accounts for main nav + sub-nav height
+  const smt = 'scroll-mt-[calc(var(--nav-height)+3.5rem)]';
+
   return (
     <Layout>
       <SEO
@@ -206,418 +295,358 @@ export default function MediaCenter() {
         path="/media-center"
       />
 
-      <div className="bg-white">
-        {/* ═══════════════════════════════════════════
-            1. HERO / INTRO
-            ═══════════════════════════════════════════ */}
-        <div className="bg-[#F3F7FB] border-b border-[#DDE6F0]">
-          <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
-            <h1 className="text-[var(--fs-h2)] font-bold text-[#1A1A2A] mb-3">
-              Media-Center
-            </h1>
-            <p className="text-[var(--fs-body-lg)] text-[#0080C8] font-medium mb-6">
-              Presse- und Materialbereich der CME Control Motion Electronics GmbH
-            </p>
-            <p className="text-[var(--fs-body)] text-[#3A3A4A] max-w-3xl leading-relaxed">
-              Hier finden Presse, Branchenverbände und Partner Unternehmensinformationen,
-              druckfähiges Bildmaterial, Logos und freigegebene Texte zur Verwendung.
-              Bei Fragen wenden Sie sich bitte an unseren Pressekontakt.
-            </p>
+      {/* Hero with nav offset */}
+      <div className="bg-[#F3F7FB] border-b border-[#DDE6F0]" style={{ paddingTop: 'var(--nav-height)' }}>
+        <div className="max-w-[50rem] mx-auto px-6 py-16 md:py-20">
+          <h1 className="text-[var(--fs-h2)] font-bold text-[#1A1A2A] mb-3">
+            Media-Center
+          </h1>
+          <p className="text-[var(--fs-body-lg)] text-[#0080C8] font-medium mb-6">
+            Presse- und Materialbereich der CME Control Motion Electronics GmbH
+          </p>
+          <p className="text-[var(--fs-body)] text-[#3A3A4A] max-w-3xl leading-relaxed">
+            Hier finden Presse, Branchenverbände und Partner Unternehmensinformationen,
+            druckfähiges Bildmaterial, Logos und freigegebene Texte zur Verwendung.
+            Bei Fragen wenden Sie sich bitte an unseren Pressekontakt.
+          </p>
+        </div>
+      </div>
+
+      {/* Sticky Sub-Navigation */}
+      <SubNavigation activeId={activeId} />
+
+      {/* ═══════════════════════════════════════════
+          SECTIONS
+          ═══════════════════════════════════════════ */}
+
+      {/* 1. PRESSE-KONTAKT – white bg */}
+      <section id="kontakt" className={`${smt} py-16 md:py-20 bg-white`}>
+        <div className="max-w-[50rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Presse-Kontakt
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">Ihr Ansprechpartner für Presseanfragen</p>
+          <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-xl p-6 md:p-8">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full bg-[#0080C8]/10 flex items-center justify-center shrink-0">
+                <User className="w-6 h-6 text-[#0080C8]" />
+              </div>
+              <div>
+                <p className="font-bold text-[#1A1A2A] text-lg">Steffen Katzer</p>
+                <p className="text-[#6A6A7A] text-sm">Geschäftsführer</p>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4 text-[var(--fs-body)] text-[#3A3A4A]">
+              <a href="mailto:presse@control-motion.de" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
+                <Mail className="w-5 h-5 text-[#0080C8] shrink-0" />
+                presse@control-motion.de
+              </a>
+              <a href="tel:+492312866769600" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
+                <Phone className="w-5 h-5 text-[#0080C8] shrink-0" />
+                +49 231 28 66 76 96-0
+              </a>
+              <div className="flex items-start gap-3 sm:col-span-2">
+                <MapPin className="w-5 h-5 text-[#0080C8] shrink-0 mt-0.5" />
+                <span>Alter Hellweg 48, 44379 Dortmund</span>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-16 md:space-y-24">
-          {/* ═══════════════════════════════════════════
-              2. PRESSE-KONTAKT
-              ═══════════════════════════════════════════ */}
-          <Section id="kontakt">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-6 pb-3 border-b border-[#DDE6F0]">
-              Presse-Kontakt
-            </h2>
-            <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-xl p-6 md:p-8">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#0080C8]/10 flex items-center justify-center shrink-0">
-                  <User className="w-6 h-6 text-[#0080C8]" />
+      {/* 2. UNTERNEHMENSPROFIL – light bg */}
+      <section id="profil" className={`${smt} py-16 md:py-20 bg-[#F3F7FB]`}>
+        <div className="max-w-[50rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Unternehmensprofil
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">Freigegebene Texte zur Verwendung in Publikationen</p>
+
+          <div className="mb-8">
+            <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">Kurzfassung</h3>
+            <div className="bg-white border border-[#DDE6F0] rounded-lg p-5">
+              <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">{BOILERPLATE_SHORT}</p>
+              <CopyButton text={BOILERPLATE_SHORT} />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">Langfassung</h3>
+            <div className="bg-white border border-[#DDE6F0] rounded-lg p-5">
+              <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">{BOILERPLATE_LONG}</p>
+              <CopyButton text={BOILERPLATE_LONG} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. ECKDATEN / FACTSHEET – white bg */}
+      <section id="eckdaten" className={`${smt} py-16 md:py-20 bg-white`}>
+        <div className="max-w-[50rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Unternehmen auf einen Blick
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">Kompakte Eckdaten für Ihre Berichterstattung</p>
+          <div className="overflow-x-auto rounded-lg border border-[#DDE6F0]">
+            <table className="w-full text-[var(--fs-body)] text-left">
+              <tbody>
+                {FACTSHEET.map((row, idx) => (
+                  <tr key={idx} className={idx % 2 === 0 ? 'bg-[#F3F7FB]' : 'bg-white'}>
+                    <td className="px-5 py-3.5 font-semibold text-[#1A1A2A] whitespace-nowrap w-48">{row.label}</td>
+                    <td className="px-5 py-3.5 text-[#3A3A4A]">{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. LOGOS – light bg */}
+      <section id="logos" className={`${smt} py-16 md:py-20 bg-[#F3F7FB]`}>
+        <div className="max-w-[75rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Logos zum Download
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8 max-w-[50rem]">
+            Bitte beachten Sie die Schutzzone um das Logo. Das Logo darf nicht verzerrt, eingefärbt oder in seiner Proportion verändert werden.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {LOGOS.map((logo, idx) => (
+              <div key={idx} className="border border-[#DDE6F0] rounded-xl overflow-hidden bg-white">
+                <div className={`h-32 md:h-36 flex items-center justify-center p-5 ${logo.darkBg ? 'bg-[#1A1A2A]' : 'bg-[#F3F7FB]'}`}>
+                  <img src={logo.previewUrl} alt={logo.label} className="max-h-full max-w-full object-contain" />
                 </div>
-                <div>
-                  <p className="font-bold text-[#1A1A2A] text-lg">Steffen Katzer</p>
-                  <p className="text-[#6A6A7A] text-sm">Geschäftsführer</p>
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4 text-[var(--fs-body)] text-[#3A3A4A]">
-                <a
-                  href="mailto:presse@control-motion.de"
-                  className="flex items-center gap-3 hover:text-[#0080C8] transition-colors"
-                >
-                  <Mail className="w-5 h-5 text-[#0080C8] shrink-0" />
-                  presse@control-motion.de
-                </a>
-                <a
-                  href="tel:+492312866769600"
-                  className="flex items-center gap-3 hover:text-[#0080C8] transition-colors"
-                >
-                  <Phone className="w-5 h-5 text-[#0080C8] shrink-0" />
-                  +49 231 28 66 76 96-0
-                </a>
-                <div className="flex items-start gap-3 sm:col-span-2">
-                  <MapPin className="w-5 h-5 text-[#0080C8] shrink-0 mt-0.5" />
-                  <span>Alter Hellweg 48, 44379 Dortmund</span>
-                </div>
-              </div>
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              3. UNTERNEHMENSPROFIL / BOILERPLATE
-              ═══════════════════════════════════════════ */}
-          <Section id="profil">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-6 pb-3 border-b border-[#DDE6F0]">
-              Unternehmensprofil
-            </h2>
-
-            {/* Kurzfassung */}
-            <div className="mb-8">
-              <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">
-                Kurzfassung
-              </h3>
-              <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-lg p-5">
-                <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
-                  {BOILERPLATE_SHORT}
-                </p>
-                <CopyButton text={BOILERPLATE_SHORT} />
-              </div>
-            </div>
-
-            {/* Langfassung */}
-            <div>
-              <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">
-                Langfassung
-              </h3>
-              <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-lg p-5">
-                <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
-                  {BOILERPLATE_LONG}
-                </p>
-                <CopyButton text={BOILERPLATE_LONG} />
-              </div>
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              4. FACTSHEET
-              ═══════════════════════════════════════════ */}
-          <Section id="factsheet">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-6 pb-3 border-b border-[#DDE6F0]">
-              Unternehmen auf einen Blick
-            </h2>
-            <div className="overflow-x-auto rounded-lg border border-[#DDE6F0]">
-              <table className="w-full text-[var(--fs-body)] text-left">
-                <tbody>
-                  {FACTSHEET.map((row, idx) => (
-                    <tr
-                      key={idx}
-                      className={idx % 2 === 0 ? 'bg-[#F3F7FB]' : 'bg-white'}
-                    >
-                      <td className="px-5 py-3 font-semibold text-[#1A1A2A] whitespace-nowrap w-48">
-                        {row.label}
-                      </td>
-                      <td className="px-5 py-3 text-[#3A3A4A]">{row.value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              5. LOGOS ZUM DOWNLOAD
-              ═══════════════════════════════════════════ */}
-          <Section id="logos">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-4 pb-3 border-b border-[#DDE6F0]">
-              Logos zum Download
-            </h2>
-            <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">
-              Bitte beachten Sie die Schutzzone um das Logo. Das Logo darf nicht verzerrt,
-              eingefärbt oder in seiner Proportion verändert werden.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-6">
-              {LOGOS.map((logo, idx) => (
-                <div
-                  key={idx}
-                  className="border border-[#DDE6F0] rounded-xl overflow-hidden"
-                >
-                  {/* Preview */}
-                  <div
-                    className={`h-36 md:h-44 flex items-center justify-center p-6 ${
-                      logo.darkBg ? 'bg-[#1A1A2A]' : 'bg-[#F3F7FB]'
-                    }`}
-                  >
-                    <img
-                      src={logo.previewUrl}
-                      alt={logo.label}
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                  {/* Info + Downloads */}
-                  <div className="p-5 bg-white">
-                    <p className="font-semibold text-[#1A1A2A] mb-1">{logo.label}</p>
-                    <p className="text-sm text-[#6A6A7A] mb-4">{logo.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {logo.downloads.map((dl) => (
-                        <a
-                          key={dl.format}
-                          href={dl.url}
-                          download
-                          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0080C8] text-white text-sm font-medium rounded-lg hover:bg-[#005A9E] transition-colors"
-                        >
-                          <Download className="w-4 h-4" />
-                          {dl.format}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              6. BILDDATENBANK / PRESSEFOTOS
-              ═══════════════════════════════════════════ */}
-          <Section id="fotos">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-4 pb-3 border-b border-[#DDE6F0]">
-              Bilddatenbank
-            </h2>
-            <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">
-              Pressefotos in Web- und Druckauflösung. Quellenangabe bei Verwendung:
-              „Foto: CME Control Motion Electronics GmbH".
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {PHOTOS.map((photo, idx) => (
-                <div
-                  key={idx}
-                  className="border border-[#DDE6F0] rounded-xl overflow-hidden"
-                >
-                  {/* Preview or Placeholder */}
-                  {photo.available ? (
-                    <div className="h-44 bg-[#F3F7FB] flex items-center justify-center p-3">
-                      <img
-                        src={photo.previewUrl}
-                        alt={photo.label}
-                        className="max-h-full max-w-full object-contain rounded"
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-44 bg-[#F3F7FB] flex flex-col items-center justify-center gap-2 p-4">
-                      <ImageOff className="w-8 h-8 text-[#6A6A7A]/50" />
-                      <span className="text-xs text-[#6A6A7A] font-medium text-center">
-                        Bildmaterial folgt
-                      </span>
-                    </div>
-                  )}
-                  {/* Info */}
-                  <div className="p-4 bg-white">
-                    <p className="font-semibold text-[#1A1A2A] text-sm mb-1">
-                      {photo.label}
-                    </p>
-                    <p className="text-xs text-[#6A6A7A] mb-3">{photo.description}</p>
-                    {photo.available ? (
+                <div className="p-4">
+                  <p className="font-semibold text-[#1A1A2A] text-sm mb-1">{logo.label}</p>
+                  <p className="text-xs text-[#6A6A7A] mb-3">{logo.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {logo.downloads.map((dl) => (
                       <a
-                        href={photo.downloadUrl}
+                        key={dl.format}
+                        href={dl.url}
                         download
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0080C8] text-white text-xs font-medium rounded-md hover:bg-[#005A9E] transition-colors"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        Download
+                        {dl.format}
                       </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-[#6A6A7A] text-xs font-medium rounded-md cursor-not-allowed">
-                        <Download className="w-3.5 h-3.5" />
-                        Noch nicht verfügbar
-                      </span>
-                    )}
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. BILDDATENBANK – white bg */}
+      <section id="bilder" className={`${smt} py-16 md:py-20 bg-white`}>
+        <div className="max-w-[75rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Bilddatenbank
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8 max-w-[50rem]">
+            Pressefotos in Web- und Druckauflösung. Quellenangabe bei Verwendung: &bdquo;Foto: CME Control Motion Electronics GmbH&ldquo;.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {PHOTOS.map((photo, idx) => (
+              <div key={idx} className="border border-[#DDE6F0] rounded-xl overflow-hidden bg-white">
+                {photo.available ? (
+                  <div className="aspect-[4/3] bg-[#F3F7FB] flex items-center justify-center p-4">
+                    <img src={photo.previewUrl} alt={photo.label} className="max-h-full max-w-full object-contain rounded" />
+                  </div>
+                ) : (
+                  <div className="aspect-[4/3] bg-[#F3F7FB] flex flex-col items-center justify-center gap-2 p-4">
+                    <ImageOff className="w-8 h-8 text-[#6A6A7A]/40" />
+                    <span className="text-xs text-[#6A6A7A] font-medium">Bildmaterial folgt</span>
+                  </div>
+                )}
+                <div className="p-4">
+                  <p className="font-semibold text-[#1A1A2A] text-sm mb-1">{photo.label}</p>
+                  <p className="text-xs text-[#6A6A7A] mb-3">{photo.description}</p>
+                  {photo.available ? (
+                    <a
+                      href={photo.downloadUrl}
+                      download
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0080C8] text-white text-xs font-medium rounded-md hover:bg-[#005A9E] transition-colors"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      Download
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-[#6A6A7A] text-xs font-medium rounded-md cursor-not-allowed">
+                      <Download className="w-3.5 h-3.5" />
+                      Noch nicht verfügbar
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FARB- & DESIGNVORGABEN – light bg */}
+      <section id="design" className={`${smt} py-16 md:py-20 bg-[#F3F7FB]`}>
+        <div className="max-w-[75rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Farb- &amp; Designvorgaben
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8 max-w-[50rem]">Corporate-Design-Richtlinien für konsistente Darstellung</p>
+
+          {/* Color Swatches */}
+          <div className="mb-10">
+            <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-4">Farbpalette</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {COLORS.map((color) => (
+                <div key={color.hex} className="border border-[#DDE6F0] rounded-lg overflow-hidden bg-white">
+                  <div className="h-20 flex items-end justify-start p-3" style={{ backgroundColor: color.hex }}>
+                    <span className={`text-xs font-mono font-medium ${color.textWhite ? 'text-white' : 'text-[#1A1A2A]'}`}>
+                      {color.hex}
+                    </span>
+                  </div>
+                  <div className="p-3">
+                    <p className="text-xs font-medium text-[#3A3A4A]">{color.name}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </Section>
+          </div>
 
-          {/* ═══════════════════════════════════════════
-              7. FARB- & DESIGNVORGABEN
-              ═══════════════════════════════════════════ */}
-          <Section id="design">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-4 pb-3 border-b border-[#DDE6F0]">
-              Farb- &amp; Designvorgaben
-            </h2>
+          {/* Typography */}
+          <div className="mb-10">
+            <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">Hausschrift</h3>
+            <div className="bg-white border border-[#DDE6F0] rounded-lg p-5">
+              <p className="text-[var(--fs-body)] text-[#3A3A4A] mb-2">
+                <strong>Roboto</strong> – in allen Schnitten (Light, Regular, Medium, Bold)
+              </p>
+              <p className="text-sm text-[#6A6A7A]">
+                Frei verfügbar über Google Fonts. Verwendung für Überschriften, Fließtext und UI-Elemente.
+              </p>
+            </div>
+          </div>
 
-            {/* Color Swatches */}
-            <div className="mb-8">
-              <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-4">
-                Farbpalette
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                {COLORS.map((color) => (
-                  <div
-                    key={color.hex}
-                    className="border border-[#DDE6F0] rounded-lg overflow-hidden"
-                  >
-                    <div
-                      className="h-20 flex items-end justify-start p-3"
-                      style={{ backgroundColor: color.hex }}
-                    >
-                      <span
-                        className={`text-xs font-mono font-medium ${
-                          color.textWhite ? 'text-white' : 'text-[#1A1A2A]'
-                        }`}
-                      >
-                        {color.hex}
-                      </span>
-                    </div>
-                    <div className="p-3 bg-white">
-                      <p className="text-xs font-medium text-[#3A3A4A]">{color.name}</p>
-                    </div>
-                  </div>
-                ))}
+          {/* Do's & Don'ts */}
+          <div>
+            <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">Do&apos;s &amp; Don&apos;ts</h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                <p className="font-semibold text-green-800 mb-2 text-sm">Do&apos;s</p>
+                <ul className="text-sm text-green-900 space-y-1.5 list-disc list-inside">
+                  <li>Logo mit ausreichend Schutzzone verwenden</li>
+                  <li>Auf hellem Hintergrund das RGB-Logo nutzen</li>
+                  <li>Auf dunklem Hintergrund die weiße Variante nutzen</li>
+                  <li>Roboto als Hausschrift beibehalten</li>
+                  <li>CME-Blau #0080C8 als Primärfarbe einsetzen</li>
+                </ul>
+              </div>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-5">
+                <p className="font-semibold text-red-800 mb-2 text-sm">Don&apos;ts</p>
+                <ul className="text-sm text-red-900 space-y-1.5 list-disc list-inside">
+                  <li>Logo nicht verzerren oder stauchen</li>
+                  <li>Logo nicht einfärben oder mit Effekten versehen</li>
+                  <li>Keine abweichenden Schriftarten verwenden</li>
+                  <li>Keine Condensed-Schriften für Überschriften</li>
+                  <li>Keine Serifenschriften als Schmuckschrift</li>
+                </ul>
               </div>
             </div>
-
-            {/* Typography */}
-            <div className="mb-8">
-              <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">
-                Hausschrift
-              </h3>
-              <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-lg p-5">
-                <p className="text-[var(--fs-body)] text-[#3A3A4A] mb-2">
-                  <strong>Roboto</strong> – in allen Schnitten (Light, Regular, Medium, Bold)
-                </p>
-                <p className="text-sm text-[#6A6A7A]">
-                  Frei verfügbar über Google Fonts. Verwendung für Überschriften, Fließtext und UI-Elemente.
-                </p>
-              </div>
-            </div>
-
-            {/* Do's & Don'ts */}
-            <div>
-              <h3 className="text-[var(--fs-body-lg)] font-semibold text-[#1A1A2A] mb-3">
-                Do&apos;s &amp; Don&apos;ts
-              </h3>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-5">
-                  <p className="font-semibold text-green-800 mb-2 text-sm">Do&apos;s</p>
-                  <ul className="text-sm text-green-900 space-y-1.5 list-disc list-inside">
-                    <li>Logo mit ausreichend Schutzzone verwenden</li>
-                    <li>Auf hellem Hintergrund das RGB-Logo nutzen</li>
-                    <li>Auf dunklem Hintergrund die weiße Variante nutzen</li>
-                    <li>Roboto als Hausschrift beibehalten</li>
-                    <li>CME-Blau #0080C8 als Primärfarbe einsetzen</li>
-                  </ul>
-                </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-5">
-                  <p className="font-semibold text-red-800 mb-2 text-sm">Don&apos;ts</p>
-                  <ul className="text-sm text-red-900 space-y-1.5 list-disc list-inside">
-                    <li>Logo nicht verzerren oder stauchen</li>
-                    <li>Logo nicht einfärben oder mit Effekten versehen</li>
-                    <li>Keine abweichenden Schriftarten verwenden</li>
-                    <li>Keine Condensed-Schriften für Überschriften</li>
-                    <li>Keine Serifenschriften als Schmuckschrift</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              8. VERÖFFENTLICHUNGEN & DOWNLOADS
-              ═══════════════════════════════════════════ */}
-          <Section id="downloads">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-4 pb-3 border-b border-[#DDE6F0]">
-              Veröffentlichungen &amp; Downloads
-            </h2>
-            <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-6">
-              Freigegebene Pressetexte und Veröffentlichungen stehen hier als Download bereit.
-            </p>
-            <div className="overflow-x-auto rounded-lg border border-[#DDE6F0]">
-              <table className="w-full text-[var(--fs-body)] text-left">
-                <thead className="bg-[#F3F7FB]">
-                  <tr>
-                    <th className="px-5 py-3 font-semibold text-[#1A1A2A]">Titel</th>
-                    <th className="px-5 py-3 font-semibold text-[#1A1A2A] w-24">Datum</th>
-                    <th className="px-5 py-3 font-semibold text-[#1A1A2A] w-48">Download</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PUBLICATIONS.map((pub, idx) => (
-                    <tr key={idx} className="border-t border-[#DDE6F0]">
-                      <td className="px-5 py-4 text-[#3A3A4A]">
-                        <div className="flex items-center gap-2">
-                          <FileText className="w-4 h-4 text-[#0080C8] shrink-0" />
-                          {pub.title}
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 text-[#6A6A7A]">{pub.date}</td>
-                      <td className="px-5 py-4">
-                        <div className="flex gap-2">
-                          {pub.downloads.map((dl) => (
-                            <a
-                              key={dl.format}
-                              href={dl.url}
-                              download
-                              className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                                dl.url === '#'
-                                  ? 'bg-gray-100 text-[#6A6A7A] cursor-not-allowed'
-                                  : 'bg-[#0080C8] text-white hover:bg-[#005A9E]'
-                              }`}
-                              onClick={dl.url === '#' ? (e) => e.preventDefault() : undefined}
-                            >
-                              <Download className="w-3.5 h-3.5" />
-                              {dl.format}
-                            </a>
-                          ))}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Section>
-
-          {/* ═══════════════════════════════════════════
-              9. NUTZUNGSBEDINGUNGEN
-              ═══════════════════════════════════════════ */}
-          <Section id="nutzung">
-            <h2 className="text-[var(--fs-h3)] font-bold text-[#1A1A2A] mb-4 pb-3 border-b border-[#DDE6F0]">
-              Nutzungsbedingungen
-            </h2>
-            <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-lg p-5 md:p-6">
-              <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
-                Das bereitgestellte Material (Logos, Fotos, Texte) darf für redaktionelle und
-                partnerschaftliche Zwecke verwendet werden. Eine kommerzielle Nutzung außerhalb
-                dieses Rahmens bedarf der vorherigen schriftlichen Zustimmung.
-              </p>
-              <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
-                Gewünschte Quellenangabe bei Bildverwendung:
-              </p>
-              <p className="text-[var(--fs-body)] font-medium text-[#1A1A2A] bg-white border border-[#DDE6F0] rounded px-4 py-2 inline-block mb-4">
-                Foto/Quelle: CME Control Motion Electronics GmbH
-              </p>
-              <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed">
-                Bei Fragen zur Verwendung wenden Sie sich bitte an unseren{' '}
-                <a href="#kontakt" className="text-[#0080C8] hover:underline font-medium">
-                  Presse-Kontakt
-                </a>
-                .
-              </p>
-            </div>
-          </Section>
+          </div>
         </div>
+      </section>
 
-        {/* Disclaimer */}
-        <div className="border-t border-[#DDE6F0] mt-16">
-          <div className="max-w-5xl mx-auto px-6 py-6 text-center">
-            <p className="text-xs text-[#6A6A7A]">
-              Diese Seite dient als Materialbereich für Presse, Partner und Verbände.
+      {/* 7. VERÖFFENTLICHUNGEN & DOWNLOADS – white bg */}
+      <section id="downloads" className={`${smt} py-16 md:py-20 bg-white`}>
+        <div className="max-w-[75rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Veröffentlichungen &amp; Downloads
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8 max-w-[50rem]">
+            Freigegebene Pressetexte und Veröffentlichungen stehen hier als Download bereit.
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-[#DDE6F0]">
+            <table className="w-full text-[var(--fs-body)] text-left">
+              <thead className="bg-[#F3F7FB]">
+                <tr>
+                  <th className="px-5 py-3 font-semibold text-[#1A1A2A]">Titel</th>
+                  <th className="px-5 py-3 font-semibold text-[#1A1A2A] w-24">Datum</th>
+                  <th className="px-5 py-3 font-semibold text-[#1A1A2A] w-48 text-right">Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PUBLICATIONS.map((pub, idx) => (
+                  <tr key={idx} className="border-t border-[#DDE6F0]">
+                    <td className="px-5 py-4 text-[#3A3A4A]">
+                      <div className="flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-[#0080C8] shrink-0" />
+                        {pub.title}
+                      </div>
+                    </td>
+                    <td className="px-5 py-4 text-[#6A6A7A]">{pub.date}</td>
+                    <td className="px-5 py-4">
+                      <div className="flex gap-2 justify-end">
+                        {pub.downloads.map((dl) => (
+                          <a
+                            key={dl.format}
+                            href={dl.url}
+                            download
+                            className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                              dl.url === '#'
+                                ? 'bg-gray-100 text-[#6A6A7A] cursor-not-allowed'
+                                : 'bg-[#0080C8] text-white hover:bg-[#005A9E]'
+                            }`}
+                            onClick={dl.url === '#' ? (e) => e.preventDefault() : undefined}
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                            {dl.format}
+                          </a>
+                        ))}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. NUTZUNGSBEDINGUNGEN – light bg */}
+      <section id="nutzung" className={`${smt} py-16 md:py-20 bg-[#F3F7FB]`}>
+        <div className="max-w-[50rem] mx-auto px-6">
+          <h2 className="text-[var(--fs-h3)] font-bold text-[#0080C8] mb-2">
+            Nutzungsbedingungen
+          </h2>
+          <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">Hinweise zur Verwendung des bereitgestellten Materials</p>
+          <div className="bg-white border border-[#DDE6F0] rounded-lg p-5 md:p-6">
+            <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
+              Das bereitgestellte Material (Logos, Fotos, Texte) darf für redaktionelle und
+              partnerschaftliche Zwecke verwendet werden. Eine kommerzielle Nutzung außerhalb
+              dieses Rahmens bedarf der vorherigen schriftlichen Zustimmung.
+            </p>
+            <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed mb-4">
+              Gewünschte Quellenangabe bei Bildverwendung:
+            </p>
+            <p className="text-[var(--fs-body)] font-medium text-[#1A1A2A] bg-[#F3F7FB] border border-[#DDE6F0] rounded px-4 py-2 inline-block mb-4">
+              Foto/Quelle: CME Control Motion Electronics GmbH
+            </p>
+            <p className="text-[var(--fs-body)] text-[#3A3A4A] leading-relaxed">
+              Bei Fragen zur Verwendung wenden Sie sich bitte an unseren{' '}
+              <a href="#kontakt" className="text-[#0080C8] hover:underline font-medium">
+                Presse-Kontakt
+              </a>.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <div className="border-t border-[#DDE6F0] bg-white">
+        <div className="max-w-[50rem] mx-auto px-6 py-6 text-center">
+          <p className="text-xs text-[#6A6A7A]">
+            Diese Seite dient als Materialbereich für Presse, Partner und Verbände.
+          </p>
         </div>
       </div>
     </Layout>

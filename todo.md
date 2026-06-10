@@ -752,3 +752,13 @@
 - [x] Media Center: Nutzungsbedingungen (Kurzabschnitt)
 - [x] Media Center: SEO Title + Meta-Description + Anker-Links für Sektionen
 - [x] Media Center: Responsive Design + konsistent mit Navigation/Header/Footer
+- [x] Media Center UX: Hero-Offset fixen (padding-top >= Navi-Höhe ~160px)
+- [x] Media Center UX: Sticky Sub-Navigation mit Scroll-Spy (Presse-Kontakt, Profil, Eckdaten, Logos, Bilder, Design, Downloads, Nutzung)
+- [x] Media Center UX: Anker-IDs für alle Sektionen (#kontakt, #profil, #eckdaten, #logos, #bilder, #design, #downloads, #nutzung)
+- [x] Media Center UX: Karten-Raster für Logos (3-4 Spalten Desktop)
+- [x] Media Center UX: Bilddatenbank als gleichmäßiges Galerie-Raster (3 Spalten)
+- [x] Media Center UX: Abwechselnde Hintergründe (weiß / #F3F7FB) für Sektionsrhythmus
+- [x] Media Center UX: Großzügige vertikale Abstände (64-80px) zwischen Sektionen
+- [x] Media Center UX: Inhaltsbreite begrenzen (~720-800px Fließtext, ~1100-1200px Raster)
+- [x] Media Center UX: Responsive Sub-Navigation (horizontal scrollbar auf Mobil)
+- [x] Media Center UX: Raster auf Tablet 2 Spalten, Mobil 1 Spalte
