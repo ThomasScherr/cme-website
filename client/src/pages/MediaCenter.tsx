@@ -200,11 +200,17 @@ function SubNavigation({ activeId }: { activeId: string }) {
     }
   };
 
+  // Scroll the active button into view HORIZONTALLY only (no vertical page scroll)
   useEffect(() => {
     if (!scrollRef.current) return;
     const activeBtn = scrollRef.current.querySelector(`[data-nav-id="${activeId}"]`) as HTMLElement | null;
     if (activeBtn) {
-      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const container = scrollRef.current;
+      const btnLeft = activeBtn.offsetLeft;
+      const btnWidth = activeBtn.offsetWidth;
+      const containerWidth = container.clientWidth;
+      const scrollLeft = btnLeft - containerWidth / 2 + btnWidth / 2;
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
     }
   }, [activeId]);
 
