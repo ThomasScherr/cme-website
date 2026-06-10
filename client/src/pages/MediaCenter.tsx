@@ -10,7 +10,7 @@ import {
   Check,
   ImageOff,
   FileText,
-  User,
+
 } from 'lucide-react';
 
 /* ─────────────────────────────────────────────
@@ -334,12 +334,14 @@ export default function MediaCenter() {
           <p className="text-[var(--fs-body)] text-[#6A6A7A] mb-8">Ihr Ansprechpartner für Presseanfragen</p>
           <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-xl p-6 md:p-8">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-full bg-[#0080C8]/10 flex items-center justify-center shrink-0">
-                <User className="w-6 h-6 text-[#0080C8]" />
-              </div>
+              <img
+                src="/manus-storage/ThomasPortraitSW_Email_Square_5ed94205.jpg"
+                alt="Thomas Scherr"
+                className="w-14 h-14 rounded-full object-cover shrink-0 border-2 border-[#DDE6F0]"
+              />
               <div>
                 <p className="font-bold text-[#1A1A2A] text-lg">Thomas Scherr</p>
-                <p className="text-[#6A6A7A] text-sm">Marketing & Kommunikation</p>
+                <p className="text-[#6A6A7A] text-sm">Marketing & Business Development</p>
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 text-[var(--fs-body)] text-[#3A3A4A]">
