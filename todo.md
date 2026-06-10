@@ -740,3 +740,15 @@
 - [x] Media Center: Abschnitt 2 – Kontakt (Katzer, Markmann, Telefon, Adresse, Website)
 - [x] Media Center: Abschnitt 3 – Downloads (Logo RGB/CMYK horizontal + zentriert, Teamfoto)
 - [x] Media Center: Design im CME Corporate Design, Hinweis "nicht öffentlich verlinkt" am Seitenende
+- [x] REBUILD: Media Center komplett neu als Presse-/Partner-Hub
+- [x] Media Center: Hero/Intro mit Überschrift und Beschreibung
+- [x] Media Center: Presse-Kontakt Card (oben, gut sichtbar)
+- [x] Media Center: Unternehmensprofil/Boilerplate (Kurz + Lang) mit "Text kopieren"-Button
+- [x] Media Center: Factsheet/Unternehmen auf einen Blick (kompakte Tabelle)
+- [x] Media Center: Logos zum Download (Card-Grid mit Vorschau + Download-Buttons)
+- [x] Media Center: Bilddatenbank/Pressefotos (Galerie mit Platzhaltern)
+- [x] Media Center: Farb- & Designvorgaben (Farbkacheln + Hausschrift + Do's/Don'ts)
+- [x] Media Center: Veröffentlichungen & Downloads (Tabelle mit Platzhalter-Eintrag)
+- [x] Media Center: Nutzungsbedingungen (Kurzabschnitt)
+- [x] Media Center: SEO Title + Meta-Description + Anker-Links für Sektionen
+- [x] Media Center: Responsive Design + konsistent mit Navigation/Header/Footer

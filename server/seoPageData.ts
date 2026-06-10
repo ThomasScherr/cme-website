@@ -234,6 +234,11 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     description: 'Allgemeine Geschäftsbedingungen der CME Control Motion Electronics GmbH.',
     keywords: 'AGB, Geschäftsbedingungen, CME',
   },
+  '/media-center': {
+    title: 'Media-Center | CME Control Motion Electronics',
+    description: 'Presse- und Materialbereich der CME Control Motion Electronics GmbH. Logos, Pressefotos, Boilerplate-Texte, Factsheet und Designvorgaben zum Download.',
+    keywords: 'Media Center, Presse, Logos, Download, CME, Pressefotos, Boilerplate',
+  },
 };
 
 /**

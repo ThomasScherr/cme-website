@@ -315,6 +315,11 @@ const SEO_PAGES = {
     enTitle: 'Terms & Conditions | CME Control Motion Electronics GmbH',
     enDescription: 'General terms and conditions of CME Control Motion Electronics GmbH.',
   },
+  '/media-center': {
+    title: 'Media-Center | CME Control Motion Electronics',
+    description: 'Presse- und Materialbereich der CME Control Motion Electronics GmbH. Logos, Pressefotos, Boilerplate-Texte, Factsheet und Designvorgaben zum Download.',
+    keywords: 'Media Center, Presse, Logos, Download, CME, Pressefotos, Boilerplate',
+  },
 };
 
 // ─── Helpers ───
