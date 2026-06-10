@@ -50,6 +50,7 @@ const StylesheetEditor = lazy(() => import("./pages/admin/StylesheetEditor"));
 const InsightPreview = lazy(() => import("./pages/admin/InsightPreview"));
 const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
 const AuthorsAdmin = lazy(() => import("./pages/admin/AuthorsAdmin"));
+const MediaCenter = lazy(() => import("./pages/MediaCenter"));
 
 function PageLoader() {
   return (
@@ -104,6 +105,9 @@ function Router() {
 
         {/* Landing Pages (Google Ads) */}
         <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />
+
+        {/* Media Center (nicht verlinkt, nur für Presse/Partner) */}
+        <Route path="/media-center" component={MediaCenter} />
 
         {/* Rechtliches */}
         <Route path="/impressum" component={Impressum} />

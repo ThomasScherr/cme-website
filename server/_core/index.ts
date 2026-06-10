@@ -13,6 +13,7 @@ import { prerenderMiddleware } from "../prerenderMiddleware";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
 import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
+import { registerStorageProxy } from "./storageProxy";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -51,6 +52,8 @@ async function startServer() {
   app.use(adminProtectionMiddleware());
   // Pre-render middleware – serves static HTML to crawlers for SEO
   app.use(prerenderMiddleware());
+  // Storage proxy – serves /manus-storage/* paths via Forge presigned URLs
+  registerStorageProxy(app);
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API

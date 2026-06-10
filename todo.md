@@ -735,3 +735,8 @@
 - [x] GEO-AUDIT: Brand-Name vereinheitlichen (Title, OG, Schema konsistent)
 - [x] GEO-AUDIT: Sichtbare FAQ-Sektion auf der Startseite hinzufügen
 - [x] GEO-AUDIT: hero-ssr Element erweitern mit H1, 300+ Wörter (906), Listen, FAQ, Heading-Hierarchie + FAQPage JSON-LD Schema (für geoptie.com pre-hydration reading)
+- [x] Neue Seite: Media Center (/media-center) – nur per Direktlink erreichbar, kein Menüeintrag
+- [x] Media Center: Abschnitt 1 – Mitgliederprofil Gesundheitswirtschaft Südwestfalen (Slogan, Keywords, Beschreibungstext)
+- [x] Media Center: Abschnitt 2 – Kontakt (Katzer, Markmann, Telefon, Adresse, Website)
+- [x] Media Center: Abschnitt 3 – Downloads (Logo RGB/CMYK horizontal + zentriert, Teamfoto)
+- [x] Media Center: Design im CME Corporate Design, Hinweis "nicht öffentlich verlinkt" am Seitenende
