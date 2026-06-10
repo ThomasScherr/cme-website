@@ -118,11 +118,11 @@ const COLORS = [
 
 const PUBLICATIONS = [
   {
-    title: 'Unternehmensporträt CME – Veröffentlichung Brancheninitiative',
-    date: '2025',
+    title: 'Mitgliedsprofil CME – Brancheninitiative Gesundheitswirtschaft Südwestfalen e.V.',
+    date: '2026',
     downloads: [
-      { format: 'PDF', url: '#' },
-      { format: 'Word', url: '#' },
+      { format: 'PDF', url: '/manus-download/CME_Mitgliedsprofil_Brancheninitiative_f392958f.pdf?filename=CME_Mitgliedsprofil_Brancheninitiative.pdf' },
+      { format: 'Word', url: '/manus-download/CME_Mitgliedsprofil_Brancheninitiative_6c8fce2d.docx?filename=CME_Mitgliedsprofil_Brancheninitiative.docx' },
     ],
   },
 ];
@@ -338,18 +338,18 @@ export default function MediaCenter() {
                 <User className="w-6 h-6 text-[#0080C8]" />
               </div>
               <div>
-                <p className="font-bold text-[#1A1A2A] text-lg">Steffen Katzer</p>
-                <p className="text-[#6A6A7A] text-sm">Geschäftsführer</p>
+                <p className="font-bold text-[#1A1A2A] text-lg">Thomas Scherr</p>
+                <p className="text-[#6A6A7A] text-sm">Marketing & Kommunikation</p>
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 text-[var(--fs-body)] text-[#3A3A4A]">
-              <a href="mailto:presse@control-motion.de" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
+              <a href="mailto:t.scherr@control-motion.de" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
                 <Mail className="w-5 h-5 text-[#0080C8] shrink-0" />
-                presse@control-motion.de
+                t.scherr@control-motion.de
               </a>
-              <a href="tel:+492312866769600" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
+              <a href="tel:+4915141932777" className="flex items-center gap-3 hover:text-[#0080C8] transition-colors">
                 <Phone className="w-5 h-5 text-[#0080C8] shrink-0" />
-                +49 231 28 66 76 96-0
+                +49 151 41932777
               </a>
               <div className="flex items-start gap-3 sm:col-span-2">
                 <MapPin className="w-5 h-5 text-[#0080C8] shrink-0 mt-0.5" />
