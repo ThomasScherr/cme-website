@@ -38,38 +38,38 @@ const LOGOS = [
   {
     label: 'Logo RGB horizontal',
     description: 'Für digitale Medien',
-    previewUrl: '/manus-storage/CME_Logo_RGB_R_f491fb76.png',
+    previewUrl: '/api/media/CME_Logo_RGB_horizontal.png',
     downloads: [
-      { format: 'PNG', url: '/manus-download/CME_Logo_RGB_R_f491fb76.png?filename=CME_Logo_RGB_horizontal.png' },
-      { format: 'EPS', url: '/manus-download/CME_Logo_RGB_R_f5eaab72.eps?filename=CME_Logo_RGB_horizontal.eps' },
+      { format: 'PNG', url: '/api/downloads/CME_Logo_RGB_horizontal.png' },
+      { format: 'EPS', url: '/api/downloads/CME_Logo_RGB_horizontal.eps' },
     ],
     darkBg: false,
   },
   {
     label: 'Logo weiß horizontal',
     description: 'Für dunkle Hintergründe',
-    previewUrl: '/manus-storage/CME_Logo_CMYK_R_5eca81b3.png',
+    previewUrl: '/api/media/CME_Logo_weiss_horizontal.png',
     downloads: [
-      { format: 'PNG', url: '/manus-download/CME_Logo_CMYK_R_5eca81b3.png?filename=CME_Logo_weiss_horizontal.png' },
+      { format: 'PNG', url: '/api/downloads/CME_Logo_weiss_horizontal.png' },
     ],
     darkBg: true,
   },
   {
     label: 'Logo RGB zentriert',
     description: 'Für digitale Medien',
-    previewUrl: '/manus-storage/CME_Logo_RGB_C_7c6c92fe.png',
+    previewUrl: '/api/media/CME_Logo_RGB_zentriert.png',
     downloads: [
-      { format: 'PNG', url: '/manus-download/CME_Logo_RGB_C_7c6c92fe.png?filename=CME_Logo_RGB_zentriert.png' },
-      { format: 'EPS', url: '/manus-download/CME_Logo_RGB_C_6f72d7ef.eps?filename=CME_Logo_RGB_zentriert.eps' },
+      { format: 'PNG', url: '/api/downloads/CME_Logo_RGB_zentriert.png' },
+      { format: 'EPS', url: '/api/downloads/CME_Logo_RGB_zentriert.eps' },
     ],
     darkBg: false,
   },
   {
     label: 'Logo CMYK zentriert',
     description: 'Für Printmedien',
-    previewUrl: '/manus-storage/CME_Logo_RGB_C_7c6c92fe.png',
+    previewUrl: '/api/media/CME_Logo_RGB_zentriert.png',
     downloads: [
-      { format: 'EPS', url: '/manus-download/CME_Logo_CMYK_C_81cdc5d5.eps?filename=CME_Logo_CMYK_zentriert.eps' },
+      { format: 'EPS', url: '/api/downloads/CME_Logo_CMYK_zentriert.eps' },
     ],
     darkBg: false,
   },
@@ -79,8 +79,8 @@ const PHOTOS = [
   {
     label: 'Geschäftsführung',
     description: 'v.l.: Steffen Katzer, Matthias Markmann',
-    previewUrl: '/manus-storage/CME_Teamfoto_Katzer_Markmann_395b2cb7.png',
-    downloadUrl: '/manus-download/CME_Teamfoto_Katzer_Markmann_395b2cb7.png?filename=CME_Geschaeftsfuehrung_Katzer_Markmann.png',
+    previewUrl: '/api/media/CME_Geschaeftsfuehrung_Katzer_Markmann.png',
+    downloadUrl: '/api/downloads/CME_Geschaeftsfuehrung_Katzer_Markmann.png',
     available: true,
   },
   {
@@ -121,8 +121,8 @@ const PUBLICATIONS = [
     title: 'Mitgliedsprofil CME – Brancheninitiative Gesundheitswirtschaft Südwestfalen e.V.',
     date: '2026',
     downloads: [
-      { format: 'PDF', url: '/manus-storage/CME_Mitgliedsprofil_Brancheninitiative_f392958f.pdf' },
-      { format: 'Word', url: '/manus-storage/CME_Mitgliedsprofil_Brancheninitiative_6c8fce2d.docx' },
+      { format: 'PDF', url: '/api/downloads/CME_Mitgliedsprofil_Brancheninitiative.pdf' },
+      { format: 'Word', url: '/api/downloads/CME_Mitgliedsprofil_Brancheninitiative.docx' },
     ],
   },
 ];
@@ -335,7 +335,7 @@ export default function MediaCenter() {
           <div className="bg-[#F3F7FB] border border-[#DDE6F0] rounded-xl p-6 md:p-8">
             <div className="flex items-start gap-4 mb-6">
               <img
-                src="/manus-storage/ThomasPortraitSW_Email_Square_5ed94205.jpg"
+                src="/api/media/ThomasScherr_Portrait.jpg"
                 alt="Thomas Scherr"
                 className="w-14 h-14 rounded-full object-cover shrink-0 border-2 border-[#DDE6F0]"
               />

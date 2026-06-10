@@ -14,6 +14,7 @@ import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
 import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
 import { registerStorageProxy } from "./storageProxy";
+import { registerDownloadProxy } from "../downloadProxy";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -54,6 +55,8 @@ async function startServer() {
   app.use(prerenderMiddleware());
   // Storage proxy – serves /manus-storage/* paths via Forge presigned URLs
   registerStorageProxy(app);
+  // Download proxy – serves files under /api/downloads/:key and /api/media/:key (neutral URLs)
+  registerDownloadProxy(app);
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API
