@@ -762,3 +762,7 @@
 - [x] Media Center UX: Inhaltsbreite begrenzen (~720-800px Fließtext, ~1100-1200px Raster)
 - [x] Media Center UX: Responsive Sub-Navigation (horizontal scrollbar auf Mobil)
 - [x] Media Center UX: Raster auf Tablet 2 Spalten, Mobil 1 Spalte
+- [x] GEO-Audit Fix: Doppelte H1 in index.html behoben (noscript h1 → h2)
+- [x] GEO-Audit Fix: Title auf unter 60 Zeichen gekürzt (54 Zeichen: "CME – Elektronikentwicklung & EMS-Fertigung Dortmund")
+- [x] GEO-Audit Fix: Description auf unter 155 Zeichen gekürzt (144 Zeichen)
+- [x] GEO-Audit Fix: Alle 3 Stellen synchronisiert (index.html, Home.tsx, prerenderMiddleware.ts)

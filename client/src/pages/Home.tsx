@@ -61,10 +61,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ overflowX: 'clip' }}>
       <SEO
-        titleDE='CME Control Motion Electronics – Elektronikentwicklung & EMS Dortmund'
-        titleEN='CME Control Motion Electronics – Electronics Development & EMS Dortmund'
-        descriptionDE='CME Control Motion Electronics – Ihr Partner für Elektronikentwicklung & EMS-Fertigung in Dortmund. ISO 9001 zertifiziert. Über 15 Jahre Erfahrung. Jetzt Anfrage stellen.'
-        descriptionEN='CME Control Motion Electronics – Your partner for electronics development & EMS manufacturing in Dortmund. ISO 9001 certified. Over 15 years of experience.'
+        titleDE='CME – Elektronikentwicklung & EMS-Fertigung Dortmund'
+        titleEN='CME – Electronics Development & EMS Manufacturing'
+        descriptionDE='CME Control Motion Electronics – Entwicklung & EMS-Fertigung für Leistungselektronik, Antriebselektronik und Mechatronik. ISO 9001. Dortmund.'
+        descriptionEN='CME Control Motion Electronics – Development & EMS for power electronics, drive electronics and mechatronics. ISO 9001. Dortmund.'
         keywordsDE='Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management'
         keywordsEN='electronics development, EMS manufacturing, power electronics, drive electronics, PCB assembly Dortmund, thermal management'
         path='/'
