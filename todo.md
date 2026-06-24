@@ -766,3 +766,4 @@
 - [x] GEO-Audit Fix: Title auf unter 60 Zeichen gekürzt (54 Zeichen: "CME – Elektronikentwicklung & EMS-Fertigung Dortmund")
 - [x] GEO-Audit Fix: Description auf unter 155 Zeichen gekürzt (144 Zeichen)
 - [x] GEO-Audit Fix: Alle 3 Stellen synchronisiert (index.html, Home.tsx, prerenderMiddleware.ts)
+- [x] CSR Penalty Fix: #hero-ssr Block in index.html auf vollständige Seitenstruktur erweitern (wie ventspire.io SSR-Output)
