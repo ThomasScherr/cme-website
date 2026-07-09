@@ -118,6 +118,20 @@ const COLORS = [
 
 const PUBLICATIONS = [
   {
+    title: 'CME Company Presentation 2026 (Deutsch)',
+    date: '2026',
+    downloads: [
+      { format: 'PDF', url: '/api/downloads/2026-CMECompanyPresentationDE.pdf' },
+    ],
+  },
+  {
+    title: 'CME Company Presentation 2026 (English)',
+    date: '2026',
+    downloads: [
+      { format: 'PDF', url: '/api/downloads/2026-CMECompanyPresentationEN.pdf' },
+    ],
+  },
+  {
     title: 'Mitgliedsprofil CME – Brancheninitiative Gesundheitswirtschaft Südwestfalen e.V.',
     date: '2026',
     downloads: [

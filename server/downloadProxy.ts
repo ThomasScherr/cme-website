@@ -21,6 +21,9 @@ const DOWNLOAD_REGISTRY: Record<string, { storageKey: string; filename: string; 
   // Publications
   'CME_Mitgliedsprofil_Brancheninitiative.pdf': { storageKey: 'CME_Mitgliedsprofil_Brancheninitiative_f392958f.pdf', filename: 'CME_Mitgliedsprofil_Brancheninitiative.pdf', contentType: 'application/pdf' },
   'CME_Mitgliedsprofil_Brancheninitiative.docx': { storageKey: 'CME_Mitgliedsprofil_Brancheninitiative_6c8fce2d.docx', filename: 'CME_Mitgliedsprofil_Brancheninitiative.docx', contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+  // Company Presentations
+  '2026-CMECompanyPresentationDE.pdf': { storageKey: '2026-CMECompanyPresentationDE_e9b54f32.pdf', filename: '2026-CMECompanyPresentationDE.pdf', contentType: 'application/pdf' },
+  '2026-CMECompanyPresentationEN.pdf': { storageKey: '2026-CMECompanyPresentationEN_bf43d36e.pdf', filename: '2026-CMECompanyPresentationEN.pdf', contentType: 'application/pdf' },
 };
 
 export function registerDownloadProxy(app: Express) {
