@@ -15,6 +15,7 @@ const DOWNLOAD_REGISTRY: Record<string, { storageKey: string; filename: string; 
   'CME_Logo_RGB_zentriert.png': { storageKey: 'CME_Logo_RGB_C_7c6c92fe.png', filename: 'CME_Logo_RGB_zentriert.png', contentType: 'image/png' },
   'CME_Logo_RGB_zentriert.eps': { storageKey: 'CME_Logo_RGB_C_6f72d7ef.eps', filename: 'CME_Logo_RGB_zentriert.eps', contentType: 'application/postscript' },
   'CME_Logo_CMYK_zentriert.eps': { storageKey: 'CME_Logo_CMYK_C_81cdc5d5.eps', filename: 'CME_Logo_CMYK_zentriert.eps', contentType: 'application/postscript' },
+  'CME_Logo_Email_250px.png': { storageKey: 'CME_Logo_Email_250px_ef7a3610.png', filename: 'CME_Logo_Email_250px.png', contentType: 'image/png' },
   // Photos
   'CME_Geschaeftsfuehrung_Katzer_Markmann.png': { storageKey: 'CME_Teamfoto_Katzer_Markmann_395b2cb7.png', filename: 'CME_Geschaeftsfuehrung_Katzer_Markmann.png', contentType: 'image/png' },
   'ThomasScherr_Portrait.jpg': { storageKey: 'ThomasPortraitSW_Email_Square_5ed94205.jpg', filename: 'ThomasScherr_Portrait.jpg', contentType: 'image/jpeg' },

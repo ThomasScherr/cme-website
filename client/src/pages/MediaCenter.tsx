@@ -73,6 +73,15 @@ const LOGOS = [
     ],
     darkBg: false,
   },
+  {
+    label: 'Logo E-Mail-Signatur',
+    description: '250 px breit, für E-Mail-Signaturen',
+    previewUrl: '/api/media/CME_Logo_Email_250px.png',
+    downloads: [
+      { format: 'PNG', url: '/api/downloads/CME_Logo_Email_250px.png' },
+    ],
+    darkBg: false,
+  },
 ];
 
 const PHOTOS = [
