@@ -26,8 +26,8 @@ const faqs: FaqItem[] = [
   {
     question: 'Für welche Branchen arbeitet CME?',
     questionEN: 'Which industries does CME serve?',
-    answer: 'CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen ist IATF 16949 zertifiziert für Automotive-Projekte.',
-    answerEN: 'CME serves automotive and e-mobility, industrial automation, medical technology, building technology, drive technology, and smart devices. The company is IATF 16949 certified for automotive projects.',
+    answer: 'CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen arbeitet nach Automotive Ready Standards für Automotive-Projekte.',
+    answerEN: 'CME serves automotive and e-mobility, industrial automation, medical technology, building technology, drive technology, and smart devices. The company works according to Automotive Ready Standards for automotive projects.',
   },
   {
     question: 'Was unterscheidet CME von anderen EMS-Dienstleistern?',

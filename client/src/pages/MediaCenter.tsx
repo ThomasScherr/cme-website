@@ -21,13 +21,13 @@ const BOILERPLATE_SHORT =
   'Die CME Control Motion Electronics GmbH ist Entwicklungsdienstleister und EMS-Fertigungspartner für Leistungselektronik, Antriebselektronik und Mechatronik. Von der Entwicklung bis zur Serienfertigung – alles aus einer Hand am Standort Dortmund.';
 
 const BOILERPLATE_LONG =
-  'Die CME Control Motion Electronics GmbH mit Sitz in Dortmund ist ein unabhängiger Entwicklungsdienstleister und Electronic-Manufacturing-Services-Partner (EMS). Das Unternehmen begleitet Kunden von der Konzeptphase über Hardware- und Softwareentwicklung, Simulation und Test bis zur qualifizierten Serienfertigung elektronischer Baugruppen. Schwerpunkte liegen auf Leistungselektronik, Antriebselektronik (Motor Control), Mechatronik und thermisch anspruchsvollen Projekten. Mit über 60 Mitarbeitern, einem eigenen Maschinenpark für SMD- und THT-Bestückung sowie Zertifizierungen nach ISO 9001 und IATF 16949 bietet CME durchgängige Qualität vom Prototyp bis zur Serie. Ergänzt wird das Leistungsspektrum durch Lifecycle Services inklusive Obsoleszenzmanagement und Re-Design, um die langfristige Verfügbarkeit elektronischer Produkte sicherzustellen.';
+  'Die CME Control Motion Electronics GmbH mit Sitz in Dortmund ist ein unabhängiger Entwicklungsdienstleister und Electronic-Manufacturing-Services-Partner (EMS). Das Unternehmen begleitet Kunden von der Konzeptphase über Hardware- und Softwareentwicklung, Simulation und Test bis zur qualifizierten Serienfertigung elektronischer Baugruppen. Schwerpunkte liegen auf Leistungselektronik, Antriebselektronik (Motor Control), Mechatronik und thermisch anspruchsvollen Projekten. Mit über 60 Mitarbeitern, einem eigenen Maschinenpark für SMD- und THT-Bestückung sowie Zertifizierungen nach ISO 9001 und Automotive Ready Standards bietet CME durchgängige Qualität vom Prototyp bis zur Serie. Ergänzt wird das Leistungsspektrum durch Lifecycle Services inklusive Obsoleszenzmanagement und Re-Design, um die langfristige Verfügbarkeit elektronischer Produkte sicherzustellen.';
 
 const FACTSHEET = [
   { label: 'Gegründet', value: '2008' },
   { label: 'Mitarbeiter', value: 'über 60' },
   { label: 'Standort', value: 'Dortmund (Alter Hellweg 48, 44379 Dortmund)' },
-  { label: 'Zertifizierungen', value: 'ISO 9001, IATF 16949' },
+  { label: 'Zertifizierungen', value: 'ISO 9001, Automotive Ready Standards' },
   { label: 'Leistungen', value: 'Elektronikentwicklung, EMS-Fertigung, Lifecycle Services' },
   { label: 'Schwerpunkte', value: 'Leistungselektronik, Antriebselektronik, Mechatronik, thermisch anspruchsvolle Projekte' },
   { label: 'Geschäftsführung', value: 'Steffen Katzer, Matthias Markmann' },

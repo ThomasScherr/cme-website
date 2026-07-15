@@ -118,14 +118,14 @@ const PAGES: Record<string, PageMeta> = {
     keywords: 'Elektronikentwicklung, EMS-Fertigung, Leistungselektronik, Antriebselektronik, Elektronikfertigung Dortmund, thermisches Management, CME Control Motion Electronics',
     content: `CME Control Motion Electronics GmbH ist Ihr Entwicklungsdienstleister und EMS-Fertigungspartner für elektronische Produkte.
     Wir sind spezialisiert auf Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.
-    Mit über 60 Mitarbeitern und Zertifizierungen nach ISO 9001 sowie IATF 16949 realisiert CME anspruchsvolle Elektronikprojekte für Automotive, Industrieautomation, Medizintechnik und Gebäudetechnik.
+    Mit über 60 Mitarbeitern und Zertifizierungen nach ISO 9001 sowie Automotive Ready Standards realisiert CME anspruchsvolle Elektronikprojekte für Automotive, Industrieautomation, Medizintechnik und Gebäudetechnik.
     Unser integrierter Ansatz verbindet Hardwareentwicklung, Embedded-Software, thermische Simulation und EMV-Qualifikation mit eigener SMD-/THT-Fertigung. So entstehen serienreife Produkte mit kürzeren Entwicklungszyklen und höchster Qualität.
     Kernkompetenzen: Hardware- und Softwareentwicklung, E-Motor-Design, Simulation (COMSOL, PLECS, LTspice, Motor-CAD), EMV-Validierung, SMD-Bestückung, Baugruppenfertigung, Qualitätssicherung.
     Zielmärkte: Automotive, E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik und Smart Devices.
     Häufig gestellte Fragen:
     Was bietet CME als Entwicklungsdienstleister? CME bietet ganzheitliche Elektronikentwicklung von der Konzeptphase bis zur Serienreife: Hardware- und Softwareentwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Simulation, EMV-Validierung und Test nach V-Modell.
     Welche EMS-Fertigungsleistungen bietet CME? CME fertigt elektronische Baugruppen vom Prototyp bis zur Serie: SMD- und THT-Bestückung, Selektivlöten, Dampfphasenlöten, AOI-Inspektion, Verguss, Conformal Coating und Kabelkonfektionierung – alles nach IPC-Standards.
-    Für welche Branchen arbeitet CME? CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen ist IATF 16949 zertifiziert für Automotive-Projekte.
+    Für welche Branchen arbeitet CME? CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen arbeitet nach Automotive Ready Standards für Automotive-Projekte.
     Was unterscheidet CME von anderen EMS-Dienstleistern? CME vereint Entwicklung und Fertigung unter einem Dach. Das bedeutet: kürzere Iterationszyklen, nahtlose Übergabe vom Prototyp zur Serie und ein Ansprechpartner für das gesamte Projekt.`,
     schemas: [organizationSchema, websiteSchema, localBusinessSchema, {
       '@context': 'https://schema.org',
@@ -133,7 +133,7 @@ const PAGES: Record<string, PageMeta> = {
       'mainEntity': [
         { '@type': 'Question', 'name': 'Was bietet CME als Entwicklungsdienstleister?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME bietet ganzheitliche Elektronikentwicklung von der Konzeptphase bis zur Serienreife: Hardware- und Softwareentwicklung, Leistungselektronik, Antriebselektronik, E-Motor-Design, Simulation, EMV-Validierung und Test nach V-Modell.' } },
         { '@type': 'Question', 'name': 'Welche EMS-Fertigungsleistungen bietet CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME fertigt elektronische Baugruppen vom Prototyp bis zur Serie: SMD- und THT-Bestückung, Selektivlöten, Dampfphasenlöten, AOI-Inspektion, Verguss, Conformal Coating und Kabelkonfektionierung – alles nach IPC-Standards.' } },
-        { '@type': 'Question', 'name': 'Für welche Branchen arbeitet CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen ist IATF 16949 zertifiziert für Automotive-Projekte.' } },
+        { '@type': 'Question', 'name': 'Für welche Branchen arbeitet CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME bedient Automotive und E-Mobilität, Industrieautomation, Medizintechnik, Gebäudetechnik, Antriebstechnik sowie Smart Devices. Das Unternehmen arbeitet nach Automotive Ready Standards für Automotive-Projekte.' } },
         { '@type': 'Question', 'name': 'Wo befindet sich CME?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME Control Motion Electronics GmbH hat seinen Sitz am Alter Hellweg 48 in 44379 Dortmund, Deutschland. Von dort werden Kunden in ganz Europa betreut.' } },
         { '@type': 'Question', 'name': 'Was unterscheidet CME von anderen EMS-Dienstleistern?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'CME vereint Entwicklung und Fertigung unter einem Dach. Das bedeutet: kürzere Iterationszyklen, nahtlose Übergabe vom Prototyp zur Serie und ein Ansprechpartner für das gesamte Projekt – von der Schaltungsentwicklung bis zur Serienlieferung.' } },
       ],
@@ -395,7 +395,7 @@ const PAGES: Record<string, PageMeta> = {
     Manuelle Optische Inspektion (MOI): Prüfung durch IPC-A-610-zertifizierte Inspektoren. Bewertung nach IPC-A-610 Klasse 2 und Klasse 3. Dokumentation mit Mikroskop-Aufnahmen.
     Lotpasteninspektion (SPI): 3D-Vermessung des Lotpastendrucks vor der Bestückung. Volumen-, Höhen- und Positionskontrolle jedes Pads.
     Funktionstest: End-of-Line-Prüfung aller Serieneinheiten. Kundenspezifische Testadapter und Prüfprogramme. In-Circuit-Test (ICT) und Flying-Probe-Test.
-    Zertifizierungen: ISO 9001:2015 (Qualitätsmanagement), ISO 14001:2015 (Umweltmanagement). Fertigung nach IPC-A-610 und IPC J-STD-001. IATF 16949 für Automotive-Projekte.
+    Zertifizierungen: ISO 9001:2015 (Qualitätsmanagement), ISO 14001:2015 (Umweltmanagement). Fertigung nach IPC-A-610 und IPC J-STD-001. Automotive Ready Standards für Automotive-Projekte.
     Traceability: Lückenlose Rückverfolgbarkeit jeder Baugruppe. Chargen-Tracking, Serien-Tracking und Bauteil-Tracking. MES-gestützte Dokumentation aller Fertigungsschritte.`,
   },
   '/fertigung/smd-bestueckung': {
@@ -474,10 +474,10 @@ const PAGES: Record<string, PageMeta> = {
   '/unternehmen': {
     enPath: '/en/company',
     title: 'Über CME – Unternehmen | CME',
-    description: 'CME Control Motion Electronics GmbH – Über 60 Mitarbeiter, Standort Dortmund, zertifiziert nach ISO 9001 und IATF 16949.',
+    description: 'CME Control Motion Electronics GmbH – Über 60 Mitarbeiter, Standort Dortmund, zertifiziert nach ISO 9001, Automotive Ready Standards.',
     h1: 'Über CME Control Motion Electronics',
-    keywords: 'CME, Unternehmen, Dortmund, ISO 9001, IATF 16949, Elektronikentwicklung, EMS-Fertigung',
-    content: `CME Control Motion Electronics GmbH – Über 60 Mitarbeiter am Standort Dortmund. Zertifiziert nach ISO 9001 und IATF 16949. Entwicklung und Fertigung unter einem Dach.`,
+    keywords: 'CME, Unternehmen, Dortmund, ISO 9001, Automotive Ready Standards, Elektronikentwicklung, EMS-Fertigung',
+    content: `CME Control Motion Electronics GmbH – Über 60 Mitarbeiter am Standort Dortmund. Zertifiziert nach ISO 9001, Automotive Ready Standards. Entwicklung und Fertigung unter einem Dach.`,
   },
   '/kontakt': {
     enPath: '/en/contact',

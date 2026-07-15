@@ -10,7 +10,7 @@
 - Website: https://control-motion.de
 - Gründung: 2001
 - Mitarbeiter: ca. 60
-- Zertifizierungen: ISO 9001, IATF 16949 (Automotive), IPC-A-610, IPC J-STD-001
+- Zertifizierungen: ISO 9001, Automotive Ready Standards, IPC-A-610, IPC J-STD-001
 
 ## Kernkompetenzen
 
@@ -56,7 +56,7 @@
 1. Alles aus einer Hand: Entwicklung und Fertigung unter einem Dach
 2. V-Modell-basierter Entwicklungsprozess für nachvollziehbare Qualität
 3. Spezialisierung auf thermisch anspruchsvolle Elektronik
-4. Automotive-qualifiziert (IATF 16949)
+4. Automotive-qualifiziert (Automotive Ready Standards)
 5. Vom Prototyp bis zur Serie – flexible Losgrößen
 6. Standort Deutschland – kurze Wege, deutsche Ingenieursqualität
 
