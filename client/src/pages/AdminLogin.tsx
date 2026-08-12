@@ -29,7 +29,7 @@ export default function AdminLogin() {
       }
 
       // Redirect to admin panel
-      navigate('/admin');
+      navigate('/admin/insights');
     } catch {
       setError('Verbindungsfehler. Bitte versuchen Sie es erneut.');
     } finally {
