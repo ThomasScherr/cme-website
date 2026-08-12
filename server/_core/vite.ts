@@ -98,7 +98,8 @@ export function serveStatic(app: Express) {
 
     // Return proper 404 status for unknown routes
     const { meta } = lookupSeoMeta(req.originalUrl);
-    if (!meta) {
+    const isKnownAppRoute = req.originalUrl.startsWith('/admin') || req.originalUrl.startsWith('/api');
+    if (!meta && !isKnownAppRoute) {
       res.status(404);
     }
 
