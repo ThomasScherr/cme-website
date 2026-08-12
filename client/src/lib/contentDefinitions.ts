@@ -3,7 +3,7 @@
  * These defaults mirror the hardcoded content in page components so the CMS shows real values.
  */
 
-const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+const CDN = '/assets';
 
 // ── Types ──────────────────────────────────────────────────────────
 
@@ -828,7 +828,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/portrait_CME_GF_79a8ee20.jpg', defaultEn: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/portrait_CME_GF_79a8ee20.jpg' },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: '/assets/portrait_CME_GF_79a8ee20.jpg', defaultEn: '/assets/portrait_CME_GF_79a8ee20.jpg' },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },

@@ -1,0 +1,59 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://4XSjeNPhtasZJLz.root:dHhbY49l3UNJ60nMm6Rv@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/9wChLxyDrQGRm9T7Lg9U7Y?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://4XSjeNPhtasZJLz.root:dHhbY49l3UNJ60nMm6Rv@gateway05.us-east-1.prod.aws.tidbcloud.com:4000/9wChLxyDrQGRm9T7Lg9U7Y?ssl={\"rejectUnauthorized\":true}",
+    "MANUS_WEBDEV_PROJECT_ID": "9wChLxyDrQGRm9T7Lg9U7Y"
+  },
+  "experiments": [
+    "no_db_push"
+  ],
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y",
+    "access_key_id": "ASIAZV3A2ECZIBDGO3PE",
+    "secret_access_key": "a+YJFrc4p5gBroV79q8B7FwXwFQd2mfFAmhdVKTu",
+    "session_token": "IQoJb3JpZ2luX2VjEAAaCXVzLWVhc3QtMSJHMEUCIQDShXplRYO+OH7EKIJyW11DhJZTfITB5P5qRDx8Kzvl6gIgXU1b73oJYmnDQlOYwS07Yh7Dp5P2Qb+8fOUNSyJ/Ro0q/wMIyf//////////ARAEGgw2NjUzODYwOTg4NjYiDPAKkOIMMUGC2tzWkyrTA0lTvxSpWScLIzf33FB9Y7h9sw5SVQHSwPffmURTSX8fJjywYJaUUljo1EB13gTTm0IM+eow4Tsu4XJradq6gGq/v8sXpO8j+tLJdEZ+jdbMU765RATo5NKskHFSmyW8A/3/x2xbpNBm1wbAR0/CAYSzQbCE8S8ABBVw97mSISKG+VexDVjFpn0RA9La7V2n8DZ3GTLS2uKkQEMkOzA1fj/WJzSh04a/b83nKKSSPiONLaOn1XZTP8s0GwmY9bz/efCtkRbi23rATox/GO4sNnbDvFx8g6vS4K9oi9pPl4HbzdYp5gazDWI4VZnFf98fl9jwiv4zy4QDL91/qgLvNqEDJM812N76UFVFuR0aP9appGIzECzl2tMBy/C3NZBRzpryJcdmhKJxPKYLmhuznOCTyecA3lJGX9P2EJLkVC80RJQ1fqZ8bZ6Fpo26AP06OvMvpizzzmeQ7YTQO6GekntQuRC4vKzwMjHb0LB1eXdPHcqj4ba2vh1mHqzjlYtNUe8RtB+GlVyyYjbM0o5yJG3Le3o0+gHSP9xnWWna+2xq1SCD0l3KeQGKUfENtKtlIltGLc7VJx3C1Ha/31n2EbPIFbUKYV7L8/w8yMOX5JIF079pMIHB8NMGOp0BaOX/KxkCJLBmq0bijErmRlArgURCtx+2utdr4wEGcNLH6i+aYJhHV3w6dHl2ZD+Iw86VzRuxNe2ERzUMiuykEqvpx9HZ9Dg79mcUhAGZcThj6sS3MP5YB2Lfg+BrY3HImzZ7df2VqtkhQwmoSsi6twCSQOVQKRJZ3vKYyLCX+R1ZpBQ279n37njNOW841YKUrddhJOlpgn1qh7plBA==",
+    "expiration": "2026-08-12T19:28:01.000Z",
+    "backend": "GIT_BACKEND_S3"
+  },
+  "name": "cme-website",
+  "path": "/home/ubuntu/cme-website",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "9oRjMtiyG3yFZ7UD9nMfZf",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "CONTACT_EMAIL": "t.scherr@control-motion.de,sales@control-motion.de",
+    "JWT_SECRET": "HNAhna8M2rgrZ87mjWKYpz",
+    "MITTWALD_API_TOKEN": "ec8546ec-d9b9-46b2-a3ab-210cb76310cd:NMQFQEio7oKPS_dcttq9vHdU2Pk_rC6aXcLQS73NCc4:mittwald_a",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OPENAI_API_KEY": "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",
+    "OWNER_NAME": "Thomas Scherr",
+    "OWNER_OPEN_ID": "5TmaQEz2Nf7HZVq7qnTDRT",
+    "SITE_ACCESS_PASSWORD": "2026Breisenbach",
+    "SMTP_FROM": "\"CME Kontaktformular\" \u003cnoreply@controlmotion.de\u003e",
+    "SMTP_HOST": "mail.agenturserver.de",
+    "SMTP_PASS": "$,65uikibsvGpc",
+    "SMTP_PORT": "587",
+    "SMTP_USER": "noreply@controlmotion.de",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "700e1da4-7270-4b7f-b9a1-c17fbf18edf8",
+    "VITE_APP_ID": "9wChLxyDrQGRm9T7Lg9U7Y",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663373169592/ZaafQmyUMXYYbwaU.png",
+    "VITE_APP_TITLE": "CME – Elektronikentwicklung \u0026 EMS-Fertigung | Dortmund NRW",
+    "VITE_FRONTEND_FORGE_API_KEY": "kXpEpSvXv4U8ztN9dVwwND",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_GA4_MEASUREMENT_ID": "G-GQCSRVXX15",
+    "VITE_GOOGLE_ADS_ID": "AW-358454053",
+    "VITE_GTM_ID": "GTM-K3JZGW84",
+    "VITE_LEADINFO_ID": "LI-60460A1962032",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}

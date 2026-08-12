@@ -9,8 +9,8 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { MapPin, Users, Calendar, Award } from 'lucide-react';
 
-const TEAM_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_2392__1920px_af02a6b7.jpg';
-const BUILDING_IMG = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/JK_0425__1920px_178fc1eb.jpg';
+const TEAM_IMG = '/assets/JK_2392__1920px_af02a6b7.jpg';
+const BUILDING_IMG = '/assets/JK_0425__1920px_178fc1eb.jpg';
 
 export default function Unternehmen() {
   const { lang } = useLanguage();

@@ -767,3 +767,10 @@
 - [x] GEO-Audit Fix: Description auf unter 155 Zeichen gekürzt (144 Zeichen)
 - [x] GEO-Audit Fix: Alle 3 Stellen synchronisiert (index.html, Home.tsx, prerenderMiddleware.ts)
 - [x] CSR Penalty Fix: #hero-ssr Block in index.html auf vollständige Seitenstruktur erweitern (wie ventspire.io SSR-Output)
+- [ ] Mittwald-Migration: Eigenes Admin-Login (bcrypt + JWT) ohne Manus OAuth
+- [ ] Mittwald-Migration: Alle Bilder vom Manus-CDN herunterladen und auf lokales Volume/eigenen Storage umstellen
+- [x] Mittwald-Migration: Eigenes Admin-Login (bcrypt + JWT) ohne Manus OAuth
+- [x] Mittwald-Migration: Alle Bilder vom Manus-CDN herunterladen und auf lokales Volume/eigenen Storage umstellen
+- [x] Mittwald-Migration: KI-Funktionen (Translation, SEO) auf OpenAI API direkt umstellen (waren bereits OpenAI-nativ)
+- [ ] Mittwald-Migration: Neues Docker-Image bauen und bei Mittwald deployen
+- [ ] Mittwald-Migration: Anleitung für DNS-Umstellung erstellen

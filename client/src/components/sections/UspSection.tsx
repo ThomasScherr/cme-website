@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import FadeIn from '@/components/FadeIn';
 import { Combine, Radio, Thermometer, ShieldCheck, Award, Scaling, Blocks, Network } from 'lucide-react';
 
-const CME_VIDEO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/cme_loop_v11_16cf9640.mp4';
+const CME_VIDEO = '/assets/cme_loop_v11_16cf9640.mp4';
 
 const icons = [Combine, Radio, Thermometer, ShieldCheck, Award, Scaling];
 

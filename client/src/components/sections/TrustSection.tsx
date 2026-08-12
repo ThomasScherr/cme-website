@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import FadeIn from '@/components/FadeIn';
 
-const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+const CDN = '/assets';
 
 /**
  * Logo data with original color PNGs.

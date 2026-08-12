@@ -9,7 +9,7 @@
 
 const BASE_URL = 'https://control-motion.de';
 const SITE_NAME = 'CME Control Motion Electronics GmbH';
-const DEFAULT_OG_IMAGE = 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663373169592/oLXUMurRnSFSIHMQ.jpg';
+const DEFAULT_OG_IMAGE = '/assets/oLXUMurRnSFSIHMQ.jpg';
 
 // ── Crawler detection ──
 const CRAWLER_USER_AGENTS = [
@@ -48,7 +48,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: SITE_NAME,
   url: BASE_URL,
-  logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png',
+  logo: '/assets/CME_rechts_Logo_RGB_433c645f.png',
   description: 'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
     '@type': 'PostalAddress',
@@ -79,7 +79,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'CME Control Motion Electronics GmbH',
-  image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/CME_rechts_Logo_RGB_433c645f.png',
+  image: '/assets/CME_rechts_Logo_RGB_433c645f.png',
   url: BASE_URL,
   telephone: '+49 231 28 66 76 96-0',
   email: 'info@control-motion.de',

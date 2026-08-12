@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, CheckCircle, Loader2, ShieldCheck } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 
-const GF_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/cms/media/1776035923976-ac815377bcb7b679.jpg';
+const GF_IMAGE = '/assets/cms/media/1776035923976-ac815377bcb7b679.jpg';
 
 const SALUTATION_OPTIONS = [
   { value: 'Herr', labelDe: 'Herr', labelEn: 'Mr.' },

@@ -51,6 +51,7 @@ const InsightPreview = lazy(() => import("./pages/admin/InsightPreview"));
 const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
 const AuthorsAdmin = lazy(() => import("./pages/admin/AuthorsAdmin"));
 const MediaCenter = lazy(() => import("./pages/MediaCenter"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 
 function PageLoader() {
   return (
@@ -97,6 +98,7 @@ function Router() {
         {/* Blog / Insights */}
         <Route path="/insights" component={Insights} />
         <Route path="/insights/:slug" component={InsightArticle} />
+        <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/insights" component={InsightsAdmin} />
         <Route path="/admin/insights/preview/:id" component={InsightPreview} />
         <Route path="/admin/styles" component={StylesheetEditor} />

@@ -29,7 +29,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useVideoSource } from '@/hooks/useVideoSource';
 
 // ── Default fallback image ────────────────────────────────────
-const DEFAULT_HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/K5A0004_retouch_b2db17ab.jpg';
+const DEFAULT_HERO_IMAGE = '/assets/K5A0004_retouch_b2db17ab.jpg';
 
 // ── Types ──────────────────────────────────────────────────────
 

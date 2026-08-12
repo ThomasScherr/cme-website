@@ -15,6 +15,7 @@ import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
 import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
 import { registerStorageProxy } from "./storageProxy";
 import { registerDownloadProxy } from "../downloadProxy";
+import { registerStandaloneAuthRoutes } from "../standaloneAuth";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -57,7 +58,9 @@ async function startServer() {
   registerStorageProxy(app);
   // Download proxy – serves files under /api/downloads/:key and /api/media/:key (neutral URLs)
   registerDownloadProxy(app);
-  // OAuth callback under /api/oauth/callback
+  // Standalone auth routes (password-based login for Mittwald independence)
+  registerStandaloneAuthRoutes(app);
+  // OAuth callback under /api/oauth/callback (Manus OAuth – fallback when available)
   registerOAuthRoutes(app);
   // tRPC API
   app.use(

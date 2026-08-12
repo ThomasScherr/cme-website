@@ -9,9 +9,9 @@ import { RefreshCcw, ShieldAlert, Package, Wrench, CheckCircle2, HeartHandshake,
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-const HERO_VIDEO_WEBM = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample_d94dc755.webm';
-const HERO_VIDEO_MP4 = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/Loop-Sample-compressed_8b0d5332.mp4';
-const HERO_VIDEO_POSTER = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y/hero-video-poster_8c5a9e34.jpg';
+const HERO_VIDEO_WEBM = '/assets/Loop-Sample_d94dc755.webm';
+const HERO_VIDEO_MP4 = '/assets/Loop-Sample-compressed_8b0d5332.mp4';
+const HERO_VIDEO_POSTER = '/assets/hero-video-poster_8c5a9e34.jpg';
 
 const services = [
   {

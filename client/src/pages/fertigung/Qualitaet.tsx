@@ -10,7 +10,7 @@ import {
   ClipboardCheck,
 } from 'lucide-react';
 
-const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+const CDN = '/assets';
 
 export default function Qualitaet() {
   return (

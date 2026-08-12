@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // FAQ JSON-LD is passed via additionalSchemas prop to SubPageTemplate
 
-const CDN = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663373169592/9wChLxyDrQGRm9T7Lg9U7Y';
+const CDN = '/assets';
 
 /* ── FAQ Data ─────────────────────────────────────────────────── */
 const faqItems = [
