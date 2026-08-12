@@ -1,13 +1,12 @@
 /**
- * Download Proxy – serves stored files under /api/downloads/:key and /api/media/:key
- * Files are served directly from the local filesystem (client/public/assets/downloads/).
- * No dependency on Manus Forge API or any external storage.
+ * Download Proxy – redirects to Bunny CDN for file downloads and media previews.
+ * Files are stored on Bunny.net CDN (ventspire-cdn.b-cdn.net/cme/downloads/).
  */
 import type { Express } from "express";
-import path from "path";
-import fs from "fs";
 
-// Map of allowed download keys to their local filenames and content types
+const CDN_BASE = "https://ventspire-cdn.b-cdn.net/cme/downloads";
+
+// Map of allowed download keys to their filenames and content types
 const DOWNLOAD_REGISTRY: Record<string, { filename: string; contentType: string }> = {
   // Logos
   'CME_Logo_RGB_horizontal.png': { filename: 'CME_Logo_RGB_horizontal.png', contentType: 'image/png' },
@@ -28,18 +27,8 @@ const DOWNLOAD_REGISTRY: Record<string, { filename: string; contentType: string 
   '2026-CMECompanyPresentationEN.pdf': { filename: '2026-CMECompanyPresentationEN.pdf', contentType: 'application/pdf' },
 };
 
-// Resolve the downloads directory (works in both dev and production)
-function getDownloadsDir(): string {
-  // In production (Docker), files are at /app/dist/public/assets/downloads/
-  // In development, files are at client/public/assets/downloads/
-  const prodPath = path.resolve(process.cwd(), "dist/public/assets/downloads");
-  const devPath = path.resolve(process.cwd(), "client/public/assets/downloads");
-  if (fs.existsSync(prodPath)) return prodPath;
-  return devPath;
-}
-
 export function registerDownloadProxy(app: Express) {
-  // Force download endpoint
+  // Force download endpoint – redirects to CDN
   app.get("/api/downloads/:key", (req, res) => {
     const key = req.params.key;
     const entry = DOWNLOAD_REGISTRY[key];
@@ -49,21 +38,11 @@ export function registerDownloadProxy(app: Express) {
       return;
     }
 
-    const filePath = path.join(getDownloadsDir(), entry.filename);
-
-    if (!fs.existsSync(filePath)) {
-      console.error("[DownloadProxy] File not found on disk:", filePath);
-      res.status(404).send("File not found on server");
-      return;
-    }
-
-    res.set("Content-Type", entry.contentType);
-    res.set("Content-Disposition", `attachment; filename="${entry.filename}"`);
-    res.set("Cache-Control", "public, max-age=86400");
-    res.sendFile(filePath);
+    const cdnUrl = `${CDN_BASE}/${entry.filename}`;
+    res.redirect(302, cdnUrl);
   });
 
-  // Inline preview endpoint (no forced download)
+  // Inline preview endpoint – redirects to CDN
   app.get("/api/media/:key", (req, res) => {
     const key = req.params.key;
     const entry = DOWNLOAD_REGISTRY[key];
@@ -73,17 +52,7 @@ export function registerDownloadProxy(app: Express) {
       return;
     }
 
-    const filePath = path.join(getDownloadsDir(), entry.filename);
-
-    if (!fs.existsSync(filePath)) {
-      console.error("[MediaProxy] File not found on disk:", filePath);
-      res.status(404).send("File not found on server");
-      return;
-    }
-
-    res.set("Content-Type", entry.contentType);
-    res.set("Content-Disposition", `inline; filename="${entry.filename}"`);
-    res.set("Cache-Control", "public, max-age=86400");
-    res.sendFile(filePath);
+    const cdnUrl = `${CDN_BASE}/${entry.filename}`;
+    res.redirect(302, cdnUrl);
   });
 }

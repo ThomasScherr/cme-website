@@ -9,8 +9,8 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { MapPin, Users, Calendar, Award } from 'lucide-react';
 
-const TEAM_IMG = '/assets/JK_2392__1920px_af02a6b7.jpg';
-const BUILDING_IMG = '/assets/JK_0425__1920px_178fc1eb.jpg';
+const TEAM_IMG = 'https://ventspire-cdn.b-cdn.net/cme/JK_2392__1920px_af02a6b7.jpg';
+const BUILDING_IMG = 'https://ventspire-cdn.b-cdn.net/cme/JK_0425__1920px_178fc1eb.jpg';
 
 export default function Unternehmen() {
   const { lang } = useLanguage();

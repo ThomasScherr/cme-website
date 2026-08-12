@@ -3,7 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const SITE_NAME = 'CME';
 const BASE_URL = 'https://control-motion.de';
-const DEFAULT_OG_IMAGE = '/assets/oLXUMurRnSFSIHMQ.jpg';
+const DEFAULT_OG_IMAGE = 'https://ventspire-cdn.b-cdn.net/cme/oLXUMurRnSFSIHMQ.jpg';
 
 interface BreadcrumbItem {
   name: string;
@@ -35,7 +35,7 @@ export const organizationSchema = {
   '@type': 'Organization',
   name: 'CME Control Motion Electronics GmbH',
   url: BASE_URL,
-  logo: '/assets/CME_rechts_Logo_RGB_433c645f.png',
+  logo: 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png',
   description:
     'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
   address: {
@@ -63,7 +63,7 @@ export const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'CME Control Motion Electronics GmbH',
-  image: '/assets/CME_rechts_Logo_RGB_433c645f.png',
+  image: 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png',
   url: BASE_URL,
   telephone: '+49 231 28 66 76 96-0',
   email: 'info@control-motion.de',

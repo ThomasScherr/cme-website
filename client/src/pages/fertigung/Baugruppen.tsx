@@ -11,7 +11,7 @@ import {
   FileText,
 } from 'lucide-react';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 export default function Baugruppen() {
   return (

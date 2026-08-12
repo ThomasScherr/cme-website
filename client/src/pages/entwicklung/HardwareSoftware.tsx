@@ -30,7 +30,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 const heroImg = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
 

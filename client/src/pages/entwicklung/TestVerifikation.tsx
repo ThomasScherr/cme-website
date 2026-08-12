@@ -11,7 +11,7 @@ import {
   Wrench,
 } from 'lucide-react';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 export default function TestVerifikation() {
   return (
@@ -26,7 +26,7 @@ export default function TestVerifikation() {
       subtitleEN="EMC tests, environmental tests and functional verification – in our own test infrastructure in Dortmund."
       metaDescriptionDE="EMV-Tests, Umwelttests und funktionale Verifikation in Dortmund. Eigene Testinfrastruktur mit Schirmkabine – Testautomatisierung und Datenanalyse."
       metaDescriptionEN="EMC tests, environmental tests and functional verification in Dortmund. Own test infrastructure with shielded chamber – test automation and data analysis."
-      heroImg="/assets/JK_2885__1920px_ecd3ed1e.jpg"
+      heroImg="https://ventspire-cdn.b-cdn.net/cme/JK_2885__1920px_ecd3ed1e.jpg"
       introDE="Qualität beginnt bei der Verifikation. CME verfügt über eine eigene Testinfrastruktur am Standort Dortmund – von der EMV-Vorkammer über Klimaschränke bis zum automatisierten Funktionstest. Wir testen Ihre Elektronik nach den relevanten Normen und Standards, bevor sie in die Serie geht. So stellen wir sicher, dass Ihr Produkt nicht nur funktioniert, sondern auch die Zulassungsanforderungen erfüllt."
       introEN="Quality starts with verification. CME has its own test infrastructure at the Dortmund site – from EMC pre-compliance chambers through climate chambers to automated functional testing. We test your electronics according to relevant norms and standards before series production. This ensures your product not only works, but also meets certification requirements."
       features={[

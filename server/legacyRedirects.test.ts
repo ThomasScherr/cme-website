@@ -133,7 +133,7 @@ describe("legacyRedirectMiddleware", () => {
   });
 
   it("does not redirect static assets", () => {
-    const req = createMockReq("/assets/index-abc123.js");
+    const req = createMockReq("https://ventspire-cdn.b-cdn.net/cme/index-abc123.js");
     const res = createMockRes();
     middleware(req as Request, res, next);
     expect(res.redirect).not.toHaveBeenCalled();

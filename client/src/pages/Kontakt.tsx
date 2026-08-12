@@ -137,7 +137,7 @@ export default function Kontakt() {
         tagline={cms('hero.tagline')}
         headline={cms('hero.headline')}
         description={cms('hero.description')}
-        heroImage={'/assets/portrait_CME_GF_79a8ee20.jpg'}
+        heroImage={'https://ventspire-cdn.b-cdn.net/cme/portrait_CME_GF_79a8ee20.jpg'}
         heroImageAlt="Geschäftsführer CME Control Motion Electronics – Matthias Faust und Dirk Müller"
         heroVideo={heroVideo}
         heroImagePosition="47% 45%"

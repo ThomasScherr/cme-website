@@ -156,7 +156,7 @@ describe("prerenderMiddleware", () => {
   });
 
   it("passes through for static files (paths with dots)", () => {
-    const req = createMockReq("GET", "/assets/style.css", "Googlebot/2.1");
+    const req = createMockReq("GET", "https://ventspire-cdn.b-cdn.net/cme/style.css", "Googlebot/2.1");
     const res = createMockRes();
     middleware(req, res, next);
 

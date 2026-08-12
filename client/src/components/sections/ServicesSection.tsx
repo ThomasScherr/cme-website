@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { Cpu, Factory, RefreshCw, CheckCircle2 } from 'lucide-react';
 
 const IMAGES = {
-  dev: '/assets/JK_2392__1920px_af02a6b7.jpg',
-  mfg: '/assets/JK_0425__1920px_178fc1eb.jpg',
-  lifecycle: '/assets/JK_2055__1920px_00c91d17.jpg',
+  dev: 'https://ventspire-cdn.b-cdn.net/cme/JK_2392__1920px_af02a6b7.jpg',
+  mfg: 'https://ventspire-cdn.b-cdn.net/cme/JK_0425__1920px_178fc1eb.jpg',
+  lifecycle: 'https://ventspire-cdn.b-cdn.net/cme/JK_2055__1920px_00c91d17.jpg',
 };
 
 interface ServiceBlockProps {

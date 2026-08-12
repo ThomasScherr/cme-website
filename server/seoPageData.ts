@@ -9,7 +9,7 @@
 
 export const BASE_URL = 'https://control-motion.de';
 export const SITE_NAME = 'CME Control Motion Electronics GmbH';
-export const DEFAULT_OG_IMAGE = '/assets/oLXUMurRnSFSIHMQ.jpg';
+export const DEFAULT_OG_IMAGE = 'https://ventspire-cdn.b-cdn.net/cme/oLXUMurRnSFSIHMQ.jpg';
 
 export interface SeoPageMeta {
   title: string;

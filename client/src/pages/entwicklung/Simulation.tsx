@@ -7,7 +7,7 @@ import { Thermometer, Zap, Cog, Wind, BarChart3, Target, Cpu, Activity, Gauge, W
 import { motion } from 'framer-motion';
 import SubPageHero from '@/components/SubPageHero';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 /* ── Six core simulation domains ── */
 const simDomains = [
@@ -175,7 +175,7 @@ export default function Simulation() {
         description={cms('hero.description') || (isDE
           ? 'Bevor Konzepte technisch umgesetzt werden, durchlaufen sie bei uns eine umfassende Simulation. So kürzen wir Entwicklungsprozesse ab, reduzieren Kosten und erreichen maximale Effizienz.'
           : 'Before concepts are technically implemented, they undergo comprehensive simulation at CME. This shortens development processes, reduces costs and achieves maximum efficiency.')}
-        heroImage={img('hero.heroImage', '/assets/thermosimulation-1500x1000-1_77e2afd4.jpg')}
+        heroImage={img('hero.heroImage', 'https://ventspire-cdn.b-cdn.net/cme/thermosimulation-1500x1000-1_77e2afd4.jpg')}
         heroImageAlt="Thermosimulation"
         heroVideo={heroVideo}
         imageVariant="rectangular"

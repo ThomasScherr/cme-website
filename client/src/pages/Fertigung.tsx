@@ -139,7 +139,7 @@ const faqCluster3 = [
 /* All 16 FAQs combined for JSON-LD schema */
 const allFaqItems = [...faqCluster1, ...faqCluster2, ...faqCluster3];
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 const HERO_VIDEO = {
   webm: `${CDN}/leiterplatten-hero_9526f6fb.webm`,
   mp4: `${CDN}/leiterplatten-hero_f10b49bd.mp4`,
@@ -154,7 +154,7 @@ const subpages = [
     descDE: 'Hochpräzise SMD-Bestückung aller Baugrößen – vom 01005 bis zum BGA. Ihr Elektronik Bestücker in Deutschland.',
     descEN: 'High-precision SMD assembly of all package sizes – from 01005 to BGA. Your electronics manufacturer in Germany.',
     href: '/fertigung/smd-bestueckung',
-    img: '/assets/JK_1148__1920px_1cc154ec.jpg',
+    img: 'https://ventspire-cdn.b-cdn.net/cme/JK_1148__1920px_1cc154ec.jpg',
   },
   {
     icon: Timer,
@@ -163,7 +163,7 @@ const subpages = [
     descDE: 'Express-Prototypen ab Einzelstück mit serienidentischem Prozess. Schnelle Turnarounds, valide Ergebnisse.',
     descEN: 'Express prototypes from single units with series-identical process. Fast turnarounds, valid results.',
     href: '/fertigung/prototypen',
-    img: '/assets/JK_1736__1920px_e713f7ca.jpg',
+    img: 'https://ventspire-cdn.b-cdn.net/cme/JK_1736__1920px_e713f7ca.jpg',
   },
   {
     icon: CircuitBoard,
@@ -172,7 +172,7 @@ const subpages = [
     descDE: 'SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie.',
     descEN: 'SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series.',
     href: '/fertigung/leiterplatten',
-    img: '/assets/JK_1148__1920px_1cc154ec.jpg',
+    img: 'https://ventspire-cdn.b-cdn.net/cme/JK_1148__1920px_1cc154ec.jpg',
   },
   {
     icon: Boxes,
@@ -181,7 +181,7 @@ const subpages = [
     descDE: 'Komplette Baugruppenmontage inkl. Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage.',
     descEN: 'Complete module assembly including potting, conformal coating, cable assembly and final assembly.',
     href: '/fertigung/baugruppen',
-    img: '/assets/JK_1736__1920px_e713f7ca.jpg',
+    img: 'https://ventspire-cdn.b-cdn.net/cme/JK_1736__1920px_e713f7ca.jpg',
   },
   {
     icon: ShieldCheck,
@@ -190,7 +190,7 @@ const subpages = [
     descDE: 'ISO 9001 & 14001 zertifiziert. AOI, MOI, und lückenlose Rückverfolgbarkeit durch datenbankgestützte Prozesse.',
     descEN: 'ISO 9001 & 14001 certified. AOI, MOI, and complete traceability through database-driven processes.',
     href: '/fertigung/qualitaet',
-    img: '/assets/JK_2055__1920px_00c91d17.jpg',
+    img: 'https://ventspire-cdn.b-cdn.net/cme/JK_2055__1920px_00c91d17.jpg',
   },
 ];
 

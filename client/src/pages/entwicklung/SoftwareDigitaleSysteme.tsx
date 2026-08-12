@@ -20,7 +20,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo } from 'react';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 /* ── Feature data ── */
 interface Feature {

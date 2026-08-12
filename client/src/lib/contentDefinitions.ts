@@ -3,7 +3,7 @@
  * These defaults mirror the hardcoded content in page components so the CMS shows real values.
  */
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 // ── Types ──────────────────────────────────────────────────────────
 
@@ -828,7 +828,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: '/assets/portrait_CME_GF_79a8ee20.jpg', defaultEn: '/assets/portrait_CME_GF_79a8ee20.jpg' },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: 'https://ventspire-cdn.b-cdn.net/cme/portrait_CME_GF_79a8ee20.jpg', defaultEn: 'https://ventspire-cdn.b-cdn.net/cme/portrait_CME_GF_79a8ee20.jpg' },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },

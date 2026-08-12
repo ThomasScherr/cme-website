@@ -141,7 +141,7 @@ const faqCluster3 = [
 /* All 16 FAQs combined for JSON-LD schema */
 const allFaqItems = [...faqCluster1, ...faqCluster2, ...faqCluster3];
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 const HERO_IMG = `${CDN}/JK_2392__1920px_af02a6b7.jpg`;
 
 /* ── 6 Competency Cards (ENT-1) ── */

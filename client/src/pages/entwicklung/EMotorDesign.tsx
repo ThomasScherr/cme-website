@@ -24,7 +24,7 @@ export default function EMotorDesign() {
       subtitleEN="Design, calculation and optimization of electric motors – from concept to series-ready solution."
       metaDescriptionDE="E-Motor Design in Dortmund: Auslegung, Berechnung und Optimierung von EC-, DC- und Synchronmotoren. FEA-Simulation und thermische Analyse bei CME."
       metaDescriptionEN="E-motor design in Dortmund: layout, calculation and optimization of EC, DC and synchronous motors. FEA simulation and thermal analysis at CME."
-      heroImg="/assets/JK_1736__1920px_e713f7ca.jpg"
+      heroImg="https://ventspire-cdn.b-cdn.net/cme/JK_1736__1920px_e713f7ca.jpg"
       introDE="CME wählt für Ihre Applikation den passenden Elektromotor aus und optimiert das Design entsprechend Ihren Vorgaben. Unsere Experten berechnen und simulieren Magnetkreise, Blechschnitte und thermische Belastungen – für Motoren mit besonders hohem Wirkungsgrad, auch unter rauen Umgebungsbedingungen und bei hohen Temperaturen. Durch die enge Verzahnung von E-Motor-Design, Leistungselektronik und Regelungstechnik entstehen optimal aufeinander abgestimmte Antriebssysteme."
       introEN="CME selects the right electric motor for your application and optimizes the design according to your specifications. Our experts calculate and simulate magnetic circuits, lamination cuts and thermal loads – for motors with particularly high efficiency, even under harsh environmental conditions and at high temperatures. Through the close integration of e-motor design, power electronics and control engineering, optimally coordinated drive systems are created."
       features={[

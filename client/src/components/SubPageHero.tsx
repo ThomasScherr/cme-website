@@ -29,7 +29,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useVideoSource } from '@/hooks/useVideoSource';
 
 // ── Default fallback image ────────────────────────────────────
-const DEFAULT_HERO_IMAGE = '/assets/K5A0004_retouch_b2db17ab.jpg';
+const DEFAULT_HERO_IMAGE = 'https://ventspire-cdn.b-cdn.net/cme/K5A0004_retouch_b2db17ab.jpg';
 
 // ── Types ──────────────────────────────────────────────────────
 

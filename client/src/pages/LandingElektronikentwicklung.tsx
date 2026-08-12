@@ -28,10 +28,10 @@ import { Link } from 'wouter';
 
 const PHONE = '0231 286676960';
 const PHONE_HREF = 'tel:+492312866769600';
-const LOGO_URL = '/assets/CME_rechts_Logo_RGB_433c645f.png';
-const HERO_VIDEO_WEBM = '/assets/Loop-Sample_d94dc755.webm';
-const HERO_VIDEO_MP4 = '/assets/Loop-Sample-compressed_8b0d5332.mp4';
-const HERO_VIDEO_POSTER = '/assets/hero-video-poster_8c5a9e34.jpg';
+const LOGO_URL = 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png';
+const HERO_VIDEO_WEBM = 'https://ventspire-cdn.b-cdn.net/cme/Loop-Sample_d94dc755.webm';
+const HERO_VIDEO_MP4 = 'https://ventspire-cdn.b-cdn.net/cme/Loop-Sample-compressed_8b0d5332.mp4';
+const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-video-poster_8c5a9e34.jpg';
 
 // ── FAQ Data ──
 const faqs = [

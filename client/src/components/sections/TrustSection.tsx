@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import FadeIn from '@/components/FadeIn';
 
-const CDN = '/assets';
+const CDN = 'https://ventspire-cdn.b-cdn.net/cme';
 
 /**
  * Logo data with original color PNGs.
