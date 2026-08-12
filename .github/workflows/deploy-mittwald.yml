@@ -1,0 +1,70 @@
+name: Build & Deploy to Mittwald
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=
+            type=raw,value=latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.mittwald
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Deploy to Mittwald
+        env:
+          MITTWALD_API_TOKEN: ${{ secrets.MITTWALD_API_TOKEN }}
+          MITTWALD_STACK_ID: ${{ secrets.MITTWALD_STACK_ID }}
+        run: |
+          # Deploy the new image to Mittwald via API
+          curl -s -X PUT \
+            -H "Authorization: Bearer $MITTWALD_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.mittwald.de/v2/stacks/$MITTWALD_STACK_ID" \
+            -d "{
+              \"services\": {
+                \"cme-website\": {
+                  \"image\": \"ghcr.io/${{ github.repository }}:latest\",
+                  \"ports\": [\"3000:3000/tcp\"],
+                  \"environment\": {
+                    \"NODE_ENV\": \"production\",
+                    \"PORT\": \"3000\"
+                  }
+                }
+              }
+            }"
+          echo "Deployment triggered successfully"

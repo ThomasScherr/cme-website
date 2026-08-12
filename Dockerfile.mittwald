@@ -1,0 +1,47 @@
+# CME Control Motion Electronics – Production Dockerfile for Mittwald
+# Multi-stage build: build stage + lightweight production stage
+
+# Stage 1: Build
+FROM node:22-alpine AS builder
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+
+# Install all dependencies (including devDependencies for build)
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Build the application (Vite frontend + esbuild server + SEO pages)
+RUN pnpm build
+
+# Stage 2: Production
+FROM node:22-alpine AS production
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package files and install production dependencies only
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --prod
+
+# Copy built output from builder
+COPY --from=builder /app/dist ./dist
+
+# Expose port 3000 (Mittwald requires internal = external port)
+EXPOSE 3000
+
+# Set production environment
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Start the server
+CMD ["node", "dist/index.js"]
