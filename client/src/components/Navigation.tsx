@@ -57,6 +57,10 @@ function useNavItems() {
       label: isDE ? 'Insights' : 'Insights',
       href: '/insights',
     },
+    {
+      label: isDE ? 'Karriere' : 'Careers',
+      href: '/karriere',
+    },
   ];
 
   return items;

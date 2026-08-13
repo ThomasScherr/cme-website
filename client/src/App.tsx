@@ -52,6 +52,7 @@ const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
 const AuthorsAdmin = lazy(() => import("./pages/admin/AuthorsAdmin"));
 const MediaCenter = lazy(() => import("./pages/MediaCenter"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const JobsAdmin = lazy(() => import("./pages/admin/JobsAdmin"));
 
 function PageLoader() {
   return (
@@ -104,6 +105,7 @@ function Router() {
         <Route path="/admin/styles" component={StylesheetEditor} />
         <Route path="/admin/content" component={ContentManager} />
         <Route path="/admin/authors" component={AuthorsAdmin} />
+        <Route path="/admin/jobs" component={JobsAdmin} />
 
         {/* Landing Pages (Google Ads) */}
         <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />

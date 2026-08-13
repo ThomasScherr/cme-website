@@ -66,6 +66,13 @@ import {
   updateAuthor,
   deleteAuthor,
 } from "./db";
+import {
+  getPublishedJobPostings,
+  getAllJobPostings,
+  createJobPosting,
+  updateJobPosting,
+  deleteJobPosting,
+} from "./db";
 
 // Admin-only procedure
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
@@ -77,6 +84,83 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 
 export const appRouter = router({
   system: systemRouter,
+
+  // ── Job Postings ──────────────────────────────────────────────────
+  jobs: router({
+    /** Public: list published job postings */
+    published: publicProcedure.query(async () => {
+      return getPublishedJobPostings();
+    }),
+
+    /** Admin: list all job postings (including drafts) */
+    list: adminProcedure.query(async () => {
+      return getAllJobPostings();
+    }),
+
+    /** Admin: create a new job posting */
+    create: adminProcedure
+      .input(z.object({
+        titleDe: z.string().min(1).max(500),
+        titleEn: z.string().max(500).optional(),
+        descriptionDe: z.string().min(1),
+        descriptionEn: z.string().optional(),
+        employmentType: z.string().max(100).optional(),
+        department: z.string().max(255).optional(),
+        location: z.string().max(255).optional(),
+        softgardenUrl: z.string().optional(),
+        sortOrder: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return createJobPosting({
+          ...input,
+          status: 'draft',
+        });
+      }),
+
+    /** Admin: update a job posting */
+    update: adminProcedure
+      .input(z.object({
+        id: z.number(),
+        titleDe: z.string().min(1).max(500).optional(),
+        titleEn: z.string().max(500).optional(),
+        descriptionDe: z.string().optional(),
+        descriptionEn: z.string().optional(),
+        employmentType: z.string().max(100).optional(),
+        department: z.string().max(255).optional(),
+        location: z.string().max(255).optional(),
+        softgardenUrl: z.string().optional(),
+        sortOrder: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateJobPosting(id, data);
+        return { success: true };
+      }),
+
+    /** Admin: toggle publish status */
+    togglePublish: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const { getAllJobPostings: getAll } = await import('./db');
+        const allJobs = await getAll();
+        const job = allJobs.find(j => j.id === input.id);
+        if (!job) throw new TRPCError({ code: 'NOT_FOUND' });
+        const newStatus = job.status === 'published' ? 'draft' : 'published';
+        await updateJobPosting(input.id, {
+          status: newStatus,
+          publishedAt: newStatus === 'published' ? new Date() : null,
+        });
+        return { success: true, status: newStatus };
+      }),
+
+    /** Admin: delete a job posting */
+    delete: adminProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteJobPosting(input.id);
+        return { success: true };
+      }),
+  }),
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

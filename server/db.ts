@@ -1,7 +1,7 @@
 import { eq, desc, and, sql, like, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary, notFoundLogs, redirects, authors } from "../drizzle/schema";
-import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem, InsertNotFoundLog, InsertRedirect, InsertAuthor } from "../drizzle/schema";
+import { InsertUser, users, articles, categories, contactSubmissions, ndaRequests, siteStyles, stylePresets, siteContent, mediaLibrary, notFoundLogs, redirects, authors, jobPostings } from "../drizzle/schema";
+import type { InsertArticle, InsertContactSubmission, InsertNdaRequest, InsertCategory, InsertSiteStyle, InsertStylePreset, InsertSiteContent, InsertMediaItem, InsertNotFoundLog, InsertRedirect, InsertAuthor, InsertJobPosting } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -627,4 +627,46 @@ export async function deleteAuthor(id: number) {
   // Clear authorId on articles that reference this author
   await db.update(articles).set({ authorId: null }).where(eq(articles.authorId, id));
   await db.delete(authors).where(eq(authors.id, id));
+}
+
+// ── Job Postings Queries ────────────────────────────────────────────────
+
+export async function getPublishedJobPostings() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(jobPostings)
+    .where(eq(jobPostings.status, 'published'))
+    .orderBy(jobPostings.sortOrder);
+}
+
+export async function getAllJobPostings() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(jobPostings).orderBy(jobPostings.sortOrder);
+}
+
+export async function getJobPostingById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(jobPostings).where(eq(jobPostings.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createJobPosting(data: InsertJobPosting) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  const result = await db.insert(jobPostings).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+export async function updateJobPosting(id: number, data: Partial<InsertJobPosting>) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(jobPostings).set(data).where(eq(jobPostings.id, id));
+}
+
+export async function deleteJobPosting(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(jobPostings).where(eq(jobPostings.id, id));
 }

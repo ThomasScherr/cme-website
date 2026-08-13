@@ -774,3 +774,12 @@
 - [x] Mittwald-Migration: KI-Funktionen (Translation, SEO) auf OpenAI API direkt umstellen (waren bereits OpenAI-nativ)
 - [ ] Mittwald-Migration: Neues Docker-Image bauen und bei Mittwald deployen
 - [ ] Mittwald-Migration: Anleitung für DNS-Umstellung erstellen
+- [x] Karriere/Jobs: Datenbank-Schema für Stellenanzeigen (job_postings Tabelle)
+- [x] Karriere/Jobs: tRPC-Prozeduren (CRUD: list, create, update, delete, togglePublish)
+- [x] Karriere/Jobs: Admin-Backend Seite (/admin/jobs) mit Kachel-Verwaltung
+- [x] Karriere/Jobs: Öffentliche Karriere-Seite (/karriere, /en/careers) mit Kachel-Grid
+- [x] Karriere/Jobs: Softgarden-Link pro Stelle (externer Link zur Bewerbung)
+- [x] Karriere/Jobs: Navigation-Eintrag (DE: Karriere, EN: Careers)
+- [ ] Karriere/Jobs: SEO Meta-Tags und Prerender-Middleware aktualisieren
+- [ ] Karriere/Jobs: job_postings Tabelle in Mittwald MySQL erstellen
+- [ ] Karriere/Jobs: Neues Docker-Image zu Mittwald deployen

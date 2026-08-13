@@ -490,10 +490,10 @@ const PAGES: Record<string, PageMeta> = {
   '/karriere': {
     enPath: '/en/careers',
     title: 'Karriere bei CME | CME',
-    description: 'Karriere bei CME Control Motion Electronics. Stellenangebote in Elektronikentwicklung und EMS-Fertigung.',
+    description: 'Karriere bei CME in Dortmund: Offene Stellen in Elektronikentwicklung, Leistungselektronik, EMS-Fertigung und Qualitätsmanagement. Jetzt bewerben.',
     h1: 'Karriere bei CME',
     keywords: 'Karriere, Stellenangebote, Jobs, Elektronikentwicklung, EMS-Fertigung, Dortmund',
-    content: `Karriere bei CME Control Motion Electronics. Stellenangebote in Elektronikentwicklung und EMS-Fertigung am Standort Dortmund.`,
+    content: `Karriere bei CME Control Motion Electronics in Dortmund. Offene Stellen in Elektronikentwicklung, Leistungselektronik, EMS-Fertigung und Qualitätsmanagement. Spannende Projekte in Automotive, Medizintechnik und Industrieautomation. Flexible Arbeitszeiten, Weiterbildung und langfristige Perspektive in einem inhabergeführten Unternehmen. Bewerben Sie sich jetzt über Softgarden oder senden Sie eine Initiativbewerbung an karriere@control-motion.de.`,
   },
   '/insights': {
     enPath: '/en/insights',

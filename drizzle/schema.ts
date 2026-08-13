@@ -291,3 +291,38 @@ export const redirects = mysqlTable("redirects", {
 
 export type Redirect = typeof redirects.$inferSelect;
 export type InsertRedirect = typeof redirects.$inferInsert;
+
+/**
+ * Job postings – managed via Admin backend, displayed on /karriere page
+ * Each posting links to Softgarden for the actual application process
+ */
+export const jobPostings = mysqlTable("job_postings", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Job title (German) */
+  titleDe: varchar("titleDe", { length: 500 }).notNull(),
+  /** Job title (English) */
+  titleEn: varchar("titleEn", { length: 500 }),
+  /** Short description for card preview (German, 1-2 sentences) */
+  descriptionDe: text("descriptionDe").notNull(),
+  /** Short description for card preview (English) */
+  descriptionEn: text("descriptionEn"),
+  /** Employment type: Vollzeit, Teilzeit, Werkstudent, Praktikum, Ausbildung */
+  employmentType: varchar("employmentType", { length: 100 }),
+  /** Department / team (e.g. "Entwicklung", "Fertigung", "Vertrieb") */
+  department: varchar("department", { length: 255 }),
+  /** Location (e.g. "Dortmund") */
+  location: varchar("location", { length: 255 }).default("Dortmund"),
+  /** External Softgarden URL for application */
+  softgardenUrl: text("softgardenUrl"),
+  /** Publication status */
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  /** Sort order (lower = higher priority) */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  /** Published date */
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type JobPosting = typeof jobPostings.$inferSelect;
+export type InsertJobPosting = typeof jobPostings.$inferInsert;
