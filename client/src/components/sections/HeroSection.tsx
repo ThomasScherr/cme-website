@@ -161,7 +161,7 @@ export default function HeroSection() {
             </p>
 
             {/* Headline area – h1 for SEO, fixed height container to prevent layout shifts */}
-            <h1 className="fluid-h1 text-cme-dark font-bold" style={{ marginBottom: 'var(--space-gap-sm)' }}>
+            <h1 className="fluid-h1 text-cme-dark font-bold" style={{ marginBottom: 'var(--space-gap-sm)', minHeight: 'calc(1.2em * 3 + 0.5rem)' }}>
               <AnimatePresence mode="wait">
                 {!showSecondText ? (
                   /* ── First headline: typed in by cursor ── */

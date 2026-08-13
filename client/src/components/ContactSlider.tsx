@@ -383,8 +383,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                             <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
-                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
-                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
                               }
                             </span>
                           </label>
@@ -593,8 +593,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                             <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
-                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
-                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
                               }
                             </span>
                           </label>

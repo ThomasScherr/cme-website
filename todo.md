@@ -791,3 +791,5 @@
 - [x] Karriere/Jobs: Änderungen zu Mittwald deployen (Tag: 9008926)
 - [x] Karriere/Jobs: Hero-Text angepasst (kein "wächst", keine "Ingenieure/Techniker/Spezialisten")
 - [x] Karriere/Jobs: Chat-Hinweis umformuliert (Chat oder Video-Call)
+- [x] PERF-MW: CLS 0.281 auf Desktop fixen (font-display:optional, Hero h1 min-height reserviert)
+- [x] PERF-MW: Best Practices Score verbessern (Security Headers, target=_blank rel=noopener)
