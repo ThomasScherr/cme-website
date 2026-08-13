@@ -780,6 +780,12 @@
 - [x] Karriere/Jobs: Öffentliche Karriere-Seite (/karriere, /en/careers) mit Kachel-Grid
 - [x] Karriere/Jobs: Softgarden-Link pro Stelle (externer Link zur Bewerbung)
 - [x] Karriere/Jobs: Navigation-Eintrag (DE: Karriere, EN: Careers)
-- [ ] Karriere/Jobs: SEO Meta-Tags und Prerender-Middleware aktualisieren
-- [ ] Karriere/Jobs: job_postings Tabelle in Mittwald MySQL erstellen
-- [ ] Karriere/Jobs: Neues Docker-Image zu Mittwald deployen
+- [x] Karriere/Jobs: SEO Meta-Tags und Prerender-Middleware aktualisieren
+- [x] Karriere/Jobs: job_postings Tabelle in Mittwald MySQL erstellen (auto-migration bei Server-Start)
+- [x] Karriere/Jobs: Neues Docker-Image zu Mittwald deployen (Tag: cea6145)
+- [x] Karriere/Jobs: Benefits-Sektion ("Was CME als Arbeitgeber bietet") entfernen
+- [x] Karriere/Jobs: CTA-Sektion ("Kein Standardjob...") entfernen
+- [x] Karriere/Jobs: Initiativbewerbungs-Hinweise entfernen (keine Ingenieure/Techniker gesucht)
+- [x] Karriere/Jobs: Offene Stellen direkt nach Hero anzeigen
+- [x] Karriere/Jobs: Chat-Hinweis für Fragen zu Stellen einfügen
+- [ ] Karriere/Jobs: Änderungen zu Mittwald deployen
