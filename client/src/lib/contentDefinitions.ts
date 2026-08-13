@@ -899,8 +899,8 @@ export const PAGES: PageDef[] = [
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
           { key: 'heroVideoPlayback', label: 'Video-Modus (loop / once)', type: 'text', defaultDe: 'loop', defaultEn: 'loop' },
           { key: 'tagline', label: 'Tagline', type: 'text', defaultDe: 'Karriere', defaultEn: 'Careers' },
-          { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Gestalten Sie die Elektronik von morgen.', defaultEn: 'Shape the electronics of tomorrow.' },
-          { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'CME wächst – und sucht Ingenieure, Techniker und Spezialisten, die Elektronik nicht nur als Beruf, sondern als Berufung sehen.', defaultEn: 'CME is growing – and looking for engineers, technicians and specialists who see electronics not just as a job, but as a calling.' },
+          { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Gestalten Sie mit uns Produkte und Lösungen.', defaultEn: 'Shape products and solutions with us.' },
+          { key: 'description', label: 'Beschreibung', type: 'text', defaultDe: 'Für unser Team suchen wir regelmäßig Unterstützung – für Gegenwart und Zukunft.', defaultEn: 'We regularly look for new team members – for today and tomorrow.' },
         ],
       },
       {
