@@ -16,6 +16,7 @@ import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
 import { registerStorageProxy } from "./storageProxy";
 import { registerDownloadProxy } from "../downloadProxy";
 import { registerStandaloneAuthRoutes } from "../standaloneAuth";
+import { runStartupMigrations } from "../migrations";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -86,6 +87,11 @@ async function startServer() {
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
+  });
+
+  // Run startup migrations (creates missing tables)
+  runStartupMigrations().catch((err: Error) => {
+    console.warn('[Migrations] Startup migration failed:', err.message);
   });
 }
 
