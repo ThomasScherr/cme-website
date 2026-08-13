@@ -72,7 +72,7 @@ function JobPostingsSection({ isDE }: { isDE: boolean }) {
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ gap: 'var(--space-gap-sm)' }}>
+          <div className={`grid ${jobs.length === 1 ? 'max-w-2xl mx-auto' : jobs.length === 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'}`} style={{ gap: 'var(--space-gap-sm)' }}>
             {jobs.map((job, i) => (
               <motion.div
                 key={job.id}
