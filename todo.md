@@ -788,4 +788,6 @@
 - [x] Karriere/Jobs: Initiativbewerbungs-Hinweise entfernen (keine Ingenieure/Techniker gesucht)
 - [x] Karriere/Jobs: Offene Stellen direkt nach Hero anzeigen
 - [x] Karriere/Jobs: Chat-Hinweis für Fragen zu Stellen einfügen
-- [ ] Karriere/Jobs: Änderungen zu Mittwald deployen
+- [x] Karriere/Jobs: Änderungen zu Mittwald deployen (Tag: 9008926)
+- [x] Karriere/Jobs: Hero-Text angepasst (kein "wächst", keine "Ingenieure/Techniker/Spezialisten")
+- [x] Karriere/Jobs: Chat-Hinweis umformuliert (Chat oder Video-Call)

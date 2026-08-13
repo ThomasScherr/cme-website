@@ -34,10 +34,10 @@ export default function Karriere() {
       />
       <SubPageHero
         tagline={cms('hero.tagline') || (isDE ? 'Karriere' : 'Careers')}
-        headline={cms('hero.headline') || (isDE ? 'Werden Sie Teil unseres Teams.' : 'Join our team.')}
+        headline={cms('hero.headline') || (isDE ? 'Gestalten Sie mit uns Produkte und Lösungen.' : 'Shape products and solutions with us.')}
         description={cms('hero.description') || (isDE
-          ? 'Entdecken Sie unsere aktuellen Stellenangebote und finden Sie Ihre neue Herausforderung bei CME.'
-          : 'Discover our current job openings and find your next challenge at CME.')}
+          ? 'Für unser Team suchen wir regelmäßig Unterstützung – für Gegenwart und Zukunft.'
+          : 'We regularly look for new team members – for today and tomorrow.')}
         heroImage={img('hero.heroImage')}
         heroVideo={heroVideo}
       />
@@ -122,8 +122,8 @@ function JobPostingsSection({ isDE }: { isDE: boolean }) {
             <MessageCircle className="w-5 h-5 text-cme-blue flex-shrink-0" />
             <p className="text-[#3A3A4A] fluid-small">
               {isDE
-                ? 'Sie haben Fragen zu einer Stelle? Sprechen Sie uns gerne über den Chat an.'
-                : 'Have questions about a position? Feel free to reach out via chat.'}
+                ? 'Fragen zu einer der ausgeschriebenen Stellen? Beantworten wir gerne per Chat oder Video-Call.'
+                : 'Questions about a listed position? We\u2019re happy to answer via chat or video call.'}
             </p>
           </div>
         </div>
