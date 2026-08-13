@@ -793,3 +793,7 @@
 - [x] Karriere/Jobs: Chat-Hinweis umformuliert (Chat oder Video-Call)
 - [x] PERF-MW: CLS 0.281 auf Desktop fixen (font-display:optional, Hero h1 min-height reserviert)
 - [x] PERF-MW: Best Practices Score verbessern (Security Headers, target=_blank rel=noopener)
+- [x] PERF-MW: Render-Blocking CSS – Google Fonts async geladen (media=print onload trick)
+- [x] PERF-MW: ServicesSection Bilder optimiert (1920x1281 → 1099x733 WebP, 64-84KB statt 279-443KB)
+- [x] PERF-MW: Hero-Video-Poster optimiert (1920x1080 → 1200x675 WebP, 79KB statt 287KB)
+- [x] PERF-MW: Navigation Logo optimiert (1280x695 → 400x217 WebP, 13KB statt 67KB)

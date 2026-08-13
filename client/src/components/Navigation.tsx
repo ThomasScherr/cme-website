@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 
-const LOGO_URL = 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png';
+const LOGO_URL = 'https://ventspire-cdn.b-cdn.net/cme/logo-nav.webp';
 
 interface DropdownItem {
   label: string;

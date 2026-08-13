@@ -6,7 +6,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
 const HERO_VIDEO_WEBM = 'https://ventspire-cdn.b-cdn.net/cme/Loop-Sample_d94dc755.webm';
 const HERO_VIDEO_MP4 = 'https://ventspire-cdn.b-cdn.net/cme/Loop-Sample-compressed_8b0d5332.mp4';
-const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-video-poster_8c5a9e34.jpg';
+const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-poster.webp';
 
 // ─── Typewriter Hook (with language-aware reset) ───
 function useTypewriter(lines: string[], lang: string, typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {

@@ -106,13 +106,13 @@ export const PAGES: PageDef[] = [
         fields: [
           { key: '0.title', label: 'Säule 1 Titel', type: 'text', defaultDe: 'Elektronikentwicklung', defaultEn: 'Electronics Development' },
           { key: '0.description', label: 'Säule 1 Beschreibung', type: 'text', defaultDe: 'Von der Systemarchitektur über Hardware- und Softwareentwicklung bis zur Simulation und EMV-Qualifikation – wir entwickeln Elektronik, die funktioniert.', defaultEn: 'From system architecture through hardware and software development to simulation and EMC qualification – we develop electronics that work.' },
-          { key: '0.image', label: 'Säule 1 Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: '0.image', label: 'Säule 1 Bild', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
           { key: '1.title', label: 'Säule 2 Titel', type: 'text', defaultDe: 'Elektronikfertigung (EMS)', defaultEn: 'Electronics Manufacturing (EMS)' },
           { key: '1.description', label: 'Säule 2 Beschreibung', type: 'text', defaultDe: 'SMD- und THT-Bestückung, Baugruppenmontage und Qualitätsprüfung – von der Nullserie bis zur Serienproduktion, ISO-zertifiziert und Made in Dortmund.', defaultEn: 'SMD and THT assembly, module integration and quality inspection – from prototype to series production, ISO-certified and Made in Dortmund.' },
-          { key: '1.image', label: 'Säule 2 Bild', type: 'image', defaultDe: `${CDN}/JK_0425__1920px_178fc1eb.jpg`, defaultEn: `${CDN}/JK_0425__1920px_178fc1eb.jpg` },
+          { key: '1.image', label: 'Säule 2 Bild', type: 'image', defaultDe: `${CDN}/services-ems.webp`, defaultEn: `${CDN}/services-ems.webp` },
           { key: '2.title', label: 'Säule 3 Titel', type: 'text', defaultDe: 'Lifecycle & Obsolescence', defaultEn: 'Lifecycle & Obsolescence' },
           { key: '2.description', label: 'Säule 3 Beschreibung', type: 'text', defaultDe: 'Wir sichern den Lebenszyklus Ihrer Elektronikprodukte – von der Obsolescence-Analyse bis zum Redesign und After-Sales-Service.', defaultEn: 'We secure the lifecycle of your electronic products – from obsolescence analysis to redesign and after-sales service.' },
-          { key: '2.image', label: 'Säule 3 Bild', type: 'image', defaultDe: `${CDN}/JK_2055__1920px_00c91d17.jpg`, defaultEn: `${CDN}/JK_2055__1920px_00c91d17.jpg` },
+          { key: '2.image', label: 'Säule 3 Bild', type: 'image', defaultDe: `${CDN}/services-lifecycle.webp`, defaultEn: `${CDN}/services-lifecycle.webp` },
         ],
       },
     ],
@@ -130,7 +130,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
@@ -198,7 +198,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
@@ -212,7 +212,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'Hard & Software Design', defaultEn: 'Hard & Software Design' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Systemarchitektur, Schaltungsentwicklung, Embedded Software – von der Spezifikation bis zur serienreifen Lösung.', defaultEn: 'System architecture, circuit design, embedded software – from specification to series-ready solution.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'CME entwickelt Hardware und Software als integrierte Einheit. Unsere Ingenieure beherrschen den gesamten Entwicklungsprozess – von der Systemarchitektur und Anforderungsanalyse über analoge und digitale Schaltungsentwicklung bis zur Embedded-Firmware. Durch die enge Verzahnung von Hardware- und Softwareentwicklung fließen Fertigungsanforderungen frühzeitig in die Entwicklungsphase ein – das spart Zeit und Kosten beim Serienübergang.', defaultEn: 'CME develops hardware and software as an integrated unit. Our engineers master the entire development process – from system architecture and requirements analysis through analog and digital circuit design to embedded firmware. Through the close integration of hardware and software development, manufacturing requirements flow into the development phase early – saving time and costs in series transition.' },
-          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
         ],
       },
       {
@@ -440,7 +440,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
@@ -454,7 +454,7 @@ export const PAGES: PageDef[] = [
           { key: 'title', label: 'Titel', type: 'text', defaultDe: 'KI-gestützte Entwicklung', defaultEn: 'AI-Powered Development' },
           { key: 'subtitle', label: 'Untertitel', type: 'text', defaultDe: 'Datengetriebene Methoden für Leistungselektronik, Antriebssysteme und Embedded-Anwendungen – vom Algorithmus bis zur Inferenz auf dem Zielsystem.', defaultEn: 'Data-driven methods for power electronics, drive systems and embedded applications – from algorithm to inference on the target system.' },
           { key: 'intro', label: 'Einleitung', type: 'richtext', defaultDe: 'KI ist kein Selbstzweck – sie löst konkrete Probleme in der Elektronikentwicklung. CME setzt Machine-Learning-Methoden dort ein, wo klassische Regelungs- oder Analyseansätze an ihre Grenzen stoßen: bei der Erkennung von Mustern in Sensordaten, bei der Optimierung nichtlinearer Regelstrecken und bei der vorausschauenden Wartung komplexer Systeme. Entscheidend ist dabei nicht die Modellkomplexität, sondern die Fähigkeit, trainierte Modelle auf ressourcenbeschränkter Embedded-Hardware zuverlässig auszuführen – in Echtzeit, bei begrenztem Speicher und unter industriellen Umgebungsbedingungen.', defaultEn: 'AI is not an end in itself – it solves concrete problems in electronics development. CME applies machine learning methods where classical control or analysis approaches reach their limits: detecting patterns in sensor data, optimizing nonlinear control systems, and enabling predictive maintenance of complex systems. What matters is not model complexity, but the ability to reliably run trained models on resource-constrained embedded hardware – in real time, with limited memory, and under industrial environmental conditions.' },
-          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'contentImage', label: 'Inhalts-Bild (Diamant)', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
         ],
       },
       {
@@ -540,7 +540,7 @@ export const PAGES: PageDef[] = [
         fields: cardFields('card', [
           { titleDe: 'Leiterplatten bestücken', titleEn: 'PCB Assembly', descDe: 'SMD- und THT-Bestückung auf modernsten Fertigungslinien – vom Prototyp bis zur Großserie.', descEn: 'SMD and THT assembly on state-of-the-art production lines – from prototype to high-volume series.', img: `${CDN}/JK_1148__1920px_1cc154ec.jpg` },
           { titleDe: 'Baugruppen fertigen', titleEn: 'Module Assembly', descDe: 'Komplette Baugruppenmontage inkl. Verguss, Schutzlackierung, Kabelkonfektionierung und Endmontage.', descEn: 'Complete module assembly including potting, conformal coating, cable assembly and final assembly.', img: `${CDN}/JK_1736__1920px_e713f7ca.jpg` },
-          { titleDe: 'Qualitätsmanagement', titleEn: 'Quality Management', descDe: 'ISO 9001 & 14001 zertifiziert. AOI, MOI, und lückenlose Rückverfolgbarkeit durch datenbankgestützte Prozesse.', descEn: 'ISO 9001 & 14001 certified. AOI, MOI, and complete traceability through database-driven processes.', img: `${CDN}/JK_2055__1920px_00c91d17.jpg` },
+          { titleDe: 'Qualitätsmanagement', titleEn: 'Quality Management', descDe: 'ISO 9001 & 14001 zertifiziert. AOI, MOI, und lückenlose Rückverfolgbarkeit durch datenbankgestützte Prozesse.', descEn: 'ISO 9001 & 14001 certified. AOI, MOI, and complete traceability through database-driven processes.', img: `${CDN}/services-lifecycle.webp` },
         ]),
       },
       {
@@ -770,7 +770,7 @@ export const PAGES: PageDef[] = [
         key: 'hero',
         label: 'Hero-Bereich',
         fields: [
-          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/JK_0425__1920px_178fc1eb.jpg`, defaultEn: `${CDN}/JK_0425__1920px_178fc1eb.jpg` },
+          { key: 'heroImage', label: 'Hero-Bild', type: 'image', defaultDe: `${CDN}/services-ems.webp`, defaultEn: `${CDN}/services-ems.webp` },
           { key: 'heroVideoWebm', label: 'Hero-Video (WebM)', type: 'video' },
           { key: 'heroVideoMp4', label: 'Hero-Video (MP4)', type: 'video' },
           { key: 'heroVideoPoster', label: 'Hero-Video Poster', type: 'image' },
@@ -801,7 +801,7 @@ export const PAGES: PageDef[] = [
           { key: 'headline', label: 'Überschrift', type: 'text', defaultDe: 'Unsere Geschichte', defaultEn: 'Our Story' },
           { key: 'paragraph1', label: 'Absatz 1', type: 'richtext', defaultDe: 'CME wurde 2008 in Dortmund gegründet – mit der Vision, Elektronikentwicklung und -fertigung unter einem Dach zu vereinen. Was als Ingenieurbüro begann, ist heute ein etablierter Entwicklungsdienstleister und EMS-Partner mit eigener Fertigungsstätte.', defaultEn: 'CME was founded in 2008 in Dortmund – with the vision of uniting electronics development and manufacturing under one roof. What started as an engineering office is today an established development service provider and EMS partner with its own manufacturing facility.' },
           { key: 'paragraph2', label: 'Absatz 2', type: 'richtext', defaultDe: 'Unser Fokus auf Leistungselektronik, Antriebstechnik und thermisch anspruchsvolle Projekte hat uns zum bevorzugten Partner für Unternehmen gemacht, die mehr als Standard-EMS suchen. Wir verstehen nicht nur die Fertigung, sondern auch die Entwicklung – und genau das macht den Unterschied.', defaultEn: 'Our focus on power electronics, drive technology and thermally demanding projects has made us the preferred partner for companies looking for more than standard EMS. We understand not only manufacturing, but also development – and that makes all the difference.' },
-          { key: 'image', label: 'Team-Bild', type: 'image', defaultDe: `${CDN}/JK_2392__1920px_af02a6b7.jpg`, defaultEn: `${CDN}/JK_2392__1920px_af02a6b7.jpg` },
+          { key: 'image', label: 'Team-Bild', type: 'image', defaultDe: `${CDN}/services-dev.webp`, defaultEn: `${CDN}/services-dev.webp` },
         ],
       },
       {
