@@ -546,6 +546,30 @@ const PAGES: Record<string, PageMeta> = {
     keywords: 'AGB, Geschäftsbedingungen, CME',
     content: `Allgemeine Geschäftsbedingungen der CME Control Motion Electronics GmbH.`,
   },
+  '/elektronikentwicklung-muenchen': {
+    title: 'Elektronikentwicklung München | Leistungselektronik & Thermal Management | CME',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und thermisch anspruchsvolle Baugruppen für Unternehmen im Raum München. Eigene EMS-Fertigung. Jetzt Projekt besprechen.',
+    h1: 'Ihr Entwicklungspartner für anspruchsvolle Elektronikprojekte im Raum München.',
+    keywords: 'Elektronikentwicklung München, Leistungselektronik München, Entwicklungsdienstleister München, EMS München, Thermal Management, Antriebselektronik, externe Elektronikentwicklung',
+    content: 'CME Control Motion Electronics übernimmt anspruchsvolle Elektronikentwicklungen für Unternehmen im Raum München. Typische Projektsituationen: Kapazitätsengpass, anspruchsvolle Entwicklung mit hohen Leistungsdichten, Redesign bei Bauteilabkündigungen, Industrialisierung vom Prototyp zur Serie. Kompetenzfelder: Leistungselektronik, Thermal Management, Hardware und Embedded Design, Antriebselektronik, EMV und Validierung, EMS-Fertigung. Branchen: Industrieelektronik, Medizintechnik, Automotive, Energie und Ladeinfrastruktur, Maschinenbau, Luft- und Raumfahrt. Persönliche Präsenz in München, Entwicklung und Fertigung am Standort Dortmund. ISO 9001 und 14001 zertifiziert.',
+    schemas: [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'name': 'Elektronikentwicklung München',
+      'provider': { '@type': 'Organization', 'name': 'CME Control Motion Electronics GmbH', 'url': 'https://control-motion.de' },
+      'description': 'Entwicklung von Leistungselektronik und thermisch anspruchsvollen Baugruppen für Unternehmen im Raum München.',
+      'areaServed': { '@type': 'GeoCircle', 'geoMidpoint': { '@type': 'GeoCoordinates', 'latitude': 48.1351, 'longitude': 11.582 }, 'geoRadius': '100000' },
+      'serviceType': 'Electronics Development',
+    }, {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        { '@type': 'Question', 'name': 'Wie funktioniert die Zusammenarbeit zwischen München und Dortmund?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Kickoff vor Ort in München oder per Video. Entwicklung am Standort Dortmund mit eigenem EMV-Labor und EMS-Fertigung.' } },
+        { '@type': 'Question', 'name': 'Wie schnell bekomme ich eine Rückmeldung?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Innerhalb von einem Werktag erhalten Sie ein erstes Feedback.' } },
+        { '@type': 'Question', 'name': 'Können Sie auch fertigen?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Ja. CME verfügt über eine eigene EMS-Fertigung. Vom Prototyp bis zur Serie.' } },
+      ],
+    }],
+  },
 };
 
 // ── HTML generation ──

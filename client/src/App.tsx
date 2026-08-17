@@ -44,6 +44,7 @@ const AGB = lazy(() => import("./pages/legal/AGB"));
 
 const LandingElektronikentwicklung = lazy(() => import("./pages/LandingElektronikentwicklung"));
 const Insights = lazy(() => import("./pages/Insights"));
+const LandingMuenchen = lazy(() => import("./pages/LandingMuenchen"));
 const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const InsightsAdmin = lazy(() => import("./pages/admin/InsightsAdmin"));
 const StylesheetEditor = lazy(() => import("./pages/admin/StylesheetEditor"));
@@ -149,3 +150,4 @@ function App() {
 }
 
 export default App;
+        <Route path="/elektronikentwicklung-muenchen" component={LandingMuenchen} />

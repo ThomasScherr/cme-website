@@ -797,3 +797,15 @@
 - [x] PERF-MW: ServicesSection Bilder optimiert (1920x1281 → 1099x733 WebP, 64-84KB statt 279-443KB)
 - [x] PERF-MW: Hero-Video-Poster optimiert (1920x1080 → 1200x675 WebP, 79KB statt 287KB)
 - [x] PERF-MW: Navigation Logo optimiert (1280x695 → 400x217 WebP, 13KB statt 67KB)
+- [x] LP-MUC: Landingpage /elektronikentwicklung-muenchen erstellt
+- [x] LP-MUC: Eigenes Kontaktformular mit Kampagnen-Tracking (utm_source, utm_medium, utm_campaign)
+- [x] LP-MUC: Hero-Sektion mit klarer Positionierung + CTA
+- [x] LP-MUC: Typische Projektsituationen (6 Bedarfssignale als Kacheln)
+- [x] LP-MUC: Kompetenzfelder-Sektion (Leistungselektronik, Thermal Management, etc.)
+- [x] LP-MUC: "So arbeiten wir zusammen" (Dortmund → München Prozess)
+- [x] LP-MUC: Kontakt-CTA Sektion
+- [x] LP-MUC: Route in App.tsx registriert
+- [x] LP-MUC: prerenderMiddleware SEO-Eintrag
+- [x] LP-MUC: Backend nutzt bestehenden contact.submit mit source-Tracking (UTM-Parameter im source-Feld)
+- [x] LP-MUC: Bilder auf Bunny CDN (hero-poster.webp, logo-nav.webp, Video)
+- [ ] LP-MUC: Deploy auf Mittwald
