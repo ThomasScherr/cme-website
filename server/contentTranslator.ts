@@ -4,6 +4,8 @@
  * Uses the user's own OpenAI token.
  */
 
+import { buildGlossaryPromptSection } from "@shared/translationGlossary";
+
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = "gpt-4o-mini";
 
@@ -26,7 +28,9 @@ const SYSTEM_PROMPT = `You are a professional technical translator for CME Contr
 - Do NOT translate brand names, product names, or company names
 - Do NOT change URLs or link targets
 - Keep the same formatting and structure
-- Respond with ONLY the translated text, no explanations or wrappers`;
+- Respond with ONLY the translated text, no explanations or wrappers
+
+${buildGlossaryPromptSection()}`;
 
 export interface TranslateTextInput {
   text: string;
