@@ -11,11 +11,40 @@ import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import * as db from "./db";
 import { ENV } from "./_core/env";
+import { loginRateLimiter, getClientIp } from "./rateLimiter";
 
 // Environment variable for admin password (bcrypt hash)
 // Set ADMIN_PASSWORD_HASH in env, or ADMIN_PASSWORD for auto-hashing on first use
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH ?? "";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "";
+
+/**
+ * Zwischengespeicherter Hash von ADMIN_PASSWORD.
+ *
+ * Frueher wurde bcrypt.hash(ADMIN_PASSWORD, 12) bei JEDER Login-Anfrage
+ * ausgefuehrt - auch bei falschem Passwort und auch, wenn gar kein Benutzer
+ * existiert. Kostenfaktor 12 bedeutet rund 300 ms Rechenzeit pro Aufruf, und
+ * zwar im selben einspurigen Node-Prozess, der auch alle Seiten ausliefert.
+ * Damit liess sich die Website ohne jede Anmeldung lahmlegen.
+ *
+ * Jetzt wird genau einmal gehasht und das Ergebnis behalten.
+ */
+let cachedPasswordHash: string | null = null;
+
+async function resolvePasswordHash(): Promise<string> {
+  if (ADMIN_PASSWORD_HASH) return ADMIN_PASSWORD_HASH;
+  if (!ADMIN_PASSWORD) return "";
+
+  if (cachedPasswordHash === null) {
+    cachedPasswordHash = await bcrypt.hash(ADMIN_PASSWORD, 12);
+    console.log(
+      "[StandaloneAuth] Hash aus ADMIN_PASSWORD einmalig erzeugt. " +
+        "Fuer den Produktivbetrieb besser ADMIN_PASSWORD_HASH setzen."
+    );
+  }
+
+  return cachedPasswordHash;
+}
 
 function getSessionSecret() {
   return new TextEncoder().encode(ENV.cookieSecret);
@@ -80,6 +109,27 @@ export function registerStandaloneAuthRoutes(app: Express) {
   // POST /api/auth/login - Password-based admin login
   app.post("/api/auth/login", async (req: Request, res: Response) => {
     try {
+      // Rate-Limit ZUERST - vor dem Auslesen des Bodys und vor jedem
+      // bcrypt-Aufruf. Sonst schuetzt es zwar gegen Brute Force, aber nicht
+      // gegen die Ueberlastung durch den teuren Passwortvergleich.
+      const clientIp = getClientIp(req);
+      const limit = loginRateLimiter.check(clientIp);
+
+      if (!limit.allowed) {
+        const retryAfterSeconds = Math.ceil(limit.retryAfterMs / 1000);
+        console.warn(
+          `[StandaloneAuth] Login-Versuch von ${clientIp} blockiert. ` +
+            `Naechster Versuch in ${retryAfterSeconds}s moeglich.`
+        );
+        res.setHeader("Retry-After", String(retryAfterSeconds));
+        res.status(429).json({
+          error:
+            "Zu viele Anmeldeversuche. Bitte versuchen Sie es spaeter erneut.",
+          retryAfterSeconds,
+        });
+        return;
+      }
+
       const { email, password } = req.body;
 
       if (!email || !password) {
@@ -87,14 +137,7 @@ export function registerStandaloneAuthRoutes(app: Express) {
         return;
       }
 
-      // Determine the password hash to check against
-      let hashToCheck = ADMIN_PASSWORD_HASH;
-
-      // If no hash is set but a plaintext password is configured, hash it
-      if (!hashToCheck && ADMIN_PASSWORD) {
-        hashToCheck = await bcrypt.hash(ADMIN_PASSWORD, 12);
-        console.log("[StandaloneAuth] Auto-generated hash from ADMIN_PASSWORD. Set ADMIN_PASSWORD_HASH for production.");
-      }
+      const hashToCheck = await resolvePasswordHash();
 
       if (!hashToCheck) {
         console.error("[StandaloneAuth] No ADMIN_PASSWORD_HASH or ADMIN_PASSWORD configured!");

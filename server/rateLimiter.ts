@@ -116,6 +116,23 @@ export const ndaRateLimiter = new RateLimiter({
 });
 
 /**
+ * Admin-Login: max. 5 Versuche pro 15 Minuten und IP.
+ *
+ * Schuetzt zwei Dinge auf einmal:
+ *  - Brute Force gegen das einzige Admin-Passwort
+ *  - Ueberlastung durch bcrypt. Der Passwortvergleich kostet mit Kostenfaktor
+ *    12 rund 300 ms Rechenzeit, und Node arbeitet einspurig. Ohne Limit legen
+ *    schon wenige Dutzend gleichzeitige Anfragen die gesamte Website lahm,
+ *    nicht nur das Login.
+ *
+ * Deshalb muss die Pruefung VOR dem bcrypt-Vergleich laufen.
+ */
+export const loginRateLimiter = new RateLimiter({
+  maxRequests: 5,
+  windowMs: 15 * 60 * 1000, // 15 Minuten
+});
+
+/**
  * Extract client IP from the request object.
  * Handles proxied requests (X-Forwarded-For) and direct connections.
  */
