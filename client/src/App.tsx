@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ComponentType, type ReactElement } from "react";
+import { DE_TO_EN, DYNAMIC_ROUTE_PAIRS } from "@shared/routes";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ConsentProvider } from "./contexts/ConsentContext";
@@ -63,62 +64,95 @@ function PageLoader() {
   );
 }
 
+/**
+ * Zweisprachige Seiten. Der deutsche Pfad steht hier, der englische kommt aus
+ * shared/routes.ts – dieselbe Zuordnung, die auch die SEO-Daten und der
+ * Sprachumschalter benutzen. Beide Pfade zeigen auf dieselbe Komponente; die
+ * Sprache ergibt sich aus der URL (siehe LanguageContext).
+ */
+const BILINGUAL_ROUTES: Array<[string, ComponentType<any>]> = [
+  ["/", Home],
+
+  ["/entwicklung", Entwicklung],
+  ["/entwicklung/hardware-software", HardwareSoftware],
+  ["/entwicklung/simulation", Simulation],
+  ["/entwicklung/test-verifikation", TestVerifikation],
+  ["/entwicklung/ux-interface-engineering", UxInterfaceEngineering],
+  ["/entwicklung/software-digitale-systeme", SoftwareDigitaleSysteme],
+  ["/entwicklung/e-motor-design", EMotorDesign],
+  ["/entwicklung/control-design", ControlDesign],
+  ["/entwicklung/validierung-emv", ValidierungEmv],
+  ["/entwicklung/ki-entwicklung", KiEntwicklung],
+
+  ["/fertigung", Fertigung],
+  ["/fertigung/smd-bestueckung", SmdBestueckung],
+  ["/fertigung/prototypen", Prototypen],
+  ["/fertigung/leiterplatten", Leiterplatten],
+  ["/fertigung/baugruppen", Baugruppen],
+  ["/fertigung/qualitaet", Qualitaet],
+
+  ["/lifecycle", Lifecycle],
+  ["/maerkte", Maerkte],
+  ["/unternehmen", Unternehmen],
+  ["/kontakt", Kontakt],
+  ["/karriere", Karriere],
+
+  ["/insights", Insights],
+  ["/insights/:slug", InsightArticle],
+
+  ["/impressum", Impressum],
+  ["/datenschutz", Datenschutz],
+  ["/agb", AGB],
+];
+
+/** Nur deutsch – lokale Landingpages und der Pressebereich. */
+const GERMAN_ONLY_ROUTES: Array<[string, ComponentType<any>]> = [
+  ["/elektronikentwicklung", LandingElektronikentwicklung],
+  ["/elektronikentwicklung-muenchen", LandingMuenchen],
+  ["/media-center", MediaCenter],
+];
+
+const ADMIN_ROUTES: Array<[string, ComponentType<any>]> = [
+  ["/admin/login", AdminLogin],
+  ["/admin/insights", InsightsAdmin],
+  ["/admin/insights/preview/:id", InsightPreview],
+  ["/admin/styles", StylesheetEditor],
+  ["/admin/content", ContentManager],
+  ["/admin/authors", AuthorsAdmin],
+  ["/admin/jobs", JobsAdmin],
+];
+
+/** Deutscher Pfad plus englische Entsprechung, sofern es eine gibt. */
+function bilingualRoutes(): ReactElement[] {
+  const out: ReactElement[] = [];
+  for (const [dePath, component] of BILINGUAL_ROUTES) {
+    out.push(<Route key={dePath} path={dePath} component={component} />);
+    const enPath = enPathFor(dePath);
+    if (enPath) out.push(<Route key={enPath} path={enPath} component={component} />);
+  }
+  return out;
+}
+
+function enPathFor(dePath: string): string | null {
+  const mapped = DE_TO_EN[dePath];
+  if (mapped) return mapped;
+  const dynamic = DYNAMIC_ROUTE_PAIRS.find(p => p.de === dePath);
+  return dynamic ? dynamic.en : null;
+}
+
 function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-        {/* Home */}
-        <Route path="/" component={Home} />
+        {bilingualRoutes()}
 
-        {/* Entwicklung */}
-        <Route path="/entwicklung" component={Entwicklung} />
-        <Route path="/entwicklung/hardware-software" component={HardwareSoftware} />
-        <Route path="/entwicklung/simulation" component={Simulation} />
-        <Route path="/entwicklung/test-verifikation" component={TestVerifikation} />
-        <Route path="/entwicklung/ux-interface-engineering" component={UxInterfaceEngineering} />
-        <Route path="/entwicklung/software-digitale-systeme" component={SoftwareDigitaleSysteme} />
-        <Route path="/entwicklung/e-motor-design" component={EMotorDesign} />
-        <Route path="/entwicklung/control-design" component={ControlDesign} />
-        <Route path="/entwicklung/validierung-emv" component={ValidierungEmv} />
-        <Route path="/entwicklung/ki-entwicklung" component={KiEntwicklung} />
+        {GERMAN_ONLY_ROUTES.map(([path, component]) => (
+          <Route key={path} path={path} component={component} />
+        ))}
 
-        {/* Fertigung */}
-        <Route path="/fertigung" component={Fertigung} />
-        <Route path="/fertigung/smd-bestueckung" component={SmdBestueckung} />
-        <Route path="/fertigung/prototypen" component={Prototypen} />
-        <Route path="/fertigung/leiterplatten" component={Leiterplatten} />
-        <Route path="/fertigung/baugruppen" component={Baugruppen} />
-        <Route path="/fertigung/qualitaet" component={Qualitaet} />
-
-        {/* Weitere Hauptseiten */}
-        <Route path="/lifecycle" component={Lifecycle} />
-        <Route path="/maerkte" component={Maerkte} />
-        <Route path="/unternehmen" component={Unternehmen} />
-        <Route path="/kontakt" component={Kontakt} />
-        <Route path="/karriere" component={Karriere} />
-
-        {/* Blog / Insights */}
-        <Route path="/insights" component={Insights} />
-        <Route path="/insights/:slug" component={InsightArticle} />
-        <Route path="/admin/login" component={AdminLogin} />
-        <Route path="/admin/insights" component={InsightsAdmin} />
-        <Route path="/admin/insights/preview/:id" component={InsightPreview} />
-        <Route path="/admin/styles" component={StylesheetEditor} />
-        <Route path="/admin/content" component={ContentManager} />
-        <Route path="/admin/authors" component={AuthorsAdmin} />
-        <Route path="/admin/jobs" component={JobsAdmin} />
-
-        {/* Landing Pages (Google Ads) */}
-        <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />
-        <Route path="/elektronikentwicklung-muenchen" component={LandingMuenchen} />
-
-        {/* Media Center (nicht verlinkt, nur für Presse/Partner) */}
-        <Route path="/media-center" component={MediaCenter} />
-
-        {/* Rechtliches */}
-        <Route path="/impressum" component={Impressum} />
-        <Route path="/datenschutz" component={Datenschutz} />
-        <Route path="/agb" component={AGB} />
+        {ADMIN_ROUTES.map(([path, component]) => (
+          <Route key={path} path={path} component={component} />
+        ))}
 
         {/* 404 */}
         <Route path="/404" component={NotFound} />
