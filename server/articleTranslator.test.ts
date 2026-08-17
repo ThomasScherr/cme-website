@@ -135,7 +135,11 @@ describe("articleTranslator", () => {
   });
 
   it("should truncate very long content to stay within token limits", async () => {
-    const longContent = "<p>" + "Langer Inhalt. ".repeat(2000) + "</p>";
+    // Muss ueber MAX_CONTENT_CHARS (40.000) liegen. Frueher stand hier
+    // repeat(2000) = 30.000 Zeichen - das passte zur alten Grenze von 15.000
+    // und lief ins Leere, als die Grenze angehoben wurde. Deshalb wird jetzt
+    // nicht auf eine Zahl geprueft, sondern auf die Kuerzungsmarkierung.
+    const longContent = "<p>" + "Langer Inhalt. ".repeat(8000) + "</p>";
 
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -163,8 +167,33 @@ describe("articleTranslator", () => {
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body);
     const userMessage = body.messages[1].content;
-    // Content should be truncated (15000 chars max)
+    expect(userMessage).toContain("[… content truncated …]");
     expect(userMessage.length).toBeLessThan(longContent.length);
+  });
+
+  it("kuerzt Inhalte unterhalb der Grenze NICHT", async () => {
+    const normalContent = "<p>" + "Kurzer Inhalt. ".repeat(100) + "</p>";
+
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              titleEn: "Title", excerptEn: "Excerpt", contentEn: "Content",
+              tagsEn: "Tags", metaTitleEn: "Title", metaDescriptionEn: "Description",
+            }),
+          },
+        }],
+      }),
+    });
+
+    const { translateArticle } = await import("./articleTranslator");
+    await translateArticle({ title: "Normaler Artikel", content: normalContent });
+
+    const body = JSON.parse(mockFetch.mock.calls[0][1].body);
+    expect(body.messages[1].content).not.toContain("content truncated");
+    expect(body.messages[1].content).toContain(normalContent);
   });
 
   it("should handle translation with missing optional fields", async () => {
