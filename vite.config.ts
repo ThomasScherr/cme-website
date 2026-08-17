@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +149,25 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+// vitePluginManusRuntime() ist bewusst nicht mehr dabei.
+// Das Plugin haengt runtime_dist/manus-runtime.js unveraendert in JEDES
+// HTML-Dokument – gemessen 366.757 Bytes, im Entwicklungs- wie im
+// Auslieferungsbau. Das ist Manus' eigene Vorschau-Umgebung, die den Besuchern
+// der Seite nichts bringt: Sie liegt als Inline-Skript im HTML, laesst sich
+// also nicht getrennt zwischenspeichern und wird bei jedem Seitenaufruf neu
+// uebertragen. index.html schrumpft dadurch von 372 KB auf 5,2 KB.
+// jsxLocPlugin schreibt an JEDES Element ein data-loc mit Datei und Zeile.
+// Im Entwicklungsbetrieb ist das nuetzlich (Sprung vom Element in den Code),
+// in der Auslieferung nicht: gemessen an der vorgerenderten Startseite sind das
+// 687 Attribute und 41,8 KB von 167,9 KB HTML – ein Viertel des Dokuments –,
+// und der komplette Aufbau des Quellverzeichnisses steht damit oeffentlich im
+// Seitenquelltext. apply: "serve" beschraenkt das Plugin auf den Dev-Server.
+const plugins = [
+  react(),
+  tailwindcss(),
+  { ...jsxLocPlugin(), apply: "serve" as const },
+  vitePluginManusDebugCollector(),
+];
 
 export default defineConfig({
   plugins,
