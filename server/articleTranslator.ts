@@ -4,8 +4,30 @@
  * All costs go through the user's own OpenAI token.
  */
 
+import { buildGlossaryPromptSection } from "@shared/translationGlossary";
+
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = "gpt-4o-mini";
+
+/**
+ * Maximale Ausgabe-Tokens. 16.384 ist das Modellmaximum von gpt-4o-mini;
+ * 16.000 lässt etwas Puffer. MUSS zu MAX_CONTENT_CHARS passen – sonst wird
+ * die Antwort mitten im JSON abgeschnitten.
+ */
+const MAX_OUTPUT_TOKENS = 16000;
+
+/**
+ * Maximale Eingabelänge des Artikelinhalts in Zeichen.
+ *
+ * Die frühere Grenze von 15.000 Zeichen war mit "gpt-4o-mini supports 128k
+ * context, so 15000 chars is safe" begründet – die 128k gelten aber für den
+ * Kontext, nicht für die Ausgabe. Zusammen mit max_tokens=4000 wurden lange
+ * Artikel doppelt gekürzt: erst die Eingabe, dann die Antwort.
+ *
+ * 40.000 Zeichen ergeben rund 11.500 Ausgabe-Tokens und passen damit sicher
+ * in MAX_OUTPUT_TOKENS – inklusive der übrigen JSON-Felder.
+ */
+const MAX_CONTENT_CHARS = 40000;
 
 function getApiKey(): string {
   const key = process.env.OPENAI_API_KEY;
@@ -61,19 +83,27 @@ Translate the given German article content into professional, natural-sounding E
 - Keep meta description between 140-155 characters
 - Tags should be the English equivalents of the German keywords
 
-Respond exclusively in the required JSON format.`;
+Respond exclusively in the required JSON format.
+
+${buildGlossaryPromptSection()}`;
 
 export async function translateArticle(
   input: TranslationInput
 ): Promise<TranslationResult> {
   const apiKey = getApiKey();
 
-  // For very long content, we split into chunks to stay within token limits
-  // gpt-4o-mini supports 128k context, so 15000 chars is safe
-  const truncatedContent =
-    input.content.length > 15000
-      ? input.content.substring(0, 15000) + "\n\n[… content truncated …]"
-      : input.content;
+  const needsTruncation = input.content.length > MAX_CONTENT_CHARS;
+
+  if (needsTruncation) {
+    console.warn(
+      `[articleTranslator] Inhalt gekürzt: ${input.content.length} Zeichen > ${MAX_CONTENT_CHARS}. ` +
+        `Die englische Fassung von "${input.title}" ist unvollständig.`
+    );
+  }
+
+  const truncatedContent = needsTruncation
+    ? input.content.substring(0, MAX_CONTENT_CHARS) + "\n\n[… content truncated …]"
+    : input.content;
 
   const userPrompt = `Translate the following German article into English:
 
@@ -160,7 +190,7 @@ Respond exclusively in the following JSON format:
         },
       },
       temperature: 0.3,
-      max_tokens: 4000,
+      max_tokens: MAX_OUTPUT_TOKENS,
     }),
   });
 
@@ -177,6 +207,13 @@ Respond exclusively in the following JSON format:
   if (!messageContent) {
     throw new Error(
       "OpenAI hat eine leere Antwort bei der Übersetzung zurückgegeben."
+    );
+  }
+
+  if (data.choices?.[0]?.finish_reason === "length") {
+    throw new Error(
+      `OpenAI hat die Antwort wegen der Token-Grenze abgeschnitten (${MAX_OUTPUT_TOKENS}). ` +
+        `Der Artikel "${input.title}" ist zu lang – bitte aufteilen.`
     );
   }
 
