@@ -1,43 +1,12 @@
-import nodemailer from "nodemailer";
 import { ENV } from "./_core/env";
+import { sendMail, verifyMailer } from "./mailer";
 
-// ─── SMTP Transporter ───────────────────────────────────────────────
-let transporter: nodemailer.Transporter | null = null;
-
-function getTransporter(): nodemailer.Transporter {
-  if (!transporter) {
-    if (!ENV.smtpHost || !ENV.smtpUser || !ENV.smtpPass) {
-      throw new Error("SMTP not configured: missing SMTP_HOST, SMTP_USER or SMTP_PASS");
-    }
-    transporter = nodemailer.createTransport({
-      host: ENV.smtpHost,
-      port: ENV.smtpPort,
-      secure: ENV.smtpPort === 465, // true for 465 (SSL), false for 587 (STARTTLS)
-      auth: {
-        user: ENV.smtpUser,
-        pass: ENV.smtpPass,
-      },
-      tls: {
-        rejectUnauthorized: ENV.isProduction, // strict in prod, relaxed in dev
-      },
-    });
-  }
-  return transporter;
-}
-
-// ─── Verify SMTP connection ─────────────────────────────────────────
+// ─── Versandbereitschaft prüfen ────────────────────────────────
+/** Name aus Kompatibilitätsgründen beibehalten – prüft jetzt Brevo. */
 export async function verifySmtp(): Promise<boolean> {
-  try {
-    const t = getTransporter();
-    await t.verify();
-    return true;
-  } catch (err) {
-    console.error("[SMTP] Verification failed:", err);
-    return false;
-  }
+  return verifyMailer();
 }
 
-// ─── Shared HTML wrapper ────────────────────────────────────────────
 function htmlWrapper(title: string, body: string): string {
   return `<!DOCTYPE html>
 <html lang="de">
@@ -81,7 +50,7 @@ function htmlWrapper(title: string, body: string): string {
 </html>`;
 }
 
-// ─── Contact form email ─────────────────────────────────────────────
+// ─── Contact form email ──────────────────────────────────────
 interface ContactEmailData {
   salutation?: string;
   title?: string;
@@ -96,10 +65,9 @@ interface ContactEmailData {
 
 export async function sendContactEmail(data: ContactEmailData): Promise<boolean> {
   try {
-    const t = getTransporter();
     const recipients = ENV.contactEmail;
     if (!recipients) {
-      console.error("[SMTP] No CONTACT_EMAIL configured");
+      console.error("[Mail] No CONTACT_EMAIL configured");
       return false;
     }
 
@@ -108,7 +76,13 @@ export async function sendContactEmail(data: ContactEmailData): Promise<boolean>
       ? data.salutation
       : "";
     const titleStr = data.title ? `${data.title} ` : "";
-    const fullName = [salutationStr, titleStr, data.name].filter(Boolean).join(" ").trim();
+    // join(" ") plus das bereits an titleStr haengende Leerzeichen ergaben
+    // frueher "Herr Dr.  Max Mustermann" mit doppeltem Abstand.
+    const fullName = [salutationStr, titleStr, data.name]
+      .filter(Boolean)
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
 
     const topicHtml = data.topic
       ? `<div class="topic-badge">Thema: ${data.topic}</div>`
@@ -139,23 +113,22 @@ export async function sendContactEmail(data: ContactEmailData): Promise<boolean>
     `;
 
     const subjectTopic = data.topic ? ` – ${data.topic}` : "";
-    await t.sendMail({
-      from: ENV.smtpFrom || ENV.smtpUser,
+    await sendMail({
       to: recipients,
       replyTo: data.email,
       subject: `Neue Kontaktanfrage${subjectTopic} | ${fullName}`,
       html: htmlWrapper("Neue Kontaktanfrage", body),
     });
 
-    console.log(`[SMTP] Contact email sent for ${data.email}`);
+    console.log(`[Mail] Contact email sent for ${data.email}`);
     return true;
   } catch (err) {
-    console.error("[SMTP] Failed to send contact email:", err);
+    console.error("[Mail] Failed to send contact email:", err);
     return false;
   }
 }
 
-// ─── NDA request email ──────────────────────────────────────────────
+// ─── NDA request email ───────────────────────────────────────
 interface NdaEmailData {
   salutation: string;
   firstName: string;
@@ -167,10 +140,9 @@ interface NdaEmailData {
 
 export async function sendNdaEmail(data: NdaEmailData): Promise<boolean> {
   try {
-    const t = getTransporter();
     const recipients = ENV.contactEmail;
     if (!recipients) {
-      console.error("[SMTP] No CONTACT_EMAIL configured");
+      console.error("[Mail] No CONTACT_EMAIL configured");
       return false;
     }
 
@@ -206,18 +178,17 @@ export async function sendNdaEmail(data: NdaEmailData): Promise<boolean> {
       </div>
     `;
 
-    await t.sendMail({
-      from: ENV.smtpFrom || ENV.smtpUser,
+    await sendMail({
       to: recipients,
       replyTo: data.email,
       subject: `NDA-Anforderung | ${data.company} – ${fullName}`,
       html: htmlWrapper("NDA-Anforderung", body),
     });
 
-    console.log(`[SMTP] NDA email sent for ${data.email}`);
+    console.log(`[Mail] NDA email sent for ${data.email}`);
     return true;
   } catch (err) {
-    console.error("[SMTP] Failed to send NDA email:", err);
+    console.error("[Mail] Failed to send NDA email:", err);
     return false;
   }
 }
