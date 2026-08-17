@@ -6,6 +6,12 @@ dist
 *.log
 .env
 .env.*
+# Ausnahme: .env.production enthaelt die oeffentlichen Tracking-Kennungen und
+# MUSS in den Build-Kontext, weil Vite import.meta.env.VITE_* zur Build-Zeit
+# aufloest. Die Regel muss NACH ".env.*" stehen, sonst greift sie nicht.
+# Geheimnisse gehoeren hier nicht hinein - die liegen in den Laufzeit-
+# Variablen des Mittwald-Stacks.
+!.env.production
 coverage
 .vscode
 .idea
