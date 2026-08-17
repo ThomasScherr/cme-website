@@ -2,7 +2,7 @@ import { trpc } from "@/lib/trpc";
 import { UNAUTHED_ERR_MSG } from '@shared/const';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, TRPCClientError } from "@trpc/client";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from 'react-helmet-async';
 import superjson from "superjson";
 import { Router } from "wouter";
@@ -55,7 +55,9 @@ const trpcClient = trpc.createClient({
   ],
 });
 
-createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root")!;
+
+const tree = (
   <HelmetProvider>
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
@@ -69,3 +71,13 @@ createRoot(document.getElementById("root")!).render(
     </trpc.Provider>
   </HelmetProvider>
 );
+
+// Vorgerenderte Seiten werden hydratisiert, nicht neu aufgebaut. Ist der
+// Container leer – etwa bei einer Route ohne vorgerenderte Datei –, wird wie
+// bisher gerendert. Ohne diese Unterscheidung wuerde React das vorhandene
+// Markup verwerfen und der Vorteil des Vorrenderns waere weg.
+if (container.firstElementChild) {
+  hydrateRoot(container, tree);
+} else {
+  createRoot(container).render(tree);
+}

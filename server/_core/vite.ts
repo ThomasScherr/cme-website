@@ -8,6 +8,7 @@ import viteConfig from "../../vite.config";
 import { injectSeoTags } from "../seoHtmlInjector";
 import { lookupSeoMeta } from "../seoPageData";
 import { precompressedAssetsMiddleware, assetContentType } from "../precompressedAssets";
+import { prerenderedPagesMiddleware } from "../prerenderedPages";
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -98,10 +99,18 @@ export function serveStatic(app: Express) {
     },
   }));
 
+  // Vorgerenderte Seite bevorzugen. Sie enthaelt bereits den fertigen Inhalt
+  // und die richtigen Kopfdaten (scripts/prerender.ts). Muss vor der
+  // SPA-Ruecklage stehen, sonst ginge fuer jede Route die leere Huelle raus.
+  app.use("*", prerenderedPagesMiddleware(distPath));
+
   // fall through to index.html if the file doesn't exist (SPA routing)
   // IMPORTANT: Inject per-route SEO tags before serving
   app.use("*", (req, res) => {
-    const indexPath = path.resolve(distPath, "index.html");
+    // Die unveraenderte Huelle liegt neben dist/public, weil dist/public/index.html
+    // seit dem Vorrendern die Startseite ist (scripts/prerender.ts).
+    const shellPath = path.resolve(distPath, "..", "spa-shell.html");
+    const indexPath = fs.existsSync(shellPath) ? shellPath : path.resolve(distPath, "index.html");
     let html = fs.readFileSync(indexPath, 'utf-8');
 
     // Inject per-route SEO tags
