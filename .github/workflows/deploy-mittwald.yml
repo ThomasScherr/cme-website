@@ -45,25 +45,66 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      # Der Stack zeigt auf :latest. Dieser Webhook weist Mittwald an, das
+      # Image neu zu ziehen und den Container neu zu erstellen.
+      #
+      # Frueher stand hier ein PUT auf /v2/stacks/{id} mit einem
+      # environment-Block, der nur NODE_ENV und PORT enthielt. PUT ersetzt die
+      # Service-Definition vollstaendig - DATABASE_URL, JWT_SECRET,
+      # ADMIN_PASSWORD und OPENAI_API_KEY waeren bei jedem Deploy geloescht
+      # worden. Der Webhook kann das nicht: er darf ausschliesslich das Image
+      # dieses einen Service neu ziehen.
+      #
+      # Wichtig: Der Webhook antwortet nur auf GET. POST liefert 404.
       - name: Deploy to Mittwald
         env:
-          MITTWALD_API_TOKEN: ${{ secrets.MITTWALD_API_TOKEN }}
-          MITTWALD_STACK_ID: ${{ secrets.MITTWALD_STACK_ID }}
+          DEPLOY_WEBHOOK: ${{ secrets.MITTWALD_DEPLOY_WEBHOOK }}
         run: |
-          curl -s -X PUT \
-            -H "Authorization: Bearer $MITTWALD_API_TOKEN" \
-            -H "Content-Type: application/json" \
-            "https://api.mittwald.de/v2/stacks/$MITTWALD_STACK_ID" \
-            -d "{
-              \"services\": {
-                \"cme-website\": {
-                  \"image\": \"ghcr.io/${{ github.repository }}:latest\",
-                  \"ports\": [\"3000:3000/tcp\"],
-                  \"environment\": {
-                    \"NODE_ENV\": \"production\",
-                    \"PORT\": \"3000\"
-                  }
-                }
-              }
-            }"
-          echo "Deployment triggered successfully"
+          set -euo pipefail
+
+          if [ -z "${DEPLOY_WEBHOOK:-}" ]; then
+            echo "::error::Repository-Secret MITTWALD_DEPLOY_WEBHOOK ist nicht gesetzt."
+            exit 1
+          fi
+
+          echo "Loese Image-Pull bei Mittwald aus ..."
+
+          # Die URL enthaelt den Webhook-Token und darf nicht ins Log geraten.
+          # Deshalb nur den Statuscode auswerten, nie die URL ausgeben.
+          STATUS=$(curl --silent --show-error \
+                        --request GET \
+                        --retry 3 --retry-delay 5 --retry-connrefused \
+                        --max-time 60 \
+                        --output response.txt \
+                        --write-out '%{http_code}' \
+                        "$DEPLOY_WEBHOOK" || echo "000")
+
+          if [ "$STATUS" != "204" ]; then
+            echo "::error::Mittwald-Webhook antwortete mit HTTP $STATUS (erwartet: 204)."
+            echo "Antwort:"
+            cat response.txt || true
+            exit 1
+          fi
+
+          echo "Mittwald zieht das neue Image (HTTP 204)."
+
+      - name: Warten bis der Container wieder laeuft
+        run: |
+          set -euo pipefail
+
+          URL="https://p-w48lps.project.space/"
+          echo "Warte auf $URL ..."
+
+          for i in $(seq 1 30); do
+            STATUS=$(curl --silent --output /dev/null --max-time 10 \
+                          --write-out '%{http_code}' "$URL" || echo "000")
+            if [ "$STATUS" = "200" ]; then
+              echo "Container laeuft wieder (nach $((i * 10)) Sekunden)."
+              exit 0
+            fi
+            echo "  [$((i * 10))s] HTTP $STATUS"
+            sleep 10
+          done
+
+          echo "::error::Container ist nach 5 Minuten nicht erreichbar."
+          exit 1
