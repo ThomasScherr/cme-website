@@ -110,6 +110,7 @@ function Router() {
 
         {/* Landing Pages (Google Ads) */}
         <Route path="/elektronikentwicklung" component={LandingElektronikentwicklung} />
+        <Route path="/elektronikentwicklung-muenchen" component={LandingMuenchen} />
 
         {/* Media Center (nicht verlinkt, nur für Presse/Partner) */}
         <Route path="/media-center" component={MediaCenter} />
@@ -150,4 +151,3 @@ function App() {
 }
 
 export default App;
-        <Route path="/elektronikentwicklung-muenchen" component={LandingMuenchen} />
