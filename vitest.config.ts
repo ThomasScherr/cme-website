@@ -14,6 +14,15 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    include: ["server/**/*.test.ts", "server/**/*.spec.ts"],
+    // Client-Tests liefen bisher nie mit - das Muster deckte nur server/ ab.
+    // Einzelne Dateien koennen per "// @vitest-environment jsdom" auf eine
+    // Browser-Umgebung umschalten.
+    include: [
+      "server/**/*.test.ts",
+      "server/**/*.spec.ts",
+      "client/**/*.test.ts",
+      "client/**/*.test.tsx",
+      "shared/**/*.test.ts",
+    ],
   },
 });

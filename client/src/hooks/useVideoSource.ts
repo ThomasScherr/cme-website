@@ -1,15 +1,32 @@
 import { useMemo } from 'react';
 
 /**
- * Determines the best video format supported by the browser.
- * Returns a single URL to avoid loading both WebM and MP4 simultaneously.
+ * Wählt das beste vom Browser unterstützte Videoformat.
  *
- * The browser's `<video>` element with multiple `<source>` tags can trigger
- * parallel downloads of both formats. By selecting one format upfront and
- * using a single `src` attribute, we save ~4-5 MB of unnecessary bandwidth.
+ * Liefert genau EINE URL zurück statt mehrerer <source>-Elemente. Mit mehreren
+ * Quellen laden manche Browser beide Formate parallel – das kostete hier
+ * mehrere Megabyte umsonst.
  *
- * Priority: WebM (smaller, better compression) > MP4 (universal fallback)
+ * Reihenfolge: AV1 (kleinste Dateien) → H.264 als universeller Rückfall.
+ *
+ * WICHTIG: Die Prüfung muss den CODEC nennen, nicht nur den Container.
+ * Ein reines canPlayType('video/webm') meldet auch dann Erfolg, wenn der
+ * Browser zwar VP9, aber kein AV1 beherrscht – Safari auf älteren Macs zum
+ * Beispiel. Das Hero-Video liegt als AV1 vor; ohne Codec-Angabe bekämen
+ * diese Browser eine Datei, die sie nicht abspielen können, und sähen nur
+ * das Poster-Bild.
  */
+
+/** AV1 Main Profile, Level 3.0, 8 bit – deckt unsere Hero-Videos ab. */
+const AV1_CODEC = 'video/webm; codecs="av01.0.05M.08"';
+
+function canPlay(type: string): boolean {
+  if (typeof document === 'undefined') return false;
+  const video = document.createElement('video');
+  // canPlayType liefert 'probably', 'maybe' oder '' – nur '' heißt "nein".
+  return video.canPlayType(type) !== '';
+}
+
 export function useVideoSource(
   webm: string | undefined,
   mp4: string | undefined
@@ -19,18 +36,13 @@ export function useVideoSource(
     if (!webm) return mp4;
     if (!mp4) return webm;
 
-    // Check if browser supports WebM
-    if (typeof document !== 'undefined') {
-      const video = document.createElement('video');
-      const canPlayWebm = video.canPlayType('video/webm; codecs="vp9"')
-        || video.canPlayType('video/webm; codecs="vp8"')
-        || video.canPlayType('video/webm');
-      if (canPlayWebm) {
-        return webm;
-      }
-    }
+    if (typeof document === 'undefined') return mp4;
 
-    // Fallback to MP4
+    // AV1 zuerst – die WebM-Fassung ist AV1-kodiert.
+    if (canPlay(AV1_CODEC)) return webm;
+
+    // Kein AV1: H.264-Fassung nehmen. Eine VP9-Prüfung wäre hier falsch,
+    // denn die WebM-Datei enthält kein VP9.
     return mp4;
   }, [webm, mp4]);
 }
