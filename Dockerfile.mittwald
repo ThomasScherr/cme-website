@@ -21,6 +21,14 @@ COPY . .
 # Build the application (Vite frontend + esbuild server + SEO pages)
 RUN pnpm build
 
+# Assets vorkomprimieren (Brotli + gzip).
+# Express komprimiert nicht von sich aus; ohne diesen Schritt gehen die
+# Bundles roh ueber die Leitung – gemessen 739 KB statt 154 KB.
+# server/precompressedAssets.ts liefert die Varianten dann aus.
+# Bewusst hier und nicht im package.json-Build: ausgeliefert wird nur das
+# Image, und der lokale Entwicklungsbuild bleibt schnell.
+RUN node scripts/precompress-assets.mjs
+
 # Expose port 3000
 EXPOSE 3000
 
