@@ -28,6 +28,12 @@ export interface SeoPageMeta {
  * 
  * This is NOT the full crawler data (that lives in prerenderMiddleware).
  * This only contains what's needed for the initial HTML <head>.
+ *
+ * ACHTUNG: Diese Liste entscheidet in vite.ts auch darueber, ob eine URL
+ * ueberhaupt existiert (siehe serveStatic: kein Eintrag => HTTP 404).
+ * Jede neue Seite MUSS hier eingetragen werden, sonst liefert der Server
+ * echten Besuchern 404, waehrend Crawler die Seite ueber die
+ * prerenderMiddleware mit Status 200 sehen.
  */
 export const SEO_PAGES: Record<string, SeoPageMeta> = {
   '/': {
@@ -42,6 +48,11 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
     title: 'Elektronikentwicklung Dortmund | CME',
     description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
     keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
+  },
+  '/elektronikentwicklung-muenchen': {
+    title: 'Elektronikentwicklung München | Leistungselektronik & Thermal Management | CME',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und thermisch anspruchsvolle Baugruppen für Unternehmen im Raum München. Eigene EMS-Fertigung. Jetzt Projekt besprechen.',
+    keywords: 'Elektronikentwicklung München, Leistungselektronik München, Entwicklungsdienstleister München, EMS München, Thermal Management, Antriebselektronik, externe Elektronikentwicklung',
   },
   '/entwicklung': {
     title: 'Elektronikentwicklung Leistungselektronik | CME',
