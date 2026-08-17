@@ -11,6 +11,7 @@ import { redirectMiddleware } from "../redirectMiddleware";
 import { legacyRedirectMiddleware } from "../legacyRedirects";
 import { prerenderMiddleware } from "../prerenderMiddleware";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
+import { nonCanonicalHostNoindexMiddleware } from "../nonCanonicalHostNoindex";
 import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
 import { adminProtectionMiddleware } from "../adminProtectionMiddleware";
 import { registerStorageProxy } from "./storageProxy";
@@ -52,6 +53,10 @@ async function startServer() {
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
     next();
   });
+  // Noindex für nicht-kanonische Hosts (Mittwald-Container-Domain, direkte IP)
+  // MUSS vor allen anderen Route-Middlewares laufen, damit der Header auch auf
+  // Redirects, vorgerenderten und statischen Antworten landet.
+  app.use(nonCanonicalHostNoindexMiddleware());
   // WWW redirect – enforce canonical host (MUST run before all other route middleware)
   app.use(wwwRedirectMiddleware());
   // Trailing-slash normalization – 301 redirect /path → /path/ (ensures trailing slash canonical)
