@@ -5,7 +5,9 @@ import { httpBatchLink, TRPCClientError } from "@trpc/client";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from 'react-helmet-async';
 import superjson from "superjson";
+import { Router } from "wouter";
 import App from "./App";
+import { useLocalizedBrowserLocation } from "@/lib/localizedRouting";
 import { getLoginUrl } from "./const";
 import "./index.css";
 
@@ -57,7 +59,12 @@ createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        {/* Der Router uebersetzt interne Ziele in die Sprache der aktuellen URL.
+            Ohne ihn fuehrte auf /en/... jeder Klick zurueck ins Deutsche und im
+            HTML stuenden nur deutsche Links. Siehe lib/localizedRouting.ts. */}
+        <Router hook={useLocalizedBrowserLocation}>
+          <App />
+        </Router>
       </QueryClientProvider>
     </trpc.Provider>
   </HelmetProvider>
