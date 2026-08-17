@@ -7,6 +7,7 @@ import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
 import { injectSeoTags } from "../seoHtmlInjector";
 import { lookupSeoMeta } from "../seoPageData";
+import { precompressedAssetsMiddleware, assetContentType } from "../precompressedAssets";
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -64,12 +65,22 @@ export function serveStatic(app: Express) {
     );
   }
 
+  const assetsDir = path.resolve(distPath, "assets");
+
+  // Vorkomprimierte Varianten (.br/.gz) bevorzugen – MUSS vor express.static
+  // stehen. Ohne das gingen 739 KB roh raus, wo 154 KB reichen.
+  app.use("/assets", precompressedAssetsMiddleware(assetsDir));
+
   // Static assets (JS, CSS, images) with content-hash in filename: immutable long-cache
-  app.use("/assets", express.static(path.resolve(distPath, "assets"), {
+  app.use("/assets", express.static(assetsDir, {
     maxAge: '365d',
     immutable: true,
-    setHeaders: (res) => {
+    setHeaders: (res, filePath) => {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      // express.static leitet den Content-Type aus der Endung ab – bei .br/.gz
+      // waere das application/octet-stream. Hier den echten Typ zuruecksetzen.
+      const type = assetContentType(filePath);
+      if (type) res.setHeader('Content-Type', type);
     },
   }));
 
