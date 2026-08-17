@@ -3,6 +3,7 @@ import { trpc } from '@/lib/trpc';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, CheckCircle, Loader2, ShieldCheck } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
+import { localizeHref } from '@/lib/localizedRouting';
 
 const GF_IMAGE = 'https://ventspire-cdn.b-cdn.net/cme/cms/media/1776035923976-ac815377bcb7b679.jpg';
 
@@ -256,7 +257,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                   <div className="px-8 pb-8 pt-2">
                     <AnimatePresence mode="wait">
                       {mode === 'nda' ? (
-                        /* ── NDA Form ────────────────────────────── */
+                        /* ── NDA Form ────────────────────────── */
                         <motion.form
                           key="nda-form"
                           initial={{ opacity: 0, y: 10 }}
@@ -383,8 +384,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                             <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
-                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
-                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href={localizeHref("/datenschutz", lang)} target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href={localizeHref("/datenschutz", lang)} target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
                               }
                             </span>
                           </label>
@@ -593,8 +594,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                             />
                             <span className="fluid-small text-gray-600 leading-relaxed">
                               {isDE
-                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
-                                : <>I agree to the processing of my data in accordance with the <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
+                                ? <>Ich stimme der Verarbeitung meiner Daten gemäß der <a href={localizeHref("/datenschutz", lang)} target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">Datenschutzerklärung</a> zu. <span className="text-red-400">*</span></>
+                                : <>I agree to the processing of my data in accordance with the <a href={localizeHref("/datenschutz", lang)} target="_blank" rel="noopener noreferrer" className="text-cme-blue underline hover:text-cme-dark transition-colors">privacy policy</a>. <span className="text-red-400">*</span></>
                               }
                             </span>
                           </label>
