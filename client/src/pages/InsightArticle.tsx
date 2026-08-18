@@ -3,8 +3,7 @@ import SEO from '@/components/SEO';
 import AuthorCard from '@/components/AuthorCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
-import { useRoute } from 'wouter';
-import { Link } from '@/components/LocalizedLink';
+import { useRoute, Link } from 'wouter';
 import { Calendar, ArrowLeft, Tag } from 'lucide-react';
 
 export default function InsightArticle() {
