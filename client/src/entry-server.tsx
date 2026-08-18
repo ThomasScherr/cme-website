@@ -27,6 +27,7 @@ import { HelmetProvider, HelmetData } from "react-helmet-async";
 import { Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
+import { getQueryKey } from "@trpc/react-query";
 import superjson from "superjson";
 import { trpc } from "@/lib/trpc";
 import { useLocalizedBrowserLocation } from "@/lib/localizedRouting";
@@ -46,7 +47,22 @@ export interface RenderResult {
   lang: "de" | "en";
 }
 
-export async function render(url: string): Promise<RenderResult> {
+/**
+ * Daten, die vor dem Rendern in den Zwischenspeicher gelegt werden.
+ *
+ * Serverseitig wird nichts nachgeladen – React Query wartet beim Rendern nicht
+ * auf laufende Abfragen. Was im HTML stehen soll, muss also vorher da sein.
+ * Die festen Seiten brauchen das nicht; die Fachartikel schon, ihre Inhalte
+ * stehen in der Datenbank (siehe server/dynamicPages.ts).
+ */
+export interface RenderSeed {
+  /** Liste veröffentlichter Artikel für /insights */
+  articleList?: unknown;
+  /** Einzelner Artikel für /insights/<slug> */
+  article?: { slug: string; data: unknown };
+}
+
+export async function render(url: string, seed?: RenderSeed): Promise<RenderResult> {
   const helmetData = new HelmetData({});
   const helmetContext = helmetData.context;
 
@@ -62,6 +78,19 @@ export async function render(url: string): Promise<RenderResult> {
       },
     },
   });
+
+  if (seed?.articleList !== undefined) {
+    queryClient.setQueryData(
+      getQueryKey(trpc.articles.listPublished, undefined, "query"),
+      seed.articleList
+    );
+  }
+  if (seed?.article) {
+    queryClient.setQueryData(
+      getQueryKey(trpc.articles.getBySlug, { slug: seed.article.slug }, "query"),
+      seed.article.data
+    );
+  }
 
   const trpcClient = trpc.createClient({
     links: [httpBatchLink({ url: "/api/trpc", transformer: superjson })],
