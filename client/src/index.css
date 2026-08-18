@@ -293,9 +293,14 @@
   }
 
   /* ── Diamond Shape ──
-     A rotated square with rounded corners. 
+     A rotated square with rounded corners.
      The diamond stands UPRIGHT: points at top and bottom.
      Apply to a wrapper div, put <img> inside.
+
+     CAUTION: the rotation lives in `transform`. Giving the element its own
+     `transform` (e.g. to centre or offset it) replaces this one entirely --
+     rotate(45deg) then has to be repeated at the END of that transform, or
+     you are left with a rounded rectangle.
   */
   .diamond {
     position: relative;
