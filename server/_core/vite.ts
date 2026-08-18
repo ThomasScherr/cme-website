@@ -5,10 +5,11 @@ import { nanoid } from "nanoid";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
-import { injectSeoTags } from "../seoHtmlInjector";
+import { buildDocument } from "../buildDocument";
 import { lookupSeoMeta } from "../seoPageData";
 import { precompressedAssetsMiddleware, assetContentType } from "../precompressedAssets";
 import { prerenderedPagesMiddleware } from "../prerenderedPages";
+import { dynamicPagesMiddleware } from "../dynamicPages";
 
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
@@ -43,8 +44,8 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`
       );
 
-      // Inject per-route SEO tags into the HTML before Vite transforms it
-      template = injectSeoTags(template, url);
+      // Kopfdaten aus seoHead – dieselbe Quelle wie beim Vorrendern
+      template = buildDocument(template, url, "");
 
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
@@ -99,22 +100,26 @@ export function serveStatic(app: Express) {
     },
   }));
 
+  // Fachartikel und Artikeluebersicht: Inhalt kommt aus der Datenbank, die beim
+  // Bauen des Images nicht erreichbar war. Muss VOR der vorgerenderten Datei
+  // stehen – /insights hat eine, aber ohne Artikelliste.
+  app.use("*", dynamicPagesMiddleware(distPath));
+
   // Vorgerenderte Seite bevorzugen. Sie enthaelt bereits den fertigen Inhalt
   // und die richtigen Kopfdaten (scripts/prerender.ts). Muss vor der
   // SPA-Ruecklage stehen, sonst ginge fuer jede Route die leere Huelle raus.
   app.use("*", prerenderedPagesMiddleware(distPath));
 
-  // fall through to index.html if the file doesn't exist (SPA routing)
-  // IMPORTANT: Inject per-route SEO tags before serving
+  // Letzte Ruecklage: Verwaltungsseiten und unbekannte Pfade.
   app.use("*", (req, res) => {
     // Die unveraenderte Huelle liegt neben dist/public, weil dist/public/index.html
     // seit dem Vorrendern die Startseite ist (scripts/prerender.ts).
     const shellPath = path.resolve(distPath, "..", "spa-shell.html");
     const indexPath = fs.existsSync(shellPath) ? shellPath : path.resolve(distPath, "index.html");
-    let html = fs.readFileSync(indexPath, 'utf-8');
+    const shell = fs.readFileSync(indexPath, 'utf-8');
 
-    // Inject per-route SEO tags
-    html = injectSeoTags(html, req.originalUrl);
+    // Kopfdaten aus seoHead; der Koerper bleibt leer, der Browser baut auf.
+    const html = buildDocument(shell, req.originalUrl, "");
 
     // Return proper 404 status for unknown routes
     const { meta } = lookupSeoMeta(req.originalUrl);
