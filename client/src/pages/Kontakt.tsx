@@ -127,8 +127,8 @@ export default function Kontakt() {
       <SEO
         titleDE='Kontakt & Anfahrt | CME Dortmund'
         titleEN='Contact & Directions | CME Dortmund'
-        descriptionDE='Kontakt zu CME Control Motion Electronics in Dortmund. Elektronikentwicklung & EMS-Fertigung – Beratung, Projektanfrage oder Besuch vor Ort. Antwort innerhalb 24 h.'
-        descriptionEN='Contact CME Control Motion Electronics in Dortmund. Electronics development & EMS manufacturing – consultation, project inquiry or on-site visit. Response within 24 h.'
+        descriptionDE='Kontakt zu CME Control Motion Electronics in Dortmund. Elektronikentwicklung & EMS-Fertigung – Beratung, Projektanfrage oder Besuch vor Ort. Antwort innerhalb 24 h.'
+        descriptionEN='Contact CME Control Motion Electronics in Dortmund. Electronics development & EMS manufacturing – consultation, project inquiry or on-site visit. Response within 24 h.'
         path='/kontakt'
         enPath='/en/contact'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Kontakt',url:'/kontakt'}]}
@@ -138,7 +138,7 @@ export default function Kontakt() {
         headline={cms('hero.headline')}
         description={cms('hero.description')}
         heroImage={'https://ventspire-cdn.b-cdn.net/cme/portrait_CME_GF_79a8ee20.jpg'}
-        heroImageAlt="Geschäftsführer CME Control Motion Electronics – Matthias Faust und Dirk Müller"
+        heroImageAlt="Geschäftsführung der CME Control Motion Electronics – Steffen Katzer und Matthias Markmann"
         heroVideo={heroVideo}
         heroImagePosition="47% 45%"
         heroImageScale="143%"
