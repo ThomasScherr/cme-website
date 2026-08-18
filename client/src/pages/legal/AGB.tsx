@@ -540,8 +540,8 @@ export default function AGB() {
               <p className="text-gray-400 fluid-xs">
                 CME Control Motion Electronics GmbH, Alter Hellweg 48, 44379 Dortmund<br />
                 {isDE
-                  ? 'Geschäftsführer: Waldemar Stephan · Amtsgericht Dortmund HRB26236'
-                  : 'Managing Director: Waldemar Stephan · District Court Dortmund HRB26236'}
+                  ? 'Geschäftsführer: Steffen Katzer, Matthias Markmann · Amtsgericht Dortmund HRB 26236'
+                  : 'Managing Directors: Steffen Katzer, Matthias Markmann · Amtsgericht Dortmund (Dortmund Local Court) HRB 26236'}
               </p>
             </div>
           </div>
