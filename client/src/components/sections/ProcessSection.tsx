@@ -11,6 +11,7 @@ import {
   LifeBuoy,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { localizeHref } from '@/lib/localizedRouting';
 
 const STEP_ICONS: LucideIcon[] = [
   MessageSquareText,
@@ -169,11 +170,11 @@ export default function ProcessSection({ onCardClick }: ProcessSectionProps) {
         >
           <p className="fluid-body text-gray-500 max-w-xl mx-auto" style={{ marginBottom: 'var(--space-gap-sm)' }}>
             {isDE
-              ? 'Ob Gesamtprojekt oder einzelne Leistungsbereiche \u2013 wir stimmen den Umfang auf Ihren Bedarf ab. Sprechen Sie mit uns \u00fcber Ihr Vorhaben.'
-              : 'Whether a complete project or individual service areas \u2013 we tailor the scope to your needs. Talk to us about your project.'}
+              ? 'Ob Gesamtprojekt oder einzelne Leistungsbereiche – wir stimmen den Umfang auf Ihren Bedarf ab. Sprechen Sie mit uns über Ihr Vorhaben.'
+              : 'Whether a complete project or individual service areas – we tailor the scope to your needs. Talk to us about your project.'}
           </p>
           <a
-            href="/kontakt"
+            href={localizeHref("/kontakt", lang)}
             className="inline-flex items-center gap-2 px-6 py-3 bg-cme-blue text-white rounded-lg font-semibold hover:bg-cme-blue/90 transition-colors duration-200"
             style={{ fontSize: 'var(--fs-body)' }}
           >

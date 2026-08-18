@@ -14,6 +14,7 @@ import { useMemo } from "react";
 import { trpc } from "@/lib/trpc";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PAGES } from "@/lib/contentDefinitions";
+import { localizeHtmlHrefs } from "@/lib/localizedRouting";
 type LangType = "de" | "en";
 
 export interface ContentDefaults {
@@ -77,7 +78,12 @@ export function useContent(pageKey: string, explicitDefaults?: ContentDefaults) 
     return map;
   }, [contentEntries]);
 
-  const t = (key: string): string => {
+  // Redaktionelle Inhalte enthalten HTML mit internen Verweisen (etwa auf die
+  // Datenschutzerklaerung). Die gehen nicht durch wouter, deshalb werden sie
+  // hier uebersetzt – sonst zeigt die englische Seite auf die deutsche.
+  const t = (key: string): string => localizeHtmlHrefs(rawValue(key), language);
+
+  const rawValue = (key: string): string => {
     const fullKey = `${pageKey}.${key}`;
     const dbEntry = contentMap.get(fullKey);
     if (dbEntry) {

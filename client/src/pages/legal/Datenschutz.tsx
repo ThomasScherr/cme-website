@@ -73,14 +73,14 @@ function DatenschutzDE() {
       </p>
 
       {/* 2. Hosting */}
-      <h2 className="text-xl font-bold text-cme-dark mt-10">2. Hosting</h2>
+      <h2 className="text-xl font-bold text-cme-dark mt-10">2. Hosting und technische Dienstleister</h2>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        Wir hosten die Inhalte unserer Website bei einem externen Anbieter (Hoster).
+        Wir hosten die Inhalte unserer Website bei einem externen Anbieter (Hoster). Für die Auslieferung von Bildern und Videos nutzen wir ein Content Delivery Network, für den Versand von E-Mails einen externen Dienstleister. Alle drei Unternehmen haben ihren Sitz in der Europäischen Union.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Externes Hosting</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v.&nbsp;a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
+        Diese Website wird extern gehostet bei der Mittwald CM Service GmbH &amp; Co. KG, Königsberger Straße 4–6, 32339 Espelkamp, Deutschland (nachfolgend „Mittwald“). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf Servern von Mittwald in Deutschland gespeichert. Hierbei kann es sich v.&nbsp;a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.
@@ -88,7 +88,40 @@ function DatenschutzDE() {
 
       <h4 className="text-base font-semibold text-cme-dark mt-4">Auftragsverarbeitung</h4>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.
+        Wir haben mit Mittwald einen Vertrag über Auftragsverarbeitung (AVV) geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gewährleistet, dass Mittwald die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Content Delivery Network (bunny.net)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Bilder, Videos und Downloads dieser Website liefern wir über das Content Delivery Network der BunnyWay d.&nbsp;o.&nbsp;o., Dunajska cesta 165, 1000 Ljubljana, Slowenien (nachfolgend „bunny.net“) aus. Dabei wird Ihre IP-Adresse an bunny.net übermittelt, damit die angeforderte Datei an Ihr Endgerät ausgeliefert werden kann. bunny.net speichert dazu technische Zugriffsdaten wie gekürzte IP-Adresse, aufgerufene Adresse, Ländercode und Browserkennung.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Der Einsatz erfolgt im Interesse einer sicheren, schnellen und ressourcenschonenden Auslieferung unserer Inhalte (Art. 6 Abs. 1 lit. f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG; die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        bunny.net betreibt ein weltweites Netz von Auslieferungsservern. Je nach Ihrem Standort kann Ihre Anfrage daher von einem Server außerhalb der Europäischen Union beantwortet werden. Für diese Fälle ist die Übermittlung auf die Standardvertragsklauseln der EU-Kommission gestützt. Wir haben mit bunny.net einen Vertrag über Auftragsverarbeitung geschlossen.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Weitere Informationen finden Sie in der Datenschutzerklärung von bunny.net:{' '}
+        <a href="https://bunny.net/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://bunny.net/privacy/
+        </a>
+        .
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">E-Mail-Versand (Brevo)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Für den Versand von E-Mails – insbesondere der Benachrichtigungen aus unseren Kontakt- und NDA-Formularen – nutzen wir den Dienst Brevo der Brevo GmbH, Köpenicker Straße 126, 10179 Berlin, Deutschland (Tochtergesellschaft der Sendinblue SAS, 17 rue de Salneuve, 75017 Paris, Frankreich). Die in den Formularen angegebenen Daten werden dabei an Brevo übermittelt und dort zum Zweck des Versands verarbeitet. Die Verarbeitung findet auf Servern innerhalb der Europäischen Union statt.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Grundlage der Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist, sonst unser berechtigtes Interesse an einem zuverlässigen und nachvollziehbaren E-Mail-Versand (Art. 6 Abs. 1 lit. f DSGVO). Wir haben mit Brevo einen Vertrag über Auftragsverarbeitung geschlossen.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Weitere Informationen finden Sie in der Datenschutzerklärung von Brevo:{' '}
+        <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.brevo.com/de/legal/privacypolicy/
+        </a>
+        .
       </p>
 
       {/* 3. Allgemeine Hinweise und Pflichtinformationen */}
@@ -310,17 +343,6 @@ function DatenschutzDE() {
         </a>.
       </p>
 
-      <h3 className="text-lg font-semibold text-cme-dark mt-6">Plausible Analytics</h3>
-      <p className="text-gray-600 leading-relaxed fluid-small">
-        Diese Website nutzt Plausible Analytics, einen datenschutzfreundlichen Webanalysedienst der Plausible Insights OÜ (Västriku tn 2, 50403 Tartu, Estland). Plausible erhebt anonymisierte Nutzungsstatistiken (Seitenaufrufe, Verweisquellen, Gerätetyp, Land) ohne den Einsatz von Cookies oder vergleichbaren Tracking-Technologien. Es werden keine personenbezogenen Daten gespeichert und kein Fingerprinting durchgeführt. IP-Adressen werden ausschließlich zur Geolokalisierung verwendet und nicht gespeichert.
-      </p>
-      <p className="text-gray-600 leading-relaxed fluid-small">
-        Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der statistischen Auswertung der Websitenutzung zur Optimierung unseres Internetangebots. Weitere Informationen finden Sie in der Datenschutzerklärung von Plausible:{' '}
-        <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://plausible.io/data-policy
-        </a>.
-      </p>
-
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Cookie-Consent-Management</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Wir setzen auf unserer Website ein eigenes Cookie-Consent-Tool ein, um Ihre Einwilligung zur Speicherung von Cookies und vergleichbaren Technologien einzuholen und zu verwalten. Beim Aufruf der Website wird ein Cookie-Banner angezeigt, über den Sie der Nutzung bestimmter Cookie-Kategorien zustimmen oder diese ablehnen können. Ihre Einwilligung wird im Local Storage Ihres Browsers gespeichert und kann jederzeit über den Link „Cookie-Einstellungen" im Footer der Website widerrufen werden.
@@ -331,6 +353,24 @@ function DatenschutzDE() {
 
       {/* 6. Plugins und Tools */}
       <h2 className="text-xl font-bold text-cme-dark mt-10">6. Plugins und Tools</h2>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Live-Chat (Crisp)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Auf dieser Website bieten wir einen Live-Chat des Anbieters Crisp IM SAS, 2 Boulevard de Launay, 44100 Nantes, Frankreich (nachfolgend „Crisp“) an. Wenn Sie den Chat öffnen und nutzen, werden die von Ihnen eingegebenen Nachrichten sowie Ihre IP-Adresse, Angaben zu Browser und Endgerät und der Zeitpunkt der Anfrage an Crisp übermittelt und dort verarbeitet, damit wir Ihnen antworten können. Crisp setzt dabei Cookies auf Ihrem Endgerät, um den Gesprächsverlauf einer Sitzung zuordnen zu können.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Der Chat wird erst geladen, nachdem Sie im Cookie-Banner in die Kategorie „Chat“ eingewilligt haben. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit über den Link „Cookie-Einstellungen“ im Footer widerrufbar; wir entfernen den Chat und die von ihm gesetzten Cookies dann wieder. Die Inhalte eines geführten Chats bewahren wir so lange auf, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, längstens bis zum Ablauf gesetzlicher Aufbewahrungsfristen.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Crisp speichert die Chatdaten auf Servern innerhalb der Europäischen Union (Nachrichtendaten in den Niederlanden, ergänzende Daten in Deutschland). Für die Zustellung der Nachrichten betreibt Crisp zusätzlich Vermittlungsserver außerhalb der EU, die keine Inhalte, sondern lediglich Verbindungsprotokolle speichern; für diese Übermittlungen sind die Standardvertragsklauseln der EU-Kommission vereinbart. Wir haben mit Crisp einen Vertrag über Auftragsverarbeitung geschlossen.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Weitere Informationen finden Sie in der Datenschutzerklärung von Crisp:{' '}
+        <a href="https://crisp.chat/en/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://crisp.chat/en/privacy/
+        </a>
+        .
+      </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Fonts (lokales Hosting)</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
@@ -400,17 +440,55 @@ function DatenschutzEN() {
       </p>
 
       {/* 2. Hosting */}
-      <h2 className="text-xl font-bold text-cme-dark mt-10">2. Hosting</h2>
+      <h2 className="text-xl font-bold text-cme-dark mt-10">2. Hosting and Technical Service Providers</h2>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        We host the contents of our website with an external provider (host).
+        We host the contents of our website with an external provider (host). We deliver images and videos via a content delivery network and send emails through an external service provider. All three companies are based in the European Union.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">External Hosting</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        This website is hosted externally. The personal data collected on this website is stored on the host's servers. This may include IP addresses, contact requests, meta and communication data, contract data, contact details, names, website accesses and other data generated via a website.
+        This website is hosted externally by Mittwald CM Service GmbH &amp; Co. KG, Königsberger Straße 4–6, 32339 Espelkamp, Germany (hereinafter “Mittwald”). The personal data collected on this website is stored on Mittwald servers in Germany. This may include IP addresses, contact requests, meta and communication data, contract data, contact details, names, website accesses and other data generated via a website.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        External hosting is carried out for the purpose of fulfilling contracts with our potential and existing customers (Art. 6 para. 1 lit. b GDPR) and in the interest of secure, fast and efficient provision of our online offering by a professional provider (Art. 6 para. 1 lit. f GDPR).
+        External hosting is carried out for the purpose of fulfilling contracts with our potential and existing customers (Art. 6 para. 1 lit. b GDPR) and in the interest of secure, fast and efficient provision of our online offering by a professional provider (Art. 6 para. 1 lit. f GDPR). Where corresponding consent has been requested, processing is carried out exclusively on the basis of Art. 6 para. 1 lit. a GDPR and Section 25 para. 1 TDDDG, insofar as the consent covers the storage of cookies or access to information on the user's device (e.g. device fingerprinting) within the meaning of the TDDDG. Consent can be revoked at any time.
+      </p>
+
+      <h4 className="text-base font-semibold text-cme-dark mt-4">Data Processing Agreement</h4>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        We have concluded a data processing agreement (DPA) with Mittwald. This is a contract required under data protection law which ensures that Mittwald processes the personal data of our website visitors only in accordance with our instructions and in compliance with the GDPR.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Content Delivery Network (bunny.net)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        We deliver images, videos and downloads on this website via the content delivery network of BunnyWay d.&nbsp;o.&nbsp;o., Dunajska cesta 165, 1000 Ljubljana, Slovenia (hereinafter “bunny.net”). Your IP address is transmitted to bunny.net so that the requested file can be delivered to your device. For this purpose, bunny.net stores technical access data such as a shortened IP address, the requested address, country code and browser identifier.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        This service is used in the interest of secure, fast and resource-efficient delivery of our content (Art. 6 para. 1 lit. f GDPR). Where corresponding consent has been requested, processing is carried out exclusively on the basis of Art. 6 para. 1 lit. a GDPR and Section 25 para. 1 TDDDG; consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        bunny.net operates a worldwide network of delivery servers. Depending on your location, your request may therefore be answered by a server outside the European Union. For such cases, the transfer is based on the standard contractual clauses of the EU Commission. We have concluded a data processing agreement with bunny.net.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Further information can be found in the bunny.net privacy policy:{' '}
+        <a href="https://bunny.net/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://bunny.net/privacy/
+        </a>
+        .
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Email Dispatch (Brevo)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        For sending emails – in particular the notifications from our contact and NDA forms – we use the Brevo service provided by Brevo GmbH, Köpenicker Straße 126, 10179 Berlin, Germany (a subsidiary of Sendinblue SAS, 17 rue de Salneuve, 75017 Paris, France). The data you enter in the forms is transmitted to Brevo and processed there for the purpose of dispatch. Processing takes place on servers within the European Union.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        The basis for processing is Art. 6 para. 1 lit. b GDPR if your inquiry is related to the fulfillment of a contract or is necessary for the implementation of pre-contractual measures, otherwise our legitimate interest in reliable and traceable email dispatch (Art. 6 para. 1 lit. f GDPR). We have concluded a data processing agreement with Brevo.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Further information can be found in the Brevo privacy policy:{' '}
+        <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://www.brevo.com/legal/privacypolicy/
+        </a>
+        .
       </p>
 
       {/* 3. General Information and Mandatory Information */}
@@ -449,6 +527,16 @@ function DatenschutzEN() {
         Unless a more specific storage period has been stated within this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies. If you assert a legitimate request for deletion or revoke your consent to data processing, your data will be deleted unless we have other legally permissible reasons for storing your personal data (e.g. tax or commercial law retention periods); in the latter case, deletion will take place after these reasons cease to apply.
       </p>
 
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">General Information on the Legal Bases for Data Processing on This Website</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        If you have consented to data processing, we process your personal data on the basis of Art. 6 para. 1 lit. a GDPR or Art. 9 para. 2 lit. a GDPR, insofar as special categories of data pursuant to Art. 9 para. 1 GDPR are processed. In the case of explicit consent to the transfer of personal data to third countries, data processing is also carried out on the basis of Art. 49 para. 1 lit. a GDPR. If you have consented to the storage of cookies or to access to information on your device (e.g. via device fingerprinting), data processing is additionally carried out on the basis of Section 25 para. 1 TDDDG. Consent can be revoked at any time. If your data is required for the fulfillment of a contract or for the implementation of pre-contractual measures, we process your data on the basis of Art. 6 para. 1 lit. b GDPR. Furthermore, we process your data if it is necessary for the fulfillment of a legal obligation, on the basis of Art. 6 para. 1 lit. c GDPR. Data processing may also be carried out on the basis of our legitimate interest pursuant to Art. 6 para. 1 lit. f GDPR. Information on the legal bases relevant in each individual case is provided in the following paragraphs of this privacy policy.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Recipients of Personal Data</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        In the course of our business activities, we work together with various external parties. This sometimes also requires the transfer of personal data to these external parties. We only pass on personal data to external parties if this is necessary in the context of fulfilling a contract, if we are legally obliged to do so (e.g. transfer of data to tax authorities), if we have a legitimate interest in the transfer pursuant to Art. 6 para. 1 lit. f GDPR, or if another legal basis permits the transfer. When using processors, we only pass on personal data of our customers on the basis of a valid data processing agreement. In the case of joint processing, a joint processing agreement is concluded.
+      </p>
+
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Revocation of Your Consent to Data Processing</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Many data processing operations are only possible with your express consent. You can revoke consent that has already been given at any time. The legality of the data processing carried out until the revocation remains unaffected by the revocation.
@@ -456,12 +544,15 @@ function DatenschutzEN() {
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Right to Object to Data Collection in Special Cases and to Direct Marketing (Art. 21 GDPR)</h3>
       <p className="text-gray-600 leading-relaxed fluid-small font-semibold uppercase">
-        IF DATA PROCESSING IS BASED ON ART. 6 PARA. 1 LIT. E OR F GDPR, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION; THIS ALSO APPLIES TO PROFILING BASED ON THESE PROVISIONS. IF YOU OBJECT, WE WILL NO LONGER PROCESS YOUR AFFECTED PERSONAL DATA UNLESS WE CAN DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING WHICH OVERRIDE YOUR INTERESTS, RIGHTS AND FREEDOMS, OR THE PROCESSING SERVES THE ASSERTION, EXERCISE OR DEFENSE OF LEGAL CLAIMS (OBJECTION PURSUANT TO ART. 21 PARA. 1 GDPR).
+        IF DATA PROCESSING IS BASED ON ART. 6 PARA. 1 LIT. E OR F GDPR, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION; THIS ALSO APPLIES TO PROFILING BASED ON THESE PROVISIONS. THE RESPECTIVE LEGAL BASIS ON WHICH PROCESSING IS BASED CAN BE FOUND IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL NO LONGER PROCESS YOUR AFFECTED PERSONAL DATA UNLESS WE CAN DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING WHICH OVERRIDE YOUR INTERESTS, RIGHTS AND FREEDOMS, OR THE PROCESSING SERVES THE ASSERTION, EXERCISE OR DEFENSE OF LEGAL CLAIMS (OBJECTION PURSUANT TO ART. 21 PARA. 1 GDPR).
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small font-semibold uppercase">
+        IF YOUR PERSONAL DATA IS PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, YOU HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF PERSONAL DATA CONCERNING YOU FOR THE PURPOSE OF SUCH ADVERTISING; THIS ALSO APPLIES TO PROFILING INSOFAR AS IT IS RELATED TO SUCH DIRECT MARKETING. IF YOU OBJECT, YOUR PERSONAL DATA WILL SUBSEQUENTLY NO LONGER BE USED FOR THE PURPOSE OF DIRECT MARKETING (OBJECTION PURSUANT TO ART. 21 PARA. 2 GDPR).
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Right to Lodge a Complaint with the Competent Supervisory Authority</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        In the event of violations of the GDPR, data subjects have the right to lodge a complaint with a supervisory authority, in particular in the Member State of their habitual residence, their place of work or the place of the alleged violation.
+        In the event of violations of the GDPR, data subjects have the right to lodge a complaint with a supervisory authority, in particular in the Member State of their habitual residence, their place of work or the place of the alleged violation. The right to lodge a complaint exists without prejudice to other administrative or judicial remedies.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Right to Data Portability</h3>
@@ -472,6 +563,11 @@ function DatenschutzEN() {
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Information, Correction and Deletion</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Within the framework of the applicable legal provisions, you have the right to free information about your stored personal data, its origin and recipients and the purpose of data processing and, if applicable, a right to correction or deletion of this data at any time. You can contact us at any time regarding this and other questions on the subject of personal data.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Right to Restriction of Processing</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        You have the right to request the restriction of the processing of your personal data. You can contact us at any time for this purpose. The right to restriction of processing exists in the following cases: If you dispute the accuracy of your personal data stored by us, we generally need time to verify this. For the duration of the review, you have the right to request the restriction of the processing of your personal data. If the processing of your personal data was or is unlawful, you can request the restriction of data processing instead of erasure. If we no longer need your personal data but you need it to exercise, defend or assert legal claims, you have the right to request the restriction of the processing of your personal data instead of erasure. If you have lodged an objection pursuant to Art. 21 para. 1 GDPR, a balance must be struck between your interests and ours. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data. If you have restricted the processing of your personal data, this data may – apart from being stored – only be processed with your consent or for the assertion, exercise or defense of legal claims, or for the protection of the rights of another natural or legal person, or for reasons of important public interest of the European Union or a Member State.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">SSL or TLS Encryption</h3>
@@ -490,7 +586,13 @@ function DatenschutzEN() {
         Our website uses so-called "cookies." Cookies are small data packets and do not cause any damage to your device. They are stored either temporarily for the duration of a session (session cookies) or permanently (permanent cookies) on your device. Session cookies are automatically deleted after your visit. Permanent cookies remain stored on your device until you delete them yourself or they are automatically deleted by your web browser.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        Technically necessary cookies are stored on the basis of Art. 6 para. 1 lit. f GDPR. The website operator has a legitimate interest in storing technically necessary cookies for the technically error-free and optimized provision of its services.
+        Cookies may originate from us (first-party cookies) or from third-party companies (so-called third-party cookies). Third-party cookies enable the integration of certain services from third-party companies within websites (e.g. cookies for processing payment services).
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Technically necessary cookies are stored on the basis of Art. 6 para. 1 lit. f GDPR. The website operator has a legitimate interest in storing technically necessary cookies for the technically error-free and optimized provision of its services. Where consent to the storage of cookies and comparable recognition technologies has been requested, processing is carried out exclusively on the basis of this consent (Art. 6 para. 1 lit. a GDPR and Section 25 para. 1 TDDDG); consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        You can set your browser so that you are informed about the setting of cookies and only allow cookies in individual cases, exclude the acceptance of cookies for certain cases or in general, and activate the automatic deletion of cookies when closing the browser. If cookies are deactivated, the functionality of this website may be limited.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Contact Form</h3>
@@ -499,6 +601,20 @@ function DatenschutzEN() {
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         The processing of this data is based on Art. 6 para. 1 lit. b GDPR if your inquiry is related to the fulfillment of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of the inquiries addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this was requested; the consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        The data you enter in the contact form will remain with us until you request deletion, revoke your consent to storage, or the purpose for storing the data no longer applies (e.g. after your inquiry has been processed). Mandatory statutory provisions – in particular retention periods – remain unaffected.
+      </p>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Inquiry by Email, Telephone or Fax</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        If you contact us by email, telephone or fax, your inquiry, including all resulting personal data (name, inquiry), will be stored and processed by us for the purpose of handling your request. We do not share this data without your consent.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        The processing of this data is based on Art. 6 para. 1 lit. b GDPR if your inquiry is related to the fulfillment of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of the inquiries addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this was requested; the consent can be revoked at any time.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        The data you send us via contact requests will remain with us until you request deletion, revoke your consent to storage, or the purpose for storing the data no longer applies (e.g. after your request has been processed). Mandatory statutory provisions – in particular statutory retention periods – remain unaffected.
       </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Server Log Files</h3>
@@ -582,20 +698,9 @@ function DatenschutzEN() {
         </a>.
       </p>
 
-      <h3 className="text-lg font-semibold text-cme-dark mt-6">Plausible Analytics</h3>
-      <p className="text-gray-600 leading-relaxed fluid-small">
-        This website uses Plausible Analytics, a privacy-friendly web analytics service provided by Plausible Insights OÜ (Västriku tn 2, 50403 Tartu, Estonia). Plausible collects anonymized usage statistics (page views, referral sources, device type, country) without using cookies or comparable tracking technologies. No personal data is stored and no fingerprinting is performed. IP addresses are used solely for geolocation and are not stored.
-      </p>
-      <p className="text-gray-600 leading-relaxed fluid-small">
-        Processing is based on Art. 6(1)(f) GDPR. Our legitimate interest lies in the statistical evaluation of website usage to optimize our online offering. Further information can be found in Plausible's data policy:{' '}
-        <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
-          https://plausible.io/data-policy
-        </a>.
-      </p>
-
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Cookie Consent Management</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        We use our own cookie consent tool on our website to obtain and manage your consent for the storage of cookies and comparable technologies. When you visit the website, a cookie banner is displayed through which you can consent to or reject certain cookie categories. Your consent is stored in your browser's local storage and can be revoked at any time via the \"Cookie Settings\" link in the website footer.
+        We use our own cookie consent tool on our website to obtain and manage your consent for the storage of cookies and comparable technologies. When you visit the website, a cookie banner is displayed through which you can consent to or reject certain cookie categories. Your consent is stored in your browser's local storage and can be revoked at any time via the “Cookie Settings” link in the website footer.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         Processing is based on Art. 6(1)(c) GDPR and Section 25(1) TDDDG, as the website operator is legally obligated to obtain user consent for the processing of certain data.
@@ -603,6 +708,24 @@ function DatenschutzEN() {
 
       {/* 6. Plugins and Tools */}
       <h2 className="text-xl font-bold text-cme-dark mt-10">6. Plugins and Tools</h2>
+
+      <h3 className="text-lg font-semibold text-cme-dark mt-6">Live Chat (Crisp)</h3>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        We offer a live chat on this website provided by Crisp IM SAS, 2 Boulevard de Launay, 44100 Nantes, France (hereinafter “Crisp”). When you open and use the chat, the messages you enter as well as your IP address, information about your browser and device, and the time of the enquiry are transmitted to Crisp and processed there so that we can reply to you. Crisp sets cookies on your device in order to associate the conversation with a session.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        The chat is only loaded after you have consented to the “Chat” category in the cookie banner. The legal basis is your consent pursuant to Art. 6(1)(a) GDPR and Section 25(1) TDDDG. Consent can be revoked at any time via the “Cookie Settings” link in the footer; we then remove the chat and the cookies it has set. We retain the contents of a chat for as long as is necessary to process your enquiry, at the longest until statutory retention periods expire.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Crisp stores chat data on servers within the European Union (message data in the Netherlands, supplementary data in Germany). For message delivery, Crisp also operates relay servers outside the EU which store no content, only connection logs; the EU Commission’s standard contractual clauses have been agreed for these transfers. We have concluded a data processing agreement with Crisp.
+      </p>
+      <p className="text-gray-600 leading-relaxed fluid-small">
+        Further information can be found in Crisp’s privacy policy:{' '}
+        <a href="https://crisp.chat/en/privacy/" target="_blank" rel="noopener noreferrer" className="text-cme-blue underline">
+          https://crisp.chat/en/privacy/
+        </a>
+        .
+      </p>
 
       <h3 className="text-lg font-semibold text-cme-dark mt-6">Google Fonts (Local Hosting)</h3>
       <p className="text-gray-600 leading-relaxed fluid-small">

@@ -40,6 +40,15 @@ export default function Impressum() {
             </p>
 
             <h2 className="text-xl font-bold text-cme-dark mt-8">
+              {isDE ? 'Registereintrag' : 'Register Entry'}
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              {isDE ? 'Eintragung im Handelsregister' : 'Entry in the commercial register'}<br />
+              {isDE ? 'Registergericht: Amtsgericht Dortmund' : 'Register court: Dortmund Local Court (Amtsgericht Dortmund)'}<br />
+              {isDE ? 'Registernummer' : 'Register number'}: HRB 26236
+            </p>
+
+            <h2 className="text-xl font-bold text-cme-dark mt-8">
               {isDE ? 'Kontakt' : 'Contact'}
             </h2>
             <p className="text-gray-600 leading-relaxed">

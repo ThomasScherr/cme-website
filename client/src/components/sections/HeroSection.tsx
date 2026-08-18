@@ -10,12 +10,33 @@ const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-poster.webp'
 
 // ─── Typewriter Hook (with language-aware reset) ───
 function useTypewriter(lines: string[], lang: string, typingSpeed = 60, pauseBetweenLines = 400, pauseBeforeAccent = 3000) {
-  const [displayedLines, setDisplayedLines] = useState<string[]>(['']);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  // Anfangszustand ist die VOLLSTAENDIGE Ueberschrift, nicht der leere String.
+  //
+  // Grund: Die Ueberschrift wird per Schreibmaschineneffekt aufgebaut. Startete
+  // der Zustand leer, stuende im ausgelieferten HTML ein leeres <h1> – auf der
+  // wichtigsten Seite ueberhaupt. Genau das sieht ein Crawler ohne JavaScript,
+  // und genau das sieht Google beim ersten Durchgang.
+  //
+  // Der erste Durchlauf im Browser rendert dasselbe wie der Server (sonst gaebe
+  // es einen Hydrations-Konflikt); erst der Effekt unten setzt zurueck und
+  // laesst den Effekt laufen. Fuer Besucher aendert sich nichts.
+  const [displayedLines, setDisplayedLines] = useState<string[]>(lines);
+  const [currentLineIndex, setCurrentLineIndex] = useState(lines.length);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
-  const [phase, setPhase] = useState<'typing' | 'pause' | 'done'>('typing');
+  const [phase, setPhase] = useState<'typing' | 'pause' | 'done'>('done');
   const prevLangRef = useRef(lang);
+  const startedRef = useRef(false);
+
+  // Nach dem Hydratisieren zuruecksetzen und den Effekt starten.
+  useEffect(() => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    setDisplayedLines(['']);
+    setCurrentLineIndex(0);
+    setCurrentCharIndex(0);
+    setPhase('typing');
+  }, []);
 
   // Reset everything when language changes
   useEffect(() => {

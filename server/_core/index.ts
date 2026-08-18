@@ -9,7 +9,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { redirectMiddleware } from "../redirectMiddleware";
 import { legacyRedirectMiddleware } from "../legacyRedirects";
-import { prerenderMiddleware } from "../prerenderMiddleware";
+import { sitemapHandler } from "../sitemap";
 import { wwwRedirectMiddleware } from "../wwwRedirectMiddleware";
 import { nonCanonicalHostNoindexMiddleware } from "../nonCanonicalHostNoindex";
 import { trailingSlashMiddleware } from "../trailingSlashMiddleware";
@@ -63,12 +63,14 @@ async function startServer() {
   app.use(trailingSlashMiddleware());
   // Legacy URL redirects – maps old website paths to new structure (301)
   app.use(legacyRedirectMiddleware());
-  // Redirect middleware – checks DB for active redirects before serving pages (MUST run before prerender)
+  // Redirect middleware – checks DB for active redirects before serving pages
   app.use(redirectMiddleware());
   // Admin route protection – blocks crawlers with 403/noindex, sets X-Robots-Tag for all /admin/* requests
   app.use(adminProtectionMiddleware());
-  // Pre-render middleware – serves static HTML to crawlers for SEO
-  app.use(prerenderMiddleware());
+  // sitemap.xml wird bei jedem Abruf erzeugt – aus denselben Quellen wie die
+  // Seiten selbst, samt Fachartikeln und lastmod. Die frueher gepflegte Datei
+  // client/public/sitemap.xml entfaellt; sie war bereits falsch.
+  app.get("/sitemap.xml", sitemapHandler());
   // Storage proxy – serves /manus-storage/* paths via Forge presigned URLs
   registerStorageProxy(app);
   // Download proxy – serves files under /api/downloads/:key and /api/media/:key (neutral URLs)

@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { localizePath, toEnPath } from '@shared/routes';
 
 const SITE_NAME = 'CME';
 const BASE_URL = 'https://control-motion.de';
@@ -139,10 +140,21 @@ export default function SEO({
   const canonicalUrl = `${BASE_URL}${path === '/' ? '/' : path + '/'}`;
   const image = ogImage || DEFAULT_OG_IMAGE;
 
+  // Der englische Pfad kommt aus shared/routes.ts. Die Eigenschaft enPath
+  // bleibt als Ausnahme möglich, wird aber nicht mehr gebraucht – so steht die
+  // Zuordnung nur noch an einer Stelle.
+  const enHref = enPath ?? toEnPath(path);
+
   const schemas: Record<string, unknown>[] = [];
 
   if (breadcrumbs && breadcrumbs.length > 0) {
-    schemas.push(buildBreadcrumbSchema(breadcrumbs));
+    // Auf englischen Seiten müssen auch die Breadcrumb-URLs englisch sein,
+    // sonst zeigen die strukturierten Daten auf die deutsche Fassung.
+    schemas.push(
+      buildBreadcrumbSchema(
+        breadcrumbs.map(item => ({ ...item, url: localizePath(item.url, lang) }))
+      )
+    );
   }
 
   if (additionalSchemas) {
@@ -150,6 +162,19 @@ export default function SEO({
   }
 
   return (
+    <>
+    {/* Strukturierte Daten stehen bewusst NICHT im Helmet.
+        Helmet schreibt erst nach dem Hydratisieren ins Dokument – im
+        vorgerenderten HTML fehlten die Angaben damit vollstaendig, also genau
+        dort, wo Crawler ohne JavaScript sie lesen. Als <script> im Koerper
+        sind sie fuer Google gleichwertig und stehen sofort im Quelltext. */}
+    {schemas.map((schema, i) => (
+      <script
+        key={i}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+    ))}
     <Helmet>
       {/* Basic */}
       <title>{fullTitle}</title>
@@ -161,7 +186,7 @@ export default function SEO({
 
       {/* hreflang */}
       <link rel="alternate" hrefLang="de" href={canonicalUrl} />
-      {enPath && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${enPath}/`} />}
+      {enHref && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${enHref}/`} />}
       <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       {/* Open Graph */}
@@ -179,13 +204,8 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {/* JSON-LD Schemas */}
-      {schemas.map((schema, i) => (
-        <script key={i} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      ))}
     </Helmet>
+    </>
   );
 }
 
