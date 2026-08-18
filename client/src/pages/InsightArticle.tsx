@@ -9,8 +9,12 @@ import { Calendar, ArrowLeft, Tag } from 'lucide-react';
 export default function InsightArticle() {
   const { lang } = useLanguage();
   const isDE = lang === 'de';
-  const [, params] = useRoute('/insights/:slug');
-  const slug = params?.slug || '';
+  // Beide Sprachfassungen abfragen: /insights/<slug> und /en/insights/<slug>.
+  // Vorher stand hier nur der deutsche Pfad – auf der englischen Route blieb
+  // der Slug leer und die Seite zeigte dauerhaft den Ladezustand.
+  const [, deParams] = useRoute('/insights/:slug');
+  const [, enParams] = useRoute('/en/insights/:slug');
+  const slug = deParams?.slug || enParams?.slug || '';
   // Validate slug: must not be empty, must not look like a URL parameter, must be a valid slug format
   const isValidSlug = !!slug && !slug.startsWith(':') && /^[a-z0-9][a-z0-9-]*[a-z0-9]$/.test(slug);
   const { data: article, isLoading } = trpc.articles.getBySlug.useQuery({ slug }, { enabled: isValidSlug });

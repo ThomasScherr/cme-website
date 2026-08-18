@@ -162,6 +162,19 @@ export default function SEO({
   }
 
   return (
+    <>
+    {/* Strukturierte Daten stehen bewusst NICHT im Helmet.
+        Helmet schreibt erst nach dem Hydratisieren ins Dokument – im
+        vorgerenderten HTML fehlten die Angaben damit vollstaendig, also genau
+        dort, wo Crawler ohne JavaScript sie lesen. Als <script> im Koerper
+        sind sie fuer Google gleichwertig und stehen sofort im Quelltext. */}
+    {schemas.map((schema, i) => (
+      <script
+        key={i}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+    ))}
     <Helmet>
       {/* Basic */}
       <title>{fullTitle}</title>
@@ -191,13 +204,8 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {/* JSON-LD Schemas */}
-      {schemas.map((schema, i) => (
-        <script key={i} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      ))}
     </Helmet>
+    </>
   );
 }
 

@@ -157,10 +157,15 @@ export default function LandingMuenchen() {
                 <div
                   className="absolute diamond bg-cme-blue/[0.07]"
                   style={{
-                    width: 'clamp(420px, 33vw, 630px)',
+                    // Durchgehend 10 % groesser als die Videoraute.
+                    width: 'clamp(396px, 33vw, 627px)',
                     top: '50%',
                     left: '50%',
-                    transform: 'translate(-50%, -50%) translate(8%, 8%)',
+                    // .diamond dreht ueber transform; ein eigenes transform
+                    // ersetzt das der Klasse. rotate(45deg) deshalb hier
+                    // wiederholen - und zwar zuletzt, damit der Versatz in
+                    // Bildschirmachsen wirkt und nicht mitgedreht wird.
+                    transform: 'translate(-50%, -50%) translate(9%, 9%) rotate(45deg)',
                     zIndex: 1,
                   }}
                 />
