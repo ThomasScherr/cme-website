@@ -310,7 +310,7 @@ function AGBContentEN() {
         (4) Partial deliveries and early deliveries are generally reserved.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (5) In the event of a delay in delivery attributable to us, the customer is entitled to claim damages of up to 0.5% of the delivery value per completed week of delay, but not exceeding 5% in total. If the customer sets us a reasonable deadline in the event of a delivery delay and this expires without success, the customer is entitled to withdraw from the contract. The grace period for development services must be at least 15 working days. Damages in lieu of performance are limited to 50% of the damage incurred; only the typical and foreseeable contractual damage shall be taken into account.
+        (5) In the event of a delay in delivery attributable to us, the customer is entitled to claim damages of up to 0.5% of the delivery value per completed week of delay, but not exceeding 5% in total. If the customer sets us a deadline that is reasonable under the circumstances in the event of a delivery delay and this expires without success, the customer is entitled to withdraw from the contract. The grace period for development services must be at least 15 working days. After it has expired without result, the customer is entitled to withdraw from the contract in writing. Damages in lieu of performance are limited to 50% of the damage incurred; only the typical and foreseeable contractual damage shall be taken into account. The above provisions apply accordingly if we render performance only in part. A prerequisite for claiming damages in lieu of performance is that the breach of duty attributable to us is not insignificant.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         (6) The above provision does not apply if the contract is a fixed-date transaction within the meaning of § 376 HGB (German Commercial Code). The same applies if the customer's interest has ceased as a result of the delay.
@@ -322,27 +322,27 @@ function AGBContentEN() {
         (8) If partial services are reasonable for the client and ultimately have no influence on the intended scope of services and the intended service period, they may be performed and invoiced.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (9) The schedule agreed in the order confirmation applies to the execution of development work. In accordance with the development character of the projects, the dates and deadlines agreed in the schedule are only guidelines unless the contrary is expressly agreed in writing. The client is required to provide the following cooperation:
+        (9) The schedule agreed in the order confirmation applies to the execution of development work. In accordance with the development character of the projects, the dates and deadlines agreed in the schedule are only guidelines unless the contrary is expressly agreed in writing. In any case, performance periods and dates are stated subject to the client providing cooperation in accordance with the contract. The client is required to provide the following cooperation in every case:
       </p>
       <ul className="text-gray-600 leading-relaxed fluid-small list-disc pl-6">
-        <li>(a) Designate a contact person equipped with all necessary competencies no later than the start of the project.</li>
-        <li>(b) Ensure that we have access to their development areas as required for the project.</li>
-        <li>(c) Provide us with a suitable email account for data and information exchange for the duration of the project.</li>
+        <li>(a) The client shall, as shall we, designate a contact person equipped with all necessary competencies no later than the start of the project.</li>
+        <li>(b) The client shall ensure that we have access to their development areas insofar as this is necessary in terms of subject matter and timing for carrying out the project.</li>
+        <li>(c) The client shall provide us with a suitable email account for the exchange of data and information for the duration of the project.</li>
       </ul>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        Compliance with our performance obligation requires the timely and proper fulfilment of the client's obligations. If the client is in default of payment for a previous service, we are entitled to withhold our services.
+        Compliance with our performance obligation requires the timely and proper fulfilment of the client's obligations. If the client is in default of payment for a previous service, we are entitled to withhold our services. The client cannot derive any rights from such justified withholding.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         (10) If we ourselves are not supplied correctly or on time, despite having placed sufficient orders with reliable suppliers, we shall be released from our performance obligation and may withdraw from the contract immediately.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (11) If an agreed deadline cannot be met due to temporary impediments to performance not attributable to us (e.g. inadequate self-supply, force majeure, energy and raw material shortages, industrial action, transport disruptions, illness) at our premises or those of our suppliers, it shall be extended appropriately. If the obstructing circumstances persist one month after the agreed deadline, either party may withdraw from the contract in writing.
+        (11) If an agreed deadline cannot be met due to temporary impediments to performance not attributable to us (e.g. inadequate self-supply, force majeure, energy and raw material shortages, industrial action, transport disruptions, illness) at our premises or those of our suppliers, it shall be extended appropriately. We will inform the client of such a case without delay. If the obstructing circumstances persist one month after the agreed deadline has expired, either party may withdraw from the contract in writing. Further claims due to an exceeding of the performance period for which we are not responsible are excluded.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (12) Claims by the client due to exclusion of the performance obligation and due to an impediment to performance at the time of contract conclusion are limited to 50% of the damage or expense incurred; only the typical foreseeable contractual damage or expense shall be taken into account.
+        (12) Claims by the client due to exclusion of the performance obligation and due to an impediment to performance at the time of contract conclusion are limited to 50% of the damage or expense incurred; only the typical foreseeable contractual damage or expense shall be taken into account. The same applies accordingly if we render performance only in part.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (13) Statutory liability for damages arising from injury to life, body or health based on a breach of duty attributable to us remains unaffected. Our liability is limited to the typical foreseeable contractual damage if the breach of duty constitutes a violation of a material contractual obligation.
+        (13) Statutory liability applies for damages arising from injury to life, body or health based on a breach of duty attributable to us, and for other damages if the breach of duty is based on intent or gross negligence. Our liability is limited to the typical foreseeable contractual damage if the breach of duty constitutes a violation of a material contractual obligation.
       </p>
 
       {/* § 5 Transfer of Risk, Dispatch, Packaging */}
@@ -372,10 +372,10 @@ function AGBContentEN() {
         (2) Our prices are based on the cost factors applicable at the time of submission of the offer (order confirmation). If these change between the time of contract conclusion and delivery, we reserve the right to adjust the price in reasonable proportion to the increased costs.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (3) All payments by the customer are to be made without any deduction by bank transfer to our bank account at the specified dates. The customer is only entitled to set-off rights with undisputed or legally established claims.
+        (3) All payments by the customer are to be made without any deduction by bank transfer to our bank account at the specified dates. The customer is only entitled to set-off rights with undisputed or legally established claims; in these cases the customer is also entitled to withhold payment. The customer is further entitled to withhold payment if the reason for the right of retention lies in a defect in the delivery for which we are responsible; in these cases the right of retention may only be exercised in proportion to the defect.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
-        (4) If changes occur in the customer's financial circumstances after the date of our order confirmation that are likely to jeopardise fulfilment of payment obligations, we are entitled to withhold delivery or demand security. If the customer does not comply with our demand for security within 10 working days, we are entitled to withdraw from the contract.
+        (4) If changes occur in the customer's financial circumstances after the date of our order confirmation that are likely to jeopardise fulfilment of payment obligations, we are entitled to withhold delivery of the goods or demand security. If the customer does not comply with our demand for security within a period of 10 working days, we are entitled to withdraw from the contract and may, in addition to remuneration for all services rendered to date, demand compensation for standby costs amounting to the average monthly remuneration calculated over the last three months.
       </p>
       <p className="text-gray-600 leading-relaxed fluid-small">
         (5) Our representatives and sales staff are not authorised to accept payments or means of payment unless they have collection authority.
