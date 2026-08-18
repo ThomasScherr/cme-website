@@ -20,7 +20,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { ROUTE_PAIRS, DE_PATHS_WITH_EN } from "../shared/routes";
 import { SEO_PAGES } from "../server/seoPageData";
-import { buildHead } from "../server/seoHead";
+import { buildDocument } from "../server/buildDocument";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const DIST_DIR = path.resolve(ROOT, "dist");
@@ -38,13 +38,20 @@ const ENTRY = path.resolve(DIST_DIR, "server-entry", "entry-server.js");
  */
 const SHELL = path.resolve(DIST_DIR, "spa-shell.html");
 
+// Fuer die Tests weiterreichen – gebaut wird das Dokument in server/buildDocument.ts,
+// weil zur Laufzeit dieselbe Logik fuer die Fachartikel gebraucht wird.
+export { buildDocument };
+
 /**
  * Alle Seiten, die vorgerendert werden.
  *
  * Grundlage sind die SEO-Daten – dieselbe Liste, die in vite.ts darüber
  * entscheidet, ob eine URL überhaupt existiert. Dazu die englischen
- * Entsprechungen aus shared/routes.ts. Die Fachartikel aus der Datenbank
- * kommen im nächsten Schritt dazu.
+ * Entsprechungen aus shared/routes.ts.
+ *
+ * NICHT dabei sind die Fachartikel: ihre Inhalte stehen in der Datenbank, die
+ * beim Bauen des Images nicht erreichbar ist. Sie werden zur Laufzeit gerendert
+ * und zwischengespeichert – siehe server/dynamicPages.ts.
  */
 export function collectRoutes(): string[] {
   const de = Object.keys(SEO_PAGES);
@@ -56,43 +63,6 @@ export function collectRoutes(): string[] {
 function outputPathFor(route: string): string {
   const clean = route === "/" ? "" : route.replace(/^\/+/, "");
   return path.join(PUBLIC_DIR, clean, "index.html");
-}
-
-/**
- * Setzt Kopfdaten und Inhalt in die gebaute Hülle ein.
- *
- * Die Hülle enthält bereits die richtigen Asset-Verweise mit Inhalts-Hash,
- * deshalb wird sie als Vorlage benutzt statt client/index.html.
- */
-export function buildDocument(template: string, route: string, appHtml: string): string {
-  const { tags, lang } = buildHead(route);
-
-  let doc = template;
-
-  // Sprache des Dokuments
-  doc = doc.replace(/<html\s+lang="[^"]*"/, `<html lang="${lang}"`);
-
-  // Titel und Beschreibung der Hülle entfernen – sie kommen jetzt aus seoHead
-  doc = doc.replace(/\s*<title>[\s\S]*?<\/title>/, "");
-  doc = doc.replace(/\s*<meta\s+name="description"[^>]*>/, "");
-
-  // Kopfdaten in den vorgesehenen Block schreiben
-  const block = `<!--SEO_BLOCK_START-->\n    ${tags}\n    <!--SEO_BLOCK_END-->`;
-  if (doc.includes("<!--SEO_BLOCK_START-->")) {
-    doc = doc.replace(/<!--SEO_BLOCK_START-->[\s\S]*?<!--SEO_BLOCK_END-->/, block);
-  } else {
-    doc = doc.replace("</head>", `  ${block}\n  </head>`);
-  }
-
-  // Gerendertes Markup einsetzen
-  const rootTag = '<div id="root">';
-  const start = doc.indexOf(rootTag);
-  if (start === -1) throw new Error('In der Vorlage fehlt <div id="root">');
-  const end = doc.indexOf("</div>", start);
-  if (end === -1) throw new Error('In der Vorlage fehlt das schliessende </div> nach #root');
-  doc = doc.slice(0, start + rootTag.length) + appHtml + doc.slice(end);
-
-  return doc;
 }
 
 /** Vorlage lesen: bevorzugt die beiseitegelegte Hülle, sonst der frische Build. */
