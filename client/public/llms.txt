@@ -8,7 +8,7 @@
 - Branche: Elektronikentwicklung und EMS-Fertigung (Electronic Manufacturing Services)
 - Standort: Dortmund, Nordrhein-Westfalen, Deutschland
 - Website: https://control-motion.de
-- Gründung: 2001
+- Gründung: 2008
 - Mitarbeiter: ca. 60
 - Zertifizierungen: ISO 9001, ISO 14001, IPC-A-610, IPC J-STD-001
 

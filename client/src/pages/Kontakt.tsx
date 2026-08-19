@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEO, { localBusinessSchema } from '@/components/SEO';
 import Layout from '@/components/Layout';
 import SubPageHero from '@/components/SubPageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -132,6 +132,9 @@ export default function Kontakt() {
         path='/kontakt'
         enPath='/en/contact'
         breadcrumbs={[{name:'Home',url:'/'},{name:'Kontakt',url:'/kontakt'}]}
+        /* Die Kontaktseite ist das Ziel lokaler Suchanfragen. Das
+           LocalBusiness-Signal stand bisher nur auf der Startseite. */
+        additionalSchemas={[localBusinessSchema]}
       />
       <SubPageHero
         tagline={cms('hero.tagline')}

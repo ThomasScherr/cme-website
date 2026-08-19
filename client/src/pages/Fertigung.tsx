@@ -24,12 +24,12 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-/* ══════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    16 FAQs in 3 Clustern – bilingual (DE / EN)
    Cluster 1: Prozess & Kapazität (FAQ 1–5)
    Cluster 2: Technologie & Qualität (FAQ 6–11)
    Cluster 3: Zusammenarbeit & Konditionen (FAQ 12–16)
-   ══════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════ */
 
 const faqCluster1 = [
   {
@@ -198,14 +198,14 @@ const capabilities = [
   {
     de: 'SMD-Bestückung', en: 'SMD Assembly', icon: Cpu,
     bulletsDE: [
-      'Hochpräzise Bestückung bis 01005 und 0,4\u00a0mm Pitch – BGA, QFN, LGA und Fine-Pitch-Bauformen',
+      'Hochpräzise Bestückung bis 01005 und 0,4 mm Pitch – BGA, QFN, LGA und Fine-Pitch-Bauformen',
       'Flexible Linien für Prototypen, Kleinserien und mehrere tausend Stück pro Monat',
-      '100\u00a0%-AOI nach der Bestückung als Standard – kein Bauteil verlässt die Linie ungeprüft',
+      '100 %-AOI nach der Bestückung als Standard – kein Bauteil verlässt die Linie ungeprüft',
     ],
     bulletsEN: [
-      'High-precision placement down to 01005 and 0.4\u00a0mm pitch – BGA, QFN, LGA and fine-pitch packages',
+      'High-precision placement down to 01005 and 0.4 mm pitch – BGA, QFN, LGA and fine-pitch packages',
       'Flexible lines for prototypes, small series and several thousand units per month',
-      '100\u00a0% AOI after placement as standard – no component leaves the line unchecked',
+      '100 % AOI after placement as standard – no component leaves the line unchecked',
     ],
   },
   {
@@ -252,23 +252,23 @@ const capabilities = [
     bulletsDE: [
       'Kundenspezifische Kabel und Kabelbäume nach Schaltplan – Einzel- bis Serienproduktion',
       'Alle gängigen Steckersysteme: TE, Molex, JST, Deutsch und weitere',
-      '100\u00a0%-elektrische Prüfung auf Durchgang, Isolation und korrekte Pinbelegung',
+      '100 %-elektrische Prüfung auf Durchgang, Isolation und korrekte Pinbelegung',
     ],
     bulletsEN: [
       'Custom cables and wire harnesses per schematic – single unit to series production',
       'All common connector systems: TE, Molex, JST, Deutsch and more',
-      '100\u00a0% electrical testing for continuity, insulation and correct pin assignment',
+      '100 % electrical testing for continuity, insulation and correct pin assignment',
     ],
   },
   {
     de: 'Funktionstest & ICT', en: 'Functional Test & ICT', icon: FlaskConical,
     bulletsDE: [
-      'End-of-Line-Funktionstest für 100\u00a0%-Prüfung aller Serieneinheiten vor Versand',
+      'End-of-Line-Funktionstest für 100 %-Prüfung aller Serieneinheiten vor Versand',
       'Manuelle Prüfung oder Nadelbett-Adapter je nach Anforderung, Stückzahl und Layoutkomplexität',
       'Prüfprotokolle und Testergebnisse für lückenlose Qualitätsdokumentation',
     ],
     bulletsEN: [
-      'End-of-line functional test for 100\u00a0% inspection of all series units before shipping',
+      'End-of-line functional test for 100 % inspection of all series units before shipping',
       'Manual testing or bed-of-nails adapter depending on requirements, volume and layout complexity',
       'Test protocols and results for complete quality documentation',
     ],
@@ -412,8 +412,8 @@ export default function Fertigung() {
   return (
     <Layout>
       <SEO
-        titleDE='Elektronikfertigung & SMD-Bestückung Deutschland | EMS-Dienstleister CME'
-        titleEN='Electronics Manufacturing & SMD Assembly Germany | EMS Provider CME'
+        titleDE='Elektronikfertigung & SMD-Bestückung Dortmund'
+        titleEN='Electronics Manufacturing & SMD Assembly Dortmund'
         descriptionDE='Ihr Elektronik Bestücker in Deutschland: Professionelle EMS-Fertigung in Dortmund – SMD-Bestückung, Baugruppenfertigung und Qualitätsmanagement nach IPC. Vom Prototyp bis zur Großserie.'
         descriptionEN='Your electronics manufacturer in Germany: Professional EMS manufacturing in Dortmund – SMD assembly, module production and quality management to IPC standards. From prototype to high-volume series.'
         keywordsDE='Elektronik Bestücker Deutschland, EMS-Dienstleister, Elektronikfertigung, SMD-Bestückung NRW, Leiterplattenbestückung, Baugruppenfertigung, Prototypen, Serienfertigung, AOI, IPC'
@@ -542,9 +542,9 @@ export default function Fertigung() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
+      {/* ═════════════════════════════════════════════════════════════
          FAQ Section – 16 FAQs in 3 Clustern
-         ══════════════════════════════════════════════════════════════ */}
+         ═════════════════════════════════════════════════════════════ */}
       <section className="section-pad">
         <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full" style={{ maxWidth: 'min(80%, 72rem)' }}>
           <h2 className="fluid-h2 text-cme-dark text-center" style={{ marginBottom: 'var(--space-section-header)' }}>

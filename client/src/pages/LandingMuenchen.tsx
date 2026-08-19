@@ -95,8 +95,8 @@ export default function LandingMuenchen() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <SEO
-        titleDE="Elektronikentwicklung München | Leistungselektronik & Thermal Management | CME"
-        titleEN="Electronics Development Munich | Power Electronics & Thermal Management | CME"
+        titleDE="Elektronikentwicklung München | Leistungselektronik | CME"
+        titleEN="Electronics Development Munich | Power Electronics | CME"
         descriptionDE="CME entwickelt Leistungselektronik, Antriebselektronik und thermisch anspruchsvolle Baugruppen für Unternehmen im Raum München. Eigene EMS-Fertigung. Jetzt Projekt besprechen."
         descriptionEN="CME develops power electronics, motor drives and thermally demanding assemblies for companies in the Munich area. In-house EMS manufacturing."
         path="/elektronikentwicklung-muenchen"

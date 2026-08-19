@@ -55,8 +55,8 @@ export default function Prototypen() {
       parentHref="/fertigung"
       parentLabelDE="Elektronikfertigung"
       parentLabelEN="Electronics Manufacturing"
-      titleDE="Elektronik-Prototypen fertigen lassen – Express aus Dortmund"
-      titleEN="Electronics Prototype Manufacturing – Express from Dortmund"
+      titleDE="Elektronik-Prototypen fertigen lassen – Dortmund"
+      titleEN="Electronics Prototype Manufacturing – Dortmund"
       subtitleDE="Vom Einzelprototyp zur validierten Vorserie. Schnelle Prototypenfertigung mit serienidentischem Prozess – Made in Germany."
       subtitleEN="From single prototype to validated pre-series. Fast prototype manufacturing with series-identical process – Made in Germany."
       metaDescriptionDE="Elektronik-Prototypen fertigen lassen: Express-Bestückung ab Einzelstück in Dortmund. Serienidentischer Prozess, DFM-Feedback und nahtloser Übergang zur Serie – CME."
@@ -91,7 +91,7 @@ export default function Prototypen() {
           bulletsDE: [
             'Prototypen durchlaufen exakt denselben Fertigungsprozess wie die spätere Serie',
             'Gleiche Bestückungsautomaten, Lötanlagen und Prüfmittel – keine Abweichungen',
-            'Valide Entwicklungsergebnisse statt „Labormuster" – direkt für Validierung nutzbar',
+            'Valide Entwicklungsergebnisse statt „Labormuster“ – direkt für Validierung nutzbar',
             'Dokumentierte Prozessparameter als Basis für den späteren Serienanlauf',
           ],
           bulletsEN: [

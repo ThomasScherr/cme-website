@@ -80,8 +80,8 @@ export default function LandingElektronikentwicklung() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <SEO
-        titleDE="Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME"
-        titleEN="Electronics Development Dortmund | Power Electronics & Embedded | CME"
+        titleDE="Elektronikentwicklung Dortmund | Leistungselektronik | CME"
+        titleEN="Electronics Development Dortmund | Power Electronics | CME"
         descriptionDE="CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. EMV-Vormessung im Haus. Direkt zur Serienfertigung. Jetzt Projekt anfragen."
         descriptionEN="CME develops power electronics, motor drives and embedded systems in Dortmund Germany. In-house conducted EMC pre-compliance. Direct path to series production."
         path="/elektronikentwicklung"
