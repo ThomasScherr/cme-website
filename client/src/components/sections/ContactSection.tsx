@@ -184,8 +184,8 @@ export default function ContactSection() {
                     </h3>
                     <p className="fluid-body text-gray-500 max-w-sm leading-relaxed">
                       {isDE
-                        ? 'Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.'
-                        : 'We have received your message and will get back to you within 24 hours.'}
+                        ? 'Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.'
+                        : 'We have received your message and will get back to you as soon as possible.'}
                     </p>
                     <button
                       type="button"
