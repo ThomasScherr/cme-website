@@ -52,7 +52,7 @@ export const SEO_PAGES: Record<string, SeoPageMeta> = {
   },
   '/elektronikentwicklung': {
     title: 'Elektronikentwicklung Dortmund | CME',
-    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
+    description: 'CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. EMV-Vormessung im Haus. Direkt zur Serienfertigung. Jetzt Projekt anfragen.',
     keywords: 'Elektronikentwicklung, Leistungselektronik, Antriebselektronik, Embedded Systeme, EMV, Dortmund, EMS, Elektronik Bestücker',
   },
   '/elektronikentwicklung-muenchen': {

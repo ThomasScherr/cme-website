@@ -21,10 +21,10 @@ import {
 import { Link } from 'wouter';
 import { useState, useEffect } from 'react';
 
-/* ══════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    GOOGLE ADS LANDING PAGE – /elektronikentwicklung-muenchen
    Conversion-optimiert für Kampagne "Markterschließung München"
-   ══════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════ */
 
 const PHONE = '0231 286676960';
 const PHONE_HREF = 'tel:+492312866769600';
@@ -37,15 +37,15 @@ const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-poster.webp'
 const faqs = [
   {
     question: 'Wie funktioniert die Zusammenarbeit zwischen München und Dortmund?',
-    answer: 'Kickoff und Abstimmungen finden vor Ort in München oder per Video statt. Die Entwicklung erfolgt an unserem Standort in Dortmund – mit direktem Zugang zu eigenem EMV-Labor, thermischer Simulation und EMS-Fertigung. Regelmäßige Reviews und kurze Kommunikationswege sorgen für reibungslose Projekte.',
+    answer: 'Kickoff und Abstimmungen laufen per Video oder Telefon, zu Meilensteinen kommen wir auch nach München. Entwickelt wird an unserem Standort in Dortmund – mit leitungsgebundener EMV-Vormessung im eigenen Haus, thermischer Simulation und EMS-Fertigung unter einem Dach. Ein fester Ansprechpartner begleitet das Projekt von Anfang bis Ende.',
   },
   {
     question: 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?',
-    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie ein erstes Feedback und eine Einschätzung, ob und wie wir Ihr Projekt unterstützen können.',
+    answer: 'Wir sichten jede Anfrage persönlich und melden uns schnellstmöglich mit einer ersten Einschätzung, ob und wie wir Ihr Projekt unterstützen können.',
   },
   {
     question: 'Was kostet eine Elektronikentwicklung bei CME?',
-    answer: 'Die Kosten hängen von der Komplexität ab: Ein einfaches Sensorboard liegt im niedrigen fünfstelligen Bereich, komplexe Leistungselektronik im sechsstelligen Bereich. Nach einer kostenlosen Ersteinschätzung erhalten Sie eine belastbare Kosten- und Zeitschätzung.',
+    answer: 'Das hängt stark vom Umfang ab – Funktionsumfang, Normanforderungen, Stückzahl und davon, wie viel Vorarbeit schon vorliegt. Zahlen nennen wir erst, wenn wir Ihre Anforderungen kennen: Nach dem Erstgespräch und einer Machbarkeitsbewertung erhalten Sie eine Aufwands- und Zeitschätzung, an der wir uns messen lassen.',
   },
   {
     question: 'Können Sie bestehende Produkte redesignen?',
@@ -192,8 +192,8 @@ export default function LandingMuenchen() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
-                { icon: Clock, text: 'Erste Rückmeldung in 1 Werktag' },
-                { icon: MapPin, text: 'Persönliche Präsenz in München' },
+                { icon: Clock, text: 'Freie Kapazität – Start in wenigen Tagen' },
+                { icon: MapPin, text: 'Standort Dortmund, bundesweit tätig' },
                 { icon: Layers, text: 'Entwicklung + Fertigung aus einer Hand' },
                 { icon: ShieldCheck, text: 'ISO 9001 & 14001 zertifiziert' },
               ].map(({ icon: Icon, text }, i) => (
@@ -286,7 +286,7 @@ export default function LandingMuenchen() {
                 { icon: Thermometer, title: 'Thermal Management', desc: 'Thermische Simulation, Entwärmungskonzepte und Validierung. Wir lösen thermische Herausforderungen systematisch.' },
                 { icon: Cpu, title: 'Hardware & Embedded', desc: 'Schaltungsentwurf, PCB-Layout, FPGA und Embedded Software (C/C++, RTOS) für komplexe Elektronikbaugruppen.' },
                 { icon: Cog, title: 'Antriebselektronik', desc: 'Motorsteuerungen (FOC, DTC), Leistungsendstufen und Regelungstechnik für BLDC, PMSM und Reluktanzmotoren.' },
-                { icon: ShieldCheck, title: 'EMV & Validierung', desc: 'EMV-Prüfung, Umwelttests und Qualifikation nach Automotive- und Industriestandards im eigenen Labor.' },
+                { icon: ShieldCheck, title: 'EMV & Validierung', desc: 'Leitungsgebundene EMV-Vormessung im eigenen Haus, Umwelttests und Qualifikation nach Automotive- und Industriestandards. Gestrahlte Messungen laufen über akkreditierte Labore.' },
                 { icon: Factory, title: 'EMS-Fertigung', desc: 'Eigene SMD- und THT-Bestückung, Baugruppenmontage und Qualitätsprüfung – vom Prototyp bis zur Serie.' },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <motion.div
@@ -320,7 +320,7 @@ export default function LandingMuenchen() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { step: '01', title: 'Erstgespräch', desc: 'Wir klären Ihren Bedarf – vor Ort in München, per Video oder Telefon. Kostenlos und unverbindlich.' },
+                { step: '01', title: 'Erstgespräch', desc: 'Wir klären Ihren Bedarf – per Video oder Telefon, auf Wunsch auch persönlich. Kostenlos und unverbindlich.' },
                 { step: '02', title: 'Konzept & Angebot', desc: 'Sie erhalten eine belastbare Einschätzung zu Machbarkeit, Zeitrahmen und Kosten.' },
                 { step: '03', title: 'Entwicklung', desc: 'Unser Team in Dortmund entwickelt Ihre Elektronik – mit regelmäßigen Reviews und kurzen Abstimmungswegen.' },
                 { step: '04', title: 'Fertigung & Übergabe', desc: 'Prototypen und Serie aus unserer eigenen EMS-Linie. Oder Übergabe an Ihren Fertiger – Sie entscheiden.' },
@@ -344,8 +344,8 @@ export default function LandingMuenchen() {
 
             <div className="mt-12 p-6 rounded-2xl bg-cme-blue-light/50 border border-cme-blue/10 text-center">
               <p className="text-gray-700 leading-relaxed max-w-3xl mx-auto">
-                <strong>Persönliche Präsenz:</strong> Unser Team ist regelmäßig in München vor Ort – für Kickoffs, Reviews und persönliche Gespräche.
-                Alle vier bis sechs Wochen gebündelte München-Termine für Interessenten und Bestandskunden.
+                <strong>Abstimmung ohne Reisezeit:</strong> Kickoff, Reviews und Zwischenstände laufen per Video oder Telefon – bei einem festen Ansprechpartner, nicht in einem Ticketsystem.
+                Zu Meilensteinen kommen wir nach München, oder Sie besuchen uns in Dortmund, wo Entwicklung, Messplatz und Fertigung im selben Haus liegen.
               </p>
             </div>
           </div>
@@ -406,7 +406,7 @@ export default function LandingMuenchen() {
                   Entwicklungsbedarf besprechen
                 </h2>
                 <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                  Beschreiben Sie kurz Ihr Vorhaben – wir melden uns innerhalb eines Werktags mit einer ersten Einschätzung.
+                  Beschreiben Sie kurz Ihr Vorhaben – wir melden uns schnellstmöglich mit einer ersten Einschätzung.
                 </p>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-3">
@@ -419,7 +419,7 @@ export default function LandingMuenchen() {
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <span className="text-gray-300">Rückmeldung in 1 Werktag</span>
+                    <span className="text-gray-300">Fester Ansprechpartner statt Ticketsystem</span>
                   </div>
                 </div>
                 <div className="space-y-3 text-gray-400">
@@ -529,7 +529,7 @@ function MunichContactForm() {
       >
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Anfrage erhalten!</h3>
-        <p className="text-gray-600">Wir melden uns innerhalb von 1 Werktag (Mo–Fr) bei Ihnen.</p>
+        <p className="text-gray-600">Wir melden uns schnellstmöglich bei Ihnen.</p>
       </motion.div>
     );
   }

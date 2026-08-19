@@ -10,7 +10,7 @@
 - Website: https://control-motion.de
 - Gründung: 2001
 - Mitarbeiter: ca. 60
-- Zertifizierungen: ISO 9001, Automotive Ready Standards, IPC-A-610, IPC J-STD-001
+- Zertifizierungen: ISO 9001, ISO 14001, IPC-A-610, IPC J-STD-001
 
 ## Kernkompetenzen
 
@@ -70,6 +70,8 @@
 ## Seitenstruktur
 
 - /: Startseite mit Überblick über Leistungen und Kompetenzen
+- /elektronikentwicklung: Elektronikentwicklung Dortmund (Kampagnenseite)
+- /elektronikentwicklung-muenchen: Elektronikentwicklung für den Raum München (Kampagnenseite)
 - /entwicklung: Übersicht Entwicklungsdienstleistungen
 - /entwicklung/hardware-software: Hardware- und Softwareentwicklung
 - /entwicklung/simulation: Simulation und thermisches Management
@@ -84,9 +86,15 @@
 - /fertigung/leiterplatten: Leiterplattenbestückung
 - /fertigung/baugruppen: Baugruppenfertigung
 - /fertigung/qualitaet: Qualitätssicherung
+- /fertigung/smd-bestueckung: SMD-Bestückung
+- /fertigung/prototypen: Prototypenfertigung
 - /lifecycle: Lifecycle Management und Reparatur
 - /maerkte: Zielmärkte und Branchenkompetenz
 - /unternehmen: Über CME
 - /kontakt: Kontaktformular und Anfahrt
 - /karriere: Stellenangebote und Karriere
 - /insights: Fachartikel und Neuigkeiten
+- /media-center: Logos, Pressefotos, Boilerplate-Texte zum Download
+- /impressum, /datenschutz, /agb: Rechtstexte
+
+Jede Seite gibt es auch auf Englisch unter /en/ (Beispiel: /en/development, /en/manufacturing, /en/contact). Die Zuordnung steht als hreflang in jeder Seite.
