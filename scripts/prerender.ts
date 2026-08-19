@@ -34,7 +34,8 @@ const ENTRY = path.resolve(DIST_DIR, "server-entry", "entry-server.js");
  * Express sie für Routen ohne vorgerenderte Datei braucht (Verwaltung).
  *
  * Der Ablageort liegt bewusst außerhalb von dist/public, damit die Hülle nicht
- * als eigene URL abrufbar ist.
+ * als eigene URL abrufbar ist – und genau deshalb überlebt sie auch das Leeren
+ * von dist/public durch `vite build`. Siehe readTemplate().
  */
 const SHELL = path.resolve(DIST_DIR, "spa-shell.html");
 
@@ -65,15 +66,63 @@ function outputPathFor(route: string): string {
   return path.join(PUBLIC_DIR, clean, "index.html");
 }
 
-/** Vorlage lesen: bevorzugt die beiseitegelegte Hülle, sonst der frische Build. */
+/**
+ * Vorlage lesen.
+ *
+ * Die beiseitegelegte Hülle wird bevorzugt – sonst nähme ein zweiter Lauf ohne
+ * neuen Build die bereits gerenderte Startseite als Vorlage, und jede Seite
+ * bekäme deren Inhalt. Sie wird aber nur genommen, wenn die Dateien, auf die
+ * sie verweist, noch existieren.
+ *
+ * Der Grund: `vite build` leert dist/public und vergibt neue Namen mit
+ * Inhaltsstempel, die Hülle liegt daneben in dist/ und überlebt das. Beim
+ * zweiten Bauen im selben Verzeichnis verwies deshalb jede der 55 Seiten auf
+ * das Skript des ersten Builds – eine Website, auf der kein JavaScript lädt.
+ * Der Build selbst lief dabei ohne Fehler durch; auffallen konnte es erst im
+ * Browser.
+ */
 async function readTemplate(): Promise<string> {
-  try {
-    return await fs.readFile(SHELL, "utf8");
-  } catch {
-    const template = await fs.readFile(path.resolve(PUBLIC_DIR, "index.html"), "utf8");
-    await fs.writeFile(SHELL, template, "utf8");
-    return template;
+  const saved = await fs.readFile(SHELL, "utf8").catch(() => null);
+  if (saved !== null && (await missingAssets(saved)).length === 0) {
+    return saved;
   }
+  if (saved !== null) {
+    console.warn("[prerender] beiseitegelegte Huelle verweist auf Dateien von einem aelteren Build – nehme die frische");
+  }
+
+  const fresh = await fs.readFile(path.resolve(PUBLIC_DIR, "index.html"), "utf8");
+  const missing = await missingAssets(fresh);
+  if (missing.length) {
+    throw new Error(
+      `dist/public/index.html verweist auf Dateien, die es dort nicht gibt: ${missing.join(", ")}. ` +
+      `dist/ loeschen und neu bauen.`
+    );
+  }
+  // Nach einem Lauf ist dist/public/index.html die gerenderte Startseite. Als
+  // Vorlage genommen, bekaeme jede Seite deren Markup mitgeliefert. Nach
+  // `vite build` ist die Datei dagegen die leere Huelle – nur die ist brauchbar.
+  if (!/<div id="root">\s*<\/div>/.test(fresh)) {
+    throw new Error(
+      "dist/public/index.html ist keine leere Huelle, sondern schon eine gerenderte Seite. " +
+      "dist/ loeschen und neu bauen."
+    );
+  }
+  await fs.writeFile(SHELL, fresh, "utf8");
+  return fresh;
+}
+
+/** Welche der von der Vorlage eingebundenen Dateien fehlen in dist/public? */
+async function missingAssets(template: string): Promise<string[]> {
+  const refs = [...template.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map(m => m[1]);
+  const missing: string[] = [];
+  for (const ref of refs) {
+    try {
+      await fs.access(path.resolve(PUBLIC_DIR, ref.replace(/^\//, "")));
+    } catch {
+      missing.push(ref);
+    }
+  }
+  return missing;
 }
 
 async function main() {
@@ -91,6 +140,19 @@ async function main() {
     try {
       const { html } = await render(route);
       const doc = buildDocument(template, route, html);
+
+      // Der Cookie-Banner haengt an localStorage, das es serverseitig nicht
+      // gibt. Stuende er im vorgerenderten HTML, wuerde der Browser bei jedem
+      // Besucher mit gespeicherter Entscheidung etwas anderes aufbauen - React
+      // uebernaehme die Knoten dann nicht und kein Knopf reagierte mehr.
+      // Das ist einmal passiert und faellt sonst erst im Browser auf.
+      if (doc.includes("data-consent-banner")) {
+        throw new Error(
+          "Der Cookie-Banner steht im vorgerenderten HTML. Er darf erst nach dem " +
+          "Hydratisieren erscheinen (siehe ConsentProvider in client/src/contexts/ConsentContext.tsx)."
+        );
+      }
+
       const out = outputPathFor(route);
       await fs.mkdir(path.dirname(out), { recursive: true });
       await fs.writeFile(out, doc, "utf8");
