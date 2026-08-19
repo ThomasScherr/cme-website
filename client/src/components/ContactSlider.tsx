@@ -198,8 +198,8 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                           ? 'Wir senden Ihnen unsere NDA-Vorlage schnellstmöglich per E-Mail zu.'
                           : 'We will send you our NDA template via email as soon as possible.')
                       : (isDE
-                          ? 'Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.'
-                          : 'We have received your message and will get back to you within 24 hours.')
+                          ? 'Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.'
+                          : 'We have received your message and will get back to you as soon as possible.')
                     }
                   </p>
                   <button
@@ -257,7 +257,7 @@ export default function ContactSlider({ isOpen, onClose, topic, pageSource }: Co
                   <div className="px-8 pb-8 pt-2">
                     <AnimatePresence mode="wait">
                       {mode === 'nda' ? (
-                        /* ── NDA Form ────────────────────────── */
+                        /* ── NDA Form ───────────────────────── */
                         <motion.form
                           key="nda-form"
                           initial={{ opacity: 0, y: 10 }}
