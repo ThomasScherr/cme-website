@@ -30,23 +30,45 @@ interface SEOProps {
   enPath?: string;
 }
 
+/**
+ * Feste Kennungen fuer die Entitaeten. Damit verweisen Organisation, Standort
+ * und Artikel aufeinander, statt dass jede Seite ein eigenes, unverbundenes
+ * Unternehmen beschreibt – genau das braucht ein KI-System, um Aussagen
+ * derselben Firma zuzuordnen.
+ */
+const ORG_ID = `${BASE_URL}#organisation`;
+const STANDORT_ID = `${BASE_URL}#standort-dortmund`;
+
+/** Wird bundesweit geliefert – die Kunden sitzen nicht nur in NRW. */
+const AREA_SERVED = [{ '@type': 'Country', name: 'Deutschland' }];
+
+/** "Über 60 Mitarbeiter" – als Untergrenze, nicht als genaue Zahl. */
+const MITARBEITER = { '@type': 'QuantitativeValue', minValue: 60 };
+
 /* ── Organization Schema (global, rendered once on homepage) ── */
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': ORG_ID,
   name: 'CME Control Motion Electronics GmbH',
+  legalName: 'CME Control Motion Electronics GmbH',
   url: BASE_URL,
   logo: 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png',
   description:
     'Entwicklungsdienstleister und EMS-Partner für Leistungselektronik, Antriebselektronik, Mechatronik und thermisch anspruchsvolle Elektronikprojekte.',
+  foundingDate: '2008',
+  numberOfEmployees: MITARBEITER,
+  areaServed: AREA_SERVED,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Alter Hellweg 48',
     addressLocality: 'Dortmund',
     postalCode: '44379',
+    addressRegion: 'NRW',
     addressCountry: 'DE',
   },
   telephone: '+49 231 28 66 76 96-0',
+  email: 'info@control-motion.de',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
@@ -59,15 +81,29 @@ export const organizationSchema = {
   ],
 };
 
-/* ── LocalBusiness Schema (homepage only) ── */
+/**
+ * LocalBusiness – der Standort Dortmund.
+ *
+ * Steht auf der Startseite UND auf der Kontaktseite: Letztere ist das Ziel
+ * lokaler Suchanfragen, dort fehlte das Signal bisher ganz.
+ *
+ * priceRange ist entfallen. '$$$$' sagt bei einem Entwicklungsdienstleister
+ * nichts aus und schreckt eher ab, als dass es hilft.
+ */
 export const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
+  '@id': STANDORT_ID,
+  parentOrganization: { '@id': ORG_ID },
   name: 'CME Control Motion Electronics GmbH',
+  legalName: 'CME Control Motion Electronics GmbH',
   image: 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png',
   url: BASE_URL,
   telephone: '+49 231 28 66 76 96-0',
   email: 'info@control-motion.de',
+  foundingDate: '2008',
+  numberOfEmployees: MITARBEITER,
+  areaServed: AREA_SERVED,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Alter Hellweg 48',
@@ -87,7 +123,6 @@ export const localBusinessSchema = {
     opens: '08:00',
     closes: '17:00',
   },
-  priceRange: '$$$$',
   sameAs: [
     'https://www.linkedin.com/company/cme-control-motion-electronics/',
   ],
