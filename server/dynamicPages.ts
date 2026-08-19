@@ -2,7 +2,7 @@ import fs from "fs";
 import fsp from "fs/promises";
 import path from "path";
 import type { Request, Response, NextFunction } from "express";
-import { getArticleBySlug, getPublishedArticles } from "./db";
+import { getArticleBySlug, getAuthorById, getPublishedArticles } from "./db";
 import { buildDocument } from "./buildDocument";
 import { buildHead, canonicalUrl, escapeHtml } from "./seoHead";
 import { SITE_NAME, DEFAULT_OG_IMAGE } from "./seoPageData";
@@ -40,6 +40,7 @@ export interface ArticleRecord {
   status: string;
   updatedAt?: Date | string | null;
   publishedAt?: Date | string | null;
+  authorId?: number | null;
 }
 
 /** Erkennt /insights/<slug> und /en/insights/<slug>. */
@@ -114,7 +115,11 @@ export function buildArticleHead(article: ArticleRecord, lang: "de" | "en"): { t
 
 type RenderFn = (
   url: string,
-  seed?: { articleList?: unknown; article?: { slug: string; data: unknown } }
+  seed?: {
+    articleList?: unknown;
+    article?: { slug: string; data: unknown };
+    author?: { id: number; data: unknown };
+  }
 ) => Promise<{ html: string; lang: "de" | "en" }>;
 
 let renderPromise: Promise<RenderFn> | null = null;
@@ -194,14 +199,31 @@ export function dynamicPagesMiddleware(distPath: string, deps: DynamicPagesDeps 
         // 404-Behandlung der SPA-Ruecklage.
         if (!record || record.status !== "published") return next();
 
+        // Das Autorenprofil gehoert ins ausgelieferte HTML: AuthorCard laedt
+        // es sonst erst im Browser, und dann steht im Quelltext weder Titel
+        // noch Bio noch Person-Schema. Faellt die Abfrage aus, bleibt die
+        // Seite trotzdem stehen - AuthorCard zeigt dann wie bisher nur den
+        // Namen.
+        const author = record.authorId
+          ? await getAuthorById(record.authorId).catch(() => null)
+          : null;
+
         const file = cachePathFor(distPath, req.originalUrl);
-        if (cacheIsFresh(file, timestamp(record.updatedAt))) {
+        // Auch eine Aenderung am Autorenprofil macht die Ablage ungueltig.
+        const zuletztGeaendert = Math.max(
+          timestamp(record.updatedAt),
+          timestamp((author as { updatedAt?: Date | string | null } | null)?.updatedAt)
+        );
+        if (cacheIsFresh(file, zuletztGeaendert)) {
           return send(res, await fsp.readFile(file, "utf8"));
         }
 
         const render = await getRenderer();
         const { html } = await render(normalizePath(req.originalUrl), {
           article: { slug: article.slug, data: record },
+          ...(author && record.authorId
+            ? { author: { id: record.authorId, data: author } }
+            : {}),
         });
         const doc = buildDocument(
           readShell(distPath),
