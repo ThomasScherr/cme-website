@@ -136,7 +136,10 @@ export default function SEO({
   const title = isDE ? titleDE : titleEN;
   const description = isDE ? descriptionDE : descriptionEN;
   const keywords = isDE ? keywordsDE : keywordsEN;
-  const fullTitle = rawTitle ? title : `${title} | ${SITE_NAME}`;
+  // Sieben Seiten tragen den Markennamen bereits im Titel. Das Suffix wurde
+  // trotzdem angehaengt, im Suchergebnis stand dann "... | CME | CME".
+  const endetAufMarke = new RegExp(`\\|\\s*${SITE_NAME}\\b[^|]*$`, 'i').test(title);
+  const fullTitle = rawTitle || endetAufMarke ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = `${BASE_URL}${path === '/' ? '/' : path + '/'}`;
   const image = ogImage || DEFAULT_OG_IMAGE;
 
