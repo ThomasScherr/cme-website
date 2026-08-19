@@ -21,10 +21,10 @@ import {
 } from 'lucide-react';
 import { Link } from 'wouter';
 
-/* ══════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    GOOGLE ADS LANDING PAGE – /elektronikentwicklung
    Conversion-optimiert, kein allgemeiner Markenauftritt
-   ══════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════ */
 
 const PHONE = '0231 286676960';
 const PHONE_HREF = 'tel:+492312866769600';
@@ -37,11 +37,11 @@ const HERO_VIDEO_POSTER = 'https://ventspire-cdn.b-cdn.net/cme/hero-video-poster
 const faqs = [
   {
     question: 'Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?',
-    answer: 'Innerhalb von einem Werktag (Mo–Fr) erhalten Sie ein erstes Feedback auf Ihre Anfrage.',
+    answer: 'Wir sichten jede Anfrage persönlich und melden uns schnellstmöglich mit einem ersten Feedback.',
   },
   {
     question: 'Was kostet eine Elektronikentwicklung bei CME?',
-    answer: 'Die Kosten hängen von der Komplexität ab: Ein einfaches Sensorboard liegt im niedrigen fünfstelligen Bereich, komplexe Leistungselektronik mit Funktionaler Sicherheit im sechsstelligen Bereich. Nach der kostenlosen Machbarkeitsanalyse erhalten Sie eine belastbare Kosten- und Zeitschätzung.',
+    answer: 'Das hängt stark vom Umfang ab – Funktionsumfang, Normanforderungen, Stückzahl und davon, wie viel Vorarbeit schon vorliegt. Zahlen nennen wir erst, wenn wir Ihre Anforderungen kennen: Nach dem Erstgespräch und einer Machbarkeitsbewertung erhalten Sie eine Aufwands- und Zeitschätzung, an der wir uns messen lassen.',
   },
   {
     question: 'Können Sie bestehende Produkte redesignen oder weiterentwickeln?',
@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     question: 'Entwickelt CME auch für Automotive oder Medizintechnik?',
-    answer: 'Ja. Wir entwickeln nach ISO 26262 (Automotive, Funktionale Sicherheit), Automotive SPICE und kennen die Anforderungen der IEC 60601 (Medizintechnik). Unsere Prozesse sind ISO 9001 zertifiziert.',
+    answer: 'Wir entwickeln nach den Vorgaben unserer Kunden – auch in normativ regulierten Umfeldern wie Automotive (ISO 26262), Bahn oder Medizintechnik (IEC 60601). Nachweisführung und Zulassung verantwortet dabei in aller Regel der Kunde; eigene Zertifizierungen nach diesen Normen haben wir nicht. Unser Qualitätsmanagement ist nach ISO 9001 zertifiziert.',
   },
   {
     question: 'Was passiert nach der Entwicklung – könnt ihr auch fertigen?',
@@ -67,7 +67,7 @@ const services = [
   { name: 'E-Motor Design', description: 'Elektromagnetische Auslegung, FEA-Simulation und Optimierung von BLDC, PMSM und Reluktanzmotoren mit Motor-CAD.' },
   { name: 'Control Design', description: 'Reglerauslegung für Motorsteuerungen (FOC, DTC), Stromversorgungen und komplexe Mehrgrößensysteme.' },
   { name: 'Simulation', description: 'Thermische Simulation, EMV-Simulation, Schaltungssimulation und CFD-Analyse für optimale Designs.' },
-  { name: 'Validierung & EMV', description: 'EMV-Prüfung im eigenen Labor, Umwelttests, Qualifikation nach Automotive- und Industriestandards.' },
+  { name: 'Validierung & EMV', description: 'Leitungsgebundene EMV-Vormessung im eigenen Haus, Umwelttests, Qualifikation nach Automotive- und Industriestandards.' },
   { name: 'Test & Verification', description: 'Automatisierte Testkonzepte, HIL-Tests, Lebensdauertests und Serienprüfmittelentwicklung.' },
 ];
 
@@ -82,8 +82,8 @@ export default function LandingElektronikentwicklung() {
       <SEO
         titleDE="Elektronikentwicklung Dortmund | Leistungselektronik & Embedded | CME"
         titleEN="Electronics Development Dortmund | Power Electronics & Embedded | CME"
-        descriptionDE="CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. Eigenes EMV-Labor. Direkt zur Serienfertigung. Jetzt Projekt anfragen."
-        descriptionEN="CME develops power electronics, motor drives and embedded systems in Dortmund Germany. In-house EMC lab. Direct path to series production."
+        descriptionDE="CME entwickelt Leistungselektronik, Antriebselektronik und Embedded Systeme in Dortmund. EMV-Vormessung im Haus. Direkt zur Serienfertigung. Jetzt Projekt anfragen."
+        descriptionEN="CME develops power electronics, motor drives and embedded systems in Dortmund Germany. In-house conducted EMC pre-compliance. Direct path to series production."
         path="/elektronikentwicklung"
         rawTitle
         additionalSchemas={[faqSchema, ...serviceSchemas]}
@@ -127,7 +127,7 @@ export default function LandingElektronikentwicklung() {
                   Ihr Entwicklungspartner für Leistungselektronik — von der Schaltung bis zur Serienfertigung.
                 </h1>
                 <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-                  CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive, Medizintechnik und E-Mobility. Mit eigenem EMV-Labor, thermischer Simulation und direktem Weg zur Fertigung.
+                  CME entwickelt Hardware, Embedded Software und Antriebselektronik für Industrie, Automotive, Medizintechnik und E-Mobility. Mit EMV-Vormessung im eigenen Haus, thermischer Simulation und direktem Weg zur Fertigung.
                 </p>
                 <a href="#anfrage" className="inline-flex items-center gap-2 px-6 py-3.5 bg-cme-blue text-white font-bold rounded-lg hover:bg-cme-blue/90 transition-all shadow-lg shadow-cme-blue/20 text-base">
                   Projekt besprechen
@@ -182,8 +182,8 @@ export default function LandingElektronikentwicklung() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
-                { icon: Clock, text: 'Erste Rückmeldung in 1 Werktag' },
-                { icon: Radio, text: 'Eigenes EMV-Labor' },
+                { icon: Clock, text: 'Freie Kapazität – Start in wenigen Tagen' },
+                { icon: Radio, text: 'EMV-Vormessung im eigenen Haus' },
                 { icon: MapPin, text: 'Dortmund, Deutschland' },
                 { icon: Layers, text: 'Entwicklung + EMS aus einer Hand' },
               ].map(({ icon: Icon, text }, i) => (
@@ -243,7 +243,7 @@ export default function LandingElektronikentwicklung() {
                 { icon: Cog, title: 'E-Motor Design', desc: 'Elektromagnetische Auslegung, FEA-Simulation und Optimierung von BLDC, PMSM und Reluktanzmotoren.' },
                 { icon: SlidersHorizontal, title: 'Control Design', desc: 'Reglerauslegung für Motorsteuerungen (FOC, DTC), Stromversorgungen und Mehrgrößensysteme.' },
                 { icon: Waves, title: 'Simulation', desc: 'Thermische Simulation, EMV-Simulation, Schaltungssimulation und CFD-Analyse für optimale Designs.' },
-                { icon: ShieldCheck, title: 'Validierung & EMV', desc: 'EMV-Prüfung im eigenen Labor, Umwelttests, Qualifikation nach Automotive- und Industriestandards.' },
+                { icon: ShieldCheck, title: 'Validierung & EMV', desc: 'Leitungsgebundene EMV-Vormessung im eigenen Haus, Umwelttests, Qualifikation nach Automotive- und Industriestandards.' },
                 { icon: FlaskConical, title: 'Test & Verification', desc: 'Automatisierte Testkonzepte, HIL-Tests, Lebensdauertests und Serienprüfmittelentwicklung.' },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <div key={i} className="p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-cme-blue/30 transition-all group">
@@ -274,8 +274,7 @@ export default function LandingElektronikentwicklung() {
                 'Umrichter: Automotive, Ladetechnik, PV',
                 'Thermisches Management & Verlustleistungssimulation',
                 'EMV-Design & Qualifikation',
-                'Funktionale Sicherheit (ISO 26262)',
-                'Automotive SPICE',
+                'Funktionale Sicherheit: Safety-Monitor und sicherer Zustand',
                 'Embedded Systems RTOS (C/C++)',
                 'CAN, LIN, SPI, EtherCAT',
                 'Robuste Elektronik für raue Umgebungen',
@@ -301,7 +300,7 @@ export default function LandingElektronikentwicklung() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { step: '1', title: 'Briefing & Machbarkeit', desc: 'Rückmeldung innerhalb von 1 Werktag (Mo–Fr), kostenlos. Wir bewerten Ihre Anforderungen und geben eine erste Einschätzung.' },
+                { step: '1', title: 'Briefing & Machbarkeit', desc: 'Kostenlos und unverbindlich. Wir bewerten Ihre Anforderungen und geben eine erste Einschätzung.' },
                 { step: '2', title: 'Konzept & Angebot', desc: 'Technisches Konzept, Zeitplan und transparentes Angebot mit klaren Meilensteinen.' },
                 { step: '3', title: 'Entwicklung & Prototyp', desc: 'Hardware, Software und Simulation parallel. Prototypenfertigung in eigener Produktion.' },
                 { step: '4', title: 'Test, Qualifikation & Serie', desc: 'EMV, Umwelttests, Zulassung und Serienanlauf — alles aus einer Hand.' },
@@ -328,7 +327,7 @@ export default function LandingElektronikentwicklung() {
             <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
               {[
                 { icon: Zap, title: 'Technische Tiefe statt Koordination', desc: 'Unsere Ingenieure entwickeln selbst — kein Outsourcing, kein Durchreichen an Subunternehmer.' },
-                { icon: Radio, title: 'Eigenes EMV-Labor in Dortmund', desc: 'Schnelle Iterationen ohne externe Labortermine. Pre-Compliance und Debugging direkt vor Ort.' },
+                { icon: Radio, title: 'EMV-Vormessung im eigenen Haus', desc: 'Leitungsgebundene Messungen direkt bei uns – schnelle Iterationen ohne externe Termine. Für gestrahlte Messungen arbeiten wir mit akkreditierten Laboren zusammen, eines davon wenige Minuten entfernt.' },
                 { icon: Factory, title: 'Vom Prototyp direkt zur Serie', desc: 'Eigene EMS-Fertigung am Standort. Kein Lieferantenwechsel, keine Übergabeverluste.' },
                 { icon: Globe2, title: 'Standort Deutschland — kurze Wege', desc: 'Kein Offshore-Risiko. Persönliche Ansprechpartner. Kommunikation auf Augenhöhe.' },
               ].map(({ icon: Icon, title, desc }, i) => (
@@ -353,7 +352,7 @@ export default function LandingElektronikentwicklung() {
               Projekt besprechen — kostenlos und unverbindlich
             </h2>
             <p className="text-center text-gray-600 mb-10">
-              Beschreiben Sie Ihr Vorhaben. Wir melden uns innerhalb von 1 Werktag (Mo–Fr).
+              Beschreiben Sie Ihr Vorhaben. Wir melden uns schnellstmöglich.
             </p>
 
             <ContactForm />
@@ -470,7 +469,7 @@ function ContactForm() {
       >
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Anfrage erhalten!</h3>
-        <p className="text-gray-600">Wir melden uns innerhalb von 1 Werktag (Mo–Fr) bei Ihnen.</p>
+        <p className="text-gray-600">Wir melden uns schnellstmöglich bei Ihnen.</p>
       </motion.div>
     );
   }
