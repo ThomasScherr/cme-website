@@ -195,7 +195,7 @@ export default function LandingMuenchen() {
                 { icon: Clock, text: 'Freie Kapazität – Start in wenigen Tagen' },
                 { icon: MapPin, text: 'Standort Dortmund, bundesweit tätig' },
                 { icon: Layers, text: 'Entwicklung + Fertigung aus einer Hand' },
-                { icon: ShieldCheck, text: 'ISO 9001 zertifiziert' },
+                { icon: ShieldCheck, text: 'ISO 9001 & 14001 zertifiziert' },
               ].map(({ icon: Icon, text }, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
                   <div className="w-10 h-10 rounded-lg bg-cme-blue/10 flex items-center justify-center flex-shrink-0">
