@@ -183,7 +183,10 @@ function ConsentBanner() {
   const { acceptAll, acceptNecessaryOnly, acceptChatOnly, openSettings } = useConsent();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[10000] p-4 sm:p-6">
+    // data-consent-banner: Marke fuer scripts/prerender.ts. Der Banner haengt an
+    // localStorage und darf nie im vorgerenderten HTML stehen - sonst laeuft der
+    // Server-Aufbau gegen den Browser-Aufbau und die Knoepfe reagieren nicht mehr.
+    <div data-consent-banner className="fixed bottom-0 left-0 right-0 z-[10000] p-4 sm:p-6">
       <div className="mx-auto max-w-3xl bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
         {/* Content */}
         <div className="p-5 sm:p-6">
