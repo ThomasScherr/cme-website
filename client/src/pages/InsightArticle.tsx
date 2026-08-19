@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import SEO from '@/components/SEO';
+import SEO, { BASE_URL as SEO_BASE_URL } from '@/components/SEO';
 import AuthorCard from '@/components/AuthorCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { trpc } from '@/lib/trpc';
@@ -18,6 +18,13 @@ export default function InsightArticle() {
   // Validate slug: must not be empty, must not look like a URL parameter, must be a valid slug format
   const isValidSlug = !!slug && !slug.startsWith(':') && /^[a-z0-9][a-z0-9-]*[a-z0-9]$/.test(slug);
   const { data: article, isLoading } = trpc.articles.getBySlug.useQuery({ slug }, { enabled: isValidSlug });
+  // Dieselbe Abfrage wie in AuthorCard – React Query liefert sie aus dem
+  // Zwischenspeicher, es geht also kein zweiter Aufruf raus. Gebraucht wird
+  // sie hier fuer den Autor im Article-Schema.
+  const { data: dbAuthor } = trpc.authors.getById.useQuery(
+    { id: article?.authorId ?? 0 },
+    { enabled: !!article?.authorId }
+  );
 
   // Helper: pick the correct language field, falling back to German
   function localized<T>(de: T | null | undefined, en: T | null | undefined): T | undefined {
@@ -63,14 +70,59 @@ export default function InsightArticle() {
   const content = localized(article.content, article.contentEn) || article.content;
   const tags = localized(article.tags, article.tagsEn);
 
+  const published = article.publishedAt || article.createdAt;
+  const beschreibung = excerpt || `${title} – Engineering Insight von CME Control Motion Electronics.`;
+
+  /**
+   * Article-Schema. Bisher trugen die Fachartikel nur eine BreadcrumbList –
+   * also weder Autor noch Datum noch Bild in maschinenlesbarer Form. Genau
+   * diese Felder entscheiden darueber, ob eine Quelle zitiert wird.
+   *
+   * headline haelt Google bei ueber 110 Zeichen fuer zu lang, deshalb gekuerzt.
+   */
+  const articleSchema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title.length > 110 ? `${title.slice(0, 107)}...` : title,
+    description: beschreibung,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SEO_BASE_URL}${isDE ? '' : '/en'}/insights/${slug}/`,
+    },
+    author: {
+      '@type': 'Person',
+      name: dbAuthor?.name || article.author,
+      ...(dbAuthor?.url ? { url: dbAuthor.url } : {}),
+      ...(dbAuthor?.imageUrl ? { image: dbAuthor.imageUrl } : {}),
+      ...(dbAuthor?.titleDe || dbAuthor?.titleEn
+        ? { jobTitle: (isDE ? dbAuthor.titleDe : dbAuthor.titleEn || dbAuthor.titleDe) ?? undefined }
+        : {}),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'CME Control Motion Electronics GmbH',
+      url: SEO_BASE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://ventspire-cdn.b-cdn.net/cme/CME_rechts_Logo_RGB_433c645f.png',
+      },
+    },
+    inLanguage: isDE ? 'de-DE' : 'en-US',
+    ...(published ? { datePublished: new Date(published).toISOString() } : {}),
+    ...(article.updatedAt ? { dateModified: new Date(article.updatedAt).toISOString() } : {}),
+    ...(article.coverImage ? { image: [article.coverImage] } : {}),
+    ...(tags ? { keywords: tags } : {}),
+  };
+
   return (
     <Layout>
       <SEO
         titleDE={title}
         titleEN={title}
-        descriptionDE={excerpt || `${title} – Engineering Insight von CME Control Motion Electronics.`}
+        descriptionDE={beschreibung}
         descriptionEN={excerpt || `${title} – Engineering Insight by CME Control Motion Electronics.`}
         path={`/insights/${slug}`}
+        additionalSchemas={[articleSchema]}
         breadcrumbs={[
           { name: 'Home', url: '/' },
           { name: 'Engineering Insights', url: '/insights' },

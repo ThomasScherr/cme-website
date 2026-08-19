@@ -5,9 +5,11 @@ import path from "node:path";
 
 const getArticleBySlug = vi.fn();
 const getPublishedArticles = vi.fn();
+const getAuthorById = vi.fn();
 vi.mock("./db", () => ({
   getArticleBySlug: (...a: unknown[]) => getArticleBySlug(...a),
   getPublishedArticles: (...a: unknown[]) => getPublishedArticles(...a),
+  getAuthorById: (...a: unknown[]) => getAuthorById(...a),
 }));
 
 const { dynamicPagesMiddleware } = await import("./dynamicPages");
@@ -54,6 +56,8 @@ beforeEach(() => {
   fs.writeFileSync(path.join(root, "spa-shell.html"), SHELL);
   getArticleBySlug.mockReset();
   getPublishedArticles.mockReset();
+  getAuthorById.mockReset();
+  getAuthorById.mockResolvedValue(null);
 });
 
 afterEach(() => fs.rmSync(root, { recursive: true, force: true }));
@@ -127,6 +131,64 @@ describe("dynamicPagesMiddleware", () => {
 
     expect(next).toHaveBeenCalled();
     expect(render).not.toHaveBeenCalled();
+  });
+
+  it("gibt das Autorenprofil an den Renderer weiter", async () => {
+    const autor = { id: 1, name: "Matthias Markmann", updatedAt: new Date("2026-01-01T00:00:00Z") };
+    getArticleBySlug.mockResolvedValue({ ...artikel, authorId: 1 });
+    getAuthorById.mockResolvedValue(autor);
+    const render = vi.fn().mockResolvedValue({ html: "<article>x</article>", lang: "de" });
+    const mw = dynamicPagesMiddleware(dist, { render });
+
+    await mw({ method: "GET", originalUrl: "/insights/sic-und-gan/" } as any, fakeRes(), vi.fn());
+
+    expect(getAuthorById).toHaveBeenCalledWith(1);
+    expect(render).toHaveBeenCalledWith("/insights/sic-und-gan", {
+      article: { slug: "sic-und-gan", data: { ...artikel, authorId: 1 } },
+      author: { id: 1, data: autor },
+    });
+  });
+
+  it("fragt keinen Autor ab, wenn der Artikel keinen hat", async () => {
+    getArticleBySlug.mockResolvedValue(artikel);
+    const render = vi.fn().mockResolvedValue({ html: "<article>x</article>", lang: "de" });
+    const mw = dynamicPagesMiddleware(dist, { render });
+
+    await mw({ method: "GET", originalUrl: "/insights/sic-und-gan/" } as any, fakeRes(), vi.fn());
+
+    expect(getAuthorById).not.toHaveBeenCalled();
+    expect(render.mock.calls[0][1]).not.toHaveProperty("author");
+  });
+
+  it("rendert die Seite auch, wenn die Autorenabfrage ausfaellt", async () => {
+    getArticleBySlug.mockResolvedValue({ ...artikel, authorId: 1 });
+    getAuthorById.mockRejectedValue(new Error("Datenbank weg"));
+    const render = vi.fn().mockResolvedValue({ html: "<article>x</article>", lang: "de" });
+    const mw = dynamicPagesMiddleware(dist, { render });
+
+    const res = fakeRes();
+    const next = vi.fn();
+    await mw({ method: "GET", originalUrl: "/insights/sic-und-gan/" } as any, res, next);
+
+    expect(next).not.toHaveBeenCalled();
+    expect(res.statusCode).toBe(200);
+    expect(render.mock.calls[0][1]).not.toHaveProperty("author");
+  });
+
+  it("rendert neu, wenn nur das Autorenprofil geaendert wurde", async () => {
+    getArticleBySlug.mockResolvedValue({ ...artikel, authorId: 1 });
+    getAuthorById.mockResolvedValue({ id: 1, name: "Matthias Markmann", updatedAt: new Date("2026-01-01T00:00:00Z") });
+    const render = vi.fn().mockResolvedValue({ html: "<article>ohne Foto</article>", lang: "de" });
+    const mw = dynamicPagesMiddleware(dist, { render });
+    await mw({ method: "GET", originalUrl: "/insights/sic-und-gan/" } as any, fakeRes(), vi.fn());
+
+    getAuthorById.mockResolvedValue({ id: 1, name: "Matthias Markmann", updatedAt: new Date(Date.now() + 60_000) });
+    render.mockResolvedValue({ html: "<article>mit Foto</article>", lang: "de" });
+    const res = fakeRes();
+    await mw({ method: "GET", originalUrl: "/insights/sic-und-gan/" } as any, res, vi.fn());
+
+    expect(render).toHaveBeenCalledTimes(2);
+    expect(res.body).toContain("mit Foto");
   });
 
   it("reicht unbekannte Slugs weiter", async () => {

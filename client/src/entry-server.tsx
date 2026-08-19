@@ -60,6 +60,15 @@ export interface RenderSeed {
   articleList?: unknown;
   /** Einzelner Artikel für /insights/<slug> */
   article?: { slug: string; data: unknown };
+  /**
+   * Autorenprofil zum Artikel.
+   *
+   * AuthorCard lädt es sonst erst im Browser nach. Im ausgelieferten HTML
+   * standen deshalb nur Initialen und Name – ohne Titel, ohne Bio und ohne
+   * Person-Schema. Für Google und KI-Crawler hatten die Fachartikel damit
+   * faktisch keinen Autor.
+   */
+  author?: { id: number; data: unknown };
 }
 
 export async function render(url: string, seed?: RenderSeed): Promise<RenderResult> {
@@ -89,6 +98,12 @@ export async function render(url: string, seed?: RenderSeed): Promise<RenderResu
     queryClient.setQueryData(
       getQueryKey(trpc.articles.getBySlug, { slug: seed.article.slug }, "query"),
       seed.article.data
+    );
+  }
+  if (seed?.author) {
+    queryClient.setQueryData(
+      getQueryKey(trpc.authors.getById, { id: seed.author.id }, "query"),
+      seed.author.data
     );
   }
 
