@@ -59,11 +59,33 @@ function persistConsent(state: ConsentState) {
 
 /* ── Provider ────────────────────────────────────────────────────── */
 export function ConsentProvider({ children }: { children: ReactNode }) {
-  const [consent, setConsent] = useState<ConsentState | null>(() => readStoredConsent());
+  /*
+   * Der Anfangszustand darf NICHT aus dem Speicher gelesen werden.
+   *
+   * Seit dem Vorrendern gibt es zwei Durchlaeufe: einen auf dem Server beim
+   * Bauen und einen im Browser beim Hydratisieren. Der Server kennt kein
+   * localStorage, dort kam immer null heraus - also stand der Banner in allen
+   * 55 vorgerenderten Seiten. Wer schon einmal entschieden hatte, bekam im
+   * Browser dagegen einen Baum ohne Banner. React fand an dieser Stelle etwas
+   * anderes vor als erwartet und uebernahm die Knoten aus dem HTML nicht: der
+   * Banner blieb sichtbar, gehoerte aber keiner Komponente mehr. Kein Knopf
+   * reagierte, und weggehen konnte er auch nicht.
+   *
+   * Deshalb starten Server und Browser jetzt gleich - ohne Entscheidung und
+   * ohne Banner. Gelesen wird erst nach dem Hydratisieren.
+   */
+  const [consent, setConsent] = useState<ConsentState | null>(null);
+  const [hydrated, setHydrated] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
+  useEffect(() => {
+    setConsent(readStoredConsent());
+    setHydrated(true);
+  }, []);
+
   const hasDecided = consent !== null;
-  const showBanner = !hasDecided;
+  // Vor dem Hydratisieren wissen wir nichts - dann zeigen wir auch nichts.
+  const showBanner = hydrated && !hasDecided;
 
   const applyConsent = useCallback((state: ConsentState) => {
     setConsent(state);
